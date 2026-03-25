@@ -1,0 +1,36 @@
+---
+import Pillar from '../../layouts/Pillar.astro';
+
+export function getStaticPaths() {
+  return [
+    { params: { cat: 'skincare' } },
+    { params: { cat: 'ingredients' } },
+    { params: { cat: 'reviews' } },
+    { params: { cat: 'how-tos' } },
+  ];
+}
+
+const categoryMeta: Record<string, { title: string; description: string }> = {
+  'skincare': {
+    title: 'Skincare',
+    description: 'Routines, skin type guides, and the fundamentals of building a skincare routine that works.',
+  },
+  'ingredients': {
+    title: 'Ingredients',
+    description: 'Deep-dives into active ingredients. what they do, who they\'re for, and how to use them.',
+  },
+  'reviews': {
+    title: 'Reviews & Comparisons',
+    description: 'Honest product reviews and multi-product roundups. tested on real skin, not press releases.',
+  },
+  'how-tos': {
+    title: 'How-Tos',
+    description: 'Step-by-step tutorials, seasonal routines, and fixes for common skincare mistakes.',
+  },
+};
+
+const { cat } = Astro.params;
+const meta = categoryMeta[cat!] || { title: cat, description: '' };
+---
+
+<Pillar title={meta.title} description={meta.description} category={cat!} />

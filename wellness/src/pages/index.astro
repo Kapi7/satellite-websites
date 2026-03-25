@@ -1,0 +1,142 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import HeroSlideshow from '../components/HeroSlideshow.astro';
+import ArticleCard from '../components/ArticleCard.astro';
+import NewsletterSignup from '../components/NewsletterSignup.astro';
+import BackToTop from '../components/BackToTop.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+const sortedPosts = allPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const recent = sortedPosts.slice(0, 6);
+
+const slides = [
+  {
+    image: '/images/hero-slide-1.jpg',
+    title: 'Wellness, grounded in what actually works.',
+    subtitle: 'Clean eating, functional movement, K-Beauty routines, and natural health from people who live it.',
+    category: 'Welcome',
+  },
+  {
+    image: '/images/ancestral-eating-hero.jpg',
+    title: 'Complete Guide to Ancestral Eating',
+    subtitle: 'How eating like our great-grandparents changed the way we think about food.',
+    link: '/complete-guide-ancestral-eating',
+    category: 'Nutrition',
+  },
+  {
+    image: '/images/hero-slide-2.jpg',
+    title: 'From the Farmers Market to Your Table',
+    subtitle: 'Seasonal, whole-food cooking that nourishes from the inside out.',
+    category: 'Nutrition',
+  },
+  {
+    image: '/images/hero-slide-3.jpg',
+    title: 'K-Beauty Routines That Actually Work',
+    subtitle: 'Korean skincare, simplified. Real routines from real people.',
+    link: '/double-cleansing-why-and-how',
+    category: 'K-Beauty',
+  },
+];
+
+const categories = [
+  { slug: 'nutrition', label: 'Nutrition', desc: 'Ancestral eating, whole foods, and the gut-skin connection', count: sortedPosts.filter(p => p.data.category === 'nutrition').length },
+  { slug: 'movement', label: 'Movement', desc: 'Functional fitness, mobility, and outdoor activity', count: sortedPosts.filter(p => p.data.category === 'movement').length },
+  { slug: 'k-beauty', label: 'K-Beauty', desc: 'Korean skincare routines and ingredient deep-dives', count: sortedPosts.filter(p => p.data.category === 'k-beauty').length },
+  { slug: 'natural-health', label: 'Natural Health', desc: 'Sleep, stress, adaptogens, and toxin-free living', count: sortedPosts.filter(p => p.data.category === 'natural-health').length },
+];
+---
+
+<Base
+  title="Rooted Glow"
+  description="Wellness, ancestral nutrition, movement, and K-Beauty grounded in real experience."
+>
+  <Header />
+
+  <main class="flex-1">
+    <!-- Hero Slideshow -->
+    <div class="pt-6 animate-fade-in">
+      <HeroSlideshow slides={slides} />
+    </div>
+
+    <!-- Latest Articles -->
+    <section class="max-w-6xl mx-auto px-5 sm:px-8 py-16">
+      <div class="flex items-end justify-between mb-10">
+        <div>
+          <span class="block text-[11px] font-semibold uppercase tracking-[0.2em] text-sage-400 mb-2">Latest</span>
+          <h2 class="font-heading text-3xl text-charcoal tracking-tight">Fresh from the journal</h2>
+        </div>
+      </div>
+
+      <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+        {recent.map((post, i) => (
+          <ArticleCard
+            title={post.data.title}
+            description={post.data.description}
+            date={post.data.date}
+            category={post.data.category}
+            slug={post.id}
+            image={post.data.image}
+            type={post.data.type}
+            featured={i === 0}
+          />
+        ))}
+      </div>
+    </section>
+
+    <!-- Category Cards -->
+    <section class="max-w-6xl mx-auto px-5 sm:px-8 pb-16">
+      <div class="border-t border-sage-200/60 pt-16">
+        <div class="flex items-end justify-between mb-10">
+          <div>
+            <span class="block text-[11px] font-semibold uppercase tracking-[0.2em] text-sage-400 mb-2">Explore</span>
+            <h2 class="font-heading text-3xl text-charcoal tracking-tight">Topics we cover</h2>
+          </div>
+        </div>
+        <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {categories.map((cat) => (
+            <a
+              href={`/category/${cat.slug}`}
+              class="group relative p-7 rounded-2xl border border-sage-200/60 hover:border-sage-300 bg-white hover:shadow-lg transition-all duration-400 overflow-hidden"
+            >
+              <div class="absolute top-0 right-0 w-20 h-20 bg-sage-50 rounded-full -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-500"></div>
+              <div class="relative">
+                <h3 class="font-heading text-xl text-charcoal mb-2 group-hover:text-sage-700 transition-colors">{cat.label}</h3>
+                <p class="text-xs text-sage-400 leading-relaxed mb-4">{cat.desc}</p>
+                <span class="text-[10px] font-semibold uppercase tracking-[0.15em] text-sage-300">
+                  {cat.count} {cat.count === 1 ? 'article' : 'articles'}
+                </span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- About teaser -->
+    <section class="max-w-6xl mx-auto px-5 sm:px-8 pb-8">
+      <div class="rounded-2xl bg-sage-50 p-10 sm:p-14 flex flex-col sm:flex-row items-start gap-8">
+        <img src="/logo.svg" alt="Rooted Glow" class="w-16 h-16 shrink-0" />
+        <div>
+          <h2 class="font-heading text-2xl text-charcoal tracking-tight mb-3">About Rooted Glow</h2>
+          <p class="text-sm text-sage-500 leading-relaxed mb-4 max-w-xl">
+            We write about clean eating, functional movement, K-Beauty routines, and natural health. Everything here is based on personal experience and actual research, not trends or sponsorships.
+          </p>
+          <a href="/about" class="inline-flex items-center gap-2 text-sm font-medium text-sage-700 hover:text-sage-900 transition-colors">
+            Learn more about us
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <div class="max-w-3xl mx-auto px-5 sm:px-8">
+      <NewsletterSignup />
+    </div>
+  </main>
+
+  <Footer />
+  <BackToTop />
+</Base>

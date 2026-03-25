@@ -1,0 +1,42 @@
+---
+const navItems = [
+  { label: 'Skincare', href: '/category/skincare' },
+  { label: 'Ingredients', href: '/category/ingredients' },
+  { label: 'Reviews', href: '/category/reviews' },
+  { label: 'How-Tos', href: '/category/how-tos' },
+  { label: 'About', href: '/about' },
+];
+---
+<header class="border-b border-rose-100/80 bg-cream/90 backdrop-blur-md sticky top-0 z-50 transition-all duration-300" id="site-header">
+  <div class="max-w-6xl mx-auto px-5 sm:px-8">
+    <div class="flex items-center justify-between py-4">
+      <a href="/" class="group shrink-0">
+        <img src="/logo.svg" alt="Glow Coded" class="h-10 sm:h-11 w-auto" />
+      </a>
+      <nav class="hidden md:flex items-center gap-8">
+        {navItems.map((item) => (
+          <a href={item.href} class="text-[13px] font-medium uppercase tracking-[0.08em] text-plum-400 hover:text-charcoal transition-colors duration-200 relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-px after:bg-rose-500 after:transition-all after:duration-300 hover:after:w-full">{item.label}</a>
+        ))}
+      </nav>
+      <button id="mobile-menu-btn" class="md:hidden p-2 -mr-2 text-plum-400 hover:text-charcoal transition-colors" aria-label="Open menu">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9h16.5m-16.5 6.75h16.5" /></svg>
+      </button>
+    </div>
+  </div>
+  <div id="mobile-menu" class="hidden md:hidden border-t border-rose-100 bg-cream">
+    <nav class="max-w-6xl mx-auto px-5 py-4 flex flex-col gap-1">
+      {navItems.map((item) => (
+        <a href={item.href} class="py-2.5 text-[13px] font-medium uppercase tracking-[0.08em] text-plum-400 hover:text-charcoal transition-colors">{item.label}</a>
+      ))}
+    </nav>
+  </div>
+</header>
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  btn?.addEventListener('click', () => menu?.classList.toggle('hidden'));
+  const header = document.getElementById('site-header');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 60) { header?.classList.add('shadow-sm'); } else { header?.classList.remove('shadow-sm'); }
+  }, { passive: true });
+</script>

@@ -1,0 +1,72 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  date: Date;
+  category: string;
+  slug: string;
+  image?: string;
+  type?: string;
+  featured?: boolean;
+}
+
+const { title, description, date, category, slug, image, type, featured = false } = Astro.props;
+
+const categoryLabels: Record<string, string> = {
+  'skincare': 'Skincare',
+  'ingredients': 'Ingredients',
+  'reviews': 'Reviews',
+  'how-tos': 'How-Tos',
+};
+
+const typeLabels: Record<string, string> = {
+  hub: 'Essential Guide',
+  guide: 'Guide',
+  listicle: 'List',
+  review: 'Review',
+  routine: 'Routine',
+};
+
+const formattedDate = date.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'short',
+  day: 'numeric',
+});
+---
+
+<article class={`group ${featured ? 'md:col-span-2' : ''}`}>
+  <a href={`/${slug}`} class="block">
+    {image && (
+      <div class={`overflow-hidden rounded-2xl mb-5 ${featured ? 'aspect-[2/1]' : 'aspect-[3/2]'} bg-rose-50`}>
+        <img
+          src={image}
+          alt={title}
+          class="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500 ease-out"
+          loading="lazy"
+        />
+      </div>
+    )}
+    <div class="flex items-center gap-2.5 mb-3">
+      <span class="text-[11px] font-semibold uppercase tracking-[0.12em] text-plum-400">
+        {categoryLabels[category] || category}
+      </span>
+      {type && (
+        <>
+          <span class="w-1 h-1 rounded-full bg-rose-300"></span>
+          <span class="text-[11px] font-medium uppercase tracking-[0.08em] text-rose-500">
+            {typeLabels[type] || type}
+          </span>
+        </>
+      )}
+    </div>
+    <h3 class={`font-heading text-charcoal group-hover:text-rose-700 transition-colors duration-200 mb-2.5 leading-[1.2] tracking-tight ${featured ? 'text-2xl sm:text-3xl' : 'text-xl'}`}>
+      {title}
+    </h3>
+    <p class="text-sm text-plum-400 leading-relaxed mb-3 line-clamp-2">
+      {description}
+    </p>
+    <time class="text-[11px] font-medium uppercase tracking-[0.08em] text-plum-300" datetime={date.toISOString()}>
+      {formattedDate}
+    </time>
+  </a>
+</article>

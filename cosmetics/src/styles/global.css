@@ -1,0 +1,203 @@
+@import "tailwindcss";
+
+@theme {
+  --color-rose-50: #fdf2f4;
+  --color-rose-100: #fce7eb;
+  --color-rose-200: #f9cdd6;
+  --color-rose-300: #f4a3b5;
+  --color-rose-400: #ed748f;
+  --color-rose-500: #e14b6d;
+  --color-rose-600: #ce2d56;
+  --color-rose-700: #ad2047;
+  --color-rose-800: #911e40;
+  --color-rose-900: #7c1d3b;
+
+  --color-plum-50: #f9f5fa;
+  --color-plum-100: #f0e6f4;
+  --color-plum-200: #e0cce8;
+  --color-plum-300: #c9a5d5;
+  --color-plum-400: #ab75bc;
+  --color-plum-500: #9055a2;
+  --color-plum-600: #764386;
+  --color-plum-700: #61376d;
+  --color-plum-800: #52305b;
+  --color-plum-900: #452a4c;
+
+  --color-cream: #fdfbf9;
+  --color-cream-dark: #f5f0ed;
+  --color-charcoal: #1a1a1a;
+  --color-charcoal-light: #4a4a4a;
+
+  --font-heading: 'Playfair Display', 'Georgia', 'Times New Roman', serif;
+  --font-body: 'Inter', 'system-ui', '-apple-system', 'Segoe UI', sans-serif;
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s ease-out both;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out both;
+}
+
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-charcoal);
+  background-color: var(--color-cream);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  letter-spacing: -0.02em;
+}
+
+::selection {
+  background-color: var(--color-rose-200);
+  color: var(--color-plum-900);
+}
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--color-cream); }
+::-webkit-scrollbar-thumb { background: var(--color-rose-300); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-rose-400); }
+
+.prose h2 {
+  font-size: 2rem;
+  font-weight: 400;
+  margin-top: 3rem;
+  margin-bottom: 1.25rem;
+  color: var(--color-charcoal);
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+}
+
+.prose h3 {
+  font-size: 1.375rem;
+  font-weight: 400;
+  margin-top: 2.25rem;
+  margin-bottom: 0.75rem;
+  color: var(--color-charcoal-light);
+  letter-spacing: -0.02em;
+}
+
+.prose p {
+  margin-bottom: 1.5rem;
+  line-height: 1.85;
+  font-size: 1.0625rem;
+  color: var(--color-charcoal-light);
+}
+
+.prose > p:first-child {
+  font-size: 1.1875rem;
+  line-height: 1.8;
+  color: var(--color-charcoal);
+}
+
+.prose ul, .prose ol {
+  margin-bottom: 1.5rem;
+  padding-left: 1.25rem;
+}
+
+.prose li {
+  margin-bottom: 0.625rem;
+  line-height: 1.75;
+  color: var(--color-charcoal-light);
+}
+
+.prose ul li { list-style-type: disc; }
+.prose ol li { list-style-type: decimal; }
+
+.prose li::marker {
+  color: var(--color-rose-400);
+}
+
+.prose blockquote {
+  border-left: 3px solid var(--color-rose-400);
+  padding-left: 1.5rem;
+  margin: 2rem 0;
+  font-style: italic;
+  color: var(--color-plum-700);
+  font-size: 1.125rem;
+  line-height: 1.7;
+}
+
+.prose a {
+  color: var(--color-rose-700);
+  text-decoration: underline;
+  text-decoration-color: var(--color-rose-300);
+  text-underline-offset: 3px;
+  transition: all 0.2s ease;
+}
+
+.prose a:hover {
+  color: var(--color-rose-900);
+  text-decoration-color: var(--color-rose-600);
+}
+
+.prose img {
+  border-radius: 1rem;
+  margin: 2.5rem 0;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+
+.prose strong {
+  font-weight: 600;
+  color: var(--color-charcoal);
+}
+
+.prose hr {
+  border: none;
+  border-top: 1px solid var(--color-rose-200);
+  margin: 3rem 0;
+}
+
+/* Table styles for comparison articles */
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+  font-size: 0.875rem;
+}
+
+.prose th {
+  text-align: left;
+  padding: 0.75rem 1rem;
+  border-bottom: 2px solid var(--color-rose-200);
+  font-weight: 600;
+  color: var(--color-charcoal);
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.prose td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--color-cream-dark);
+  color: var(--color-charcoal-light);
+}
+
+.prose tr:last-child td {
+  border-bottom: none;
+}

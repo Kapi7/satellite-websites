@@ -1,0 +1,62 @@
+---
+const year = new Date().getFullYear();
+const categories = [
+  { label: 'Nutrition', href: '/category/nutrition' },
+  { label: 'Movement', href: '/category/movement' },
+  { label: 'K-Beauty', href: '/category/k-beauty' },
+  { label: 'Natural Health', href: '/category/natural-health' },
+];
+---
+
+<footer class="border-t border-sage-200/60 bg-sage-50/50">
+  <div class="max-w-6xl mx-auto px-5 sm:px-8 py-16">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+      <!-- Brand -->
+      <div class="md:col-span-5">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-8 h-8 rounded-full bg-sage-700 flex items-center justify-center">
+            <span class="text-cream text-xs font-heading font-bold">R</span>
+          </div>
+          <span class="text-lg font-heading text-charcoal tracking-tight">Rooted Glow</span>
+        </div>
+        <p class="text-sm text-sage-500 leading-relaxed max-w-sm">
+          Wellness, movement, and K-Beauty. grounded in real experience, not trends. We write about what we actually do, eat, and put on our skin.
+        </p>
+      </div>
+
+      <!-- Categories -->
+      <div class="md:col-span-3">
+        <h4 class="text-[11px] font-semibold uppercase tracking-[0.15em] text-sage-400 mb-4">Explore</h4>
+        <ul class="space-y-2.5">
+          {categories.map((cat) => (
+            <li>
+              <a href={cat.href} class="text-sm text-sage-600 hover:text-charcoal transition-colors duration-200">
+                {cat.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Links -->
+      <div class="md:col-span-2">
+        <h4 class="text-[11px] font-semibold uppercase tracking-[0.15em] text-sage-400 mb-4">Info</h4>
+        <ul class="space-y-2.5">
+          <li><a href="/about" class="text-sm text-sage-600 hover:text-charcoal transition-colors duration-200">About Us</a></li>
+          <li><a href="/privacy" class="text-sm text-sage-600 hover:text-charcoal transition-colors duration-200">Privacy</a></li>
+        </ul>
+      </div>
+
+      <!-- Newsletter mini -->
+      <div class="md:col-span-2">
+        <h4 class="text-[11px] font-semibold uppercase tracking-[0.15em] text-sage-400 mb-4">Stay Rooted</h4>
+        <p class="text-xs text-sage-500 leading-relaxed">Weekly reads on nutrition, movement & K-Beauty.</p>
+      </div>
+    </div>
+
+    <div class="mt-14 pt-6 border-t border-sage-200/60 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <span class="text-xs text-sage-400">&copy; {year} Rooted Glow. All rights reserved.</span>
+      <span class="text-xs text-sage-300">Made with intention.</span>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,64 @@
+---
+import Base from './Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ArticleCard from '../components/ArticleCard.astro';
+import { getCollection } from 'astro:content';
+
+interface Props {
+  title: string;
+  description: string;
+  category: string;
+}
+
+const { title, description, category } = Astro.props;
+
+const allPosts = await getCollection('blog', ({ data }) => {
+  return data.category === category && !data.draft;
+});
+
+const sortedPosts = allPosts.sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+---
+
+<Base title={title} description={description}>
+  <Header />
+
+  <main class="flex-1">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8 py-16">
+      <header class="mb-12 max-w-2xl">
+        <span class="inline-block text-[11px] font-semibold uppercase tracking-[0.2em] text-sage-400 mb-4">Category</span>
+        <h1 class="font-heading text-4xl sm:text-5xl text-charcoal tracking-tight leading-[1.1] mb-4">
+          {title}
+        </h1>
+        <p class="text-lg text-sage-500 leading-relaxed">{description}</p>
+      </header>
+
+      <div class="border-t border-sage-200/60 pt-12">
+        <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+          {sortedPosts.map((post) => (
+            <ArticleCard
+              title={post.data.title}
+              description={post.data.description}
+              date={post.data.date}
+              category={post.data.category}
+              slug={post.id}
+              image={post.data.image}
+              type={post.data.type}
+            />
+          ))}
+        </div>
+      </div>
+
+      {sortedPosts.length === 0 && (
+        <div class="text-center py-24">
+          <p class="text-sage-400 font-heading text-2xl">Articles coming soon.</p>
+          <p class="text-sm text-sage-300 mt-2">We're working on this section. Check back shortly.</p>
+        </div>
+      )}
+    </div>
+  </main>
+
+  <Footer />
+</Base>

@@ -1,0 +1,46 @@
+---
+/**
+ * ProductCTA: Affiliate callout box for Mirai products.
+ * NOT used in Phase 1. pure content only. Built for future use.
+ */
+interface Props {
+  productName: string;
+  description: string;
+  url: string;
+  image?: string;
+}
+
+const { productName, description, url, image } = Astro.props;
+---
+
+<aside class="my-8 border border-warm-200 rounded-xl p-6 bg-warm-50">
+  <div class="flex items-start gap-4">
+    {image && (
+      <img
+        src={image}
+        alt={productName}
+        class="w-20 h-20 rounded-lg object-cover shrink-0"
+        loading="lazy"
+      />
+    )}
+    <div class="flex-1">
+      <p class="text-xs text-sage-500 uppercase tracking-wider mb-1">Editor's Pick</p>
+      <h4 class="font-heading font-semibold text-sage-900 mb-1">{productName}</h4>
+      <p class="text-sm text-sage-600 mb-3">{description}</p>
+      <a
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-1.5 text-sm font-medium text-warm-700 hover:text-warm-900 transition-colors"
+      >
+        Shop on Mirai Skin
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </a>
+    </div>
+  </div>
+  <p class="mt-3 text-[10px] text-sage-400">
+    This article may contain affiliate links. See our <a href="/privacy" class="underline">disclosure policy</a>.
+  </p>
+</aside>

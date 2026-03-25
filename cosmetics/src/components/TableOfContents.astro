@@ -1,0 +1,27 @@
+---
+interface Props {
+  headings: { depth: number; slug: string; text: string }[];
+}
+const { headings } = Astro.props;
+const filteredHeadings = headings.filter((h) => h.depth <= 3);
+---
+
+{filteredHeadings.length > 2 && (
+  <nav class="border border-rose-200/60 rounded-2xl p-6 mb-10 bg-cream-dark/30">
+    <h2 class="text-[11px] font-semibold uppercase tracking-[0.15em] text-plum-300 mb-4">In This Article</h2>
+    <ul class="space-y-2">
+      {filteredHeadings.map((heading) => (
+        <li class={heading.depth === 3 ? 'ml-5' : ''}>
+          <a
+            href={`#${heading.slug}`}
+            class={`text-sm transition-colors duration-200 hover:text-plum-800 ${
+              heading.depth === 2 ? 'text-plum-600 font-medium' : 'text-plum-400'
+            }`}
+          >
+            {heading.text}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+)}

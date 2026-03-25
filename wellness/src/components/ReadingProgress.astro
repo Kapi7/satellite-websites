@@ -1,0 +1,16 @@
+<div id="reading-progress" class="fixed top-0 left-0 w-0 h-[3px] bg-sage-500 z-[100] transition-none"></div>
+
+<script>
+  const bar = document.getElementById('reading-progress');
+  if (bar && document.querySelector('.prose')) {
+    window.addEventListener('scroll', () => {
+      const article = document.querySelector('.prose') as HTMLElement;
+      if (!article) return;
+      const rect = article.getBoundingClientRect();
+      const start = article.offsetTop - window.innerHeight * 0.2;
+      const end = article.offsetTop + article.offsetHeight - window.innerHeight * 0.5;
+      const progress = Math.min(Math.max((window.scrollY - start) / (end - start), 0), 1);
+      bar.style.width = `${progress * 100}%`;
+    }, { passive: true });
+  }
+</script>

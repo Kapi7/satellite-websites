@@ -1,0 +1,122 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import HeroSlideshow from '../components/HeroSlideshow.astro';
+import ArticleCard from '../components/ArticleCard.astro';
+import NewsletterSignup from '../components/NewsletterSignup.astro';
+import BackToTop from '../components/BackToTop.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+const sortedPosts = allPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const recent = sortedPosts.slice(0, 6);
+
+const slides = [
+  {
+    image: '/images/hero-slide-1.jpg',
+    title: 'Skincare, decoded.',
+    subtitle: 'Ingredient deep-dives, routine guides, and honest reviews from people who test what they write about.',
+    category: 'Welcome',
+  },
+  {
+    image: '/images/korean-routine-hero.jpg',
+    title: 'Korean Skincare Routine: The Complete Guide',
+    subtitle: 'Everything you need to know, from the 10-step method to a realistic everyday approach.',
+    link: '/korean-skincare-routine-complete-guide',
+    category: 'Skincare',
+  },
+  {
+    image: '/images/hero-slide-2.jpg',
+    title: 'Your Vanity, Simplified',
+    subtitle: 'Fewer products, better results. We tested hundreds so you don\'t have to.',
+    category: 'Reviews',
+  },
+  {
+    image: '/images/hero-slide-3.jpg',
+    title: 'Ingredients That Actually Work',
+    subtitle: 'Beyond the marketing claims. What the research says about your favorite actives.',
+    link: '/niacinamide-vs-vitamin-c',
+    category: 'Ingredients',
+  },
+];
+
+const categories = [
+  { slug: 'skincare', label: 'Skincare', desc: 'Routines, guides, and fundamentals for every skin type', count: sortedPosts.filter(p => p.data.category === 'skincare').length },
+  { slug: 'ingredients', label: 'Ingredients', desc: 'Deep-dives into what your products actually contain', count: sortedPosts.filter(p => p.data.category === 'ingredients').length },
+  { slug: 'reviews', label: 'Reviews', desc: 'Honest multi-product roundups and comparisons', count: sortedPosts.filter(p => p.data.category === 'reviews').length },
+  { slug: 'how-tos', label: 'How-Tos', desc: 'Step-by-step tutorials and seasonal routines', count: sortedPosts.filter(p => p.data.category === 'how-tos').length },
+];
+---
+
+<Base title="Glow Coded" description="Skincare education, honest reviews, K-Beauty deep-dives, and ingredient breakdowns.">
+  <Header />
+  <main class="flex-1">
+    <div class="pt-6 animate-fade-in">
+      <HeroSlideshow slides={slides} />
+    </div>
+
+    <section class="max-w-6xl mx-auto px-5 sm:px-8 py-16">
+      <div class="flex items-end justify-between mb-10">
+        <div>
+          <span class="block text-[11px] font-semibold uppercase tracking-[0.2em] text-plum-300 mb-2">Latest</span>
+          <h2 class="font-heading text-3xl text-charcoal tracking-tight">Fresh from the lab</h2>
+        </div>
+      </div>
+      <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+        {recent.map((post, i) => (
+          <ArticleCard
+            title={post.data.title} description={post.data.description} date={post.data.date}
+            category={post.data.category} slug={post.id} image={post.data.image} type={post.data.type}
+            featured={i === 0}
+          />
+        ))}
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-5 sm:px-8 pb-16">
+      <div class="border-t border-rose-200/40 pt-16">
+        <div class="flex items-end justify-between mb-10">
+          <div>
+            <span class="block text-[11px] font-semibold uppercase tracking-[0.2em] text-plum-300 mb-2">Explore</span>
+            <h2 class="font-heading text-3xl text-charcoal tracking-tight">Topics we cover</h2>
+          </div>
+        </div>
+        <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {categories.map((cat) => (
+            <a href={`/category/${cat.slug}`} class="group relative p-7 rounded-2xl border border-rose-200/40 hover:border-rose-300 bg-white hover:shadow-lg transition-all duration-400 overflow-hidden">
+              <div class="absolute top-0 right-0 w-20 h-20 bg-rose-50 rounded-full -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-500"></div>
+              <div class="relative">
+                <h3 class="font-heading text-xl text-charcoal mb-2 group-hover:text-rose-700 transition-colors">{cat.label}</h3>
+                <p class="text-xs text-plum-400 leading-relaxed mb-4">{cat.desc}</p>
+                <span class="text-[10px] font-semibold uppercase tracking-[0.15em] text-plum-300">{cat.count} {cat.count === 1 ? 'article' : 'articles'}</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-5 sm:px-8 pb-8">
+      <div class="rounded-2xl bg-plum-50 p-10 sm:p-14 flex flex-col sm:flex-row items-start gap-8">
+        <img src="/logo.svg" alt="Glow Coded" class="w-16 h-16 shrink-0" />
+        <div>
+          <h2 class="font-heading text-2xl text-charcoal tracking-tight mb-3">About Glow Coded</h2>
+          <p class="text-sm text-plum-500 leading-relaxed mb-4 max-w-xl">
+            Skincare education, honest reviews, and K-Beauty deep-dives. Everything we recommend has been tested on our own skin first. No sponsored posts, no paid placements.
+          </p>
+          <a href="/about" class="inline-flex items-center gap-2 text-sm font-medium text-plum-700 hover:text-plum-900 transition-colors">
+            Learn more about us
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <div class="max-w-3xl mx-auto px-5 sm:px-8">
+      <NewsletterSignup />
+    </div>
+  </main>
+  <Footer />
+  <BackToTop />
+</Base>
