@@ -35,9 +35,9 @@ const formattedDate = date.toLocaleDateString('en-US', {
 ---
 
 <article class={`group ${featured ? 'md:col-span-2' : ''}`}>
-  <a href={`/${slug}`} class="block">
+  <a href={`/${slug}`} class="block h-full">
     {image && (
-      <div class={`overflow-hidden rounded-2xl mb-5 ${featured ? 'aspect-[2/1]' : 'aspect-[3/2]'} bg-rose-50`}>
+      <div class={`overflow-hidden rounded-2xl mb-5 bg-rose-50 ${featured ? 'aspect-[4/3] lg:aspect-[3/2]' : 'aspect-[3/2]'}`}>
         <img
           src={image}
           alt={title}
@@ -62,7 +62,7 @@ const formattedDate = date.toLocaleDateString('en-US', {
     <h3 class={`font-heading text-charcoal group-hover:text-rose-700 transition-colors duration-200 mb-2.5 leading-[1.2] tracking-tight ${featured ? 'text-2xl sm:text-3xl' : 'text-xl'}`}>
       {title}
     </h3>
-    <p class="text-sm text-plum-400 leading-relaxed mb-3 line-clamp-2">
+    <p class={`text-sm text-plum-400 leading-relaxed mb-3 ${featured ? 'line-clamp-3' : 'line-clamp-2'}`}>
       {description}
     </p>
     <time class="text-[11px] font-medium uppercase tracking-[0.08em] text-plum-300" datetime={date.toISOString()}>

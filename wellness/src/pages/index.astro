@@ -10,7 +10,6 @@ import { getCollection } from 'astro:content';
 
 const allPosts = await getCollection('blog', ({ data }) => !data.draft);
 const sortedPosts = allPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
-const recent = sortedPosts.slice(0, 6);
 
 const slides = [
   {
@@ -41,6 +40,9 @@ const slides = [
   },
 ];
 
+const heroSlugs = new Set(slides.filter(s => s.link).map(s => s.link!.replace('/', '')));
+const recent = sortedPosts.filter(p => !heroSlugs.has(p.id)).slice(0, 7);
+
 const categories = [
   { slug: 'nutrition', label: 'Nutrition', desc: 'Ancestral eating, whole foods, and the gut-skin connection', count: sortedPosts.filter(p => p.data.category === 'nutrition').length },
   { slug: 'movement', label: 'Movement', desc: 'Functional fitness, mobility, and outdoor activity', count: sortedPosts.filter(p => p.data.category === 'movement').length },
@@ -56,12 +58,10 @@ const categories = [
   <Header />
 
   <main class="flex-1">
-    <!-- Hero Slideshow -->
     <div class="pt-6 animate-fade-in">
       <HeroSlideshow slides={slides} />
     </div>
 
-    <!-- Latest Articles -->
     <section class="max-w-6xl mx-auto px-5 sm:px-8 py-16">
       <div class="flex items-end justify-between mb-10">
         <div>
@@ -70,23 +70,34 @@ const categories = [
         </div>
       </div>
 
-      <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
-        {recent.map((post, i) => (
+      <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 lg:grid-rows-[auto_auto]">
+        {recent.slice(0, 1).map((post) => (
+          <div class="lg:col-span-2 lg:row-span-2">
+            <ArticleCard
+              title={post.data.title} description={post.data.description} date={post.data.date}
+              category={post.data.category} slug={post.id} image={post.data.image} type={post.data.type}
+              featured={true}
+            />
+          </div>
+        ))}
+        {recent.slice(1, 3).map((post) => (
           <ArticleCard
-            title={post.data.title}
-            description={post.data.description}
-            date={post.data.date}
-            category={post.data.category}
-            slug={post.id}
-            image={post.data.image}
-            type={post.data.type}
-            featured={i === 0}
+            title={post.data.title} description={post.data.description} date={post.data.date}
+            category={post.data.category} slug={post.id} image={post.data.image} type={post.data.type}
+          />
+        ))}
+      </div>
+
+      <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4 mt-10 pt-10 border-t border-sage-200/40">
+        {recent.slice(3, 7).map((post) => (
+          <ArticleCard
+            title={post.data.title} description={post.data.description} date={post.data.date}
+            category={post.data.category} slug={post.id} image={post.data.image} type={post.data.type}
           />
         ))}
       </div>
     </section>
 
-    <!-- Category Cards -->
     <section class="max-w-6xl mx-auto px-5 sm:px-8 pb-16">
       <div class="border-t border-sage-200/60 pt-16">
         <div class="flex items-end justify-between mb-10">
@@ -115,19 +126,30 @@ const categories = [
       </div>
     </section>
 
-    <!-- About teaser -->
     <section class="max-w-6xl mx-auto px-5 sm:px-8 pb-8">
-      <div class="rounded-2xl bg-sage-50 p-10 sm:p-14 flex flex-col sm:flex-row items-start gap-8">
-        <img src="/logo.svg" alt="Rooted Glow" class="w-16 h-16 shrink-0" />
-        <div>
-          <h2 class="font-heading text-2xl text-charcoal tracking-tight mb-3">About Rooted Glow</h2>
-          <p class="text-sm text-sage-500 leading-relaxed mb-4 max-w-xl">
-            We write about clean eating, functional movement, K-Beauty routines, and natural health. Everything here is based on personal experience and actual research, not trends or sponsorships.
-          </p>
-          <a href="/about" class="inline-flex items-center gap-2 text-sm font-medium text-sage-700 hover:text-sage-900 transition-colors">
-            Learn more about us
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-          </a>
+      <div class="rounded-2xl bg-sage-50 p-8 sm:p-12">
+        <div class="flex flex-col sm:flex-row items-start gap-6">
+          <img src="/logo.svg" alt="Rooted Glow" class="w-12 h-12 shrink-0" />
+          <div class="flex-1">
+            <h2 class="font-heading text-2xl text-charcoal tracking-tight mb-3">About Rooted Glow</h2>
+            <p class="text-sm text-sage-500 leading-relaxed mb-4 max-w-xl">
+              We write about clean eating, functional movement, K-Beauty routines, and natural health. Everything here is based on personal experience and actual research, not trends or sponsorships.
+            </p>
+            <a href="/about" class="inline-flex items-center gap-2 text-sm font-medium text-sage-700 hover:text-sage-900 transition-colors">
+              Learn more about us
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+            </a>
+          </div>
+          <div class="hidden sm:flex gap-8 shrink-0 text-center">
+            <div>
+              <span class="block font-heading text-2xl text-charcoal">{sortedPosts.length}</span>
+              <span class="text-[10px] uppercase tracking-[0.15em] text-sage-400">Articles</span>
+            </div>
+            <div>
+              <span class="block font-heading text-2xl text-charcoal">4</span>
+              <span class="text-[10px] uppercase tracking-[0.15em] text-sage-400">Topics</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
