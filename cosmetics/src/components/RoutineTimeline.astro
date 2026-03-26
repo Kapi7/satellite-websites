@@ -1,0 +1,64 @@
+---
+interface Step {
+  order: number;
+  name: string;
+  product: string;
+  url: string;
+  image: string;
+}
+
+interface Routine {
+  id: string;
+  name: string;
+  description: string;
+  steps: Step[];
+}
+
+interface Props {
+  routine: Routine;
+  currentSlug?: string;
+}
+
+const { routine, currentSlug } = Astro.props;
+---
+
+<div class="mt-14 pt-8 border-t border-rose-200/60">
+  <div class="mb-6">
+    <span class="text-[11px] font-semibold uppercase tracking-[0.15em] text-plum-300 block mb-2">Complete the Routine</span>
+    <h3 class="font-heading text-2xl text-charcoal tracking-tight">{routine.name}</h3>
+    <p class="text-sm text-plum-400 mt-1">{routine.description}</p>
+  </div>
+
+  <div class="relative overflow-x-auto pb-4 -mx-5 px-5 sm:mx-0 sm:px-0">
+    <div class="flex items-start gap-0 min-w-max">
+      {routine.steps.map((step, i) => (
+        <div class="flex items-start">
+          <a
+            href={step.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class:list={[
+              "flex flex-col items-center text-center w-28 group",
+              "hover:-translate-y-1 transition-transform duration-200",
+            ]}
+          >
+            <div class:list={[
+              "w-16 h-16 rounded-full overflow-hidden border-2 mb-2 transition-colors",
+              "border-rose-300 group-hover:border-rose-500",
+            ]}>
+              <img src={step.image} alt={step.product} class="w-full h-full object-cover" loading="lazy" />
+            </div>
+            <span class="text-[10px] font-semibold uppercase tracking-[0.1em] text-plum-300 mb-0.5">Step {step.order}</span>
+            <span class="text-xs font-medium text-charcoal leading-tight">{step.name}</span>
+            <span class="text-[10px] text-plum-400 leading-tight mt-0.5 line-clamp-2">{step.product}</span>
+          </a>
+          {i < routine.steps.length - 1 && (
+            <div class="flex items-center pt-7 px-1">
+              <div class="w-8 h-px bg-rose-200"></div>
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+</div>

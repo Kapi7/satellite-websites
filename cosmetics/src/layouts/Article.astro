@@ -16,11 +16,13 @@ interface Props {
   headings: { depth: number; slug: string; text: string }[];
   slug: string;
   rawContent?: string;
+  routine?: string;
 }
 
-const { title, description, date, updated, category, tags = [], image, imageAlt, headings, slug, rawContent } = Astro.props;
+const { title, description, date, updated, category, tags = [], image, imageAlt, headings, slug, rawContent, routine } = Astro.props;
 
 const products = rawContent ? extractProducts(rawContent) : [];
+const readingTime = rawContent ? Math.max(1, Math.ceil(rawContent.split(/\s+/).length / 200)) : null;
 
 const categoryLabels: Record<string, string> = {
   'skincare': 'Skincare', 'ingredients': 'Ingredients', 'reviews': 'Reviews', 'how-tos': 'How-Tos',
@@ -46,6 +48,17 @@ const breadcrumbSchema = JSON.stringify({
     { '@type': 'ListItem', position: 3, name: title },
   ],
 });
+
+let RoutineTimeline: any = null;
+let routineData: any = null;
+if (routine) {
+  try {
+    const mod = await import('../components/RoutineTimeline.astro');
+    RoutineTimeline = mod.default;
+    const routinesFile = await import('../data/routines.json');
+    routineData = routinesFile.default.find((r: any) => r.id === routine);
+  } catch {}
+}
 ---
 
 <Base title={title} description={description} image={image} type="article" jsonLd={[articleSchema, breadcrumbSchema]}>
@@ -80,10 +93,19 @@ const breadcrumbSchema = JSON.stringify({
             <span class="w-1 h-1 rounded-full bg-rose-300"></span>
             <time datetime={date.toISOString()}>{formattedDate}</time>
             {formattedUpdated && (<><span class="w-1 h-1 rounded-full bg-rose-300"></span><span>Updated {formattedUpdated}</span></>)}
+            {readingTime && (
+              <>
+                <span class="w-1 h-1 rounded-full bg-rose-300"></span>
+                <span>{readingTime} min read</span>
+              </>
+            )}
           </div>
         </header>
         <div class="animate-fade-in-up stagger-2"><TableOfContents headings={headings} /></div>
         <div class="prose animate-fade-in-up stagger-3"><slot /></div>
+        {RoutineTimeline && routineData && (
+          <RoutineTimeline routine={routineData} currentSlug={slug} />
+        )}
         {tags.length > 0 && (
           <div class="mt-12 pt-8 border-t border-rose-200/60">
             <span class="text-[11px] font-semibold uppercase tracking-[0.15em] text-plum-300 mr-3">Tagged</span>

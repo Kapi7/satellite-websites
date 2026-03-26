@@ -1,0 +1,74 @@
+[
+  {
+    "id": "glass-skin",
+    "name": "Glass Skin Routine",
+    "description": "Achieve that dewy, translucent Korean glass skin look.",
+    "steps": [
+      { "order": 1, "name": "Oil Cleanser", "product": "Banila Co Clean It Zero", "url": "https://mirai-skin.com/products/banila-co-clean-it-zero", "image": "/images/products/banila-clean-it-zero.jpg" },
+      { "order": 2, "name": "Water Cleanser", "product": "COSRX Low pH Cleanser", "url": "https://mirai-skin.com/products/cosrx-low-ph-good-morning-gel-cleanser", "image": "/images/products/cosrx-low-ph-cleanser.jpg" },
+      { "order": 3, "name": "Toner", "product": "Laneige Cream Skin Refiner", "url": "https://mirai-skin.com/products/laneige-cream-skin-refiner", "image": "/images/products/laneige-cream-skin.jpg" },
+      { "order": 4, "name": "Serum", "product": "COSRX Snail Mucin Essence", "url": "https://mirai-skin.com/products/cosrx-advanced-snail-96-mucin-power-essence", "image": "/images/products/cosrx-snail-mucin.jpg" },
+      { "order": 5, "name": "Moisturizer", "product": "Sulwhasoo Overnight Mask", "url": "https://mirai-skin.com/products/sulwhasoo-overnight-vitalizing-mask", "image": "/images/products/sulwhasoo-overnight-mask.jpg" }
+    ]
+  },
+  {
+    "id": "acne",
+    "name": "Acne-Prone Routine",
+    "description": "Gentle, non-comedogenic products for breakout-prone skin.",
+    "steps": [
+      { "order": 1, "name": "Cleanser", "product": "COSRX Low pH Cleanser", "url": "https://mirai-skin.com/products/cosrx-low-ph-good-morning-gel-cleanser", "image": "/images/products/cosrx-low-ph-cleanser.jpg" },
+      { "order": 2, "name": "Exfoliant", "product": "COSRX BHA Blackhead Power", "url": "https://mirai-skin.com/products/cosrx-bha-blackhead-power-liquid", "image": "/images/products/cosrx-bha-blackhead.jpg" },
+      { "order": 3, "name": "Treatment", "product": "COSRX Acne Pimple Patch", "url": "https://mirai-skin.com/products/cosrx-acne-pimple-master-patch", "image": "/images/products/cosrx-pimple-patch.jpg" },
+      { "order": 4, "name": "Serum", "product": "COSRX Snail Mucin Essence", "url": "https://mirai-skin.com/products/cosrx-advanced-snail-96-mucin-power-essence", "image": "/images/products/cosrx-snail-mucin.jpg" },
+      { "order": 5, "name": "Moisturizer", "product": "COSRX Oil-Free Lotion", "url": "https://mirai-skin.com/products/cosrx-oil-free-ultra-moisturizing-lotion", "image": "/images/products/cosrx-oil-free-lotion.jpg" }
+    ]
+  },
+  {
+    "id": "anti-aging",
+    "name": "Anti-Aging Routine",
+    "description": "Restore firmness and reduce fine lines with targeted actives.",
+    "steps": [
+      { "order": 1, "name": "Cleanser", "product": "Sulwhasoo Gentle Cleansing Foam", "url": "https://mirai-skin.com/products/sulwhasoo-gentle-cleansing-foam", "image": "/images/products/sulwhasoo-cleansing-foam.jpg" },
+      { "order": 2, "name": "Essence", "product": "Sulwhasoo First Care Activating", "url": "https://mirai-skin.com/products/sulwhasoo-first-care-activating-serum", "image": "/images/products/sulwhasoo-first-care.jpg" },
+      { "order": 3, "name": "Serum", "product": "Beauty of Joseon Glow Serum", "url": "https://mirai-skin.com/products/beauty-of-joseon-glow-serum-propolis-niacinamide", "image": "/images/products/boj-glow-serum.jpg" },
+      { "order": 4, "name": "Eye Cream", "product": "Sulwhasoo Ginseng Eye Cream", "url": "https://mirai-skin.com/products/sulwhasoo-concentrated-ginseng-renewing-eye-cream", "image": "/images/products/sulwhasoo-eye-cream.jpg" },
+      { "order": 5, "name": "Moisturizer", "product": "Sulwhasoo Overnight Mask", "url": "https://mirai-skin.com/products/sulwhasoo-overnight-vitalizing-mask", "image": "/images/products/sulwhasoo-overnight-mask.jpg" }
+    ]
+  },
+  {
+    "id": "dry-skin",
+    "name": "Dry Skin Routine",
+    "description": "Deep hydration layers for tight, flaky, or dehydrated skin.",
+    "steps": [
+      { "order": 1, "name": "Oil Cleanser", "product": "Banila Co Clean It Zero", "url": "https://mirai-skin.com/products/banila-co-clean-it-zero", "image": "/images/products/banila-clean-it-zero.jpg" },
+      { "order": 2, "name": "Hydrating Toner", "product": "Laneige Cream Skin Refiner", "url": "https://mirai-skin.com/products/laneige-cream-skin-refiner", "image": "/images/products/laneige-cream-skin.jpg" },
+      { "order": 3, "name": "Essence", "product": "COSRX Snail Mucin Essence", "url": "https://mirai-skin.com/products/cosrx-advanced-snail-96-mucin-power-essence", "image": "/images/products/cosrx-snail-mucin.jpg" },
+      { "order": 4, "name": "Serum", "product": "Beauty of Joseon Glow Serum", "url": "https://mirai-skin.com/products/beauty-of-joseon-glow-serum-propolis-niacinamide", "image": "/images/products/boj-glow-serum.jpg" },
+      { "order": 5, "name": "Sleeping Mask", "product": "Laneige Water Sleeping Mask", "url": "https://mirai-skin.com/products/laneige-water-sleeping-mask", "image": "/images/products/laneige-water-sleeping-mask.jpg" }
+    ]
+  },
+  {
+    "id": "sensitive",
+    "name": "Sensitive Skin Routine",
+    "description": "Fragrance-free, calming products for reactive skin.",
+    "steps": [
+      { "order": 1, "name": "Cleanser", "product": "Round Lab Dokdo Cleanser", "url": "https://mirai-skin.com/products/round-lab-1025-dokdo-cleanser", "image": "/images/products/round-lab-dokdo-cleanser.jpg" },
+      { "order": 2, "name": "Toner", "product": "Round Lab Dokdo Toner", "url": "https://mirai-skin.com/products/round-lab-1025-dokdo-toner", "image": "/images/products/round-lab-dokdo-toner.jpg" },
+      { "order": 3, "name": "Serum", "product": "COSRX Snail Mucin Essence", "url": "https://mirai-skin.com/products/cosrx-advanced-snail-96-mucin-power-essence", "image": "/images/products/cosrx-snail-mucin.jpg" },
+      { "order": 4, "name": "Moisturizer", "product": "Illiyoon Ceramide Cream", "url": "https://mirai-skin.com/products/illiyoon-ceramide-ato-concentrate-cream", "image": "/images/products/illiyoon-ceramide-cream.jpg" },
+      { "order": 5, "name": "Sunscreen", "product": "Beauty of Joseon Rice Sunscreen", "url": "https://mirai-skin.com/products/beauty-of-joseon-relief-sun-rice-probiotics", "image": "/images/products/boj-rice-sunscreen.jpg" }
+    ]
+  },
+  {
+    "id": "oily",
+    "name": "Oily Skin Routine",
+    "description": "Lightweight, oil-controlling products that won't clog pores.",
+    "steps": [
+      { "order": 1, "name": "Cleanser", "product": "COSRX Low pH Cleanser", "url": "https://mirai-skin.com/products/cosrx-low-ph-good-morning-gel-cleanser", "image": "/images/products/cosrx-low-ph-cleanser.jpg" },
+      { "order": 2, "name": "Exfoliant", "product": "COSRX BHA Blackhead Power", "url": "https://mirai-skin.com/products/cosrx-bha-blackhead-power-liquid", "image": "/images/products/cosrx-bha-blackhead.jpg" },
+      { "order": 3, "name": "Toner", "product": "Round Lab Dokdo Toner", "url": "https://mirai-skin.com/products/round-lab-1025-dokdo-toner", "image": "/images/products/round-lab-dokdo-toner.jpg" },
+      { "order": 4, "name": "Serum", "product": "Beauty of Joseon Glow Serum", "url": "https://mirai-skin.com/products/beauty-of-joseon-glow-serum-propolis-niacinamide", "image": "/images/products/boj-glow-serum.jpg" },
+      { "order": 5, "name": "Moisturizer", "product": "COSRX Oil-Free Lotion", "url": "https://mirai-skin.com/products/cosrx-oil-free-ultra-moisturizing-lotion", "image": "/images/products/cosrx-oil-free-lotion.jpg" }
+    ]
+  }
+]

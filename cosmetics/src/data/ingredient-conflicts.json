@@ -1,0 +1,39 @@
+{
+  "ingredients": [
+    "Retinol", "Vitamin C", "Niacinamide", "AHA (Glycolic Acid)", "BHA (Salicylic Acid)",
+    "Benzoyl Peroxide", "Hyaluronic Acid", "Ceramides", "Peptides", "Azelaic Acid",
+    "Lactic Acid", "Squalane", "Snail Mucin", "Centella Asiatica", "Tea Tree Oil", "Arbutin"
+  ],
+  "conflicts": [
+    { "a": "Retinol", "b": "Vitamin C", "severity": "red", "explanation": "Both are potent actives that can cause irritation, redness, and peeling when used together. Use vitamin C in the morning and retinol at night." },
+    { "a": "Retinol", "b": "AHA (Glycolic Acid)", "severity": "red", "explanation": "Combining retinol with AHAs increases risk of over-exfoliation, leading to a damaged moisture barrier. Alternate nights instead." },
+    { "a": "Retinol", "b": "BHA (Salicylic Acid)", "severity": "red", "explanation": "Both exfoliate and can severely irritate skin when layered. Use BHA in the morning or on alternate days from retinol." },
+    { "a": "Retinol", "b": "Benzoyl Peroxide", "severity": "red", "explanation": "Benzoyl peroxide can deactivate retinol, making both less effective. It also greatly increases dryness and irritation." },
+    { "a": "Retinol", "b": "Lactic Acid", "severity": "red", "explanation": "Both are exfoliating actives. Layering risks over-exfoliation and barrier damage. Use on alternate nights." },
+    { "a": "Retinol", "b": "Tea Tree Oil", "severity": "yellow", "explanation": "Tea tree oil can increase drying effects of retinol. If you must use both, apply tea tree as a spot treatment only." },
+    { "a": "Vitamin C", "b": "Niacinamide", "severity": "yellow", "explanation": "An older myth said they cancel out, but modern formulations work fine together. Some sensitive skin may experience flushing. Generally safe." },
+    { "a": "Vitamin C", "b": "Benzoyl Peroxide", "severity": "red", "explanation": "Benzoyl peroxide oxidizes vitamin C, rendering it ineffective. Use at different times of day." },
+    { "a": "Vitamin C", "b": "AHA (Glycolic Acid)", "severity": "yellow", "explanation": "Both are acidic and can lower skin pH too much when combined. May cause stinging in sensitive skin. Use on alternate mornings." },
+    { "a": "Vitamin C", "b": "BHA (Salicylic Acid)", "severity": "yellow", "explanation": "Similar pH ranges can increase irritation. Generally okay for non-sensitive skin, but alternate if you notice redness." },
+    { "a": "AHA (Glycolic Acid)", "b": "BHA (Salicylic Acid)", "severity": "yellow", "explanation": "Both are exfoliants. Using together increases exfoliation intensity. Fine for resilient skin, but sensitive types should alternate." },
+    { "a": "AHA (Glycolic Acid)", "b": "Peptides", "severity": "yellow", "explanation": "Low pH of AHAs can destabilize some peptides, reducing their effectiveness. Apply peptides after AHA has fully absorbed." },
+    { "a": "Benzoyl Peroxide", "b": "Vitamin C", "severity": "red", "explanation": "BP oxidizes vitamin C. Never layer together. Use vitamin C in the AM and BP in the PM if needed." },
+    { "a": "Hyaluronic Acid", "b": "Vitamin C", "severity": "green", "explanation": "Excellent pairing. Hyaluronic acid hydrates while vitamin C provides antioxidant protection. Layer HA first, then vitamin C." },
+    { "a": "Hyaluronic Acid", "b": "Retinol", "severity": "green", "explanation": "Great combination. HA provides hydration that counteracts retinol's drying effects. Apply HA before retinol." },
+    { "a": "Hyaluronic Acid", "b": "Niacinamide", "severity": "green", "explanation": "Perfect pairing. Both are gentle, hydrating, and complement each other. Can be layered freely." },
+    { "a": "Ceramides", "b": "Retinol", "severity": "green", "explanation": "Ceramides repair and strengthen the barrier that retinol can compromise. Always pair ceramides with retinol use." },
+    { "a": "Ceramides", "b": "Niacinamide", "severity": "green", "explanation": "Both support barrier function. Niacinamide actually boosts ceramide production. Excellent together." },
+    { "a": "Squalane", "b": "Retinol", "severity": "green", "explanation": "Squalane's moisturizing properties buffer retinol irritation. Apply squalane over retinol for best results." },
+    { "a": "Squalane", "b": "Vitamin C", "severity": "green", "explanation": "Squalane helps vitamin C absorb better and prevents oxidation. Layer vitamin C first, then squalane." },
+    { "a": "Snail Mucin", "b": "Hyaluronic Acid", "severity": "green", "explanation": "Both hydrate through different mechanisms. Snail mucin adds repair benefits. Layer together freely." },
+    { "a": "Niacinamide", "b": "BHA (Salicylic Acid)", "severity": "green", "explanation": "Niacinamide soothes while BHA exfoliates. BHA first, then niacinamide to calm skin." },
+    { "a": "Centella Asiatica", "b": "Niacinamide", "severity": "green", "explanation": "Both are soothing and anti-inflammatory. Perfect pair for sensitive, acne-prone skin." },
+    { "a": "Azelaic Acid", "b": "Niacinamide", "severity": "green", "explanation": "Both target hyperpigmentation and acne. Complementary mechanisms make this an excellent pairing." },
+    { "a": "Arbutin", "b": "Vitamin C", "severity": "green", "explanation": "Both target brightening through different pathways. Together they provide enhanced pigmentation correction." },
+    { "a": "Arbutin", "b": "Niacinamide", "severity": "green", "explanation": "Complementary brightening actives. Arbutin inhibits melanin while niacinamide prevents transfer. Safe together." },
+    { "a": "Lactic Acid", "b": "Niacinamide", "severity": "green", "explanation": "Niacinamide calms any irritation from lactic acid. Apply lactic acid first, then niacinamide." },
+    { "a": "Peptides", "b": "Hyaluronic Acid", "severity": "green", "explanation": "Perfect combination. HA hydrates and creates a good environment for peptide absorption." },
+    { "a": "Tea Tree Oil", "b": "BHA (Salicylic Acid)", "severity": "green", "explanation": "Both target acne. BHA unclogs pores while tea tree provides antibacterial action. Use BHA first." },
+    { "a": "Benzoyl Peroxide", "b": "Niacinamide", "severity": "green", "explanation": "Niacinamide counteracts BP's drying and irritating effects. Apply niacinamide after BP has absorbed." }
+  ]
+}

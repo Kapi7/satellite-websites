@@ -1,0 +1,15 @@
+{
+  "name": "Adenosine",
+  "slug": "adenosine",
+  "category": "peptide",
+  "benefits": ["anti-wrinkle", "smooths fine lines", "boosts collagen", "skin repair", "calming"],
+  "skinTypes": ["oily", "dry", "combination", "sensitive", "normal"],
+  "comedogenicRating": 0,
+  "description": "Adenosine is a naturally occurring molecule in the body that plays a key role in cellular energy transfer and signaling. In skincare, it is a proven anti-wrinkle ingredient that stimulates collagen production, smooths fine lines, and promotes wound healing. It is gentle, non-irritating, and widely used in Korean skincare formulations.",
+  "relatedProducts": [
+    { "name": "Sulwhasoo First Care Activating Serum", "url": "https://mirai-skin.com/products/sulwhasoo-first-care-activating-serum" },
+    { "name": "Laneige Water Sleeping Mask", "url": "https://mirai-skin.com/products/laneige-water-sleeping-mask" }
+  ],
+  "conflicts": [],
+  "pairsWith": ["retinol", "hyaluronic-acid", "niacinamide"]
+}

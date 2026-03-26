@@ -1,0 +1,54 @@
+---
+interface Props {
+  before: string;
+  after: string;
+  beforeAlt?: string;
+  afterAlt?: string;
+}
+
+const { before, after, beforeAlt = 'Before', afterAlt = 'After' } = Astro.props;
+---
+
+<div class="before-after-slider relative overflow-hidden rounded-2xl my-8 select-none touch-none" style="max-width:640px;margin-left:auto;margin-right:auto;">
+  <img src={after} alt={afterAlt} class="w-full block" loading="lazy" draggable="false" />
+  <div class="ba-overlay absolute inset-0 overflow-hidden" style="clip-path:inset(0 50% 0 0);">
+    <img src={before} alt={beforeAlt} class="w-full h-full object-cover" loading="lazy" draggable="false" />
+  </div>
+  <div class="ba-handle absolute top-0 bottom-0 flex items-center justify-center" style="left:50%;transform:translateX(-50%);width:3px;cursor:ew-resize;">
+    <div class="absolute inset-0 bg-white/90 shadow-lg"></div>
+    <div class="relative z-10 w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center">
+      <svg class="w-5 h-5 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 9l-3 3 3 3m8-6l3 3-3 3" /></svg>
+    </div>
+  </div>
+  <span class="absolute top-3 left-3 bg-charcoal/70 text-cream text-[10px] font-semibold uppercase tracking-widest px-2.5 py-1 rounded-full">Before</span>
+  <span class="absolute top-3 right-3 bg-charcoal/70 text-cream text-[10px] font-semibold uppercase tracking-widest px-2.5 py-1 rounded-full">After</span>
+</div>
+
+<script>
+  document.querySelectorAll('.before-after-slider').forEach((slider) => {
+    const overlay = slider.querySelector('.ba-overlay') as HTMLElement;
+    const handle = slider.querySelector('.ba-handle') as HTMLElement;
+    if (!overlay || !handle) return;
+
+    let isDragging = false;
+
+    function setPosition(x: number) {
+      const rect = slider.getBoundingClientRect();
+      const pct = Math.max(0, Math.min(1, (x - rect.left) / rect.width));
+      overlay.style.clipPath = `inset(0 ${(1 - pct) * 100}% 0 0)`;
+      handle.style.left = `${pct * 100}%`;
+    }
+
+    function onMove(x: number) {
+      if (!isDragging) return;
+      requestAnimationFrame(() => setPosition(x));
+    }
+
+    handle.addEventListener('mousedown', (e) => { isDragging = true; e.preventDefault(); });
+    handle.addEventListener('touchstart', (e) => { isDragging = true; e.preventDefault(); }, { passive: false });
+    window.addEventListener('mousemove', (e) => onMove(e.clientX));
+    window.addEventListener('touchmove', (e) => { if (isDragging) onMove(e.touches[0].clientX); }, { passive: true });
+    window.addEventListener('mouseup', () => { isDragging = false; });
+    window.addEventListener('touchend', () => { isDragging = false; });
+  });
+</script>

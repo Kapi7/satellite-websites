@@ -1,0 +1,15 @@
+{
+  "name": "Green Tea",
+  "slug": "green-tea",
+  "category": "antioxidant",
+  "benefits": ["antioxidant protection", "calming", "anti-inflammatory", "reduces redness", "protects against UV damage"],
+  "skinTypes": ["oily", "dry", "combination", "sensitive", "normal"],
+  "comedogenicRating": 0,
+  "description": "Green tea extract is rich in polyphenols, particularly EGCG (epigallocatechin gallate), one of the most powerful antioxidants found in nature. It neutralizes free radicals, soothes inflammation, and has been shown to help protect against UV-induced skin damage. Its calming properties make it excellent for reactive and redness-prone skin.",
+  "relatedProducts": [
+    { "name": "Sulwhasoo First Care Activating Serum", "url": "https://mirai-skin.com/products/sulwhasoo-first-care-activating-serum" },
+    { "name": "Beauty of Joseon Relief Sun Rice + Probiotics", "url": "https://mirai-skin.com/products/beauty-of-joseon-relief-sun-rice-probiotics" }
+  ],
+  "conflicts": [],
+  "pairsWith": ["vitamin-c", "niacinamide", "hyaluronic-acid"]
+}

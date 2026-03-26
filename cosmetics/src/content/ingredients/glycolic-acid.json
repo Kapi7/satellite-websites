@@ -1,0 +1,15 @@
+{
+  "name": "Glycolic Acid",
+  "slug": "glycolic-acid",
+  "category": "exfoliant",
+  "benefits": ["exfoliation", "anti-aging", "brightening", "smooths texture", "stimulates collagen"],
+  "skinTypes": ["normal", "combination", "oily"],
+  "comedogenicRating": 0,
+  "description": "Glycolic acid is an alpha hydroxy acid (AHA) with the smallest molecular size, allowing it to penetrate deeply and exfoliate effectively. It dissolves the bonds between dead skin cells on the surface, revealing brighter, smoother skin underneath while promoting collagen production for long-term anti-aging benefits.",
+  "relatedProducts": [
+    { "name": "COSRX Low pH Good Morning Gel Cleanser", "url": "https://mirai-skin.com/products/cosrx-low-ph-good-morning-gel-cleanser" },
+    { "name": "Round Lab 1025 Dokdo Toner", "url": "https://mirai-skin.com/products/round-lab-1025-dokdo-toner" }
+  ],
+  "conflicts": ["retinol", "vitamin-c"],
+  "pairsWith": ["hyaluronic-acid", "niacinamide"]
+}

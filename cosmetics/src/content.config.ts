@@ -21,6 +21,7 @@ const blog = defineCollection({
     draft: z.boolean().default(false),
     affiliateProduct: z.string().optional(),
     hub: z.string().optional(),
+    routine: z.string().optional(),
   }),
 });
 
@@ -33,4 +34,23 @@ const authors = defineCollection({
   }),
 });
 
-export const collections = { blog, authors };
+const ingredients = defineCollection({
+  loader: glob({ pattern: '**/*.json', base: './src/content/ingredients' }),
+  schema: z.object({
+    name: z.string(),
+    slug: z.string(),
+    category: z.string(),
+    benefits: z.array(z.string()),
+    skinTypes: z.array(z.string()),
+    comedogenicRating: z.number().min(0).max(5),
+    description: z.string(),
+    relatedProducts: z.array(z.object({
+      name: z.string(),
+      url: z.string(),
+    })).default([]),
+    conflicts: z.array(z.string()).default([]),
+    pairsWith: z.array(z.string()).default([]),
+  }),
+});
+
+export const collections = { blog, authors, ingredients };

@@ -279,3 +279,87 @@ h1, h2, h3, h4, h5, h6 {
     margin: 1.75rem 0;
   }
 }
+
+/* ===== Dark Mode ===== */
+html.dark {
+  color-scheme: dark;
+
+  --color-cream: #1a1117;
+  --color-cream-dark: #231c20;
+  --color-charcoal: #f0e8ec;
+  --color-charcoal-light: #c4b3bc;
+  --color-white: #211a1e;
+
+  --color-rose-50: #261a20;
+  --color-rose-100: #3a242d;
+  --color-rose-200: #5c3545;
+  --color-rose-300: #8b4d64;
+  --color-rose-400: #d46a85;
+  --color-rose-500: #e8809a;
+  --color-rose-600: #f096ad;
+  --color-rose-700: #f4a8bc;
+  --color-rose-800: #f7c0ce;
+  --color-rose-900: #fadae3;
+
+  --color-plum-50: #231a26;
+  --color-plum-100: #312738;
+  --color-plum-200: #48385a;
+  --color-plum-300: #7a5f8f;
+  --color-plum-400: #a88abb;
+  --color-plum-500: #c4a8d2;
+  --color-plum-600: #d4bde0;
+  --color-plum-700: #e0ceeb;
+  --color-plum-800: #ecdff2;
+  --color-plum-900: #f5f0f8;
+}
+
+html.dark ::selection {
+  background-color: var(--color-rose-200);
+  color: var(--color-rose-900);
+}
+
+html.dark ::-webkit-scrollbar-track { background: var(--color-cream); }
+html.dark ::-webkit-scrollbar-thumb { background: var(--color-rose-300); }
+html.dark ::-webkit-scrollbar-thumb:hover { background: var(--color-rose-400); }
+
+html.dark .prose img {
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+/* Ingredient tooltips */
+[data-ingredient] {
+  position: relative;
+  border-bottom: 1px dashed var(--color-rose-400);
+  cursor: help;
+}
+
+[data-ingredient]:hover::after {
+  content: attr(data-ingredient);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-charcoal);
+  color: var(--color-cream);
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  max-width: 280px;
+  white-space: normal;
+  z-index: 50;
+  pointer-events: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+[data-ingredient]:hover::before {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(100%);
+  border: 5px solid transparent;
+  border-top-color: var(--color-charcoal);
+  z-index: 50;
+  pointer-events: none;
+}

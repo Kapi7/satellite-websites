@@ -1,0 +1,15 @@
+{
+  "name": "Arbutin",
+  "slug": "arbutin",
+  "category": "botanical",
+  "benefits": ["brightening", "fades dark spots", "evens skin tone", "inhibits melanin production", "gentle on skin"],
+  "skinTypes": ["oily", "dry", "combination", "sensitive", "normal"],
+  "comedogenicRating": 0,
+  "description": "Arbutin is a naturally derived brightening agent found in bearberry, mulberry, and cranberry plants. It works by slowly releasing hydroquinone to inhibit tyrosinase, the enzyme responsible for melanin production, making it effective at fading dark spots and evening skin tone without the harsh side effects of pure hydroquinone.",
+  "relatedProducts": [
+    { "name": "Beauty of Joseon Glow Serum Propolis + Niacinamide", "url": "https://mirai-skin.com/products/beauty-of-joseon-glow-serum-propolis-niacinamide" },
+    { "name": "Beauty of Joseon Relief Sun Rice + Probiotics", "url": "https://mirai-skin.com/products/beauty-of-joseon-relief-sun-rice-probiotics" }
+  ],
+  "conflicts": [],
+  "pairsWith": ["vitamin-c", "niacinamide", "hyaluronic-acid"]
+}

@@ -30,6 +30,7 @@ const {
 } = Astro.props;
 
 const products = rawContent ? extractProducts(rawContent) : [];
+const readingTime = rawContent ? Math.max(1, Math.ceil(rawContent.split(/\s+/).length / 200)) : null;
 
 const categoryLabels: Record<string, string> = {
   'nutrition': 'Nutrition',
@@ -99,6 +100,12 @@ const breadcrumbSchema = JSON.stringify({
               <>
                 <span class="w-1 h-1 rounded-full bg-sage-300"></span>
                 <span>Updated {formattedUpdated}</span>
+              </>
+            )}
+            {readingTime && (
+              <>
+                <span class="w-1 h-1 rounded-full bg-sage-300"></span>
+                <span>{readingTime} min read</span>
               </>
             )}
           </div>

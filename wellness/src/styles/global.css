@@ -280,3 +280,49 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
+/* ===== Dark Mode ===== */
+html.dark {
+  color-scheme: dark;
+
+  --color-cream: #151a14;
+  --color-cream-dark: #1c221b;
+  --color-charcoal: #e8ede6;
+  --color-charcoal-light: #b8c4b3;
+  --color-white: #1e231d;
+
+  --color-sage-50: #1a201a;
+  --color-sage-100: #242e23;
+  --color-sage-200: #354435;
+  --color-sage-300: #4f6a4f;
+  --color-sage-400: #6f8f6f;
+  --color-sage-500: #8baa82;
+  --color-sage-600: #a5c09c;
+  --color-sage-700: #bed5b6;
+  --color-sage-800: #d4e5ce;
+  --color-sage-900: #e8f2e4;
+
+  --color-warm-50: #1f1a14;
+  --color-warm-100: #2d241b;
+  --color-warm-200: #4a3828;
+  --color-warm-300: #6d5038;
+  --color-warm-400: #a07048;
+  --color-warm-500: #c08b5a;
+  --color-warm-600: #d4a070;
+  --color-warm-700: #e0b68c;
+  --color-warm-800: #eacca8;
+  --color-warm-900: #f2e0c8;
+}
+
+html.dark ::selection {
+  background-color: var(--color-sage-200);
+  color: var(--color-sage-900);
+}
+
+html.dark ::-webkit-scrollbar-track { background: var(--color-cream); }
+html.dark ::-webkit-scrollbar-thumb { background: var(--color-sage-300); }
+html.dark ::-webkit-scrollbar-thumb:hover { background: var(--color-sage-400); }
+
+html.dark .prose img {
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}

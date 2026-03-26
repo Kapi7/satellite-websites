@@ -1,0 +1,15 @@
+{
+  "name": "Benzoyl Peroxide",
+  "slug": "benzoyl-peroxide",
+  "category": "exfoliant",
+  "benefits": ["kills acne bacteria", "unclogs pores", "reduces inflammation", "prevents breakouts"],
+  "skinTypes": ["oily", "combination"],
+  "comedogenicRating": 0,
+  "description": "Benzoyl peroxide is a powerful antimicrobial treatment that kills the P. acnes bacteria responsible for inflammatory acne. It works by introducing oxygen into pores, creating an environment where bacteria cannot survive. Available in concentrations from 2.5% to 10%, lower strengths are often just as effective with less irritation.",
+  "relatedProducts": [
+    { "name": "COSRX Acne Pimple Master Patch", "url": "https://mirai-skin.com/products/cosrx-acne-pimple-master-patch" },
+    { "name": "COSRX Low pH Good Morning Gel Cleanser", "url": "https://mirai-skin.com/products/cosrx-low-ph-good-morning-gel-cleanser" }
+  ],
+  "conflicts": ["retinol", "vitamin-c"],
+  "pairsWith": ["niacinamide", "hyaluronic-acid"]
+}

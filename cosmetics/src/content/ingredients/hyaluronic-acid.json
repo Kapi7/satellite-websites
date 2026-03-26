@@ -1,0 +1,16 @@
+{
+  "name": "Hyaluronic Acid",
+  "slug": "hyaluronic-acid",
+  "category": "humectant",
+  "benefits": ["intense hydration", "plumps fine lines", "moisture retention", "improves skin texture"],
+  "skinTypes": ["oily", "dry", "combination", "sensitive", "normal"],
+  "comedogenicRating": 0,
+  "description": "Hyaluronic acid is a powerful humectant that can hold up to 1000 times its weight in water, drawing moisture from the environment into the skin. It plumps and hydrates at multiple skin layers, reducing the appearance of fine lines while keeping skin bouncy and supple.",
+  "relatedProducts": [
+    { "name": "COSRX Advanced Snail 96 Mucin Power Essence", "url": "https://mirai-skin.com/products/cosrx-advanced-snail-96-mucin-power-essence" },
+    { "name": "Laneige Water Sleeping Mask", "url": "https://mirai-skin.com/products/laneige-water-sleeping-mask" },
+    { "name": "Laneige Cream Skin Refiner", "url": "https://mirai-skin.com/products/laneige-cream-skin-refiner" }
+  ],
+  "conflicts": [],
+  "pairsWith": ["niacinamide", "ceramides", "snail-mucin", "vitamin-c"]
+}

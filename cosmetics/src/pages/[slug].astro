@@ -18,6 +18,7 @@ const { Content, headings } = await render(post);
   image={post.data.image} imageAlt={post.data.imageAlt}
   headings={headings} slug={post.id}
   rawContent={post.body}
+  routine={post.data.routine}
 >
   <Content />
 </Article>

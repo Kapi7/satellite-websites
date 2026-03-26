@@ -1,0 +1,15 @@
+{
+  "name": "Zinc",
+  "slug": "zinc",
+  "category": "soothing",
+  "benefits": ["oil control", "anti-inflammatory", "acne treatment", "soothes irritation", "antimicrobial"],
+  "skinTypes": ["oily", "combination"],
+  "comedogenicRating": 0,
+  "description": "Zinc is an essential mineral that plays a critical role in skin health, regulating oil production, reducing inflammation, and supporting wound healing. In skincare, zinc PCA and zinc oxide are commonly used forms -- zinc PCA controls sebum and fights acne while zinc oxide provides broad-spectrum sun protection. It is especially beneficial for oily, acne-prone skin seeking mattifying and calming effects.",
+  "relatedProducts": [
+    { "name": "COSRX Oil-Free Ultra Moisturizing Lotion", "url": "https://mirai-skin.com/products/cosrx-oil-free-ultra-moisturizing-lotion" },
+    { "name": "Beauty of Joseon Relief Sun Rice + Probiotics", "url": "https://mirai-skin.com/products/beauty-of-joseon-relief-sun-rice-probiotics" }
+  ],
+  "conflicts": [],
+  "pairsWith": ["niacinamide", "salicylic-acid", "centella-asiatica"]
+}

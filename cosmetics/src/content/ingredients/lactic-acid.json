@@ -1,0 +1,15 @@
+{
+  "name": "Lactic Acid",
+  "slug": "lactic-acid",
+  "category": "exfoliant",
+  "benefits": ["gentle exfoliation", "hydrating", "brightening", "smooths texture", "improves skin tone"],
+  "skinTypes": ["dry", "sensitive", "normal"],
+  "comedogenicRating": 0,
+  "description": "Lactic acid is a gentle alpha hydroxy acid (AHA) with a larger molecular size than glycolic acid, making it less penetrating and better suited for sensitive or dry skin. Beyond exfoliation, it has natural humectant properties that draw moisture into the skin, providing a hydrating exfoliation experience that brightens and smooths without excessive irritation.",
+  "relatedProducts": [
+    { "name": "Round Lab 1025 Dokdo Toner", "url": "https://mirai-skin.com/products/round-lab-1025-dokdo-toner" },
+    { "name": "Laneige Cream Skin Refiner", "url": "https://mirai-skin.com/products/laneige-cream-skin-refiner" }
+  ],
+  "conflicts": ["retinol"],
+  "pairsWith": ["hyaluronic-acid", "niacinamide", "ceramides"]
+}

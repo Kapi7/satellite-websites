@@ -1,0 +1,15 @@
+{
+  "name": "Retinol",
+  "slug": "retinol",
+  "category": "retinoid",
+  "benefits": ["anti-aging", "cell turnover", "reduces wrinkles", "evens skin tone", "boosts collagen production"],
+  "skinTypes": ["normal", "combination", "dry"],
+  "comedogenicRating": 0,
+  "description": "Retinol is a vitamin A derivative and the gold standard of anti-aging ingredients. It accelerates cell turnover, stimulates collagen production, and smooths fine lines and wrinkles over time. Because of its potency, it should be introduced gradually and always paired with sunscreen during the day.",
+  "relatedProducts": [
+    { "name": "Sulwhasoo First Care Activating Serum", "url": "https://mirai-skin.com/products/sulwhasoo-first-care-activating-serum" },
+    { "name": "Laneige Water Sleeping Mask", "url": "https://mirai-skin.com/products/laneige-water-sleeping-mask" }
+  ],
+  "conflicts": ["glycolic-acid", "salicylic-acid", "vitamin-c", "benzoyl-peroxide", "lactic-acid"],
+  "pairsWith": ["squalane", "hyaluronic-acid", "ceramides", "adenosine"]
+}

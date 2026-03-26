@@ -1,0 +1,15 @@
+{
+  "name": "Azelaic Acid",
+  "slug": "azelaic-acid",
+  "category": "acid",
+  "benefits": ["brightening", "treats acne", "fades hyperpigmentation", "anti-inflammatory", "evens skin tone"],
+  "skinTypes": ["oily", "combination", "sensitive", "normal"],
+  "comedogenicRating": 0,
+  "description": "Azelaic acid is a naturally occurring dicarboxylic acid that targets both acne and hyperpigmentation simultaneously. It inhibits tyrosinase to fade dark spots, kills acne-causing bacteria, and gently exfoliates without the irritation of stronger acids. It is one of the few active ingredients considered safe during pregnancy.",
+  "relatedProducts": [
+    { "name": "Beauty of Joseon Glow Serum Propolis + Niacinamide", "url": "https://mirai-skin.com/products/beauty-of-joseon-glow-serum-propolis-niacinamide" },
+    { "name": "Round Lab 1025 Dokdo Toner", "url": "https://mirai-skin.com/products/round-lab-1025-dokdo-toner" }
+  ],
+  "conflicts": [],
+  "pairsWith": ["niacinamide", "hyaluronic-acid", "centella-asiatica"]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "Tranexamic Acid",
+  "slug": "tranexamic-acid",
+  "category": "acid",
+  "benefits": ["fades hyperpigmentation", "treats melasma", "brightening", "evens skin tone", "reduces post-inflammatory marks"],
+  "skinTypes": ["oily", "dry", "combination", "sensitive", "normal"],
+  "comedogenicRating": 0,
+  "description": "Tranexamic acid is a synthetic amino acid derivative originally used to treat heavy bleeding that has become a standout ingredient for treating stubborn hyperpigmentation and melasma. It works by interrupting the melanin production pathway at multiple points, making it more effective than many single-target brighteners. It is gentle enough for daily use on all skin types.",
+  "relatedProducts": [
+    { "name": "Beauty of Joseon Glow Serum Propolis + Niacinamide", "url": "https://mirai-skin.com/products/beauty-of-joseon-glow-serum-propolis-niacinamide" },
+    { "name": "Round Lab 1025 Dokdo Toner", "url": "https://mirai-skin.com/products/round-lab-1025-dokdo-toner" }
+  ],
+  "conflicts": [],
+  "pairsWith": ["niacinamide", "vitamin-c", "arbutin"]
+}

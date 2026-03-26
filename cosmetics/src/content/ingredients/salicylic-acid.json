@@ -1,0 +1,16 @@
+{
+  "name": "Salicylic Acid",
+  "slug": "salicylic-acid",
+  "category": "exfoliant",
+  "benefits": ["unclogs pores", "reduces acne", "oil control", "exfoliates inside pores", "anti-inflammatory"],
+  "skinTypes": ["oily", "combination"],
+  "comedogenicRating": 0,
+  "description": "Salicylic acid (BHA) is an oil-soluble beta hydroxy acid that penetrates deep into pores to dissolve sebum and dead skin cell buildup. It is the go-to chemical exfoliant for acne-prone and oily skin types, reducing blackheads, whiteheads, and inflammation without over-stripping the skin surface.",
+  "relatedProducts": [
+    { "name": "COSRX BHA Blackhead Power Liquid", "url": "https://mirai-skin.com/products/cosrx-bha-blackhead-power-liquid" },
+    { "name": "COSRX Low pH Good Morning Gel Cleanser", "url": "https://mirai-skin.com/products/cosrx-low-ph-good-morning-gel-cleanser" },
+    { "name": "COSRX Acne Pimple Master Patch", "url": "https://mirai-skin.com/products/cosrx-acne-pimple-master-patch" }
+  ],
+  "conflicts": ["retinol"],
+  "pairsWith": ["niacinamide", "hyaluronic-acid", "tea-tree-oil"]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "Propolis",
+  "slug": "propolis",
+  "category": "botanical",
+  "benefits": ["healing", "antibacterial", "soothing", "anti-inflammatory", "nourishing"],
+  "skinTypes": ["oily", "combination", "sensitive", "normal"],
+  "comedogenicRating": 0,
+  "description": "Propolis is a resinous substance produced by bees to protect their hives, packed with flavonoids, amino acids, and vitamins with natural antibacterial and anti-inflammatory properties. In skincare, it accelerates wound healing, calms irritated skin, and helps prevent acne breakouts while delivering deep nourishment without clogging pores.",
+  "relatedProducts": [
+    { "name": "Beauty of Joseon Glow Serum Propolis + Niacinamide", "url": "https://mirai-skin.com/products/beauty-of-joseon-glow-serum-propolis-niacinamide" },
+    { "name": "COSRX Advanced Snail 96 Mucin Power Essence", "url": "https://mirai-skin.com/products/cosrx-advanced-snail-96-mucin-power-essence" }
+  ],
+  "conflicts": [],
+  "pairsWith": ["niacinamide", "hyaluronic-acid", "centella-asiatica"]
+}
