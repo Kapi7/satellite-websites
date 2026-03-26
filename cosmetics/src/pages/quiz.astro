@@ -3,236 +3,48 @@ import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import BackToTop from '../components/BackToTop.astro';
-import quizProducts from '../data/quiz-products.json';
-
-const productsJSON = JSON.stringify(quizProducts);
 ---
 
-<Base title="Find Your Routine" description="Take our personalized skin type quiz and get matched with the perfect K-Beauty products for your skin.">
+<Base title="AI Skin Analysis | Glow Coded" description="Get a personalized skin analysis and product recommendations powered by AI.">
   <Header />
   <main class="flex-1">
-    <section class="max-w-3xl mx-auto px-5 sm:px-8 py-12">
-      <div id="quiz-intro" class="text-center animate-fade-in-up">
-        <span class="block text-[11px] font-semibold uppercase tracking-[0.2em] text-plum-300 mb-2">Personalized</span>
-        <h1 class="font-heading text-4xl sm:text-5xl text-charcoal tracking-tight mb-4">Find Your Routine</h1>
-        <p class="text-plum-400 max-w-lg mx-auto mb-8">Answer 6 quick questions and we'll match you with the best K-Beauty products for your skin type, concerns, and lifestyle.</p>
-        <button id="start-quiz" class="inline-flex items-center gap-2 px-8 py-3 bg-rose-600 text-white font-medium rounded-full hover:bg-rose-700 transition-colors">
-          Start Quiz
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-        </button>
-      </div>
-
-      <div id="quiz-container" class="hidden">
-        <div class="mb-6">
-          <div class="flex items-center justify-between text-[11px] uppercase tracking-[0.15em] text-plum-300 mb-2">
-            <span>Question <span id="q-current">1</span> of 6</span>
-            <span id="q-progress-pct">0%</span>
-          </div>
-          <div class="h-1 bg-rose-100 rounded-full overflow-hidden">
-            <div id="q-progress-bar" class="h-full bg-rose-500 rounded-full transition-all duration-500" style="width:0%"></div>
-          </div>
-        </div>
-
-        <div id="q-card" class="bg-white border border-rose-200/40 rounded-2xl p-8 sm:p-10 shadow-sm">
-          <h2 id="q-title" class="font-heading text-2xl text-charcoal mb-6"></h2>
-          <div id="q-options" class="grid gap-3"></div>
-        </div>
-
-        <div class="flex justify-between mt-6">
-          <button id="q-back" class="hidden px-5 py-2 text-sm font-medium text-plum-400 hover:text-charcoal transition-colors">&larr; Back</button>
-          <div></div>
-        </div>
-      </div>
-
-      <div id="quiz-results" class="hidden animate-fade-in-up">
-        <div class="text-center mb-10">
-          <span class="block text-[11px] font-semibold uppercase tracking-[0.2em] text-plum-300 mb-2">Your Results</span>
-          <h2 class="font-heading text-3xl text-charcoal tracking-tight mb-2">Your Personalized Routine</h2>
-          <p id="results-summary" class="text-plum-400"></p>
-        </div>
-        <div id="results-grid" class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3"></div>
-        <div class="text-center mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-          <button id="retake-quiz" class="px-6 py-2.5 text-sm font-medium text-plum-500 border border-rose-200 rounded-full hover:border-rose-400 transition-colors">Retake Quiz</button>
-          <button id="share-results" class="px-6 py-2.5 text-sm font-medium text-white bg-rose-600 rounded-full hover:bg-rose-700 transition-colors">Share Results</button>
-        </div>
-      </div>
-    </section>
+    <div id="quiz-wrapper" class="animate-fade-in">
+      <iframe
+        id="quiz-iframe"
+        src="https://mirai-skin-ai.onrender.com/?shop=9dkd2w-g3.myshopify.com&currency=USD&embedded=true&inline=true"
+        style="width: 100%; min-height: 100vh; height: 100vh; border: none; display: block; background: transparent;"
+        allow="camera"
+        title="AI Skin Analysis"
+      ></iframe>
+    </div>
   </main>
   <Footer />
   <BackToTop />
-</Base>
 
-<script define:vars={{ productsJSON }}>
-  const products = JSON.parse(productsJSON);
-
-  const questions = [
-    { id: 'skinType', title: 'What\'s your skin type?', options: [
-      { label: 'Oily', value: 'oily', desc: 'Shiny by midday, visible pores' },
-      { label: 'Dry', value: 'dry', desc: 'Tight, flaky, or rough patches' },
-      { label: 'Combination', value: 'combination', desc: 'Oily T-zone, dry cheeks' },
-      { label: 'Sensitive', value: 'sensitive', desc: 'Reacts easily, redness-prone' },
-      { label: 'Normal', value: 'normal', desc: 'Balanced, rarely problematic' },
-    ]},
-    { id: 'concern', title: 'What\'s your #1 skin concern?', options: [
-      { label: 'Acne & Breakouts', value: 'acne', desc: 'Active breakouts or clogged pores' },
-      { label: 'Anti-Aging', value: 'anti-aging', desc: 'Fine lines, firmness, elasticity' },
-      { label: 'Hydration', value: 'hydration', desc: 'Dehydrated, dull, or tight skin' },
-      { label: 'Brightening', value: 'brightening', desc: 'Dark spots, uneven tone' },
-      { label: 'Pores & Texture', value: 'texture', desc: 'Enlarged pores, rough texture' },
-    ]},
-    { id: 'climate', title: 'What\'s your climate like?', options: [
-      { label: 'Dry / Cold', value: 'dry', desc: 'Low humidity, cold winters' },
-      { label: 'Temperate', value: 'temperate', desc: 'Moderate seasons, balanced' },
-      { label: 'Humid / Tropical', value: 'humid', desc: 'High humidity, warm year-round' },
-    ]},
-    { id: 'budget', title: 'What\'s your budget preference?', options: [
-      { label: 'Budget-Friendly', value: 'budget', desc: 'Under $20 per product' },
-      { label: 'Mid-Range', value: 'mid', desc: '$20-50 per product' },
-      { label: 'Premium', value: 'premium', desc: '$50+ for best quality' },
-    ]},
-    { id: 'complexity', title: 'How many steps do you want?', options: [
-      { label: 'Keep It Simple', value: 'minimal', desc: '2-3 products, quick routine' },
-      { label: 'Moderate', value: 'moderate', desc: '4-5 steps, balanced routine' },
-      { label: 'Full Routine', value: 'full', desc: '6+ steps, I love skincare' },
-    ]},
-    { id: 'age', title: 'What\'s your age range?', options: [
-      { label: 'Under 25', value: 'under25', desc: 'Prevention-focused' },
-      { label: '25-35', value: '25-35', desc: 'Early maintenance' },
-      { label: '35-45', value: '35-45', desc: 'Active repair' },
-      { label: '45+', value: '45+', desc: 'Intensive care' },
-    ]},
-  ];
-
-  let currentStep = 0;
-  const answers = {};
-
-  const intro = document.getElementById('quiz-intro');
-  const container = document.getElementById('quiz-container');
-  const resultsDiv = document.getElementById('quiz-results');
-  const startBtn = document.getElementById('start-quiz');
-  const backBtn = document.getElementById('q-back');
-  const retakeBtn = document.getElementById('retake-quiz');
-  const shareBtn = document.getElementById('share-results');
-
-  // Check URL params for shared results
-  const params = new URLSearchParams(window.location.search);
-  if (params.has('skinType')) {
-    questions.forEach(q => {
-      const v = params.get(q.id);
-      if (v) answers[q.id] = v;
-    });
-    if (Object.keys(answers).length >= 5) {
-      intro.classList.add('hidden');
-      showResults();
+  <style>
+    #quiz-wrapper {
+      width: 100%;
+      overflow: hidden;
     }
-  }
+    #quiz-iframe {
+      width: 100%;
+      border: none;
+      display: block;
+    }
+  </style>
 
-  startBtn?.addEventListener('click', () => {
-    intro.classList.add('hidden');
-    container.classList.remove('hidden');
-    renderQuestion();
-  });
-
-  backBtn?.addEventListener('click', () => {
-    if (currentStep > 0) { currentStep--; renderQuestion(); }
-  });
-
-  retakeBtn?.addEventListener('click', () => {
-    currentStep = 0;
-    Object.keys(answers).forEach(k => delete answers[k]);
-    resultsDiv.classList.add('hidden');
-    container.classList.remove('hidden');
-    window.history.replaceState({}, '', window.location.pathname);
-    renderQuestion();
-  });
-
-  shareBtn?.addEventListener('click', () => {
-    const url = new URL(window.location.pathname, window.location.origin);
-    Object.entries(answers).forEach(([k, v]) => url.searchParams.set(k, v));
-    navigator.clipboard.writeText(url.toString()).then(() => {
-      shareBtn.textContent = 'Link Copied!';
-      setTimeout(() => { shareBtn.textContent = 'Share Results'; }, 2000);
-    });
-  });
-
-  function renderQuestion() {
-    const q = questions[currentStep];
-    document.getElementById('q-current').textContent = String(currentStep + 1);
-    const pct = Math.round((currentStep / questions.length) * 100);
-    document.getElementById('q-progress-pct').textContent = pct + '%';
-    document.getElementById('q-progress-bar').style.width = pct + '%';
-    document.getElementById('q-title').textContent = q.title;
-    backBtn.classList.toggle('hidden', currentStep === 0);
-
-    const optionsDiv = document.getElementById('q-options');
-    optionsDiv.innerHTML = '';
-    q.options.forEach(opt => {
-      const btn = document.createElement('button');
-      btn.className = 'text-left p-4 rounded-xl border transition-all duration-200 ' +
-        (answers[q.id] === opt.value
-          ? 'border-rose-500 bg-rose-50 shadow-sm'
-          : 'border-rose-200/60 bg-white hover:border-rose-300 hover:shadow-sm');
-      btn.innerHTML = `<span class="block text-sm font-medium text-charcoal">${opt.label}</span><span class="block text-xs text-plum-400 mt-0.5">${opt.desc}</span>`;
-      btn.addEventListener('click', () => {
-        answers[q.id] = opt.value;
-        if (currentStep < questions.length - 1) {
-          currentStep++;
-          renderQuestion();
-        } else {
-          container.classList.add('hidden');
-          showResults();
+  <script is:inline>
+    (function() {
+      var iframe = document.getElementById('quiz-iframe');
+      window.addEventListener('message', function(e) {
+        if (!e.data || !e.data.type) return;
+        if (e.data.type === 'mirai:resize' && e.data.height) {
+          iframe.style.height = Math.max(600, e.data.height) + 'px';
+        }
+        if (e.data.type === 'mirai:scroll-top') {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
         }
       });
-      optionsDiv.appendChild(btn);
-    });
-  }
-
-  function showResults() {
-    resultsDiv.classList.remove('hidden');
-
-    const scored = products.map(p => {
-      let score = 0;
-      if (p.skinTypes.includes(answers.skinType)) score += 3;
-      if (p.concerns.includes(answers.concern)) score += 3;
-      if (p.climate.includes(answers.climate)) score += 2;
-      if (p.budget === answers.budget) score += 2;
-      else if ((p.budget === 'budget' && answers.budget === 'mid') || (p.budget === 'mid' && answers.budget === 'premium')) score += 1;
-      if (p.complexity === answers.complexity) score += 1;
-      if (answers.age === '35-45' || answers.age === '45+') {
-        if (p.concerns.includes('anti-aging')) score += 1;
-      }
-      return { ...p, score };
-    });
-
-    scored.sort((a, b) => b.score - a.score);
-    const top = scored.slice(0, 5);
-
-    document.getElementById('results-summary').textContent =
-      `Based on your ${answers.skinType} skin with a focus on ${answers.concern.replace('-', ' ')}, here are your top product picks:`;
-
-    const grid = document.getElementById('results-grid');
-    grid.innerHTML = '';
-    top.forEach((p, i) => {
-      const card = document.createElement('a');
-      card.href = p.url;
-      card.target = '_blank';
-      card.rel = 'noopener noreferrer';
-      card.className = 'block p-5 rounded-2xl border border-rose-200/40 bg-white hover:shadow-lg hover:-translate-y-1 transition-all duration-300';
-      card.innerHTML = `
-        <div class="flex items-start gap-1 mb-3">
-          <span class="text-[10px] font-bold text-rose-500 bg-rose-50 w-6 h-6 rounded-full flex items-center justify-center shrink-0">${i + 1}</span>
-          <span class="text-[10px] font-medium text-plum-300 uppercase tracking-wider ml-auto">${Math.round((p.score / 12) * 100)}% match</span>
-        </div>
-        <img src="${p.image}" alt="${p.name}" class="w-full aspect-square object-contain rounded-xl mb-3 bg-rose-50/50" loading="lazy" />
-        <h3 class="text-sm font-medium text-charcoal leading-tight mb-1">${p.name}</h3>
-        <span class="text-xs font-semibold text-rose-600">Shop Now &rarr;</span>
-      `;
-      grid.appendChild(card);
-    });
-
-    // Update URL
-    const url = new URL(window.location.pathname, window.location.origin);
-    Object.entries(answers).forEach(([k, v]) => url.searchParams.set(k, v));
-    window.history.replaceState({}, '', url.toString());
-  }
-</script>
+    })();
+  </script>
+</Base>
