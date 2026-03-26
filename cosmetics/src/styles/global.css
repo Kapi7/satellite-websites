@@ -284,14 +284,14 @@ h1, h2, h3, h4, h5, h6 {
 html.dark {
   color-scheme: dark;
 
-  --color-cream: #1a1117;
-  --color-cream-dark: #231c20;
-  --color-charcoal: #f0e8ec;
-  --color-charcoal-light: #c4b3bc;
-  --color-white: #211a1e;
+  --color-cream: #2a2028;
+  --color-cream-dark: #332b30;
+  --color-charcoal: #f2ecef;
+  --color-charcoal-light: #d0c3ca;
+  --color-white: #302830;
 
-  --color-rose-50: #261a20;
-  --color-rose-100: #3a242d;
+  --color-rose-50: #352830;
+  --color-rose-100: #4a3440;
   --color-rose-200: #5c3545;
   --color-rose-300: #8b4d64;
   --color-rose-400: #d46a85;
@@ -301,8 +301,8 @@ html.dark {
   --color-rose-800: #f7c0ce;
   --color-rose-900: #fadae3;
 
-  --color-plum-50: #231a26;
-  --color-plum-100: #312738;
+  --color-plum-50: #332838;
+  --color-plum-100: #42374a;
   --color-plum-200: #48385a;
   --color-plum-300: #7a5f8f;
   --color-plum-400: #a88abb;

@@ -10,6 +10,7 @@ import { getCollection } from 'astro:content';
 
 const allPosts = await getCollection('blog', ({ data }) => !data.draft);
 const sortedPosts = allPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const recent = sortedPosts.slice(0, 6);
 
 const slides = [
   {
@@ -40,9 +41,6 @@ const slides = [
   },
 ];
 
-const heroSlugs = new Set(slides.filter(s => s.link).map(s => s.link!.replace('/', '')));
-const recent = sortedPosts.filter(p => !heroSlugs.has(p.id)).slice(0, 7);
-
 const categories = [
   { slug: 'skincare', label: 'Skincare', desc: 'Routines, guides, and fundamentals for every skin type', count: sortedPosts.filter(p => p.data.category === 'skincare').length },
   { slug: 'ingredients', label: 'Ingredients', desc: 'Deep-dives into what your products actually contain', count: sortedPosts.filter(p => p.data.category === 'ingredients').length },
@@ -65,30 +63,12 @@ const categories = [
           <h2 class="font-heading text-3xl text-charcoal tracking-tight">Fresh from the lab</h2>
         </div>
       </div>
-
-      <div class="grid gap-8 lg:grid-cols-[2fr_1fr]">
-        {recent.slice(0, 1).map((post) => (
+      <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+        {recent.map((post, i) => (
           <ArticleCard
             title={post.data.title} description={post.data.description} date={post.data.date}
             category={post.data.category} slug={post.id} image={post.data.image} type={post.data.type}
-            featured={true}
-          />
-        ))}
-        <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-1 content-start">
-          {recent.slice(1, 3).map((post) => (
-            <ArticleCard
-              title={post.data.title} description={post.data.description} date={post.data.date}
-              category={post.data.category} slug={post.id} image={post.data.image} type={post.data.type}
-            />
-          ))}
-        </div>
-      </div>
-
-      <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4 mt-10 pt-10 border-t border-rose-200/40">
-        {recent.slice(3, 7).map((post) => (
-          <ArticleCard
-            title={post.data.title} description={post.data.description} date={post.data.date}
-            category={post.data.category} slug={post.id} image={post.data.image} type={post.data.type}
+            featured={i === 0}
           />
         ))}
       </div>
@@ -123,8 +103,8 @@ const categories = [
           <div class="w-12 h-12 mx-auto mb-3 rounded-full bg-rose-50 flex items-center justify-center group-hover:bg-rose-100 transition-colors">
             <svg class="w-6 h-6 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" /></svg>
           </div>
-          <h3 class="font-heading text-lg text-charcoal mb-1">Skin Quiz</h3>
-          <p class="text-xs text-plum-400">Find your perfect routine in 60 seconds</p>
+          <h3 class="font-heading text-lg text-charcoal mb-1">AI Skin Analysis</h3>
+          <p class="text-xs text-plum-400">Get a personalized skin analysis and routine</p>
         </a>
         <a href="/ingredients" class="group p-7 rounded-2xl border border-rose-200/40 hover:border-rose-400 bg-white hover:shadow-lg transition-all duration-300 text-center">
           <div class="w-12 h-12 mx-auto mb-3 rounded-full bg-rose-50 flex items-center justify-center group-hover:bg-rose-100 transition-colors">
@@ -144,29 +124,17 @@ const categories = [
     </section>
 
     <section class="max-w-6xl mx-auto px-5 sm:px-8 pb-8">
-      <div class="rounded-2xl bg-plum-50 p-8 sm:p-12">
-        <div class="flex flex-col sm:flex-row items-start gap-6">
-          <img src="/logo.svg" alt="Glow Coded" class="w-12 h-12 shrink-0" />
-          <div class="flex-1">
-            <h2 class="font-heading text-2xl text-charcoal tracking-tight mb-3">About Glow Coded</h2>
-            <p class="text-sm text-plum-500 leading-relaxed mb-4 max-w-xl">
-              Skincare education, honest reviews, and K-Beauty deep-dives. Everything we recommend has been tested on our own skin first. No sponsored posts, no paid placements.
-            </p>
-            <a href="/about" class="inline-flex items-center gap-2 text-sm font-medium text-plum-700 hover:text-plum-900 transition-colors">
-              Learn more about us
-              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-            </a>
-          </div>
-          <div class="hidden sm:flex gap-8 shrink-0 text-center">
-            <div>
-              <span class="block font-heading text-2xl text-charcoal">{sortedPosts.length}</span>
-              <span class="text-[10px] uppercase tracking-[0.15em] text-plum-300">Articles</span>
-            </div>
-            <div>
-              <span class="block font-heading text-2xl text-charcoal">4</span>
-              <span class="text-[10px] uppercase tracking-[0.15em] text-plum-300">Topics</span>
-            </div>
-          </div>
+      <div class="rounded-2xl bg-plum-50 p-10 sm:p-14 flex flex-col sm:flex-row items-start gap-8">
+        <img src="/logo.svg" alt="Glow Coded" class="w-16 h-16 shrink-0" />
+        <div>
+          <h2 class="font-heading text-2xl text-charcoal tracking-tight mb-3">About Glow Coded</h2>
+          <p class="text-sm text-plum-500 leading-relaxed mb-4 max-w-xl">
+            Skincare education, honest reviews, and K-Beauty deep-dives. Everything we recommend has been tested on our own skin first. No sponsored posts, no paid placements.
+          </p>
+          <a href="/about" class="inline-flex items-center gap-2 text-sm font-medium text-plum-700 hover:text-plum-900 transition-colors">
+            Learn more about us
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+          </a>
         </div>
       </div>
     </section>

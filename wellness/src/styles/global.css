@@ -285,14 +285,14 @@ h1, h2, h3, h4, h5, h6 {
 html.dark {
   color-scheme: dark;
 
-  --color-cream: #151a14;
-  --color-cream-dark: #1c221b;
-  --color-charcoal: #e8ede6;
-  --color-charcoal-light: #b8c4b3;
-  --color-white: #1e231d;
+  --color-cream: #222a21;
+  --color-cream-dark: #2c3429;
+  --color-charcoal: #ecf0ea;
+  --color-charcoal-light: #c8d2c3;
+  --color-white: #2b322a;
 
-  --color-sage-50: #1a201a;
-  --color-sage-100: #242e23;
+  --color-sage-50: #283028;
+  --color-sage-100: #344035;
   --color-sage-200: #354435;
   --color-sage-300: #4f6a4f;
   --color-sage-400: #6f8f6f;
@@ -302,8 +302,8 @@ html.dark {
   --color-sage-800: #d4e5ce;
   --color-sage-900: #e8f2e4;
 
-  --color-warm-50: #1f1a14;
-  --color-warm-100: #2d241b;
+  --color-warm-50: #2e2820;
+  --color-warm-100: #3e3428;
   --color-warm-200: #4a3828;
   --color-warm-300: #6d5038;
   --color-warm-400: #a07048;

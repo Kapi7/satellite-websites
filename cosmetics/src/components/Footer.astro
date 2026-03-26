@@ -10,18 +10,20 @@ const categories = [
 
 <footer class="border-t border-rose-200/40 bg-plum-50/30">
   <div class="max-w-6xl mx-auto px-5 sm:px-8 py-16">
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 md:gap-8">
-      <div>
-        <div class="flex items-center gap-2.5 mb-4">
-          <img src="/logo.svg" alt="" class="h-10 w-auto" />
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+      <div class="md:col-span-5">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-8 h-8 rounded-full bg-plum-700 flex items-center justify-center">
+            <span class="text-cream text-xs font-heading font-bold">G</span>
+          </div>
           <span class="text-lg font-heading text-charcoal tracking-tight">Glow Coded</span>
         </div>
-        <p class="text-sm text-plum-400 leading-relaxed">
-          Skincare education, honest reviews, and K-Beauty deep-dives.
+        <p class="text-sm text-plum-400 leading-relaxed max-w-sm">
+          Skincare education, honest reviews, and K-Beauty deep-dives. Everything we recommend, we've tested on our own skin first.
         </p>
       </div>
 
-      <div>
+      <div class="md:col-span-3">
         <h4 class="text-[11px] font-semibold uppercase tracking-[0.15em] text-plum-300 mb-4">Explore</h4>
         <ul class="space-y-2.5">
           {categories.map((cat) => (
@@ -34,21 +36,20 @@ const categories = [
         </ul>
       </div>
 
-      <div>
+      <div class="md:col-span-2">
         <h4 class="text-[11px] font-semibold uppercase tracking-[0.15em] text-plum-300 mb-4">Tools</h4>
         <ul class="space-y-2.5">
-          <li><a href="/quiz" class="text-sm text-plum-500 hover:text-charcoal transition-colors duration-200">Skin Quiz</a></li>
+          <li><a href="/quiz" class="text-sm text-plum-500 hover:text-charcoal transition-colors duration-200">AI Skin Analysis</a></li>
           <li><a href="/ingredients" class="text-sm text-plum-500 hover:text-charcoal transition-colors duration-200">Ingredient Glossary</a></li>
           <li><a href="/ingredient-checker" class="text-sm text-plum-500 hover:text-charcoal transition-colors duration-200">Conflict Checker</a></li>
-        </ul>
-      </div>
-
-      <div>
-        <h4 class="text-[11px] font-semibold uppercase tracking-[0.15em] text-plum-300 mb-4">Info</h4>
-        <ul class="space-y-2.5">
           <li><a href="/about" class="text-sm text-plum-500 hover:text-charcoal transition-colors duration-200">About Us</a></li>
           <li><a href="/privacy" class="text-sm text-plum-500 hover:text-charcoal transition-colors duration-200">Privacy</a></li>
         </ul>
+      </div>
+
+      <div class="md:col-span-2">
+        <h4 class="text-[11px] font-semibold uppercase tracking-[0.15em] text-plum-300 mb-4">Get the Glow</h4>
+        <p class="text-xs text-plum-400 leading-relaxed">Weekly skincare breakdowns & honest reviews.</p>
       </div>
     </div>
 
