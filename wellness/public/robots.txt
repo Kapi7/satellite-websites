@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rooted-glow.com/sitemap-index.xml

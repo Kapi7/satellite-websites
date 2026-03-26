@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://glow-coded.com/sitemap-index.xml
