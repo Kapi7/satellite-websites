@@ -66,22 +66,22 @@ const categories = [
         </div>
       </div>
 
-      <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 lg:grid-rows-[auto_auto]">
+      <div class="grid gap-8 lg:grid-cols-[2fr_1fr]">
         {recent.slice(0, 1).map((post) => (
-          <div class="lg:col-span-2 lg:row-span-2">
-            <ArticleCard
-              title={post.data.title} description={post.data.description} date={post.data.date}
-              category={post.data.category} slug={post.id} image={post.data.image} type={post.data.type}
-              featured={true}
-            />
-          </div>
-        ))}
-        {recent.slice(1, 3).map((post) => (
           <ArticleCard
             title={post.data.title} description={post.data.description} date={post.data.date}
             category={post.data.category} slug={post.id} image={post.data.image} type={post.data.type}
+            featured={true}
           />
         ))}
+        <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-1 content-start">
+          {recent.slice(1, 3).map((post) => (
+            <ArticleCard
+              title={post.data.title} description={post.data.description} date={post.data.date}
+              category={post.data.category} slug={post.id} image={post.data.image} type={post.data.type}
+            />
+          ))}
+        </div>
       </div>
 
       <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4 mt-10 pt-10 border-t border-rose-200/40">
