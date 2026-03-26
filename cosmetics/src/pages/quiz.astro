@@ -7,42 +7,48 @@ import BackToTop from '../components/BackToTop.astro';
 
 <Base title="AI Skin Analysis | Glow Coded" description="Get a personalized skin analysis and product recommendations powered by AI.">
   <Header />
-  <main class="flex-1">
-    <div id="quiz-wrapper" class="animate-fade-in">
-      <iframe
-        id="quiz-iframe"
-        src="https://mirai-skin-ai.onrender.com/?shop=9dkd2w-g3.myshopify.com&currency=USD&embedded=true&inline=true"
-        style="width: 100%; min-height: 100vh; height: 100vh; border: none; display: block; background: transparent;"
-        allow="camera"
-        title="AI Skin Analysis"
-      ></iframe>
-    </div>
+  <main class="flex-1 bg-cream">
+    <section class="max-w-4xl mx-auto px-4 sm:px-8 py-10">
+      <div class="text-center mb-8 animate-fade-in">
+        <span class="block text-[11px] font-semibold uppercase tracking-[0.2em] text-plum-300 mb-2">Personalized</span>
+        <h1 class="font-heading text-4xl sm:text-5xl text-charcoal tracking-tight mb-3">AI Skin Analysis</h1>
+        <p class="text-base text-plum-400 max-w-lg mx-auto">Upload a selfie or answer a few questions to get your personalized skincare routine and product recommendations.</p>
+      </div>
+
+      <div id="quiz-container" class="rounded-2xl overflow-hidden bg-white border border-rose-200/40 shadow-sm animate-fade-in-up stagger-1">
+        <iframe
+          id="quiz-iframe"
+          src="https://mirai-skin-ai.onrender.com/?shop=9dkd2w-g3.myshopify.com&currency=USD&embedded=true&inline=true"
+          class="w-full border-0 block"
+          style="height: 680px;"
+          allow="camera"
+          title="AI Skin Analysis"
+        ></iframe>
+      </div>
+
+      <p class="text-center text-[11px] text-plum-300 mt-4">
+        Powered by AI. Your data stays private and is never shared.
+      </p>
+    </section>
   </main>
   <Footer />
   <BackToTop />
 
-  <style>
-    #quiz-wrapper {
-      width: 100%;
-      overflow: hidden;
-    }
-    #quiz-iframe {
-      width: 100%;
-      border: none;
-      display: block;
-    }
-  </style>
-
   <script is:inline>
     (function() {
       var iframe = document.getElementById('quiz-iframe');
+      var container = document.getElementById('quiz-container');
+
       window.addEventListener('message', function(e) {
         if (!e.data || !e.data.type) return;
+
         if (e.data.type === 'mirai:resize' && e.data.height) {
-          iframe.style.height = Math.max(600, e.data.height) + 'px';
+          var h = Math.min(Math.max(500, e.data.height), 800);
+          iframe.style.height = h + 'px';
         }
+
         if (e.data.type === 'mirai:scroll-top') {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
+          container.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
       });
     })();
