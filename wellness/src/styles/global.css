@@ -195,6 +195,84 @@ h1, h2, h3, h4, h5, h6 {
   background: var(--color-sage-200);
 }
 
+/* Product card styling — targets product image links to mirai-skin.com */
+.prose a[href*="mirai-skin.com"]:has(img) {
+  display: block;
+  max-width: 280px;
+  margin: 2rem auto;
+  text-decoration: none;
+  border: 1px solid var(--color-sage-200);
+  border-radius: 1rem;
+  padding: 1rem;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+}
+
+.prose a[href*="mirai-skin.com"]:has(img):hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+}
+
+.prose a[href*="mirai-skin.com"]:has(img) img {
+  margin: 0;
+  border-radius: 0.75rem;
+  box-shadow: none;
+}
+
+.prose a[href*="mirai-skin.com"]:has(img)::after {
+  content: 'View on Mirai Skin \2192';
+  display: block;
+  text-align: center;
+  margin-top: 0.75rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-sage-600);
+  transition: color 0.2s ease;
+}
+
+.prose a[href*="mirai-skin.com"]:has(img):hover::after {
+  color: var(--color-sage-900);
+}
+
+/* Mobile optimizations */
+@media (max-width: 639px) {
+  .prose a[href*="mirai-skin.com"]:has(img) {
+    max-width: 200px;
+  }
+
+  .prose h2 {
+    font-size: 1.625rem;
+    margin-top: 2.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .prose h3 {
+    font-size: 1.1875rem;
+    margin-top: 1.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .prose p {
+    font-size: 1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .prose > p:first-child {
+    font-size: 1.0625rem;
+  }
+
+  .prose blockquote {
+    margin: 1.5rem 0;
+    font-size: 1rem;
+  }
+
+  .prose img {
+    margin: 1.75rem 0;
+  }
+}
+
 /* Gradient text */
 .text-gradient {
   background: linear-gradient(135deg, var(--color-sage-700) 0%, var(--color-warm-600) 100%);

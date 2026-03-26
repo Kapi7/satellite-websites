@@ -25,6 +25,7 @@ const { Content, headings } = await render(post);
   imageAlt={post.data.imageAlt}
   headings={headings}
   slug={post.id}
+  rawContent={post.body}
 >
   <Content />
 </Article>
