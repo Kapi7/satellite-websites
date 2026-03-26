@@ -1,0 +1,77 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Base
+  title="Page Not Found"
+  description="The page you're looking for doesn't exist. Browse our latest articles on nutrition, movement, K-Beauty, and natural health."
+>
+  <Header />
+
+  <main class="flex-1 flex items-center justify-center py-20 sm:py-28 px-5">
+    <div class="max-w-xl mx-auto text-center animate-fade-in-up">
+      <!-- 404 number -->
+      <p class="text-8xl sm:text-9xl font-heading font-bold text-sage-200 leading-none mb-2 select-none">
+        404
+      </p>
+
+      <!-- Heading -->
+      <h1 class="text-3xl sm:text-4xl font-heading text-charcoal mb-4">
+        Page Not Found
+      </h1>
+
+      <!-- Message -->
+      <p class="text-base text-sage-500 leading-relaxed mb-8 max-w-md mx-auto">
+        It looks like this page has wandered off the path. No worries — there's plenty to explore back home.
+      </p>
+
+      <!-- Back to Home button -->
+      <a
+        href="/"
+        class="inline-flex items-center gap-2 px-6 py-3 bg-sage-700 text-cream text-sm font-medium rounded-full hover:bg-sage-800 transition-colors duration-200 mb-14"
+      >
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+        </svg>
+        Back to Home
+      </a>
+
+      <!-- Popular articles -->
+      <div class="border-t border-sage-200/60 pt-10">
+        <h2 class="text-[11px] font-semibold uppercase tracking-[0.15em] text-sage-400 mb-5">
+          Popular Articles
+        </h2>
+        <ul class="space-y-3">
+          <li>
+            <a
+              href="/complete-guide-ancestral-eating"
+              class="text-sm text-sage-600 hover:text-charcoal transition-colors duration-200 underline decoration-sage-200 underline-offset-2 hover:decoration-sage-400"
+            >
+              Complete Guide to Ancestral Eating
+            </a>
+          </li>
+          <li>
+            <a
+              href="/k-beauty-night-routine-glowing-skin"
+              class="text-sm text-sage-600 hover:text-charcoal transition-colors duration-200 underline decoration-sage-200 underline-offset-2 hover:decoration-sage-400"
+            >
+              K-Beauty Night Routine for Glowing Skin
+            </a>
+          </li>
+          <li>
+            <a
+              href="/how-to-fix-your-sleep-in-7-days"
+              class="text-sm text-sage-600 hover:text-charcoal transition-colors duration-200 underline decoration-sage-200 underline-offset-2 hover:decoration-sage-400"
+            >
+              How to Fix Your Sleep in 7 Days
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Base>
