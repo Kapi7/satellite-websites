@@ -17,28 +17,19 @@ for SITE in "${SITES[@]}"; do
   SITEMAP_URL="${SITE}/sitemap-0.xml"
   echo "Fetching sitemap: $SITEMAP_URL"
 
-  # Extract URLs from sitemap XML
-  URLS=$(curl -s "$SITEMAP_URL" | sed -n 's/.*<loc>\(.*\)<\/loc>.*/\1/p')
-
-  if [ -z "$URLS" ]; then
-    echo "  No URLs found in sitemap, trying sitemap-index.xml..."
-    SITEMAP_URL="${SITE}/sitemap-index.xml"
-    URLS=$(curl -s "$SITEMAP_URL" | sed -n 's/.*<loc>\(.*\)<\/loc>.*/\1/p')
-  fi
-
-  URL_COUNT=$(echo "$URLS" | wc -l | tr -d ' ')
-  echo "  Found $URL_COUNT URLs"
-
-  # Build JSON array of URLs
-  URL_JSON=$(echo "$URLS" | python3 -c "
-import sys, json
-urls = [line.strip() for line in sys.stdin if line.strip()]
+  # Extract URLs using python (handles single-line XML)
+  URL_JSON=$(curl -s "$SITEMAP_URL" | python3 -c "
+import sys, re, json
+xml = sys.stdin.read()
+urls = re.findall(r'<loc>([^<]+)</loc>', xml)
 print(json.dumps(urls))
 ")
 
+  URL_COUNT=$(echo "$URL_JSON" | python3 -c "import sys,json; print(len(json.loads(sys.stdin.read())))")
+  echo "  Found $URL_COUNT URLs"
+
   HOST=$(echo "$SITE" | sed 's|https://||')
 
-  # Submit to IndexNow API
   PAYLOAD="{\"host\":\"$HOST\",\"key\":\"$KEY\",\"keyLocation\":\"${SITE}/${KEY}.txt\",\"urlList\":$URL_JSON}"
 
   echo "  Submitting to IndexNow (Bing)..."
