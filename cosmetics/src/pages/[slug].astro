@@ -19,6 +19,7 @@ const { Content, headings } = await render(post);
   headings={headings} slug={post.id}
   rawContent={post.body}
   routine={post.data.routine}
+  type={post.data.type}
 >
   <Content />
 </Article>

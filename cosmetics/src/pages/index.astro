@@ -47,9 +47,20 @@ const categories = [
   { slug: 'reviews', label: 'Reviews', desc: 'Honest multi-product roundups and comparisons', count: sortedPosts.filter(p => p.data.category === 'reviews').length },
   { slug: 'how-tos', label: 'How-Tos', desc: 'Step-by-step tutorials and seasonal routines', count: sortedPosts.filter(p => p.data.category === 'how-tos').length },
 ];
+
+const orgSchema = JSON.stringify({
+  '@context': 'https://schema.org', '@type': 'Organization',
+  name: 'Glow Coded', url: 'https://glow-coded.com',
+  logo: 'https://glow-coded.com/logo.svg',
+  description: 'Skincare education, honest reviews, K-Beauty deep-dives, and ingredient breakdowns.',
+});
+const webSiteSchema = JSON.stringify({
+  '@context': 'https://schema.org', '@type': 'WebSite',
+  name: 'Glow Coded', url: 'https://glow-coded.com',
+});
 ---
 
-<Base title="Glow Coded" description="Skincare education, honest reviews, K-Beauty deep-dives, and ingredient breakdowns.">
+<Base title="Glow Coded" description="Skincare education, honest reviews, K-Beauty deep-dives, and ingredient breakdowns." jsonLd={[orgSchema, webSiteSchema]}>
   <Header />
   <main class="flex-1">
     <div class="pt-6 animate-fade-in">

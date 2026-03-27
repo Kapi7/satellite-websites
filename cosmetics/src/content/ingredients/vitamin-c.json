@@ -2,14 +2,40 @@
   "name": "Vitamin C",
   "slug": "vitamin-c",
   "category": "antioxidant",
-  "benefits": ["brightening", "antioxidant protection", "fades dark spots", "boosts collagen", "evens skin tone"],
-  "skinTypes": ["oily", "dry", "combination", "normal"],
+  "benefits": [
+    "brightening",
+    "antioxidant protection",
+    "fades dark spots",
+    "boosts collagen",
+    "evens skin tone"
+  ],
+  "skinTypes": [
+    "oily",
+    "dry",
+    "combination",
+    "normal"
+  ],
   "comedogenicRating": 0,
   "description": "Vitamin C (L-ascorbic acid) is a potent antioxidant that neutralizes free radical damage from UV exposure and pollution. It brightens dull skin, fades hyperpigmentation, and supports collagen synthesis for firmer, more radiant skin. Best used in the morning under sunscreen for maximum photoprotective benefits.",
   "relatedProducts": [
-    { "name": "Sulwhasoo First Care Activating Serum", "url": "https://mirai-skin.com/products/sulwhasoo-first-care-activating-serum" },
-    { "name": "Beauty of Joseon Relief Sun Rice + Probiotics", "url": "https://mirai-skin.com/products/beauty-of-joseon-relief-sun-rice-probiotics" }
+    {
+      "name": "Sulwhasoo First Care Activating Serum",
+      "url": "https://mirai-skin.com/products/sulwhasoo-concentrated-ginseng-rejuvenating-serum-30ml"
+    },
+    {
+      "name": "Beauty of Joseon Relief Sun Rice + Probiotics",
+      "url": "https://mirai-skin.com/products/beauty-joseon-relief-sun-aqua"
+    }
   ],
-  "conflicts": ["retinol", "niacinamide", "benzoyl-peroxide"],
-  "pairsWith": ["squalane", "hyaluronic-acid", "arbutin", "green-tea"]
+  "conflicts": [
+    "retinol",
+    "niacinamide",
+    "benzoyl-peroxide"
+  ],
+  "pairsWith": [
+    "squalane",
+    "hyaluronic-acid",
+    "arbutin",
+    "green-tea"
+  ]
 }

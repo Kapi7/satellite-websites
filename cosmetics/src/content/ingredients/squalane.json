@@ -2,14 +2,37 @@
   "name": "Squalane",
   "slug": "squalane",
   "category": "oil",
-  "benefits": ["moisturizing", "non-greasy hydration", "strengthens barrier", "antioxidant", "improves elasticity"],
-  "skinTypes": ["oily", "dry", "combination", "sensitive", "normal"],
+  "benefits": [
+    "moisturizing",
+    "non-greasy hydration",
+    "strengthens barrier",
+    "antioxidant",
+    "improves elasticity"
+  ],
+  "skinTypes": [
+    "oily",
+    "dry",
+    "combination",
+    "sensitive",
+    "normal"
+  ],
   "comedogenicRating": 0,
   "description": "Squalane is a stable, hydrogenated form of squalene -- a lipid naturally produced by human skin. It is an exceptionally lightweight oil that absorbs quickly without leaving a greasy residue, making it suitable for all skin types including oily skin. It reinforces the moisture barrier and pairs beautifully with active ingredients like retinol and vitamin C to buffer potential irritation.",
   "relatedProducts": [
-    { "name": "Illiyoon Ceramide Ato Concentrate Cream", "url": "https://mirai-skin.com/products/illiyoon-ceramide-ato-concentrate-cream" },
-    { "name": "Banila Co Clean It Zero", "url": "https://mirai-skin.com/products/banila-co-clean-it-zero" }
+    {
+      "name": "Illiyoon Ceramide Ato Concentrate Cream",
+      "url": "https://mirai-skin.com/products/illiyoon-ceramide-ato-concentrate-cream-150ml"
+    },
+    {
+      "name": "Banila Co Clean It Zero",
+      "url": "https://mirai-skin.com/products/banila-co-clean-it-zero-enriching-butter-cleansing-balm-100ml"
+    }
   ],
   "conflicts": [],
-  "pairsWith": ["retinol", "vitamin-c", "hyaluronic-acid", "ceramides"]
+  "pairsWith": [
+    "retinol",
+    "vitamin-c",
+    "hyaluronic-acid",
+    "ceramides"
+  ]
 }

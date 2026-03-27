@@ -2,14 +2,30 @@
   "name": "Niacinamide",
   "slug": "niacinamide",
   "category": "antioxidant",
-  "benefits": ["pore minimizing", "oil control", "brightening", "strengthens skin barrier", "reduces inflammation"],
-  "skinTypes": ["oily", "dry", "combination", "sensitive", "normal"],
+  "benefits": [
+    "pore minimizing",
+    "oil control",
+    "brightening",
+    "strengthens skin barrier",
+    "reduces inflammation"
+  ],
+  "skinTypes": [
+    "oily",
+    "dry",
+    "combination",
+    "sensitive",
+    "normal"
+  ],
   "comedogenicRating": 0,
   "description": "Niacinamide (Vitamin B3) is a versatile water-soluble vitamin that regulates sebum production, minimizes pore appearance, and strengthens the skin barrier. It also helps fade hyperpigmentation and reduce redness, making it one of the most universally beneficial skincare ingredients available.",
-  "relatedProducts": [
-    { "name": "Beauty of Joseon Glow Serum Propolis + Niacinamide", "url": "https://mirai-skin.com/products/beauty-of-joseon-glow-serum-propolis-niacinamide" },
-    { "name": "COSRX Oil-Free Ultra Moisturizing Lotion", "url": "https://mirai-skin.com/products/cosrx-oil-free-ultra-moisturizing-lotion" }
+  "relatedProducts": [],
+  "conflicts": [
+    "vitamin-c"
   ],
-  "conflicts": ["vitamin-c"],
-  "pairsWith": ["hyaluronic-acid", "ceramides", "arbutin", "zinc"]
+  "pairsWith": [
+    "hyaluronic-acid",
+    "ceramides",
+    "arbutin",
+    "zinc"
+  ]
 }

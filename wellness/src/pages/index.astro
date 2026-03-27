@@ -47,11 +47,23 @@ const categories = [
   { slug: 'k-beauty', label: 'K-Beauty', desc: 'Korean skincare routines and ingredient deep-dives', count: sortedPosts.filter(p => p.data.category === 'k-beauty').length },
   { slug: 'natural-health', label: 'Natural Health', desc: 'Sleep, stress, adaptogens, and toxin-free living', count: sortedPosts.filter(p => p.data.category === 'natural-health').length },
 ];
+
+const orgSchema = JSON.stringify({
+  '@context': 'https://schema.org', '@type': 'Organization',
+  name: 'Rooted Glow', url: 'https://rooted-glow.com',
+  logo: 'https://rooted-glow.com/logo.svg',
+  description: 'Wellness, ancestral nutrition, movement, and K-Beauty grounded in real experience.',
+});
+const webSiteSchema = JSON.stringify({
+  '@context': 'https://schema.org', '@type': 'WebSite',
+  name: 'Rooted Glow', url: 'https://rooted-glow.com',
+});
 ---
 
 <Base
   title="Rooted Glow"
   description="Wellness, ancestral nutrition, movement, and K-Beauty grounded in real experience."
+  jsonLd={[orgSchema, webSiteSchema]}
 >
   <Header />
 

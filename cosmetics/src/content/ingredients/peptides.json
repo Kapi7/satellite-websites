@@ -2,14 +2,33 @@
   "name": "Peptides",
   "slug": "peptides",
   "category": "peptide",
-  "benefits": ["anti-aging", "boosts collagen", "firms skin", "reduces wrinkles", "improves skin elasticity"],
-  "skinTypes": ["dry", "combination", "sensitive", "normal"],
+  "benefits": [
+    "anti-aging",
+    "boosts collagen",
+    "firms skin",
+    "reduces wrinkles",
+    "improves skin elasticity"
+  ],
+  "skinTypes": [
+    "dry",
+    "combination",
+    "sensitive",
+    "normal"
+  ],
   "comedogenicRating": 0,
   "description": "Peptides are short chains of amino acids that act as building blocks for proteins like collagen, elastin, and keratin. When applied topically, they signal the skin to ramp up collagen production, resulting in firmer, plumper skin with fewer visible wrinkles. They are gentle enough for sensitive skin and work best with consistent, long-term use.",
   "relatedProducts": [
-    { "name": "Sulwhasoo First Care Activating Serum", "url": "https://mirai-skin.com/products/sulwhasoo-first-care-activating-serum" },
-    { "name": "Laneige Water Sleeping Mask", "url": "https://mirai-skin.com/products/laneige-water-sleeping-mask" }
+    {
+      "name": "Sulwhasoo First Care Activating Serum",
+      "url": "https://mirai-skin.com/products/sulwhasoo-concentrated-ginseng-rejuvenating-serum-30ml"
+    }
   ],
-  "conflicts": ["glycolic-acid"],
-  "pairsWith": ["hyaluronic-acid", "niacinamide", "ceramides"]
+  "conflicts": [
+    "glycolic-acid"
+  ],
+  "pairsWith": [
+    "hyaluronic-acid",
+    "niacinamide",
+    "ceramides"
+  ]
 }

@@ -2,14 +2,34 @@
   "name": "Mugwort",
   "slug": "mugwort",
   "category": "botanical",
-  "benefits": ["calming", "anti-inflammatory", "soothes irritation", "antioxidant", "balances moisture"],
-  "skinTypes": ["sensitive", "dry", "combination"],
+  "benefits": [
+    "calming",
+    "anti-inflammatory",
+    "soothes irritation",
+    "antioxidant",
+    "balances moisture"
+  ],
+  "skinTypes": [
+    "sensitive",
+    "dry",
+    "combination"
+  ],
   "comedogenicRating": 0,
   "description": "Mugwort (Artemisia vulgaris) has been used in traditional Korean medicine for centuries and has become a hero ingredient in K-beauty for sensitive skin. Rich in vitamins and minerals, it calms redness and irritation, fights free radical damage, and helps maintain the skin's moisture balance. It is especially effective for soothing eczema, rosacea, and reactive skin conditions.",
   "relatedProducts": [
-    { "name": "Round Lab 1025 Dokdo Toner", "url": "https://mirai-skin.com/products/round-lab-1025-dokdo-toner" },
-    { "name": "Illiyoon Ceramide Ato Concentrate Cream", "url": "https://mirai-skin.com/products/illiyoon-ceramide-ato-concentrate-cream" }
+    {
+      "name": "Round Lab 1025 Dokdo Toner",
+      "url": "https://mirai-skin.com/products/round-lab-1025-dokdo-toner-200ml"
+    },
+    {
+      "name": "Illiyoon Ceramide Ato Concentrate Cream",
+      "url": "https://mirai-skin.com/products/illiyoon-ceramide-ato-concentrate-cream-150ml"
+    }
   ],
   "conflicts": [],
-  "pairsWith": ["centella-asiatica", "panthenol", "hyaluronic-acid"]
+  "pairsWith": [
+    "centella-asiatica",
+    "panthenol",
+    "hyaluronic-acid"
+  ]
 }

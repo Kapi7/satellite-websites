@@ -2,14 +2,32 @@
   "name": "Centella Asiatica",
   "slug": "centella-asiatica",
   "category": "botanical",
-  "benefits": ["calming", "wound healing", "anti-inflammatory", "strengthens skin barrier", "reduces redness"],
-  "skinTypes": ["sensitive", "dry", "combination", "normal"],
+  "benefits": [
+    "calming",
+    "wound healing",
+    "anti-inflammatory",
+    "strengthens skin barrier",
+    "reduces redness"
+  ],
+  "skinTypes": [
+    "sensitive",
+    "dry",
+    "combination",
+    "normal"
+  ],
   "comedogenicRating": 1,
   "description": "Centella asiatica (also known as cica or tiger grass) is a medicinal herb prized for its powerful calming and healing properties. Its active compounds -- madecassoside, asiaticoside, and asiatic acid -- reduce inflammation, promote collagen synthesis, and accelerate wound healing, making it ideal for sensitive, irritated, or post-procedure skin.",
   "relatedProducts": [
-    { "name": "COSRX Oil-Free Ultra Moisturizing Lotion", "url": "https://mirai-skin.com/products/cosrx-oil-free-ultra-moisturizing-lotion" },
-    { "name": "COSRX Advanced Snail 96 Mucin Power Essence", "url": "https://mirai-skin.com/products/cosrx-advanced-snail-96-mucin-power-essence" }
+    {
+      "name": "COSRX Advanced Snail 96 Mucin Power Essence",
+      "url": "https://mirai-skin.com/products/cosrx-advanced-snail-96-mucin-power-essence-100ml"
+    }
   ],
   "conflicts": [],
-  "pairsWith": ["niacinamide", "mugwort", "hyaluronic-acid", "panthenol"]
+  "pairsWith": [
+    "niacinamide",
+    "mugwort",
+    "hyaluronic-acid",
+    "panthenol"
+  ]
 }

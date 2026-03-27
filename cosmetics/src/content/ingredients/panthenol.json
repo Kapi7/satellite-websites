@@ -2,15 +2,37 @@
   "name": "Panthenol",
   "slug": "panthenol",
   "category": "vitamin",
-  "benefits": ["soothing", "deep hydration", "barrier repair", "wound healing", "anti-inflammatory"],
-  "skinTypes": ["oily", "dry", "combination", "sensitive", "normal"],
+  "benefits": [
+    "soothing",
+    "deep hydration",
+    "barrier repair",
+    "wound healing",
+    "anti-inflammatory"
+  ],
+  "skinTypes": [
+    "oily",
+    "dry",
+    "combination",
+    "sensitive",
+    "normal"
+  ],
   "comedogenicRating": 0,
   "description": "Panthenol (provitamin B5) is a deeply hydrating and soothing ingredient that converts to pantothenic acid in the skin. It attracts and retains moisture, accelerates the skin's natural healing process, and strengthens the barrier function. It is exceptionally well-tolerated by all skin types, making it a staple in products designed for sensitive, irritated, or compromised skin.",
   "relatedProducts": [
-    { "name": "Illiyoon Ceramide Ato Concentrate Cream", "url": "https://mirai-skin.com/products/illiyoon-ceramide-ato-concentrate-cream" },
-    { "name": "Laneige Cream Skin Refiner", "url": "https://mirai-skin.com/products/laneige-cream-skin-refiner" },
-    { "name": "COSRX Advanced Snail 96 Mucin Power Essence", "url": "https://mirai-skin.com/products/cosrx-advanced-snail-96-mucin-power-essence" }
+    {
+      "name": "Illiyoon Ceramide Ato Concentrate Cream",
+      "url": "https://mirai-skin.com/products/illiyoon-ceramide-ato-concentrate-cream-150ml"
+    },
+    {
+      "name": "COSRX Advanced Snail 96 Mucin Power Essence",
+      "url": "https://mirai-skin.com/products/cosrx-advanced-snail-96-mucin-power-essence-100ml"
+    }
   ],
   "conflicts": [],
-  "pairsWith": ["ceramides", "hyaluronic-acid", "centella-asiatica", "niacinamide"]
+  "pairsWith": [
+    "ceramides",
+    "hyaluronic-acid",
+    "centella-asiatica",
+    "niacinamide"
+  ]
 }

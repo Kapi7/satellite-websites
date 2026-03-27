@@ -20,13 +20,27 @@ const allPosts = await getCollection('blog', ({ data }) => {
 const sortedPosts = allPosts.sort(
   (a, b) => b.data.date.getTime() - a.data.date.getTime()
 );
+
+const breadcrumbSchema = JSON.stringify({
+  '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/', Astro.site).href },
+    { '@type': 'ListItem', position: 2, name: title },
+  ],
+});
 ---
 
-<Base title={title} description={description}>
+<Base title={title} description={description} jsonLd={[breadcrumbSchema]}>
   <Header />
 
   <main class="flex-1">
     <div class="max-w-6xl mx-auto px-5 sm:px-8 py-16">
+      <nav class="flex items-center gap-2 text-[11px] uppercase tracking-[0.1em] text-plum-300 mb-8" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-plum-700 transition-colors">Home</a>
+        <svg class="w-3 h-3 text-rose-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        <span class="font-medium">{title}</span>
+      </nav>
+
       <header class="mb-12 max-w-2xl">
         <span class="inline-block text-[11px] font-semibold uppercase tracking-[0.2em] text-plum-300 mb-4">Category</span>
         <h1 class="font-heading text-4xl sm:text-5xl text-charcoal tracking-tight leading-[1.1] mb-4">
@@ -35,7 +49,7 @@ const sortedPosts = allPosts.sort(
         <p class="text-lg text-plum-400 leading-relaxed">{description}</p>
       </header>
 
-      <div class="border-t border-rose-200/40 pt-12">
+      <div class="border-t border-rose-200/40 pt-12" data-pagefind-body>
         <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
           {sortedPosts.map((post) => (
             <ArticleCard

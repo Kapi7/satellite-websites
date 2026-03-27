@@ -2,14 +2,36 @@
   "name": "Snail Mucin",
   "slug": "snail-mucin",
   "category": "soothing",
-  "benefits": ["hydration", "skin repair", "fades scars", "soothing", "improves elasticity"],
-  "skinTypes": ["oily", "dry", "combination", "sensitive", "normal"],
+  "benefits": [
+    "hydration",
+    "skin repair",
+    "fades scars",
+    "soothing",
+    "improves elasticity"
+  ],
+  "skinTypes": [
+    "oily",
+    "dry",
+    "combination",
+    "sensitive",
+    "normal"
+  ],
   "comedogenicRating": 0,
   "description": "Snail mucin (snail secretion filtrate) is a powerhouse ingredient rich in glycoproteins, hyaluronic acid, and glycolic acid naturally produced by snails. It deeply hydrates, accelerates skin repair, and helps fade acne scars and hyperpigmentation while soothing irritated or damaged skin.",
   "relatedProducts": [
-    { "name": "COSRX Advanced Snail 96 Mucin Power Essence", "url": "https://mirai-skin.com/products/cosrx-advanced-snail-96-mucin-power-essence" },
-    { "name": "COSRX Acne Pimple Master Patch", "url": "https://mirai-skin.com/products/cosrx-acne-pimple-master-patch" }
+    {
+      "name": "COSRX Advanced Snail 96 Mucin Power Essence",
+      "url": "https://mirai-skin.com/products/cosrx-advanced-snail-96-mucin-power-essence-100ml"
+    },
+    {
+      "name": "COSRX Acne Pimple Master Patch",
+      "url": "https://mirai-skin.com/products/cosrx-acne-pimple-master-patch-24-patches-3-sizes"
+    }
   ],
   "conflicts": [],
-  "pairsWith": ["hyaluronic-acid", "niacinamide", "centella-asiatica"]
+  "pairsWith": [
+    "hyaluronic-acid",
+    "niacinamide",
+    "centella-asiatica"
+  ]
 }

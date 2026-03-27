@@ -2,14 +2,33 @@
   "name": "Ceramides",
   "slug": "ceramides",
   "category": "ceramide",
-  "benefits": ["barrier repair", "moisture retention", "prevents water loss", "strengthens skin barrier", "soothes irritation"],
-  "skinTypes": ["oily", "dry", "combination", "sensitive", "normal"],
+  "benefits": [
+    "barrier repair",
+    "moisture retention",
+    "prevents water loss",
+    "strengthens skin barrier",
+    "soothes irritation"
+  ],
+  "skinTypes": [
+    "oily",
+    "dry",
+    "combination",
+    "sensitive",
+    "normal"
+  ],
   "comedogenicRating": 0,
   "description": "Ceramides are lipids naturally found in the skin that make up over 50% of the skin barrier. Topically applied ceramides restore and reinforce this protective layer, locking in moisture and shielding against environmental aggressors. They are essential for anyone with a compromised barrier, eczema, or chronic dryness.",
   "relatedProducts": [
-    { "name": "Illiyoon Ceramide Ato Concentrate Cream", "url": "https://mirai-skin.com/products/illiyoon-ceramide-ato-concentrate-cream" },
-    { "name": "Laneige Cream Skin Refiner", "url": "https://mirai-skin.com/products/laneige-cream-skin-refiner" }
+    {
+      "name": "Illiyoon Ceramide Ato Concentrate Cream",
+      "url": "https://mirai-skin.com/products/illiyoon-ceramide-ato-concentrate-cream-150ml"
+    }
   ],
   "conflicts": [],
-  "pairsWith": ["hyaluronic-acid", "niacinamide", "panthenol", "retinol"]
+  "pairsWith": [
+    "hyaluronic-acid",
+    "niacinamide",
+    "panthenol",
+    "retinol"
+  ]
 }

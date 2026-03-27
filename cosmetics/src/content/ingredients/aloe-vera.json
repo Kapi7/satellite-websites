@@ -2,14 +2,32 @@
   "name": "Aloe Vera",
   "slug": "aloe-vera",
   "category": "soothing",
-  "benefits": ["hydrating", "soothing", "wound healing", "anti-inflammatory", "cooling"],
-  "skinTypes": ["oily", "dry", "combination", "sensitive", "normal"],
+  "benefits": [
+    "hydrating",
+    "soothing",
+    "wound healing",
+    "anti-inflammatory",
+    "cooling"
+  ],
+  "skinTypes": [
+    "oily",
+    "dry",
+    "combination",
+    "sensitive",
+    "normal"
+  ],
   "comedogenicRating": 0,
   "description": "Aloe vera is one of the oldest and most widely used soothing ingredients in skincare, containing over 75 active compounds including vitamins, enzymes, and amino acids. It deeply hydrates without heaviness, calms sunburns and irritation, and accelerates the healing of minor wounds and blemishes. Its lightweight gel texture makes it suitable for every skin type.",
   "relatedProducts": [
-    { "name": "COSRX Oil-Free Ultra Moisturizing Lotion", "url": "https://mirai-skin.com/products/cosrx-oil-free-ultra-moisturizing-lotion" },
-    { "name": "COSRX Advanced Snail 96 Mucin Power Essence", "url": "https://mirai-skin.com/products/cosrx-advanced-snail-96-mucin-power-essence" }
+    {
+      "name": "COSRX Advanced Snail 96 Mucin Power Essence",
+      "url": "https://mirai-skin.com/products/cosrx-advanced-snail-96-mucin-power-essence-100ml"
+    }
   ],
   "conflicts": [],
-  "pairsWith": ["hyaluronic-acid", "centella-asiatica", "panthenol"]
+  "pairsWith": [
+    "hyaluronic-acid",
+    "centella-asiatica",
+    "panthenol"
+  ]
 }

@@ -2,14 +2,35 @@
   "name": "Tea Tree Oil",
   "slug": "tea-tree-oil",
   "category": "botanical",
-  "benefits": ["antibacterial", "acne treatment", "oil control", "antifungal", "reduces inflammation"],
-  "skinTypes": ["oily", "combination"],
+  "benefits": [
+    "antibacterial",
+    "acne treatment",
+    "oil control",
+    "antifungal",
+    "reduces inflammation"
+  ],
+  "skinTypes": [
+    "oily",
+    "combination"
+  ],
   "comedogenicRating": 1,
   "description": "Tea tree oil is a natural essential oil derived from the Melaleuca alternifolia plant with potent antibacterial and anti-inflammatory properties. Studies show it is effective at reducing acne lesions comparable to benzoyl peroxide but with fewer side effects. It should always be used diluted and is best suited for spot treatments on oily and acne-prone skin.",
   "relatedProducts": [
-    { "name": "COSRX Acne Pimple Master Patch", "url": "https://mirai-skin.com/products/cosrx-acne-pimple-master-patch" },
-    { "name": "COSRX Low pH Good Morning Gel Cleanser", "url": "https://mirai-skin.com/products/cosrx-low-ph-good-morning-gel-cleanser" }
+    {
+      "name": "COSRX Acne Pimple Master Patch",
+      "url": "https://mirai-skin.com/products/cosrx-acne-pimple-master-patch-24-patches-3-sizes"
+    },
+    {
+      "name": "COSRX Low pH Good Morning Gel Cleanser",
+      "url": "https://mirai-skin.com/products/cosrx-low-ph-good-morning-gel-cleanser-150ml"
+    }
   ],
-  "conflicts": ["retinol"],
-  "pairsWith": ["salicylic-acid", "niacinamide", "aloe-vera"]
+  "conflicts": [
+    "retinol"
+  ],
+  "pairsWith": [
+    "salicylic-acid",
+    "niacinamide",
+    "aloe-vera"
+  ]
 }

@@ -2,14 +2,36 @@
   "name": "Rice Extract",
   "slug": "rice-extract",
   "category": "botanical",
-  "benefits": ["brightening", "moisturizing", "antioxidant", "evens skin tone", "softens skin"],
-  "skinTypes": ["oily", "dry", "combination", "sensitive", "normal"],
+  "benefits": [
+    "brightening",
+    "moisturizing",
+    "antioxidant",
+    "evens skin tone",
+    "softens skin"
+  ],
+  "skinTypes": [
+    "oily",
+    "dry",
+    "combination",
+    "sensitive",
+    "normal"
+  ],
   "comedogenicRating": 0,
   "description": "Rice extract (rice bran, rice ferment filtrate) has been a staple in Asian beauty rituals for centuries, famously credited for the flawless skin of Japanese geisha. It is rich in ferulic acid, phytic acid, and vitamins B and E, which brighten skin, even out discoloration, and provide antioxidant protection while gently moisturizing.",
   "relatedProducts": [
-    { "name": "Beauty of Joseon Relief Sun Rice + Probiotics", "url": "https://mirai-skin.com/products/beauty-of-joseon-relief-sun-rice-probiotics" },
-    { "name": "Sulwhasoo First Care Activating Serum", "url": "https://mirai-skin.com/products/sulwhasoo-first-care-activating-serum" }
+    {
+      "name": "Beauty of Joseon Relief Sun Rice + Probiotics",
+      "url": "https://mirai-skin.com/products/beauty-joseon-relief-sun-aqua"
+    },
+    {
+      "name": "Sulwhasoo First Care Activating Serum",
+      "url": "https://mirai-skin.com/products/sulwhasoo-concentrated-ginseng-rejuvenating-serum-30ml"
+    }
   ],
   "conflicts": [],
-  "pairsWith": ["niacinamide", "hyaluronic-acid", "vitamin-c"]
+  "pairsWith": [
+    "niacinamide",
+    "hyaluronic-acid",
+    "vitamin-c"
+  ]
 }
