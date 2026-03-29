@@ -34,6 +34,14 @@ const canonical = canonicalUrl || Astro.url.href;
 <!doctype html>
 <html lang="en">
   <head>
+    <!-- Google Analytics (GA4) -->
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-LNYVF6BHTN"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag("js", new Date());
+      gtag("config", "G-LNYVF6BHTN");
+    </script>
     <script is:inline>
       const t = localStorage.getItem('theme');
       if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
