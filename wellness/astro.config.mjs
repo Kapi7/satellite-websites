@@ -22,6 +22,7 @@ if (fs.existsSync(blogDir)) {
 
 export default defineConfig({
   site: 'https://rooted-glow.com',
+  trailingSlash: 'always',
   integrations: [
     mdx(),
     sitemap({

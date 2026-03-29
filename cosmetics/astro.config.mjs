@@ -22,6 +22,7 @@ if (fs.existsSync(blogDir)) {
 
 export default defineConfig({
   site: 'https://glow-coded.com',
+  trailingSlash: 'always',
   integrations: [
     mdx(),
     sitemap({
