@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 # Submit all URLs from both sitemaps to IndexNow (Bing, Yandex, etc.)
+# Also submits to Bing Webmaster API for direct indexing
 # Usage: ./scripts/submit-indexnow.sh
 
 set -euo pipefail
 
 KEY="06f4ca1b5301485797bbe6c72a0f721f"
+BING_API_KEY="282fd9e402f641b9a21fe8c171b6925e"
 
 SITES=(
   "https://glow-coded.com"
@@ -30,6 +32,7 @@ print(json.dumps(urls))
 
   HOST=$(echo "$SITE" | sed 's|https://||')
 
+  # IndexNow submission
   PAYLOAD="{\"host\":\"$HOST\",\"key\":\"$KEY\",\"keyLocation\":\"${SITE}/${KEY}.txt\",\"urlList\":$URL_JSON}"
 
   echo "  Submitting to IndexNow (Bing)..."
@@ -37,7 +40,7 @@ print(json.dumps(urls))
     -X POST "https://api.indexnow.org/indexnow" \
     -H "Content-Type: application/json" \
     -d "$PAYLOAD")
-  echo "  Bing response: HTTP $HTTP_CODE"
+  echo "  Bing IndexNow response: HTTP $HTTP_CODE"
 
   echo "  Submitting to IndexNow (Yandex)..."
   HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" \
@@ -45,6 +48,15 @@ print(json.dumps(urls))
     -H "Content-Type: application/json" \
     -d "$PAYLOAD")
   echo "  Yandex response: HTTP $HTTP_CODE"
+
+  # Bing Webmaster API direct URL submission
+  echo "  Submitting to Bing Webmaster API..."
+  BING_PAYLOAD="{\"siteUrl\":\"${SITE}/\",\"urlList\":$URL_JSON}"
+  BING_CODE=$(curl -s -o /dev/null -w "%{http_code}" \
+    -X POST "https://ssl.bing.com/webmaster/api.svc/json/SubmitUrlBatch?apikey=$BING_API_KEY" \
+    -H "Content-Type: application/json" \
+    -d "$BING_PAYLOAD")
+  echo "  Bing Webmaster API response: HTTP $BING_CODE"
 
   echo ""
 done
