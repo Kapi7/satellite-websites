@@ -10,21 +10,20 @@ echo "=== Daily Publish $(date) ==="
 
 PUBLISHED=0
 
-# Publish next draft from cosmetics
+# Publish next draft from cosmetics (ordered by keyword value: vol desc, KD asc)
 for article in \
-  "cosmetics/src/content/blog/cosrx-snail-mucin-vs-torriden-dive-in-serum.mdx" \
-  "cosmetics/src/content/blog/korean-toners-ranked-best-every-skin-type.mdx" \
-  "cosmetics/src/content/blog/how-to-fade-dark-spots-k-beauty.mdx" \
-  "cosmetics/src/content/blog/best-anti-aging-korean-skincare-30s.mdx" \
-  "cosmetics/src/content/blog/aha-vs-bha-vs-pha-which-exfoliant.mdx" \
-  "cosmetics/src/content/blog/best-korean-moisturizers-sensitive-skin.mdx" \
-  "cosmetics/src/content/blog/korean-skincare-routine-rosacea.mdx" \
   "cosmetics/src/content/blog/tirtir-cushion-foundation-shade-guide.mdx" \
-  "cosmetics/src/content/blog/best-k-beauty-under-15.mdx" \
-  "cosmetics/src/content/blog/vitamin-c-korean-skincare.mdx" \
+  "cosmetics/src/content/blog/best-korean-moisturizers-sensitive-skin.mdx" \
+  "cosmetics/src/content/blog/korean-eye-cream-guide.mdx" \
+  "cosmetics/src/content/blog/korean-toners-ranked-best-every-skin-type.mdx" \
   "cosmetics/src/content/blog/best-korean-cleansing-oils.mdx" \
+  "cosmetics/src/content/blog/aha-vs-bha-vs-pha-which-exfoliant.mdx" \
+  "cosmetics/src/content/blog/vitamin-c-korean-skincare.mdx" \
+  "cosmetics/src/content/blog/how-to-fade-dark-spots-k-beauty.mdx" \
+  "cosmetics/src/content/blog/best-k-beauty-under-15.mdx" \
+  "cosmetics/src/content/blog/best-anti-aging-korean-skincare-30s.mdx" \
   "cosmetics/src/content/blog/hydrating-routine-dry-winter-skin.mdx" \
-  "cosmetics/src/content/blog/korean-eye-cream-guide.mdx"; do
+  "cosmetics/src/content/blog/korean-skincare-routine-rosacea.mdx"; do
   if [ -f "$article" ] && grep -q "^draft: true" "$article"; then
     sed -i '' '/^draft: true$/d' "$article"
     echo "[Glow Coded] Published: $(basename "$article" .mdx)"
@@ -33,20 +32,19 @@ for article in \
   fi
 done
 
-# Publish next draft from wellness
+# Publish next draft from wellness (ordered by keyword value: vol desc, KD asc)
 for article in \
-  "wellness/src/content/blog/zone-2-training-slow-running-burns-fat.mdx" \
-  "wellness/src/content/blog/meditation-for-beginners-start-5-minutes.mdx" \
-  "wellness/src/content/blog/korean-skincare-for-runners.mdx" \
   "wellness/src/content/blog/how-to-make-sauerkraut-at-home.mdx" \
-  "wellness/src/content/blog/heart-rate-zones-explained-train-smarter.mdx" \
-  "wellness/src/content/blog/best-korean-products-stress-breakouts.mdx" \
   "wellness/src/content/blog/bone-broth-benefits.mdx" \
   "wellness/src/content/blog/fermented-beetroot-kvass-probiotic-drink.mdx" \
-  "wellness/src/content/blog/couch-to-5k-8-week-running-plan.mdx" \
-  "wellness/src/content/blog/meditation-cortisol-stillness-heals-skin.mdx" \
   "wellness/src/content/blog/bone-broth-gut-health-collagen-connection.mdx" \
+  "wellness/src/content/blog/korean-skincare-for-runners.mdx" \
+  "wellness/src/content/blog/best-korean-products-stress-breakouts.mdx" \
+  "wellness/src/content/blog/meditation-for-beginners-start-5-minutes.mdx" \
+  "wellness/src/content/blog/couch-to-5k-8-week-running-plan.mdx" \
   "wellness/src/content/blog/how-to-make-natural-fruit-soda.mdx" \
+  "wellness/src/content/blog/heart-rate-zones-explained-train-smarter.mdx" \
+  "wellness/src/content/blog/meditation-cortisol-stillness-heals-skin.mdx" \
   "wellness/src/content/blog/post-workout-k-beauty-recovery-routine.mdx"; do
   if [ -f "$article" ] && grep -q "^draft: true" "$article"; then
     sed -i '' '/^draft: true$/d' "$article"
