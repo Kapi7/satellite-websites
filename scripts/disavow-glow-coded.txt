@@ -1,0 +1,13 @@
+# Disavow file for glow-coded.com
+# Generated 2026-03-30
+# Spam backlinks from fake SEO sites
+
+domain:fiverr-affordable-seo-services.site
+domain:fiverr-cost-effective-seo.site
+domain:itxoft-organic-seo-growth.site
+domain:itxoft-professional-seo-services.site
+domain:itxoft-proven-seo-strategies.site
+domain:itxoft-seo-for-higher-rankings.site
+domain:itxoft-seo-for-modern-business.site
+domain:itxoft-trusted-seo-solutions.site
+domain:primeseo.xyz

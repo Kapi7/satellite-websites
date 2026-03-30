@@ -1,0 +1,14 @@
+# Disavow file for rooted-glow.com
+# Generated 2026-03-30
+# Spam backlinks from fake SEO sites
+
+domain:fiverr-cost-effective-seo.site
+domain:itxoft-affordable-seo-solutions.site
+domain:itxoft-cost-effective-seo-services.site
+domain:itxoft-organic-seo-growth.site
+domain:itxoft-professional-seo-services.site
+domain:itxoft-reliable-seo-services.site
+domain:itxoft-results-focused-seo.site
+domain:itxoft-seo-for-modern-business.site
+domain:itxoft-trusted-seo-solutions.site
+domain:boost-instant.website
