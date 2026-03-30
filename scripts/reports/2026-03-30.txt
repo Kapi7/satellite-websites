@@ -1,0 +1,84 @@
+============================================================
+  WEEKLY SEO REPORT
+  Week of 2026-03-30
+============================================================
+
+============================================================
+  GLOW-CODED.COM
+============================================================
+
+  GSC — glow-coded.com
+  ──────────────────────────────────────────────────
+  Clicks:      2
+  Impressions: 70
+  CTR:         2.9%
+  Position:    46.9
+
+  Top Queries:
+  Query                                    Clicks   Impr    CTR   Pos
+  best over the counter spot treatment          0      1   0.0%  99.0
+  best spot treatment for acne                  0      1   0.0%  65.0
+  check skincare ingredients                    0      1   0.0%  95.0
+  get rid of spots                              0      1   0.0%  54.0
+  help spots                                    0      1   0.0%  82.0
+  help with spots                               0      1   0.0%  56.0
+  how to get rid of a spot                      0      1   0.0%  69.0
+  i'm looking for a good dupe for expens        0      1   0.0%   8.0
+  ingredient checker                            0      1   0.0%  57.0
+  mineral sunscreens without white cast         0      1   0.0%  66.0
+
+  Ahrefs — glow-coded.com
+  ──────────────────────────────────────────────────
+  DR:          0.0
+  Ahrefs Rank: None
+  Backlinks:   24
+  Ref Domains: 12
+
+  Top Organic Keywords:
+    best spot treatment for acne                    vol: 1400
+
+  Bing — glow-coded.com
+  ──────────────────────────────────────────────────
+  Daily quota left: 0  |  Monthly: 100
+
+============================================================
+  ROOTED-GLOW.COM
+============================================================
+
+  GSC — rooted-glow.com
+  ──────────────────────────────────────────────────
+  Clicks:      0
+  Impressions: 35
+  CTR:         0.0%
+  Position:    46.1
+
+  Top Queries:
+  Query                                    Clicks   Impr    CTR   Pos
+  ancestral diet                                0      1   0.0%  90.0
+  can you double cleanse with the same c        0      1   0.0%  53.0
+  can you use two cleansers                     0      1   0.0%  78.0
+  double cleanse                                0      1   0.0%  54.0
+  double cleanse system                         0      1   0.0%  97.0
+  double cleanser                               0      1   0.0%  98.0
+  double cleansing                              0      4   0.0%  48.8
+  how to double cleanse                         0      4   0.0%  62.5
+  how to double cleanse without oil             0      1   0.0%  51.0
+  how to double cleanse your body               0      1   0.0%  74.0
+
+  Ahrefs — rooted-glow.com
+  ──────────────────────────────────────────────────
+  DR:          0.0
+  Ahrefs Rank: None
+  Backlinks:   25
+  Ref Domains: 17
+
+  Top Organic Keywords:
+    what is double cleansing                        vol: 1600
+
+  Bing — rooted-glow.com
+  ──────────────────────────────────────────────────
+  Daily quota left: 0  |  Monthly: 100
+
+============================================================
+  Report generated: 2026-03-30 16:07
+============================================================

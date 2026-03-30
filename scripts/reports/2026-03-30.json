@@ -1,0 +1,30 @@
+{
+  "glow-coded.com": {
+    "gsc": {
+      "clicks": 2,
+      "impressions": 70,
+      "ctr": 2.857142857142857,
+      "position": 46.91428571428571
+    },
+    "ahrefs": {
+      "dr": 0.0,
+      "backlinks": 24,
+      "refdomains": 12,
+      "organic_kw_count": 1
+    }
+  },
+  "rooted-glow.com": {
+    "gsc": {
+      "clicks": 0,
+      "impressions": 35,
+      "ctr": 0,
+      "position": 46.142857142857146
+    },
+    "ahrefs": {
+      "dr": 0.0,
+      "backlinks": 25,
+      "refdomains": 17,
+      "organic_kw_count": 1
+    }
+  }
+}
