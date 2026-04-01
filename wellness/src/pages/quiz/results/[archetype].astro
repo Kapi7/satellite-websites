@@ -1,0 +1,215 @@
+---
+import Base from '../../../layouts/Base.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import ArticleCard from '../../../components/ArticleCard.astro';
+import BackToTop from '../../../components/BackToTop.astro';
+import { archetypes } from '../../../data/quiz-archetypes';
+import { getCollection } from 'astro:content';
+
+export function getStaticPaths() {
+  return archetypes.map((a) => ({
+    params: { archetype: a.slug },
+    props: { archetype: a },
+  }));
+}
+
+const { archetype } = Astro.props;
+
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+const postMap = new Map(allPosts.map((p) => [p.id, p]));
+
+const topPosts = archetype.topArticles.map((slug: string) => postMap.get(slug)).filter(Boolean);
+const alsoPosts = archetype.alsoRecommended.map((slug: string) => postMap.get(slug)).filter(Boolean);
+
+const pillarLabels: Record<string, string> = {
+  movement: 'Movement',
+  sleep: 'Sleep',
+  stress: 'Stress',
+  nutrition: 'Nutrition',
+};
+
+const articleSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: `${archetype.name} — Wellness Archetype | Rooted Glow`,
+  description: archetype.seoDescription,
+  url: `https://rooted-glow.com/quiz/results/${archetype.slug}/`,
+  publisher: {
+    '@type': 'Organization',
+    name: 'Rooted Glow',
+    url: 'https://rooted-glow.com',
+    logo: 'https://rooted-glow.com/logo.svg',
+  },
+  mainEntityOfPage: `https://rooted-glow.com/quiz/results/${archetype.slug}/`,
+});
+
+const breadcrumbSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://rooted-glow.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Wellness Quiz', item: 'https://rooted-glow.com/quiz/' },
+    { '@type': 'ListItem', position: 3, name: archetype.name, item: `https://rooted-glow.com/quiz/results/${archetype.slug}/` },
+  ],
+});
+---
+
+<Base
+  title={`${archetype.ogTitle} | Wellness Quiz`}
+  description={archetype.seoDescription}
+  jsonLd={[articleSchema, breadcrumbSchema]}
+>
+  <Header />
+
+  <main class="flex-1">
+    <div class="max-w-3xl mx-auto px-5 sm:px-8 pt-8">
+      <nav class="flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.1em] text-sage-400 mb-12">
+        <a href="/" class="hover:text-sage-600 transition-colors">Home</a>
+        <span>/</span>
+        <a href="/quiz/" class="hover:text-sage-600 transition-colors">Quiz</a>
+        <span>/</span>
+        <span class="text-sage-600">{archetype.name}</span>
+      </nav>
+
+      <!-- Hero -->
+      <div class="text-center mb-12 animate-fade-in-up">
+        <span class="block text-[11px] font-semibold uppercase tracking-[0.2em] text-sage-400 mb-4">Wellness Archetype</span>
+        <h1 class="font-heading text-4xl sm:text-5xl text-gradient tracking-tight mb-3">{archetype.name}</h1>
+        <p class="text-sage-500 font-medium text-lg mb-6">{archetype.tagline}</p>
+        <p class="text-sm text-sage-500 leading-relaxed max-w-xl mx-auto">{archetype.description}</p>
+      </div>
+
+      <!-- Strengths & Growth -->
+      <div class="grid sm:grid-cols-2 gap-5 mb-12">
+        <div class="rounded-2xl border border-sage-200/60 bg-white p-6">
+          <h2 class="text-[11px] font-semibold uppercase tracking-[0.15em] text-sage-400 mb-4">Strengths</h2>
+          <ul class="space-y-2">
+            {archetype.strengths.map((s: string) => (
+              <li class="flex items-start gap-2">
+                <svg class="w-4 h-4 text-sage-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" /></svg>
+                <span class="text-sm text-sage-600">{s}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="rounded-2xl border border-sage-200/60 bg-white p-6">
+          <h2 class="text-[11px] font-semibold uppercase tracking-[0.15em] text-sage-400 mb-4">Growth Areas</h2>
+          <ul class="space-y-2">
+            {archetype.growthAreas.map((g: string) => (
+              <li class="flex items-start gap-2">
+                <svg class="w-4 h-4 text-warm-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" /></svg>
+                <span class="text-sm text-sage-600">{g}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <!-- 7-Day Quick Start -->
+      <div class="rounded-2xl border border-sage-200/60 bg-white p-6 sm:p-8 mb-12">
+        <h2 class="font-heading text-xl text-charcoal mb-1">Your 7-Day Quick Start</h2>
+        <p class="text-xs text-sage-400 mb-5">Small steps, real progress. Start today.</p>
+        <ol class="space-y-3">
+          {archetype.quickStartPlan.map((step: string, i: number) => (
+            <li class="flex items-start gap-3">
+              <span class="shrink-0 w-6 h-6 rounded-full bg-sage-100 flex items-center justify-center text-[10px] font-bold text-sage-500">{i + 1}</span>
+              <span class="text-sm text-sage-600 leading-relaxed pt-0.5">{step}</span>
+            </li>
+          ))}
+        </ol>
+      </div>
+
+      <!-- Recommended Reading -->
+      <div class="mb-12">
+        <h2 class="font-heading text-xl text-charcoal mb-1">Recommended Reading</h2>
+        <p class="text-xs text-sage-400 mb-6">Articles handpicked for {archetype.name}</p>
+        <div class="grid gap-8 sm:grid-cols-2">
+          {topPosts.map((post: any) => (
+            <ArticleCard
+              title={post.data.title}
+              description={post.data.description}
+              date={post.data.date}
+              category={post.data.category}
+              slug={post.id}
+              image={post.data.image}
+              type={post.data.type}
+            />
+          ))}
+        </div>
+      </div>
+
+      <!-- Also Worth Reading -->
+      {alsoPosts.length > 0 && (
+        <div class="mb-12">
+          <h3 class="text-[11px] font-semibold uppercase tracking-[0.15em] text-sage-400 mb-4">Also Worth Reading</h3>
+          <div class="grid gap-8 sm:grid-cols-2">
+            {alsoPosts.map((post: any) => (
+              <ArticleCard
+                title={post.data.title}
+                description={post.data.description}
+                date={post.data.date}
+                category={post.data.category}
+                slug={post.id}
+                image={post.data.image}
+                type={post.data.type}
+              />
+            ))}
+          </div>
+        </div>
+      )}
+
+      <!-- CTA -->
+      <div class="rounded-2xl bg-gradient-to-br from-sage-700 to-sage-800 p-8 sm:p-12 text-center mb-12">
+        <h2 class="font-heading text-2xl text-cream mb-3">Discover Your Wellness Archetype</h2>
+        <p class="text-sm text-sage-300 mb-6 max-w-md mx-auto">
+          Take the quiz yourself — 10 questions, 2 minutes, personalised results across movement, sleep, stress, and nutrition.
+        </p>
+        <a
+          href="/quiz/"
+          class="inline-flex items-center gap-2 px-7 py-3 bg-cream text-sage-800 text-sm font-semibold rounded-full hover:bg-white transition-colors"
+        >
+          Take the Quiz
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+        </a>
+      </div>
+
+      <!-- Share -->
+      <div class="text-center mb-12">
+        <p class="text-xs text-sage-400 mb-3">Share this result</p>
+        <div class="flex items-center justify-center gap-3">
+          <button
+            id="share-copy-static"
+            class="inline-flex items-center gap-2 px-5 py-2.5 bg-white border border-sage-200/60 text-sm text-sage-600 rounded-full hover:border-sage-300 hover:shadow-sm transition-all"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" /></svg>
+            Copy Link
+          </button>
+          <a
+            href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(archetype.ogTitle + ' — take the Rooted Glow Wellness Quiz to discover yours!')}&url=${encodeURIComponent('https://rooted-glow.com/quiz/results/' + archetype.slug + '/')}`}
+            target="_blank"
+            rel="noopener"
+            class="inline-flex items-center gap-2 px-5 py-2.5 bg-white border border-sage-200/60 text-sm text-sage-600 rounded-full hover:border-sage-300 hover:shadow-sm transition-all"
+          >
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg>
+            Share
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+  <BackToTop />
+</Base>
+
+<script is:inline>
+  document.getElementById('share-copy-static')?.addEventListener('click', function() {
+    navigator.clipboard.writeText(window.location.href).then(() => {
+      this.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" /></svg> Copied!';
+      setTimeout(() => {
+        this.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" /></svg> Copy Link';
+      }, 2000);
+    });
+  });
+</script>

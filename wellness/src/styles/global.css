@@ -349,3 +349,40 @@ html.dark ::-webkit-scrollbar-thumb:hover { background: var(--color-sage-400); }
 html.dark .prose img {
   box-shadow: 0 4px 20px rgba(0,0,0,0.3);
 }
+
+/* ===== Quiz Animations ===== */
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slide-out-left {
+  from { opacity: 1; transform: translateX(0); }
+  to { opacity: 0; transform: translateX(-40px); }
+}
+
+@keyframes grow-bar {
+  from { width: 0; }
+  to { width: var(--target-width); }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.4s ease-out both;
+}
+
+.animate-slide-out-left {
+  animation: slide-out-left 0.3s ease-in both;
+}
+
+.animate-grow-bar {
+  animation: grow-bar 1s ease-out both;
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 1.5s ease-in-out infinite;
+}
