@@ -64,7 +64,6 @@ const breadcrumbSchema = JSON.stringify({
   ],
 });
 
-// HowTo schema — auto-detect for guide type
 const schemas = [articleSchema, breadcrumbSchema];
 
 if (type === 'guide' && headings) {
@@ -93,7 +92,6 @@ if (type === 'guide' && headings) {
   }
 }
 
-// FAQ schema — auto-detect question headings
 if (headings) {
   const questionHeadings = headings.filter(
     (h) => (h.depth === 2 || h.depth === 3) && h.text.trim().endsWith('?')
@@ -136,81 +134,97 @@ if (headings) {
   <Header />
 
   <main class="flex-1">
+    <!-- Hero Image — wider, more impactful -->
     <div class="animate-fade-in">
       {image && (
-        <div class="max-w-5xl mx-auto px-4 sm:px-8 pt-4 sm:pt-8">
-          <div class="aspect-[16/10] sm:aspect-[2.2/1] overflow-hidden rounded-xl sm:rounded-2xl bg-sage-100">
+        <div class="max-w-[1400px] mx-auto px-4 sm:px-8 pt-4 sm:pt-8">
+          <div class="aspect-[5/2] max-h-[40vh] overflow-hidden rounded-xl sm:rounded-2xl bg-sage-100">
             <img src={image} alt={imageAlt || title} class="w-full h-full object-cover" loading="eager" width="1200" height="675" />
           </div>
         </div>
       )}
     </div>
 
-    <div class={`max-w-6xl mx-auto px-4 sm:px-8 py-6 sm:py-10 ${products.length > 0 ? "lg:flex lg:gap-10" : ""}`}>
-      <article data-pagefind-body class={`max-w-3xl min-w-0 ${products.length === 0 ? "mx-auto" : ""}`}>
-        <nav class="flex items-center gap-2 text-[11px] uppercase tracking-[0.1em] text-sage-400 mb-8 animate-fade-in-up" aria-label="Breadcrumb">
+    <!-- Main content area — wider container -->
+    <div class={`max-w-[1400px] mx-auto px-4 sm:px-8 py-6 sm:py-10 ${products.length > 0 ? "xl:flex xl:gap-16" : ""}`}>
+      <article data-pagefind-body class={`flex-1 min-w-0 ${products.length === 0 ? "max-w-5xl mx-auto" : ""}`}>
+        <!-- Breadcrumb -->
+        <nav class="flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] text-sage-400 mb-8 animate-fade-in-up" aria-label="Breadcrumb">
           <a href="/" class="hover:text-sage-700 transition-colors">Home</a>
           <svg class="w-3 h-3 text-sage-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
           <a href={`/category/${category}`} class="hover:text-sage-700 transition-colors">{categoryLabel}</a>
         </nav>
 
-        <header class="mb-10 animate-fade-in-up stagger-1">
-          <h1 class="font-heading text-4xl sm:text-[2.75rem] text-charcoal leading-[1.1] tracking-tight mb-5">{title}</h1>
-          <p class="text-lg text-sage-500 leading-relaxed mb-6 max-w-2xl">{description}</p>
-          <div class="flex items-center gap-4 text-[11px] uppercase tracking-[0.1em] text-sage-400">
-            <div class="flex items-center gap-2">
-              <img src="/logo.svg" alt="" class="w-5 h-5 rounded-full" />
-              <span class="font-medium">The Rooted Glow Team</span>
+        <!-- Article header — bigger, bolder -->
+        <header class="mb-10 animate-fade-in-up stagger-1 max-w-5xl">
+          <h1 class="font-heading text-4xl sm:text-5xl md:text-[3.5rem] text-charcoal leading-[1.08] tracking-tight mb-6">{title}</h1>
+          <p class="text-lg sm:text-xl text-sage-500 leading-relaxed mb-6 max-w-3xl">{description}</p>
+          <div class="flex items-center gap-4 border-t border-sage-200/40 pt-6">
+            <img src="/logo.svg" alt="" class="w-8 h-8 rounded-full" />
+            <div>
+              <span class="text-[11px] font-semibold uppercase tracking-[0.15em] text-charcoal block">The Rooted Glow Team</span>
+              <div class="flex items-center gap-3 text-[11px] uppercase tracking-[0.1em] text-sage-400 mt-0.5">
+                <time datetime={date.toISOString()}>{formattedDate}</time>
+                {formattedUpdated && (
+                  <>
+                    <span class="w-1 h-1 rounded-full bg-sage-300"></span>
+                    <span>Updated {formattedUpdated}</span>
+                  </>
+                )}
+                {readingTime && (
+                  <>
+                    <span class="w-1 h-1 rounded-full bg-sage-300"></span>
+                    <span>{readingTime} min read</span>
+                  </>
+                )}
+              </div>
             </div>
-            <span class="w-1 h-1 rounded-full bg-sage-300"></span>
-            <time datetime={date.toISOString()}>{formattedDate}</time>
-            {formattedUpdated && (
-              <>
-                <span class="w-1 h-1 rounded-full bg-sage-300"></span>
-                <span>Updated {formattedUpdated}</span>
-              </>
-            )}
-            {readingTime && (
-              <>
-                <span class="w-1 h-1 rounded-full bg-sage-300"></span>
-                <span>{readingTime} min read</span>
-              </>
-            )}
           </div>
         </header>
 
+        <!-- Table of contents -->
         <div class="animate-fade-in-up stagger-2">
           <TableOfContents headings={headings} />
         </div>
 
-        <div class="prose animate-fade-in-up stagger-3">
+        <!-- Article body — wider prose -->
+        <div class="prose prose-wide animate-fade-in-up stagger-3">
           <slot />
         </div>
 
+        <!-- Tags -->
         {tags.length > 0 && (
-          <div class="mt-12 pt-8 border-t border-sage-200/60">
-            <span class="text-[11px] font-semibold uppercase tracking-[0.15em] text-sage-400 mr-3">Tagged</span>
-            <div class="inline-flex flex-wrap gap-2 mt-2">
-              {tags.map((tag) => (
-                <span class="px-3 py-1 bg-sage-100/80 text-sage-600 text-xs font-medium rounded-full">{tag}</span>
-              ))}
+          <div class="mt-16 pt-8 border-t border-sage-200/30 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
+            <div>
+              <span class="text-[11px] font-semibold uppercase tracking-[0.15em] text-sage-400 mr-3">Tagged</span>
+              <div class="inline-flex flex-wrap gap-2 mt-2">
+                {tags.map((tag) => (
+                  <a class="px-4 py-1.5 bg-sage-100/60 text-sage-600 text-xs font-medium rounded-full hover:bg-sage-200 transition-colors">{tag}</a>
+                ))}
+              </div>
             </div>
+            <ShareButtons title={title} url={articleUrl} />
           </div>
         )}
 
-        <ShareButtons title={title} url={articleUrl} />
+        {tags.length === 0 && (
+          <ShareButtons title={title} url={articleUrl} />
+        )}
       </article>
 
+      <!-- Sidebar — Stitch-inspired card design -->
       {products.length > 0 && (
-        <aside class="hidden lg:block w-72 shrink-0">
-          <div class="sticky top-8">
-            <h3 class="font-heading text-lg text-charcoal mb-4 tracking-tight">Featured Products</h3>
-            <div class="space-y-4">
-              {products.map((product) => (
-                <a href={product.url} target="_blank" rel="noopener noreferrer" class="block border border-sage-200 rounded-xl p-3 bg-white shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all">
-                  <img src={product.image} alt={product.name} class="w-full rounded-lg mb-2" loading="lazy" />
-                  <p class="text-sm font-medium text-charcoal leading-snug mb-1.5">{product.name}</p>
-                  <span class="text-xs font-semibold text-sage-600 hover:text-sage-800 transition-colors">Shop Now &rarr;</span>
+        <aside class="hidden xl:block w-[220px] shrink-0">
+          <div class="bg-sage-50/50 rounded-xl p-5 space-y-6">
+            <h3 class="font-heading text-xs uppercase tracking-[0.2em] text-sage-600 pb-2 border-b border-sage-200/40">Featured Products</h3>
+            <div class="space-y-6">
+              {products.slice(0, 3).map((product) => (
+                <a href={product.url} target="_blank" rel="noopener noreferrer" class="block group">
+                  <div class="aspect-[4/5] overflow-hidden rounded-lg bg-white mb-3">
+                    <img src={product.image} alt={product.name} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                  </div>
+                  <p class="font-heading text-sm text-charcoal leading-snug mb-1">{product.name}</p>
+                  <span class="text-[10px] font-semibold uppercase tracking-[0.15em] text-sage-600 group-hover:text-sage-800 transition-colors">Shop Now →</span>
                 </a>
               ))}
             </div>
@@ -219,7 +233,8 @@ if (headings) {
       )}
     </div>
 
-    <div class="max-w-3xl mx-auto px-4 sm:px-8">
+    <!-- Newsletter + Related — wider container -->
+    <div class="max-w-[1400px] mx-auto px-4 sm:px-8">
       <RelatedArticles currentSlug={slug} category={category} />
       <NewsletterSignup />
     </div>
@@ -227,4 +242,44 @@ if (headings) {
 
   <Footer />
   <BackToTop />
+
+  <script>
+    // Expand table to full screen — no sideways scrolling
+    document.querySelectorAll(".prose table").forEach((table) => {
+      const wrapper = document.createElement("div");
+      wrapper.className = "table-expand-wrapper";
+
+      const header = document.createElement("div");
+      header.className = "table-expand-header";
+
+      const btn = document.createElement("button");
+      btn.className = "table-expand-btn";
+      btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg> Expand Full Screen';
+
+      btn.addEventListener("click", () => {
+        const isExpanded = wrapper.classList.toggle("expanded");
+        btn.innerHTML = isExpanded
+          ? '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 14h6v6M14 10h6V4M3 21l7-7M21 3l-7 7"/></svg> Collapse'
+          : '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg> Expand Full Screen';
+
+        if (isExpanded) {
+          document.body.style.overflow = "hidden";
+        } else {
+          document.body.style.overflow = "";
+        }
+      });
+
+      // Close on Escape
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && wrapper.classList.contains("expanded")) {
+          btn.click();
+        }
+      });
+
+      header.appendChild(btn);
+      table.parentNode.insertBefore(wrapper, table);
+      wrapper.appendChild(header);
+      wrapper.appendChild(table);
+    });
+  </script>
 </Base>

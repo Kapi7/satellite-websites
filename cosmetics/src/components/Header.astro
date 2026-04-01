@@ -9,45 +9,84 @@ const navItems = [
   { label: 'About', href: '/about' },
 ];
 ---
-<header class="border-b border-rose-100/80 bg-cream/90 backdrop-blur-md sticky top-0 z-50 transition-all duration-300" id="site-header">
-  <div class="max-w-6xl mx-auto px-5 sm:px-8">
-    <div class="flex items-center justify-between py-4">
+<header class="bg-cream/80 backdrop-blur-xl sticky top-0 z-50 transition-all duration-300" id="site-header">
+  <div class="max-w-[1400px] mx-auto px-6 sm:px-10">
+    <div class="flex items-center justify-between py-5">
+      <!-- Logo -->
       <a href="/" class="group shrink-0">
         <img src="/logo.svg" alt="Glow Coded" class="h-10 sm:h-11 w-auto" />
       </a>
-      <nav class="hidden md:flex items-center gap-8">
+
+      <!-- Desktop Nav -->
+      <nav class="hidden lg:flex items-center gap-7">
         {navItems.map((item) => (
-          <a href={item.href} class="text-[13px] font-medium uppercase tracking-[0.08em] text-plum-400 hover:text-charcoal transition-colors duration-200 relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-px after:bg-rose-500 after:transition-all after:duration-300 hover:after:w-full">{item.label}</a>
+          <a
+            href={item.href}
+            class="text-[13px] font-heading italic tracking-tight text-plum-400 hover:text-rose-600 transition-colors duration-200 relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[0.5px] after:bg-rose-500 after:transition-all after:duration-300 hover:after:w-full"
+          >
+            {item.label}
+          </a>
         ))}
       </nav>
-      <div class="flex items-center gap-2">
-        <button id="dark-mode-toggle" class="p-2 text-plum-400 hover:text-charcoal transition-colors" aria-label="Toggle dark mode">
-          <svg class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" /></svg>
-          <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" /></svg>
+
+      <!-- Actions -->
+      <div class="flex items-center gap-3">
+        <!-- Dark Mode Toggle -->
+        <button id="dark-mode-toggle" class="p-2 text-plum-400 hover:text-rose-600 transition-colors duration-200 rounded-full hover:bg-rose-50/60" aria-label="Toggle dark mode">
+          <svg class="w-[18px] h-[18px] block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" /></svg>
+          <svg class="w-[18px] h-[18px] hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" /></svg>
         </button>
-        <button id="mobile-menu-btn" class="md:hidden p-2 -mr-2 text-plum-400 hover:text-charcoal transition-colors" aria-label="Open menu">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9h16.5m-16.5 6.75h16.5" /></svg>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-btn" class="lg:hidden p-2 -mr-2 text-plum-400 hover:text-rose-600 transition-colors duration-200" aria-label="Open menu">
+          <svg id="menu-icon-open" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9h16.5m-16.5 6.75h16.5" /></svg>
+          <svg id="menu-icon-close" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" /></svg>
         </button>
       </div>
     </div>
   </div>
-  <div id="mobile-menu" class="hidden md:hidden border-t border-rose-100 bg-cream">
-    <nav class="max-w-6xl mx-auto px-5 py-4 flex flex-col gap-1">
+
+  <!-- Subtle bottom rule -->
+  <div class="h-[0.5px] bg-gradient-to-r from-transparent via-rose-300/50 to-transparent"></div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden lg:hidden bg-cream/95 backdrop-blur-xl border-t border-rose-100/60">
+    <nav class="max-w-[1400px] mx-auto px-6 py-6 flex flex-col gap-1">
       {navItems.map((item) => (
-        <a href={item.href} class="py-2.5 text-[13px] font-medium uppercase tracking-[0.08em] text-plum-400 hover:text-charcoal transition-colors">{item.label}</a>
+        <a
+          href={item.href}
+          class="py-2.5 text-[13px] font-heading italic tracking-tight text-plum-400 hover:text-rose-600 transition-colors duration-200 border-b border-rose-100/40 last:border-0"
+        >
+          {item.label}
+        </a>
       ))}
     </nav>
   </div>
 </header>
+
 <script>
+  // Mobile menu toggle
   const btn = document.getElementById('mobile-menu-btn');
   const menu = document.getElementById('mobile-menu');
-  btn?.addEventListener('click', () => menu?.classList.toggle('hidden'));
+  const iconOpen = document.getElementById('menu-icon-open');
+  const iconClose = document.getElementById('menu-icon-close');
+  btn?.addEventListener('click', () => {
+    const isHidden = menu?.classList.toggle('hidden');
+    iconOpen?.classList.toggle('hidden', !isHidden);
+    iconClose?.classList.toggle('hidden', isHidden);
+  });
+
+  // Scroll shadow
   const header = document.getElementById('site-header');
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 60) { header?.classList.add('shadow-sm'); } else { header?.classList.remove('shadow-sm'); }
+    if (window.scrollY > 60) {
+      header?.classList.add('shadow-sm');
+    } else {
+      header?.classList.remove('shadow-sm');
+    }
   }, { passive: true });
 
+  // Dark mode toggle
   const toggle = document.getElementById('dark-mode-toggle');
   toggle?.addEventListener('click', () => {
     const isDark = document.documentElement.classList.toggle('dark');

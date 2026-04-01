@@ -37,11 +37,11 @@ const formattedDate = date.toLocaleDateString('en-US', {
 <article class={`group ${featured ? 'md:col-span-2' : ''}`}>
   <a href={`/${slug}`} class="block h-full">
     {image && (
-      <div class={`overflow-hidden rounded-2xl mb-5 bg-sage-100 ${featured ? 'aspect-[4/3] lg:aspect-[3/2]' : 'aspect-[3/2]'}`}>
+      <div class={`overflow-hidden rounded-2xl mb-6 bg-sage-100 ${featured ? 'aspect-[16/9]' : 'aspect-[3/2]'}`}>
         <img
           src={image}
           alt={title}
-          class="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500 ease-out"
+          class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
           loading="lazy"
           width="600"
           height="400"
@@ -49,25 +49,25 @@ const formattedDate = date.toLocaleDateString('en-US', {
       </div>
     )}
     <div class="flex items-center gap-2.5 mb-3">
-      <span class="text-[11px] font-semibold uppercase tracking-[0.12em] text-sage-400">
+      <span class="text-xs tracking-[0.15em] uppercase text-sage-500 block">
         {categoryLabels[category] || category}
       </span>
       {type && (
         <>
           <span class="w-1 h-1 rounded-full bg-sage-300"></span>
-          <span class="text-[11px] font-medium uppercase tracking-[0.08em] text-warm-500">
+          <span class="text-xs tracking-[0.15em] uppercase text-warm-500 block">
             {typeLabels[type] || type}
           </span>
         </>
       )}
     </div>
-    <h3 class={`font-heading text-charcoal group-hover:text-sage-700 transition-colors duration-200 mb-2.5 leading-[1.2] tracking-tight ${featured ? 'text-2xl sm:text-3xl' : 'text-xl'}`}>
+    <h3 class={`font-heading text-charcoal group-hover:text-sage-700 transition-colors mb-2.5 leading-snug ${featured ? 'text-3xl' : 'text-xl'}`}>
       {title}
     </h3>
-    <p class={`text-sm text-sage-500 leading-relaxed mb-3 ${featured ? 'line-clamp-3' : 'line-clamp-2'}`}>
+    <p class={`text-charcoal-light/70 text-sm mb-4 ${featured ? 'line-clamp-3' : 'line-clamp-2'}`}>
       {description}
     </p>
-    <time class="text-[11px] font-medium uppercase tracking-[0.08em] text-sage-300" datetime={date.toISOString()}>
+    <time class="text-xs text-sage-400 uppercase tracking-widest" datetime={date.toISOString()}>
       {formattedDate}
     </time>
   </a>

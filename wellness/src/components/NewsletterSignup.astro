@@ -1,31 +1,45 @@
-<section class="relative my-16 overflow-hidden">
-  <div class="rounded-2xl bg-sage-800 px-8 py-12 sm:px-12 sm:py-14 text-center relative overflow-hidden">
-    <!-- Decorative circles -->
-    <div class="absolute -top-20 -right-20 w-60 h-60 rounded-full bg-sage-700/30"></div>
-    <div class="absolute -bottom-16 -left-16 w-48 h-48 rounded-full bg-sage-700/20"></div>
+<section class="relative my-20 overflow-hidden">
+  <!-- Decorative circles — soft blur -->
+  <div class="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-sage-300/20 blur-3xl"></div>
+  <div class="absolute -bottom-20 -left-20 w-56 h-56 rounded-full bg-sage-400/15 blur-3xl"></div>
 
-    <div class="relative z-10">
-      <span class="inline-block text-[11px] font-semibold uppercase tracking-[0.2em] text-sage-300 mb-4">Newsletter</span>
-      <h3 class="font-heading text-2xl sm:text-3xl text-cream mb-3 tracking-tight">
-        Stay Rooted
-      </h3>
-      <p class="text-sm text-sage-300 mb-8 max-w-md mx-auto leading-relaxed">
-        Weekly reads on whole-food nutrition, movement, and the K-Beauty routines we actually use. No spam, no fluff. just things worth reading.
-      </p>
-      <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-        <input
-          type="email"
-          placeholder="your@email.com"
-          required
-          class="flex-1 px-5 py-3 rounded-xl border-0 bg-sage-900/50 text-cream text-sm placeholder:text-sage-500 focus:outline-none focus:ring-2 focus:ring-sage-400/50"
-        />
-        <button
-          type="submit"
-          class="px-7 py-3 bg-cream text-sage-800 text-sm font-semibold rounded-xl hover:bg-white transition-colors duration-200"
-        >
-          Subscribe
-        </button>
-      </form>
+  <div class="bg-sage-100/60 rounded-2xl sm:rounded-[3rem] p-6 sm:p-8 md:p-14 border border-sage-200/30 relative overflow-hidden">
+    <div class="flex flex-col md:flex-row items-center gap-12">
+      <!-- Left column — editorial copy -->
+      <div class="flex-1 text-center md:text-left">
+        <span class="text-xs tracking-widest text-sage-600 font-semibold uppercase">
+          The Weekly Glow
+        </span>
+        <h3 class="font-heading text-3xl md:text-4xl italic text-sage-900 mt-4 mb-5 leading-snug">
+          Subtle inspiration,<br class="hidden md:block" /> delivered with care.
+        </h3>
+        <p class="text-sm text-sage-600 leading-relaxed max-w-md">
+          Whole-food nutrition, mindful movement, and the K-Beauty routines we
+          actually use — one thoughtful read per week. No spam, no fluff, just
+          things worth your time.
+        </p>
+      </div>
+
+      <!-- Right column — form -->
+      <div class="w-full md:w-auto md:min-w-[320px] flex-shrink-0">
+        <form class="flex flex-col gap-6">
+          <input
+            type="email"
+            placeholder="your@email.com"
+            required
+            class="w-full bg-transparent border-b-2 border-sage-300 focus:border-sage-600 text-sage-900 text-sm py-3 placeholder:text-sage-400 focus:outline-none transition-colors duration-300"
+          />
+          <button
+            type="submit"
+            class="bg-sage-700 text-cream px-10 py-4 rounded-full text-xs tracking-widest font-semibold uppercase hover:bg-sage-800 transition-colors duration-300"
+          >
+            Subscribe
+          </button>
+        </form>
+        <p class="text-[11px] text-sage-400 mt-4 text-center md:text-left leading-relaxed">
+          We respect your inbox. Unsubscribe anytime.
+        </p>
+      </div>
     </div>
   </div>
 </section>

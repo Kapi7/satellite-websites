@@ -14,9 +14,9 @@ interface Props {
 const { slides } = Astro.props;
 ---
 
-<section class="relative overflow-hidden rounded-2xl mx-5 sm:mx-8 max-w-6xl lg:mx-auto" id="hero-slideshow">
+<section class="relative overflow-hidden rounded-2xl sm:rounded-3xl mx-5 sm:mx-8 max-w-[1400px] lg:mx-auto" id="hero-slideshow">
   <!-- Slides -->
-  <div class="relative aspect-[2.2/1] sm:aspect-[2.5/1] bg-sage-100">
+  <div class="relative aspect-[2.5/1] sm:aspect-[3/1] bg-sage-100">
     {slides.map((slide, i) => (
       <div
         class={`slide absolute inset-0 transition-opacity duration-1000 ease-in-out ${i === 0 ? 'opacity-100' : 'opacity-0'}`}
@@ -39,7 +39,7 @@ const { slides } = Astro.props;
                 {slide.category}
               </span>
             )}
-            <h2 class="font-heading text-2xl sm:text-3xl lg:text-4xl text-white leading-[1.15] tracking-tight mb-3">
+            <h2 class="font-heading text-2xl sm:text-3xl lg:text-4xl italic text-white leading-[1.15] tracking-tight mb-3">
               {slide.title}
             </h2>
             <p class="text-sm sm:text-base text-white/70 leading-relaxed mb-5 line-clamp-2">
