@@ -34,8 +34,8 @@ const formattedDate = date.toLocaleDateString('en-US', {
 });
 ---
 
-<article class={`group ${featured ? 'md:col-span-2' : ''}`}>
-  <a href={`/${slug}`} class="block h-full">
+<article class={`group flex flex-col ${featured ? 'md:col-span-2' : ''}`}>
+  <a href={`/${slug}`} class="flex flex-col h-full">
     {image && (
       <div class={`overflow-hidden rounded-2xl mb-6 bg-rose-50 ${featured ? 'aspect-[16/9]' : 'aspect-[3/2]'}`}>
         <img
@@ -48,26 +48,26 @@ const formattedDate = date.toLocaleDateString('en-US', {
         />
       </div>
     )}
-    <div class="flex items-center gap-2.5 mb-3">
-      <span class="text-xs tracking-[0.15em] uppercase text-plum-400 mb-3 block">
+    <div class="flex items-center gap-2 mb-2">
+      <span class="text-xs tracking-wide uppercase text-charcoal-light/60">
         {categoryLabels[category] || category}
       </span>
       {type && (
         <>
-          <span class="w-1 h-1 rounded-full bg-rose-300"></span>
-          <span class="text-[11px] font-medium uppercase tracking-[0.08em] text-rose-500">
+          <span class="w-1 h-1 rounded-full bg-charcoal-light/20"></span>
+          <span class="text-xs tracking-wide uppercase text-charcoal-light/40">
             {typeLabels[type] || type}
           </span>
         </>
       )}
     </div>
-    <h3 class={`font-heading group-hover:text-rose-700 transition-colors leading-snug text-charcoal tracking-tight ${featured ? 'text-3xl' : 'text-xl'}`}>
+    <h3 class={`font-heading group-hover:text-charcoal-light transition-colors leading-snug text-charcoal tracking-tight ${featured ? 'text-3xl' : 'text-xl'}`}>
       {title}
     </h3>
-    <p class="text-charcoal-light/70 text-sm mb-4 line-clamp-2">
+    <p class="text-charcoal-light/70 text-sm mb-4 line-clamp-2 flex-grow">
       {description}
     </p>
-    <time class="text-xs text-plum-300 uppercase tracking-widest" datetime={date.toISOString()}>
+    <time class="text-xs text-charcoal-light/40 uppercase tracking-wide" datetime={date.toISOString()}>
       {formattedDate}
     </time>
   </a>

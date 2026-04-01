@@ -77,10 +77,10 @@ const webSiteSchema = JSON.stringify({
     <section class="max-w-[1400px] mx-auto px-5 sm:px-8 pt-14 sm:pt-20 mb-16 sm:mb-24">
       <div class="flex justify-between items-end mb-12">
         <div>
-          <span class="block text-[11px] font-semibold uppercase tracking-[0.2em] text-plum-300 mb-2">Latest</span>
+          <span class="block text-[11px] font-semibold uppercase tracking-wide text-charcoal-light/50 mb-2">Latest</span>
           <h2 class="font-heading text-4xl italic text-charcoal tracking-tight">Fresh from the Lab</h2>
         </div>
-        <a href="/category/skincare" class="hidden sm:inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-plum-400 hover:text-plum-700 transition-colors">
+        <a href="/category/skincare" class="hidden sm:inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wide text-charcoal-light/60 hover:text-plum-700 transition-colors">
           View All
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
         </a>
@@ -106,7 +106,7 @@ const webSiteSchema = JSON.stringify({
       <div class="border-t border-rose-200/40 pt-16">
         <div class="flex justify-between items-end mb-12">
           <div>
-            <span class="block text-[11px] font-semibold uppercase tracking-[0.2em] text-plum-300 mb-2">Explore</span>
+            <span class="block text-[11px] font-semibold uppercase tracking-wide text-charcoal-light/50 mb-2">Explore</span>
             <h2 class="font-heading text-4xl italic text-charcoal tracking-tight">Topics We Cover</h2>
           </div>
         </div>
@@ -121,8 +121,8 @@ const webSiteSchema = JSON.stringify({
               <div class="relative z-10 flex flex-col items-center">
                 <span class="text-4xl mb-4" aria-hidden="true">{cat.emoji}</span>
                 <h3 class="font-heading text-xl text-charcoal mb-2 group-hover:text-rose-700 transition-colors">{cat.label}</h3>
-                <p class="text-xs text-plum-400 leading-relaxed mb-4 max-w-[180px]">{cat.desc}</p>
-                <span class="text-[10px] font-semibold uppercase tracking-[0.15em] text-plum-300 group-hover:text-rose-500 transition-colors">
+                <p class="text-xs text-charcoal-light/60 leading-relaxed mb-4 max-w-[180px]">{cat.desc}</p>
+                <span class="text-[11px] font-semibold uppercase tracking-wide text-charcoal-light/50 group-hover:text-rose-500 transition-colors">
                   {cat.count} {cat.count === 1 ? 'article' : 'articles'}
                 </span>
               </div>
@@ -136,7 +136,7 @@ const webSiteSchema = JSON.stringify({
     <section class="max-w-[1400px] mx-auto px-5 sm:px-8 mb-20 sm:mb-32">
       <div class="flex justify-between items-end mb-12">
         <div>
-          <span class="block text-[11px] font-semibold uppercase tracking-[0.2em] text-plum-300 mb-2">Interactive</span>
+          <span class="block text-[11px] font-semibold uppercase tracking-wide text-charcoal-light/50 mb-2">Interactive</span>
           <h2 class="font-heading text-4xl italic text-charcoal tracking-tight">Tools & Guides</h2>
         </div>
       </div>
@@ -148,7 +148,7 @@ const webSiteSchema = JSON.stringify({
               <svg class="w-7 h-7 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" /></svg>
             </div>
             <h3 class="font-heading text-xl text-charcoal mb-2 group-hover:text-rose-700 transition-colors">Skin Quiz</h3>
-            <p class="text-xs text-plum-400 leading-relaxed max-w-[180px]">Find your perfect routine in 60 seconds</p>
+            <p class="text-xs text-charcoal-light/60 leading-relaxed max-w-[180px]">Find your perfect routine in 60 seconds</p>
           </div>
         </a>
         <a href="/ingredients" class="group relative aspect-square flex flex-col items-center justify-center text-center p-7 rounded-2xl border border-rose-200/60 bg-white overflow-hidden transition-all duration-400 hover:-translate-y-2 hover:shadow-xl">
@@ -158,7 +158,7 @@ const webSiteSchema = JSON.stringify({
               <svg class="w-7 h-7 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>
             </div>
             <h3 class="font-heading text-xl text-charcoal mb-2 group-hover:text-rose-700 transition-colors">Ingredient Glossary</h3>
-            <p class="text-xs text-plum-400 leading-relaxed max-w-[180px]">Searchable guide to skincare actives</p>
+            <p class="text-xs text-charcoal-light/60 leading-relaxed max-w-[180px]">Searchable guide to skincare actives</p>
           </div>
         </a>
         <a href="/ingredient-checker" class="group relative aspect-square flex flex-col items-center justify-center text-center p-7 rounded-2xl border border-rose-200/60 bg-white overflow-hidden transition-all duration-400 hover:-translate-y-2 hover:shadow-xl">
@@ -168,7 +168,7 @@ const webSiteSchema = JSON.stringify({
               <svg class="w-7 h-7 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" /></svg>
             </div>
             <h3 class="font-heading text-xl text-charcoal mb-2 group-hover:text-rose-700 transition-colors">Conflict Checker</h3>
-            <p class="text-xs text-plum-400 leading-relaxed max-w-[180px]">Check if your ingredients play well together</p>
+            <p class="text-xs text-charcoal-light/60 leading-relaxed max-w-[180px]">Check if your ingredients play well together</p>
           </div>
         </a>
       </div>

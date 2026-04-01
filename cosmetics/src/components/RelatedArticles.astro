@@ -8,7 +8,7 @@ const related = allPosts.filter((p) => p.id !== currentSlug).sort((a, b) => b.da
 ---
 {related.length > 0 && (
   <section class="mt-16 pt-12 border-t border-rose-200/60">
-    <h2 class="text-[11px] font-semibold uppercase tracking-[0.2em] text-plum-300 mb-8">Keep Reading</h2>
+    <h2 class="text-[11px] font-semibold uppercase tracking-wide text-charcoal-light/50 mb-8">Keep Reading</h2>
     <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
       {related.map((post) => (
         <ArticleCard title={post.data.title} description={post.data.description} date={post.data.date} category={post.data.category} slug={post.id} image={post.data.image} type={post.data.type} />
