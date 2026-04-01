@@ -71,7 +71,7 @@ const breadcrumbSchema = JSON.stringify({
         <span class="block text-[11px] font-semibold uppercase tracking-[0.2em] text-sage-400 mb-4">Wellness Assessment</span>
         <h1 class="font-heading text-4xl sm:text-5xl text-charcoal tracking-tight mb-4">Discover Your Wellness Archetype</h1>
         <p class="text-sage-500 leading-relaxed max-w-lg mx-auto mb-3">
-          10 questions across <strong class="text-charcoal">movement</strong>, <strong class="text-charcoal">sleep</strong>, <strong class="text-charcoal">stress</strong>, and <strong class="text-charcoal">nutrition</strong>. No right or wrong answers — just honest ones.
+          10 questions across <strong class="text-charcoal">movement</strong>, <strong class="text-charcoal">sleep</strong>, <strong class="text-charcoal">stress</strong>, and <strong class="text-charcoal">nutrition</strong>. No right or wrong answers, just honest ones.
         </p>
         <p class="text-xs text-sage-400 mb-8">Takes about 2 minutes</p>
         <button
@@ -210,7 +210,7 @@ const breadcrumbSchema = JSON.stringify({
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 0 0-2.455 2.456Z" /></svg>
               Generate My AI Plan
             </button>
-            <p class="text-[10px] text-sage-300 mt-2">Free — takes about 10 seconds</p>
+            <p class="text-[10px] text-sage-300 mt-2">Free, takes about 10 seconds</p>
           </div>
 
           <!-- Loading state -->
@@ -482,7 +482,7 @@ const breadcrumbSchema = JSON.stringify({
 
     // Share links
     const resultUrl = 'https://rooted-glow.com/quiz/results/' + arch.slug + '/';
-    const shareText = arch.ogTitle + ' — take the Rooted Glow Wellness Quiz to discover yours!';
+    const shareText = arch.ogTitle + '. Take the Rooted Glow Wellness Quiz to discover yours!';
 
     document.getElementById('share-copy').addEventListener('click', function() {
       navigator.clipboard.writeText(resultUrl).then(() => {

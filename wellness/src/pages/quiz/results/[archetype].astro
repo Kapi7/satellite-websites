@@ -32,7 +32,7 @@ const pillarLabels: Record<string, string> = {
 const articleSchema = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'Article',
-  headline: `${archetype.name} — Wellness Archetype | Rooted Glow`,
+  headline: `${archetype.name}: Wellness Archetype | Rooted Glow`,
   description: archetype.seoDescription,
   url: `https://rooted-glow.com/quiz/results/${archetype.slug}/`,
   publisher: {
@@ -163,7 +163,7 @@ const breadcrumbSchema = JSON.stringify({
       <div class="rounded-2xl bg-gradient-to-br from-sage-700 to-sage-800 p-8 sm:p-12 text-center mb-12">
         <h2 class="font-heading text-2xl text-cream mb-3">Discover Your Wellness Archetype</h2>
         <p class="text-sm text-sage-300 mb-6 max-w-md mx-auto">
-          Take the quiz yourself — 10 questions, 2 minutes, personalised results across movement, sleep, stress, and nutrition.
+          Take the quiz yourself. 10 questions, 2 minutes, personalised results across movement, sleep, stress, and nutrition.
         </p>
         <a
           href="/quiz/"
@@ -186,7 +186,7 @@ const breadcrumbSchema = JSON.stringify({
             Copy Link
           </button>
           <a
-            href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(archetype.ogTitle + ' — take the Rooted Glow Wellness Quiz to discover yours!')}&url=${encodeURIComponent('https://rooted-glow.com/quiz/results/' + archetype.slug + '/')}`}
+            href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(archetype.ogTitle + '. Take the Rooted Glow Wellness Quiz to discover yours!')}&url=${encodeURIComponent('https://rooted-glow.com/quiz/results/' + archetype.slug + '/')}`}
             target="_blank"
             rel="noopener"
             class="inline-flex items-center gap-2 px-5 py-2.5 bg-white border border-sage-200/60 text-sm text-sage-600 rounded-full hover:border-sage-300 hover:shadow-sm transition-all"

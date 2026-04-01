@@ -8,7 +8,7 @@ export async function GET(context: APIContext) {
 
   return rss({
     title: 'Glow Coded',
-    description: 'Skincare education, honest reviews, K-Beauty deep-dives, and ingredient breakdowns.',
+    description: 'Skincare education, honest reviews, K-Beauty picks, and ingredient breakdowns.',
     site: context.site!.href,
     items: sorted.map((post) => ({
       title: post.data.title,

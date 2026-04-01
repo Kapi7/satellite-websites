@@ -20,7 +20,7 @@ export const quizQuestions: QuizQuestion[] = [
       { label: 'Loose and ready to move', score: 10 },
       { label: 'A bit stiff but loosens up quickly', score: 7 },
       { label: 'Stiff and achy most mornings', score: 3 },
-      { label: "Don't really notice — I go straight to my phone", score: 1 },
+      { label: "Don't really notice, I go straight to my phone", score: 1 },
     ],
   },
   {
@@ -39,7 +39,7 @@ export const quizQuestions: QuizQuestion[] = [
     pillar: 'movement',
     question: 'How often do you move your body outdoors?',
     options: [
-      { label: 'Daily — rain or shine', score: 9 },
+      { label: 'Daily, rain or shine', score: 9 },
       { label: 'A few times a week', score: 7 },
       { label: 'Mostly on weekends', score: 4 },
       { label: 'Rarely', score: 1 },
@@ -79,7 +79,7 @@ export const quizQuestions: QuizQuestion[] = [
       { label: 'Pause, breathe, then respond', score: 10 },
       { label: 'Feel anxious but recover within an hour', score: 7 },
       { label: 'It lingers with me all day', score: 3 },
-      { label: 'I spiral — it affects everything', score: 1 },
+      { label: 'I spiral and it affects everything', score: 1 },
     ],
   },
   {
@@ -87,7 +87,7 @@ export const quizQuestions: QuizQuestion[] = [
     pillar: 'stress',
     question: 'Do you have a regular stress management practice?',
     options: [
-      { label: 'Yes — meditation, breathwork, or journaling daily', score: 10 },
+      { label: 'Yes, meditation, breathwork, or journaling daily', score: 10 },
       { label: 'Sometimes, when I remember', score: 6 },
       { label: "I've tried things but nothing stuck", score: 3 },
       { label: 'I cope with food, scrolling, or distraction', score: 1 },
@@ -103,7 +103,7 @@ export const quizQuestions: QuizQuestion[] = [
       { label: 'Eggs, meat, or another protein-forward meal', score: 10 },
       { label: 'Oats, smoothie, or yoghurt', score: 7 },
       { label: 'Cereal, toast, or a pastry', score: 3 },
-      { label: 'Skip it — just coffee', score: 1 },
+      { label: 'Skip it, just coffee', score: 1 },
     ],
   },
   {

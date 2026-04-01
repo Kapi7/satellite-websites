@@ -16,7 +16,7 @@ const slides = [
   {
     image: '/images/hero-slide-1.jpg',
     title: 'Skincare, decoded.',
-    subtitle: 'Ingredient deep-dives, routine guides, and honest reviews from people who test what they write about.',
+    subtitle: 'Ingredient breakdowns, routine guides, and reviews from people who test what they write about.',
     category: 'Welcome',
   },
   {
@@ -42,17 +42,17 @@ const slides = [
 ];
 
 const categories = [
-  { slug: 'skincare', label: 'Skincare', emoji: '✨', desc: 'Routines, guides, and fundamentals for every skin type', count: sortedPosts.filter(p => p.data.category === 'skincare').length },
-  { slug: 'ingredients', label: 'Ingredients', emoji: '🧪', desc: 'Deep-dives into what your products actually contain', count: sortedPosts.filter(p => p.data.category === 'ingredients').length },
-  { slug: 'reviews', label: 'Reviews', emoji: '💎', desc: 'Honest multi-product roundups and comparisons', count: sortedPosts.filter(p => p.data.category === 'reviews').length },
-  { slug: 'how-tos', label: 'How-Tos', emoji: '🌸', desc: 'Step-by-step tutorials and seasonal routines', count: sortedPosts.filter(p => p.data.category === 'how-tos').length },
+  { slug: 'skincare', label: 'Skincare', emoji: '✨', desc: 'Building a routine that actually makes sense for your skin', count: sortedPosts.filter(p => p.data.category === 'skincare').length },
+  { slug: 'ingredients', label: 'Ingredients', emoji: '🧪', desc: 'What\'s in your products and whether it\'s worth the hype', count: sortedPosts.filter(p => p.data.category === 'ingredients').length },
+  { slug: 'reviews', label: 'Reviews', emoji: '💎', desc: 'We bought it, we tried it, here\'s what happened', count: sortedPosts.filter(p => p.data.category === 'reviews').length },
+  { slug: 'how-tos', label: 'How-Tos', emoji: '🌸', desc: 'The how and when for every step in your routine', count: sortedPosts.filter(p => p.data.category === 'how-tos').length },
 ];
 
 const orgSchema = JSON.stringify({
   '@context': 'https://schema.org', '@type': 'Organization',
   name: 'Glow Coded', url: 'https://glow-coded.com',
   logo: 'https://glow-coded.com/logo.svg',
-  description: 'Skincare education, honest reviews, K-Beauty deep-dives, and ingredient breakdowns.',
+  description: 'Skincare education, honest reviews, K-Beauty picks, and ingredient breakdowns.',
 });
 const webSiteSchema = JSON.stringify({
   '@context': 'https://schema.org', '@type': 'WebSite',
@@ -62,7 +62,7 @@ const webSiteSchema = JSON.stringify({
 
 <Base
   title="Glow Coded"
-  description="Skincare education, honest reviews, K-Beauty deep-dives, and ingredient breakdowns."
+  description="Skincare education, honest reviews, K-Beauty picks, and ingredient breakdowns."
   jsonLd={[orgSchema, webSiteSchema]}
 >
   <Header />
@@ -203,7 +203,7 @@ const webSiteSchema = JSON.stringify({
           </div>
           <div>
             <p class="text-sm sm:text-base text-plum-500 leading-relaxed mb-6">
-              Skincare education, honest reviews, and K-Beauty deep-dives. Everything we recommend has been tested on our own skin first. No sponsored posts, no paid placements.
+              We write about skincare because we're genuinely obsessed with it. Everything here has been tested on our own skin. No sponsored posts, no paid placements.
             </p>
             <a href="/about" class="inline-flex items-center gap-2 text-sm font-medium text-plum-700 hover:text-plum-900 transition-colors group">
               Learn more about us
