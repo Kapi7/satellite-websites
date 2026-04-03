@@ -58,7 +58,7 @@ export function getPathWithoutLocale(url: URL): string {
   const segments = url.pathname.split('/').filter(Boolean);
   const first = segments[0];
   if (first && isValidLocale(first) && first !== defaultLocale) {
-    return '/' + segments.slice(1).join('/') + (url.pathname.endsWith('/') ? '/' : '');
+    const rest = segments.slice(1).join('/'); return '/' + rest + (rest && url.pathname.endsWith('/') ? '/' : '');
   }
   return url.pathname;
 }
