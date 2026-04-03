@@ -16,3 +16,4 @@ wellness/public/stitch-preview*.html
 
 # Scratch scripts
 gen_hero_images.py
+scripts/*.log
