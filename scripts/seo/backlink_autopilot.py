@@ -38,14 +38,14 @@ import config
 
 # ── Optional dependency: google.generativeai ────────────────
 try:
-    import google.generativeai as genai
-    genai.configure(api_key=config.GEMINI_API_KEY)
-    GEMINI_MODEL = genai.GenerativeModel("gemini-2.5-flash")
+    from google import genai
+    client = genai.Client(api_key=config.GEMINI_API_KEY)
+    GEMINI_MODEL = "gemini-2.5-flash"
     HAS_GEMINI = True
 except ImportError:
     HAS_GEMINI = False
-    print("[WARN] google-generativeai not installed. AI drafting disabled.")
-    print("       pip install google-generativeai")
+    print("[WARN] google-genai not installed. AI drafting disabled.")
+    print("       pip install google-genai")
 except Exception as exc:
     HAS_GEMINI = False
     print(f"[WARN] Gemini init failed: {exc}. AI drafting disabled.")
@@ -140,10 +140,12 @@ def make_entry(
 def ai_draft(prompt: str) -> str:
     """Use Gemini to draft an outreach email. Falls back to placeholder."""
     if not HAS_GEMINI:
-        return "[AI drafting unavailable — install google-generativeai]"
+        return "[AI drafting unavailable — install google-genai]"
     try:
-        response = GEMINI_MODEL.generate_content(prompt)
-        return response.text.strip()
+        response = client.models.generate_content(model=GEMINI_MODEL, contents=prompt)
+        result = response.text.strip()
+        time.sleep(15)  # Rate limit: free tier allows 5/min
+        return result
     except Exception as exc:
         print(f"  [WARN] Gemini draft failed: {exc}")
         return f"[AI drafting error: {exc}]"
@@ -360,7 +362,7 @@ def run_broken_links(site_keys: list[str]) -> list[dict]:
 
             url = (
                 f"{config.AHREFS_BASE}/site-explorer/broken-backlinks"
-                f"?target={comp_domain}&mode=domain&limit=10"
+                f"?target={comp_domain}&mode=domain&limit=10&select=url_from,url_to,anchor,http_code,first_seen,last_visited"
             )
 
             try:

@@ -487,23 +487,22 @@ def main():
                 platform["handler"](page, acct)
 
                 print(f"\n  >>> Form filled for {platform['name']}.")
-                print(f"  >>> Please review the browser, solve any CAPTCHA, and click Submit.")
-                print(f"  >>> Then press Enter here to continue to the next platform...")
-                input()
+                # Auto-wait instead of input
+                time.sleep(45)
+                # auto-proceed after wait
 
                 # Small pause after user confirms
                 human_delay(1, 2)
 
             except Exception as e:
                 print(f"\n  !!! Error on {platform['name']}: {e}")
-                print(f"  >>> Please complete this signup manually in the browser.")
-                print(f"  >>> Press Enter when done to continue...")
-                input()
+                print(f"  !!! Please complete manually. Waiting 45s...")
+                time.sleep(45)
+                # auto-proceed after wait
 
         print(f"\n{'='*60}")
         print(f"  All {len(PLATFORMS)} platforms processed for {acct['display_name']}!")
-        print(f"  Press Enter to close the browser...")
-        input()
+        print(f"  All done! Closing in 10s..."); time.sleep(10)
 
         context.close()
 
