@@ -21,6 +21,7 @@ const blog = defineCollection({
     draft: z.boolean().default(false),
     affiliateProduct: z.string().optional(),
     hub: z.string().optional(),
+    locale: z.enum(['en', 'es', 'de', 'el', 'ru', 'it', 'ar']).default('en'),
   }),
 });
 
@@ -33,4 +34,13 @@ const authors = defineCollection({
   }),
 });
 
-export const collections = { blog, authors };
+const pages = defineCollection({
+  loader: glob({ pattern: '**/*.mdx', base: './src/content/pages' }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    locale: z.enum(['en', 'es', 'de', 'el', 'ru', 'it', 'ar']).default('en'),
+  }),
+});
+
+export const collections = { blog, authors, pages };

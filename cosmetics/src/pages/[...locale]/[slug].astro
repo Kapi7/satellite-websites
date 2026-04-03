@@ -1,0 +1,41 @@
+---
+import { getCollection, render } from 'astro:content';
+import Article from '../../layouts/Article.astro';
+import { locales, defaultLocale, type Locale } from '../../i18n/locales';
+
+export async function getStaticPaths() {
+  const paths: { params: { locale?: string; slug: string }; props: { post: any; locale: Locale } }[] = [];
+
+  for (const l of locales) {
+    const posts = await getCollection('blog', ({ data }) => !data.draft && data.locale === l);
+    for (const post of posts) {
+      const parts = post.id.split('/');
+      const slug = parts.length > 1 ? parts.slice(1).join('/') : parts[0];
+      paths.push({
+        params: { locale: l === defaultLocale ? undefined : l, slug },
+        props: { post, locale: l },
+      });
+    }
+  }
+
+  return paths;
+}
+
+const { post, locale } = Astro.props as { post: any; locale: Locale };
+const { Content, headings } = await render(post);
+const cleanSlug = post.id.includes('/') ? post.id.split('/').slice(1).join('/') : post.id;
+---
+
+<Article
+  title={post.data.title} description={post.data.description}
+  date={post.data.date} updated={post.data.updated}
+  category={post.data.category} tags={post.data.tags}
+  image={post.data.image} imageAlt={post.data.imageAlt}
+  headings={headings} slug={cleanSlug}
+  rawContent={post.body}
+  routine={post.data.routine}
+  type={post.data.type}
+  locale={locale}
+>
+  <Content />
+</Article>

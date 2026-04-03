@@ -22,6 +22,7 @@ const blog = defineCollection({
     affiliateProduct: z.string().optional(),
     hub: z.string().optional(),
     routine: z.string().optional(),
+    locale: z.enum(['en', 'es', 'de', 'el', 'ru', 'it', 'ar']).default('en'),
   }),
 });
 
@@ -53,4 +54,13 @@ const ingredients = defineCollection({
   }),
 });
 
-export const collections = { blog, authors, ingredients };
+const pages = defineCollection({
+  loader: glob({ pattern: '**/*.mdx', base: './src/content/pages' }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    locale: z.enum(['en', 'es', 'de', 'el', 'ru', 'it', 'ar']).default('en'),
+  }),
+});
+
+export const collections = { blog, authors, ingredients, pages };

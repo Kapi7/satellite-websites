@@ -1,0 +1,55 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { locales, defaultLocale, type Locale } from '../../i18n/locales';
+import { t } from '../../i18n/utils';
+
+export function getStaticPaths() {
+  return locales.map(l => ({
+    params: { locale: l === defaultLocale ? undefined : l },
+    props: { locale: l },
+  }));
+}
+
+const { locale } = Astro.props as { locale: Locale };
+---
+
+<Base
+  title={t(locale, 'privacy.title')}
+  description={t(locale, 'privacy.description')}
+  locale={locale}
+>
+  <Header locale={locale} />
+
+  <main class="flex-1">
+    <article class="max-w-6xl mx-auto px-5 sm:px-8 py-16">
+      <div class="max-w-3xl">
+        <span class="inline-block text-[11px] font-semibold uppercase tracking-[0.2em] text-sage-400 mb-5">{t(locale, 'privacy.label')}</span>
+        <h1 class="font-heading text-4xl text-charcoal tracking-tight leading-[1.1] mb-8">{t(locale, 'privacy.title')}</h1>
+      </div>
+
+      <div class="max-w-3xl prose">
+        <p><em>Last updated: March 2026</em></p>
+
+        <h2>What We Collect</h2>
+        <p>We use Cloudflare Web Analytics, which is privacy-friendly and does not use cookies or track individual users. We see aggregate page views and referrer data. nothing personally identifiable.</p>
+
+        <h2>Email</h2>
+        <p>If you subscribe to our newsletter, we store your email address solely for sending you our content. You can unsubscribe at any time. We never sell or share your email with third parties.</p>
+
+        <h2>Affiliate Disclosure</h2>
+        <p>Some articles on this site may contain affiliate links. This means we may earn a small commission if you make a purchase through those links, at no extra cost to you. We only recommend products we genuinely use and believe in.</p>
+        <p>Affiliate partnerships never influence our editorial opinions. We maintain full independence in what we write and recommend.</p>
+
+        <h2>Cookies</h2>
+        <p>This site does not use cookies for tracking. Our analytics solution (Cloudflare Web Analytics) is cookieless by design.</p>
+
+        <h2>Contact</h2>
+        <p>Questions about this policy? Email us at <strong>hello@rooted-glow.com</strong>.</p>
+      </div>
+    </article>
+  </main>
+
+  <Footer locale={locale} />
+</Base>

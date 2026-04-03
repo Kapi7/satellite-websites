@@ -386,3 +386,27 @@ html.dark .prose img {
 .animate-pulse-soft {
   animation: pulse-soft 1.5s ease-in-out infinite;
 }
+
+/* ===== RTL (Arabic) Support ===== */
+[dir="rtl"] {
+  direction: rtl;
+}
+
+[dir="rtl"] .prose {
+  text-align: right;
+}
+
+[dir="rtl"] .prose blockquote {
+  border-left: none;
+  border-right: 4px solid;
+  padding-left: 0;
+  padding-right: 1.5rem;
+}
+
+[dir="rtl"] nav[aria-label="Breadcrumb"] {
+  direction: rtl;
+}
+
+[dir="rtl"] nav[aria-label="Breadcrumb"] svg {
+  transform: rotate(180deg);
+}

@@ -1,3 +1,12 @@
+---
+import { t, type Locale } from '../i18n/utils';
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = 'en' } = Astro.props;
+---
 <section class="relative my-16 overflow-hidden">
   <div class="bg-rose-50/60 rounded-2xl sm:rounded-[3rem] p-6 sm:p-8 md:p-14 border border-rose-200/30 relative overflow-hidden">
     <!-- Decorative circles -->
@@ -7,12 +16,12 @@
     <div class="relative z-10 flex flex-col md:flex-row items-center gap-12">
       <!-- Text column -->
       <div class="flex-1 text-center md:text-left">
-        <span class="text-xs tracking-widest text-rose-600 font-semibold uppercase block mb-4">The Weekly Glow</span>
+        <span class="text-xs tracking-widest text-rose-600 font-semibold uppercase block mb-4">{t(locale, 'newsletter.preTitle')}</span>
         <h3 class="font-heading text-3xl md:text-4xl italic text-plum-900 mb-3 tracking-tight">
-          Get the Glow
+          {t(locale, 'newsletter.title')}
         </h3>
         <p class="text-sm text-charcoal-light/60 leading-relaxed max-w-md">
-          New reviews, ingredient breakdowns, and routine tips every week. No fluff.
+          {t(locale, 'newsletter.description')}
         </p>
       </div>
 
@@ -21,7 +30,7 @@
         <form class="flex flex-col gap-5">
           <input
             type="email"
-            placeholder="your@email.com"
+            placeholder={t(locale, 'footer.emailPlaceholder')}
             required
             class="w-full bg-transparent border-b-2 border-rose-300 focus:border-rose-600 px-1 py-3 text-sm text-plum-900 placeholder:text-charcoal-light/50 focus:outline-none transition-colors duration-200"
           />
@@ -29,7 +38,7 @@
             type="submit"
             class="bg-rose-600 text-cream px-10 py-4 rounded-full text-sm font-semibold hover:bg-rose-700 transition-colors duration-200 self-start"
           >
-            Subscribe
+            {t(locale, 'common.subscribe')}
           </button>
         </form>
       </div>

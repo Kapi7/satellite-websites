@@ -1,5 +1,7 @@
 ---
 import '../styles/global.css';
+import { localePath } from '../i18n/utils';
+import { isRtl, locales, type Locale } from '../i18n/locales';
 
 interface Props {
   title: string;
@@ -13,6 +15,7 @@ interface Props {
   articleSection?: string;
   articleTags?: string[];
   robots?: string;
+  locale?: Locale;
 }
 
 const {
@@ -24,15 +27,29 @@ const {
   jsonLd = [],
   articlePublishedTime, articleModifiedTime, articleSection, articleTags = [],
   robots = 'index, follow',
+  locale = 'en',
 } = Astro.props;
 
 const siteTitle = 'Rooted Glow';
 const fullTitle = title === siteTitle ? title : `${title} | ${siteTitle}`;
+
+// Locale-aware canonical URL
 const canonical = canonicalUrl || Astro.url.href;
+
+// Build the path without locale prefix for hreflang generation
+const pathSegments = Astro.url.pathname.split('/').filter(Boolean);
+const firstSegment = pathSegments[0];
+const isLocalePrefix = locales.includes(firstSegment as Locale) && firstSegment !== 'en';
+const basePath = isLocalePrefix
+  ? '/' + pathSegments.slice(1).join('/') + (Astro.url.pathname.endsWith('/') && pathSegments.length > 1 ? '/' : '')
+  : Astro.url.pathname;
+const cleanBasePath = basePath === '' ? '/' : basePath;
+
+const rtl = isRtl(locale);
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={locale} dir={rtl ? 'rtl' : 'ltr'}>
   <head>
     <!-- Google Analytics (GA4) -->
     <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-TD23Y3YYSZ"></script>
@@ -41,6 +58,8 @@ const canonical = canonicalUrl || Astro.url.href;
       function gtag(){dataLayer.push(arguments);}
       gtag("js", new Date());
       gtag("config", "G-TD23Y3YYSZ");
+    </script>
+    <script is:inline src="/js/tracking.js">
     </script>
     <script is:inline>
       const t = localStorage.getItem('theme');
@@ -58,8 +77,28 @@ const canonical = canonicalUrl || Astro.url.href;
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
 
+    <!-- Hreflang tags for all locales -->
+    {locales.map((loc) => (
+      <link rel="alternate" hreflang={loc} href={new URL(localePath(cleanBasePath, loc), Astro.site).href} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={new URL(cleanBasePath, Astro.site).href} />
+
+    <!-- Font preloads: Instrument Serif + Inter -->
     <link rel="preload" href="/fonts/jizBRFtNs2ka5fXjeivQ4LroWlx-6zUTjnTLgNs.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2" as="font" type="font/woff2" crossorigin />
+
+    <!-- Arabic font preload (Noto Sans Arabic) -->
+    {locale === 'ar' && (
+      <link rel="preload" href="https://fonts.gstatic.com/s/notosansarabic/v18/nwpxtLGrOAZMl5nJ_wfgRg3DrWFZWsnVBJ_sS6tlqHHFlhQ5l3sQWIHPqzCfyG2vu3CBFQLaig.woff2" as="font" type="font/woff2" crossorigin />
+    )}
+
+    <!-- RTL font-family override -->
+    {locale === 'ar' && (
+      <style>
+        body { font-family: 'Noto Sans Arabic', 'Inter', sans-serif; }
+        .font-heading { font-family: 'Noto Sans Arabic', 'Instrument Serif', serif; }
+      </style>
+    )}
 
     <meta property="og:type" content={type} />
     <meta property="og:title" content={fullTitle} />
@@ -87,7 +126,7 @@ const canonical = canonicalUrl || Astro.url.href;
     <meta name="twitter:image" content={new URL(image, Astro.site).href} />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="alternate" type="application/rss+xml" title={siteTitle} href="/rss.xml" />
+    <link rel="alternate" type="application/rss+xml" title={siteTitle} href={localePath('/rss.xml', locale)} />
 
     {jsonLd.map((schema) => (
       <script type="application/ld+json" set:html={schema} />

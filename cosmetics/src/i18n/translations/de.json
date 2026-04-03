@@ -1,0 +1,169 @@
+{
+  "nav": {
+    "skincare": "Skincare",
+    "ingredients": "Inhaltsstoffe",
+    "reviews": "Reviews",
+    "howTos": "Anleitungen",
+    "about": "Über uns",
+    "tools": "Tools",
+    "ingredientChecker": "Ingredient Checker",
+    "ingredientCheckerDesc": "Prüfe, ob sich deine Inhaltsstoffe vertragen",
+    "skinQuiz": "Skin Quiz",
+    "skinQuizDesc": "Finde deine ideale Routine in 2 Minuten",
+    "ingredientGlossary": "Inhaltsstoff-Glossar",
+    "ingredientGlossaryDesc": "Entdecke alle K-Beauty-Inhaltsstoffe"
+  },
+  "common": {
+    "readArticle": "Artikel lesen",
+    "viewAll": "Alle ansehen",
+    "backToHome": "Zurück zur Startseite",
+    "subscribe": "Abonnieren",
+    "share": "Teilen",
+    "tagged": "Getaggt",
+    "home": "Startseite",
+    "category": "Kategorie",
+    "keepReading": "Weiterlesen",
+    "backToTop": "Nach oben",
+    "toggleDarkMode": "Dunkelmodus umschalten",
+    "openMenu": "Menü öffnen",
+    "articles": "Artikel",
+    "article": "Artikel",
+    "minRead": "Min Lesezeit",
+    "updated": "Aktualisiert",
+    "featuredProducts": "Ausgewählte Produkte",
+    "shopNow": "Jetzt shoppen",
+    "popularArticles": "Beliebte Artikel",
+    "language": "Sprache"
+  },
+  "home": {
+    "latest": "Neueste Beiträge",
+    "freshFromTheLab": "Frisch aus dem Lab",
+    "explore": "Entdecken",
+    "topicsWeCover": "Unsere Themen",
+    "interactive": "Interaktiv",
+    "toolsAndGuides": "Tools & Anleitungen",
+    "skinQuizTitle": "Skin Quiz",
+    "skinQuizDesc": "Finde deine perfekte Routine in 60 Sekunden",
+    "ingredientGlossaryTitle": "Inhaltsstoff-Glossar",
+    "ingredientGlossaryDesc": "Durchsuchbarer Guide zu Skincare-Wirkstoffen",
+    "conflictCheckerTitle": "Conflict Checker",
+    "conflictCheckerDesc": "Prüfe, ob sich deine Inhaltsstoffe gut vertragen",
+    "new": "Neu",
+    "discoverSkinArchetype": "Entdecke deinen\nHaut-Archetyp",
+    "quizCtaDesc": "Schnelle Fragen zu deinem Hauttyp, deinen Anliegen und Zielen. Deine personalisierte Routine in 60 Sekunden.",
+    "takeTheQuiz": "Mach den Quiz",
+    "aboutTitle": "Über Glow Coded",
+    "aboutDesc": "Wir schreiben über Skincare, weil wir wirklich davon besessen sind. Alles hier wurde an unserer eigenen Haut getestet. Keine gesponserten Posts, keine bezahlten Platzierungen.",
+    "learnMore": "Erfahre mehr über uns",
+    "slideSkincare": "Skincare, entschlüsselt.",
+    "slideSkincareDesc": "Inhaltsstoff-Analysen, Routine-Guides und Reviews von Leuten, die testen, worüber sie schreiben.",
+    "slideVanity": "Deine Beauty-Routine, vereinfacht",
+    "slideVanityDesc": "Weniger Produkte, bessere Ergebnisse. Wir haben Hunderte getestet, damit du es nicht tun musst.",
+    "slideIngredients": "Inhaltsstoffe, die wirklich wirken",
+    "slideIngredientsDesc": "Jenseits der Marketing-Versprechen. Was die Forschung über deine Lieblingswirkstoffe sagt."
+  },
+  "footer": {
+    "tagline": "Schönheit, entschlüsselt.",
+    "brandDesc": "Wir testen alles, bevor wir darüber schreiben. Wenn es auf unserer Haut nicht funktioniert hat, findest du es nicht auf dieser Seite.",
+    "explore": "Entdecken",
+    "toolsAndInfo": "Tools & Infos",
+    "glossary": "Glossar",
+    "conflictChecker": "Konflikt-Checker",
+    "privacy": "Datenschutz",
+    "getTheGlow": "Hol dir den Glow",
+    "newsletterDesc": "Wöchentliche Skincare-Analysen & ehrliche Reviews. Kein Spam, nur Glow.",
+    "emailPlaceholder": "deine@email.com",
+    "copyright": "Glow Coded. Alle Rechte vorbehalten."
+  },
+  "newsletter": {
+    "preTitle": "Der wöchentliche Glow",
+    "title": "Hol dir den Glow",
+    "description": "Jede Woche neue Reviews, Inhaltsstoff-Analysen und Routine-Tipps. Ohne Schnickschnack."
+  },
+  "article": {
+    "editorial": "Glow Coded Redaktion",
+    "expandFullScreen": "Im Vollbildmodus anzeigen",
+    "collapse": "Einklappen"
+  },
+  "categories": {
+    "skincare": "Skincare",
+    "ingredients": "Inhaltsstoffe",
+    "reviews": "Reviews & Vergleiche",
+    "howTos": "Anleitungen"
+  },
+  "categoryDescriptions": {
+    "skincare": "Routinen, Hauttyp-Guides und die Grundlagen für eine funktionierende Skincare-Routine.",
+    "ingredients": "Tiefgehende Analysen von Wirkstoffen. Was sie tun, für wen sie sind und wie du sie verwendest.",
+    "reviews": "Ehrliche Produkt-Reviews und Multi-Produkt-Roundups. Auf echter Haut getestet, nicht in Pressemitteilungen.",
+    "howTos": "Schritt-für-Schritt-Anleitungen, saisonale Routinen und Lösungen für häufige Skincare-Fehler."
+  },
+  "types": {
+    "hub": "Grundlagen-Guide",
+    "guide": "Guide",
+    "listicle": "Liste",
+    "review": "Review",
+    "routine": "Routine"
+  },
+  "notFound": {
+    "title": "Seite nicht gefunden",
+    "heading": "Seite nicht gefunden",
+    "message": "Diese Seite ist wohl aus unserer Routine verschwunden. Lass uns dich mit ein paar tollen Artikeln wieder auf Kurs bringen.",
+    "description": "Die gesuchte Seite existiert nicht. Durchstöbere unsere neuesten Artikel zu Korean Skincare, Beauty-Inhaltsstoffen und Produkt-Reviews."
+  },
+  "ingredientChecker": {
+    "toolLabel": "Tool",
+    "title": "Inhaltsstoff-Konflikt-Checker",
+    "description": "Wähle die Inhaltsstoffe deiner Routine aus und wir prüfen auf Konflikte, Vorsichtsmaßnahmen und tolle Kombinationen.",
+    "step1": "Schritt 1: Wähle deine Inhaltsstoffe",
+    "step1Sub": "oder probiere eine Voreinstellung",
+    "step2": "Schritt 2: Sieh dir die Ergebnisse an",
+    "step2Sub": "Konflikte leuchten rot auf",
+    "step3": "Schritt 3: Baue eine sichere Routine auf",
+    "step3Sub": "grün = passt super zusammen",
+    "presets": "Voreinstellungen:",
+    "beginnerHydration": "Feuchtigkeit für Anfänger",
+    "antiAgingPm": "Anti-Aging PM",
+    "acneFighter": "Akne-Bekämpfung",
+    "clearAll": "Alle löschen",
+    "selected": "Ausgewählt",
+    "greatPairing": "Tolle Kombination",
+    "useWithCaution": "Vorsicht geboten",
+    "conflict": "Konflikt",
+    "conflictsAvoid": "Konflikte: Nicht kombinieren",
+    "cautionUse": "Vorsicht: Mit Bedacht verwenden",
+    "greatPairings": "Tolle Kombinationen",
+    "noInteractions": "Keine bekannten Wechselwirkungen zwischen diesen Inhaltsstoffen. Sie sollten sicher zusammen verwendet werden können.",
+    "learnMore": "Mehr erfahren",
+    "compatibilityGuide": "Kompatibilitäts-Guide für Inhaltsstoffe",
+    "compatibilityGuideDesc": "Tiefgehende Analysen jeder Wechselwirkung",
+    "glossary": "Inhaltsstoff-Glossar",
+    "glossaryDesc": "Durchsuche alle Inhaltsstoffe und ihre Wirkung"
+  },
+  "ingredientGlossary": {
+    "reference": "Nachschlagewerk",
+    "title": "Inhaltsstoff-Glossar",
+    "description": "Suche und filtere Skincare-Inhaltsstoffe. Erfahre, was sie tun, welchen Hauttypen sie nützen und welche Produkte sie enthalten.",
+    "searchPlaceholder": "Inhaltsstoffe suchen...",
+    "allCategories": "Alle Kategorien",
+    "comedogenic": "Komedogen",
+    "foundIn": "Enthalten in",
+    "noResults": "Keine Inhaltsstoffe entsprechen deiner Suche."
+  },
+  "quiz": {
+    "personalized": "Personalisiert",
+    "title": "KI-Hautanalyse",
+    "description": "Lade ein Selfie hoch oder beantworte ein paar Fragen, um deine personalisierte Skincare-Routine und Produktempfehlungen zu erhalten.",
+    "poweredByAi": "Powered by AI. Deine Daten bleiben privat und werden niemals geteilt."
+  },
+  "about": {
+    "label": "Über uns",
+    "title": "Über uns",
+    "heading": "Auf unserer Haut getestet, nicht in Pressemitteilungen.",
+    "description": "Skincare-Nerds schreiben über das, was wir tatsächlich nutzen, testen und woran wir glauben."
+  },
+  "privacy": {
+    "label": "Rechtliches",
+    "title": "Datenschutzerklärung",
+    "description": "Wie Glow Coded deine Daten behandelt."
+  }
+}

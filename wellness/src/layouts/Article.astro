@@ -9,6 +9,7 @@ import BackToTop from '../components/BackToTop.astro';
 import ShareButtons from '../components/ShareButtons.astro';
 import RelatedArticles from '../components/RelatedArticles.astro';
 import { extractProducts } from '../utils/extract-products';
+import { t, localePath, formatDate, type Locale } from '../i18n/utils';
 
 interface Props {
   title: string;
@@ -23,34 +24,38 @@ interface Props {
   slug: string;
   rawContent?: string;
   type?: string;
+  locale?: Locale;
 }
 
 const {
   title, description, date, updated, category, tags = [],
   image, imageAlt, headings, slug, rawContent, type,
+  locale = 'en',
 } = Astro.props;
 
 const products = rawContent ? extractProducts(rawContent) : [];
 const readingTime = rawContent ? Math.max(1, Math.ceil(rawContent.split(/\s+/).length / 200)) : null;
 
 const categoryLabels: Record<string, string> = {
-  'nutrition': 'Nutrition',
-  'movement': 'Movement',
-  'k-beauty': 'K-Beauty',
-  'natural-health': 'Natural Health',
+  'nutrition': t(locale, 'categories.nutrition'),
+  'movement': t(locale, 'categories.movement'),
+  'k-beauty': t(locale, 'categories.kBeauty'),
+  'natural-health': t(locale, 'categories.naturalHealth'),
 };
 const categoryLabel = categoryLabels[category] || category;
 
-const formattedDate = date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-const formattedUpdated = updated?.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-const articleUrl = new URL(`/${slug}`, Astro.site).href;
+const formattedDate = formatDate(date, locale);
+const formattedUpdated = updated ? formatDate(updated, locale) : undefined;
+const articleUrl = new URL(localePath(`/${slug}`, locale), Astro.site).href;
+
+const authorName = t(locale, 'article.editorial');
 
 const articleSchema = JSON.stringify({
   '@context': 'https://schema.org', '@type': 'Article',
   headline: title, description, image,
   datePublished: date.toISOString(),
   dateModified: updated?.toISOString() || date.toISOString(),
-  author: { '@type': 'Organization', name: 'The Rooted Glow Team' },
+  author: { '@type': 'Organization', name: authorName },
   publisher: { '@type': 'Organization', name: 'Rooted Glow' },
   mainEntityOfPage: { '@type': 'WebPage', '@id': articleUrl },
 });
@@ -58,8 +63,8 @@ const articleSchema = JSON.stringify({
 const breadcrumbSchema = JSON.stringify({
   '@context': 'https://schema.org', '@type': 'BreadcrumbList',
   itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/', Astro.site).href },
-    { '@type': 'ListItem', position: 2, name: categoryLabel, item: new URL(`/category/${category}`, Astro.site).href },
+    { '@type': 'ListItem', position: 1, name: t(locale, 'common.home'), item: new URL(localePath('/', locale), Astro.site).href },
+    { '@type': 'ListItem', position: 2, name: categoryLabel, item: new URL(localePath(`/category/${category}`, locale), Astro.site).href },
     { '@type': 'ListItem', position: 3, name: title },
   ],
 });
@@ -129,9 +134,10 @@ if (headings) {
   articleModifiedTime={(updated || date).toISOString()}
   articleSection={categoryLabel}
   articleTags={tags}
+  locale={locale}
 >
   <ReadingProgress />
-  <Header />
+  <Header locale={locale} />
 
   <main class="flex-1">
     <!-- Hero Image — wider, more impactful -->
@@ -150,9 +156,9 @@ if (headings) {
       <article data-pagefind-body class={`flex-1 min-w-0 ${products.length === 0 ? "max-w-5xl mx-auto" : ""}`}>
         <!-- Breadcrumb -->
         <nav class="flex items-center gap-2 text-[11px] uppercase tracking-wide text-charcoal-light/50 mb-8 animate-fade-in-up" aria-label="Breadcrumb">
-          <a href="/" class="hover:text-sage-700 transition-colors">Home</a>
+          <a href={localePath('/', locale)} class="hover:text-sage-700 transition-colors">{t(locale, 'common.home')}</a>
           <svg class="w-3 h-3 text-sage-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
-          <a href={`/category/${category}`} class="hover:text-sage-700 transition-colors">{categoryLabel}</a>
+          <a href={localePath(`/category/${category}`, locale)} class="hover:text-sage-700 transition-colors">{categoryLabel}</a>
         </nav>
 
         <!-- Article header — bigger, bolder -->
@@ -162,19 +168,19 @@ if (headings) {
           <div class="flex items-center gap-4 border-t border-sage-200/40 pt-6">
             <img src="/logo.svg" alt="" class="w-8 h-8 rounded-full" />
             <div>
-              <span class="text-[11px] font-semibold uppercase tracking-wide text-charcoal block">The Rooted Glow Team</span>
+              <span class="text-[11px] font-semibold uppercase tracking-wide text-charcoal block">{authorName}</span>
               <div class="flex items-center gap-3 text-[11px] uppercase tracking-[0.1em] text-charcoal-light/50 mt-0.5">
                 <time datetime={date.toISOString()}>{formattedDate}</time>
                 {formattedUpdated && (
                   <>
                     <span class="w-1 h-1 rounded-full bg-charcoal-light/20"></span>
-                    <span>Updated {formattedUpdated}</span>
+                    <span>{t(locale, 'common.updated')} {formattedUpdated}</span>
                   </>
                 )}
                 {readingTime && (
                   <>
                     <span class="w-1 h-1 rounded-full bg-charcoal-light/20"></span>
-                    <span>{readingTime} min read</span>
+                    <span>{readingTime} {t(locale, 'common.minRead')}</span>
                   </>
                 )}
               </div>
@@ -184,7 +190,7 @@ if (headings) {
 
         <!-- Table of contents -->
         <div class="animate-fade-in-up stagger-2">
-          <TableOfContents headings={headings} />
+          <TableOfContents headings={headings} locale={locale} />
         </div>
 
         <!-- Article body — wider prose -->
@@ -196,19 +202,19 @@ if (headings) {
         {tags.length > 0 && (
           <div class="mt-16 pt-8 border-t border-sage-200/30 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
             <div>
-              <span class="text-[11px] font-semibold uppercase tracking-wide text-charcoal-light/50 mr-3">Tagged</span>
+              <span class="text-[11px] font-semibold uppercase tracking-wide text-charcoal-light/50 mr-3">{t(locale, 'common.tagged')}</span>
               <div class="inline-flex flex-wrap gap-2 mt-2">
                 {tags.map((tag) => (
                   <a class="px-4 py-1.5 bg-sage-100/60 text-sage-600 text-xs font-medium rounded-full hover:bg-sage-200 transition-colors">{tag}</a>
                 ))}
               </div>
             </div>
-            <ShareButtons title={title} url={articleUrl} />
+            <ShareButtons title={title} url={articleUrl} locale={locale} />
           </div>
         )}
 
         {tags.length === 0 && (
-          <ShareButtons title={title} url={articleUrl} />
+          <ShareButtons title={title} url={articleUrl} locale={locale} />
         )}
       </article>
 
@@ -216,7 +222,7 @@ if (headings) {
       {products.length > 0 && (
         <aside class="hidden xl:block w-[220px] shrink-0">
           <div class="bg-sage-50/50 rounded-xl p-5 space-y-6">
-            <h3 class="font-heading text-xs uppercase tracking-wide text-sage-600 pb-2 border-b border-sage-200/40">Featured Products</h3>
+            <h3 class="font-heading text-xs uppercase tracking-wide text-sage-600 pb-2 border-b border-sage-200/40">{t(locale, 'common.featuredProducts')}</h3>
             <div class="space-y-6">
               {products.slice(0, 3).map((product) => (
                 <a href={product.url} target="_blank" rel="noopener noreferrer" class="block group">
@@ -224,7 +230,7 @@ if (headings) {
                     <img src={product.image} alt={product.name} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
                   </div>
                   <p class="font-heading text-sm text-charcoal leading-snug mb-1">{product.name}</p>
-                  <span class="text-[11px] font-semibold uppercase tracking-wide text-sage-600 group-hover:text-sage-800 transition-colors">Shop Now →</span>
+                  <span class="text-[11px] font-semibold uppercase tracking-wide text-sage-600 group-hover:text-sage-800 transition-colors">{t(locale, 'common.shopNow')} &rarr;</span>
                 </a>
               ))}
             </div>
@@ -235,13 +241,13 @@ if (headings) {
 
     <!-- Newsletter + Related — wider container -->
     <div class="max-w-[1400px] mx-auto px-4 sm:px-8">
-      <RelatedArticles currentSlug={slug} category={category} />
-      <NewsletterSignup />
+      <RelatedArticles currentSlug={slug} category={category} locale={locale} />
+      <NewsletterSignup locale={locale} />
     </div>
   </main>
 
-  <Footer />
-  <BackToTop />
+  <Footer locale={locale} />
+  <BackToTop locale={locale} />
 
   <script>
     // Expand table to full screen — no sideways scrolling

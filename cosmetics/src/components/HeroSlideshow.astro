@@ -1,7 +1,9 @@
 ---
+import { t, type Locale } from '../i18n/utils';
+
 interface Slide { image: string; title: string; subtitle: string; link?: string; category?: string; }
-interface Props { slides: Slide[]; }
-const { slides } = Astro.props;
+interface Props { slides: Slide[]; locale?: Locale; }
+const { slides, locale = 'en' } = Astro.props;
 ---
 <section class="relative overflow-hidden rounded-2xl sm:rounded-3xl mx-5 sm:mx-8 max-w-[1400px] lg:mx-auto" id="hero-slideshow">
   <div class="relative aspect-[2.5/1] sm:aspect-[3/1] bg-rose-50">
@@ -18,7 +20,7 @@ const { slides } = Astro.props;
             <p class="text-sm sm:text-base text-white/70 leading-relaxed mb-5 line-clamp-2">{slide.subtitle}</p>
             {slide.link && (
               <a href={slide.link} class="inline-flex items-center gap-2 text-sm font-medium text-white border border-white/30 rounded-full px-5 py-2 hover:bg-white/10 transition-all duration-300">
-                Read article
+                {t(locale, 'common.readArticle')}
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
               </a>
             )}

@@ -1,0 +1,146 @@
+{
+  "nav": {
+    "nutrition": "Ernährung",
+    "movement": "Bewegung",
+    "kBeauty": "K-Beauty",
+    "naturalHealth": "Natürliche Gesundheit",
+    "quiz": "Quiz",
+    "about": "Über uns"
+  },
+  "common": {
+    "readArticle": "Artikel lesen",
+    "viewAll": "Alle ansehen",
+    "backToHome": "Zurück zur Startseite",
+    "subscribe": "Abonnieren",
+    "share": "Teilen",
+    "tagged": "Getaggt",
+    "home": "Startseite",
+    "category": "Kategorie",
+    "keepReading": "Weiterlesen",
+    "backToTop": "Nach oben",
+    "toggleDarkMode": "Dunkelmodus umschalten",
+    "openMenu": "Menü öffnen",
+    "articles": "Artikel",
+    "article": "Artikel",
+    "minRead": "Min. Lesezeit",
+    "updated": "Aktualisiert",
+    "featuredProducts": "Empfohlene Produkte",
+    "shopNow": "Jetzt shoppen",
+    "popularArticles": "Beliebte Artikel",
+    "language": "Sprache"
+  },
+  "home": {
+    "latest": "Aktuelles",
+    "freshFromTheJournal": "Frisch aus dem Journal",
+    "explore": "Entdecken",
+    "topicsWeCover": "Unsere Themen",
+    "new": "Neu",
+    "discoverArchetype": "Entdecke deinen\nWellness-Archetyp",
+    "quizCtaDesc": "10 Fragen zu Bewegung, Schlaf, Stress und Ernährung. Dauert 2 Minuten.",
+    "takeTheQuiz": "Mach das Quiz",
+    "aboutTitle": "Über Rooted Glow",
+    "aboutDesc": "Wir schreiben über Clean Eating, funktionelle Bewegung, K-Beauty Routinen und natürliche Gesundheit. Alles hier basiert auf persönlichen Erfahrungen und echter Forschung, nicht auf Trends oder Sponsoring.",
+    "learnMore": "Erfahre mehr über uns",
+    "slideWellness": "Wellness, basierend auf dem, was wirklich funktioniert.",
+    "slideWellnessDesc": "Clean Eating, funktionelle Bewegung, K-Beauty Routinen und natürliche Gesundheit von Menschen, die es leben.",
+    "slideTable": "Vom Bauernmarkt auf deinen Tisch",
+    "slideTableDesc": "Saisonale, vollwertige Küche, die von innen heraus nährt.",
+    "slideKBeauty": "K-Beauty Routinen, die wirklich funktionieren",
+    "slideKBeautyDesc": "Koreanische Hautpflege, vereinfacht. Echte Routinen von echten Menschen."
+  },
+  "footer": {
+    "brandName": "Rooted Glow",
+    "brandDesc": "Wir schreiben über das Essen, das wir kochen, die Workouts, die wir machen, und die Hautpflege, die wir verwenden. Keine Sponsoren, kein Füllmaterial.",
+    "explore": "Entdecken",
+    "info": "Info",
+    "aboutUs": "Über uns",
+    "privacy": "Datenschutz",
+    "wellnessQuiz": "Wellness-Quiz",
+    "innerGlowJournal": "Inner Glow Journal",
+    "newsletterDesc": "Eine E-Mail pro Woche. Rezepte, Routinen und der gelegentliche K-Beauty Fund.",
+    "emailPlaceholder": "Deine E-Mail",
+    "copyright": "Rooted Glow. Alle Rechte vorbehalten."
+  },
+  "newsletter": {
+    "preTitle": "Der wöchentliche Glow",
+    "title": "Lohnt sich, am Montagmorgen geöffnet zu werden.",
+    "description": "Echte Essensideen, Bewegungstipps und Hautpflege-Produkte, die wir selbst getestet haben. Erscheint wöchentlich. Du kannst dich jederzeit abmelden."
+  },
+  "article": {
+    "editorial": "Das Rooted Glow Team",
+    "expandFullScreen": "Vollbild erweitern",
+    "collapse": "Einklappen"
+  },
+  "categories": {
+    "nutrition": "Ernährung",
+    "movement": "Bewegung",
+    "kBeauty": "K-Beauty",
+    "naturalHealth": "Natürliche Gesundheit"
+  },
+  "categoryDescriptions": {
+    "nutrition": "Ursprüngliche Ernährung, Vollwertkost, Kochen ohne Samenöle und die Darm-Haut-Verbindung.",
+    "movement": "Funktionelles Training, Mobilitätsarbeit, Spazierengehen und Outdoor-Aktivitäten. Kein Fitnessstudio nötig.",
+    "kBeauty": "Koreanische Hautpflegeroutinen, Inhaltsstoff-Guides, Layering-Techniken und ehrliche Produktbewertungen.",
+    "naturalHealth": "Schlaf, Stressmanagement, Adaptogene, schadstofffreies Leben und das Wellness-Dreieck."
+  },
+  "types": {
+    "hub": "Essenzieller Guide",
+    "guide": "Guide",
+    "listicle": "Liste",
+    "review": "Bewertung",
+    "routine": "Routine"
+  },
+  "notFound": {
+    "title": "Seite nicht gefunden",
+    "heading": "Seite nicht gefunden",
+    "message": "Es sieht so aus, als hätte sich diese Seite verlaufen. Keine Sorge, auf der Startseite gibt es viel zu entdecken.",
+    "description": "Die gesuchte Seite existiert nicht. Durchstöbere unsere neuesten Artikel zu Ernährung, Bewegung, K-Beauty und natürlicher Gesundheit."
+  },
+  "quiz": {
+    "assessment": "Wellness-Analyse",
+    "title": "Entdecke deinen Wellness-Archetyp",
+    "description": "Entdecke deinen Wellness-Archetyp in den Bereichen Bewegung, Schlaf, Stress und Ernährung. 10 Fragen, 2 Minuten, personalisierte Ergebnisse.",
+    "intro": "10 Fragen zu Bewegung, Schlaf, Stress und Ernährung. Es gibt keine richtigen oder falschen Antworten, nur ehrliche.",
+    "duration": "Dauert etwa 2 Minuten",
+    "startQuiz": "Quiz starten",
+    "questionOf": "Frage {current} von {total}",
+    "analysing": "Deine Antworten werden analysiert...",
+    "matchingArchetype": "Dein Wellness-Archetyp wird ermittelt",
+    "yourArchetype": "Dein Archetyp",
+    "pillarScores": "Deine Säulen-Scores",
+    "strengths": "Deine Stärken",
+    "growthAreas": "Bereiche für Wachstum",
+    "quickStart": "Dein 7-Tage-Schnellstart",
+    "quickStartDesc": "Kleine Schritte, echte Fortschritte. Starte noch heute.",
+    "aiPlan": "Dein personalisierter KI-Plan",
+    "aiPlanPowered": "Unterstützt von KI",
+    "aiPlanDesc": "Ein detaillierter 7-Tage-Plan, maßgeschneidert auf deine genauen Scores und deinen Archetyp.",
+    "generateAiPlan": "Meinen KI-Plan erstellen",
+    "aiPlanFree": "Kostenlos, dauert etwa 10 Sekunden",
+    "aiPlanLoading": "Dein personalisierter Plan wird erstellt...",
+    "aiPlanError": "Dein KI-Plan konnte im Moment nicht erstellt werden.",
+    "tryAgain": "Erneut versuchen",
+    "recommendedReading": "Empfohlene Lektüre",
+    "recommendedDesc": "Artikel, die zu deinem Archetyp passen",
+    "alsoWorthReading": "Auch lesenswert",
+    "shareResult": "Dein Ergebnis teilen",
+    "shareDesc": "Lass auch andere ihren Archetyp entdecken",
+    "copyLink": "Link kopieren",
+    "retakeQuiz": "Quiz wiederholen",
+    "pillarMovement": "Bewegung",
+    "pillarSleep": "Schlaf",
+    "pillarStress": "Stress",
+    "pillarNutrition": "Ernährung"
+  },
+  "about": {
+    "label": "Über uns",
+    "title": "Über uns",
+    "heading": "Echte Menschen, echte Routinen, echte Ergebnisse.",
+    "description": "Wir sind Wellness-Enthusiasten und K-Beauty Nerds, die darüber schreiben, was wir wirklich tun, essen und verwenden."
+  },
+  "privacy": {
+    "label": "Rechtliches",
+    "title": "Datenschutzerklärung",
+    "description": "Wie Rooted Glow deine Daten verarbeitet. Kurze Version: Wir sammeln kaum welche."
+  }
+}

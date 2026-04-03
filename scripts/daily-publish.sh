@@ -15,16 +15,17 @@ PUBLISHED=0
 PUBLISHED_FILES=""
 
 # Publish next draft from cosmetics (ordered by keyword value: vol desc, KD asc)
+# Note: articles are now in blog/en/ subdirectory
 for article in \
-  "cosmetics/src/content/blog/tirtir-cushion-foundation-shade-guide.mdx" \
-  "cosmetics/src/content/blog/best-korean-moisturizers-sensitive-skin.mdx" \
-  "cosmetics/src/content/blog/korean-eye-cream-guide.mdx" \
-  "cosmetics/src/content/blog/best-korean-cleansing-oils.mdx" \
-  "cosmetics/src/content/blog/aha-vs-bha-vs-pha-which-exfoliant.mdx" \
-  "cosmetics/src/content/blog/vitamin-c-korean-skincare.mdx" \
-  "cosmetics/src/content/blog/best-k-beauty-under-15.mdx" \
-  "cosmetics/src/content/blog/best-anti-aging-korean-skincare-30s.mdx" \
-  "cosmetics/src/content/blog/hydrating-routine-dry-winter-skin.mdx"; do
+  "cosmetics/src/content/blog/en/tirtir-cushion-foundation-shade-guide.mdx" \
+  "cosmetics/src/content/blog/en/best-korean-moisturizers-sensitive-skin.mdx" \
+  "cosmetics/src/content/blog/en/korean-eye-cream-guide.mdx" \
+  "cosmetics/src/content/blog/en/best-korean-cleansing-oils.mdx" \
+  "cosmetics/src/content/blog/en/aha-vs-bha-vs-pha-which-exfoliant.mdx" \
+  "cosmetics/src/content/blog/en/vitamin-c-korean-skincare.mdx" \
+  "cosmetics/src/content/blog/en/best-k-beauty-under-15.mdx" \
+  "cosmetics/src/content/blog/en/best-anti-aging-korean-skincare-30s.mdx" \
+  "cosmetics/src/content/blog/en/hydrating-routine-dry-winter-skin.mdx"; do
   if [ -f "$article" ] && grep -q "^draft: true" "$article"; then
     sed -i '' '/^draft: true$/d' "$article"
     echo "[Glow Coded] Published: $(basename "$article" .mdx)"
@@ -36,18 +37,18 @@ done
 
 # Publish next draft from wellness (ordered by keyword value: vol desc, KD asc)
 for article in \
-  "wellness/src/content/blog/best-double-cleansing-products.mdx" \
-  "wellness/src/content/blog/double-cleansing-without-oil.mdx" \
-  "wellness/src/content/blog/oil-cleansing-oily-skin.mdx" \
-  "wellness/src/content/blog/bone-broth-benefits.mdx" \
-  "wellness/src/content/blog/fermented-beetroot-kvass-probiotic-drink.mdx" \
-  "wellness/src/content/blog/bone-broth-gut-health-collagen-connection.mdx" \
-  "wellness/src/content/blog/korean-skincare-for-runners.mdx" \
-  "wellness/src/content/blog/best-korean-products-stress-breakouts.mdx" \
-  "wellness/src/content/blog/how-to-make-natural-fruit-soda.mdx" \
-  "wellness/src/content/blog/heart-rate-zones-explained-train-smarter.mdx" \
-  "wellness/src/content/blog/meditation-cortisol-stillness-heals-skin.mdx" \
-  "wellness/src/content/blog/post-workout-k-beauty-recovery-routine.mdx"; do
+  "wellness/src/content/blog/en/best-double-cleansing-products.mdx" \
+  "wellness/src/content/blog/en/double-cleansing-without-oil.mdx" \
+  "wellness/src/content/blog/en/oil-cleansing-oily-skin.mdx" \
+  "wellness/src/content/blog/en/bone-broth-benefits.mdx" \
+  "wellness/src/content/blog/en/fermented-beetroot-kvass-probiotic-drink.mdx" \
+  "wellness/src/content/blog/en/bone-broth-gut-health-collagen-connection.mdx" \
+  "wellness/src/content/blog/en/korean-skincare-for-runners.mdx" \
+  "wellness/src/content/blog/en/best-korean-products-stress-breakouts.mdx" \
+  "wellness/src/content/blog/en/how-to-make-natural-fruit-soda.mdx" \
+  "wellness/src/content/blog/en/heart-rate-zones-explained-train-smarter.mdx" \
+  "wellness/src/content/blog/en/meditation-cortisol-stillness-heals-skin.mdx" \
+  "wellness/src/content/blog/en/post-workout-k-beauty-recovery-routine.mdx"; do
   if [ -f "$article" ] && grep -q "^draft: true" "$article"; then
     sed -i '' '/^draft: true$/d' "$article"
     echo "[Rooted Glow] Published: $(basename "$article" .mdx)"
@@ -62,6 +63,16 @@ if [ $PUBLISHED -gt 0 ]; then
   git add $PUBLISHED_FILES
   git commit -m "Publish daily articles ($(date +%Y-%m-%d))"
   git push origin main
+
+  # Auto-translate newly published articles to all 6 locales
+  TRANSLATE_SCRIPT="scripts/translate-content.py"
+  if [ -f "$TRANSLATE_SCRIPT" ]; then
+    echo "Running auto-translation for published articles..."
+    for f in $PUBLISHED_FILES; do
+      site=$(echo "$f" | cut -d/ -f1)
+      python3 "$TRANSLATE_SCRIPT" --site "$site" --articles-only 2>&1 | tail -5 || true
+    done
+  fi
 
   if [ -f scripts/submit-indexnow.sh ]; then
     bash scripts/submit-indexnow.sh

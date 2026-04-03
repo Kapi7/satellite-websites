@@ -1,0 +1,33 @@
+---
+import Pillar from '../../../layouts/Pillar.astro';
+import { locales, defaultLocale, type Locale } from '../../../i18n/locales';
+import { t } from '../../../i18n/utils';
+
+const categories = ['nutrition', 'movement', 'k-beauty', 'natural-health'];
+
+const categoryKeys: Record<string, string> = {
+  'nutrition': 'nutrition',
+  'movement': 'movement',
+  'k-beauty': 'kBeauty',
+  'natural-health': 'naturalHealth',
+};
+
+export function getStaticPaths() {
+  return locales.flatMap(l =>
+    ['nutrition', 'movement', 'k-beauty', 'natural-health'].map(cat => ({
+      params: { locale: l === defaultLocale ? undefined : l, cat },
+      props: { locale: l },
+    }))
+  );
+}
+
+const { locale } = Astro.props as { locale: Locale };
+const { cat } = Astro.params;
+const key = categoryKeys[cat!] || cat!;
+const meta = {
+  title: t(locale, `categories.${key}`),
+  description: t(locale, `categoryDescriptions.${key}`),
+};
+---
+
+<Pillar title={meta.title} description={meta.description} category={cat!} locale={locale} />

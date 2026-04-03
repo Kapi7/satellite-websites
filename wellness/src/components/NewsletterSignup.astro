@@ -1,3 +1,13 @@
+---
+import { t, type Locale } from '../i18n/utils';
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = 'en' } = Astro.props;
+---
+
 <section class="relative my-20 overflow-hidden">
   <!-- Decorative circles, soft blur -->
   <div class="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-charcoal-light/20/20 blur-3xl"></div>
@@ -8,14 +18,13 @@
       <!-- Left column: editorial copy -->
       <div class="flex-1 text-center md:text-left">
         <span class="text-xs tracking-widest text-sage-600 font-semibold uppercase">
-          The Weekly Glow
+          {t(locale, 'newsletter.preTitle')}
         </span>
         <h3 class="font-heading text-3xl md:text-4xl italic text-sage-900 mt-4 mb-5 leading-snug">
-          Worth opening<br class="hidden md:block" /> on a Monday morning.
+          {t(locale, 'newsletter.title')}
         </h3>
         <p class="text-sm text-sage-600 leading-relaxed max-w-md">
-          Real food ideas, movement tips, and skincare picks we've tested ourselves.
-          Comes out weekly. You can always unsubscribe.
+          {t(locale, 'newsletter.description')}
         </p>
       </div>
 
@@ -24,7 +33,7 @@
         <form class="flex flex-col gap-6">
           <input
             type="email"
-            placeholder="your@email.com"
+            placeholder={t(locale, 'footer.emailPlaceholder')}
             required
             class="w-full bg-transparent border-b-2 border-sage-300 focus:border-sage-600 text-sage-900 text-sm py-3 placeholder:text-charcoal-light/50 focus:outline-none transition-colors duration-300"
           />
@@ -32,7 +41,7 @@
             type="submit"
             class="bg-sage-700 text-cream px-10 py-4 rounded-full text-xs tracking-widest font-semibold uppercase hover:bg-sage-800 transition-colors duration-300"
           >
-            Subscribe
+            {t(locale, 'common.subscribe')}
           </button>
         </form>
 

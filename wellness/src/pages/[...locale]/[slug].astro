@@ -1,0 +1,41 @@
+---
+import { getCollection, render } from 'astro:content';
+import Article from '../../layouts/Article.astro';
+import { locales, defaultLocale, type Locale } from '../../i18n/locales';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return locales.flatMap(l => {
+    const localePosts = posts.filter(p => p.data.locale === l);
+    return localePosts.map(post => {
+      // Post IDs are like "en/some-slug" — strip locale prefix for clean slug
+      const slug = post.id.includes('/') ? post.id.split('/').slice(1).join('/') : post.id;
+      return {
+        params: { locale: l === defaultLocale ? undefined : l, slug },
+        props: { post, locale: l },
+      };
+    });
+  });
+}
+
+const { post, locale } = Astro.props as { post: any; locale: Locale };
+const { Content, headings } = await render(post);
+---
+
+<Article
+  title={post.data.title}
+  description={post.data.description}
+  date={post.data.date}
+  updated={post.data.updated}
+  category={post.data.category}
+  tags={post.data.tags}
+  image={post.data.image}
+  imageAlt={post.data.imageAlt}
+  headings={headings}
+  slug={post.id}
+  rawContent={post.body}
+  type={post.data.type}
+  locale={locale}
+>
+  <Content />
+</Article>

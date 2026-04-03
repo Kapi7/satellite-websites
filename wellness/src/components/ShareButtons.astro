@@ -1,15 +1,18 @@
 ---
+import { t, type Locale } from '../i18n/utils';
+
 interface Props {
   title: string;
   url: string;
+  locale?: Locale;
 }
-const { title, url } = Astro.props;
+const { title, url, locale = 'en' } = Astro.props;
 const encodedTitle = encodeURIComponent(title);
 const encodedUrl = encodeURIComponent(url);
 ---
 
 <div class="flex items-center gap-3 mt-8 pt-6 border-t border-sage-200/60">
-  <span class="text-[11px] font-semibold uppercase tracking-wide text-charcoal-light/50 mr-1">Share</span>
+  <span class="text-[11px] font-semibold uppercase tracking-wide text-charcoal-light/50 mr-1">{t(locale, 'common.share')}</span>
 
   <a
     href={`https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`}

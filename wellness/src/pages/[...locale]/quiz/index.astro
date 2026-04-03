@@ -1,0 +1,681 @@
+---
+import Base from '../../../layouts/Base.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import BackToTop from '../../../components/BackToTop.astro';
+import { quizQuestions, pillarMaxScores } from '../../../data/quiz-questions';
+import { archetypes } from '../../../data/quiz-archetypes';
+import { getCollection } from 'astro:content';
+import { locales, defaultLocale, type Locale } from '../../../i18n/locales';
+import { t, localePath } from '../../../i18n/utils';
+
+export function getStaticPaths() {
+  return locales.map(l => ({
+    params: { locale: l === defaultLocale ? undefined : l },
+    props: { locale: l },
+  }));
+}
+
+const { locale } = Astro.props as { locale: Locale };
+
+const allPosts = await getCollection('blog', ({ data }) => !data.draft && data.locale === locale);
+const postMap = new Map(allPosts.map((p) => [p.id, p]));
+
+const pillarLabels: Record<string, string> = {
+  movement: t(locale, 'quiz.pillarMovement'),
+  sleep: t(locale, 'quiz.pillarSleep'),
+  stress: t(locale, 'quiz.pillarStress'),
+  nutrition: t(locale, 'quiz.pillarNutrition'),
+};
+
+const pillarIcons: Record<string, string> = {
+  movement: 'M13 10V3L4 14h7v7l9-11h-7z',
+  sleep: 'M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z',
+  stress: 'M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z',
+  nutrition: 'M12 8.25v-1.5m0 1.5c-1.355 0-2.697.056-4.024.166C6.845 8.51 6 9.473 6 10.608v2.513m6-4.871c1.355 0 2.697.056 4.024.166C17.155 8.51 18 9.473 18 10.608v2.513M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z',
+};
+
+const quizSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Quiz',
+  name: 'Wellness Archetype Quiz',
+  description: t(locale, 'quiz.description'),
+  about: {
+    '@type': 'Thing',
+    name: 'Holistic Wellness Assessment',
+  },
+  educationalLevel: 'beginner',
+  numberOfQuestions: 10,
+});
+
+const breadcrumbSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: t(locale, 'common.home'), item: 'https://rooted-glow.com/' },
+    { '@type': 'ListItem', position: 2, name: t(locale, 'footer.wellnessQuiz'), item: 'https://rooted-glow.com/quiz/' },
+  ],
+});
+---
+
+<Base
+  title={t(locale, 'quiz.title')}
+  description={t(locale, 'quiz.description')}
+  jsonLd={[quizSchema, breadcrumbSchema]}
+  locale={locale}
+>
+  <Header locale={locale} />
+
+  <main class="flex-1">
+    <!-- Breadcrumb -->
+    <div class="max-w-3xl mx-auto px-5 sm:px-8 pt-8">
+      <nav class="flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.1em] text-sage-400">
+        <a href={localePath('/', locale)} class="hover:text-sage-600 transition-colors">{t(locale, 'common.home')}</a>
+        <span>/</span>
+        <span class="text-sage-600">{t(locale, 'nav.quiz')}</span>
+      </nav>
+    </div>
+
+    <div id="quiz-app" class="max-w-3xl mx-auto px-5 sm:px-8 py-12">
+
+      <!-- Phase 1: Intro -->
+      <section id="phase-intro" class="text-center animate-fade-in-up">
+        <span class="block text-[11px] font-semibold uppercase tracking-[0.2em] text-sage-400 mb-4">{t(locale, 'quiz.assessment')}</span>
+        <h1 class="font-heading text-4xl sm:text-5xl text-charcoal tracking-tight mb-4">{t(locale, 'quiz.title')}</h1>
+        <p class="text-sage-500 leading-relaxed max-w-lg mx-auto mb-3" set:html={t(locale, 'quiz.intro')} />
+        <p class="text-xs text-sage-400 mb-8">{t(locale, 'quiz.duration')}</p>
+        <button
+          id="btn-start"
+          class="inline-flex items-center gap-2 px-8 py-3.5 bg-sage-700 text-cream text-sm font-semibold rounded-full hover:bg-sage-800 transition-colors"
+        >
+          {t(locale, 'quiz.startQuiz')}
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+        </button>
+      </section>
+
+      <!-- Phase 2: Questions -->
+      <section id="phase-questions" class="hidden">
+        <!-- Progress bar -->
+        <div class="mb-10">
+          <div class="flex items-center justify-between mb-3">
+            <span id="progress-label" class="text-[11px] font-semibold uppercase tracking-[0.12em] text-sage-400">Question 1 of 14</span>
+            <span id="progress-pillar" class="text-[11px] font-medium uppercase tracking-[0.08em] text-warm-500">Movement</span>
+          </div>
+          <div class="flex gap-1">
+            {quizQuestions.map((_, i) => (
+              <div
+                class="quiz-progress-seg h-1.5 rounded-full bg-sage-200/60 flex-1 transition-colors duration-300"
+                data-index={i}
+              ></div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Question cards (pre-rendered, toggled) -->
+        {quizQuestions.map((q, qi) => (
+          <div
+            class={`quiz-question ${qi === 0 ? '' : 'hidden'}`}
+            data-question-index={qi}
+            data-question-id={q.id}
+            data-pillar={q.pillar}
+          >
+            <h2 class="font-heading text-2xl sm:text-3xl text-charcoal tracking-tight mb-8">{q.question}</h2>
+            <div class="space-y-3">
+              {q.options.map((opt, oi) => (
+                <button
+                  class="quiz-option w-full text-left p-5 rounded-xl border border-sage-200/60 bg-white hover:border-sage-300 hover:shadow-md transition-all duration-200 group"
+                  data-score={opt.score}
+                  data-option-index={oi}
+                >
+                  <div class="flex items-start gap-4">
+                    <span class="shrink-0 w-7 h-7 rounded-full border-2 border-sage-200 flex items-center justify-center text-xs font-semibold text-sage-400 group-hover:border-sage-400 transition-colors">
+                      {String.fromCharCode(65 + oi)}
+                    </span>
+                    <span class="text-sm text-sage-600 group-hover:text-charcoal transition-colors leading-relaxed pt-0.5">{opt.label}</span>
+                  </div>
+                </button>
+              ))}
+            </div>
+          </div>
+        ))}
+      </section>
+
+      <!-- Phase 3: Calculating -->
+      <section id="phase-calculating" class="hidden text-center py-20">
+        <div class="inline-flex items-center gap-3 mb-6">
+          <span class="w-2 h-2 rounded-full bg-sage-500 animate-pulse-soft"></span>
+          <span class="w-2 h-2 rounded-full bg-sage-500 animate-pulse-soft" style="animation-delay: 0.3s"></span>
+          <span class="w-2 h-2 rounded-full bg-sage-500 animate-pulse-soft" style="animation-delay: 0.6s"></span>
+        </div>
+        <h2 class="font-heading text-2xl text-charcoal mb-2">{t(locale, 'quiz.analysing')}</h2>
+        <p class="text-sm text-sage-400">{t(locale, 'quiz.matchingArchetype')}</p>
+      </section>
+
+      <!-- Phase 4: Results -->
+      <section id="phase-results" class="hidden">
+        <div class="text-center mb-12 animate-fade-in-up">
+          <span class="block text-[11px] font-semibold uppercase tracking-[0.2em] text-sage-400 mb-4">{t(locale, 'quiz.yourArchetype')}</span>
+          <h1 id="result-name" class="font-heading text-4xl sm:text-5xl text-gradient tracking-tight mb-3"></h1>
+          <p id="result-tagline" class="text-sage-500 font-medium mb-6"></p>
+          <p id="result-description" class="text-sm text-sage-500 leading-relaxed max-w-xl mx-auto"></p>
+        </div>
+
+        <!-- Pillar Scores -->
+        <div class="rounded-2xl border border-sage-200/60 bg-white p-6 sm:p-8 mb-10">
+          <h3 class="text-[11px] font-semibold uppercase tracking-[0.15em] text-sage-400 mb-6">{t(locale, 'quiz.pillarScores')}</h3>
+          <div class="space-y-5" id="score-bars">
+            {Object.keys(pillarLabels).map((pillar) => (
+              <div class="score-bar-row" data-pillar={pillar}>
+                <div class="flex items-center justify-between mb-2">
+                  <div class="flex items-center gap-2">
+                    <svg class="w-4 h-4 text-sage-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d={pillarIcons[pillar]} />
+                    </svg>
+                    <span class="text-sm font-medium text-charcoal">{pillarLabels[pillar]}</span>
+                  </div>
+                  <span class="score-value text-sm font-semibold text-sage-600">0</span>
+                </div>
+                <div class="h-2.5 rounded-full bg-sage-100 overflow-hidden">
+                  <div class="score-fill h-full rounded-full bg-sage-500 animate-grow-bar" style="--target-width: 0%; width: 0%"></div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Strengths & Growth -->
+        <div class="grid sm:grid-cols-2 gap-5 mb-10">
+          <div class="rounded-2xl border border-sage-200/60 bg-white p-6">
+            <h3 class="text-[11px] font-semibold uppercase tracking-[0.15em] text-sage-400 mb-4">{t(locale, 'quiz.strengths')}</h3>
+            <ul id="result-strengths" class="space-y-2"></ul>
+          </div>
+          <div class="rounded-2xl border border-sage-200/60 bg-white p-6">
+            <h3 class="text-[11px] font-semibold uppercase tracking-[0.15em] text-sage-400 mb-4">{t(locale, 'quiz.growthAreas')}</h3>
+            <ul id="result-growth" class="space-y-2"></ul>
+          </div>
+        </div>
+
+        <!-- 7-Day Quick Start -->
+        <div class="rounded-2xl border border-sage-200/60 bg-white p-6 sm:p-8 mb-10">
+          <h3 class="font-heading text-xl text-charcoal mb-1">{t(locale, 'quiz.quickStart')}</h3>
+          <p class="text-xs text-sage-400 mb-5">{t(locale, 'quiz.quickStartDesc')}</p>
+          <ol id="result-plan" class="space-y-3"></ol>
+        </div>
+
+
+        <!-- AI Personalised Plan -->
+        <div id="ai-plan-section" class="rounded-2xl border border-sage-200/60 bg-white p-6 sm:p-8 mb-10 hidden">
+          <div class="flex items-center justify-between mb-1">
+            <h3 class="font-heading text-xl text-charcoal">{t(locale, 'quiz.aiPlan')}</h3>
+            <span class="text-[10px] font-medium uppercase tracking-[0.1em] text-sage-300">{t(locale, 'quiz.aiPlanPowered')}</span>
+          </div>
+          <p class="text-xs text-sage-400 mb-5">{t(locale, 'quiz.aiPlanDesc')}</p>
+
+          <!-- Button state -->
+          <div id="ai-plan-trigger" class="text-center">
+            <button
+              id="btn-ai-plan"
+              class="inline-flex items-center gap-2 px-7 py-3 bg-sage-700 text-cream text-sm font-semibold rounded-full hover:bg-sage-800 transition-colors"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 0 0-2.455 2.456Z" /></svg>
+              {t(locale, 'quiz.generateAiPlan')}
+            </button>
+            <p class="text-[10px] text-sage-300 mt-2">{t(locale, 'quiz.aiPlanFree')}</p>
+          </div>
+
+          <!-- Loading state -->
+          <div id="ai-plan-loading" class="hidden text-center py-6">
+            <div class="inline-flex items-center gap-3 mb-3">
+              <span class="w-2 h-2 rounded-full bg-sage-500 animate-pulse-soft"></span>
+              <span class="w-2 h-2 rounded-full bg-sage-500 animate-pulse-soft" style="animation-delay: 0.3s"></span>
+              <span class="w-2 h-2 rounded-full bg-sage-500 animate-pulse-soft" style="animation-delay: 0.6s"></span>
+            </div>
+            <p class="text-sm text-sage-400">{t(locale, 'quiz.aiPlanLoading')}</p>
+          </div>
+
+          <!-- Result state -->
+          <div id="ai-plan-content" class="hidden prose prose-sm max-w-none">
+          </div>
+
+          <!-- Error state -->
+          <div id="ai-plan-error" class="hidden text-center py-4">
+            <p class="text-sm text-sage-500 mb-3">{t(locale, 'quiz.aiPlanError')}</p>
+            <button id="btn-ai-retry" class="text-sm text-sage-600 underline underline-offset-4 decoration-sage-300 hover:text-sage-800 transition-colors">{t(locale, 'quiz.tryAgain')}</button>
+          </div>
+        </div>
+
+        <!-- Recommended Reading -->
+        <div class="mb-10">
+          <h3 class="font-heading text-xl text-charcoal mb-1">{t(locale, 'quiz.recommendedReading')}</h3>
+          <p class="text-xs text-sage-400 mb-6">{t(locale, 'quiz.recommendedDesc')}</p>
+          <div id="result-articles" class="grid gap-6 sm:grid-cols-2"></div>
+        </div>
+
+        <!-- Also Recommended -->
+        <div class="mb-10" id="also-recommended-section">
+          <h3 class="text-[11px] font-semibold uppercase tracking-[0.15em] text-sage-400 mb-4">{t(locale, 'quiz.alsoWorthReading')}</h3>
+          <div id="result-also" class="grid gap-4 sm:grid-cols-2"></div>
+        </div>
+
+        <!-- Share + CTA -->
+        <div class="rounded-2xl bg-sage-50 p-8 text-center mb-10">
+          <h3 class="font-heading text-xl text-charcoal mb-2">{t(locale, 'quiz.shareResult')}</h3>
+          <p class="text-xs text-sage-400 mb-5">{t(locale, 'quiz.shareDesc')}</p>
+          <div class="flex items-center justify-center gap-3" id="share-buttons">
+            <button id="share-copy" class="inline-flex items-center gap-2 px-5 py-2.5 bg-white border border-sage-200/60 text-sm text-sage-600 rounded-full hover:border-sage-300 hover:shadow-sm transition-all">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" /></svg>
+              {t(locale, 'quiz.copyLink')}
+            </button>
+            <a id="share-twitter" href="#" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-5 py-2.5 bg-white border border-sage-200/60 text-sm text-sage-600 rounded-full hover:border-sage-300 hover:shadow-sm transition-all">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg>
+              {t(locale, 'common.share')}
+            </a>
+          </div>
+        </div>
+
+        <!-- Retake -->
+        <div class="text-center">
+          <button id="btn-retake" class="text-sm text-sage-400 hover:text-sage-600 transition-colors underline underline-offset-4 decoration-sage-300">
+            {t(locale, 'quiz.retakeQuiz')}
+          </button>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <Footer locale={locale} />
+  <BackToTop locale={locale} />
+</Base>
+
+<script is:inline define:vars={{ quizQuestions, pillarMaxScores, archetypes, pillarLabels, postMapData: Object.fromEntries(allPosts.map(p => [p.id, { title: p.data.title, description: p.data.description, date: p.data.date, category: p.data.category, slug: p.id, image: p.data.image, type: p.data.type }])) }}>
+(function() {
+  'use strict';
+
+  const STORAGE_KEY = 'rg-quiz';
+  const TOTAL = quizQuestions.length;
+
+  // State
+  let currentQ = 0;
+  let answers = {};
+  let lastNorm = null;
+  let lastArch = null;
+
+  // DOM refs
+  const phaseIntro = document.getElementById('phase-intro');
+  const phaseQuestions = document.getElementById('phase-questions');
+  const phaseCalc = document.getElementById('phase-calculating');
+  const phaseResults = document.getElementById('phase-results');
+  const progressLabel = document.getElementById('progress-label');
+  const progressPillar = document.getElementById('progress-pillar');
+  const questionEls = document.querySelectorAll('.quiz-question');
+  const progressSegs = document.querySelectorAll('.quiz-progress-seg');
+
+  const pillarNames = pillarLabels;
+
+  // Restore state
+  function loadState() {
+    try {
+      const saved = sessionStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        const state = JSON.parse(saved);
+        currentQ = state.currentQ || 0;
+        answers = state.answers || {};
+        return true;
+      }
+    } catch(e) {}
+    return false;
+  }
+
+  function saveState() {
+    sessionStorage.setItem(STORAGE_KEY, JSON.stringify({ currentQ, answers }));
+  }
+
+  function clearState() {
+    sessionStorage.removeItem(STORAGE_KEY);
+  }
+
+  // Phase transitions
+  function showPhase(phase) {
+    [phaseIntro, phaseQuestions, phaseCalc, phaseResults].forEach(el => el.classList.add('hidden'));
+    phase.classList.remove('hidden');
+  }
+
+  // Show specific question
+  function showQuestion(index, direction) {
+    questionEls.forEach((el, i) => {
+      if (i === index) {
+        el.classList.remove('hidden');
+        el.classList.remove('animate-slide-out-left');
+        el.classList.add('animate-slide-in-right');
+      } else {
+        el.classList.add('hidden');
+        el.classList.remove('animate-slide-in-right');
+      }
+    });
+
+    // Update progress
+    progressLabel.textContent = 'Question ' + (index + 1) + ' of ' + TOTAL;
+    progressPillar.textContent = pillarNames[quizQuestions[index].pillar];
+
+    progressSegs.forEach((seg, i) => {
+      if (i < index) {
+        seg.classList.remove('bg-sage-200/60');
+        seg.classList.add('bg-sage-500');
+      } else if (i === index) {
+        seg.classList.remove('bg-sage-200/60');
+        seg.classList.add('bg-sage-400');
+      } else {
+        seg.classList.remove('bg-sage-500', 'bg-sage-400');
+        seg.classList.add('bg-sage-200/60');
+      }
+    });
+
+    // Mark previously selected option
+    const qEl = questionEls[index];
+    const qId = quizQuestions[index].id;
+    qEl.querySelectorAll('.quiz-option').forEach(opt => {
+      if (answers[qId] !== undefined && parseInt(opt.dataset.score) === answers[qId]) {
+        opt.classList.add('border-sage-500', 'bg-sage-50');
+      } else {
+        opt.classList.remove('border-sage-500', 'bg-sage-50');
+      }
+    });
+  }
+
+  // Scoring
+  function calculateScores() {
+    const scores = { movement: 0, sleep: 0, stress: 0, nutrition: 0 };
+    for (const q of quizQuestions) {
+      if (answers[q.id] !== undefined) {
+        scores[q.pillar] += answers[q.id];
+      }
+    }
+    return scores;
+  }
+
+  function normaliseScores(raw) {
+    return {
+      movement: Math.round((raw.movement / pillarMaxScores.movement) * 100),
+      sleep: Math.round((raw.sleep / pillarMaxScores.sleep) * 100),
+      stress: Math.round((raw.stress / pillarMaxScores.stress) * 100),
+      nutrition: Math.round((raw.nutrition / pillarMaxScores.nutrition) * 100),
+    };
+  }
+
+  function determineArchetype(n) {
+    const avg = (n.movement + n.sleep + n.stress + n.nutrition) / 4;
+    if (n.movement >= 60 && n.sleep >= 60 && n.stress >= 60 && n.nutrition >= 60) return findArch('balanced-root');
+    if (avg < 40) return findArch('fresh-starter');
+    if (n.sleep < 40 && n.movement >= 50 && n.stress >= 50 && n.nutrition >= 50) return findArch('sleep-seeker');
+    if (n.stress < 40 && n.movement >= 50 && n.sleep >= 50 && n.nutrition >= 50) return findArch('stress-survivor');
+    if ((n.nutrition >= 60 || n.movement >= 60) && (n.sleep < 45 || n.stress < 45)) return findArch('restless-achiever');
+    if (n.movement >= 60 && n.nutrition >= 60) return findArch('grounded-mover');
+    if (n.sleep >= 60 && n.nutrition >= 60) return findArch('restful-nurturer');
+    if (n.stress >= 60 && n.movement >= 60) return findArch('calm-explorer');
+    return findClosest(n);
+  }
+
+  function findArch(slug) {
+    return archetypes.find(a => a.slug === slug);
+  }
+
+  function findClosest(n) {
+    const profiles = {
+      'balanced-root': { movement: 70, sleep: 70, stress: 70, nutrition: 70 },
+      'grounded-mover': { movement: 80, sleep: 40, stress: 40, nutrition: 80 },
+      'restful-nurturer': { movement: 35, sleep: 80, stress: 50, nutrition: 80 },
+      'calm-explorer': { movement: 75, sleep: 45, stress: 80, nutrition: 45 },
+      'restless-achiever': { movement: 70, sleep: 30, stress: 30, nutrition: 65 },
+      'sleep-seeker': { movement: 55, sleep: 20, stress: 55, nutrition: 55 },
+      'stress-survivor': { movement: 55, sleep: 55, stress: 20, nutrition: 55 },
+      'fresh-starter': { movement: 25, sleep: 25, stress: 25, nutrition: 25 },
+    };
+    let best = 'fresh-starter';
+    let bestDist = Infinity;
+    for (const [slug, p] of Object.entries(profiles)) {
+      const d = Math.sqrt((n.movement-p.movement)**2 + (n.sleep-p.sleep)**2 + (n.stress-p.stress)**2 + (n.nutrition-p.nutrition)**2);
+      if (d < bestDist) { bestDist = d; best = slug; }
+    }
+    return findArch(best);
+  }
+
+  // Render results
+  function renderResults(norm, arch) {
+    document.getElementById('result-name').textContent = arch.name;
+    document.getElementById('result-tagline').textContent = arch.tagline;
+    document.getElementById('result-description').textContent = arch.description;
+
+    // Score bars
+    document.querySelectorAll('.score-bar-row').forEach(row => {
+      const pillar = row.dataset.pillar;
+      const val = norm[pillar];
+      row.querySelector('.score-value').textContent = val + '%';
+      const fill = row.querySelector('.score-fill');
+      fill.style.setProperty('--target-width', val + '%');
+      fill.style.width = val + '%';
+    });
+
+    // Strengths
+    const strengthsEl = document.getElementById('result-strengths');
+    strengthsEl.innerHTML = arch.strengths.map(s =>
+      '<li class="flex items-start gap-2"><svg class="w-4 h-4 text-sage-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" /></svg><span class="text-sm text-sage-600">' + s + '</span></li>'
+    ).join('');
+
+    // Growth areas
+    const growthEl = document.getElementById('result-growth');
+    growthEl.innerHTML = arch.growthAreas.map(g =>
+      '<li class="flex items-start gap-2"><svg class="w-4 h-4 text-warm-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" /></svg><span class="text-sm text-sage-600">' + g + '</span></li>'
+    ).join('');
+
+    // 7-day plan
+    const planEl = document.getElementById('result-plan');
+    planEl.innerHTML = arch.quickStartPlan.map((step, i) =>
+      '<li class="flex items-start gap-3"><span class="shrink-0 w-6 h-6 rounded-full bg-sage-100 flex items-center justify-center text-[10px] font-bold text-sage-500">' + (i+1) + '</span><span class="text-sm text-sage-600 leading-relaxed pt-0.5">' + step + '</span></li>'
+    ).join('');
+
+    // Top articles
+    const articlesEl = document.getElementById('result-articles');
+    articlesEl.innerHTML = arch.topArticles.map(slug => {
+      const post = postMapData[slug];
+      if (!post) return '';
+      return renderArticleCard(post, true);
+    }).join('');
+
+    // Also recommended
+    const alsoEl = document.getElementById('result-also');
+    const alsoCards = arch.alsoRecommended.map(slug => {
+      const post = postMapData[slug];
+      if (!post) return '';
+      return renderArticleCard(post, false);
+    }).join('');
+    alsoEl.innerHTML = alsoCards;
+
+    // Share links
+    const resultUrl = 'https://rooted-glow.com/quiz/results/' + arch.slug + '/';
+    const shareText = arch.ogTitle + '. Take the Rooted Glow Wellness Quiz to discover yours!';
+
+    document.getElementById('share-copy').addEventListener('click', function() {
+      navigator.clipboard.writeText(resultUrl).then(() => {
+        this.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" /></svg> Copied!';
+        setTimeout(() => {
+          this.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" /></svg> Copy Link';
+        }, 2000);
+      });
+    });
+
+    document.getElementById('share-twitter').href = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(shareText) + '&url=' + encodeURIComponent(resultUrl);
+  }
+
+  function renderArticleCard(post, featured) {
+    const catLabels = { nutrition: 'Nutrition', movement: 'Movement', 'k-beauty': 'K-Beauty', 'natural-health': 'Natural Health' };
+    const typeLabels = { hub: 'Essential Guide', guide: 'Guide', listicle: 'List', review: 'Review', routine: 'Routine' };
+    const date = new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+    const imgHtml = post.image ? '<div class="overflow-hidden rounded-xl mb-4 bg-sage-100 aspect-[3/2]"><img src="' + post.image + '" alt="' + post.title.replace(/"/g, '&quot;') + '" class="w-full h-full object-cover" loading="lazy" width="600" height="400" /></div>' : '';
+
+    return '<a href="/' + post.slug + '/" class="group block">' +
+      imgHtml +
+      '<div class="flex items-center gap-2 mb-2">' +
+        '<span class="text-[11px] font-semibold uppercase tracking-[0.12em] text-sage-400">' + (catLabels[post.category] || post.category) + '</span>' +
+        (post.type ? '<span class="w-1 h-1 rounded-full bg-sage-300"></span><span class="text-[11px] font-medium uppercase tracking-[0.08em] text-warm-500">' + (typeLabels[post.type] || post.type) + '</span>' : '') +
+      '</div>' +
+      '<h4 class="font-heading text-lg text-charcoal group-hover:text-sage-700 transition-colors mb-1.5 leading-tight tracking-tight">' + post.title + '</h4>' +
+      '<p class="text-xs text-sage-500 leading-relaxed line-clamp-2 mb-2">' + post.description + '</p>' +
+      '<time class="text-[10px] font-medium uppercase tracking-[0.08em] text-sage-300">' + date + '</time>' +
+    '</a>';
+  }
+
+  // Event handlers
+  document.getElementById('btn-start').addEventListener('click', function() {
+    showPhase(phaseQuestions);
+    showQuestion(0, 'forward');
+    saveState();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // Option click handlers
+  document.querySelectorAll('.quiz-option').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const qEl = this.closest('.quiz-question');
+      const qIndex = parseInt(qEl.dataset.questionIndex);
+      const qId = parseInt(qEl.dataset.questionId);
+      const score = parseInt(this.dataset.score);
+
+      // Mark selected
+      qEl.querySelectorAll('.quiz-option').forEach(o => o.classList.remove('border-sage-500', 'bg-sage-50'));
+      this.classList.add('border-sage-500', 'bg-sage-50');
+
+      answers[qId] = score;
+      currentQ = qIndex + 1;
+      saveState();
+
+      // Auto-advance after brief delay
+      setTimeout(() => {
+        if (currentQ < TOTAL) {
+          showQuestion(currentQ, 'forward');
+        } else {
+          // All done — show calculating
+          showPhase(phaseCalc);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+
+          setTimeout(() => {
+            const raw = calculateScores();
+            const norm = normaliseScores(raw);
+            const arch = determineArchetype(norm);
+
+            lastNorm = norm;
+            lastArch = arch;
+            showPhase(phaseResults);
+            renderResults(norm, arch);
+            initAiPlan();
+            clearState();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }, 1500);
+        }
+      }, 400);
+    });
+  });
+
+  // Retake
+  document.getElementById('btn-retake').addEventListener('click', function() {
+    currentQ = 0;
+    answers = {};
+    clearState();
+    showPhase(phaseIntro);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+
+  // === AI Plan ===
+  const AI_ENDPOINT = '/api/ai-plan';
+
+  function initAiPlan() {
+    const section = document.getElementById('ai-plan-section');
+    // Probe the endpoint to see if it exists (HEAD or OPTIONS)
+    fetch(AI_ENDPOINT, { method: 'OPTIONS' })
+      .then(r => { if (r.ok || r.status === 405) section.classList.remove('hidden'); })
+      .catch(() => { /* endpoint not available, keep hidden */ });
+  }
+
+  function requestAiPlan() {
+    const trigger = document.getElementById('ai-plan-trigger');
+    const loading = document.getElementById('ai-plan-loading');
+    const contentEl = document.getElementById('ai-plan-content');
+    const errorEl = document.getElementById('ai-plan-error');
+
+    trigger.classList.add('hidden');
+    loading.classList.remove('hidden');
+    contentEl.classList.add('hidden');
+    errorEl.classList.add('hidden');
+    contentEl.innerHTML = '';
+
+    fetch(AI_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ scores: lastNorm, archetype: lastArch, answers: answers }),
+    })
+    .then(response => {
+      if (!response.ok) throw new Error('API error');
+      loading.classList.add('hidden');
+      contentEl.classList.remove('hidden');
+
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+      let buffer = '';
+      let markdown = '';
+
+      function pump() {
+        return reader.read().then(({ done, value }) => {
+          if (done) {
+            // Final render with full markdown
+            contentEl.innerHTML = renderMarkdown(markdown);
+            return;
+          }
+          buffer += decoder.decode(value, { stream: true });
+          const lines = buffer.split('\n');
+          buffer = lines.pop() || '';
+
+          for (const line of lines) {
+            const trimmed = line.trim();
+            if (!trimmed || !trimmed.startsWith('data: ')) continue;
+            const data = trimmed.slice(6);
+            if (data === '[DONE]') continue;
+            try {
+              const parsed = JSON.parse(data);
+              if (parsed.content) {
+                markdown += parsed.content;
+                contentEl.innerHTML = renderMarkdown(markdown);
+              }
+            } catch {}
+          }
+          return pump();
+        });
+      }
+      return pump();
+    })
+    .catch(() => {
+      loading.classList.add('hidden');
+      errorEl.classList.remove('hidden');
+    });
+  }
+
+  function renderMarkdown(md) {
+    // Simple markdown to HTML (headings, bold, bullets, paragraphs)
+    return md
+      .replace(/^### (.+)$/gm, '<h4 class="font-heading text-base text-charcoal mt-4 mb-1">$1</h4>')
+      .replace(/^## (.+)$/gm, '<h3 class="font-heading text-lg text-charcoal mt-5 mb-2">$1</h3>')
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/^- (.+)$/gm, '<li class="text-sm text-sage-600 ml-4 list-disc leading-relaxed">$1</li>')
+      .replace(/(<li[^>]*>.*<\/li>\n?)+/g, function(m) { return '<ul class="space-y-1 mb-3">' + m + '</ul>'; })
+      .replace(/^(?!<[hulo])(\S.+)$/gm, '<p class="text-sm text-sage-600 leading-relaxed mb-3">$1</p>');
+  }
+
+  document.getElementById('btn-ai-plan')?.addEventListener('click', requestAiPlan);
+  document.getElementById('btn-ai-retry')?.addEventListener('click', requestAiPlan);
+
+  // Init: restore state if mid-quiz
+  if (loadState() && currentQ > 0 && currentQ < TOTAL) {
+    showPhase(phaseQuestions);
+    showQuestion(currentQ, 'forward');
+  }
+})();
+</script>

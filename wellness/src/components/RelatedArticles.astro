@@ -1,17 +1,19 @@
 ---
 import ArticleCard from './ArticleCard.astro';
 import { getCollection } from 'astro:content';
+import { t, type Locale } from '../i18n/utils';
 
 interface Props {
   currentSlug: string;
   category: string;
   limit?: number;
+  locale?: Locale;
 }
 
-const { currentSlug, category, limit = 3 } = Astro.props;
+const { currentSlug, category, limit = 3, locale = 'en' } = Astro.props;
 
 const allPosts = await getCollection('blog', ({ data }) => {
-  return data.category === category && !data.draft;
+  return data.category === category && !data.draft && data.locale === locale;
 });
 
 const related = allPosts
@@ -22,7 +24,7 @@ const related = allPosts
 
 {related.length > 0 && (
   <section class="mt-16 pt-12 border-t border-sage-200/60">
-    <h2 class="text-[11px] font-semibold uppercase tracking-wide text-charcoal-light/50 mb-8">Keep Reading</h2>
+    <h2 class="text-[11px] font-semibold uppercase tracking-wide text-charcoal-light/50 mb-8">{t(locale, 'common.keepReading')}</h2>
     <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
       {related.map((post) => (
         <ArticleCard
@@ -33,6 +35,7 @@ const related = allPosts
           slug={post.id}
           image={post.data.image}
           type={post.data.type}
+          locale={locale}
         />
       ))}
     </div>

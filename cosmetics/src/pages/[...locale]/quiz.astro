@@ -1,0 +1,67 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import BackToTop from '../../components/BackToTop.astro';
+import { locales, defaultLocale, type Locale } from '../../i18n/locales';
+import { t } from '../../i18n/utils';
+
+export function getStaticPaths() {
+  return locales.map(l => ({
+    params: { locale: l === defaultLocale ? undefined : l },
+    props: { locale: l },
+  }));
+}
+
+const { locale } = Astro.props as { locale: Locale };
+---
+
+<Base title={`${t(locale, 'quiz.title')} | Glow Coded`} description={t(locale, 'quiz.description')} locale={locale}>
+  <Header locale={locale} />
+  <main class="flex-1 bg-cream">
+    <section class="max-w-4xl mx-auto px-4 sm:px-8 py-10">
+      <div class="text-center mb-8 animate-fade-in">
+        <span class="block text-[11px] font-semibold uppercase tracking-[0.2em] text-plum-300 mb-2">{t(locale, 'quiz.personalized')}</span>
+        <h1 class="font-heading text-4xl sm:text-5xl text-charcoal tracking-tight mb-3">{t(locale, 'quiz.title')}</h1>
+        <p class="text-base text-plum-400 max-w-lg mx-auto">{t(locale, 'quiz.description')}</p>
+      </div>
+
+      <div id="quiz-container" class="rounded-2xl overflow-hidden bg-white border border-rose-200/40 shadow-sm animate-fade-in-up stagger-1">
+        <iframe
+          id="quiz-iframe"
+          src="https://mirai-skin-ai.onrender.com/?shop=9dkd2w-g3.myshopify.com&currency=USD&embedded=true&inline=true"
+          class="w-full border-0 block"
+          style="height: 680px;"
+          allow="camera"
+          title={t(locale, 'quiz.title')}
+        ></iframe>
+      </div>
+
+      <p class="text-center text-[11px] text-plum-300 mt-4">
+        {t(locale, 'quiz.poweredByAi')}
+      </p>
+    </section>
+  </main>
+  <Footer locale={locale} />
+  <BackToTop />
+
+  <script is:inline>
+    (function() {
+      var iframe = document.getElementById('quiz-iframe');
+      var container = document.getElementById('quiz-container');
+
+      window.addEventListener('message', function(e) {
+        if (!e.data || !e.data.type) return;
+
+        if (e.data.type === 'mirai:resize' && e.data.height) {
+          var h = Math.min(Math.max(500, e.data.height), 800);
+          iframe.style.height = h + 'px';
+        }
+
+        if (e.data.type === 'mirai:scroll-top') {
+          container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    })();
+  </script>
+</Base>

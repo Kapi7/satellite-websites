@@ -1,4 +1,6 @@
 ---
+import { t, localePath, formatDateShort, type Locale } from '../i18n/utils';
+
 interface Props {
   title: string;
   description: string;
@@ -8,34 +10,33 @@ interface Props {
   image?: string;
   type?: string;
   featured?: boolean;
+  locale?: Locale;
 }
 
-const { title, description, date, category, slug, image, type, featured = false } = Astro.props;
+const { title, description, date, category, slug, image, type, featured = false, locale = 'en' } = Astro.props;
 
-const categoryLabels: Record<string, string> = {
-  'skincare': 'Skincare',
-  'ingredients': 'Ingredients',
-  'reviews': 'Reviews',
-  'how-tos': 'How-Tos',
+const categoryKeyMap: Record<string, string> = {
+  'skincare': 'categories.skincare',
+  'ingredients': 'categories.ingredients',
+  'reviews': 'categories.reviews',
+  'how-tos': 'categories.howTos',
 };
 
-const typeLabels: Record<string, string> = {
-  hub: 'Essential Guide',
-  guide: 'Guide',
-  listicle: 'List',
-  review: 'Review',
-  routine: 'Routine',
+const typeKeyMap: Record<string, string> = {
+  hub: 'types.hub',
+  guide: 'types.guide',
+  listicle: 'types.listicle',
+  review: 'types.review',
+  routine: 'types.routine',
 };
 
-const formattedDate = date.toLocaleDateString('en-US', {
-  year: 'numeric',
-  month: 'short',
-  day: 'numeric',
-});
+const categoryLabel = categoryKeyMap[category] ? t(locale, categoryKeyMap[category]) : category;
+const typeLabel = type && typeKeyMap[type] ? t(locale, typeKeyMap[type]) : type;
+const formattedDate = formatDateShort(date, locale);
 ---
 
 <article class={`group flex flex-col ${featured ? 'md:col-span-2' : ''}`}>
-  <a href={`/${slug}`} class="flex flex-col h-full">
+  <a href={localePath('/' + slug + '/', locale)} class="flex flex-col h-full">
     {image && (
       <div class={`overflow-hidden rounded-2xl mb-6 bg-rose-50 ${featured ? 'aspect-[16/9]' : 'aspect-[3/2]'}`}>
         <img
@@ -50,13 +51,13 @@ const formattedDate = date.toLocaleDateString('en-US', {
     )}
     <div class="flex items-center gap-2 mb-2">
       <span class="text-xs tracking-wide uppercase text-charcoal-light/60">
-        {categoryLabels[category] || category}
+        {categoryLabel}
       </span>
-      {type && (
+      {typeLabel && (
         <>
           <span class="w-1 h-1 rounded-full bg-charcoal-light/20"></span>
           <span class="text-xs tracking-wide uppercase text-charcoal-light/40">
-            {typeLabels[type] || type}
+            {typeLabel}
           </span>
         </>
       )}

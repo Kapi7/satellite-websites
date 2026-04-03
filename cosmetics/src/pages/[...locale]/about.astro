@@ -1,0 +1,59 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection, render } from 'astro:content';
+import { locales, defaultLocale, type Locale } from '../../i18n/locales';
+import { t } from '../../i18n/utils';
+
+export async function getStaticPaths() {
+  const paths: { params: { locale?: string }; props: { locale: Locale } }[] = [];
+
+  for (const l of locales) {
+    paths.push({
+      params: { locale: l === defaultLocale ? undefined : l },
+      props: { locale: l },
+    });
+  }
+
+  return paths;
+}
+
+const { locale } = Astro.props as { locale: Locale };
+
+// Try to find content from pages collection for this locale
+const allPages = await getCollection('pages');
+const aboutPage = allPages.find(p => p.id.includes('about') && p.data.locale === locale)
+  || allPages.find(p => p.id.includes('about') && p.data.locale === 'en');
+
+let Content: any = null;
+let pageTitle = t(locale, 'about.title');
+let pageDesc = t(locale, 'about.description');
+
+if (aboutPage) {
+  const rendered = await render(aboutPage);
+  Content = rendered.Content;
+  pageTitle = aboutPage.data.title;
+  pageDesc = aboutPage.data.description;
+}
+---
+
+<Base title={pageTitle} description={pageDesc} locale={locale}>
+  <Header locale={locale} />
+  <main class="flex-1">
+    <article class="max-w-6xl mx-auto px-5 sm:px-8 py-16">
+      <div class="max-w-3xl">
+        <span class="inline-block text-[11px] font-semibold uppercase tracking-[0.2em] text-plum-300 mb-5">{t(locale, 'about.label')}</span>
+        <h1 class="font-heading text-4xl sm:text-5xl text-charcoal tracking-tight leading-[1.1] mb-8">
+          {t(locale, 'about.heading')}
+        </h1>
+      </div>
+      <div class="max-w-3xl prose mt-8">
+        {Content ? <Content /> : (
+          <p>{pageDesc}</p>
+        )}
+      </div>
+    </article>
+  </main>
+  <Footer locale={locale} />
+</Base>

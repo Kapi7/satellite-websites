@@ -1,17 +1,24 @@
 ---
+import { t, localePath, type Locale } from '../i18n/utils';
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = 'en' } = Astro.props;
 const year = new Date().getFullYear();
 const exploreLinks = [
-  { label: 'Skincare', href: '/category/skincare' },
-  { label: 'Ingredients', href: '/category/ingredients' },
-  { label: 'Reviews', href: '/category/reviews' },
-  { label: 'How-Tos', href: '/category/how-tos' },
-  { label: 'Skin Quiz', href: '/quiz' },
+  { label: t(locale, 'categories.skincare'), href: localePath('/category/skincare/', locale) },
+  { label: t(locale, 'categories.ingredients'), href: localePath('/category/ingredients/', locale) },
+  { label: t(locale, 'categories.reviews'), href: localePath('/category/reviews/', locale) },
+  { label: t(locale, 'categories.howTos'), href: localePath('/category/how-tos/', locale) },
+  { label: t(locale, 'nav.skinQuiz'), href: localePath('/quiz/', locale) },
 ];
 const toolsLinks = [
-  { label: 'Glossary', href: '/ingredients' },
-  { label: 'Conflict Checker', href: '/ingredient-checker' },
-  { label: 'About', href: '/about' },
-  { label: 'Privacy', href: '/privacy' },
+  { label: t(locale, 'footer.glossary'), href: localePath('/ingredients/', locale) },
+  { label: t(locale, 'footer.conflictChecker'), href: localePath('/ingredient-checker/', locale) },
+  { label: t(locale, 'nav.about'), href: localePath('/about/', locale) },
+  { label: t(locale, 'footer.privacy'), href: localePath('/privacy/', locale) },
 ];
 ---
 
@@ -20,22 +27,22 @@ const toolsLinks = [
 
     <!-- Col 1: Brand -->
     <div class="md:pr-4">
-      <a href="/" class="inline-block mb-4">
+      <a href={localePath('/', locale)} class="inline-block mb-4">
         <img src="/logo.svg" alt="Glow Coded" class="h-10 w-auto" />
         <span class="font-heading text-2xl italic text-charcoal block mt-2">Glow Coded</span>
       </a>
       <p class="text-sm text-charcoal-light/60 leading-relaxed">
-        We test everything before we write about it. If it didn't work on our skin, it's not on this site.
+        {t(locale, 'footer.brandDesc')}
       </p>
       <div class="mt-6 flex items-center gap-1">
         <span class="inline-block w-8 h-[0.5px] bg-charcoal-light/20"></span>
-        <span class="text-[11px] font-heading italic text-charcoal-light/50 tracking-wide">Beauty, decoded.</span>
+        <span class="text-[11px] font-heading italic text-charcoal-light/50 tracking-wide">{t(locale, 'footer.tagline')}</span>
       </div>
     </div>
 
     <!-- Col 2: Explore -->
     <div>
-      <h4 class="text-[11px] font-heading uppercase tracking-wide text-charcoal-light/50 mb-5">Explore</h4>
+      <h4 class="text-[11px] font-heading uppercase tracking-wide text-charcoal-light/50 mb-5">{t(locale, 'footer.explore')}</h4>
       <ul class="space-y-3">
         {exploreLinks.map((link) => (
           <li>
@@ -49,7 +56,7 @@ const toolsLinks = [
 
     <!-- Col 3: Tools & Info -->
     <div>
-      <h4 class="text-[11px] font-heading uppercase tracking-wide text-charcoal-light/50 mb-5">Tools & Info</h4>
+      <h4 class="text-[11px] font-heading uppercase tracking-wide text-charcoal-light/50 mb-5">{t(locale, 'footer.toolsAndInfo')}</h4>
       <ul class="space-y-3">
         {toolsLinks.map((link) => (
           <li>
@@ -63,21 +70,21 @@ const toolsLinks = [
 
     <!-- Col 4: Newsletter -->
     <div>
-      <h4 class="text-[11px] font-heading uppercase tracking-wide text-charcoal-light/50 mb-5">Get the Glow</h4>
+      <h4 class="text-[11px] font-heading uppercase tracking-wide text-charcoal-light/50 mb-5">{t(locale, 'footer.getTheGlow')}</h4>
       <p class="text-sm text-charcoal-light/60 leading-relaxed mb-4">
-        Weekly skincare breakdowns & honest reviews. No spam, just glow.
+        {t(locale, 'footer.newsletterDesc')}
       </p>
       <form class="flex flex-col gap-3" onsubmit="return false;">
         <input
           type="email"
-          placeholder="your@email.com"
+          placeholder={t(locale, 'footer.emailPlaceholder')}
           class="w-full px-4 py-2.5 text-sm bg-white/70 border border-rose-200/60 rounded-lg text-charcoal placeholder:text-charcoal-light/50 focus:outline-none focus:ring-1 focus:ring-rose-400 focus:border-rose-400 transition-all duration-200"
         />
         <button
           type="submit"
           class="w-full px-4 py-2.5 text-sm font-heading tracking-wide bg-rose-600 text-cream rounded-lg hover:bg-rose-700 transition-colors duration-200"
         >
-          Subscribe
+          {t(locale, 'common.subscribe')}
         </button>
       </form>
     </div>
@@ -86,7 +93,7 @@ const toolsLinks = [
   <!-- Bottom Bar -->
   <div class="border-t border-rose-200/40">
     <div class="max-w-[1400px] mx-auto px-6 sm:px-12 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <span class="text-xs text-charcoal-light/50">&copy; {year} Glow Coded. All rights reserved.</span>
+      <span class="text-xs text-charcoal-light/50">&copy; {year} {t(locale, 'footer.copyright')}</span>
 
       <!-- Social Links -->
       <div class="flex items-center gap-4">

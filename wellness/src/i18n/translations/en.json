@@ -1,0 +1,146 @@
+{
+  "nav": {
+    "nutrition": "Nutrition",
+    "movement": "Movement",
+    "kBeauty": "K-Beauty",
+    "naturalHealth": "Natural Health",
+    "quiz": "Quiz",
+    "about": "About"
+  },
+  "common": {
+    "readArticle": "Read article",
+    "viewAll": "View All",
+    "backToHome": "Back to Home",
+    "subscribe": "Subscribe",
+    "share": "Share",
+    "tagged": "Tagged",
+    "home": "Home",
+    "category": "Category",
+    "keepReading": "Keep Reading",
+    "backToTop": "Back to top",
+    "toggleDarkMode": "Toggle dark mode",
+    "openMenu": "Open menu",
+    "articles": "articles",
+    "article": "article",
+    "minRead": "min read",
+    "updated": "Updated",
+    "featuredProducts": "Featured Products",
+    "shopNow": "Shop Now",
+    "popularArticles": "Popular Articles",
+    "language": "Language"
+  },
+  "home": {
+    "latest": "Latest",
+    "freshFromTheJournal": "Fresh from the Journal",
+    "explore": "Explore",
+    "topicsWeCover": "Topics We Cover",
+    "new": "New",
+    "discoverArchetype": "Discover Your\nWellness Archetype",
+    "quizCtaDesc": "10 questions across movement, sleep, stress, and nutrition. Takes 2 minutes.",
+    "takeTheQuiz": "Take the Quiz",
+    "aboutTitle": "About Rooted Glow",
+    "aboutDesc": "We write about clean eating, functional movement, K-Beauty routines, and natural health. Everything here is based on personal experience and actual research, not trends or sponsorships.",
+    "learnMore": "Learn more about us",
+    "slideWellness": "Wellness, grounded in what actually works.",
+    "slideWellnessDesc": "Clean eating, functional movement, K-Beauty routines, and natural health from people who live it.",
+    "slideTable": "From the Farmers Market to Your Table",
+    "slideTableDesc": "Seasonal, whole-food cooking that nourishes from the inside out.",
+    "slideKBeauty": "K-Beauty Routines That Actually Work",
+    "slideKBeautyDesc": "Korean skincare, simplified. Real routines from real people."
+  },
+  "footer": {
+    "brandName": "Rooted Glow",
+    "brandDesc": "We write about the food we cook, the workouts we do, and the skincare we use. No sponsors, no filler.",
+    "explore": "Explore",
+    "info": "Info",
+    "aboutUs": "About Us",
+    "privacy": "Privacy",
+    "wellnessQuiz": "Wellness Quiz",
+    "innerGlowJournal": "Inner Glow Journal",
+    "newsletterDesc": "One email a week. Recipes, routines, and the occasional K-Beauty find.",
+    "emailPlaceholder": "Your email",
+    "copyright": "Rooted Glow. All rights reserved."
+  },
+  "newsletter": {
+    "preTitle": "The Weekly Glow",
+    "title": "Worth opening on a Monday morning.",
+    "description": "Real food ideas, movement tips, and skincare picks we've tested ourselves. Comes out weekly. You can always unsubscribe."
+  },
+  "article": {
+    "editorial": "The Rooted Glow Team",
+    "expandFullScreen": "Expand Full Screen",
+    "collapse": "Collapse"
+  },
+  "categories": {
+    "nutrition": "Nutrition",
+    "movement": "Movement",
+    "kBeauty": "K-Beauty",
+    "naturalHealth": "Natural Health"
+  },
+  "categoryDescriptions": {
+    "nutrition": "Ancestral eating, whole foods, anti-seed-oil cooking, and the gut-skin connection.",
+    "movement": "Functional fitness, mobility work, walking, and outdoor activity. no gym required.",
+    "kBeauty": "Korean skincare routines, ingredient guides, layering techniques, and honest product reviews.",
+    "naturalHealth": "Sleep, stress management, adaptogens, toxin-free living, and the wellness triangle."
+  },
+  "types": {
+    "hub": "Essential Guide",
+    "guide": "Guide",
+    "listicle": "List",
+    "review": "Review",
+    "routine": "Routine"
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "heading": "Page Not Found",
+    "message": "It looks like this page has wandered off the path. No worries, there's plenty to explore back home.",
+    "description": "The page you're looking for doesn't exist. Browse our latest articles on nutrition, movement, K-Beauty, and natural health."
+  },
+  "quiz": {
+    "assessment": "Wellness Assessment",
+    "title": "Discover Your Wellness Archetype",
+    "description": "Discover your wellness archetype across movement, sleep, stress, and nutrition. 10 questions, 2 minutes, personalised results.",
+    "intro": "10 questions across movement, sleep, stress, and nutrition. No right or wrong answers, just honest ones.",
+    "duration": "Takes about 2 minutes",
+    "startQuiz": "Start the Quiz",
+    "questionOf": "Question {current} of {total}",
+    "analysing": "Analysing your responses...",
+    "matchingArchetype": "Matching you with your wellness archetype",
+    "yourArchetype": "Your Archetype",
+    "pillarScores": "Your Pillar Scores",
+    "strengths": "Your Strengths",
+    "growthAreas": "Growth Areas",
+    "quickStart": "Your 7-Day Quick Start",
+    "quickStartDesc": "Small steps, real progress. Start today.",
+    "aiPlan": "Your Personalised AI Plan",
+    "aiPlanPowered": "Powered by AI",
+    "aiPlanDesc": "A detailed 7-day plan tailored to your exact scores and archetype.",
+    "generateAiPlan": "Generate My AI Plan",
+    "aiPlanFree": "Free, takes about 10 seconds",
+    "aiPlanLoading": "Creating your personalised plan...",
+    "aiPlanError": "Couldn't generate your AI plan right now.",
+    "tryAgain": "Try again",
+    "recommendedReading": "Recommended Reading",
+    "recommendedDesc": "Articles picked for your archetype",
+    "alsoWorthReading": "Also Worth Reading",
+    "shareResult": "Share Your Result",
+    "shareDesc": "Let others discover their archetype too",
+    "copyLink": "Copy Link",
+    "retakeQuiz": "Retake the quiz",
+    "pillarMovement": "Movement",
+    "pillarSleep": "Sleep",
+    "pillarStress": "Stress",
+    "pillarNutrition": "Nutrition"
+  },
+  "about": {
+    "label": "About",
+    "title": "About Us",
+    "heading": "Real people, real routines, real results.",
+    "description": "We're wellness enthusiasts and K-Beauty nerds writing about what we actually do, eat, and use."
+  },
+  "privacy": {
+    "label": "Legal",
+    "title": "Privacy Policy",
+    "description": "How Rooted Glow handles your data. short version: we barely collect any."
+  }
+}
