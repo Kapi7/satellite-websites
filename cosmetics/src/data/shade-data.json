@@ -1,0 +1,123 @@
+{
+  "cushions": [
+    {
+      "id": "red",
+      "name": "Mask Fit Red Cushion",
+      "coverage": "medium-full",
+      "finish": "semi-matte",
+      "spf": "40 PA++",
+      "shadeCount": 45,
+      "bestFor": ["all", "combination", "normal"],
+      "image": "/images/products/tirtir-red-cushion.jpg",
+      "url": "https://mirai-skin.com/products/tirtir-mask-fit-red-cushion-spf40-pa-18g-45shades"
+    },
+    {
+      "id": "crystal",
+      "name": "Crystal Mesh Cushion",
+      "coverage": "light-medium",
+      "finish": "dewy",
+      "spf": "50+ PA++++",
+      "shadeCount": 15,
+      "bestFor": ["dry"],
+      "image": "/images/products/tirtir-crystal-mesh.jpg",
+      "url": "https://mirai-skin.com/products/tirtir-mask-fit-crystal-mesh-cushion"
+    },
+    {
+      "id": "allcover",
+      "name": "All Cover Cushion",
+      "coverage": "full",
+      "finish": "matte",
+      "spf": "50+ PA++++",
+      "shadeCount": 15,
+      "bestFor": ["oily"],
+      "image": "/images/products/tirtir-all-cover.jpg",
+      "url": "https://mirai-skin.com/products/tirtir-mask-fit-all-cover-cushion"
+    },
+    {
+      "id": "aura",
+      "name": "Aura Cushion",
+      "coverage": "light",
+      "finish": "natural-glow",
+      "spf": "30 PA++",
+      "shadeCount": 20,
+      "bestFor": ["sensitive", "normal"],
+      "image": "/images/products/tirtir-aura.jpg",
+      "url": "https://mirai-skin.com/products/tirtir-mask-fit-aura-cushion"
+    },
+    {
+      "id": "aifilter",
+      "name": "AI Filter Cushion",
+      "coverage": "medium",
+      "finish": "blurring",
+      "spf": "50+ PA++++",
+      "shadeCount": 25,
+      "bestFor": ["combination", "normal"],
+      "image": "/images/products/tirtir-ai-filter.jpg",
+      "url": "https://mirai-skin.com/products/tirtir-mask-fit-ai-filter-cushion"
+    }
+  ],
+  "undertones": [
+    {"id": "warm", "label": "Warm", "description": "Golden, peachy, or yellow tones. Gold jewelry looks better.", "color": "#F5D6A7"},
+    {"id": "cool", "label": "Cool", "description": "Pink, red, or bluish tones. Silver jewelry looks better.", "color": "#E8C4D0"},
+    {"id": "neutral", "label": "Neutral", "description": "No strong pull to warm or cool. Both gold and silver work.", "color": "#E8D5C4"},
+    {"id": "olive", "label": "Olive", "description": "Greenish or grayish undertone. Common in Mediterranean and Asian skin.", "color": "#C9BFA0"}
+  ],
+  "depths": [
+    {"id": "fair", "label": "Fair", "range": "11-15", "color": "#F5E1D0"},
+    {"id": "light", "label": "Light", "range": "17-21", "color": "#EDD3B8"},
+    {"id": "medium", "label": "Medium", "range": "23-27", "color": "#D4A574"},
+    {"id": "tan", "label": "Tan", "range": "29-33", "color": "#B8845A"},
+    {"id": "deep", "label": "Deep", "range": "35-45", "color": "#8B5E3C"}
+  ],
+  "skinTypes": [
+    {"id": "oily", "label": "Oily", "icon": "droplet"},
+    {"id": "dry", "label": "Dry", "icon": "sun"},
+    {"id": "combination", "label": "Combination", "icon": "circle-half"},
+    {"id": "normal", "label": "Normal", "icon": "check"},
+    {"id": "sensitive", "label": "Sensitive", "icon": "heart"}
+  ],
+  "coveragePrefs": [
+    {"id": "light", "label": "Light / No-makeup look"},
+    {"id": "medium", "label": "Medium / Natural"},
+    {"id": "full", "label": "Full / Maximum coverage"}
+  ],
+  "shadeMap": {
+    "fair-warm":   {"shade": "17W", "note": "Fair with golden undertone"},
+    "fair-cool":   {"shade": "15C", "note": "Fair with pink undertone"},
+    "fair-neutral": {"shade": "17N", "note": "Fair with balanced undertone"},
+    "fair-olive":  {"shade": "17N", "note": "Fair olive — try neutral shades"},
+    "light-warm":  {"shade": "21W", "note": "Light with golden/peachy warmth"},
+    "light-cool":  {"shade": "21C", "note": "Light with pink undertone"},
+    "light-neutral": {"shade": "21N", "note": "Classic light neutral — most popular shade"},
+    "light-olive": {"shade": "23N", "note": "Light olive — between light and medium neutral"},
+    "medium-warm": {"shade": "25W", "note": "Medium with warm golden tone"},
+    "medium-cool": {"shade": "25C", "note": "Medium with rosy undertone"},
+    "medium-neutral": {"shade": "25N", "note": "Medium neutral — versatile everyday shade"},
+    "medium-olive": {"shade": "27N", "note": "Medium olive — slightly deeper neutral"},
+    "tan-warm":    {"shade": "30W", "note": "Tan with rich warm undertone"},
+    "tan-cool":    {"shade": "30C", "note": "Tan with rosy-brown undertone"},
+    "tan-neutral": {"shade": "31N", "note": "Tan neutral"},
+    "tan-olive":   {"shade": "31N", "note": "Tan olive — try neutral or warm"},
+    "deep-warm":   {"shade": "37W", "note": "Deep with rich warm undertone"},
+    "deep-cool":   {"shade": "37C", "note": "Deep with cool undertone"},
+    "deep-neutral": {"shade": "37N", "note": "Deep neutral"},
+    "deep-olive":  {"shade": "37N", "note": "Deep olive — try neutral range"}
+  },
+  "cushionMatch": {
+    "oily-full":       {"primary": "allcover", "alt": "red"},
+    "oily-medium":     {"primary": "red", "alt": "aifilter"},
+    "oily-light":      {"primary": "aifilter", "alt": "red"},
+    "dry-full":        {"primary": "red", "alt": "allcover"},
+    "dry-medium":      {"primary": "crystal", "alt": "red"},
+    "dry-light":       {"primary": "crystal", "alt": "aura"},
+    "combination-full": {"primary": "red", "alt": "allcover"},
+    "combination-medium": {"primary": "red", "alt": "aifilter"},
+    "combination-light": {"primary": "aifilter", "alt": "aura"},
+    "normal-full":     {"primary": "red", "alt": "allcover"},
+    "normal-medium":   {"primary": "red", "alt": "aifilter"},
+    "normal-light":    {"primary": "aura", "alt": "crystal"},
+    "sensitive-full":  {"primary": "red", "alt": "allcover"},
+    "sensitive-medium": {"primary": "aura", "alt": "red"},
+    "sensitive-light": {"primary": "aura", "alt": "crystal"}
+  }
+}

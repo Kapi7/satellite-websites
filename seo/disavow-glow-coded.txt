@@ -1,0 +1,17 @@
+# Spam/PBN backlinks disavowed on 2026-04-03
+# Domain: glow-coded.com
+# Source: Ahrefs backlink audit
+# These are low-quality SEO spam, PBN, and fiverr link-building domains.
+
+domain:seogeko.shop
+domain:itxoft-proven-seo-strategies.site
+domain:itxoft-seo-for-modern-business.site
+domain:itxoft-trusted-seo-solutions.site
+domain:fiverr-cost-effective-seo.site
+domain:fiverr-quality-backlinks.site
+domain:fiverr-backlinks-success.site
+domain:fiverr-trusted-backlinks.site
+domain:primeseo.xyz
+domain:zoldexlinks.shop
+domain:boost-instant.website
+domain:rootviewnetworks.com

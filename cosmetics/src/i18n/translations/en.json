@@ -11,7 +11,9 @@
     "skinQuiz": "Skin Quiz",
     "skinQuizDesc": "Find your ideal routine in 2 minutes",
     "ingredientGlossary": "Ingredient Glossary",
-    "ingredientGlossaryDesc": "Browse all K-beauty ingredients"
+    "ingredientGlossaryDesc": "Browse all K-beauty ingredients",
+    "shadeMatcher": "Shade Matcher",
+    "shadeMatcherDesc": "Find your perfect TIRTIR shade"
   },
   "common": {
     "readArticle": "Read article",
@@ -165,5 +167,20 @@
     "label": "Legal",
     "title": "Privacy Policy",
     "description": "How Glow Coded handles your data."
+  },
+  "shadeMatcher": {
+    "toolLabel": "Tool",
+    "title": "TIRTIR Shade Matcher",
+    "description": "Answer 4 quick questions about your skin and we'll recommend your perfect TIRTIR cushion foundation and shade number.",
+    "step1Title": "What's your undertone?",
+    "step1Desc": "Hold a white piece of paper next to your face in natural light. Compare your skin tone against the paper.",
+    "step2Title": "How deep is your skin tone?",
+    "step2Desc": "Select the shade depth closest to your natural skin color.",
+    "step3Title": "What's your skin type?",
+    "step4Title": "How much coverage do you want?",
+    "shades": "Shades",
+    "startOver": "Start Over",
+    "shadeGuide": "Full TIRTIR Shade Guide",
+    "shadeGuideDesc": "Detailed breakdown of all 5 cushion lines and 45 shades"
   }
 }

@@ -1,0 +1,13 @@
+# Disavow file for rooted-glow.com
+# Spam/PBN backlink domains identified via Ahrefs on 2026-04-01
+domain:itxoft-seo-for-modern-business.site
+domain:itxoft-proven-seo-strategies.site
+domain:itxoft-trusted-seo-solutions.site
+domain:itxoft-seo-for-higher-rankings.site
+domain:itxoft-results-focused-seo.site
+domain:itxoft-organic-seo-growth.site
+domain:boost-instant.website
+domain:zoldexlinks.shop
+domain:seogeko.shop
+domain:fiverr-seo-for-business-growth.site
+domain:fiverr-quality-seo-at-affordable-rates.site

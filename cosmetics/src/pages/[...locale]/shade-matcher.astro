@@ -1,0 +1,327 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import BackToTop from '../../components/BackToTop.astro';
+import shadeData from '../../data/shade-data.json';
+import { locales, defaultLocale, type Locale } from '../../i18n/locales';
+import { t, localePath } from '../../i18n/utils';
+
+export function getStaticPaths() {
+  return locales.map(l => ({
+    params: { locale: l === defaultLocale ? undefined : l },
+    props: { locale: l },
+  }));
+}
+
+const { locale } = Astro.props as { locale: Locale };
+const dataJSON = JSON.stringify(shadeData);
+---
+
+<Base title={t(locale, 'shadeMatcher.title')} description={t(locale, 'shadeMatcher.description')} locale={locale}>
+  <Header locale={locale} />
+  <main class="flex-1">
+    <section class="max-w-4xl mx-auto px-5 sm:px-8 py-12">
+
+      <!-- Header -->
+      <div class="mb-10 animate-fade-in-up">
+        <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-rose-400 mb-2 block">{t(locale, 'shadeMatcher.toolLabel')}</span>
+        <h1 class="font-heading text-4xl sm:text-5xl text-charcoal tracking-tight mb-4 leading-tight">
+          {t(locale, 'shadeMatcher.title')}
+        </h1>
+        <p class="text-charcoal-light text-lg max-w-2xl leading-relaxed">
+          {t(locale, 'shadeMatcher.description')}
+        </p>
+      </div>
+
+      <!-- Step 1: Undertone -->
+      <div id="step-1" class="bg-white rounded-2xl p-6 sm:p-8 mb-5 shadow-sm animate-fade-in-up stagger-1">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-8 h-8 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center text-sm font-bold shrink-0">1</div>
+          <h2 class="font-heading text-xl text-charcoal">{t(locale, 'shadeMatcher.step1Title')}</h2>
+        </div>
+        <p class="text-sm text-charcoal-light mb-5">{t(locale, 'shadeMatcher.step1Desc')}</p>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          {shadeData.undertones.map(ut => (
+            <button data-undertone={ut.id} class="undertone-btn group relative p-4 rounded-xl border-2 border-rose-100 hover:border-rose-300 transition-all cursor-pointer text-left">
+              <div class="w-10 h-10 rounded-full mb-3 border-2 border-white shadow-sm" style={`background-color: ${ut.color}`}></div>
+              <span class="block font-medium text-charcoal text-sm">{ut.label}</span>
+              <span class="block text-[11px] text-charcoal-light/70 mt-1 leading-tight">{ut.description}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <!-- Step 2: Shade Depth -->
+      <div id="step-2" class="bg-white rounded-2xl p-6 sm:p-8 mb-5 shadow-sm opacity-40 pointer-events-none transition-all duration-300 animate-fade-in-up stagger-2">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-8 h-8 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center text-sm font-bold shrink-0">2</div>
+          <h2 class="font-heading text-xl text-charcoal">{t(locale, 'shadeMatcher.step2Title')}</h2>
+        </div>
+        <p class="text-sm text-charcoal-light mb-5">{t(locale, 'shadeMatcher.step2Desc')}</p>
+        <div class="flex flex-wrap gap-3">
+          {shadeData.depths.map(d => (
+            <button data-depth={d.id} class="depth-btn group flex items-center gap-3 px-5 py-3 rounded-xl border-2 border-rose-100 hover:border-rose-300 transition-all cursor-pointer">
+              <div class="w-8 h-8 rounded-full border-2 border-white shadow-sm shrink-0" style={`background-color: ${d.color}`}></div>
+              <div>
+                <span class="block font-medium text-charcoal text-sm">{d.label}</span>
+                <span class="block text-[10px] text-charcoal-light/60">{t(locale, 'shadeMatcher.shades')} {d.range}</span>
+              </div>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <!-- Step 3: Skin Type -->
+      <div id="step-3" class="bg-white rounded-2xl p-6 sm:p-8 mb-5 shadow-sm opacity-40 pointer-events-none transition-all duration-300 animate-fade-in-up stagger-3">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-8 h-8 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center text-sm font-bold shrink-0">3</div>
+          <h2 class="font-heading text-xl text-charcoal">{t(locale, 'shadeMatcher.step3Title')}</h2>
+        </div>
+        <div class="flex flex-wrap gap-3">
+          {shadeData.skinTypes.map(st => (
+            <button data-skintype={st.id} class="skintype-btn px-5 py-2.5 rounded-full border-2 border-rose-100 text-charcoal-light font-medium text-sm hover:border-rose-300 transition-all cursor-pointer">
+              {st.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <!-- Step 4: Coverage -->
+      <div id="step-4" class="bg-white rounded-2xl p-6 sm:p-8 mb-5 shadow-sm opacity-40 pointer-events-none transition-all duration-300">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-8 h-8 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center text-sm font-bold shrink-0">4</div>
+          <h2 class="font-heading text-xl text-charcoal">{t(locale, 'shadeMatcher.step4Title')}</h2>
+        </div>
+        <div class="flex flex-wrap gap-3">
+          {shadeData.coveragePrefs.map(cp => (
+            <button data-coverage={cp.id} class="coverage-btn px-5 py-2.5 rounded-full border-2 border-rose-100 text-charcoal-light font-medium text-sm hover:border-rose-300 transition-all cursor-pointer">
+              {cp.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <!-- Results -->
+      <div id="results" class="hidden mb-6"></div>
+
+      <!-- Reset -->
+      <div id="reset-wrap" class="hidden text-center mb-10">
+        <button id="reset-btn" class="px-6 py-2.5 rounded-full bg-charcoal/5 text-charcoal-light text-sm font-medium hover:bg-charcoal/10 transition-all cursor-pointer inline-flex items-center gap-2">
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182"/></svg>
+          {t(locale, 'shadeMatcher.startOver')}
+        </button>
+      </div>
+
+      <!-- CTA Links -->
+      <div class="grid sm:grid-cols-2 gap-4 mt-14 border-t border-rose-100 pt-8">
+        <a href={localePath('/tirtir-cushion-foundation-shade-guide/', locale)} class="group p-6 bg-cream-dark rounded-xl flex items-center gap-5 hover:bg-rose-50 transition-colors">
+          <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center text-rose-600 shadow-sm group-hover:scale-110 transition-transform shrink-0">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"/></svg>
+          </div>
+          <div>
+            <span class="block font-heading text-charcoal font-medium">{t(locale, 'shadeMatcher.shadeGuide')}</span>
+            <span class="block text-sm text-charcoal-light">{t(locale, 'shadeMatcher.shadeGuideDesc')}</span>
+          </div>
+        </a>
+        <a href={localePath('/ingredient-checker/', locale)} class="group p-6 bg-cream-dark rounded-xl flex items-center gap-5 hover:bg-rose-50 transition-colors">
+          <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center text-rose-600 shadow-sm group-hover:scale-110 transition-transform shrink-0">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M9.75 3.104v5.714a2.25 2.25 0 0 1-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 0 1 4.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0 1 12 15a9.065 9.065 0 0 0-6.23.693L5 14.5m14.8.8 1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0 1 12 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/></svg>
+          </div>
+          <div>
+            <span class="block font-heading text-charcoal font-medium">{t(locale, 'ingredientChecker.title')}</span>
+            <span class="block text-sm text-charcoal-light">{t(locale, 'ingredientChecker.compatibilityGuideDesc')}</span>
+          </div>
+        </a>
+      </div>
+
+    </section>
+  </main>
+  <Footer locale={locale} />
+  <BackToTop />
+</Base>
+
+<script define:vars={{ dataJSON }}>
+  var data = JSON.parse(dataJSON);
+  var state = { undertone: null, depth: null, skinType: null, coverage: null };
+
+  function activateStep(n) {
+    var el = document.getElementById('step-' + n);
+    if (el) {
+      el.classList.remove('opacity-40', 'pointer-events-none');
+      el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }
+
+  function selectBtn(selector, attr, value) {
+    document.querySelectorAll(selector).forEach(function(btn) {
+      if (btn.getAttribute(attr) === value) {
+        btn.classList.add('border-rose-600', 'bg-rose-50', 'ring-2', 'ring-rose-200');
+        btn.classList.remove('border-rose-100');
+      } else {
+        btn.classList.remove('border-rose-600', 'bg-rose-50', 'ring-2', 'ring-rose-200');
+        btn.classList.add('border-rose-100');
+      }
+    });
+  }
+
+  document.querySelectorAll('.undertone-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      state.undertone = btn.getAttribute('data-undertone');
+      selectBtn('.undertone-btn', 'data-undertone', state.undertone);
+      activateStep(2);
+      tryRender();
+    });
+  });
+
+  document.querySelectorAll('.depth-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      state.depth = btn.getAttribute('data-depth');
+      selectBtn('.depth-btn', 'data-depth', state.depth);
+      activateStep(3);
+      tryRender();
+    });
+  });
+
+  document.querySelectorAll('.skintype-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      state.skinType = btn.getAttribute('data-skintype');
+      selectBtn('.skintype-btn', 'data-skintype', state.skinType);
+      activateStep(4);
+      tryRender();
+    });
+  });
+
+  document.querySelectorAll('.coverage-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      state.coverage = btn.getAttribute('data-coverage');
+      selectBtn('.coverage-btn', 'data-coverage', state.coverage);
+      tryRender();
+    });
+  });
+
+  document.getElementById('reset-btn').addEventListener('click', function() {
+    state = { undertone: null, depth: null, skinType: null, coverage: null };
+    ['.undertone-btn', '.depth-btn', '.skintype-btn', '.coverage-btn'].forEach(function(sel) {
+      document.querySelectorAll(sel).forEach(function(btn) {
+        btn.classList.remove('border-rose-600', 'bg-rose-50', 'ring-2', 'ring-rose-200');
+        btn.classList.add('border-rose-100');
+      });
+    });
+    ['step-2', 'step-3', 'step-4'].forEach(function(id) {
+      var el = document.getElementById(id);
+      el.classList.add('opacity-40', 'pointer-events-none');
+    });
+    document.getElementById('results').classList.add('hidden');
+    document.getElementById('results').innerHTML = '';
+    document.getElementById('reset-wrap').classList.add('hidden');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  function tryRender() {
+    if (!state.undertone || !state.depth || !state.skinType || !state.coverage) return;
+    renderResults();
+  }
+
+  function renderResults() {
+    var resultsEl = document.getElementById('results');
+    var resetWrap = document.getElementById('reset-wrap');
+
+    var shadeKey = state.depth + '-' + state.undertone;
+    var cushionKey = state.skinType + '-' + state.coverage;
+
+    var shadeMatch = data.shadeMap[shadeKey];
+    var cushionMatch = data.cushionMatch[cushionKey];
+
+    if (!shadeMatch || !cushionMatch) {
+      resultsEl.innerHTML = '<div class="text-center py-8 text-charcoal-light">Unable to determine a match. Try different options.</div>';
+      resultsEl.classList.remove('hidden');
+      return;
+    }
+
+    var primary = data.cushions.find(function(c) { return c.id === cushionMatch.primary; });
+    var alt = data.cushions.find(function(c) { return c.id === cushionMatch.alt; });
+
+    var finishLabels = {
+      'semi-matte': 'Semi-Matte',
+      'dewy': 'Dewy / Glowing',
+      'matte': 'Matte',
+      'natural-glow': 'Natural Glow',
+      'blurring': 'Blurring / Filter'
+    };
+
+    var coverageLabels = {
+      'light': 'Light',
+      'light-medium': 'Light–Medium',
+      'medium': 'Medium',
+      'medium-full': 'Medium–Full',
+      'full': 'Full'
+    };
+
+    function cushionCard(c, shade, isPrimary) {
+      var badge = isPrimary
+        ? '<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-rose-600 text-white text-xs font-semibold mb-4"><svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z"/></svg>Best Match</span>'
+        : '<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-charcoal/10 text-charcoal-light text-xs font-semibold mb-4">Also Great</span>';
+
+      return '<div class="rounded-2xl border ' + (isPrimary ? 'border-rose-200 bg-gradient-to-br from-white to-rose-50/30 shadow-md' : 'border-rose-100 bg-white') + ' p-6 sm:p-8 opacity-0" style="animation: cardFadeIn 0.4s ease-out ' + (isPrimary ? '0s' : '0.15s') + ' forwards">'
+        + badge
+        + '<h3 class="font-heading text-2xl text-charcoal mb-1">TIRTIR ' + c.name + '</h3>'
+        + '<p class="text-charcoal-light text-sm mb-5">' + (finishLabels[c.finish] || c.finish) + ' · ' + (coverageLabels[c.coverage] || c.coverage) + ' coverage · SPF ' + c.spf + '</p>'
+        + '<div class="flex items-center gap-4 p-4 rounded-xl bg-cream-dark mb-5">'
+        + '  <div class="text-center">'
+        + '    <span class="block text-2xl font-heading font-bold text-charcoal">' + shade.shade + '</span>'
+        + '    <span class="block text-[10px] text-charcoal-light/60 uppercase tracking-wider mt-1">Your Shade</span>'
+        + '  </div>'
+        + '  <div class="h-10 w-px bg-rose-200"></div>'
+        + '  <p class="text-sm text-charcoal-light flex-1">' + shade.note + '</p>'
+        + '</div>'
+        + '<div class="flex flex-wrap gap-3">'
+        + '  <a href="' + c.url + '" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-rose-600 text-white text-sm font-semibold hover:bg-rose-700 transition-colors">'
+        + '    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"/></svg>'
+        + '    Shop ' + shade.shade + '</a>'
+        + '  <span class="inline-flex items-center px-4 py-2.5 rounded-full bg-charcoal/5 text-charcoal-light text-sm">' + c.shadeCount + ' shades available</span>'
+        + '</div>'
+        + '</div>';
+    }
+
+    var html = '<div class="mb-3"><span class="text-[10px] font-bold uppercase tracking-[0.2em] text-rose-400 block">Your Match</span></div>';
+    html += '<div class="grid gap-5">';
+    html += cushionCard(primary, shadeMatch, true);
+    html += cushionCard(alt, shadeMatch, false);
+    html += '</div>';
+
+    html += '<div class="mt-6 p-5 rounded-xl bg-amber-50 border border-amber-200/50 opacity-0" style="animation: cardFadeIn 0.4s ease-out 0.3s forwards">';
+    html += '<div class="flex gap-3">';
+    html += '<svg class="w-5 h-5 text-amber-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M12 9v4m0 4h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>';
+    html += '<div>';
+    html += '<p class="text-sm text-amber-900 font-medium mb-1">Pro tip</p>';
+    html += '<p class="text-sm text-amber-800/80">Shade matching online is a starting point. TIRTIR offers mini sizes (4.5g) so you can test your shade before committing to the full size.</p>';
+    html += '</div></div></div>';
+
+    resultsEl.innerHTML = html;
+    resultsEl.classList.remove('hidden');
+    resetWrap.classList.remove('hidden');
+
+    setTimeout(function() {
+      resultsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
+
+    if (typeof gtag === 'function') {
+      gtag('event', 'tool_shade_match', {
+        undertone: state.undertone,
+        depth: state.depth,
+        skin_type: state.skinType,
+        coverage: state.coverage,
+        recommended_shade: shadeMatch.shade,
+        recommended_cushion: primary.name
+      });
+    }
+  }
+</script>
+
+<style>
+  @keyframes cardFadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
