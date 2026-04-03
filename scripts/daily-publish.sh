@@ -6,6 +6,8 @@
 set -euo pipefail
 cd /Users/kapi7/satellite-websites
 
+# Load environment variables
+set -a; source .env 2>/dev/null; set +a
 # Pull latest to avoid conflicts
 git pull --rebase --quiet origin main 2>/dev/null || true
 

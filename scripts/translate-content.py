@@ -13,7 +13,7 @@ import argparse
 from pathlib import Path
 
 # Gemini API
-GEMINI_API_KEY = "AIzaSyAZc6_opJc0RyanUX3QQSTqnHEFLO_pZMc"
+GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
 GEMINI_MODEL = "gemini-2.5-flash"
 GEMINI_URL = f"https://generativelanguage.googleapis.com/v1beta/models/{GEMINI_MODEL}:generateContent?key={GEMINI_API_KEY}"
 
