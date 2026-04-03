@@ -14,13 +14,19 @@ CRON_ENTRIES="
 
 # Weekly SEO report — Monday 8 AM
 0 8 * * 1 /opt/homebrew/bin/python3 ${SCRIPT_DIR}/weekly-report.py >> ${SCRIPT_DIR}/reports/weekly-report.log 2>&1
+
+# Pinterest poster — daily 10 AM
+0 10 * * * /opt/homebrew/bin/python3 ${SCRIPT_DIR}/social/pinterest_poster.py --run-due >> ${SCRIPT_DIR}/social/data/pinterest.log 2>&1
+
+# Reddit poster — Mon/Wed/Fri 2 PM
+0 14 * * 1,3,5 /opt/homebrew/bin/python3 ${SCRIPT_DIR}/social/reddit_poster.py --run-due >> ${SCRIPT_DIR}/social/data/reddit.log 2>&1
 "
 
 # Remove any existing satellite website cron entries
-EXISTING=$(crontab -l 2>/dev/null | grep -v "satellite-websites" | grep -v "Satellite websites" | grep -v "SEO index checker" | grep -v "Weekly SEO report")
+EXISTING=$(crontab -l 2>/dev/null | grep -v "satellite-websites" | grep -v "Satellite websites" | grep -v "SEO index checker" | grep -v "Weekly SEO report" | grep -v "Pinterest poster" | grep -v "Reddit poster")
 
 # Combine existing + new
 echo "$EXISTING" | cat - <(echo "$CRON_ENTRIES") | crontab -
 
 echo "Cron jobs installed:"
-crontab -l | grep -A1 "satellite\|SEO\|Weekly"
+crontab -l | grep -A1 "satellite\|SEO\|Weekly\|Pinterest\|Reddit"

@@ -17,3 +17,6 @@ wellness/public/stitch-preview*.html
 # Scratch scripts
 gen_hero_images.py
 scripts/*.log
+scripts/seo/browser-state/
+scripts/seo/__pycache__/
+scripts/seo/signup_status.json

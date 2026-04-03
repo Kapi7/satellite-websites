@@ -1,0 +1,704 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import BackToTop from '../../components/BackToTop.astro';
+import conflictData from '../../data/ingredient-conflicts.json';
+import { locales, defaultLocale, type Locale } from '../../i18n/locales';
+import { t, localePath } from '../../i18n/utils';
+
+export function getStaticPaths() {
+  return locales.map(l => ({
+    params: { locale: l === defaultLocale ? undefined : l },
+    props: { locale: l },
+  }));
+}
+
+const { locale } = Astro.props as { locale: Locale };
+const dataJSON = JSON.stringify(conflictData);
+
+const categoryOrder = ['Actives', 'Exfoliants', 'Acne Fighters', 'Hydrators', 'Barrier Support'];
+const orderedIngredients: string[] = [];
+categoryOrder.forEach(cat => {
+  (conflictData.categories as Record<string, string[]>)[cat]?.forEach((ing: string) => orderedIngredients.push(ing));
+});
+
+const abbreviations: Record<string, string> = {
+  'Retinol': 'Ret',
+  'Vitamin C': 'Vit C',
+  'Niacinamide': 'Nia',
+  'AHA (Glycolic Acid)': 'AHA',
+  'BHA (Salicylic Acid)': 'BHA',
+  'Benzoyl Peroxide': 'BP',
+  'Hyaluronic Acid': 'HA',
+  'Ceramides': 'Cer',
+  'Peptides': 'Pep',
+  'Azelaic Acid': 'AzA',
+  'Lactic Acid': 'LA',
+  'Squalane': 'Sqn',
+  'Snail Mucin': 'Snl',
+  'Centella Asiatica': 'Cica',
+  'Tea Tree Oil': 'TTO',
+  'Arbutin': 'Arb',
+};
+
+const categoryColors: Record<string, string> = {
+  'Actives': 'bg-violet-100 text-violet-700',
+  'Exfoliants': 'bg-orange-100 text-orange-700',
+  'Acne Fighters': 'bg-red-100 text-red-700',
+  'Hydrators': 'bg-sky-100 text-sky-700',
+  'Barrier Support': 'bg-emerald-100 text-emerald-700',
+};
+
+const ingredientCategory: Record<string, string> = {};
+Object.entries(conflictData.categories).forEach(([cat, ings]) => {
+  (ings as string[]).forEach(ing => { ingredientCategory[ing] = cat; });
+});
+
+const categoryBounds: { cat: string; start: number; end: number }[] = [];
+let idx = 0;
+categoryOrder.forEach(cat => {
+  const count = ((conflictData.categories as Record<string, string[]>)[cat] || []).length;
+  categoryBounds.push({ cat, start: idx, end: idx + count - 1 });
+  idx += count;
+});
+
+const orderedIngredientsJSON = JSON.stringify(orderedIngredients);
+const abbreviationsJSON = JSON.stringify(abbreviations);
+const ingredientCategoryJSON = JSON.stringify(ingredientCategory);
+const categoryBoundsJSON = JSON.stringify(categoryBounds);
+const categoryColorsJSON = JSON.stringify(categoryColors);
+---
+
+<Base title={t(locale, 'ingredientMatrix.title')} description={t(locale, 'ingredientMatrix.description')} locale={locale}>
+  <Header locale={locale} />
+  <main class="flex-1">
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
+
+      <!-- Header -->
+      <div class="mb-8 animate-fade-in-up text-center">
+        <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-rose-400 mb-2 block">{t(locale, 'ingredientMatrix.toolLabel')}</span>
+        <h1 class="font-heading text-3xl sm:text-4xl lg:text-5xl text-charcoal tracking-tight mb-3 leading-tight">
+          {t(locale, 'ingredientMatrix.title')}
+        </h1>
+        <p class="text-charcoal-light text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+          {t(locale, 'ingredientMatrix.description')}
+        </p>
+      </div>
+
+      <!-- Legend -->
+      <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-5 mb-6 animate-fade-in-up stagger-1">
+        <span class="text-[10px] font-bold uppercase tracking-widest text-charcoal-light/50">{t(locale, 'ingredientMatrix.legend')}:</span>
+        <span class="flex items-center gap-1.5 text-xs text-charcoal-light/70">
+          <span class="w-4 h-4 rounded-sm bg-emerald-400 border border-emerald-500 shadow-sm"></span>
+          {t(locale, 'ingredientMatrix.legendGreen')}
+        </span>
+        <span class="flex items-center gap-1.5 text-xs text-charcoal-light/70">
+          <span class="w-4 h-4 rounded-sm bg-amber-400 border border-amber-500 shadow-sm"></span>
+          {t(locale, 'ingredientMatrix.legendYellow')}
+        </span>
+        <span class="flex items-center gap-1.5 text-xs text-charcoal-light/70">
+          <span class="w-4 h-4 rounded-sm bg-red-400 border border-red-500 shadow-sm"></span>
+          {t(locale, 'ingredientMatrix.legendRed')}
+        </span>
+        <span class="flex items-center gap-1.5 text-xs text-charcoal-light/70">
+          <span class="w-4 h-4 rounded-sm bg-gray-200 border border-gray-300 shadow-sm"></span>
+          {t(locale, 'ingredientMatrix.legendGray')}
+        </span>
+        <span class="flex items-center gap-1.5 text-xs text-charcoal-light/70">
+          <span class="w-4 h-4 rounded-sm bg-charcoal/80 border border-charcoal shadow-sm"></span>
+          {t(locale, 'ingredientMatrix.legendDiag')}
+        </span>
+      </div>
+
+      <!-- Category Badges -->
+      <div class="flex flex-wrap items-center justify-center gap-2 mb-8 animate-fade-in-up stagger-1">
+        {categoryOrder.map(cat => (
+          <span class={`text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full ${categoryColors[cat]}`}>
+            {cat}
+          </span>
+        ))}
+      </div>
+
+      <!-- Matrix Container -->
+      <div class="animate-fade-in-up stagger-2">
+        <div id="matrix-wrapper" class="relative overflow-x-auto rounded-2xl bg-white shadow-sm border border-rose-100/60 pb-2">
+          <table id="matrix-table" class="border-collapse" role="grid" aria-label="Ingredient interaction matrix">
+            <thead>
+              <tr>
+                <th class="matrix-corner sticky left-0 z-30 bg-white"></th>
+                {orderedIngredients.map((ing, colIdx) => {
+                  const cat = ingredientCategory[ing];
+                  const isGroupEnd = categoryBounds.some(b => b.end === colIdx && colIdx < orderedIngredients.length - 1);
+                  return (
+                    <th
+                      class={`matrix-col-header ${isGroupEnd ? 'group-separator-right' : ''}`}
+                      data-col={colIdx}
+                      title={`${ing}: ${conflictData.descriptions[ing as keyof typeof conflictData.descriptions]}`}
+                    >
+                      <div class="col-header-inner">
+                        <span class="col-abbr">{abbreviations[ing]}</span>
+                      </div>
+                    </th>
+                  );
+                })}
+              </tr>
+            </thead>
+            <tbody>
+              {orderedIngredients.map((rowIng, rowIdx) => {
+                const rowCat = ingredientCategory[rowIng];
+                const isGroupEnd = categoryBounds.some(b => b.end === rowIdx && rowIdx < orderedIngredients.length - 1);
+                return (
+                  <tr class={isGroupEnd ? 'group-separator-bottom' : ''}>
+                    <th
+                      class="matrix-row-header sticky left-0 z-20 bg-white"
+                      data-row={rowIdx}
+                      title={`${rowIng}: ${conflictData.descriptions[rowIng as keyof typeof conflictData.descriptions]}`}
+                    >
+                      <div class="row-header-inner">
+                        <span class="row-name">{rowIng}</span>
+                        <span class={`row-cat-dot ${
+                          rowCat === 'Actives' ? 'bg-violet-400' :
+                          rowCat === 'Exfoliants' ? 'bg-orange-400' :
+                          rowCat === 'Acne Fighters' ? 'bg-red-400' :
+                          rowCat === 'Hydrators' ? 'bg-sky-400' :
+                          'bg-emerald-400'
+                        }`}></span>
+                      </div>
+                    </th>
+                    {orderedIngredients.map((colIng, colIdx) => {
+                      const isGroupEndCol = categoryBounds.some(b => b.end === colIdx && colIdx < orderedIngredients.length - 1);
+                      return (
+                        <td
+                          class={`matrix-cell ${isGroupEndCol ? 'group-separator-right' : ''}`}
+                          data-row={rowIdx}
+                          data-col={colIdx}
+                          data-row-ing={rowIng}
+                          data-col-ing={colIng}
+                        >
+                          <div class="cell-inner"></div>
+                        </td>
+                      );
+                    })}
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+
+        <p class="text-center text-xs text-charcoal-light/50 mt-3">{t(locale, 'ingredientMatrix.clickToSee')}</p>
+      </div>
+
+      <!-- Detail Panel -->
+      <div id="detail-panel" class="hidden mt-6 animate-fade-in-up">
+        <div id="detail-card" class="rounded-2xl p-6 sm:p-8 border transition-colors duration-300 relative overflow-hidden">
+          <div class="absolute -top-4 -right-4 opacity-[0.05]" id="detail-bg-icon"></div>
+          <div class="relative z-10">
+            <div class="flex items-start justify-between gap-4 mb-3">
+              <h3 id="detail-title" class="font-heading text-xl sm:text-2xl text-charcoal leading-tight"></h3>
+              <button id="detail-close" class="shrink-0 w-8 h-8 rounded-full bg-charcoal/5 hover:bg-charcoal/10 flex items-center justify-center text-charcoal-light transition-colors cursor-pointer">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M6 18L18 6M6 6l12 12"/></svg>
+              </button>
+            </div>
+            <div id="detail-severity-badge" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4"></div>
+            <p id="detail-explanation" class="text-sm sm:text-base text-charcoal-light leading-relaxed"></p>
+            <div class="mt-5 pt-4 border-t border-current/10 grid sm:grid-cols-2 gap-4" id="detail-ingredients">
+              <div>
+                <span class="text-[10px] font-bold uppercase tracking-widest text-charcoal-light/50 block mb-1" id="detail-ing-a-label"></span>
+                <p class="text-sm text-charcoal-light leading-relaxed" id="detail-ing-a-desc"></p>
+              </div>
+              <div>
+                <span class="text-[10px] font-bold uppercase tracking-widest text-charcoal-light/50 block mb-1" id="detail-ing-b-label"></span>
+                <p class="text-sm text-charcoal-light leading-relaxed" id="detail-ing-b-desc"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA Link to Checker -->
+      <div class="flex justify-center mt-8 mb-14">
+        <a href={localePath('/ingredient-checker/', locale)} class="group inline-flex items-center gap-2 px-6 py-3 rounded-full bg-rose-600 text-white text-sm font-medium hover:bg-rose-700 transition-colors shadow-sm">
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0 1 12 2.944a11.955 11.955 0 0 1-8.618 3.04A12.02 12.02 0 0 0 3 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016Z"/></svg>
+          Check Your Full Routine
+          <svg class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+        </a>
+      </div>
+
+      <!-- SEO Content -->
+      <div class="max-w-3xl mx-auto space-y-12 animate-fade-in-up stagger-3">
+
+        <!-- How to Read -->
+        <section>
+          <h2 class="font-heading text-2xl sm:text-3xl text-charcoal tracking-tight mb-4">{t(locale, 'ingredientMatrix.howToRead')}</h2>
+          <div class="prose prose-charcoal text-charcoal-light leading-relaxed space-y-4">
+            <p>{t(locale, 'ingredientMatrix.howToReadP1')}</p>
+            <p>{t(locale, 'ingredientMatrix.howToReadP2')}</p>
+          </div>
+        </section>
+
+        <!-- Key Rules -->
+        <section>
+          <h2 class="font-heading text-2xl sm:text-3xl text-charcoal tracking-tight mb-6">{t(locale, 'ingredientMatrix.keyRules')}</h2>
+          <div class="grid gap-5">
+            {[
+              { title: t(locale, 'ingredientMatrix.rule1Title'), desc: t(locale, 'ingredientMatrix.rule1Desc'), icon: '1', color: 'rose' },
+              { title: t(locale, 'ingredientMatrix.rule2Title'), desc: t(locale, 'ingredientMatrix.rule2Desc'), icon: '2', color: 'amber' },
+              { title: t(locale, 'ingredientMatrix.rule3Title'), desc: t(locale, 'ingredientMatrix.rule3Desc'), icon: '3', color: 'emerald' },
+              { title: t(locale, 'ingredientMatrix.rule4Title'), desc: t(locale, 'ingredientMatrix.rule4Desc'), icon: '4', color: 'violet' },
+            ].map(rule => (
+              <div class="flex gap-4 p-5 rounded-xl bg-white shadow-sm border border-rose-100/60">
+                <div class={`w-9 h-9 rounded-full flex items-center justify-center shrink-0 text-sm font-bold ${
+                  rule.color === 'rose' ? 'bg-rose-100 text-rose-600' :
+                  rule.color === 'amber' ? 'bg-amber-100 text-amber-600' :
+                  rule.color === 'emerald' ? 'bg-emerald-100 text-emerald-600' :
+                  'bg-violet-100 text-violet-600'
+                }`}>{rule.icon}</div>
+                <div>
+                  <h3 class="font-heading text-base font-medium text-charcoal mb-1">{rule.title}</h3>
+                  <p class="text-sm text-charcoal-light leading-relaxed">{rule.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- FAQ -->
+        <section>
+          <h2 class="font-heading text-2xl sm:text-3xl text-charcoal tracking-tight mb-6">{t(locale, 'ingredientMatrix.faqTitle')}</h2>
+          <div class="space-y-4" itemscope itemtype="https://schema.org/FAQPage">
+            {[
+              { q: t(locale, 'ingredientMatrix.faq1Q'), a: t(locale, 'ingredientMatrix.faq1A') },
+              { q: t(locale, 'ingredientMatrix.faq2Q'), a: t(locale, 'ingredientMatrix.faq2A') },
+              { q: t(locale, 'ingredientMatrix.faq3Q'), a: t(locale, 'ingredientMatrix.faq3A') },
+              { q: t(locale, 'ingredientMatrix.faq4Q'), a: t(locale, 'ingredientMatrix.faq4A') },
+            ].map(faq => (
+              <details class="group bg-white rounded-xl border border-rose-100/60 shadow-sm" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <summary class="flex items-center justify-between cursor-pointer px-5 py-4 text-charcoal font-medium text-sm sm:text-base list-none">
+                  <span itemprop="name">{faq.q}</span>
+                  <svg class="w-4 h-4 text-charcoal-light/40 shrink-0 ml-3 group-open:rotate-180 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="m19.5 8.25-7.5 7.5-7.5-7.5"/></svg>
+                </summary>
+                <div class="px-5 pb-5 text-sm text-charcoal-light leading-relaxed" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                  <p itemprop="text">{faq.a}</p>
+                </div>
+              </details>
+            ))}
+          </div>
+        </section>
+
+      </div>
+
+    </section>
+  </main>
+  <Footer locale={locale} />
+  <BackToTop />
+</Base>
+
+<script define:vars={{ dataJSON, orderedIngredientsJSON, abbreviationsJSON, ingredientCategoryJSON, categoryBoundsJSON, categoryColorsJSON }}>
+  var data = JSON.parse(dataJSON);
+  var ingredients = JSON.parse(orderedIngredientsJSON);
+  var abbrevs = JSON.parse(abbreviationsJSON);
+  var ingCategory = JSON.parse(ingredientCategoryJSON);
+  var catBounds = JSON.parse(categoryBoundsJSON);
+  var catColors = JSON.parse(categoryColorsJSON);
+
+  // Build lookup for conflicts
+  var conflictMap = {};
+  data.conflicts.forEach(function(c) {
+    var keyAB = c.a + '||' + c.b;
+    var keyBA = c.b + '||' + c.a;
+    conflictMap[keyAB] = c;
+    conflictMap[keyBA] = c;
+  });
+
+  function getConflict(a, b) {
+    return conflictMap[a + '||' + b] || null;
+  }
+
+  var severityColors = {
+    green: { cell: 'cell-green', bg: 'bg-emerald-50', border: 'border-emerald-200/60', text: 'text-emerald-800', badge: 'bg-emerald-100 text-emerald-700' },
+    yellow: { cell: 'cell-yellow', bg: 'bg-amber-50', border: 'border-amber-200/60', text: 'text-amber-800', badge: 'bg-amber-100 text-amber-700' },
+    red: { cell: 'cell-red', bg: 'bg-red-50', border: 'border-red-200/60', text: 'text-red-800', badge: 'bg-red-100 text-red-700' },
+  };
+
+  var severityLabels = {
+    green: 'Great Combo',
+    yellow: 'Use With Caution',
+    red: 'Avoid Combining'
+  };
+
+  var severityIcons = {
+    green: '<svg class="w-32 h-32" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="0.6"><path d="M9 12l2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>',
+    yellow: '<svg class="w-32 h-32" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="0.6"><path d="M12 9v4m0 4h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>',
+    red: '<svg class="w-32 h-32" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="0.6"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>'
+  };
+
+  // Color cells
+  var cells = document.querySelectorAll('.matrix-cell');
+  cells.forEach(function(cell) {
+    var r = parseInt(cell.getAttribute('data-row'));
+    var c = parseInt(cell.getAttribute('data-col'));
+    var rowIng = cell.getAttribute('data-row-ing');
+    var colIng = cell.getAttribute('data-col-ing');
+    var inner = cell.querySelector('.cell-inner');
+
+    if (r === c) {
+      inner.classList.add('cell-diagonal');
+      return;
+    }
+
+    var conflict = getConflict(rowIng, colIng);
+    if (conflict) {
+      inner.classList.add(severityColors[conflict.severity].cell);
+      // Add subtle icon in cell
+      if (conflict.severity === 'green') {
+        inner.innerHTML = '<svg class="cell-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg>';
+      } else if (conflict.severity === 'yellow') {
+        inner.innerHTML = '<svg class="cell-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 8v4m0 4h.01"/></svg>';
+      } else {
+        inner.innerHTML = '<svg class="cell-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 18L18 6M6 6l12 12"/></svg>';
+      }
+    } else {
+      inner.classList.add('cell-neutral');
+    }
+  });
+
+  // Hover highlights
+  var activeRow = -1;
+  var activeCol = -1;
+
+  cells.forEach(function(cell) {
+    cell.addEventListener('mouseenter', function() {
+      var r = parseInt(cell.getAttribute('data-row'));
+      var c = parseInt(cell.getAttribute('data-col'));
+      if (r === c) return;
+      highlightRowCol(r, c);
+    });
+
+    cell.addEventListener('mouseleave', function() {
+      clearHighlights();
+    });
+
+    cell.addEventListener('click', function() {
+      var r = parseInt(cell.getAttribute('data-row'));
+      var c = parseInt(cell.getAttribute('data-col'));
+      if (r === c) return;
+      var rowIng = cell.getAttribute('data-row-ing');
+      var colIng = cell.getAttribute('data-col-ing');
+      showDetail(rowIng, colIng);
+    });
+  });
+
+  function highlightRowCol(r, c) {
+    activeRow = r;
+    activeCol = c;
+    // Highlight row headers
+    document.querySelectorAll('.matrix-row-header').forEach(function(th) {
+      th.classList.toggle('row-highlight', parseInt(th.getAttribute('data-row')) === r);
+    });
+    // Highlight col headers
+    document.querySelectorAll('.matrix-col-header').forEach(function(th) {
+      th.classList.toggle('col-highlight', parseInt(th.getAttribute('data-col')) === c);
+    });
+    // Highlight cells in same row/col
+    cells.forEach(function(cell) {
+      var cr = parseInt(cell.getAttribute('data-row'));
+      var cc = parseInt(cell.getAttribute('data-col'));
+      cell.classList.toggle('row-active', cr === r && cc !== c);
+      cell.classList.toggle('col-active', cc === c && cr !== r);
+      cell.classList.toggle('cell-active', cr === r && cc === c);
+    });
+  }
+
+  function clearHighlights() {
+    activeRow = -1;
+    activeCol = -1;
+    document.querySelectorAll('.matrix-row-header').forEach(function(th) { th.classList.remove('row-highlight'); });
+    document.querySelectorAll('.matrix-col-header').forEach(function(th) { th.classList.remove('col-highlight'); });
+    cells.forEach(function(cell) {
+      cell.classList.remove('row-active', 'col-active', 'cell-active');
+    });
+  }
+
+  function showDetail(a, b) {
+    var panel = document.getElementById('detail-panel');
+    var card = document.getElementById('detail-card');
+    var title = document.getElementById('detail-title');
+    var badge = document.getElementById('detail-severity-badge');
+    var explanation = document.getElementById('detail-explanation');
+    var bgIcon = document.getElementById('detail-bg-icon');
+    var ingALabel = document.getElementById('detail-ing-a-label');
+    var ingADesc = document.getElementById('detail-ing-a-desc');
+    var ingBLabel = document.getElementById('detail-ing-b-label');
+    var ingBDesc = document.getElementById('detail-ing-b-desc');
+    var ingSection = document.getElementById('detail-ingredients');
+
+    var conflict = getConflict(a, b);
+
+    title.textContent = a + ' + ' + b;
+
+    if (conflict) {
+      var s = severityColors[conflict.severity];
+      card.className = 'rounded-2xl p-6 sm:p-8 border transition-colors duration-300 relative overflow-hidden ' + s.bg + ' ' + s.border;
+      badge.className = 'inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4 ' + s.badge;
+      badge.textContent = severityLabels[conflict.severity];
+      explanation.textContent = conflict.explanation;
+      explanation.className = 'text-sm sm:text-base leading-relaxed ' + s.text.replace('800', '900/80');
+      bgIcon.innerHTML = severityIcons[conflict.severity];
+      bgIcon.className = 'absolute -top-4 -right-4 opacity-[0.05] ' + s.text;
+    } else {
+      card.className = 'rounded-2xl p-6 sm:p-8 border transition-colors duration-300 relative overflow-hidden bg-gray-50 border-gray-200/60';
+      badge.className = 'inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4 bg-gray-100 text-gray-600';
+      badge.textContent = 'Neutral';
+      explanation.textContent = 'No specific interaction data for this pairing. These ingredients are generally considered safe to use together, but always patch test new combinations.';
+      explanation.className = 'text-sm sm:text-base text-gray-700 leading-relaxed';
+      bgIcon.innerHTML = '';
+      bgIcon.className = 'absolute -top-4 -right-4 opacity-[0.05]';
+    }
+
+    // Ingredient details
+    ingALabel.textContent = a;
+    ingADesc.textContent = data.descriptions[a] || '';
+    ingBLabel.textContent = b;
+    ingBDesc.textContent = data.descriptions[b] || '';
+    ingSection.classList.remove('hidden');
+
+    panel.classList.remove('hidden');
+    panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  document.getElementById('detail-close').addEventListener('click', function() {
+    document.getElementById('detail-panel').classList.add('hidden');
+  });
+</script>
+
+<style>
+  /* Matrix layout */
+  #matrix-table {
+    width: max-content;
+    min-width: 100%;
+  }
+
+  .matrix-corner {
+    width: 160px;
+    min-width: 160px;
+    height: 100px;
+    background: white;
+    border-bottom: 2px solid rgba(244, 63, 94, 0.15);
+    border-right: 2px solid rgba(244, 63, 94, 0.15);
+  }
+
+  /* Column headers — rotated */
+  .matrix-col-header {
+    width: 44px;
+    min-width: 44px;
+    height: 100px;
+    padding: 0;
+    border-bottom: 2px solid rgba(244, 63, 94, 0.15);
+    position: relative;
+    vertical-align: bottom;
+  }
+
+  .col-header-inner {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform-origin: bottom left;
+    transform: rotate(-45deg) translateX(-50%);
+    white-space: nowrap;
+  }
+
+  .col-abbr {
+    font-size: 11px;
+    font-weight: 600;
+    color: rgb(75, 75, 75);
+    letter-spacing: 0.02em;
+  }
+
+  .col-highlight .col-abbr {
+    color: rgb(190, 18, 60);
+  }
+
+  /* Row headers */
+  .matrix-row-header {
+    width: 160px;
+    min-width: 160px;
+    padding: 0 12px;
+    border-right: 2px solid rgba(244, 63, 94, 0.15);
+    text-align: right;
+    transition: background-color 0.15s ease;
+  }
+
+  .row-header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 6px;
+  }
+
+  .row-name {
+    font-size: 12px;
+    font-weight: 500;
+    color: rgb(75, 75, 75);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .row-highlight .row-name {
+    color: rgb(190, 18, 60);
+    font-weight: 600;
+  }
+
+  .row-cat-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .row-highlight {
+    background-color: rgba(244, 63, 94, 0.04) !important;
+  }
+
+  /* Cells */
+  .matrix-cell {
+    width: 44px;
+    min-width: 44px;
+    height: 44px;
+    padding: 3px;
+    cursor: pointer;
+    transition: transform 0.1s ease;
+  }
+
+  .matrix-cell:hover {
+    transform: scale(1.15);
+    z-index: 10;
+    position: relative;
+  }
+
+  .cell-inner {
+    width: 100%;
+    height: 100%;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: box-shadow 0.15s ease, transform 0.15s ease;
+  }
+
+  .cell-icon {
+    width: 14px;
+    height: 14px;
+    opacity: 0.6;
+  }
+
+  /* Severity cell colors */
+  .cell-green {
+    background: linear-gradient(135deg, #6ee7b7, #34d399);
+    border: 1px solid #10b981;
+  }
+  .cell-green .cell-icon { stroke: #065f46; }
+
+  .cell-yellow {
+    background: linear-gradient(135deg, #fcd34d, #fbbf24);
+    border: 1px solid #f59e0b;
+  }
+  .cell-yellow .cell-icon { stroke: #78350f; }
+
+  .cell-red {
+    background: linear-gradient(135deg, #fca5a5, #f87171);
+    border: 1px solid #ef4444;
+  }
+  .cell-red .cell-icon { stroke: #7f1d1d; }
+
+  .cell-neutral {
+    background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+    border: 1px solid #d1d5db;
+  }
+
+  .cell-diagonal {
+    background: linear-gradient(135deg, #374151, #1f2937);
+    border: 1px solid #111827;
+    border-radius: 6px;
+  }
+
+  /* Hover/active states */
+  .cell-active .cell-inner {
+    box-shadow: 0 0 0 3px rgba(244, 63, 94, 0.4);
+    transform: scale(1.05);
+  }
+
+  .row-active, .col-active {
+    opacity: 0.85;
+  }
+
+  /* Category group separators */
+  .group-separator-right {
+    border-right: 2px solid rgba(244, 63, 94, 0.12) !important;
+  }
+
+  .group-separator-bottom td, .group-separator-bottom th {
+    border-bottom: 2px solid rgba(244, 63, 94, 0.12) !important;
+  }
+
+  /* Detail panel animation */
+  #detail-panel {
+    animation: panelSlideIn 0.3s ease-out;
+  }
+
+  @keyframes panelSlideIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Mobile: make row headers narrower */
+  @media (max-width: 640px) {
+    .matrix-corner, .matrix-row-header {
+      width: 110px;
+      min-width: 110px;
+    }
+    .row-name {
+      font-size: 10px;
+    }
+    .matrix-cell {
+      width: 38px;
+      min-width: 38px;
+      height: 38px;
+    }
+    .matrix-col-header {
+      width: 38px;
+      min-width: 38px;
+    }
+    .col-abbr {
+      font-size: 10px;
+    }
+    .cell-icon {
+      width: 11px;
+      height: 11px;
+    }
+  }
+
+  /* Scrollbar styling */
+  #matrix-wrapper::-webkit-scrollbar {
+    height: 6px;
+  }
+  #matrix-wrapper::-webkit-scrollbar-track {
+    background: rgba(244, 63, 94, 0.05);
+    border-radius: 3px;
+  }
+  #matrix-wrapper::-webkit-scrollbar-thumb {
+    background: rgba(244, 63, 94, 0.2);
+    border-radius: 3px;
+  }
+  #matrix-wrapper::-webkit-scrollbar-thumb:hover {
+    background: rgba(244, 63, 94, 0.35);
+  }
+
+  /* FAQ details marker */
+  details summary::-webkit-details-marker,
+  details summary::marker {
+    display: none;
+  }
+</style>

@@ -1,0 +1,291 @@
+#!/usr/bin/env python3
+"""
+Generate reddit_schedule.json and pinterest_schedule.json
+from MDX article frontmatter and PROMO-REDDIT.md.
+"""
+
+import json
+import re
+import sys
+from datetime import datetime, timedelta
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from config import (
+    COSMETICS_BLOG, WELLNESS_BLOG, COSMETICS_IMAGES, WELLNESS_IMAGES,
+    SITES, SUBREDDIT_MAP, PINTEREST_BOARD_MAP,
+    REDDIT_SCHEDULE, PINTEREST_SCHEDULE,
+)
+
+PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
+
+
+def parse_frontmatter(mdx_path):
+    """Extract YAML frontmatter from MDX file."""
+    text = mdx_path.read_text(encoding="utf-8")
+    match = re.match(r"^---\s*\n(.*?)\n---", text, re.DOTALL)
+    if not match:
+        return None
+    fm = {}
+    for line in match.group(1).splitlines():
+        # Simple YAML parsing for flat keys
+        m = re.match(r'^(\w[\w-]*):\s*(.+)$', line)
+        if m:
+            key, val = m.group(1), m.group(2).strip()
+            # Remove quotes
+            val = val.strip('"').strip("'")
+            # Parse arrays
+            if val.startswith("["):
+                val = [v.strip().strip('"').strip("'") for v in val.strip("[]").split(",")]
+            # Parse booleans
+            elif val == "true":
+                val = True
+            elif val == "false":
+                val = False
+            fm[key] = val
+    return fm
+
+
+def get_articles(blog_dir, images_dir, site_key):
+    """Get all published articles with their metadata."""
+    articles = []
+    domain = SITES[site_key]
+    for mdx in sorted(blog_dir.glob("*.mdx")):
+        fm = parse_frontmatter(mdx)
+        if not fm or fm.get("draft") is True:
+            continue
+        slug = mdx.stem
+        image_raw = fm.get("image", "")
+        image_name = image_raw.removeprefix("/images/") if image_raw else ""
+        image_path = images_dir / image_name if image_name else None
+        articles.append({
+            "slug": slug,
+            "title": fm.get("title", slug),
+            "description": fm.get("description", ""),
+            "category": fm.get("category", ""),
+            "type": fm.get("type", ""),
+            "tags": fm.get("tags", []),
+            "date": fm.get("date", ""),
+            "site": site_key,
+            "domain": domain,
+            "url": f"https://{domain}/{slug}/",
+            "image_path": str(image_path) if image_path and image_path.exists() else None,
+            "image_name": image_name,
+        })
+    return articles
+
+
+def parse_promo_reddit():
+    """Parse PROMO-REDDIT.md into structured entries."""
+    promo_file = PROJECT_ROOT / "PROMO-REDDIT.md"
+    text = promo_file.read_text(encoding="utf-8")
+
+    entries = []
+    # Split by "### Post N:" pattern
+    post_blocks = re.split(r"### Post (\d+):", text)
+    # post_blocks: ['header', '1', 'content', '2', 'content', ...]
+    for i in range(1, len(post_blocks), 2):
+        post_num = int(post_blocks[i])
+        block = post_blocks[i + 1]
+
+        # Extract subreddit from preceding ## header
+        # Look backwards in original text
+        title_line = block.split("\n")[0].strip()
+
+        # Find thread search terms
+        search_match = re.search(r"\*\*Find a thread asking about:\*\*\s*(.+)", block)
+        search_terms = search_match.group(1).strip() if search_match else ""
+
+        # Find comment text
+        comment_match = re.search(r"\*\*Comment:\*\*\s*\n\n(.*?)(?=\n---|\Z)", block, re.DOTALL)
+        comment = comment_match.group(1).strip() if comment_match else ""
+
+        # Find URL in comment
+        url_match = re.search(r"https?://[\w.-]+/[\w-]+/?", comment)
+        url = url_match.group(0) if url_match else ""
+
+        # Determine subreddit from context
+        subreddit = ""
+        # Search backwards in original text for the ## r/ header
+        pos = text.find(f"### Post {post_num}:")
+        before = text[:pos]
+        sub_match = re.findall(r"## r/(\w+)", before)
+        if sub_match:
+            subreddit = sub_match[-1]
+
+        entries.append({
+            "post_num": post_num,
+            "title": title_line,
+            "subreddit": subreddit,
+            "search_terms": search_terms,
+            "comment": comment,
+            "url": url,
+        })
+
+    return entries
+
+
+def generate_reddit_schedule():
+    """Generate Reddit posting schedule."""
+    promo_entries = parse_promo_reddit()
+
+    # Get all published articles for auto-generating beyond the 9 pre-written
+    all_articles = []
+    all_articles.extend(get_articles(COSMETICS_BLOG, COSMETICS_IMAGES, "cosmetics"))
+    all_articles.extend(get_articles(WELLNESS_BLOG, WELLNESS_IMAGES, "wellness"))
+
+    # Track URLs already covered by promo entries
+    promo_urls = {e["url"].rstrip("/") for e in promo_entries}
+
+    schedule = []
+    # Start date: next Monday from today
+    today = datetime.now().date()
+    days_until_monday = (7 - today.weekday()) % 7
+    if days_until_monday == 0:
+        days_until_monday = 7
+    start_date = today + timedelta(days=days_until_monday)
+
+    # Schedule pre-written posts first (Mon/Wed/Fri)
+    post_days = [0, 2, 4]  # Mon=0, Wed=2, Fri=4
+    week = 0
+    day_idx = 0
+
+    for entry in promo_entries:
+        post_date = start_date + timedelta(weeks=week, days=post_days[day_idx])
+        schedule.append({
+            "id": len(schedule) + 1,
+            "type": "pre-written",
+            "post_num": entry["post_num"],
+            "subreddit": entry["subreddit"],
+            "search_terms": entry["search_terms"],
+            "comment": entry["comment"],
+            "url": entry["url"],
+            "scheduled_date": post_date.isoformat(),
+            "status": "pending",
+        })
+        day_idx += 1
+        if day_idx >= len(post_days):
+            day_idx = 0
+            week += 1
+
+    # Auto-generate entries for remaining articles
+    remaining = [a for a in all_articles if a["url"].rstrip("/") not in promo_urls]
+    for article in remaining:
+        category = article["category"]
+        subreddits = SUBREDDIT_MAP.get(category, ["SkincareAddiction"])
+        subreddit = subreddits[len(schedule) % len(subreddits)]
+
+        # Generate search terms from tags
+        tags = article.get("tags", [])
+        search_terms = ", ".join(tags[:3]) if tags else article["title"].lower()
+
+        # Generate a helpful comment template
+        comment = (
+            f"This is a great question. I found a really thorough guide on this topic "
+            f"that covers everything step by step.\n\n"
+            f"Key takeaway from what I've learned: the most important thing is consistency "
+            f"rather than using expensive products.\n\n"
+            f"Here's the full breakdown if you want more detail: {article['url']}"
+        )
+
+        post_date = start_date + timedelta(weeks=week, days=post_days[day_idx])
+        schedule.append({
+            "id": len(schedule) + 1,
+            "type": "auto-generated",
+            "subreddit": subreddit,
+            "search_terms": search_terms,
+            "comment": comment,
+            "url": article["url"],
+            "article_title": article["title"],
+            "scheduled_date": post_date.isoformat(),
+            "status": "pending",
+        })
+        day_idx += 1
+        if day_idx >= len(post_days):
+            day_idx = 0
+            week += 1
+
+    return schedule
+
+
+def generate_pinterest_schedule():
+    """Generate Pinterest pinning schedule for all articles."""
+    all_articles = []
+    all_articles.extend(get_articles(COSMETICS_BLOG, COSMETICS_IMAGES, "cosmetics"))
+    all_articles.extend(get_articles(WELLNESS_BLOG, WELLNESS_IMAGES, "wellness"))
+
+    schedule = []
+    today = datetime.now().date()
+    # Start tomorrow
+    start_date = today + timedelta(days=1)
+    pins_per_day = 4
+    day_offset = 0
+    daily_count = 0
+
+    for article in all_articles:
+        if not article["image_path"]:
+            continue
+
+        category = article["category"]
+        site_boards = PINTEREST_BOARD_MAP.get(article["site"], {})
+        domain_name = article["domain"].split(".")[0].replace("-", " ").title()
+        board = site_boards.get(category, f"{domain_name} — General")
+
+        pin_date = start_date + timedelta(days=day_offset)
+
+        schedule.append({
+            "id": len(schedule) + 1,
+            "title": article["title"],
+            "description": article["description"],
+            "url": article["url"],
+            "image_path": article["image_path"],
+            "board": board,
+            "site": article["site"],
+            "domain": article["domain"],
+            "category": category,
+            "tags": article.get("tags", []),
+            "scheduled_date": pin_date.isoformat(),
+            "status": "pending",
+        })
+
+        daily_count += 1
+        if daily_count >= pins_per_day:
+            daily_count = 0
+            day_offset += 1
+
+    return schedule
+
+
+def main():
+    print("Generating Reddit schedule...")
+    reddit = generate_reddit_schedule()
+    with open(REDDIT_SCHEDULE, "w") as f:
+        json.dump(reddit, f, indent=2)
+    print(f"  -> {len(reddit)} entries written to {REDDIT_SCHEDULE.name}")
+
+    pre = sum(1 for e in reddit if e["type"] == "pre-written")
+    auto = sum(1 for e in reddit if e["type"] == "auto-generated")
+    print(f"     {pre} pre-written (from PROMO-REDDIT.md)")
+    print(f"     {auto} auto-generated")
+
+    print("\nGenerating Pinterest schedule...")
+    pinterest = generate_pinterest_schedule()
+    with open(PINTEREST_SCHEDULE, "w") as f:
+        json.dump(pinterest, f, indent=2)
+    print(f"  -> {len(pinterest)} entries written to {PINTEREST_SCHEDULE.name}")
+
+    # Summary by board
+    boards = {}
+    for p in pinterest:
+        boards[p["board"]] = boards.get(p["board"], 0) + 1
+    for board, count in sorted(boards.items()):
+        print(f"     {board}: {count} pins")
+
+    # Date range
+    if pinterest:
+        dates = [p["scheduled_date"] for p in pinterest]
+        print(f"\n  Date range: {min(dates)} to {max(dates)}")
+
+
+if __name__ == "__main__":
+    main()

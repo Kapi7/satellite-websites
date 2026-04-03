@@ -1,0 +1,455 @@
+#!/usr/bin/env python3
+"""
+Pinterest pin poster using Playwright browser automation.
+Posts pins from article hero images to category-mapped boards.
+Supports separate Pinterest accounts per satellite site.
+
+Usage:
+    python3 pinterest_poster.py --check          # Show pending pins
+    python3 pinterest_poster.py --run-due         # Post all due pins (up to daily limit)
+    python3 pinterest_poster.py --post 5          # Post specific pin by ID
+    python3 pinterest_poster.py --dry-run         # Simulate posting
+    python3 pinterest_poster.py --headed          # Run with visible browser (for first login/2FA)
+    python3 pinterest_poster.py --site cosmetics  # Only process one site
+"""
+
+import argparse
+import json
+import random
+import sys
+import time
+from datetime import datetime
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from config import (
+    PINTEREST_ACCOUNTS,
+    PINTEREST_SCHEDULE, PINTEREST_MAX_PER_DAY,
+    BROWSER_STATE_DIR, DATA_DIR,
+    BROWSER_ARGS, DELAY_SHORT, DELAY_MEDIUM, DELAY_LONG, DELAY_PAGE_LOAD,
+)
+
+
+def human_delay(delay_range):
+    time.sleep(random.uniform(*delay_range))
+
+
+def load_schedule():
+    with open(PINTEREST_SCHEDULE) as f:
+        return json.load(f)
+
+
+def save_schedule(schedule):
+    with open(PINTEREST_SCHEDULE, "w") as f:
+        json.dump(schedule, f, indent=2)
+
+
+def log(msg):
+    ts = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    line = f"[{ts}] {msg}"
+    print(line)
+    DATA_DIR.mkdir(exist_ok=True)
+    with open(DATA_DIR / "pinterest.log", "a") as f:
+        f.write(line + "\n")
+
+
+def get_due_pins(schedule):
+    today = datetime.now().date().isoformat()
+    return [p for p in schedule if p["status"] == "pending" and p["scheduled_date"] <= today]
+
+
+def show_status(schedule):
+    pending = [p for p in schedule if p["status"] == "pending"]
+    posted = [p for p in schedule if p["status"] == "posted"]
+    failed = [p for p in schedule if p["status"] == "failed"]
+    due = get_due_pins(schedule)
+
+    print(f"\nPinterest Schedule Status")
+    print(f"{'='*50}")
+    print(f"Total: {len(schedule)} | Posted: {len(posted)} | Pending: {len(pending)} | Failed: {len(failed)}")
+    print(f"Due today: {len(due)}")
+
+    # By site
+    for site in ["cosmetics", "wellness"]:
+        site_pins = [p for p in schedule if p["site"] == site]
+        site_posted = sum(1 for p in site_pins if p["status"] == "posted")
+        site_due = sum(1 for p in due if p["site"] == site)
+        print(f"  {site}: {site_posted}/{len(site_pins)} posted, {site_due} due")
+
+    if due:
+        print(f"\nDue pins:")
+        for p in due[:10]:
+            print(f"  #{p['id']} [{p['site']}] {p['board']} | {p['title'][:40]}...")
+
+    if pending:
+        next_p = min(pending, key=lambda x: x["scheduled_date"])
+        print(f"\nNext scheduled: {next_p['scheduled_date']} — {next_p['title'][:50]}")
+
+
+def dismiss_cookie_banner(page):
+    try:
+        accept_btn = page.locator('button:has-text("Accept all")').first
+        if accept_btn.is_visible(timeout=3000):
+            accept_btn.click()
+            human_delay(DELAY_SHORT)
+            log("Cookie banner dismissed")
+    except Exception:
+        pass
+
+
+def is_logged_in(page):
+    try:
+        page.wait_for_selector(
+            '[data-test-id="header-avatar"], '
+            '[data-test-id="storyboard-create-header-heading"]',
+            timeout=5000,
+        )
+        return True
+    except Exception:
+        url = page.url
+        if "/business/hub" in url or "/pin-creation-tool" in url:
+            return True
+        return False
+
+
+def login_pinterest(page, email, password, site_key):
+    """Log into Pinterest for a specific site account."""
+    log(f"Logging in for {site_key} ({email})...")
+
+    page.goto("https://www.pinterest.com/")
+    human_delay(DELAY_PAGE_LOAD)
+    dismiss_cookie_banner(page)
+
+    if is_logged_in(page):
+        log("Already logged in (session restored)")
+        return True
+
+    log("Not logged in, proceeding...")
+
+    try:
+        page.locator('button:has-text("Log in"), a:has-text("Log in")').first.click()
+        human_delay(DELAY_MEDIUM)
+    except Exception:
+        page.goto("https://www.pinterest.com/login/")
+        human_delay(DELAY_PAGE_LOAD)
+        dismiss_cookie_banner(page)
+
+    try:
+        email_input = page.locator('#email').first
+        email_input.wait_for(state="visible", timeout=10000)
+        email_input.click()
+        human_delay(DELAY_SHORT)
+        email_input.fill(email)
+        human_delay(DELAY_SHORT)
+
+        pass_input = page.locator('#password').first
+        pass_input.click()
+        human_delay(DELAY_SHORT)
+        pass_input.fill(password)
+        human_delay(DELAY_SHORT)
+
+        page.locator('button[type="submit"]').first.click()
+        log("Credentials submitted...")
+
+        # Handle 2FA
+        try:
+            code_input = page.locator('input[name="code"]').first
+            code_input.wait_for(state="visible", timeout=10000)
+            log("2FA required — enter code in browser window...")
+            page.wait_for_url("**/business/hub**", timeout=180000)
+        except Exception:
+            human_delay(DELAY_LONG)
+
+        # Verify
+        page.goto("https://www.pinterest.com/")
+        human_delay(DELAY_PAGE_LOAD)
+        if is_logged_in(page):
+            log("Login successful")
+            return True
+
+        log("Login verification failed")
+        return False
+
+    except Exception as e:
+        log(f"Login error: {e}")
+        return False
+
+
+def post_pin(page, pin, dry_run=False):
+    """Create a single pin on Pinterest."""
+    log(f"Posting pin #{pin['id']}: {pin['title'][:50]}...")
+
+    if dry_run:
+        log(f"  [DRY RUN] Board '{pin['board']}' | {Path(pin['image_path']).name}")
+        return True
+
+    try:
+        page.goto("https://www.pinterest.com/pin-creation-tool/")
+        time.sleep(5)
+        page.wait_for_selector('[data-test-id="storyboard-upload-input"]', timeout=15000)
+
+        # ── 1. Upload image ──
+        image_path = pin["image_path"]
+        if not Path(image_path).exists():
+            log(f"  Image not found: {image_path}")
+            return False
+
+        file_input = page.locator('#storyboard-upload-input')
+        file_input.set_input_files(image_path)
+        log("  Image uploaded")
+
+        # Wait for image to fully process — board dropdown becomes enabled
+        log("  Waiting for image processing...")
+        try:
+            page.wait_for_function(
+                """() => {
+                    const btn = document.querySelector('[data-test-id="board-dropdown-select-button"]');
+                    return btn && btn.getAttribute('aria-disabled') !== 'true';
+                }""",
+                timeout=30000,
+            )
+        except Exception:
+            time.sleep(8)  # Fallback wait
+        human_delay(DELAY_MEDIUM)
+
+        # ── 2. Fill title ──
+        title_input = page.locator('#storyboard-selector-title')
+        title_input.fill(pin["title"][:100])
+        human_delay(DELAY_SHORT)
+        log("  Title filled")
+
+        # ── 3. Fill description ──
+        desc_text = pin["description"]
+        if pin.get("tags"):
+            hashtags = " ".join(f"#{t.replace(' ', '')}" for t in pin["tags"][:5])
+            desc_text = f"{desc_text}\n\n{hashtags}"
+
+        try:
+            desc_editor = page.locator('[aria-label="Add a detailed description"]').first
+            desc_editor.click()
+            human_delay(DELAY_SHORT)
+            desc_editor.fill(desc_text[:500])
+            human_delay(DELAY_SHORT)
+            log("  Description filled")
+        except Exception:
+            try:
+                desc_container = page.locator('[data-test-id="storyboard-description-field-container"]')
+                desc_container.click()
+                human_delay(DELAY_SHORT)
+                page.keyboard.type(desc_text[:500], delay=5)
+                log("  Description filled (keyboard)")
+            except Exception as e:
+                log(f"  Description skipped: {e}")
+
+        # ── 4. Fill link ──
+        url_input = page.locator('#WebsiteField')
+        url_input.fill(pin["url"])
+        human_delay(DELAY_SHORT)
+        log("  Link filled")
+
+        # ── 5. Select board ──
+        try:
+            board_btn = page.locator('[data-test-id="board-dropdown-select-button"]').first
+            board_btn.click(force=True)
+            human_delay(DELAY_MEDIUM)
+            time.sleep(2)
+
+            # Type to search for board
+            search_input = page.locator('[data-test-id="board-dropdown"] input, input[placeholder="Search"]')
+            if search_input.count() > 0:
+                search_input.first.fill(pin["board"])
+                human_delay(DELAY_MEDIUM)
+
+            # Try to find existing board
+            board_found = False
+            try:
+                board_row = page.locator(f'[data-test-id="board-row"]:has-text("{pin["board"]}")').first
+                board_row.wait_for(state="visible", timeout=3000)
+                board_row.click(force=True)
+                board_found = True
+                log(f"  Board selected: {pin['board']}")
+            except Exception:
+                pass
+
+            if not board_found:
+                # Click "Create board" at bottom of dropdown
+                try:
+                    create_el = page.locator(
+                        'button:has-text("Create board"), '
+                        'div:has-text("Create board"):visible'
+                    ).last
+                    create_el.click(force=True)
+                    human_delay(DELAY_MEDIUM)
+
+                    # Fill board name in the creation dialog
+                    name_input = page.locator('input[id="boardEditName"], input[placeholder*="Places"]').first
+                    name_input.wait_for(state="visible", timeout=5000)
+                    name_input.fill(pin["board"])
+                    human_delay(DELAY_SHORT)
+
+                    page.locator('button:has-text("Create")').first.click(force=True)
+                    human_delay(DELAY_MEDIUM)
+                    board_found = True
+                    log(f"  Created board: {pin['board']}")
+                except Exception as e:
+                    log(f"  Board creation failed: {e}")
+                    page.keyboard.press("Escape")
+                    human_delay(DELAY_SHORT)
+
+            human_delay(DELAY_SHORT)
+        except Exception as e:
+            log(f"  Board error: {e}")
+
+        # ── 6. Publish ──
+        try:
+            publish_btn = page.locator(
+                'button:has-text("Publish"), '
+                '[data-test-id="storyboard-creation-nav-done-button"]'
+            ).first
+            publish_btn.wait_for(state="visible", timeout=10000)
+            publish_btn.click(force=True)
+            human_delay(DELAY_LONG)
+            time.sleep(5)
+
+            log(f"  Pin #{pin['id']} published")
+            page.screenshot(path=str(DATA_DIR / f"pin-ok-{pin['id']}.png"))
+            return True
+        except Exception as e:
+            log(f"  Publish button not found: {e}")
+            page.screenshot(path=str(DATA_DIR / f"pin-fail-{pin['id']}.png"))
+            return False
+
+    except Exception as e:
+        log(f"  Pin #{pin['id']} failed: {e}")
+        try:
+            page.screenshot(path=str(DATA_DIR / f"pin-fail-{pin['id']}.png"))
+        except Exception:
+            pass
+        return False
+
+
+def run_poster(args):
+    from playwright.sync_api import sync_playwright
+
+    schedule = load_schedule()
+
+    if args.check:
+        show_status(schedule)
+        return
+
+    # Determine which pins to post
+    if args.post:
+        pins_to_post = [p for p in schedule if p["id"] == args.post]
+        if not pins_to_post:
+            print(f"Pin #{args.post} not found")
+            sys.exit(1)
+    elif args.run_due:
+        pins_to_post = get_due_pins(schedule)[:PINTEREST_MAX_PER_DAY]
+        if not pins_to_post:
+            log("No pins due today")
+            return
+    else:
+        print("Specify --check, --run-due, or --post N")
+        sys.exit(1)
+
+    # Filter by site if specified
+    if args.site:
+        pins_to_post = [p for p in pins_to_post if p["site"] == args.site]
+
+    # Group pins by site (each site uses its own account/session)
+    sites = {}
+    for pin in pins_to_post:
+        sites.setdefault(pin["site"], []).append(pin)
+
+    log(f"Posting {len(pins_to_post)} pin(s) across {len(sites)} site(s)...")
+
+    with sync_playwright() as pw:
+        BROWSER_STATE_DIR.mkdir(exist_ok=True)
+
+        for site_key, site_pins in sites.items():
+            account = PINTEREST_ACCOUNTS.get(site_key, {})
+            email = account.get("email", "")
+            password = account.get("password", "")
+
+            if not email or not password:
+                log(f"No Pinterest credentials for {site_key}, skipping")
+                continue
+
+            log(f"\n--- Processing {site_key} ({len(site_pins)} pins) ---")
+
+            state_path = BROWSER_STATE_DIR / f"pinterest-{site_key}"
+            state_file = state_path / "state.json"
+
+            browser = pw.chromium.launch(
+                headless=not args.headed,
+                args=BROWSER_ARGS,
+            )
+
+            context = browser.new_context(
+                storage_state=str(state_file) if state_file.exists() else None,
+                viewport={"width": 1280, "height": 900},
+                user_agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+            )
+
+            context.add_init_script("""
+                Object.defineProperty(navigator, 'webdriver', { get: () => undefined });
+            """)
+
+            page = context.new_page()
+
+            if not login_pinterest(page, email, password, site_key):
+                log(f"Login failed for {site_key}, skipping")
+                browser.close()
+                continue
+
+            state_path.mkdir(parents=True, exist_ok=True)
+            context.storage_state(path=str(state_file))
+
+            posted_count = 0
+            for pin in site_pins:
+                success = post_pin(page, pin, dry_run=args.dry_run)
+
+                for entry in schedule:
+                    if entry["id"] == pin["id"]:
+                        if args.dry_run:
+                            break
+                        entry["status"] = "posted" if success else "failed"
+                        entry["posted_at"] = datetime.now().isoformat()
+                        break
+
+                if success:
+                    posted_count += 1
+
+                if not args.dry_run:
+                    save_schedule(schedule)
+
+                if pin != site_pins[-1]:
+                    delay = random.uniform(30, 90)
+                    log(f"Waiting {delay:.0f}s before next pin...")
+                    time.sleep(delay)
+
+            context.storage_state(path=str(state_file))
+            browser.close()
+
+            log(f"{site_key}: Posted {posted_count}/{len(site_pins)}")
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Pinterest pin poster")
+    parser.add_argument("--check", action="store_true", help="Show schedule status")
+    parser.add_argument("--run-due", action="store_true", help="Post all due pins")
+    parser.add_argument("--post", type=int, help="Post specific pin by ID")
+    parser.add_argument("--dry-run", action="store_true", help="Simulate posting")
+    parser.add_argument("--headed", action="store_true", help="Show browser window")
+    parser.add_argument("--site", choices=["cosmetics", "wellness"], help="Only process one site")
+    args = parser.parse_args()
+
+    if not any([args.check, args.run_due, args.post]):
+        parser.print_help()
+        sys.exit(1)
+
+    run_poster(args)
+
+
+if __name__ == "__main__":
+    main()
