@@ -11,14 +11,14 @@ import urllib.request
 import urllib.error
 from datetime import date
 
-API_KEY = "282fd9e402f641b9a21fe8c171b6925e"
+API_KEY = os.environ.get("BING_API_KEY", "282fd9e402f641b9a21fe8c171b6925e")
 ENDPOINT = f"https://ssl.bing.com/webmaster/api.svc/json/SubmitUrlBatch?apikey={API_KEY}"
 LOCALES = ["es", "de", "el", "ru", "it", "ar"]
 MAX_PER_DAY = 100
 STATE_FILE = os.path.join(os.path.dirname(__file__), "bing_i18n_state.json")
 
-COSMETICS_DIR = "/Users/kapi7/satellite-websites/cosmetics/src/content/blog/en/"
-WELLNESS_DIR = "/Users/kapi7/satellite-websites/wellness/src/content/blog/en/"
+COSMETICS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "cosmetics", "src", "content", "blog", "en")
+WELLNESS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "wellness", "src", "content", "blog", "en")
 
 def build_i18n_urls(domain, blog_dir):
     slugs = sorted([f.replace(".mdx", "") for f in os.listdir(blog_dir) if f.endswith(".mdx")])

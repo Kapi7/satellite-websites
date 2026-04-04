@@ -1,0 +1,81 @@
+name: SEO Automation
+
+on:
+  schedule:
+    - cron: '15 3 * * *'  # 6:15 AM EEST
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  seo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install google-genai googlesearch-python requests python-dotenv
+
+      - name: Write .env from secrets
+        run: |
+          cat > .env << EOF
+          GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}
+          AHREFS_API_KEY=${{ secrets.AHREFS_API_KEY }}
+          BING_API_KEY=${{ secrets.BING_API_KEY }}
+          INDEXNOW_KEY=${{ secrets.INDEXNOW_KEY }}
+          SMTP_GLOWCODED_SERVER=smtp.gmail.com
+          SMTP_GLOWCODED_PORT=587
+          SMTP_GLOWCODED_PASSWORD=${{ secrets.SMTP_GLOWCODED_PASSWORD }}
+          SMTP_ROOTEDGLOW_SERVER=smtp.gmail.com
+          SMTP_ROOTEDGLOW_PORT=587
+          SMTP_ROOTEDGLOW_PASSWORD=${{ secrets.SMTP_ROOTEDGLOW_PASSWORD }}
+          IMAP_GLOWCODED_SERVER=imap.gmail.com
+          IMAP_GLOWCODED_PASSWORD=${{ secrets.IMAP_GLOWCODED_PASSWORD }}
+          IMAP_ROOTEDGLOW_SERVER=imap.gmail.com
+          IMAP_ROOTEDGLOW_PASSWORD=${{ secrets.IMAP_ROOTEDGLOW_PASSWORD }}
+          EOF
+
+      - name: Write GSC token
+        run: echo '${{ secrets.GSC_TOKEN_JSON }}' | base64 -d > /tmp/gsc-token.json
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Check index status + Bing submit
+        run: python3 scripts/check-index.py
+        env:
+          GSC_TOKEN_FILE: /tmp/gsc-token.json
+          BING_API_KEY: ${{ secrets.BING_API_KEY }}
+
+      - name: Submit i18n URLs to Bing
+        run: python3 scripts/bing_submit_i18n.py
+        env:
+          BING_API_KEY: ${{ secrets.BING_API_KEY }}
+
+      - name: Run backlink autopilot
+        run: python3 scripts/seo/backlink_autopilot.py
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          AHREFS_API_KEY: ${{ secrets.AHREFS_API_KEY }}
+
+      - name: Send outreach emails
+        run: python3 scripts/seo/outreach_manager.py --auto
+
+      - name: Send follow-up emails
+        run: python3 scripts/seo/outreach_manager.py --send-followups
+
+      - name: Commit state files
+        run: |
+          git add scripts/bing_i18n_state.json scripts/seo/outreach_queue.json scripts/seo/outreach_log.json || true
+          git diff --cached --quiet && echo "No state changes" && exit 0
+          git commit -m "Update SEO state files [skip ci]"
+          git push

@@ -1,0 +1,43 @@
+name: Weekly SEO Report
+
+on:
+  schedule:
+    - cron: '0 5 * * 1'  # Monday 8:00 AM EEST
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Write GSC token
+        run: echo '${{ secrets.GSC_TOKEN_JSON }}' | base64 -d > /tmp/gsc-token.json
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Generate weekly report
+        run: python3 scripts/weekly-report.py
+        env:
+          GSC_TOKEN_FILE: /tmp/gsc-token.json
+          AHREFS_API_KEY: ${{ secrets.AHREFS_API_KEY }}
+          BING_API_KEY: ${{ secrets.BING_API_KEY }}
+
+      - name: Commit report
+        run: |
+          git add scripts/reports/ || true
+          git diff --cached --quiet && echo "No report to commit" && exit 0
+          git commit -m "Weekly SEO report [skip ci]"
+          git push

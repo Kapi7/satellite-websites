@@ -1,0 +1,55 @@
+name: Daily Article Publisher
+
+on:
+  schedule:
+    - cron: '0 3 * * *'  # 6:00 AM EEST
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install google-genai
+
+      - name: Write .env from secrets
+        run: |
+          cat > .env << 'ENV_EOF'
+          GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}
+          ENV_EOF
+
+      - name: Write GSC token
+        run: echo '${{ secrets.GSC_TOKEN_JSON }}' | base64 -d > /tmp/gsc-token.json
+        env:
+          GSC_TOKEN_FILE: /tmp/gsc-token.json
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Run daily publisher
+        run: bash scripts/daily-publish.sh
+        env:
+          GSC_TOKEN_FILE: /tmp/gsc-token.json
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
+          BING_API_KEY: ${{ secrets.BING_API_KEY }}
+
+      - name: Push changes if any
+        run: |
+          git add -A
+          git diff --cached --quiet && echo "No changes to commit" && exit 0
+          git commit -m "Auto-publish daily articles [skip ci]"
+          git push

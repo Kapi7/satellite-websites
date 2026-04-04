@@ -4,7 +4,7 @@
 # Run via cron: 0 6 * * * /Users/kapi7/satellite-websites/scripts/daily-publish.sh
 
 set -euo pipefail
-cd /Users/kapi7/satellite-websites
+cd "$(dirname "$0")/.."
 
 # Load environment variables
 set -a; source .env 2>/dev/null; set +a
@@ -29,7 +29,11 @@ for article in \
   "cosmetics/src/content/blog/en/best-anti-aging-korean-skincare-30s.mdx" \
   "cosmetics/src/content/blog/en/hydrating-routine-dry-winter-skin.mdx"; do
   if [ -f "$article" ] && grep -q "^draft: true" "$article"; then
-    sed -i '' '/^draft: true$/d' "$article"
+    if [[ "$OSTYPE" == darwin* ]]; then
+      sed -i '' '/^draft: true$/d' "$article"
+    else
+      sed -i '/^draft: true$/d' "$article"
+    fi
     echo "[Glow Coded] Published: $(basename "$article" .mdx)"
     PUBLISHED_FILES="$PUBLISHED_FILES $article"
     PUBLISHED=$((PUBLISHED + 1))
@@ -52,7 +56,11 @@ for article in \
   "wellness/src/content/blog/en/meditation-cortisol-stillness-heals-skin.mdx" \
   "wellness/src/content/blog/en/post-workout-k-beauty-recovery-routine.mdx"; do
   if [ -f "$article" ] && grep -q "^draft: true" "$article"; then
-    sed -i '' '/^draft: true$/d' "$article"
+    if [[ "$OSTYPE" == darwin* ]]; then
+      sed -i '' '/^draft: true$/d' "$article"
+    else
+      sed -i '/^draft: true$/d' "$article"
+    fi
     echo "[Rooted Glow] Published: $(basename "$article" .mdx)"
     PUBLISHED_FILES="$PUBLISHED_FILES $article"
     PUBLISHED=$((PUBLISHED + 1))

@@ -6,6 +6,7 @@ Run via cron: 15 6 * * * /opt/homebrew/bin/python3 /Users/kapi7/satellite-websit
 """
 
 import json
+import os
 import sys
 import urllib.request
 import urllib.parse
@@ -13,8 +14,8 @@ import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta
 
 # ── Config ──────────────────────────────────────────────────────────────────
-GSC_TOKEN_FILE = "/Users/kapi7/.config/gsc-token.json"
-BING_API_KEY = "282fd9e402f641b9a21fe8c171b6925e"
+GSC_TOKEN_FILE = os.environ.get("GSC_TOKEN_FILE", os.path.expanduser("~/.config/gsc-token.json"))
+BING_API_KEY = os.environ.get("BING_API_KEY", "282fd9e402f641b9a21fe8c171b6925e")
 
 SITES = {
     "glow-coded.com": {

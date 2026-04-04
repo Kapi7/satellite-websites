@@ -15,9 +15,9 @@ import urllib.parse
 from datetime import datetime, timedelta
 
 # ── Config ──────────────────────────────────────────────────────────────────
-GSC_TOKEN_FILE = "/Users/kapi7/.config/gsc-token.json"
-AHREFS_API_KEY = "bldAb-4QInmVjjFRldH6r-32VeDrIDnJQVReJhpw"
-BING_API_KEY = "282fd9e402f641b9a21fe8c171b6925e"
+GSC_TOKEN_FILE = os.environ.get("GSC_TOKEN_FILE", os.path.expanduser("~/.config/gsc-token.json"))
+AHREFS_API_KEY = os.environ.get("AHREFS_API_KEY", "bldAb-4QInmVjjFRldH6r-32VeDrIDnJQVReJhpw")
+BING_API_KEY = os.environ.get("BING_API_KEY", "282fd9e402f641b9a21fe8c171b6925e")
 REPORTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "reports")
 
 SITES = {
