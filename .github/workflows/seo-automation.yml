@@ -52,26 +52,36 @@ jobs:
 
       - name: Check index status + Bing submit
         run: python3 scripts/check-index.py
+        timeout-minutes: 15
+        continue-on-error: true
         env:
           GSC_TOKEN_FILE: /tmp/gsc-token.json
           BING_API_KEY: ${{ secrets.BING_API_KEY }}
 
       - name: Submit i18n URLs to Bing
         run: python3 scripts/bing_submit_i18n.py
+        timeout-minutes: 5
+        continue-on-error: true
         env:
           BING_API_KEY: ${{ secrets.BING_API_KEY }}
 
       - name: Run backlink autopilot
         run: python3 scripts/seo/backlink_autopilot.py
+        timeout-minutes: 15
+        continue-on-error: true
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           AHREFS_API_KEY: ${{ secrets.AHREFS_API_KEY }}
 
       - name: Send outreach emails
         run: python3 scripts/seo/outreach_manager.py --auto
+        timeout-minutes: 5
+        continue-on-error: true
 
       - name: Send follow-up emails
         run: python3 scripts/seo/outreach_manager.py --send-followups
+        timeout-minutes: 5
+        continue-on-error: true
 
       - name: Commit state files
         run: |
