@@ -72,6 +72,7 @@ if [ $PUBLISHED -gt 0 ]; then
   # Only stage the published articles — never git add -A
   git add $PUBLISHED_FILES
   git commit -m "Publish daily articles ($(date +%Y-%m-%d))"
+  git pull --rebase --quiet origin main 2>/dev/null || true
   git push origin main
 
   # Auto-translate newly published articles to all 6 locales
