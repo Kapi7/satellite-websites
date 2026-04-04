@@ -1,0 +1,86 @@
+============================================================
+  WEEKLY SEO REPORT
+  Week of 2026-04-04
+============================================================
+
+============================================================
+  GLOW-CODED.COM
+============================================================
+
+  GSC — glow-coded.com
+  ──────────────────────────────────────────────────
+  Clicks:      6 ▲ +4
+  Impressions: 426 ▲ +356
+  CTR:         1.4% ▼ -1.4
+  Position:    31.4 ▼ -15.5
+
+  Top Queries:
+  Query                                    Clicks   Impr    CTR   Pos
+  skincare interaction checker                  1      1 100.0%   8.0
+  "cosrx"                                       0      4   0.0%  27.0
+  "cosrx" -site:reddit.com -site:twitter        0      2   0.0%   6.5
+  "torriden" -site:reddit.com -site:twit        0      6   0.0%   2.5
+  acne spot                                     0      2   0.0%  81.0
+  at home pimple spot treatment                 0      1   0.0%  52.0
+  best acne spot treatment 2017                 0      1   0.0%  89.0
+  best face sunscreen no white cast             0      1   0.0%  84.0
+  best korean sunscreen for oily skin           0      1   0.0%   8.0
+  best no white cast sunscreen                  0      1   0.0%  87.0
+
+  Ahrefs — glow-coded.com
+  ──────────────────────────────────────────────────
+  DR:          7.0 ▲ +7.0
+  Ahrefs Rank: 21763949
+  Backlinks:   96 ▲ +72
+  Ref Domains: 17 ▲ +5
+
+  Top Organic Keywords:
+    best spot treatment for acne                    vol: 1400
+
+  Bing — glow-coded.com
+  ──────────────────────────────────────────────────
+  Crawled: 0  |  Indexed: 0
+  Daily quota left: 100  |  Monthly: 2700
+
+============================================================
+  ROOTED-GLOW.COM
+============================================================
+
+  GSC — rooted-glow.com
+  ──────────────────────────────────────────────────
+  Clicks:      1 ▲ +1
+  Impressions: 266 ▲ +231
+  CTR:         0.4% ▲ +0.4
+  Position:    38.7 ▼ -7.4
+
+  Top Queries:
+  Query                                    Clicks   Impr    CTR   Pos
+  2 step cleansing                              0      1   0.0%  57.0
+  ancestral diet                                0      7   0.0%  82.3
+  ancestral diet food list                      0      2   0.0%  58.5
+  ancestral diet meal plan                      0      1   0.0%  72.0
+  ancestral eating                              0      1   0.0%  85.0
+  ancestrial diet                               0      1   0.0%  98.0
+  are cleansing oils good for oily skin         0      1   0.0%  98.0
+  benefits of double cleansing                  0      1   0.0% 100.0
+  best oil for double cleansing                 0      1   0.0%  77.0
+  can you double cleanse with the same c        0      4   0.0%  58.8
+
+  Ahrefs — rooted-glow.com
+  ──────────────────────────────────────────────────
+  DR:          6.0 ▲ +6.0
+  Ahrefs Rank: 23989510
+  Backlinks:   117 ▲ +92
+  Ref Domains: 21 ▲ +4
+
+  Top Organic Keywords:
+    what is double cleansing                        vol: 1600
+
+  Bing — rooted-glow.com
+  ──────────────────────────────────────────────────
+  Crawled: 0  |  Indexed: 0
+  Daily quota left: 100  |  Monthly: 2700
+
+============================================================
+  Report generated: 2026-04-04 08:29
+============================================================
