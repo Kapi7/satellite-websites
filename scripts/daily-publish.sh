@@ -61,7 +61,22 @@ for article in \
   "cosmetics/src/content/blog/en/vitamin-c-korean-skincare.mdx" \
   "cosmetics/src/content/blog/en/best-k-beauty-under-15.mdx" \
   "cosmetics/src/content/blog/en/best-anti-aging-korean-skincare-30s.mdx" \
-  "cosmetics/src/content/blog/en/hydrating-routine-dry-winter-skin.mdx"; do
+  "cosmetics/src/content/blog/en/hydrating-routine-dry-winter-skin.mdx" \
+  "cosmetics/src/content/blog/en/best-ceramide-creams-barrier-repair.mdx" \
+  "cosmetics/src/content/blog/en/best-korean-lip-products-hydration.mdx" \
+  "cosmetics/src/content/blog/en/best-pdrn-skincare-products.mdx" \
+  "cosmetics/src/content/blog/en/best-korean-sheet-masks-by-skin-concern.mdx" \
+  "cosmetics/src/content/blog/en/best-korean-products-hyperpigmentation-dark-spots.mdx" \
+  "cosmetics/src/content/blog/en/best-korean-skincare-for-men.mdx" \
+  "cosmetics/src/content/blog/en/best-korean-cushion-foundations-skin-type.mdx" \
+  "cosmetics/src/content/blog/en/best-korean-cica-products-redness-sensitive-skin.mdx" \
+  "cosmetics/src/content/blog/en/best-korean-cleansing-balms-oils-guide.mdx" \
+  "cosmetics/src/content/blog/en/best-korean-toners-glass-skin.mdx" \
+  "cosmetics/src/content/blog/en/best-korean-moisturizers-under-25.mdx" \
+  "cosmetics/src/content/blog/en/medicube-age-r-devices-worth-it.mdx" \
+  "cosmetics/src/content/blog/en/best-korean-body-care-products.mdx" \
+  "cosmetics/src/content/blog/en/korean-hair-care-products-damage-repair.mdx" \
+  "cosmetics/src/content/blog/en/best-korean-anti-aging-serums-every-budget.mdx"; do
   if [ -f "$article" ] && grep -q "^draft: true" "$article"; then
     publish_article "$article" "Glow Coded"
     PUBLISHED=$((PUBLISHED + 1))
@@ -82,7 +97,22 @@ for article in \
   "wellness/src/content/blog/en/how-to-make-natural-fruit-soda.mdx" \
   "wellness/src/content/blog/en/heart-rate-zones-explained-train-smarter.mdx" \
   "wellness/src/content/blog/en/meditation-cortisol-stillness-heals-skin.mdx" \
-  "wellness/src/content/blog/en/post-workout-k-beauty-recovery-routine.mdx"; do
+  "wellness/src/content/blog/en/post-workout-k-beauty-recovery-routine.mdx" \
+  "wellness/src/content/blog/en/10-anti-inflammatory-meals-weight-loss.mdx" \
+  "wellness/src/content/blog/en/5-recovery-tools-speed-muscle-healing.mdx" \
+  "wellness/src/content/blog/en/foods-that-sharpen-focus-science-backed.mdx" \
+  "wellness/src/content/blog/en/15-minute-morning-meditation-sequence.mdx" \
+  "wellness/src/content/blog/en/how-to-start-cold-water-therapy.mdx" \
+  "wellness/src/content/blog/en/10-high-protein-smoothie-recipes-recovery.mdx" \
+  "wellness/src/content/blog/en/weekly-meal-prep-weight-loss.mdx" \
+  "wellness/src/content/blog/en/7-evening-wind-down-rituals-deep-sleep.mdx" \
+  "wellness/src/content/blog/en/10-warming-soups-gut-health-weight-loss.mdx" \
+  "wellness/src/content/blog/en/breathwork-techniques-stress-recovery.mdx" \
+  "wellness/src/content/blog/en/10-brain-snacks-boost-concentration.mdx" \
+  "wellness/src/content/blog/en/intermittent-fasting-beginners-guide.mdx" \
+  "wellness/src/content/blog/en/10-minute-body-scan-meditation-beginners.mdx" \
+  "wellness/src/content/blog/en/anti-inflammatory-spice-blends-make-today.mdx" \
+  "wellness/src/content/blog/en/how-to-make-fermented-kimchi-at-home.mdx"; do
   if [ -f "$article" ] && grep -q "^draft: true" "$article"; then
     publish_article "$article" "Rooted Glow"
     PUBLISHED=$((PUBLISHED + 1))
