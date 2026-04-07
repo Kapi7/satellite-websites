@@ -1,9 +1,14 @@
-name: Weekly Newsletter
+name: Friday Newsletter
 
 on:
   schedule:
-    - cron: '0 6 * * 1'  # Monday 9:00 AM EEST (UTC+3)
+    - cron: '0 11 * * 5'  # Friday 14:00 EEST (UTC+3)
   workflow_dispatch:
+    inputs:
+      edition:
+        description: 'Force specific edition number (1-10), leave empty for auto'
+        required: false
+        type: string
 
 jobs:
   send:
@@ -30,9 +35,15 @@ jobs:
           echo "::add-mask::$ACCESS_TOKEN"
           echo "token=$ACCESS_TOKEN" >> "$GITHUB_OUTPUT"
 
-      - name: Send newsletters
-        run: python3 scripts/newsletter_sender.py
+      - name: Send newsletter
+        run: |
+          ARGS=""
+          if [ -n "$EDITION_NUM" ]; then
+            ARGS="--edition $EDITION_NUM"
+          fi
+          python3 scripts/newsletters/send_weekly.py $ARGS
         env:
+          EDITION_NUM: ${{ inputs.edition }}
           CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
           CF_KV_API_TOKEN: ${{ steps.cf_token.outputs.token }}
           CF_KV_NAMESPACE_GLOWCODED: ${{ secrets.CF_KV_NAMESPACE_GLOWCODED }}

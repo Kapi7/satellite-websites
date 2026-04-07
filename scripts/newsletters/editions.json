@@ -1,0 +1,462 @@
+[
+  {
+    "edition": 1,
+    "theme": "Your Skincare Starting Point",
+    "glow-coded": {
+      "subject": "Where to Begin: Your K-Beauty Starter Kit",
+      "intro": "Whether you're brand new to Korean skincare or just want to streamline your routine, these guides will give you the foundation you need. No fluff — just what works.",
+      "articles": [
+        {
+          "slug": "korean-skincare-routine-complete-guide",
+          "title": "Korean Skincare Routine: The Complete Guide",
+          "blurb": "Everything you need to know about the Korean skincare routine — from the famous 10-step method to a realistic, everyday approach."
+        },
+        {
+          "slug": "how-to-build-a-skincare-routine-from-scratch",
+          "title": "How to Build a Skincare Routine From Scratch",
+          "blurb": "No idea where to start? This step-by-step guide walks you through building a routine that actually works."
+        },
+        {
+          "slug": "skincare-for-every-skin-type",
+          "title": "Skincare for Every Skin Type",
+          "blurb": "Oily, dry, combination, sensitive, or normal — the best ingredients, products, and routines for your specific skin."
+        }
+      ]
+    },
+    "rooted-glow": {
+      "subject": "The Wellness Starting Point: Skin, Gut & Sleep",
+      "intro": "Great skin doesn't start with skincare — it starts with how you sleep, eat, and manage stress. These guides connect the dots between your daily habits and your complexion.",
+      "articles": [
+        {
+          "slug": "gut-skin-connection-explained",
+          "title": "The Gut-Skin Connection Explained",
+          "blurb": "How your digestive health directly affects your skin, and what to eat for a clearer complexion."
+        },
+        {
+          "slug": "my-complete-am-wellness-routine",
+          "title": "My Complete AM Wellness Routine",
+          "blurb": "The exact morning routine our team follows — skincare, movement, nutrition, and the small habits that set the tone."
+        },
+        {
+          "slug": "sleep-stress-skin-wellness-triangle",
+          "title": "Sleep, Stress, and Skin: The Wellness Triangle",
+          "blurb": "How sleep quality, stress management, and skin health are deeply connected — and why fixing one often fixes the others."
+        }
+      ]
+    }
+  },
+  {
+    "edition": 2,
+    "theme": "Ingredient Deep Dives",
+    "glow-coded": {
+      "subject": "Ingredient Intel: What's Actually in Your Skincare",
+      "intro": "Snail mucin, niacinamide, vitamin C — these ingredients are everywhere, but what do they actually do? This week, we decode the science behind K-beauty's star actives.",
+      "articles": [
+        {
+          "slug": "best-snail-mucin-products-2026",
+          "title": "Best Snail Mucin Products 2026 (Honest Review)",
+          "blurb": "We tested 8 snail mucin products over 3 months. Here are the ones that actually deliver on the hype."
+        },
+        {
+          "slug": "niacinamide-vs-vitamin-c",
+          "title": "Niacinamide vs Vitamin C: Which Do You Need?",
+          "blurb": "Two of skincare's most popular ingredients go head to head — what each one does and whether you can use both."
+        },
+        {
+          "slug": "k-beauty-ingredients-decoded",
+          "title": "K-Beauty Ingredients Decoded",
+          "blurb": "A complete guide to the most popular Korean skincare ingredients, from snail mucin to centella asiatica."
+        }
+      ]
+    },
+    "rooted-glow": {
+      "subject": "Nature's Medicine Cabinet: Adaptogens, Broth & Real Fats",
+      "intro": "Modern wellness often rediscovers ancient wisdom. This week, we explore the functional foods and herbs that our grandparents relied on — and science is now validating.",
+      "articles": [
+        {
+          "slug": "8-adaptogens-that-actually-work",
+          "title": "8 Adaptogens That Actually Work",
+          "blurb": "Cutting through the hype: 8 adaptogenic herbs with real research behind them and what we actually noticed."
+        },
+        {
+          "slug": "why-we-quit-seed-oils",
+          "title": "Why We Quit Seed Oils (And What We Cook With Instead)",
+          "blurb": "The science behind industrial seed oils, why we removed them, and the traditional fats that replaced them."
+        },
+        {
+          "slug": "bone-broth-benefits",
+          "title": "Bone Broth Benefits: Why Your Grandmother Was Right",
+          "blurb": "Collagen, gelatin, amino acids, and minerals that support gut health, joint function, and skin elasticity."
+        }
+      ]
+    }
+  },
+  {
+    "edition": 3,
+    "theme": "Sun Protection Special",
+    "glow-coded": {
+      "subject": "SPF Season: Korean Sunscreens That Actually Feel Good",
+      "intro": "If you hate wearing sunscreen, you haven't tried the right one. Korean sunscreens changed the game with elegant textures, zero white cast, and genuine protection. Here are the best.",
+      "articles": [
+        {
+          "slug": "best-korean-sunscreens-oily-skin-no-white-cast",
+          "title": "Best Korean Sunscreens for Oily Skin (No White Cast)",
+          "blurb": "We tested 8 lightweight Korean sunscreens on oily skin to find the ones that control shine and feel good all day."
+        },
+        {
+          "slug": "10-sunscreens-no-white-cast",
+          "title": "10 Sunscreens With No White Cast",
+          "blurb": "Tired of sunscreens that leave you looking ghostly? We tested 10 formulas on multiple skin tones."
+        },
+        {
+          "slug": "cosrx-snail-mucin-vs-torriden-dive-in-serum",
+          "title": "COSRX Snail Mucin vs Torriden Dive-In Serum",
+          "blurb": "Two of the most popular K-beauty hydrating serums go head to head — texture, hydration, results, and value."
+        }
+      ]
+    },
+    "rooted-glow": {
+      "subject": "Active Skin Protection: From Sunscreen to Post-Workout Care",
+      "intro": "Your skin takes a beating from outdoor workouts, UV exposure, and sweat. This week, we cover how to protect, recover, and glow — even when you're training hard.",
+      "articles": [
+        {
+          "slug": "why-korean-sunscreen-is-different",
+          "title": "Why Korean Sunscreen Is Different",
+          "blurb": "What makes Korean sunscreens better than most Western options — the formulation differences and the texture revolution."
+        },
+        {
+          "slug": "korean-skincare-for-runners",
+          "title": "Korean Skincare for Runners: Protect Your Skin",
+          "blurb": "How to protect your skin from sun damage, sweat breakouts, and environmental stress when you run outdoors."
+        },
+        {
+          "slug": "post-workout-k-beauty-recovery-routine",
+          "title": "Post-Workout K-Beauty Recovery Routine",
+          "blurb": "Clear sweat, calm redness, repair damage, and protect skin after every workout."
+        }
+      ]
+    }
+  },
+  {
+    "edition": 4,
+    "theme": "Hydration & Repair",
+    "glow-coded": {
+      "subject": "Deep Hydration: Repair, Restore, and Glow",
+      "intro": "Dehydrated skin looks dull, feels tight, and ages faster. This week is all about layering moisture the Korean way — ceramides, hyaluronic acid, and winter-proof routines.",
+      "articles": [
+        {
+          "slug": "dry-skin-sos-winter-skincare-guide",
+          "title": "Dry Skin SOS: Winter Skincare Guide",
+          "blurb": "Everything you need to adjust in your routine to keep dry skin comfortable and healthy through cold weather."
+        },
+        {
+          "slug": "best-ceramide-creams-barrier-repair",
+          "title": "10 Best Korean Ceramide Creams for Barrier Repair",
+          "blurb": "Your moisture barrier is the foundation of healthy skin. These ceramide creams actually repair and protect it."
+        },
+        {
+          "slug": "the-truth-about-hyaluronic-acid",
+          "title": "The Truth About Hyaluronic Acid",
+          "blurb": "It's in everything — but does it live up to the hype? The science, and the one mistake almost everyone makes."
+        }
+      ]
+    },
+    "rooted-glow": {
+      "subject": "Rest & Recovery: Sleep, Cold Therapy, and Wind-Down Rituals",
+      "intro": "Recovery isn't passive — it's a practice. This week, we dive into the science-backed rituals that help your body repair, from sleep optimization to cold water therapy.",
+      "articles": [
+        {
+          "slug": "how-to-fix-your-sleep-in-7-days",
+          "title": "How to Fix Your Sleep in 7 Days",
+          "blurb": "A practical, day-by-day protocol for resetting your sleep — based on circadian science and surprisingly simple."
+        },
+        {
+          "slug": "7-evening-wind-down-rituals-deep-sleep",
+          "title": "7 Evening Wind-Down Rituals for Deep Sleep",
+          "blurb": "Science-backed evening rituals that prepare your body and brain for deep, restorative sleep. Start tonight."
+        },
+        {
+          "slug": "how-to-start-cold-water-therapy",
+          "title": "The Complete Guide to Cold Water Therapy",
+          "blurb": "Cold showers, ice baths, and cold plunges — the science, how to start safely, and what to realistically expect."
+        }
+      ]
+    }
+  },
+  {
+    "edition": 5,
+    "theme": "Anti-Aging & Prevention",
+    "glow-coded": {
+      "subject": "Aging Gracefully: Prevention Starts Now",
+      "intro": "Anti-aging isn't about reversing time — it's about smart prevention. This week, the best Korean anti-aging serums, retinol for beginners, and why your 30s are the perfect time to start.",
+      "articles": [
+        {
+          "slug": "best-anti-aging-korean-skincare-30s",
+          "title": "Best Anti-Aging Korean Skincare for Your 30s",
+          "blurb": "Your 30s are when smart skincare starts paying dividends. The best Korean products for collagen and fine lines."
+        },
+        {
+          "slug": "best-korean-anti-aging-serums-every-budget",
+          "title": "10 Best Korean Anti-Aging Serums for Every Budget",
+          "blurb": "From $12 to $45 — we tested Korean anti-aging serums and found winners at every price point."
+        },
+        {
+          "slug": "retinol-for-beginners-start-here",
+          "title": "Retinol for Beginners: Start Here",
+          "blurb": "How to introduce retinol without irritation, and the mistakes most people make in their first month."
+        }
+      ]
+    },
+    "rooted-glow": {
+      "subject": "Longevity Habits: Meditation, Fasting, and Zone 2 Training",
+      "intro": "The habits that keep you young aren't expensive treatments — they're daily practices. This week: how cortisol ages your skin, the case for slow exercise, and how fasting resets your body.",
+      "articles": [
+        {
+          "slug": "meditation-cortisol-stillness-heals-skin",
+          "title": "Meditation and Cortisol: How Stillness Heals Skin",
+          "blurb": "The science connecting meditation, cortisol reduction, and skin health — managing stress directly improves your complexion."
+        },
+        {
+          "slug": "intermittent-fasting-beginners-guide",
+          "title": "How to Start Intermittent Fasting Safely",
+          "blurb": "Which protocol to choose, what to expect, and when to stop — the safe way to begin intermittent fasting."
+        },
+        {
+          "slug": "zone-2-training-slow-running-burns-fat",
+          "title": "Zone 2 Training: Why Slow Running Burns More Fat",
+          "blurb": "The science behind why running slower actually produces better results and builds your aerobic engine."
+        }
+      ]
+    }
+  },
+  {
+    "edition": 6,
+    "theme": "Problem Skin Solutions",
+    "glow-coded": {
+      "subject": "Skin SOS: Acne, Redness, and Sensitive Skin Solutions",
+      "intro": "Dealing with breakouts, rosacea, or reactive skin? Korean skincare excels at gentle, effective solutions. This week — targeted treatments that calm, clear, and heal.",
+      "articles": [
+        {
+          "slug": "acne-spot-treatments-that-work",
+          "title": "Acne Spot Treatments That Actually Work",
+          "blurb": "The ingredients, methods, and products that genuinely clear breakouts faster — not all spot treatments are equal."
+        },
+        {
+          "slug": "best-korean-cica-products-redness-sensitive-skin",
+          "title": "Best Korean Cica Products for Redness and Sensitive Skin",
+          "blurb": "Centella asiatica is the gold standard for calming reactive skin. We ranked 10 Korean cica products by soothing power."
+        },
+        {
+          "slug": "korean-skincare-routine-rosacea",
+          "title": "Korean Skincare Routine for Rosacea",
+          "blurb": "Gentle products, calming ingredients, and steps to reduce redness without triggering flare-ups."
+        }
+      ]
+    },
+    "rooted-glow": {
+      "subject": "Stress, Skin & Food: The Inside-Out Connection",
+      "intro": "Breakouts don't always start at the surface. Stress, inflammation, and diet play a huge role. This week, we tackle the internal triggers — and the Korean products that help externally.",
+      "articles": [
+        {
+          "slug": "best-korean-products-stress-breakouts",
+          "title": "Best Korean Products for Stress-Related Breakouts",
+          "blurb": "When stress triggers breakouts, these K-beauty products calm inflammation and repair the barrier."
+        },
+        {
+          "slug": "oil-cleansing-oily-skin",
+          "title": "Oil Cleansing for Oily Skin: Why It Actually Works",
+          "blurb": "The chemistry of why oil cleansing reduces excess sebum and clears pores — especially for acne-prone skin."
+        },
+        {
+          "slug": "foods-that-sharpen-focus-science-backed",
+          "title": "Foods That Sharpen Focus: A Science-Backed Guide",
+          "blurb": "Your brain uses 20% of your daily calories. Feed it the right fuel and everything improves — skin included."
+        }
+      ]
+    }
+  },
+  {
+    "edition": 7,
+    "theme": "Beyond the Face",
+    "glow-coded": {
+      "subject": "Full Body Glow: Scalp, Hair, and Body Care",
+      "intro": "Korean skincare doesn't stop at your jawline. This week — the body care, hair care, and scalp routines that bring face-level results to the rest of you.",
+      "articles": [
+        {
+          "slug": "best-korean-body-care-products",
+          "title": "Best Korean Body Care Products Worth the Hype",
+          "blurb": "Lotions, washes, scrubs, and treatments that bring face-care quality to your whole body."
+        },
+        {
+          "slug": "hair-care-meets-skincare-scalp-routine",
+          "title": "Hair Care Meets Skincare: Building a Scalp Routine",
+          "blurb": "Your scalp is skin too. Apply skincare principles for healthier hair, less flaking, and better growth."
+        },
+        {
+          "slug": "korean-hair-care-products-damage-repair",
+          "title": "Best Korean Hair Care Products for Damage Repair",
+          "blurb": "Peptide bond technology — serums, treatments, and shampoos that repair heat damage, color damage, and breakage."
+        }
+      ]
+    },
+    "rooted-glow": {
+      "subject": "Move Your Body: Functional Fitness, Mobility & Strength",
+      "intro": "Movement is medicine — but it doesn't have to mean a gym membership. This week, practical routines you can do anywhere to build real-world strength and flexibility.",
+      "articles": [
+        {
+          "slug": "functional-fitness-for-real-life",
+          "title": "Functional Fitness for Real Life",
+          "blurb": "Building strength, mobility, and resilience that translates outside the gym — a practical guide."
+        },
+        {
+          "slug": "morning-mobility-routine-15-min",
+          "title": "Morning Mobility Routine: 15 Minutes to Move Better",
+          "blurb": "A simple routine that loosens stiff joints, improves posture, and sets your body up for a better day."
+        },
+        {
+          "slug": "strength-training-without-a-gym",
+          "title": "Strength Training Without a Gym",
+          "blurb": "How to build real strength at home with minimal equipment — bodyweight progressions and kettlebell essentials."
+        }
+      ]
+    }
+  },
+  {
+    "edition": 8,
+    "theme": "Budget Beauty",
+    "glow-coded": {
+      "subject": "Glow on a Budget: Amazing K-Beauty Under $25",
+      "intro": "Great skincare doesn't need a luxury price tag. This week, we prove it — dupes that beat $200 products, holy grails under $15, and moisturizers that outperform at every price point.",
+      "articles": [
+        {
+          "slug": "best-k-beauty-under-15",
+          "title": "Best K-Beauty Products Under $15",
+          "blurb": "10 products under $15 that deliver results rivaling their expensive counterparts. Proof that budget K-beauty works."
+        },
+        {
+          "slug": "affordable-k-beauty-dupes-luxury-products",
+          "title": "10 K-Beauty Dupes That Beat $200 Luxury Products (Under $25)",
+          "blurb": "These K-Beauty dupes match La Mer, SK-II, and Drunk Elephant in blind tests. Exact alternatives inside."
+        },
+        {
+          "slug": "best-korean-moisturizers-under-25",
+          "title": "Top 10 Korean Moisturizers Under $25",
+          "blurb": "10 Korean moisturizers under $25 that outperform products costing three times as much."
+        }
+      ]
+    },
+    "rooted-glow": {
+      "subject": "Eat Well for Less: Meal Prep, Anti-Inflammatory Meals & No-Grain Breakfasts",
+      "intro": "Healthy eating doesn't require expensive supplements or exotic ingredients. This week — practical, affordable meals that fight inflammation, fuel your mornings, and prep in bulk.",
+      "articles": [
+        {
+          "slug": "weekly-meal-prep-weight-loss",
+          "title": "How to Build a Weekly Meal Prep for Weight Loss",
+          "blurb": "2 hours on Sunday, healthy meals all week. No complicated recipes, no expensive ingredients."
+        },
+        {
+          "slug": "10-anti-inflammatory-meals-weight-loss",
+          "title": "10 Anti-Inflammatory Meals That Help You Lose Weight",
+          "blurb": "These 10 meals fight inflammation while keeping you in a calorie deficit — no deprivation required."
+        },
+        {
+          "slug": "high-protein-breakfasts-without-grains",
+          "title": "15 High-Protein Breakfasts Without Grains",
+          "blurb": "Quick, filling breakfast ideas that keep you full until lunch — no cereal, no toast, no grain required."
+        }
+      ]
+    }
+  },
+  {
+    "edition": 9,
+    "theme": "K-Beauty Rituals & Fermented Living",
+    "glow-coded": {
+      "subject": "Glass Skin Goals: Toners, Masks & the AM/PM Split",
+      "intro": "Glass skin isn't magic — it's method. This week, the toner technique, the right sheet mask frequency, and why your morning and evening routines should look completely different.",
+      "articles": [
+        {
+          "slug": "what-is-glass-skin-how-to-get-it",
+          "title": "What Is Glass Skin and How to Get It",
+          "blurb": "The K-Beauty glass skin trend explained — what it actually means and a step-by-step routine to achieve it."
+        },
+        {
+          "slug": "best-korean-toners-glass-skin",
+          "title": "Best Korean Toners for Glass Skin in 2026",
+          "blurb": "Glass skin starts with the right toner. 10 Korean toners that deliver hydration, clarity, and glow."
+        },
+        {
+          "slug": "am-vs-pm-routine-what-changes-at-night",
+          "title": "AM vs PM Routine: What Changes at Night",
+          "blurb": "Your morning and evening routines shouldn't be identical. Here's exactly what to change and why."
+        }
+      ]
+    },
+    "rooted-glow": {
+      "subject": "Fermented Living: Kimchi, Kvass & Ancestral Eating",
+      "intro": "Fermentation is the original superfood hack. This week — how to make your own probiotic-rich foods at home, plus the ancestral eating framework that ties it all together.",
+      "articles": [
+        {
+          "slug": "complete-guide-ancestral-eating",
+          "title": "Complete Guide to Ancestral Eating",
+          "blurb": "How eating like our great-grandparents — real meat, wild fish, seasonal fruit — changed the way we think about food."
+        },
+        {
+          "slug": "how-to-make-fermented-kimchi-at-home",
+          "title": "How to Make Fermented Kimchi at Home",
+          "blurb": "A traditional kimchi recipe that ferments in 3-5 days. Rich in probiotics, packed with flavor."
+        },
+        {
+          "slug": "fermented-beetroot-kvass-probiotic-drink",
+          "title": "Fermented Beetroot Kvass: Easy Probiotic Drink",
+          "blurb": "5 minutes of prep for a probiotic-rich fermented drink that supports gut health and detoxification."
+        }
+      ]
+    }
+  },
+  {
+    "edition": 10,
+    "theme": "Level Up Your Routine",
+    "glow-coded": {
+      "subject": "Advanced K-Beauty: Layering, Compatibility & Devices",
+      "intro": "Ready to go beyond the basics? This week — how to layer multiple serums without pilling, which ingredients clash (and which don't), and whether at-home beauty devices are worth it.",
+      "articles": [
+        {
+          "slug": "how-to-layer-serums-the-right-way",
+          "title": "How to Layer Serums the Right Way",
+          "blurb": "The rules for layering serums without pilling, irritation, or wasted product — order matters more than you think."
+        },
+        {
+          "slug": "skincare-ingredient-compatibility-guide",
+          "title": "Skincare Ingredient Compatibility Guide",
+          "blurb": "What to mix and what to skip — every major active ingredient interaction covered."
+        },
+        {
+          "slug": "aha-vs-bha-vs-pha-which-exfoliant",
+          "title": "AHA vs BHA vs PHA: Which Exfoliant Do You Need?",
+          "blurb": "A clear breakdown of the three main chemical exfoliants — which acid does what and how to choose."
+        }
+      ]
+    },
+    "rooted-glow": {
+      "subject": "Mind-Body Reset: Breathwork, Meditation & Clean Living",
+      "intro": "Your breath is the only autonomic function you can consciously control. This week — breathwork techniques, body scan meditation, and practical steps toward reducing daily toxin exposure.",
+      "articles": [
+        {
+          "slug": "breathwork-techniques-stress-recovery",
+          "title": "Breathwork Techniques for Stress and Recovery",
+          "blurb": "6 breathwork techniques that directly regulate your nervous system — from calming panic to boosting energy."
+        },
+        {
+          "slug": "10-minute-body-scan-meditation-beginners",
+          "title": "10-Minute Body Scan Meditation for Beginners",
+          "blurb": "Reduces tension, calms the nervous system, and trains body awareness — in just 10 minutes."
+        },
+        {
+          "slug": "toxin-free-living-where-to-start",
+          "title": "Toxin-Free Living: Where to Start",
+          "blurb": "The biggest culprits in your home, the swaps that matter most, and how to prioritize without losing your mind."
+        }
+      ]
+    }
+  }
+]
