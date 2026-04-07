@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Newsletter Admin</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f8fafc; color: #1e293b; min-height: 100vh; }
+
+  .login-wrap { display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 20px; }
+  .login-card { background: #fff; border-radius: 16px; padding: 40px; width: 100%; max-width: 380px; box-shadow: 0 4px 24px rgba(0,0,0,0.06); }
+  .login-card h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .login-card p { font-size: 14px; color: #64748b; margin-bottom: 24px; }
+  .field { margin-bottom: 16px; }
+  .field label { display: block; font-size: 12px; font-weight: 600; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+  .field input { width: 100%; padding: 10px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 14px; outline: none; transition: border-color 0.2s; }
+  .field input:focus { border-color: #e11d48; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; padding: 10px 20px; border: none; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+  .btn-primary { background: #e11d48; color: #fff; width: 100%; }
+  .btn-primary:hover { background: #be123c; }
+  .btn-sm { padding: 6px 14px; font-size: 13px; }
+  .btn-outline { background: transparent; border: 1px solid #e2e8f0; color: #475569; }
+  .btn-outline:hover { background: #f1f5f9; }
+  .btn-danger { background: #fee2e2; color: #dc2626; border: none; }
+  .btn-danger:hover { background: #fecaca; }
+  .btn-success { background: #dcfce7; color: #16a34a; border: none; }
+  .btn-success:hover { background: #bbf7d0; }
+  .error-msg { color: #dc2626; font-size: 13px; margin-top: 12px; display: none; }
+
+  .dashboard { display: none; }
+  .topbar { background: #fff; border-bottom: 1px solid #e2e8f0; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; }
+  .topbar h1 { font-size: 18px; font-weight: 700; }
+  .topbar .site-badge { font-size: 12px; background: #fff1f2; color: #e11d48; padding: 4px 10px; border-radius: 20px; font-weight: 600; margin-left: 10px; }
+  .topbar-right { display: flex; align-items: center; gap: 10px; }
+  .container { max-width: 900px; margin: 0 auto; padding: 24px; }
+
+  .stats { display: flex; gap: 16px; margin-bottom: 24px; flex-wrap: wrap; }
+  .stat-card { background: #fff; border-radius: 12px; padding: 20px; flex: 1; min-width: 140px; border: 1px solid #e2e8f0; }
+  .stat-card .label { font-size: 12px; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
+  .stat-card .value { font-size: 28px; font-weight: 800; color: #e11d48; margin-top: 4px; }
+
+  .add-form { background: #fff; border-radius: 12px; padding: 20px; border: 1px solid #e2e8f0; margin-bottom: 24px; display: flex; gap: 10px; align-items: end; flex-wrap: wrap; }
+  .add-form .field { margin-bottom: 0; flex: 1; min-width: 200px; }
+  .add-form select { width: 100%; padding: 10px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 14px; outline: none; background: #fff; }
+
+  .table-wrap { background: #fff; border-radius: 12px; border: 1px solid #e2e8f0; overflow: hidden; }
+  table { width: 100%; border-collapse: collapse; }
+  th { text-align: left; padding: 12px 16px; font-size: 11px; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid #e2e8f0; background: #f8fafc; }
+  td { padding: 12px 16px; font-size: 14px; border-bottom: 1px solid #f1f5f9; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #fafafa; }
+  .locale-badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 600; background: #f1f5f9; color: #475569; }
+  .date-col { color: #94a3b8; font-size: 13px; }
+  .empty-state { padding: 48px; text-align: center; color: #94a3b8; }
+</style>
+</head>
+<body>
+
+<!-- Login -->
+<div class="login-wrap" id="loginView">
+  <div class="login-card">
+    <h1>Newsletter Admin</h1>
+    <p>Sign in to manage subscribers</p>
+    <form id="loginForm">
+      <div class="field">
+        <label>Email</label>
+        <input type="email" id="loginEmail" required autocomplete="email">
+      </div>
+      <div class="field">
+        <label>Password</label>
+        <input type="password" id="loginPassword" required autocomplete="current-password">
+      </div>
+      <button type="submit" class="btn btn-primary" id="loginBtn">Sign In</button>
+      <p class="error-msg" id="loginError"></p>
+    </form>
+  </div>
+</div>
+
+<!-- Dashboard -->
+<div class="dashboard" id="dashboardView">
+  <div class="topbar">
+    <div style="display:flex;align-items:center;">
+      <h1>Subscribers</h1>
+      <span class="site-badge" id="siteBadge"></span>
+    </div>
+    <div class="topbar-right">
+      <button class="btn btn-sm btn-outline" id="exportBtn">Export CSV</button>
+      <button class="btn btn-sm btn-outline" id="refreshBtn">Refresh</button>
+      <button class="btn btn-sm btn-outline" id="logoutBtn">Logout</button>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="stats">
+      <div class="stat-card">
+        <div class="label">Total Subscribers</div>
+        <div class="value" id="statTotal">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">This Month</div>
+        <div class="value" id="statMonth">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Locales</div>
+        <div class="value" id="statLocales">0</div>
+      </div>
+    </div>
+
+    <div class="add-form">
+      <div class="field">
+        <label>Add Subscriber</label>
+        <input type="email" id="addEmail" placeholder="email@example.com">
+      </div>
+      <div class="field" style="max-width:120px;">
+        <label>Locale</label>
+        <select id="addLocale">
+          <option value="en">en</option>
+          <option value="es">es</option>
+          <option value="de">de</option>
+          <option value="el">el</option>
+          <option value="ru">ru</option>
+          <option value="it">it</option>
+          <option value="ar">ar</option>
+        </select>
+      </div>
+      <button class="btn btn-sm btn-success" id="addBtn" style="margin-bottom:0;">Add</button>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Email</th>
+            <th>Locale</th>
+            <th>Subscribed</th>
+            <th style="width:80px;"></th>
+          </tr>
+        </thead>
+        <tbody id="subscriberTable"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  var API = '/api/admin';
+  var token = sessionStorage.getItem('admin_token') || '';
+  var siteName = location.hostname.indexOf('rooted') !== -1 ? 'Rooted Glow' : 'Glow Coded';
+
+  function $(s) { return document.querySelector(s); }
+
+  function esc(s) {
+    var d = document.createElement('div');
+    d.textContent = s;
+    return d.innerHTML;
+  }
+
+  function api(body) {
+    var headers = { 'Content-Type': 'application/json' };
+    if (token) headers['Authorization'] = 'Bearer ' + token;
+    return fetch(API, { method: 'POST', headers: headers, body: JSON.stringify(body) })
+      .then(function(res) {
+        if (res.status === 401) { logout(); throw new Error('Session expired'); }
+        return res;
+      });
+  }
+
+  function createRow(sub) {
+    var tr = document.createElement('tr');
+    tr.setAttribute('data-email', sub.email);
+
+    var tdEmail = document.createElement('td');
+    tdEmail.textContent = sub.email;
+    tr.appendChild(tdEmail);
+
+    var tdLocale = document.createElement('td');
+    var badge = document.createElement('span');
+    badge.className = 'locale-badge';
+    badge.textContent = sub.locale;
+    tdLocale.appendChild(badge);
+    tr.appendChild(tdLocale);
+
+    var tdDate = document.createElement('td');
+    tdDate.className = 'date-col';
+    tdDate.textContent = sub.date ? new Date(sub.date).toLocaleDateString() : '\u2014';
+    tr.appendChild(tdDate);
+
+    var tdAction = document.createElement('td');
+    var btn = document.createElement('button');
+    btn.className = 'btn btn-sm btn-danger delete-btn';
+    btn.textContent = 'Remove';
+    btn.addEventListener('click', function() {
+      if (!confirm('Remove ' + sub.email + '?')) return;
+      btn.textContent = '...';
+      btn.disabled = true;
+      api({ action: 'delete', email: sub.email }).then(function() {
+        tr.remove();
+        var total = parseInt($('#statTotal').textContent) - 1;
+        $('#statTotal').textContent = total;
+      }).catch(function(ex) {
+        alert('Failed: ' + ex.message);
+        btn.textContent = 'Remove';
+        btn.disabled = false;
+      });
+    });
+    tdAction.appendChild(btn);
+    tr.appendChild(tdAction);
+
+    return tr;
+  }
+
+  function showEmpty(msg) {
+    var tbody = $('#subscriberTable');
+    tbody.textContent = '';
+    var tr = document.createElement('tr');
+    var td = document.createElement('td');
+    td.setAttribute('colspan', '4');
+    td.className = 'empty-state';
+    td.textContent = msg;
+    tr.appendChild(td);
+    tbody.appendChild(tr);
+  }
+
+  function loadSubscribers() {
+    showEmpty('Loading...');
+    api({ action: 'list' }).then(function(res) {
+      return res.json();
+    }).then(function(data) {
+      var subs = data.subscribers || [];
+      var tbody = $('#subscriberTable');
+      tbody.textContent = '';
+
+      $('#statTotal').textContent = subs.length;
+      var thisMonth = new Date().toISOString().slice(0, 7);
+      var monthCount = 0;
+      var localeSet = {};
+      subs.forEach(function(s) {
+        if ((s.date || '').indexOf(thisMonth) === 0) monthCount++;
+        localeSet[s.locale] = true;
+      });
+      $('#statMonth').textContent = monthCount;
+      $('#statLocales').textContent = Object.keys(localeSet).length;
+
+      if (subs.length === 0) {
+        showEmpty('No subscribers yet');
+        return;
+      }
+
+      subs.sort(function(a, b) { return (b.date || '').localeCompare(a.date || ''); });
+      subs.forEach(function(s) { tbody.appendChild(createRow(s)); });
+    }).catch(function(ex) {
+      showEmpty('Error: ' + ex.message);
+    });
+  }
+
+  function logout() {
+    token = '';
+    sessionStorage.removeItem('admin_token');
+    $('#loginView').style.display = '';
+    $('#dashboardView').style.display = 'none';
+  }
+
+  function showDashboard() {
+    $('#loginView').style.display = 'none';
+    $('#dashboardView').style.display = 'block';
+    $('#siteBadge').textContent = siteName;
+    loadSubscribers();
+  }
+
+  // Login form
+  $('#loginForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var btn = $('#loginBtn');
+    var err = $('#loginError');
+    err.style.display = 'none';
+    btn.textContent = 'Signing in...';
+    btn.disabled = true;
+
+    fetch(API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        action: 'login',
+        email: $('#loginEmail').value.trim(),
+        password: $('#loginPassword').value,
+      }),
+    }).then(function(res) {
+      return res.json().then(function(data) {
+        if (!res.ok) throw new Error(data.error || 'Login failed');
+        return data;
+      });
+    }).then(function(data) {
+      token = data.token;
+      sessionStorage.setItem('admin_token', token);
+      showDashboard();
+    }).catch(function(ex) {
+      err.textContent = ex.message;
+      err.style.display = 'block';
+    }).finally(function() {
+      btn.textContent = 'Sign In';
+      btn.disabled = false;
+    });
+  });
+
+  // Add subscriber
+  $('#addBtn').addEventListener('click', function() {
+    var email = $('#addEmail').value.trim();
+    if (!email) return;
+    var btn = $('#addBtn');
+    btn.textContent = '...';
+    btn.disabled = true;
+
+    api({ action: 'add', email: email, locale: $('#addLocale').value }).then(function(res) {
+      return res.json();
+    }).then(function(data) {
+      if (data.status === 'already_exists') {
+        alert(email + ' is already subscribed');
+      } else {
+        $('#addEmail').value = '';
+        loadSubscribers();
+      }
+    }).catch(function(ex) {
+      alert('Failed: ' + ex.message);
+    }).finally(function() {
+      btn.textContent = 'Add';
+      btn.disabled = false;
+    });
+  });
+
+  // Export CSV
+  $('#exportBtn').addEventListener('click', function() {
+    api({ action: 'export' }).then(function(res) {
+      return res.text();
+    }).then(function(csv) {
+      var blob = new Blob([csv], { type: 'text/csv' });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = 'subscribers-' + new Date().toISOString().slice(0, 10) + '.csv';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }).catch(function(ex) {
+      alert('Export failed: ' + ex.message);
+    });
+  });
+
+  $('#refreshBtn').addEventListener('click', loadSubscribers);
+  $('#logoutBtn').addEventListener('click', logout);
+
+  // Auto-login if token exists
+  if (token) showDashboard();
+})();
+</script>
+</body>
+</html>
