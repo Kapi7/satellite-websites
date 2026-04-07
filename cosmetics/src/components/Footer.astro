@@ -74,10 +74,11 @@ const toolsLinks = [
       <p class="text-sm text-charcoal-light/60 leading-relaxed mb-4">
         {t(locale, 'footer.newsletterDesc')}
       </p>
-      <form class="flex flex-col gap-3" onsubmit="return false;">
+      <form class="newsletter-form flex flex-col gap-3" data-locale={locale}>
         <input
           type="email"
           placeholder={t(locale, 'footer.emailPlaceholder')}
+          required
           class="w-full px-4 py-2.5 text-sm bg-white/70 border border-rose-200/60 rounded-lg text-charcoal placeholder:text-charcoal-light/50 focus:outline-none focus:ring-1 focus:ring-rose-400 focus:border-rose-400 transition-all duration-200"
         />
         <button
@@ -86,6 +87,7 @@ const toolsLinks = [
         >
           {t(locale, 'common.subscribe')}
         </button>
+        <p class="newsletter-msg text-sm hidden"></p>
       </form>
     </div>
   </div>
@@ -104,3 +106,52 @@ const toolsLinks = [
     </div>
   </div>
 </footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.newsletter-form').forEach((form) => {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const f = e.currentTarget;
+        const btn = f.querySelector('button[type="submit"]');
+        const msg = f.querySelector('.newsletter-msg');
+        const input = f.querySelector('input[type="email"]');
+        const email = input.value.trim();
+        if (!email) return;
+
+        btn.disabled = true;
+        btn.style.opacity = '0.6';
+        msg.classList.add('hidden');
+
+        try {
+          const res = await fetch('/api/subscribe', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, locale: f.dataset.locale || 'en' }),
+          });
+          const data = await res.json();
+
+          msg.classList.remove('hidden');
+          if (data.status === 'subscribed') {
+            msg.textContent = 'Welcome! You are now subscribed.';
+            msg.className = 'newsletter-msg text-sm text-green-700';
+            input.value = '';
+          } else if (data.status === 'already_subscribed') {
+            msg.textContent = 'You are already subscribed!';
+            msg.className = 'newsletter-msg text-sm text-amber-700';
+          } else {
+            msg.textContent = data.error === 'invalid_email' ? 'Please enter a valid email.' : 'Something went wrong. Please try again.';
+            msg.className = 'newsletter-msg text-sm text-red-600';
+          }
+        } catch {
+          msg.classList.remove('hidden');
+          msg.textContent = 'Network error. Please try again.';
+          msg.className = 'newsletter-msg text-sm text-red-600';
+        } finally {
+          btn.disabled = false;
+          btn.style.opacity = '1';
+        }
+      });
+    });
+  });
+</script>

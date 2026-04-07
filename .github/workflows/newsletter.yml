@@ -1,0 +1,48 @@
+name: Weekly Newsletter
+
+on:
+  schedule:
+    - cron: '0 6 * * 1'  # Monday 9:00 AM EEST (UTC+3)
+  workflow_dispatch:
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Get Cloudflare access token
+        id: cf_token
+        run: |
+          RESPONSE=$(curl -s -X POST "https://accounts.cloudflare.com/oauth2/token" \
+            -H "Content-Type: application/x-www-form-urlencoded" \
+            -d "grant_type=refresh_token" \
+            -d "refresh_token=${{ secrets.CF_OAUTH_REFRESH_TOKEN }}" \
+            -d "client_id=54d11594-84e4-41aa-b438-e81b8fa78ee7")
+          ACCESS_TOKEN=$(echo "$RESPONSE" | python3 -c "import json,sys; print(json.load(sys.stdin)['access_token'])")
+          echo "::add-mask::$ACCESS_TOKEN"
+          echo "token=$ACCESS_TOKEN" >> "$GITHUB_OUTPUT"
+
+      - name: Send newsletters
+        run: python3 scripts/newsletter_sender.py
+        env:
+          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          CF_KV_API_TOKEN: ${{ steps.cf_token.outputs.token }}
+          CF_KV_NAMESPACE_GLOWCODED: ${{ secrets.CF_KV_NAMESPACE_GLOWCODED }}
+          CF_KV_NAMESPACE_ROOTEDGLOW: ${{ secrets.CF_KV_NAMESPACE_ROOTEDGLOW }}
+          NEWSLETTER_SECRET: ${{ secrets.NEWSLETTER_SECRET }}
+          SMTP_GLOWCODED_SERVER: ${{ secrets.SMTP_GLOWCODED_SERVER }}
+          SMTP_GLOWCODED_PORT: ${{ secrets.SMTP_GLOWCODED_PORT }}
+          SMTP_GLOWCODED_PASSWORD: ${{ secrets.SMTP_GLOWCODED_PASSWORD }}
+          OUTREACH_GLOWCODED_EMAIL: ${{ secrets.OUTREACH_GLOWCODED_EMAIL }}
+          SMTP_ROOTEDGLOW_SERVER: ${{ secrets.SMTP_ROOTEDGLOW_SERVER }}
+          SMTP_ROOTEDGLOW_PORT: ${{ secrets.SMTP_ROOTEDGLOW_PORT }}
+          SMTP_ROOTEDGLOW_PASSWORD: ${{ secrets.SMTP_ROOTEDGLOW_PASSWORD }}
+          OUTREACH_ROOTEDGLOW_EMAIL: ${{ secrets.OUTREACH_ROOTEDGLOW_EMAIL }}

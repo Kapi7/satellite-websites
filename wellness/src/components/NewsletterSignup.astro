@@ -30,7 +30,7 @@ const { locale = 'en' } = Astro.props;
 
       <!-- Right column: form -->
       <div class="w-full md:w-auto md:min-w-[320px] flex-shrink-0">
-        <form class="flex flex-col gap-6">
+        <form class="newsletter-form flex flex-col gap-6" data-locale={locale}>
           <input
             type="email"
             placeholder={t(locale, 'footer.emailPlaceholder')}
@@ -43,6 +43,7 @@ const { locale = 'en' } = Astro.props;
           >
             {t(locale, 'common.subscribe')}
           </button>
+          <p class="newsletter-msg text-sm hidden"></p>
         </form>
 
       </div>
