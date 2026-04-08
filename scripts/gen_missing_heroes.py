@@ -1,103 +1,113 @@
 #!/usr/bin/env python3
-"""Generate missing hero images for build-coded using Gemini image generation."""
-import os, io, time
-from PIL import Image
-from google import genai
-from google.genai import types
+"""Regenerate low-quality hero images for build-coded using Imagen 4.0."""
+import os, sys, io, time, json, base64, urllib.request, urllib.error
+from pathlib import Path
 
-API_KEY = os.environ.get("GEMINI_API_KEY", "AIzaSyC06AlrcQOrsnbWGzP63Tm7VVzZtgWgBBY")
-MODEL = "gemini-2.5-flash-image"
-client = genai.Client(api_key=API_KEY)
-
-OUT_DIR = "/Users/kapi7/satellite-websites/build-coded/public/images"
+API_KEY = os.environ.get("GEMINI_API_KEY", "")
+MODEL = "imagen-4.0-fast-generate-001"
+OUTPUT_DIR = Path(__file__).resolve().parent.parent / "build-coded" / "public" / "images"
 
 HEROES = [
     {
-        "file": "change-a-tire.jpg",
-        "prompt": "Professional DIY blog hero photo, landscape 16:9 ratio. A car jack lifting a vehicle with a spare tire leaning against the car on a suburban driveway. Lug wrench and jack handle visible. Daytime, slightly overcast natural light. Clean, instructional photography style. No text, no watermarks."
+        "slug": "change-a-tire",
+        "prompt": "Realistic photograph of a car being lifted by a jack on a suburban driveway, with a spare tire leaning against the bumper and a lug wrench on the ground. Daytime overcast light. Clean DIY instructional photography. Blog hero image style, 16:9 landscape, no text.",
     },
     {
-        "file": "chicken-coop-plans.jpg",
-        "prompt": "Professional DIY blog hero photo, landscape 16:9 ratio. A beautifully built wooden backyard chicken coop with a small fenced run, painted in classic barn red with white trim. A few chickens visible in the run. Green grass, warm afternoon sunlight. Farmhouse aesthetic. No text, no watermarks."
+        "slug": "chicken-coop-plans",
+        "prompt": "Beautiful photograph of a well-built wooden backyard chicken coop with a fenced run, painted classic barn red with white trim. A few chickens pecking inside the run. Green grass, warm afternoon sunlight. Farmhouse aesthetic. Blog hero image style, 16:9 landscape, no text.",
     },
     {
-        "file": "fix-running-toilet.jpg",
-        "prompt": "Professional DIY blog hero photo, landscape 16:9 ratio. Close-up of a toilet tank interior showing the flapper valve, fill valve, and flush mechanism. Clean white bathroom, bright overhead lighting. Tools (adjustable wrench, replacement flapper) neatly placed beside the tank. Instructional plumbing photography style. No text, no watermarks."
+        "slug": "fix-running-toilet",
+        "prompt": "Close-up photograph inside a toilet tank showing the flapper valve, fill valve, and overflow tube. Clean white bathroom. An adjustable wrench and a replacement flapper kit placed on the tank lid. Bright bathroom lighting. Instructional plumbing photography. Blog hero image style, 16:9 landscape, no text.",
     },
     {
-        "file": "french-drain-installation.jpg",
-        "prompt": "Professional DIY blog hero photo, landscape 16:9 ratio. A trench dug alongside a house foundation with gravel and perforated drain pipe visible. Landscape fabric lining the trench. Shovel leaning against the trench wall. Backyard setting, natural daylight. Clean home improvement photography. No text, no watermarks."
+        "slug": "french-drain-installation",
+        "prompt": "Photograph of a trench dug alongside a house foundation, showing gravel bed and perforated PVC drain pipe inside the trench. Landscape fabric lining visible. A shovel leaning against the trench wall. Backyard setting with natural daylight. Home improvement photography. Blog hero image style, 16:9 landscape, no text.",
     },
     {
-        "file": "get-rid-ants-naturally.jpg",
-        "prompt": "Professional DIY blog hero photo, landscape 16:9 ratio. A clean kitchen counter with natural ant deterrent items arranged neatly: a small bowl of diatomaceous earth, white vinegar spray bottle, cinnamon sticks, peppermint essential oil bottle, and lemon slices. Bright natural kitchen light from a window. Clean, editorial home photography. No text, no watermarks."
+        "slug": "get-rid-ants-naturally",
+        "prompt": "Styled flat-lay photograph on a bright kitchen counter showing natural ant repellent items: a small glass bowl of diatomaceous earth, white vinegar spray bottle, cinnamon sticks, peppermint essential oil bottle, and sliced lemons. Bright natural kitchen light from a window. Clean editorial home photography. Blog hero image style, 16:9 landscape, no text.",
     },
     {
-        "file": "install-gutter-guards.jpg",
-        "prompt": "Professional DIY blog hero photo, landscape 16:9 ratio. Close-up view of a person's gloved hands installing mesh gutter guards on a roof gutter. Aluminum ladder visible. Suburban home exterior with shingles and fascia board. Blue sky, natural daylight. Home improvement photography style. No text, no watermarks."
+        "slug": "install-gutter-guards",
+        "prompt": "Photograph of gloved hands installing aluminum mesh gutter guards onto a roof gutter. View from a ladder showing the roofline, fascia board, and shingles. Blue sky background. Suburban home exterior. Home improvement photography. Blog hero image style, 16:9 landscape, no text.",
     },
     {
-        "file": "patio-ideas-budget.jpg",
-        "prompt": "Professional DIY blog hero photo, landscape 16:9 ratio. A beautiful budget-friendly backyard patio with concrete pavers, string lights overhead, a small fire pit area, and simple outdoor furniture with cushions. Potted plants and flowers around the edges. Warm golden hour evening light. Aspirational but achievable home design photography. No text, no watermarks."
+        "slug": "patio-ideas-budget",
+        "prompt": "Beautiful photograph of an inviting budget-friendly backyard patio with concrete pavers, warm string lights overhead, a small fire pit in the center, and simple outdoor furniture with cushions. Potted plants and flowers around the edges. Warm golden hour evening light. Aspirational outdoor living photography. Blog hero image style, 16:9 landscape, no text.",
     },
     {
-        "file": "raised-garden-bed-diy.jpg",
-        "prompt": "Professional DIY blog hero photo, landscape 16:9 ratio. A freshly built cedar raised garden bed in a sunny backyard, filled with rich dark soil. A few seedlings just planted. Hand tools (trowel, gloves) resting on the edge. Natural afternoon sunlight, green lawn background. Garden and woodworking photography style. No text, no watermarks."
+        "slug": "raised-garden-bed-diy",
+        "prompt": "Photograph of a freshly built cedar raised garden bed in a sunny backyard, filled with rich dark soil and a few seedlings just planted. Hand trowel and gardening gloves resting on the wooden edge. Natural afternoon sunlight, green lawn background. Garden photography. Blog hero image style, 16:9 landscape, no text.",
     },
     {
-        "file": "replace-circuit-breaker.jpg",
-        "prompt": "Professional DIY blog hero photo, landscape 16:9 ratio. An open residential electrical panel (breaker box) with circuit breakers clearly visible. A multimeter and insulated screwdriver placed nearby on a workbench. Well-lit garage or utility room setting. Clean, safety-focused home electrical photography. No text, no watermarks."
+        "slug": "replace-circuit-breaker",
+        "prompt": "Photograph of an open residential electrical breaker panel with rows of circuit breakers visible. A multimeter and insulated screwdriver placed on a small shelf nearby. Well-lit garage or utility room. Safety-focused home electrical photography. Blog hero image style, 16:9 landscape, no text.",
     },
     {
-        "file": "water-heater-maintenance.jpg",
-        "prompt": "Professional DIY blog hero photo, landscape 16:9 ratio. A standard residential tank water heater in a utility room or garage. Nearby: a garden hose attached to the drain valve, adjustable wrench, and a bucket. Clean well-organized utility space with good lighting. Home maintenance photography style. No text, no watermarks."
+        "slug": "water-heater-maintenance",
+        "prompt": "Photograph of a standard residential tank water heater in a clean utility room. A garden hose connected to the drain valve at the bottom. An adjustable wrench and a small bucket placed nearby. Clean well-organized utility space with good lighting. Home maintenance photography. Blog hero image style, 16:9 landscape, no text.",
     },
     {
-        "file": "og-default.jpg",
-        "prompt": "Professional blog hero photo, landscape 16:9 ratio. A well-organized workshop workbench with neatly arranged hand tools (hammer, tape measure, screwdrivers, pliers) on a pegboard wall. Warm wood tones, clean workshop aesthetic. Natural window light with warm workshop ambiance. Generic DIY and maker lifestyle photography. No text, no watermarks."
+        "slug": "og-default",
+        "prompt": "Professional photograph of a well-organized workshop pegboard wall with neatly arranged hand tools: hammers, tape measures, screwdrivers, pliers, wrenches, and levels. Warm wood workbench visible below. Natural window light with warm workshop ambiance. Maker lifestyle photography. Blog hero image style, 16:9 landscape, no text.",
     },
 ]
 
-def generate_hero(hero):
-    out_path = os.path.join(OUT_DIR, hero["file"])
-    if os.path.exists(out_path):
-        print(f"  SKIP (exists): {hero['file']}")
-        return True
+
+def generate_image(hero):
+    output_path = OUTPUT_DIR / f"{hero['slug']}.jpg"
+
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/{MODEL}:predict?key={API_KEY}"
+    payload = json.dumps({
+        "instances": [{"prompt": hero["prompt"]}],
+        "parameters": {
+            "sampleCount": 1,
+            "aspectRatio": "16:9",
+            "outputOptions": {"mimeType": "image/jpeg"},
+        }
+    })
 
     try:
-        response = client.models.generate_content(
-            model=MODEL,
-            contents=hero["prompt"],
-            config=types.GenerateContentConfig(
-                response_modalities=["image", "text"],
-            ),
+        req = urllib.request.Request(
+            url,
+            data=payload.encode(),
+            headers={"Content-Type": "application/json"},
+            method="POST"
         )
+        with urllib.request.urlopen(req, timeout=120) as resp:
+            result = json.loads(resp.read())
 
-        for part in response.candidates[0].content.parts:
-            if part.inline_data and part.inline_data.mime_type.startswith("image/"):
-                img = Image.open(io.BytesIO(part.inline_data.data))
-                img = img.convert("RGB")
-                # Resize to 1200x675 (16:9)
-                img = img.resize((1200, 675), Image.LANCZOS)
-                img.save(out_path, "JPEG", quality=85, optimize=True)
-                print(f"  OK: {hero['file']}")
-                return True
-
-        print(f"  FAIL (no image in response): {hero['file']}")
-        return False
+        if "predictions" in result and len(result["predictions"]) > 0:
+            img_b64 = result["predictions"][0]["bytesBase64Encoded"]
+            img_bytes = base64.b64decode(img_b64)
+            output_path.write_bytes(img_bytes)
+            print(f"  OK: {hero['slug']}.jpg ({len(img_bytes) // 1024}KB)")
+            return True
+        else:
+            print(f"  No image returned for {hero['slug']}: {json.dumps(result)[:200]}")
+            return False
     except Exception as e:
-        print(f"  ERROR: {hero['file']} - {e}")
+        print(f"  FAIL {hero['slug']}: {e}")
         return False
+
+
+def main():
+    if not API_KEY:
+        print("Set GEMINI_API_KEY env var first")
+        sys.exit(1)
+
+    print(f"Regenerating {len(HEROES)} hero images with Imagen 4.0")
+    print(f"Output: {OUTPUT_DIR}\n")
+
+    success = 0
+    for i, hero in enumerate(HEROES, 1):
+        print(f"[{i}/{len(HEROES)}] {hero['slug']}")
+        if generate_image(hero):
+            success += 1
+        time.sleep(3)
+    print(f"\nDone. {success}/{len(HEROES)} generated.")
+
 
 if __name__ == "__main__":
-    total = len(HEROES)
-    for i, hero in enumerate(HEROES, 1):
-        print(f"[{i}/{total}] Generating {hero['file']}...")
-        success = generate_hero(hero)
-        if not success:
-            time.sleep(5)
-            print(f"  Retrying...")
-            generate_hero(hero)
-        if i < total:
-            time.sleep(2)
-    print("\nDone!")
+    main()

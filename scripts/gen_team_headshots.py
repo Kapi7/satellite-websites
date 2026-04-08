@@ -6,7 +6,7 @@ from PIL import Image
 from google import genai
 from google.genai import types
 
-API_KEY = "AIzaSyC06AlrcQOrsnbWGzP63Tm7VVzZtgWgBBY"
+API_KEY = os.environ.get("GEMINI_API_KEY", "")
 client = genai.Client(api_key=API_KEY)
 MODEL = "gemini-2.5-flash-image"
 

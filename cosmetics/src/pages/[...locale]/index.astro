@@ -19,7 +19,8 @@ export function getStaticPaths() {
 
 const { locale } = Astro.props as { locale: Locale };
 
-const allPosts = await getCollection('blog', ({ data }) => !data.draft && data.locale === locale);
+const now = new Date();
+const allPosts = await getCollection('blog', ({ data }) => !data.draft && data.locale === locale && data.date <= now);
 const sortedPosts = allPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 const recent = sortedPosts.slice(0, 6);
 

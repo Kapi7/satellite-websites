@@ -16,8 +16,9 @@ interface Props {
 
 const { title, description, category, locale = 'en' } = Astro.props;
 
+const now = new Date();
 const allPosts = await getCollection('blog', ({ data }) => {
-  return data.category === category && !data.draft && data.locale === locale;
+  return data.category === category && !data.draft && data.locale === locale && data.date <= now;
 });
 
 const sortedPosts = allPosts.sort(

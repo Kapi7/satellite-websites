@@ -18,8 +18,8 @@ export async function GET(context: APIContext) {
   const sorted = posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
   return rss({
-    title: 'Glow Coded',
-    description: 'Skincare education, honest reviews, K-Beauty picks, and ingredient breakdowns.',
+    title: 'Build Coded',
+    description: 'DIY project guides, honest tool reviews, and step-by-step tutorials for makers.',
     site: context.site!.href,
     items: sorted.map((post) => {
       const slug = post.id.replace(/^[a-z]{2}\//, '');

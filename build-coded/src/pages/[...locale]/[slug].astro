@@ -34,8 +34,10 @@ const cleanSlug = post.id.includes('/') ? post.id.split('/').slice(1).join('/') 
   image={post.data.image} imageAlt={post.data.imageAlt}
   headings={headings} slug={cleanSlug}
   rawContent={post.body}
-  routine={post.data.routine}
   type={post.data.type}
+  difficulty={post.data.difficulty}
+  estimatedTime={post.data.estimatedTime}
+  estimatedCost={post.data.estimatedCost}
   locale={locale}
 >
   <Content />

@@ -4,7 +4,8 @@ import Article from '../../layouts/Article.astro';
 import { locales, defaultLocale, type Locale } from '../../i18n/locales';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  const now = new Date();
+  const posts = await getCollection('blog', ({ data }) => !data.draft && data.date <= now);
   return locales.flatMap(l => {
     const localePosts = posts.filter(p => p.data.locale === l);
     return localePosts.map(post => {
@@ -32,7 +33,7 @@ const { Content, headings } = await render(post);
   image={post.data.image}
   imageAlt={post.data.imageAlt}
   headings={headings}
-  slug={post.id}
+  slug={post.id.includes('/') ? post.id.split('/').slice(1).join('/') : post.id}
   rawContent={post.body}
   type={post.data.type}
   locale={locale}

@@ -13,7 +13,8 @@ export function getStaticPaths() {
 
 export async function GET(context: APIContext) {
   const locale = (context.props.locale || defaultLocale) as Locale;
-  const posts = await getCollection('blog', ({ data }) => !data.draft && data.locale === locale);
+  const now = new Date();
+  const posts = await getCollection('blog', ({ data }) => !data.draft && data.locale === locale && data.date <= now);
   const sorted = posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
   return rss({

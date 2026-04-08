@@ -15,10 +15,11 @@ interface Props {
 
 const { title, description, category, locale = 'en' } = Astro.props;
 
+const now = new Date();
 const allPosts = await getCollection('blog', ({ data, id }) => {
   // Filter by category, not draft, and matching locale
   const postLocale = id.startsWith(`${locale}/`) ? locale : id.includes('/') ? id.split('/')[0] : 'en';
-  return data.category === category && !data.draft && postLocale === locale;
+  return data.category === category && !data.draft && postLocale === locale && data.date <= now;
 });
 
 const sortedPosts = allPosts.sort(
