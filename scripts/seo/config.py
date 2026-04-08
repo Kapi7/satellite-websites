@@ -20,10 +20,13 @@ SITES = {
         "email": os.getenv("OUTREACH_GLOWCODED_EMAIL", "info@albert-capital.com"),
         "niche": "K-beauty, skincare ingredients, Korean skincare routines",
         "topics": [
-            "Korean beauty", "K-beauty", "skincare routine",
+            "Korean beauty", "K-beauty", "skincare routine", "skincare",
             "skincare ingredients", "niacinamide", "retinol", "snail mucin",
-            "sunscreen", "SPF", "glass skin", "skin barrier",
-            "anti-aging skincare", "acne treatment", "sensitive skin",
+            "sunscreen", "SPF", "glass skin", "skin barrier", "skin care",
+            "anti-aging", "acne", "sensitive skin", "beauty routine",
+            "moisturizer", "serum", "cleanser", "toner", "exfoliat",
+            "wrinkle", "collagen", "hyaluronic", "vitamin C skin",
+            "beauty tips", "cosmetics", "dermatolog",
         ],
     },
     "rooted-glow": {
@@ -36,8 +39,29 @@ SITES = {
             "gut health", "microbiome", "gut skin connection",
             "fermented foods", "adaptogens", "holistic health",
             "ancestral eating", "seed oils", "wellness routine",
-            "sleep and skin", "stress and skin",
-            "running", "fitness for beginners",
+            "sleep", "stress", "nutrition", "diet", "wellness",
+            "running", "fitness", "exercise", "yoga", "meditation",
+            "supplements", "vitamins", "probiotics", "inflammation",
+            "mental health", "self-care", "healthy eating",
+            "weight loss", "hormone", "immune system",
+        ],
+    },
+    "build-coded": {
+        "domain": "build-coded.com",
+        "name": "Build Coded",
+        "tagline": "DIY Projects, Decoded",
+        "email": os.getenv("OUTREACH_BUILDCODED_EMAIL", ""),
+        "niche": "DIY tutorials, woodworking, home improvement, electronics, crafts",
+        "topics": [
+            "DIY", "woodworking", "home improvement",
+            "power tools", "hand tools", "workbench",
+            "electronics projects", "Arduino", "Raspberry Pi",
+            "3D printing", "epoxy resin", "furniture",
+            "renovation", "smart home", "contractor",
+            "plumbing", "electrical", "paint", "flooring",
+            "garden", "outdoor", "patio", "deck",
+            "repair", "remodel", "workshop", "crafts",
+            "home project", "budget home", "tool review",
         ],
     },
 }
@@ -65,6 +89,15 @@ ACCOUNTS = {
         "title": "Wellness Editor",
         "bio": "Wellness writer at Rooted Glow. Covering gut-skin science, ancestral nutrition, holistic health, and movement for everyday wellness.",
     },
+    "build-coded": {
+        "email": os.getenv("OUTREACH_BUILDCODED_EMAIL", ""),
+        "password": os.getenv("OUTREACH_BUILDCODED_PASSWORD", ""),
+        "first_name": "Jake",
+        "last_name": "Miller",
+        "display_name": "Jake Miller",
+        "title": "DIY Editor",
+        "bio": "DIY and maker writer at Build Coded. Covering woodworking, home improvement, electronics, and hands-on project tutorials.",
+    },
 }
 
 # ── SMTP for outreach emails ────────────────────────────────
@@ -82,6 +115,12 @@ SMTP_CONFIG = {
         "email": os.getenv("OUTREACH_ROOTEDGLOW_EMAIL", "avi@albert-capital.com"),
         "password": os.getenv("SMTP_ROOTEDGLOW_PASSWORD", ""),
     },
+    "build-coded": {
+        "server": os.getenv("SMTP_BUILDCODED_SERVER", ""),
+        "port": int(os.getenv("SMTP_BUILDCODED_PORT", "587")),
+        "email": os.getenv("OUTREACH_BUILDCODED_EMAIL", ""),
+        "password": os.getenv("SMTP_BUILDCODED_PASSWORD", ""),
+    },
 }
 
 # ── IMAP for reading verification / HARO digests ────────────
@@ -96,6 +135,11 @@ IMAP_CONFIG = {
         "server": os.getenv("IMAP_ROOTEDGLOW_SERVER", ""),
         "email": os.getenv("OUTREACH_ROOTEDGLOW_EMAIL", "avi@albert-capital.com"),
         "password": os.getenv("IMAP_ROOTEDGLOW_PASSWORD", ""),
+    },
+    "build-coded": {
+        "server": os.getenv("IMAP_BUILDCODED_SERVER", ""),
+        "email": os.getenv("OUTREACH_BUILDCODED_EMAIL", ""),
+        "password": os.getenv("IMAP_BUILDCODED_PASSWORD", ""),
     },
 }
 
@@ -114,6 +158,10 @@ COMPETITORS = {
     "rooted-glow": [
         "wellnessmama.com", "marksdailyapple.com", "chriskresser.com",
         "paleoleap.com", "draxe.com",
+    ],
+    "build-coded": [
+        "familyhandyman.com", "instructables.com", "woodmagazine.com",
+        "thisoldhouse.com", "makezine.com",
     ],
 }
 
@@ -214,6 +262,15 @@ RESOURCE_SEARCHES = {
         '"running for beginners" "resources"',
         '"nutrition" "recommended blogs" OR "blogroll"',
         '"fermented foods" "resources" OR "guide"',
+    ],
+    "build-coded": [
+        '"woodworking" "resources" inurl:resources',
+        '"DIY" "recommended tools" OR "tool list"',
+        '"home improvement" "resources" OR "links"',
+        '"maker" "blogroll" OR "recommended blogs"',
+        '"Arduino projects" "resources" OR "links"',
+        '"woodworking blogs" "resources" 2025 OR 2026',
+        '"DIY electronics" "resources" OR "beginners guide"',
     ],
 }
 

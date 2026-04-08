@@ -34,7 +34,7 @@ const slides = [
     image: '/images/ancestral-eating-hero.jpg',
     title: 'Complete Guide to Ancestral Eating',
     subtitle: 'How eating like our great-grandparents changed the way we think about food.',
-    link: localePath('/complete-guide-ancestral-eating', locale),
+    link: localePath('/complete-guide-ancestral-eating/', locale),
     category: t(locale, 'categories.nutrition'),
   },
   {
@@ -47,7 +47,7 @@ const slides = [
     image: '/images/hero-slide-3.jpg',
     title: t(locale, 'home.slideKBeauty'),
     subtitle: t(locale, 'home.slideKBeautyDesc'),
-    link: localePath('/double-cleansing-why-and-how', locale),
+    link: localePath('/double-cleansing-why-and-how/', locale),
     category: t(locale, 'categories.kBeauty'),
   },
 ];
@@ -92,7 +92,7 @@ const webSiteSchema = JSON.stringify({
           <span class="block text-[11px] font-semibold uppercase tracking-wide text-charcoal-light/50 mb-2">{t(locale, 'home.latest')}</span>
           <h2 class="font-heading text-4xl italic text-charcoal tracking-tight">{t(locale, 'home.freshFromTheJournal')}</h2>
         </div>
-        <a href={localePath('/category/nutrition', locale)} class="hidden sm:inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wide text-charcoal-light/60 hover:text-sage-800 transition-colors">
+        <a href={localePath('/category/nutrition/', locale)} class="hidden sm:inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wide text-charcoal-light/60 hover:text-sage-800 transition-colors">
           {t(locale, 'common.viewAll')}
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
         </a>
@@ -105,7 +105,7 @@ const webSiteSchema = JSON.stringify({
             description={post.data.description}
             date={post.data.date}
             category={post.data.category}
-            slug={post.id}
+            slug={post.id.includes('/') ? post.id.split('/').slice(1).join('/') : post.id}
             image={post.data.image}
             type={post.data.type}
             locale={locale}
@@ -169,14 +169,14 @@ const webSiteSchema = JSON.stringify({
       <div class="rounded-2xl bg-sage-50 p-10 sm:p-16">
         <div class="grid sm:grid-cols-2 gap-10 sm:gap-16 items-center">
           <div>
-            <img src="/logo.svg" alt="Rooted Glow" class="w-16 h-16 mb-6" />
+            <img src="/logo.svg" alt="Rooted Glow" class="w-32 h-32 mb-6" />
             <h2 class="font-heading text-4xl italic text-charcoal tracking-tight mb-4">{t(locale, 'home.aboutTitle')}</h2>
           </div>
           <div>
             <p class="text-sm sm:text-base text-charcoal-light/60 leading-relaxed mb-6">
               {t(locale, 'home.aboutDesc')}
             </p>
-            <a href={localePath('/about', locale)} class="inline-flex items-center gap-2 text-sm font-medium text-sage-700 hover:text-sage-900 transition-colors group">
+            <a href={localePath('/about/', locale)} class="inline-flex items-center gap-2 text-sm font-medium text-sage-700 hover:text-sage-900 transition-colors group">
               {t(locale, 'home.learnMore')}
               <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
             </a>

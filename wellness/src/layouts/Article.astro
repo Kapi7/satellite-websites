@@ -25,12 +25,13 @@ interface Props {
   rawContent?: string;
   type?: string;
   locale?: Locale;
+  author?: string;
 }
 
 const {
   title, description, date, updated, category, tags = [],
   image, imageAlt, headings, slug, rawContent, type,
-  locale = 'en',
+  locale = 'en', author,
 } = Astro.props;
 
 const products = rawContent ? extractProducts(rawContent) : [];
@@ -48,7 +49,7 @@ const formattedDate = formatDate(date, locale);
 const formattedUpdated = updated ? formatDate(updated, locale) : undefined;
 const articleUrl = new URL(localePath(`/${slug}`, locale), Astro.site).href;
 
-const authorName = t(locale, 'article.editorial');
+const authorName = author || t(locale, 'article.editorial');
 
 const articleSchema = JSON.stringify({
   '@context': 'https://schema.org', '@type': 'Article',
@@ -166,7 +167,11 @@ if (headings) {
           <h1 class="font-heading text-4xl sm:text-5xl md:text-[3.5rem] text-charcoal leading-[1.08] tracking-tight mb-6">{title}</h1>
           <p class="text-lg sm:text-xl text-charcoal-light/60 leading-relaxed mb-6 max-w-3xl">{description}</p>
           <div class="flex items-center gap-4 border-t border-sage-200/40 pt-6">
-            <img src="/logo.svg" alt="" class="w-8 h-8 rounded-full" />
+            {author ? (
+              <img src={`/images/team/${author.toLowerCase().replace(/\s+/g, '-')}.jpg`} alt={author} class="w-9 h-9 rounded-full object-cover" />
+            ) : (
+              <img src="/logo.svg" alt="" class="w-8 h-8 rounded-full" />
+            )}
             <div>
               <span class="text-[11px] font-semibold uppercase tracking-wide text-charcoal block">{authorName}</span>
               <div class="flex items-center gap-3 text-[11px] uppercase tracking-[0.1em] text-charcoal-light/50 mt-0.5">

@@ -167,11 +167,13 @@ def site_context(site_key: str) -> str:
 # ═══════════════════════════════════════════════════════════════
 
 HARO_SENDERS = [
+    "helpareporter.com",
     "connectively.us",
     "qwoted.com",
     "featured.com",
     "terkel.io",
     "sourcebottle.com",
+    "thesourcebottle.com",
 ]
 
 
@@ -263,8 +265,8 @@ def run_haro(site_keys: list[str]) -> list[dict]:
         topics = config.SITES[site_key]["topics"]
 
         for sender_domain in HARO_SENDERS:
-            # Search for recent emails from this sender (last 3 days)
-            since_date = (datetime.utcnow() - timedelta(days=3)).strftime("%d-%b-%Y")
+            # Search for recent emails from this sender (last 7 days)
+            since_date = (datetime.utcnow() - timedelta(days=7)).strftime("%d-%b-%Y")
             search_criteria = f'(FROM "@{sender_domain}" SINCE {since_date})'
 
             try:

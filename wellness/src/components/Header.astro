@@ -9,12 +9,12 @@ interface Props {
 const { locale = 'en' } = Astro.props;
 
 const navItems = [
-  { label: t(locale, 'nav.nutrition'), href: localePath('/category/nutrition', locale) },
-  { label: t(locale, 'nav.movement'), href: localePath('/category/movement', locale) },
-  { label: t(locale, 'nav.kBeauty'), href: localePath('/category/k-beauty', locale) },
-  { label: t(locale, 'nav.naturalHealth'), href: localePath('/category/natural-health', locale) },
-  { label: t(locale, 'nav.quiz'), href: localePath('/quiz', locale) },
-  { label: t(locale, 'nav.about'), href: localePath('/about', locale) },
+  { label: t(locale, 'nav.nutrition'), href: localePath('/category/nutrition/', locale) },
+  { label: t(locale, 'nav.movement'), href: localePath('/category/movement/', locale) },
+  { label: t(locale, 'nav.kBeauty'), href: localePath('/category/k-beauty/', locale) },
+  { label: t(locale, 'nav.naturalHealth'), href: localePath('/category/natural-health/', locale) },
+  { label: t(locale, 'nav.quiz'), href: localePath('/quiz/', locale) },
+  { label: t(locale, 'nav.about'), href: localePath('/about/', locale) },
 ];
 ---
 

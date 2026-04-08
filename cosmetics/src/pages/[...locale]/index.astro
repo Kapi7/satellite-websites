@@ -34,7 +34,7 @@ const slides = [
     image: '/images/korean-routine-hero.jpg',
     title: 'Korean Skincare Routine: The Complete Guide',
     subtitle: 'Everything you need to know, from the 10-step method to a realistic everyday approach.',
-    link: localePath('/korean-skincare-routine-complete-guide', locale),
+    link: localePath('/korean-skincare-routine-complete-guide/', locale),
     category: t(locale, 'nav.skincare'),
   },
   {
@@ -47,7 +47,7 @@ const slides = [
     image: '/images/hero-slide-3.jpg',
     title: t(locale, 'home.slideIngredients'),
     subtitle: t(locale, 'home.slideIngredientsDesc'),
-    link: localePath('/niacinamide-vs-vitamin-c', locale),
+    link: localePath('/niacinamide-vs-vitamin-c/', locale),
     category: t(locale, 'nav.ingredients'),
   },
 ];
@@ -92,7 +92,7 @@ const webSiteSchema = JSON.stringify({
           <span class="block text-[11px] font-semibold uppercase tracking-wide text-charcoal-light/50 mb-2">{t(locale, 'home.latest')}</span>
           <h2 class="font-heading text-4xl italic text-charcoal tracking-tight">{t(locale, 'home.freshFromTheLab')}</h2>
         </div>
-        <a href={localePath('/category/skincare', locale)} class="hidden sm:inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wide text-charcoal-light/60 hover:text-plum-700 transition-colors">
+        <a href={localePath('/category/skincare/', locale)} class="hidden sm:inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wide text-charcoal-light/60 hover:text-plum-700 transition-colors">
           {t(locale, 'common.viewAll')}
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
         </a>
@@ -105,7 +105,7 @@ const webSiteSchema = JSON.stringify({
             description={post.data.description}
             date={post.data.date}
             category={post.data.category}
-            slug={post.id.replace(/^en\//, '')}
+            slug={post.id.includes('/') ? post.id.split('/').slice(1).join('/') : post.id}
             image={post.data.image}
             type={post.data.type}
             locale={locale}
@@ -154,7 +154,7 @@ const webSiteSchema = JSON.stringify({
         </div>
       </div>
       <div class="grid gap-5 sm:grid-cols-3">
-        <a href={localePath('/quiz', locale)} class="group relative aspect-square flex flex-col items-center justify-center text-center p-7 rounded-2xl border border-rose-200/60 bg-white overflow-hidden transition-all duration-400 hover:-translate-y-2 hover:shadow-xl">
+        <a href={localePath('/quiz/', locale)} class="group relative aspect-square flex flex-col items-center justify-center text-center p-7 rounded-2xl border border-rose-200/60 bg-white overflow-hidden transition-all duration-400 hover:-translate-y-2 hover:shadow-xl">
           <div class="absolute inset-0 bg-gradient-to-br from-rose-600/0 to-rose-700/0 group-hover:from-rose-600/5 group-hover:to-rose-700/10 transition-all duration-500 rounded-2xl"></div>
           <div class="relative z-10 flex flex-col items-center">
             <div class="w-14 h-14 mb-4 rounded-full bg-rose-50 flex items-center justify-center group-hover:bg-rose-100 transition-colors">
@@ -164,7 +164,7 @@ const webSiteSchema = JSON.stringify({
             <p class="text-xs text-charcoal-light/60 leading-relaxed max-w-[180px]">{t(locale, 'home.skinQuizDesc')}</p>
           </div>
         </a>
-        <a href={localePath('/ingredients', locale)} class="group relative aspect-square flex flex-col items-center justify-center text-center p-7 rounded-2xl border border-rose-200/60 bg-white overflow-hidden transition-all duration-400 hover:-translate-y-2 hover:shadow-xl">
+        <a href={localePath('/ingredients/', locale)} class="group relative aspect-square flex flex-col items-center justify-center text-center p-7 rounded-2xl border border-rose-200/60 bg-white overflow-hidden transition-all duration-400 hover:-translate-y-2 hover:shadow-xl">
           <div class="absolute inset-0 bg-gradient-to-br from-rose-600/0 to-rose-700/0 group-hover:from-rose-600/5 group-hover:to-rose-700/10 transition-all duration-500 rounded-2xl"></div>
           <div class="relative z-10 flex flex-col items-center">
             <div class="w-14 h-14 mb-4 rounded-full bg-rose-50 flex items-center justify-center group-hover:bg-rose-100 transition-colors">
@@ -174,7 +174,7 @@ const webSiteSchema = JSON.stringify({
             <p class="text-xs text-charcoal-light/60 leading-relaxed max-w-[180px]">{t(locale, 'home.ingredientGlossaryDesc')}</p>
           </div>
         </a>
-        <a href={localePath('/ingredient-checker', locale)} class="group relative aspect-square flex flex-col items-center justify-center text-center p-7 rounded-2xl border border-rose-200/60 bg-white overflow-hidden transition-all duration-400 hover:-translate-y-2 hover:shadow-xl">
+        <a href={localePath('/ingredient-checker/', locale)} class="group relative aspect-square flex flex-col items-center justify-center text-center p-7 rounded-2xl border border-rose-200/60 bg-white overflow-hidden transition-all duration-400 hover:-translate-y-2 hover:shadow-xl">
           <div class="absolute inset-0 bg-gradient-to-br from-rose-600/0 to-rose-700/0 group-hover:from-rose-600/5 group-hover:to-rose-700/10 transition-all duration-500 rounded-2xl"></div>
           <div class="relative z-10 flex flex-col items-center">
             <div class="w-14 h-14 mb-4 rounded-full bg-rose-50 flex items-center justify-center group-hover:bg-rose-100 transition-colors">
@@ -211,14 +211,14 @@ const webSiteSchema = JSON.stringify({
       <div class="rounded-2xl bg-rose-50 p-10 sm:p-16">
         <div class="grid sm:grid-cols-2 gap-10 sm:gap-16 items-center">
           <div>
-            <img src="/logo.svg" alt="Glow Coded" class="w-16 h-16 mb-6" />
+            <img src="/logo.svg" alt="Glow Coded" class="w-32 h-32 mb-6" />
             <h2 class="font-heading text-4xl italic text-charcoal tracking-tight mb-4">{t(locale, 'home.aboutTitle')}</h2>
           </div>
           <div>
             <p class="text-sm sm:text-base text-plum-500 leading-relaxed mb-6">
               {t(locale, 'home.aboutDesc')}
             </p>
-            <a href={localePath('/about', locale)} class="inline-flex items-center gap-2 text-sm font-medium text-plum-700 hover:text-plum-900 transition-colors group">
+            <a href={localePath('/about/', locale)} class="inline-flex items-center gap-2 text-sm font-medium text-plum-700 hover:text-plum-900 transition-colors group">
               {t(locale, 'home.learnMore')}
               <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
             </a>

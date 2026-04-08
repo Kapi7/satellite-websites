@@ -9,10 +9,10 @@ const { locale = 'en' } = Astro.props;
 
 const year = new Date().getFullYear();
 const categories = [
-  { label: t(locale, 'categories.nutrition'), href: localePath('/category/nutrition', locale) },
-  { label: t(locale, 'categories.movement'), href: localePath('/category/movement', locale) },
-  { label: t(locale, 'categories.kBeauty'), href: localePath('/category/k-beauty', locale) },
-  { label: t(locale, 'categories.naturalHealth'), href: localePath('/category/natural-health', locale) },
+  { label: t(locale, 'categories.nutrition'), href: localePath('/category/nutrition/', locale) },
+  { label: t(locale, 'categories.movement'), href: localePath('/category/movement/', locale) },
+  { label: t(locale, 'categories.kBeauty'), href: localePath('/category/k-beauty/', locale) },
+  { label: t(locale, 'categories.naturalHealth'), href: localePath('/category/natural-health/', locale) },
   { label: t(locale, 'footer.wellnessQuiz'), href: localePath('/quiz/', locale) },
 ];
 ---
@@ -58,7 +58,7 @@ const categories = [
       <ul class="space-y-3">
         <li>
           <a
-            href={localePath('/about', locale)}
+            href={localePath('/about/', locale)}
             class="text-sm text-charcoal-light/60 hover:text-sage-800 transition-colors duration-200"
           >
             {t(locale, 'footer.aboutUs')}
@@ -66,7 +66,7 @@ const categories = [
         </li>
         <li>
           <a
-            href={localePath('/privacy', locale)}
+            href={localePath('/privacy/', locale)}
             class="text-sm text-charcoal-light/60 hover:text-sage-800 transition-colors duration-200"
           >
             {t(locale, 'footer.privacy')}

@@ -36,7 +36,7 @@ const formattedDate = formatDateShort(date, locale);
 ---
 
 <article class={`group flex flex-col ${featured ? 'md:col-span-2' : ''}`}>
-  <a href={localePath(`/${slug}`, locale)} class="flex flex-col h-full">
+  <a href={localePath(`/${slug}/`, locale)} class="flex flex-col h-full">
     {image && (
       <div class={`overflow-hidden rounded-2xl mb-6 bg-sage-100 ${featured ? 'aspect-[16/9]' : 'aspect-[3/2]'}`}>
         <img
