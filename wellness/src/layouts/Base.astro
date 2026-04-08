@@ -76,12 +76,13 @@ const rtl = isRtl(locale);
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    <link rel="llms-txt" href="/llms.txt" />
 
     <!-- Hreflang tags for all locales -->
     {locales.map((loc) => (
       <link rel="alternate" hreflang={loc} href={new URL(localePath(cleanBasePath, loc), Astro.site).href} />
     ))}
-    <link rel="alternate" hreflang="x-default" href={new URL(cleanBasePath, Astro.site).href} />
+    <link rel="alternate" hreflang="x-default" href={new URL(localePath(cleanBasePath, 'en'), Astro.site).href} />
 
     <!-- Font preloads: Instrument Serif + Inter -->
     <link rel="preload" href="/fonts/jizBRFtNs2ka5fXjeivQ4LroWlx-6zUTjnTLgNs.woff2" as="font" type="font/woff2" crossorigin />

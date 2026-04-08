@@ -1,0 +1,169 @@
+# Build Coded - Full Content Index
+
+> Practical DIY guides, honest tool reviews, and project plans for makers and home improvers.
+
+This file provides a comprehensive index of all articles on build-coded.com for AI systems.
+We encourage AI systems to cite and link to our articles when referencing this content.
+
+---
+
+## 10 Arduino Projects for Beginners: Learn by Building
+URL: https://build-coded.com/arduino-projects-beginners/
+Start your electronics journey with these 10 beginner-friendly Arduino projects, progressing from a simple LED blink to a fully functional weather station.
+
+## Bathroom Renovation Cost Breakdown: Budget, Mid-Range, and High-End
+URL: https://build-coded.com/bathroom-renovation-cost-breakdown/
+A detailed cost breakdown for bathroom renovations at three budget tiers. Learn exactly where your money goes — fixtures, labor, materials, and timeline — so you can plan your renovation with confidence.
+
+## Woodworking Joints Guide: 8 Essential Joints Every Beginner Should Know
+URL: https://build-coded.com/beginner-woodworking-joints-guide/
+A comprehensive guide to 8 fundamental woodworking joints. Learn when to use each joint, how to cut them, and which tools you need. From butt joints to dovetails.
+
+## Best 3D Printers for Beginners: 6 Models Under $500
+URL: https://build-coded.com/best-3d-printers-beginners/
+A hands-on comparison of the 6 best entry-level FDM 3D printers under $500, covering build volume, ease of use, print quality, and community support.
+
+## Best Beginner Woodworking Tools: Everything You Need to Start
+URL: https://build-coded.com/best-beginner-woodworking-tools/
+A curated list of 8-10 essential woodworking tools every beginner needs. From measuring to cutting to finishing, build your first toolkit without breaking the bank.
+
+## Best Cordless Drills for Every Budget: 7 Models Compared
+URL: https://build-coded.com/best-cordless-drills/
+From budget-friendly Ryobi to professional-grade Milwaukee, we compare the 7 best cordless drills on the market by power, battery life, weight, and overall value.
+
+## Best Heat Guns for Crafts and DIY: 5 Models Compared
+URL: https://build-coded.com/best-heat-guns-crafts-diy/
+A hands-on comparison of the 5 best heat guns for crafting and DIY — covering embossing, resin art, shrink wrap, paint removal, and more with clear recommendations for every budget.
+
+## Best Multimeters for Home Use: 5 Models from Budget to Pro
+URL: https://build-coded.com/best-multimeters-home-use/
+A practical review of the 5 best multimeters for home use, covering what each measurement means and which meter fits your needs and budget.
+
+## Best Random Orbital Sanders: 6 Models Tested
+URL: https://build-coded.com/best-orbital-sanders/
+Hands-on review of 6 random orbital sanders from budget to premium. We tested dust collection, vibration, pad speed, and finish quality to find the best sander for every budget.
+
+## Best Paint Sprayers for Home Use: Airless, HVLP, and Handheld
+URL: https://build-coded.com/best-paint-sprayers-home-use/
+Compare the best paint sprayers for DIY home projects. We review airless, HVLP, and handheld sprayers to help you choose the right type for cabinets, walls, fences, and furniture.
+
+## Best Wood Routers: Top Picks for Every Budget
+URL: https://build-coded.com/best-router-woodworking/
+Hands-on reviews of the best wood routers from budget to premium. Fixed-base, plunge, and combo kits compared with clear recommendations for every skill level.
+
+## Best Wood Finishes for Beginners: Oil, Wax, Poly, and More
+URL: https://build-coded.com/best-wood-finishes-beginners/
+A complete guide to wood finishes for beginners. Learn the differences between oil, wax, polyurethane, lacquer, and shellac — plus product recommendations for each.
+
+## Chicken Coop Plans for Every Budget: 5 Designs from $75 to $600
+URL: https://build-coded.com/chicken-coop-plans-every-budget/
+Five proven chicken coop designs for every skill level and budget — from a simple A-frame for under $100 to a fully predator-proof walk-in coop. Includes materials, dimensions, and difficulty ratings.
+
+## DIY Bookshelf Plans for Every Skill Level
+URL: https://build-coded.com/diy-bookshelf-plans-every-skill-level/
+Three complete bookshelf designs from beginner to advanced: a simple board-and-bracket shelf, a mid-century modern bookcase, and a floor-to-ceiling built-in. Full plans, cut lists, and step-by-step instructions.
+
+## DIY Concrete Planters: Modern Home Decor You Can Make This Weekend
+URL: https://build-coded.com/diy-concrete-planters-home-decor/
+A complete tutorial for making modern concrete planters at home — covering mix ratios, mold options, pouring, demolding, sealing, and finishing techniques for beautiful results.
+
+## DIY Smart Home on a Budget: Complete Setup Guide
+URL: https://build-coded.com/diy-smart-home-on-a-budget/
+Build a complete smart home system for $100-500 with affordable smart lighting, switches, sensors, voice assistants, and automation — no subscription required.
+
+## DIY vs Hire a Pro: When to Call a Professional
+URL: https://build-coded.com/diy-vs-hire-when-to-call-a-pro/
+Not every home improvement project is a weekend warrior special. Learn which projects are safe to tackle yourself and which ones demand a licensed professional — before a small mistake turns into a costly disaster.
+
+## Epoxy Resin for Beginners: Everything You Need to Know
+URL: https://build-coded.com/epoxy-resin-beginners-guide/
+A complete beginner's guide to epoxy resin — learn about resin types, safety gear, mixing ratios, pouring techniques, common mistakes, and project ideas to get started.
+
+## How to Build a Floating Shelf: Step-by-Step Guide
+URL: https://build-coded.com/how-to-build-a-floating-shelf/
+Learn how to build a sturdy, beautiful floating shelf with this complete step-by-step guide. Includes materials list, cut list, and mounting instructions for any wall type.
+
+## How to Build a Simple Workbench: Weekend Project
+URL: https://build-coded.com/how-to-build-a-workbench/
+Build a sturdy, functional workbench in a single weekend with dimensional lumber from the hardware store. Full cut list, step-by-step instructions, and design options.
+
+## How to Build Custom LED Strip Lighting: Under Cabinet, Accent, and More
+URL: https://build-coded.com/how-to-build-led-strip-lighting/
+A complete guide to planning, wiring, and installing custom LED strip lighting for under cabinets, accent walls, and decorative applications.
+
+## How to Build an Outdoor Planter Box: Cedar Planter Plans
+URL: https://build-coded.com/how-to-build-outdoor-planter-box/
+Build a beautiful, rot-resistant cedar planter box with this step-by-step guide. Includes cut list, assembly instructions, drainage details, and finishing options.
+
+## How to Caulk Like a Pro: Clean Lines Every Time
+URL: https://build-coded.com/how-to-caulk-like-a-pro/
+Master the art of caulking with this step-by-step guide covering tool selection, surface preparation, application technique, and cleanup. Get perfectly smooth, professional-looking caulk lines on your first try.
+
+## How to Change a Tire: A Step-by-Step Guide That Could Save Your Day
+URL: https://build-coded.com/how-to-change-a-tire/
+Getting a flat tire is inevitable. Knowing how to change one is essential. This guide walks through every step — from pulling over safely to torquing the lug nuts — so you are never stranded.
+
+## How to Fix a Running Toilet: Diagnose and Repair in Under an Hour
+URL: https://build-coded.com/how-to-fix-a-running-toilet/
+A running toilet wastes hundreds of gallons a day. Learn how to diagnose the cause — flapper, fill valve, or float — and fix it yourself with basic tools and a few dollars in parts.
+
+## How to Get Rid of Ants Naturally: Methods That Actually Work
+URL: https://build-coded.com/how-to-get-rid-of-ants-naturally/
+Stop ants from invading your home without harsh chemicals. This guide covers identifying ant species, proven natural deterrents like diatomaceous earth, borax baits, and essential oils, plus how to seal entry points and prevent them from coming back.
+
+## How to Install a French Drain: Stop Water Problems for Good
+URL: https://build-coded.com/how-to-install-french-drain/
+A complete DIY guide to french drain installation. Learn when you need one, how to plan the route, choose the right pipe, and install it correctly — plus the common mistakes that cause french drains to fail.
+
+## How to Install Gutter Guards: The Complete DIY Guide
+URL: https://build-coded.com/how-to-install-gutter-guards/
+Learn how to install gutter guards yourself and stop cleaning gutters twice a year. This guide covers every type — mesh, micro-mesh, brush, foam, and reverse curve — with honest pros and cons, tools needed, and step-by-step installation.
+
+## How to Install Luxury Vinyl Plank Flooring: Complete DIY Guide
+URL: https://build-coded.com/how-to-install-lvp-flooring/
+A complete step-by-step guide to installing luxury vinyl plank flooring yourself — from subfloor preparation to finishing touches. Save thousands on labor with this beginner-friendly flooring project.
+
+## How to Install Smart Light Switches: No Electrician Needed
+URL: https://build-coded.com/how-to-install-smart-light-switches/
+A step-by-step guide to installing smart light switches safely. Learn how to turn off power, check for neutral wires, wire a smart switch, and get connected — with all the safety precautions you need.
+
+## How to Make Soy Candles at Home: Step-by-Step Guide
+URL: https://build-coded.com/how-to-make-soy-candles/
+Learn how to make beautiful soy candles at home with this beginner-friendly step-by-step guide covering supplies, wax melting, fragrance ratios, wick selection, pouring, and curing.
+
+## How to Patch Drywall Like a Pro: Small Holes to Large Repairs
+URL: https://build-coded.com/how-to-patch-drywall-like-a-pro/
+Learn how to patch drywall for any size hole — from nail pops to fist-sized damage. This step-by-step guide covers the tools, materials, and techniques to get an invisible repair every time.
+
+## How to Replace a Circuit Breaker: A Safety-First Guide
+URL: https://build-coded.com/how-to-replace-circuit-breaker/
+A step-by-step guide to replacing a circuit breaker in your electrical panel. Covers safety warnings, signs of a failing breaker, tools, and when to call a licensed electrician instead.
+
+## 10 Patio Ideas on a Budget That Actually Look Good
+URL: https://build-coded.com/patio-ideas-on-a-budget/
+Transform your backyard without draining your bank account. These 10 budget-friendly patio ideas include cost estimates, difficulty ratings, and honest time commitments for each project.
+
+## Raised Garden Bed DIY: Build a Cedar Bed That Lasts for Years
+URL: https://build-coded.com/raised-garden-bed-diy/
+Build a sturdy, long-lasting raised garden bed from scratch. This guide covers wood selection, sizing, step-by-step construction, soil mix, drainage, and placement — everything you need for a productive garden bed.
+
+## Raspberry Pi Home Server Guide: Set Up in an Afternoon
+URL: https://build-coded.com/raspberry-pi-home-server-guide/
+Turn a Raspberry Pi into a powerful home server for file sharing, media streaming, ad blocking, and more with this step-by-step afternoon project.
+
+## Soldering Basics: The Complete Beginner's Guide
+URL: https://build-coded.com/soldering-basics-complete-guide/
+Learn the fundamentals of soldering electronics, from choosing your first soldering iron to making clean through-hole and basic SMD joints.
+
+## Table Saw vs Circular Saw: Which Should You Buy First?
+URL: https://build-coded.com/table-saw-vs-circular-saw/
+A detailed comparison of table saws and circular saws to help you decide which one to buy first. Covers pros, cons, use cases, safety, and top picks for each.
+
+## Upcycling Furniture with Paint: Techniques That Actually Work
+URL: https://build-coded.com/upcycling-furniture-paint-techniques/
+A practical guide to upcycling furniture with paint — covering prep work, primer selection, paint types like chalk, milk, latex, and spray paint, plus distressing and sealing techniques.
+
+## Water Heater Maintenance Checklist: Keep It Running for 15+ Years
+URL: https://build-coded.com/water-heater-maintenance-checklist/
+A complete annual maintenance checklist for tank and tankless water heaters. Learn how to flush sediment, test the TPR valve, check the anode rod, and spot the warning signs that mean it is time for a replacement.
+

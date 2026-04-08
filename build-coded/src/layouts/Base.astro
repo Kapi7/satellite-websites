@@ -28,7 +28,7 @@ const {
   locale = 'en',
 } = Astro.props;
 
-const siteTitle = 'Glow Coded';
+const siteTitle = 'Build Coded';
 const fullTitle = title === siteTitle ? title : `${title} | ${siteTitle}`;
 
 // Locale-aware canonical: use localePath when locale != default
@@ -44,15 +44,13 @@ const pathWithoutLocale = pagePath.replace(new RegExp(`^/${locale}(?=/|$)`), '')
 <!doctype html>
 <html lang={locale} dir={isRtl(locale) ? 'rtl' : 'ltr'}>
   <head>
-    <!-- Google Analytics (GA4) -->
-    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-LNYVF6BHTN"></script>
+    <!-- Google Analytics (GA4) — placeholder until property created -->
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-MP5LPFNBN5"></script>
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag("js", new Date());
-      gtag("config", "G-LNYVF6BHTN");
-    </script>
-    <script is:inline src="/js/tracking.js">
+      gtag("config", "G-MP5LPFNBN5");
     </script>
     <script is:inline>
       const t = localStorage.getItem('theme');
@@ -63,7 +61,7 @@ const pathWithoutLocale = pagePath.replace(new RegExp(`^/${locale}(?=/|$)`), '')
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
-    <meta name="theme-color" content="#4a2040" />
+    <meta name="theme-color" content="#334e68" />
     <meta name="robots" content={robots} />
 
     <title>{fullTitle}</title>
@@ -71,8 +69,7 @@ const pathWithoutLocale = pagePath.replace(new RegExp(`^/${locale}(?=/|$)`), '')
     <link rel="canonical" href={canonical} />
     <link rel="llms-txt" href="/llms.txt" />
 
-    <!-- Existing font preloads: Playfair Display & Inter -->
-    <link rel="preload" href="/fonts/nuFiD-vYSZviVYUb_rj3ij__anPXDTzYgEM86xQ.woff2" as="font" type="font/woff2" crossorigin />
+    <!-- Font preloads: Inter -->
     <link rel="preload" href="/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2" as="font" type="font/woff2" crossorigin />
 
     {/* Arabic font preload — only when locale is 'ar' */}
