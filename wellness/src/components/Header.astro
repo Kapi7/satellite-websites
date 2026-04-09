@@ -13,8 +13,13 @@ const navItems = [
   { label: t(locale, 'nav.movement'), href: localePath('/category/movement/', locale) },
   { label: t(locale, 'nav.kBeauty'), href: localePath('/category/k-beauty/', locale) },
   { label: t(locale, 'nav.naturalHealth'), href: localePath('/category/natural-health/', locale) },
-  { label: t(locale, 'nav.quiz'), href: localePath('/quiz/', locale) },
   { label: t(locale, 'nav.about'), href: localePath('/about/', locale) },
+];
+
+const tools = [
+  { label: t(locale, 'nav.wellnessQuiz'), href: localePath('/tools/quiz/', locale), desc: t(locale, 'nav.wellnessQuizDesc'), icon: '<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z" /></svg>' },
+  { label: t(locale, 'nav.runningPlan'), href: localePath('/tools/running-plan/', locale), desc: t(locale, 'nav.runningPlanDesc'), icon: '<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>' },
+  { label: t(locale, 'nav.recipeGenerator'), href: localePath('/tools/recipe-generator/', locale), desc: t(locale, 'nav.recipeGeneratorDesc'), icon: '<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8.25v-1.5m0 1.5c-1.355 0-2.697.056-4.024.166C6.845 8.51 6 9.473 6 10.608v2.513m6-4.871c1.355 0 2.697.056 4.024.166C17.155 8.51 18 9.473 18 10.608v2.513M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" /></svg>' },
 ];
 ---
 
@@ -37,6 +42,31 @@ const navItems = [
             {item.label}
           </a>
         ))}
+
+        <!-- Tools Dropdown -->
+        <div class="relative" id="tools-dropdown">
+          <button
+            id="tools-trigger"
+            class="text-[16px] font-heading italic tracking-tight text-charcoal-light/60 hover:text-sage-600 transition-colors duration-200 flex items-center gap-1 cursor-pointer"
+          >
+            {t(locale, 'nav.tools')}
+            <svg class="w-3.5 h-3.5 transition-transform duration-200" id="tools-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="m19.5 8.25-7.5 7.5-7.5-7.5"/></svg>
+          </button>
+          <div id="tools-panel" class="hidden absolute top-full right-0 mt-3 w-72 bg-white rounded-xl shadow-lg border border-sage-100/60 overflow-hidden z-50">
+            {tools.map((tool) => (
+              <a
+                href={tool.href}
+                class="group flex items-start gap-3 px-5 py-3.5 hover:bg-sage-50/60 transition-colors border-b border-sage-50 last:border-0"
+              >
+                <div class="w-9 h-9 rounded-lg bg-sage-50 flex items-center justify-center text-sage-500 group-hover:bg-sage-100 group-hover:text-sage-600 transition-colors shrink-0 mt-0.5" set:html={tool.icon} />
+                <div>
+                  <span class="block text-sm font-medium text-charcoal group-hover:text-sage-700 transition-colors">{tool.label}</span>
+                  <span class="block text-xs text-charcoal-light/60 leading-snug">{tool.desc}</span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
       </nav>
 
       <!-- Controls -->
@@ -47,8 +77,11 @@ const navItems = [
           <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" /></svg>
         </button>
         <button id="mobile-menu-btn" class="md:hidden p-2 -mr-2 text-charcoal-light/60 hover:text-sage-600 transition-colors duration-200" aria-label={t(locale, 'common.openMenu')}>
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+          <svg id="menu-icon-open" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9h16.5m-16.5 6.75h16.5" />
+          </svg>
+          <svg id="menu-icon-close" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
           </svg>
         </button>
       </div>
@@ -64,19 +97,63 @@ const navItems = [
           {item.label}
         </a>
       ))}
+      <!-- Tools section in mobile -->
+      <div class="pt-3 mt-2 border-t border-sage-200/40">
+        <span class="block text-[10px] font-bold uppercase tracking-widest text-charcoal-light/40 mb-2">{t(locale, 'nav.tools')}</span>
+        {tools.map((tool) => (
+          <a
+            href={tool.href}
+            class="flex items-center gap-3 py-2.5 text-[18px] font-heading italic tracking-tight text-charcoal-light/60 hover:text-sage-600 transition-colors duration-200"
+          >
+            <span class="text-sage-400 w-5 h-5 shrink-0" set:html={tool.icon} />
+            {tool.label}
+          </a>
+        ))}
+      </div>
     </nav>
   </div>
 </header>
 
 <script>
+  // Tools dropdown
+  const toolsTrigger = document.getElementById('tools-trigger');
+  const toolsPanel = document.getElementById('tools-panel');
+  const toolsChevron = document.getElementById('tools-chevron');
+  let toolsOpen = false;
+
+  toolsTrigger?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    toolsOpen = !toolsOpen;
+    toolsPanel?.classList.toggle('hidden', !toolsOpen);
+    toolsChevron?.classList.toggle('rotate-180', toolsOpen);
+  });
+
+  document.addEventListener('click', (e) => {
+    if (toolsOpen && !document.getElementById('tools-dropdown')?.contains(e.target as Node)) {
+      toolsOpen = false;
+      toolsPanel?.classList.add('hidden');
+      toolsChevron?.classList.remove('rotate-180');
+    }
+  });
+
+  // Mobile menu toggle
   const btn = document.getElementById('mobile-menu-btn');
   const menu = document.getElementById('mobile-menu');
-  btn?.addEventListener('click', () => menu?.classList.toggle('hidden'));
+  const iconOpen = document.getElementById('menu-icon-open');
+  const iconClose = document.getElementById('menu-icon-close');
+  btn?.addEventListener('click', () => {
+    const isHidden = menu?.classList.toggle('hidden');
+    iconOpen?.classList.toggle('hidden', !isHidden);
+    iconClose?.classList.toggle('hidden', isHidden);
+  });
+
+  // Scroll shadow
   const header = document.getElementById('site-header');
   window.addEventListener('scroll', () => {
     if (window.scrollY > 60) { header?.classList.add('shadow-sm'); } else { header?.classList.remove('shadow-sm'); }
   }, { passive: true });
 
+  // Dark mode toggle
   const toggle = document.getElementById('dark-mode-toggle');
   toggle?.addEventListener('click', () => {
     const isDark = document.documentElement.classList.toggle('dark');

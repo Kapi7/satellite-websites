@@ -1,0 +1,361 @@
+---
+import Base from '../../../layouts/Base.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import BackToTop from '../../../components/BackToTop.astro';
+import { locales, defaultLocale, type Locale } from '../../../i18n/locales';
+import { t, localePath } from '../../../i18n/utils';
+
+export function getStaticPaths() {
+  return locales.map(l => ({
+    params: { locale: l === defaultLocale ? undefined : l },
+    props: { locale: l },
+  }));
+}
+
+const { locale } = Astro.props as { locale: Locale };
+
+const breadcrumbSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: t(locale, 'common.home'), item: 'https://rooted-glow.com/' },
+    { '@type': 'ListItem', position: 2, name: t(locale, 'runningPlan.title'), item: 'https://rooted-glow.com/tools/running-plan/' },
+  ],
+});
+---
+
+<Base
+  title={t(locale, 'runningPlan.title') + ' — Rooted Glow'}
+  description={t(locale, 'runningPlan.description')}
+  jsonLd={[breadcrumbSchema]}
+  locale={locale}
+>
+  <Header locale={locale} />
+
+  <main class="flex-1">
+    <!-- Breadcrumb -->
+    <div class="max-w-3xl mx-auto px-5 sm:px-8 pt-8">
+      <nav class="flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.1em] text-sage-400">
+        <a href={localePath('/', locale)} class="hover:text-sage-600 transition-colors">{t(locale, 'common.home')}</a>
+        <span>/</span>
+        <span class="text-sage-600">{t(locale, 'runningPlan.title')}</span>
+      </nav>
+    </div>
+
+    <div class="max-w-3xl mx-auto px-5 sm:px-8 py-12">
+      <!-- Intro -->
+      <div class="text-center mb-12 animate-fade-in-up">
+        <span class="block text-[11px] font-semibold uppercase tracking-[0.2em] text-sage-400 mb-4">{t(locale, 'runningPlan.toolLabel')}</span>
+        <h1 class="font-heading text-4xl sm:text-5xl text-charcoal tracking-tight mb-4">{t(locale, 'runningPlan.title')}</h1>
+        <p class="text-sage-500 leading-relaxed max-w-lg mx-auto">{t(locale, 'runningPlan.description')}</p>
+      </div>
+
+      <!-- Form -->
+      <div id="rp-form">
+        <!-- Step 1: Distance -->
+        <div class="mb-10">
+          <h2 class="text-[11px] font-semibold uppercase tracking-[0.15em] text-sage-400 mb-5">{t(locale, 'runningPlan.stepDistance')}</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4" id="rp-distances">
+            <button data-value="5k" class="rp-distance group text-left p-6 rounded-2xl border border-sage-200/60 bg-white hover:border-sage-300 hover:shadow-md transition-all duration-200">
+              <span class="block text-2xl font-heading text-charcoal mb-1 group-hover:text-sage-700 transition-colors">{t(locale, 'runningPlan.distance5k')}</span>
+              <span class="block text-xs text-sage-400">{t(locale, 'runningPlan.distance5kDesc')}</span>
+            </button>
+            <button data-value="10k" class="rp-distance group text-left p-6 rounded-2xl border border-sage-200/60 bg-white hover:border-sage-300 hover:shadow-md transition-all duration-200">
+              <span class="block text-2xl font-heading text-charcoal mb-1 group-hover:text-sage-700 transition-colors">{t(locale, 'runningPlan.distance10k')}</span>
+              <span class="block text-xs text-sage-400">{t(locale, 'runningPlan.distance10kDesc')}</span>
+            </button>
+            <button data-value="half" class="rp-distance group text-left p-6 rounded-2xl border border-sage-200/60 bg-white hover:border-sage-300 hover:shadow-md transition-all duration-200">
+              <span class="block text-2xl font-heading text-charcoal mb-1 group-hover:text-sage-700 transition-colors">{t(locale, 'runningPlan.distanceHalf')}</span>
+              <span class="block text-xs text-sage-400">{t(locale, 'runningPlan.distanceHalfDesc')}</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 2: Level -->
+        <div class="mb-10 hidden" id="rp-level-section">
+          <h2 class="text-[11px] font-semibold uppercase tracking-[0.15em] text-sage-400 mb-5">{t(locale, 'runningPlan.stepLevel')}</h2>
+          <div class="flex flex-wrap gap-3" id="rp-levels">
+            <button data-value="beginner" class="rp-level group px-5 py-3 rounded-full border border-sage-200/60 bg-white hover:border-sage-300 transition-all duration-200">
+              <span class="block text-sm font-medium text-charcoal group-hover:text-sage-700 transition-colors">{t(locale, 'runningPlan.levelBeginner')}</span>
+              <span class="block text-[10px] text-sage-400 mt-0.5">{t(locale, 'runningPlan.levelBeginnerDesc')}</span>
+            </button>
+            <button data-value="intermediate" class="rp-level group px-5 py-3 rounded-full border border-sage-200/60 bg-white hover:border-sage-300 transition-all duration-200">
+              <span class="block text-sm font-medium text-charcoal group-hover:text-sage-700 transition-colors">{t(locale, 'runningPlan.levelIntermediate')}</span>
+              <span class="block text-[10px] text-sage-400 mt-0.5">{t(locale, 'runningPlan.levelIntermediateDesc')}</span>
+            </button>
+            <button data-value="advanced" class="rp-level group px-5 py-3 rounded-full border border-sage-200/60 bg-white hover:border-sage-300 transition-all duration-200">
+              <span class="block text-sm font-medium text-charcoal group-hover:text-sage-700 transition-colors">{t(locale, 'runningPlan.levelAdvanced')}</span>
+              <span class="block text-[10px] text-sage-400 mt-0.5">{t(locale, 'runningPlan.levelAdvancedDesc')}</span>
+            </button>
+            <button data-value="expert" class="rp-level group px-5 py-3 rounded-full border border-sage-200/60 bg-white hover:border-sage-300 transition-all duration-200">
+              <span class="block text-sm font-medium text-charcoal group-hover:text-sage-700 transition-colors">{t(locale, 'runningPlan.levelExpert')}</span>
+              <span class="block text-[10px] text-sage-400 mt-0.5">{t(locale, 'runningPlan.levelExpertDesc')}</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 3: Details (optional) -->
+        <div class="mb-10 hidden" id="rp-details-section">
+          <h2 class="text-[11px] font-semibold uppercase tracking-[0.15em] text-sage-400 mb-5">{t(locale, 'runningPlan.stepDetails')}</h2>
+          <div class="space-y-5">
+            <!-- Days per week -->
+            <div>
+              <label class="block text-sm font-medium text-charcoal mb-3">{t(locale, 'runningPlan.daysPerWeek')}</label>
+              <div class="flex gap-3" id="rp-days">
+                {[3,4,5,6].map(d => (
+                  <button data-value={d} class={`rp-day px-5 py-2.5 rounded-full border text-sm font-medium transition-all duration-200 ${d === 4 ? 'border-sage-500 bg-sage-50 text-sage-700' : 'border-sage-200/60 bg-white text-charcoal hover:border-sage-300'}`}>
+                    {d}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <!-- Current weekly km -->
+            <div>
+              <label for="rp-weekly-km" class="block text-sm font-medium text-charcoal mb-2">{t(locale, 'runningPlan.currentWeekly')}</label>
+              <input type="number" id="rp-weekly-km" min="0" max="200" placeholder="0" class="w-32 px-4 py-2.5 rounded-xl border border-sage-200/60 bg-white text-sm text-charcoal focus:outline-none focus:border-sage-400 focus:ring-1 focus:ring-sage-400/30 transition-all" />
+            </div>
+            <!-- Goal time -->
+            <div>
+              <label for="rp-goal-time" class="block text-sm font-medium text-charcoal mb-2">{t(locale, 'runningPlan.goalTime')}</label>
+              <input type="text" id="rp-goal-time" placeholder={t(locale, 'runningPlan.goalTimePlaceholder')} class="w-64 px-4 py-2.5 rounded-xl border border-sage-200/60 bg-white text-sm text-charcoal focus:outline-none focus:border-sage-400 focus:ring-1 focus:ring-sage-400/30 transition-all" />
+            </div>
+          </div>
+
+          <!-- Generate button -->
+          <div class="mt-8">
+            <button id="rp-generate" class="inline-flex items-center gap-2 px-8 py-3.5 bg-sage-600 text-white text-sm font-semibold rounded-full hover:bg-sage-700 transition-colors">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 0 0-2.455 2.456Z" /></svg>
+              {t(locale, 'runningPlan.generateBtn')}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Loading -->
+      <div id="rp-loading" class="hidden text-center py-12">
+        <div class="inline-flex items-center gap-3 mb-4">
+          <span class="w-2 h-2 rounded-full bg-sage-500 animate-pulse-soft"></span>
+          <span class="w-2 h-2 rounded-full bg-sage-500 animate-pulse-soft" style="animation-delay: 0.3s"></span>
+          <span class="w-2 h-2 rounded-full bg-sage-500 animate-pulse-soft" style="animation-delay: 0.6s"></span>
+        </div>
+        <p class="text-sm text-sage-400">{t(locale, 'runningPlan.generating')}</p>
+      </div>
+
+      <!-- Results -->
+      <div id="rp-results" class="hidden">
+        <!-- Disclaimer -->
+        <div class="bg-warm-50 border border-warm-200 rounded-xl p-5 mb-8">
+          <div class="flex items-start gap-3">
+            <span class="text-lg shrink-0">&#9888;&#65039;</span>
+            <div>
+              <h3 class="text-sm font-semibold text-warm-800 mb-1">{t(locale, 'runningPlan.disclaimer')}</h3>
+              <p class="text-sm text-warm-800 leading-relaxed">{t(locale, 'runningPlan.disclaimerText')}</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Plan content -->
+        <div id="rp-content" class="prose prose-sm max-w-none rounded-2xl border border-sage-200/60 bg-white p-6 sm:p-8 mb-8"></div>
+
+        <!-- Start over -->
+        <div class="text-center">
+          <button id="rp-start-over" class="text-sm text-sage-400 hover:text-sage-600 transition-colors underline underline-offset-4 decoration-sage-300">
+            {t(locale, 'runningPlan.startOver')}
+          </button>
+        </div>
+      </div>
+
+      <!-- Error -->
+      <div id="rp-error" class="hidden text-center py-8">
+        <p class="text-sm text-sage-500 mb-3">{t(locale, 'quiz.aiPlanError')}</p>
+        <button id="rp-retry" class="text-sm text-sage-600 underline underline-offset-4 decoration-sage-300 hover:text-sage-800 transition-colors">{t(locale, 'quiz.tryAgain')}</button>
+      </div>
+    </div>
+  </main>
+
+  <Footer locale={locale} />
+  <BackToTop locale={locale} />
+</Base>
+
+<script is:inline>
+(function() {
+  'use strict';
+  // NOTE: innerHTML usage here renders AI-generated markdown from our own API endpoint,
+  // not user-supplied HTML. This matches the existing pattern in quiz/index.astro.
+
+  let selectedDistance = null;
+  let selectedLevel = null;
+  let selectedDays = 4;
+
+  const form = document.getElementById('rp-form');
+  const levelSection = document.getElementById('rp-level-section');
+  const detailsSection = document.getElementById('rp-details-section');
+  const loadingEl = document.getElementById('rp-loading');
+  const resultsEl = document.getElementById('rp-results');
+  const contentEl = document.getElementById('rp-content');
+  const errorEl = document.getElementById('rp-error');
+
+  // Distance selection
+  document.querySelectorAll('.rp-distance').forEach(btn => {
+    btn.addEventListener('click', function() {
+      selectedDistance = this.dataset.value;
+      document.querySelectorAll('.rp-distance').forEach(b => {
+        b.classList.remove('border-sage-500', 'bg-sage-50');
+        b.classList.add('border-sage-200/60');
+      });
+      this.classList.remove('border-sage-200/60');
+      this.classList.add('border-sage-500', 'bg-sage-50');
+      levelSection.classList.remove('hidden');
+      levelSection.classList.add('animate-fade-in-up');
+    });
+  });
+
+  // Level selection
+  document.querySelectorAll('.rp-level').forEach(btn => {
+    btn.addEventListener('click', function() {
+      selectedLevel = this.dataset.value;
+      document.querySelectorAll('.rp-level').forEach(b => {
+        b.classList.remove('border-sage-500', 'bg-sage-50');
+        b.classList.add('border-sage-200/60');
+      });
+      this.classList.remove('border-sage-200/60');
+      this.classList.add('border-sage-500', 'bg-sage-50');
+      detailsSection.classList.remove('hidden');
+      detailsSection.classList.add('animate-fade-in-up');
+    });
+  });
+
+  // Days selection
+  document.querySelectorAll('.rp-day').forEach(btn => {
+    btn.addEventListener('click', function() {
+      selectedDays = parseInt(this.dataset.value);
+      document.querySelectorAll('.rp-day').forEach(b => {
+        b.classList.remove('border-sage-500', 'bg-sage-50', 'text-sage-700');
+        b.classList.add('border-sage-200/60', 'text-charcoal');
+      });
+      this.classList.remove('border-sage-200/60', 'text-charcoal');
+      this.classList.add('border-sage-500', 'bg-sage-50', 'text-sage-700');
+    });
+  });
+
+  // Generate
+  function generate() {
+    if (!selectedDistance || !selectedLevel) return;
+
+    form.classList.add('hidden');
+    loadingEl.classList.remove('hidden');
+    resultsEl.classList.add('hidden');
+    errorEl.classList.add('hidden');
+    contentEl.textContent = '';
+
+    const weeklyKm = document.getElementById('rp-weekly-km').value;
+    const goalTime = document.getElementById('rp-goal-time').value;
+
+    const payload = {
+      distance: selectedDistance,
+      level: selectedLevel,
+      daysPerWeek: selectedDays,
+    };
+    if (weeklyKm) payload.weeklyKm = parseInt(weeklyKm);
+    if (goalTime) payload.goalTime = goalTime;
+
+    fetch('/api/running-plan', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    })
+    .then(response => {
+      if (!response.ok) throw new Error('API error');
+      loadingEl.classList.add('hidden');
+      resultsEl.classList.remove('hidden');
+      resultsEl.classList.add('animate-fade-in-up');
+
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+      let buffer = '';
+      let markdown = '';
+
+      function pump() {
+        return reader.read().then(({ done, value }) => {
+          if (done) {
+            contentEl.innerHTML = renderMarkdown(markdown);
+            return;
+          }
+          buffer += decoder.decode(value, { stream: true });
+          const lines = buffer.split('\n');
+          buffer = lines.pop() || '';
+
+          for (const line of lines) {
+            const trimmed = line.trim();
+            if (!trimmed || !trimmed.startsWith('data: ')) continue;
+            const data = trimmed.slice(6);
+            if (data === '[DONE]') continue;
+            try {
+              const parsed = JSON.parse(data);
+              if (parsed.content) {
+                markdown += parsed.content;
+                contentEl.innerHTML = renderMarkdown(markdown);
+              }
+            } catch {}
+          }
+          return pump();
+        });
+      }
+      return pump();
+    })
+    .catch(() => {
+      loadingEl.classList.add('hidden');
+      errorEl.classList.remove('hidden');
+    });
+  }
+
+  // Renders markdown from our own AI API endpoint (not user HTML)
+  function renderMarkdown(md) {
+    return md
+      .replace(/^#### (.+)$/gm, '<h5 class="font-heading text-sm font-semibold text-charcoal mt-3 mb-1">$1</h5>')
+      .replace(/^### (.+)$/gm, '<h4 class="font-heading text-base text-charcoal mt-4 mb-1">$1</h4>')
+      .replace(/^## (.+)$/gm, '<h3 class="font-heading text-lg text-charcoal mt-6 mb-2">$1</h3>')
+      .replace(/^# (.+)$/gm, '<h2 class="font-heading text-xl text-charcoal mt-6 mb-3">$1</h2>')
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*(.+?)\*/g, '<em>$1</em>')
+      .replace(/^- (.+)$/gm, '<li class="text-sm text-sage-600 ml-4 list-disc leading-relaxed">$1</li>')
+      .replace(/(<li[^>]*>.*<\/li>\n?)+/g, function(m) { return '<ul class="space-y-1 mb-3">' + m + '</ul>'; })
+      .replace(/^\d+\. (.+)$/gm, '<li class="text-sm text-sage-600 ml-4 list-decimal leading-relaxed">$1</li>')
+      .replace(/^(?!<[hulo])(\S.+)$/gm, '<p class="text-sm text-sage-600 leading-relaxed mb-3">$1</p>');
+  }
+
+  document.getElementById('rp-generate')?.addEventListener('click', generate);
+  document.getElementById('rp-retry')?.addEventListener('click', function() {
+    errorEl.classList.add('hidden');
+    generate();
+  });
+
+  document.getElementById('rp-start-over')?.addEventListener('click', function() {
+    selectedDistance = null;
+    selectedLevel = null;
+    selectedDays = 4;
+    resultsEl.classList.add('hidden');
+    form.classList.remove('hidden');
+    levelSection.classList.add('hidden');
+    detailsSection.classList.add('hidden');
+    contentEl.textContent = '';
+    // Reset selections
+    document.querySelectorAll('.rp-distance, .rp-level').forEach(b => {
+      b.classList.remove('border-sage-500', 'bg-sage-50');
+      b.classList.add('border-sage-200/60');
+    });
+    document.querySelectorAll('.rp-day').forEach(b => {
+      b.classList.remove('border-sage-500', 'bg-sage-50', 'text-sage-700');
+      b.classList.add('border-sage-200/60', 'text-charcoal');
+      if (parseInt(b.dataset.value) === 4) {
+        b.classList.remove('border-sage-200/60', 'text-charcoal');
+        b.classList.add('border-sage-500', 'bg-sage-50', 'text-sage-700');
+      }
+    });
+    document.getElementById('rp-weekly-km').value = '';
+    document.getElementById('rp-goal-time').value = '';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+})();
+</script>
