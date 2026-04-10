@@ -1,0 +1,107 @@
+{
+  "projects": {
+    "floating-shelf": {
+      "name": "Floating Shelf",
+      "category": "woodworking",
+      "materials": [
+        { "item": "1x10 Pine Board (6ft)", "cost": 12, "unit": "each", "qty": 1 },
+        { "item": "Wood Screws (box)", "cost": 8, "unit": "box", "qty": 1 },
+        { "item": "Wall Anchors", "cost": 6, "unit": "pack", "qty": 1 },
+        { "item": "Wood Stain/Finish", "cost": 14, "unit": "quart", "qty": 1 },
+        { "item": "Sandpaper (assorted)", "cost": 5, "unit": "pack", "qty": 1 }
+      ],
+      "tools": ["drill", "level", "tape-measure", "sandpaper"],
+      "totalEstimate": 45,
+      "difficulty": "beginner",
+      "time": "2-3 hours"
+    },
+    "workbench": {
+      "name": "Workbench",
+      "category": "woodworking",
+      "materials": [
+        { "item": "2x4 Lumber (8ft)", "cost": 5, "unit": "each", "qty": 8 },
+        { "item": "3/4\" Plywood (4x8)", "cost": 45, "unit": "sheet", "qty": 1 },
+        { "item": "Wood Screws (3\")", "cost": 12, "unit": "box", "qty": 1 },
+        { "item": "Wood Glue", "cost": 8, "unit": "bottle", "qty": 1 },
+        { "item": "Polyurethane Finish", "cost": 18, "unit": "quart", "qty": 1 }
+      ],
+      "tools": ["circular-saw", "drill", "tape-measure", "square", "clamps"],
+      "totalEstimate": 125,
+      "difficulty": "intermediate",
+      "time": "6-8 hours"
+    },
+    "planter-box": {
+      "name": "Outdoor Planter Box",
+      "category": "woodworking",
+      "materials": [
+        { "item": "Cedar Boards (1x6, 6ft)", "cost": 8, "unit": "each", "qty": 6 },
+        { "item": "Deck Screws", "cost": 10, "unit": "box", "qty": 1 },
+        { "item": "Landscape Fabric", "cost": 8, "unit": "roll", "qty": 1 },
+        { "item": "Exterior Wood Stain", "cost": 16, "unit": "quart", "qty": 1 }
+      ],
+      "tools": ["drill", "miter-saw", "tape-measure", "sandpaper"],
+      "totalEstimate": 82,
+      "difficulty": "beginner",
+      "time": "3-4 hours"
+    },
+    "drywall-patch": {
+      "name": "Drywall Patch",
+      "category": "home-improvement",
+      "materials": [
+        { "item": "Drywall Patch Kit", "cost": 12, "unit": "kit", "qty": 1 },
+        { "item": "Joint Compound", "cost": 10, "unit": "tub", "qty": 1 },
+        { "item": "Sandpaper (220 grit)", "cost": 5, "unit": "pack", "qty": 1 },
+        { "item": "Primer", "cost": 12, "unit": "quart", "qty": 1 },
+        { "item": "Paint", "cost": 15, "unit": "quart", "qty": 1 }
+      ],
+      "tools": ["putty-knife", "sanding-block", "paint-roller"],
+      "totalEstimate": 54,
+      "difficulty": "beginner",
+      "time": "2-4 hours (plus drying)"
+    },
+    "lvp-flooring": {
+      "name": "LVP Flooring Install",
+      "category": "home-improvement",
+      "materials": [
+        { "item": "LVP Planks", "cost": 2.50, "unit": "sqft", "qty": 1 },
+        { "item": "Underlayment", "cost": 0.30, "unit": "sqft", "qty": 1 },
+        { "item": "Transition Strips", "cost": 15, "unit": "each", "qty": 2 },
+        { "item": "Spacers", "cost": 8, "unit": "pack", "qty": 1 }
+      ],
+      "tools": ["utility-knife", "tape-measure", "rubber-mallet", "pull-bar"],
+      "totalEstimate": "varies by sqft",
+      "difficulty": "intermediate",
+      "time": "1-2 days (200 sqft)"
+    },
+    "led-strip-lighting": {
+      "name": "LED Strip Lighting",
+      "category": "electronics",
+      "materials": [
+        { "item": "LED Strip (16ft, RGBW)", "cost": 25, "unit": "roll", "qty": 1 },
+        { "item": "LED Controller", "cost": 15, "unit": "each", "qty": 1 },
+        { "item": "Power Supply (12V)", "cost": 12, "unit": "each", "qty": 1 },
+        { "item": "Wire Connectors", "cost": 8, "unit": "pack", "qty": 1 },
+        { "item": "Aluminum Channel", "cost": 18, "unit": "pack", "qty": 1 }
+      ],
+      "tools": ["wire-stripper", "soldering-iron", "scissors"],
+      "totalEstimate": 78,
+      "difficulty": "beginner",
+      "time": "2-3 hours"
+    },
+    "concrete-planters": {
+      "name": "Concrete Planters",
+      "category": "crafts",
+      "materials": [
+        { "item": "Quick-Set Concrete", "cost": 8, "unit": "bag", "qty": 2 },
+        { "item": "Silicone Molds", "cost": 15, "unit": "set", "qty": 1 },
+        { "item": "Cooking Spray (release)", "cost": 4, "unit": "can", "qty": 1 },
+        { "item": "Concrete Sealer", "cost": 12, "unit": "can", "qty": 1 },
+        { "item": "Sandpaper (120 grit)", "cost": 5, "unit": "pack", "qty": 1 }
+      ],
+      "tools": ["bucket", "mixing-stick", "sandpaper"],
+      "totalEstimate": 52,
+      "difficulty": "beginner",
+      "time": "1-2 hours (plus 24h curing)"
+    }
+  }
+}

@@ -1,0 +1,113 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { locales, defaultLocale, type Locale } from '../../i18n/locales';
+import { t, localePath } from '../../i18n/utils';
+import projectCosts from '../../data/project-costs.json';
+
+export function getStaticPaths() {
+  return locales.map(l => ({
+    params: { locale: l === defaultLocale ? undefined : l },
+    props: { locale: l },
+  }));
+}
+
+const { locale } = Astro.props as { locale: Locale };
+const projects = Object.entries(projectCosts.projects);
+---
+
+<Base title={t(locale, 'costCalculator.title')} description={t(locale, 'costCalculator.description')} locale={locale}>
+  <Header locale={locale} />
+  <main class="flex-1">
+    <div class="max-w-4xl mx-auto px-5 sm:px-8 py-16">
+      <span class="inline-block text-[11px] font-semibold uppercase tracking-[0.2em] text-amber-500 mb-5">{t(locale, 'costCalculator.toolLabel')}</span>
+      <h1 class="font-heading text-4xl sm:text-5xl text-charcoal tracking-tight leading-[1.1] mb-4">{t(locale, 'costCalculator.title')}</h1>
+      <p class="text-lg text-charcoal-light/60 leading-relaxed mb-12 max-w-2xl">{t(locale, 'costCalculator.description')}</p>
+
+      <div id="calculator" class="space-y-8">
+        <!-- Project selector -->
+        <div>
+          <label class="block text-sm font-semibold text-charcoal mb-3">Select a Project</label>
+          <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3" id="project-grid">
+            {projects.map(([key, proj]) => (
+              <button
+                data-project={key}
+                class="project-btn text-left p-4 rounded-xl border border-steel-200/60 bg-white hover:border-amber-400 hover:shadow-md transition-all duration-200 cursor-pointer"
+              >
+                <span class="block text-sm font-heading font-semibold text-charcoal mb-1">{proj.name}</span>
+                <span class="block text-xs text-charcoal-light/60">{proj.category} &middot; {proj.difficulty}</span>
+                <span class="block text-xs text-amber-600 font-semibold mt-2">
+                  {typeof proj.totalEstimate === 'number' ? `~$${proj.totalEstimate}` : proj.totalEstimate}
+                </span>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <!-- Results -->
+        <div id="results" class="hidden">
+          <div class="bg-steel-50/60 rounded-2xl p-6 sm:p-8 border border-steel-200/40">
+            <h2 id="result-title" class="font-heading text-2xl text-charcoal mb-2"></h2>
+            <div class="flex items-center gap-4 text-xs text-charcoal-light/60 mb-6">
+              <span id="result-difficulty"></span>
+              <span>&middot;</span>
+              <span id="result-time"></span>
+            </div>
+
+            <h3 class="text-sm font-semibold uppercase tracking-wide text-charcoal-light/50 mb-4">Materials</h3>
+            <div id="materials-list" class="space-y-2 mb-6"></div>
+
+            <div class="flex items-center justify-between pt-4 border-t border-steel-200/40">
+              <span class="text-sm font-semibold text-charcoal">Estimated Total</span>
+              <span id="result-total" class="text-xl font-heading font-bold text-amber-600"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <Footer locale={locale} />
+</Base>
+
+<script define:vars={{ projectCosts }}>
+  const projects = projectCosts.projects;
+  const buttons = document.querySelectorAll('.project-btn');
+  const results = document.getElementById('results');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const key = btn.dataset.project;
+      const proj = projects[key];
+      if (!proj) return;
+
+      buttons.forEach(b => b.classList.remove('border-amber-400', 'shadow-md', 'bg-amber-50/30'));
+      btn.classList.add('border-amber-400', 'shadow-md', 'bg-amber-50/30');
+
+      document.getElementById('result-title').textContent = proj.name;
+      document.getElementById('result-difficulty').textContent = proj.difficulty;
+      document.getElementById('result-time').textContent = proj.time;
+
+      const list = document.getElementById('materials-list');
+      list.textContent = '';
+      proj.materials.forEach(m => {
+        const row = document.createElement('div');
+        row.className = 'flex items-center justify-between py-2 px-3 bg-white rounded-lg';
+        const nameSpan = document.createElement('span');
+        nameSpan.className = 'text-sm text-charcoal';
+        nameSpan.textContent = `${m.item} (x${m.qty})`;
+        const costSpan = document.createElement('span');
+        costSpan.className = 'text-sm font-semibold text-charcoal';
+        costSpan.textContent = `$${(m.cost * m.qty).toFixed(2)}`;
+        row.appendChild(nameSpan);
+        row.appendChild(costSpan);
+        list.appendChild(row);
+      });
+
+      const total = typeof proj.totalEstimate === 'number' ? `~$${proj.totalEstimate}` : proj.totalEstimate;
+      document.getElementById('result-total').textContent = total;
+
+      results.classList.remove('hidden');
+    });
+  });
+</script>

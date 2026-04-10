@@ -1,0 +1,75 @@
+---
+import { t, localePath, formatDateShort, type Locale } from '../i18n/utils';
+
+interface Props {
+  title: string;
+  description: string;
+  date: Date;
+  category: string;
+  slug: string;
+  image?: string;
+  type?: string;
+  featured?: boolean;
+  locale?: Locale;
+}
+
+const { title, description, date, category, slug, image, type, featured = false, locale = 'en' } = Astro.props;
+
+const categoryKeyMap: Record<string, string> = {
+  'woodworking': 'categories.woodworking',
+  'home-improvement': 'categories.homeImprovement',
+  'electronics': 'categories.electronics',
+  'crafts': 'categories.crafts',
+};
+
+const typeKeyMap: Record<string, string> = {
+  hub: 'types.hub',
+  guide: 'types.guide',
+  listicle: 'types.listicle',
+  review: 'types.review',
+  tutorial: 'types.tutorial',
+};
+
+const categoryLabel = categoryKeyMap[category] ? t(locale, categoryKeyMap[category]) : category;
+const typeLabel = type && typeKeyMap[type] ? t(locale, typeKeyMap[type]) : type;
+const formattedDate = formatDateShort(date, locale);
+---
+
+<article class={`group flex flex-col ${featured ? 'md:col-span-2' : ''}`}>
+  <a href={localePath('/' + slug + '/', locale)} class="flex flex-col h-full">
+    {image && (
+      <div class={`overflow-hidden rounded-2xl mb-6 bg-steel-50 ${featured ? 'aspect-[16/9]' : 'aspect-[3/2]'}`}>
+        <img
+          src={image}
+          alt={title}
+          class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          loading="lazy"
+          width="600"
+          height="400"
+        />
+      </div>
+    )}
+    <div class="flex items-center gap-2 mb-2">
+      <span class="text-xs tracking-wide uppercase text-charcoal-light/60">
+        {categoryLabel}
+      </span>
+      {typeLabel && (
+        <>
+          <span class="w-1 h-1 rounded-full bg-charcoal-light/20"></span>
+          <span class="text-xs tracking-wide uppercase text-charcoal-light/40">
+            {typeLabel}
+          </span>
+        </>
+      )}
+    </div>
+    <h3 class={`font-heading group-hover:text-charcoal-light transition-colors leading-snug text-charcoal tracking-tight ${featured ? 'text-3xl' : 'text-xl'}`}>
+      {title}
+    </h3>
+    <p class="text-charcoal-light/70 text-sm mb-4 line-clamp-2 flex-grow">
+      {description}
+    </p>
+    <time class="text-xs text-charcoal-light/40 uppercase tracking-wide" datetime={date.toISOString()}>
+      {formattedDate}
+    </time>
+  </a>
+</article>

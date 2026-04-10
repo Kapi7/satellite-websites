@@ -1,0 +1,132 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { locales, defaultLocale, type Locale } from '../../i18n/locales';
+import { t, localePath } from '../../i18n/utils';
+import toolData from '../../data/tool-recommendations.json';
+
+export function getStaticPaths() {
+  return locales.map(l => ({
+    params: { locale: l === defaultLocale ? undefined : l },
+    props: { locale: l },
+  }));
+}
+
+const { locale } = Astro.props as { locale: Locale };
+const categoryKeys = Object.keys(toolData.categories);
+---
+
+<Base title={t(locale, 'toolFinder.title')} description={t(locale, 'toolFinder.description')} locale={locale}>
+  <Header locale={locale} />
+  <main class="flex-1">
+    <div class="max-w-4xl mx-auto px-5 sm:px-8 py-16">
+      <span class="inline-block text-[11px] font-semibold uppercase tracking-[0.2em] text-amber-500 mb-5">{t(locale, 'toolFinder.toolLabel')}</span>
+      <h1 class="font-heading text-4xl sm:text-5xl text-charcoal tracking-tight leading-[1.1] mb-4">{t(locale, 'toolFinder.title')}</h1>
+      <p class="text-lg text-charcoal-light/60 leading-relaxed mb-12 max-w-2xl">{t(locale, 'toolFinder.description')}</p>
+
+      <!-- Step 1: Category -->
+      <div class="mb-8">
+        <label class="block text-sm font-semibold text-charcoal mb-3">1. What type of project?</label>
+        <div class="flex flex-wrap gap-3" id="cat-buttons">
+          {categoryKeys.map(cat => (
+            <button data-cat={cat} class="cat-btn px-5 py-2.5 rounded-full border border-steel-200/60 text-sm font-medium text-charcoal hover:border-amber-400 transition-all cursor-pointer capitalize">
+              {cat.replace('-', ' ')}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <!-- Step 2: Skill Level -->
+      <div class="mb-8">
+        <label class="block text-sm font-semibold text-charcoal mb-3">2. Your skill level?</label>
+        <div class="flex flex-wrap gap-3" id="level-buttons">
+          {['beginner', 'intermediate', 'advanced'].map(level => (
+            <button data-level={level} class="level-btn px-5 py-2.5 rounded-full border border-steel-200/60 text-sm font-medium text-charcoal hover:border-amber-400 transition-all cursor-pointer capitalize">
+              {level}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <!-- Results -->
+      <div id="tool-results" class="hidden">
+        <h2 class="font-heading text-2xl text-charcoal mb-6">Recommended Tools</h2>
+        <div id="tool-list" class="space-y-4"></div>
+      </div>
+    </div>
+  </main>
+  <Footer locale={locale} />
+</Base>
+
+<script define:vars={{ toolData }}>
+  const categories = toolData.categories;
+  let selectedCat = '';
+  let selectedLevel = '';
+
+  function updateResults() {
+    if (!selectedCat || !selectedLevel) return;
+    const catData = categories[selectedCat];
+    if (!catData) return;
+    const tools = catData[selectedLevel] || [];
+
+    const container = document.getElementById('tool-list');
+    container.textContent = '';
+
+    tools.forEach(tool => {
+      const card = document.createElement('div');
+      card.className = 'bg-white border border-steel-200/60 rounded-xl p-5 hover:shadow-md transition-shadow';
+
+      const header = document.createElement('div');
+      header.className = 'flex items-start justify-between mb-2';
+
+      const name = document.createElement('h3');
+      name.className = 'font-heading text-lg text-charcoal font-semibold';
+      name.textContent = tool.name;
+
+      const budget = document.createElement('span');
+      budget.className = 'text-sm font-semibold text-amber-600 whitespace-nowrap ml-4';
+      budget.textContent = tool.budget;
+
+      header.appendChild(name);
+      header.appendChild(budget);
+
+      const why = document.createElement('p');
+      why.className = 'text-sm text-charcoal-light/70 mb-3';
+      why.textContent = tool.why;
+
+      const pick = document.createElement('div');
+      pick.className = 'text-xs text-steel-500';
+      pick.textContent = `Our pick: ${tool.pick}`;
+
+      card.appendChild(header);
+      card.appendChild(why);
+      card.appendChild(pick);
+      container.appendChild(card);
+    });
+
+    document.getElementById('tool-results').classList.remove('hidden');
+  }
+
+  document.querySelectorAll('.cat-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.cat-btn').forEach(b => {
+        b.classList.remove('bg-steel-700', 'text-white', 'border-steel-700');
+      });
+      btn.classList.add('bg-steel-700', 'text-white', 'border-steel-700');
+      selectedCat = btn.dataset.cat;
+      updateResults();
+    });
+  });
+
+  document.querySelectorAll('.level-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.level-btn').forEach(b => {
+        b.classList.remove('bg-amber-500', 'text-steel-900', 'border-amber-500');
+      });
+      btn.classList.add('bg-amber-500', 'text-steel-900', 'border-amber-500');
+      selectedLevel = btn.dataset.level;
+      updateResults();
+    });
+  });
+</script>

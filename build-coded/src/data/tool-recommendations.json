@@ -1,0 +1,76 @@
+{
+  "categories": {
+    "woodworking": {
+      "beginner": [
+        { "name": "Cordless Drill/Driver", "why": "Essential for every project. Get a 20V with multiple speed settings.", "budget": "$60-100", "pick": "DEWALT 20V MAX", "tag": "buildcoded-20" },
+        { "name": "Circular Saw", "why": "Cuts plywood, 2x4s, and sheet goods. More portable than a table saw.", "budget": "$50-80", "pick": "SKIL 15-Amp 7-1/4\"", "tag": "buildcoded-20" },
+        { "name": "Random Orbital Sander", "why": "Smooth finishes without swirl marks. Essential for any finishing work.", "budget": "$40-70", "pick": "DEWALT 5\" Orbital Sander", "tag": "buildcoded-20" },
+        { "name": "Tape Measure (25ft)", "why": "Measure twice, cut once. Get one with a magnetic tip.", "budget": "$10-20", "pick": "Stanley FatMax 25ft", "tag": "buildcoded-20" },
+        { "name": "Combination Square", "why": "Mark 90-degree and 45-degree angles accurately.", "budget": "$15-30", "pick": "IRWIN 12\" Combo Square", "tag": "buildcoded-20" },
+        { "name": "Clamps (set of 4)", "why": "You can never have too many clamps. Start with 6\" bar clamps.", "budget": "$20-40", "pick": "IRWIN Quick-Grip 6\" (4-pack)", "tag": "buildcoded-20" }
+      ],
+      "intermediate": [
+        { "name": "Router (Plunge/Fixed)", "why": "Edge profiles, dadoes, rabbets. A game-changer for joinery.", "budget": "$100-180", "pick": "BOSCH 1617EVSPK Combo", "tag": "buildcoded-20" },
+        { "name": "Miter Saw (10\")", "why": "Precise crosscuts and angle cuts. Essential for trim and framing.", "budget": "$150-250", "pick": "DEWALT 10\" Compound", "tag": "buildcoded-20" },
+        { "name": "Pocket Hole Jig", "why": "Strong hidden joints without complex joinery skills.", "budget": "$40-100", "pick": "Kreg Jig 720PRO", "tag": "buildcoded-20" },
+        { "name": "Brad Nailer", "why": "Fast trim work and assembly. 18-gauge handles most projects.", "budget": "$80-150", "pick": "RYOBI 18V ONE+ Brad Nailer", "tag": "buildcoded-20" }
+      ],
+      "advanced": [
+        { "name": "Table Saw", "why": "The backbone of a serious workshop. Rip cuts, crosscuts, dados.", "budget": "$300-600", "pick": "DEWALT 10\" Jobsite Table Saw", "tag": "buildcoded-20" },
+        { "name": "Thickness Planer", "why": "Mill rough lumber to exact thickness. Saves money on materials.", "budget": "$300-500", "pick": "DEWALT 13\" Planer DW735", "tag": "buildcoded-20" },
+        { "name": "Bandsaw (14\")", "why": "Resawing, curves, and veneer cutting. Versatile and safer than a table saw.", "budget": "$400-700", "pick": "Rikon 14\" Deluxe Bandsaw", "tag": "buildcoded-20" }
+      ]
+    },
+    "home-improvement": {
+      "beginner": [
+        { "name": "Cordless Drill/Driver", "why": "Hanging shelves, assembling furniture, basic repairs.", "budget": "$60-100", "pick": "DEWALT 20V MAX", "tag": "buildcoded-20" },
+        { "name": "Stud Finder", "why": "Find wall studs before hanging anything heavy.", "budget": "$20-40", "pick": "Franklin Sensors ProSensor", "tag": "buildcoded-20" },
+        { "name": "Level (24\")", "why": "Ensures everything hangs straight.", "budget": "$15-30", "pick": "IRWIN 24\" I-beam Level", "tag": "buildcoded-20" },
+        { "name": "Putty Knife Set", "why": "Drywall patching, scraping, and filling.", "budget": "$8-15", "pick": "Warner 4-piece Set", "tag": "buildcoded-20" },
+        { "name": "Utility Knife", "why": "Cutting drywall, flooring, tape, and materials.", "budget": "$8-15", "pick": "Stanley FatMax Retractable", "tag": "buildcoded-20" }
+      ],
+      "intermediate": [
+        { "name": "Oscillating Multi-Tool", "why": "Flush cuts, sanding tight corners, removing grout.", "budget": "$80-150", "pick": "DEWALT 20V Oscillating Tool", "tag": "buildcoded-20" },
+        { "name": "Reciprocating Saw", "why": "Demolition, cutting pipes, and rough carpentry.", "budget": "$80-130", "pick": "Milwaukee M18 FUEL Sawzall", "tag": "buildcoded-20" },
+        { "name": "Paint Sprayer (HVLP)", "why": "Professional-quality paint finish in less time.", "budget": "$80-200", "pick": "Graco Magnum X5", "tag": "buildcoded-20" }
+      ],
+      "advanced": [
+        { "name": "Laser Level (Self-Leveling)", "why": "Perfect lines for tile, cabinets, and framing.", "budget": "$60-150", "pick": "BOSCH GLL 30 S", "tag": "buildcoded-20" },
+        { "name": "Tile Saw (7\")", "why": "Clean tile cuts for bathroom and kitchen renovations.", "budget": "$100-250", "pick": "DEWALT 7\" Wet Tile Saw", "tag": "buildcoded-20" }
+      ]
+    },
+    "electronics": {
+      "beginner": [
+        { "name": "Soldering Iron Kit", "why": "Temperature-controlled for consistent joints.", "budget": "$25-50", "pick": "Hakko FX-888D", "tag": "buildcoded-20" },
+        { "name": "Digital Multimeter", "why": "Measure voltage, current, resistance. Diagnose circuits.", "budget": "$20-50", "pick": "Fluke 101", "tag": "buildcoded-20" },
+        { "name": "Arduino Starter Kit", "why": "Learn electronics with hands-on projects.", "budget": "$30-60", "pick": "Arduino Official Starter Kit", "tag": "buildcoded-20" },
+        { "name": "Breadboard & Jumper Wires", "why": "Prototype circuits without soldering.", "budget": "$10-15", "pick": "Elegoo Breadboard Kit", "tag": "buildcoded-20" },
+        { "name": "Wire Strippers", "why": "Clean wire preparation for reliable connections.", "budget": "$10-20", "pick": "IRWIN Self-Adjusting", "tag": "buildcoded-20" }
+      ],
+      "intermediate": [
+        { "name": "Raspberry Pi 5 Kit", "why": "Home server, media center, smart home hub.", "budget": "$80-120", "pick": "CanaKit Raspberry Pi 5 Starter", "tag": "buildcoded-20" },
+        { "name": "3D Printer", "why": "Print custom enclosures, parts, and prototypes.", "budget": "$200-400", "pick": "Bambu Lab A1 Mini", "tag": "buildcoded-20" },
+        { "name": "Heat Gun", "why": "Heat shrink tubing, component removal, plastics work.", "budget": "$25-50", "pick": "Wagner Spraytech HT1000", "tag": "buildcoded-20" }
+      ],
+      "advanced": [
+        { "name": "Oscilloscope", "why": "Visualize electrical signals for debugging.", "budget": "$100-300", "pick": "Rigol DS1054Z", "tag": "buildcoded-20" },
+        { "name": "Hot Air Rework Station", "why": "SMD soldering and desoldering.", "budget": "$60-150", "pick": "Quick 861DW", "tag": "buildcoded-20" }
+      ]
+    },
+    "crafts": {
+      "beginner": [
+        { "name": "Heat Gun (Dual Temp)", "why": "Embossing, resin work, paint stripping.", "budget": "$20-40", "pick": "Wagner Spraytech HT1000", "tag": "buildcoded-20" },
+        { "name": "Resin Kit (Starter)", "why": "Everything you need for first epoxy projects.", "budget": "$25-40", "pick": "ArtResin Starter Kit", "tag": "buildcoded-20" },
+        { "name": "Candle Making Kit", "why": "Wax, wicks, fragrance oils, and containers.", "budget": "$30-50", "pick": "CraftZee Complete Kit", "tag": "buildcoded-20" },
+        { "name": "Chalk Paint", "why": "No-prep furniture painting and upcycling.", "budget": "$15-30", "pick": "Rust-Oleum Chalked Paint", "tag": "buildcoded-20" }
+      ],
+      "intermediate": [
+        { "name": "Resin Pressure Pot", "why": "Bubble-free resin castings every time.", "budget": "$80-150", "pick": "TCP Global 2.5 Gallon", "tag": "buildcoded-20" },
+        { "name": "Orbital Sander", "why": "Smooth furniture surfaces for refinishing.", "budget": "$40-70", "pick": "DEWALT 5\" Orbital Sander", "tag": "buildcoded-20" }
+      ],
+      "advanced": [
+        { "name": "CNC Router (Desktop)", "why": "Precision cutting, engraving, and carving.", "budget": "$300-600", "pick": "Genmitsu 3018-PROVer V2", "tag": "buildcoded-20" }
+      ]
+    }
+  }
+}

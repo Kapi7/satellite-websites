@@ -1,0 +1,77 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Base
+  title="Page Not Found"
+  description="The page you're looking for doesn't exist. Browse our latest DIY tutorials, tool reviews, and project guides."
+>
+  <Header />
+
+  <main class="flex-1 flex items-center justify-center py-20 sm:py-28 px-5">
+    <div class="max-w-xl mx-auto text-center animate-fade-in-up">
+      <!-- 404 number -->
+      <p class="text-8xl sm:text-9xl font-heading font-bold text-steel-200 leading-none mb-2 select-none">
+        404
+      </p>
+
+      <!-- Heading -->
+      <h1 class="text-3xl sm:text-4xl font-heading text-charcoal mb-4">
+        Page Not Found
+      </h1>
+
+      <!-- Message -->
+      <p class="text-base text-charcoal-light/60 leading-relaxed mb-8 max-w-md mx-auto">
+        Looks like this project hit a snag. Let's get you back to the workshop with some great reads.
+      </p>
+
+      <!-- Back to Home button -->
+      <a
+        href="/"
+        class="inline-flex items-center gap-2 px-6 py-3 bg-amber-500 text-steel-900 text-sm font-medium rounded-full hover:bg-amber-600 transition-colors duration-200 mb-14"
+      >
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+        </svg>
+        Back to Home
+      </a>
+
+      <!-- Popular articles -->
+      <div class="border-t border-steel-200/40 pt-10">
+        <h2 class="text-[11px] font-semibold uppercase tracking-[0.15em] text-charcoal-light/50 mb-5">
+          Popular Articles
+        </h2>
+        <ul class="space-y-3">
+          <li>
+            <a
+              href="/best-beginner-woodworking-tools"
+              class="text-sm text-charcoal-light/70 hover:text-charcoal transition-colors duration-200 underline decoration-steel-200 underline-offset-2 hover:decoration-amber-400"
+            >
+              Best Beginner Woodworking Tools
+            </a>
+          </li>
+          <li>
+            <a
+              href="/best-cordless-drills"
+              class="text-sm text-charcoal-light/70 hover:text-charcoal transition-colors duration-200 underline decoration-steel-200 underline-offset-2 hover:decoration-amber-400"
+            >
+              Best Cordless Drills for Every Budget
+            </a>
+          </li>
+          <li>
+            <a
+              href="/arduino-projects-beginners"
+              class="text-sm text-charcoal-light/70 hover:text-charcoal transition-colors duration-200 underline decoration-steel-200 underline-offset-2 hover:decoration-amber-400"
+            >
+              Arduino Projects for Beginners
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Base>

@@ -1,0 +1,48 @@
+---
+import { t, type Locale } from '../i18n/utils';
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = 'en' } = Astro.props;
+---
+<section class="relative my-16 overflow-hidden">
+  <div class="bg-steel-50/60 rounded-2xl sm:rounded-[3rem] p-6 sm:p-8 md:p-14 border border-steel-200/30 relative overflow-hidden">
+    <!-- Decorative circles -->
+    <div class="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-charcoal-light/20/20 blur-3xl"></div>
+    <div class="absolute -bottom-20 -left-20 w-56 h-56 rounded-full bg-amber-400/15 blur-3xl"></div>
+
+    <div class="relative z-10 flex flex-col md:flex-row items-center gap-12">
+      <!-- Text column -->
+      <div class="flex-1 text-center md:text-left">
+        <span class="text-xs tracking-widest text-amber-600 font-semibold uppercase block mb-4">{t(locale, 'newsletter.preTitle')}</span>
+        <h3 class="font-heading text-3xl md:text-4xl italic text-steel-900 mb-3 tracking-tight">
+          {t(locale, 'newsletter.title')}
+        </h3>
+        <p class="text-sm text-charcoal-light/60 leading-relaxed max-w-md">
+          {t(locale, 'newsletter.description')}
+        </p>
+      </div>
+
+      <!-- Form column -->
+      <div class="flex-1 w-full max-w-md">
+        <form class="newsletter-form flex flex-col gap-5" data-locale={locale}>
+          <input
+            type="email"
+            placeholder={t(locale, 'footer.emailPlaceholder')}
+            required
+            class="w-full bg-transparent border-b-2 border-steel-300 focus:border-steel-600 px-1 py-3 text-sm text-steel-900 placeholder:text-charcoal-light/50 focus:outline-none transition-colors duration-200"
+          />
+          <button
+            type="submit"
+            class="bg-steel-600 text-cream px-10 py-4 rounded-full text-sm font-semibold hover:bg-steel-700 transition-colors duration-200 self-start"
+          >
+            {t(locale, 'common.subscribe')}
+          </button>
+          <p class="newsletter-msg text-sm hidden"></p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

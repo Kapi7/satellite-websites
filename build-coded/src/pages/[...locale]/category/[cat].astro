@@ -1,0 +1,40 @@
+---
+import Pillar from '../../../layouts/Pillar.astro';
+import { locales, defaultLocale, type Locale } from '../../../i18n/locales';
+import { t } from '../../../i18n/utils';
+
+export function getStaticPaths() {
+  const categories = ['woodworking', 'home-improvement', 'electronics', 'crafts'];
+  const paths: { params: { locale?: string; cat: string }; props: { locale: Locale } }[] = [];
+
+  for (const l of locales) {
+    for (const cat of categories) {
+      paths.push({
+        params: { locale: l === defaultLocale ? undefined : l, cat },
+        props: { locale: l },
+      });
+    }
+  }
+
+  return paths;
+}
+
+const { locale } = Astro.props as { locale: Locale };
+
+const categoryMetaKeys: Record<string, { titleKey: string; descKey: string }> = {
+  'woodworking': { titleKey: 'categories.woodworking', descKey: 'categoryDescriptions.woodworking' },
+  'home-improvement': { titleKey: 'categories.homeImprovement', descKey: 'categoryDescriptions.homeImprovement' },
+  'electronics': { titleKey: 'categories.electronics', descKey: 'categoryDescriptions.electronics' },
+  'crafts': { titleKey: 'categories.crafts', descKey: 'categoryDescriptions.crafts' },
+};
+
+const { cat } = Astro.params;
+const meta = categoryMetaKeys[cat!] || { titleKey: cat, descKey: '' };
+---
+
+<Pillar
+  title={t(locale, meta.titleKey)}
+  description={t(locale, meta.descKey)}
+  category={cat!}
+  locale={locale}
+/>

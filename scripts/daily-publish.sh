@@ -120,6 +120,18 @@ for article in \
   fi
 done
 
+# Publish next draft from build-coded (alphabetical fallback — no curated queue yet)
+if [ -d build-coded/src/content/blog/en ]; then
+  for article in build-coded/src/content/blog/en/*.mdx; do
+    [ -f "$article" ] || continue
+    if grep -q "^draft: true" "$article"; then
+      publish_article "$article" "Build Coded"
+      PUBLISHED=$((PUBLISHED + 1))
+      break
+    fi
+  done
+fi
+
 if [ $PUBLISHED -gt 0 ]; then
   # Stage all published + undrafted files
   git add $PUBLISHED_FILES
@@ -127,8 +139,9 @@ if [ $PUBLISHED -gt 0 ]; then
   git pull --rebase --quiet origin main 2>/dev/null || true
   git push origin main
 
-  # Auto-translate newly published articles to all 6 locales
+  # Auto-translate newly published articles to all 9 locales
   TRANSLATE_SCRIPT="scripts/translate-content.py"
+  BUILD_CODED_TOUCHED=0
   if [ -f "$TRANSLATE_SCRIPT" ]; then
     echo "Running auto-translation for published articles..."
     for f in $PUBLISHED_FILES; do
@@ -136,8 +149,18 @@ if [ $PUBLISHED -gt 0 ]; then
       if echo "$f" | grep -q "/blog/en/"; then
         site=$(echo "$f" | cut -d/ -f1)
         python3 "$TRANSLATE_SCRIPT" --site "$site" --articles-only 2>&1 | tail -5 || true
+        if [ "$site" = "build-coded" ]; then BUILD_CODED_TOUCHED=1; fi
       fi
     done
+  fi
+
+  # build-coded is deployed via direct wrangler upload (no CF Pages GitHub integration)
+  # so rebuild + deploy it explicitly when new articles were published.
+  if [ "$BUILD_CODED_TOUCHED" = "1" ] && [ -d build-coded ]; then
+    echo "[build-coded] rebuilding and deploying via wrangler..."
+    (cd build-coded && npm run build 2>&1 | tail -5 && \
+      npx wrangler pages deploy dist --project-name=build-coded --commit-dirty=true 2>&1 | tail -5) \
+      || echo "[build-coded] deploy failed (see logs)"
   fi
 
   if [ -f scripts/submit-indexnow.sh ]; then

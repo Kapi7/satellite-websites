@@ -17,7 +17,7 @@ GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
 GEMINI_MODEL = "gemini-2.5-flash"
 GEMINI_URL = f"https://generativelanguage.googleapis.com/v1beta/models/{GEMINI_MODEL}:generateContent?key={GEMINI_API_KEY}"
 
-LOCALES = ["es", "de", "el", "ru", "it", "ar"]
+LOCALES = ["es", "de", "el", "ru", "it", "ar", "fr", "nl", "pt"]
 BASE_DIR = Path(__file__).resolve().parent.parent
 STATUS_FILE = BASE_DIR / "scripts" / "translation-status.json"
 
@@ -58,6 +58,24 @@ LANG_INSTRUCTIONS = {
 - Skincare terms: keep English terms in parentheses when first used, then use the Arabic term
 - Be naturally warm without being overly casual
 - Remember: Arabic reads right-to-left, but keep all URLs, image paths, and code unchanged""",
+
+    "fr": """Translate to conversational, modern French.
+- Use "tu" form, not "vous"
+- Use natural French phrasing — NOT word-for-word translation from English
+- Skincare/DIY terms: keep English where French speakers commonly do (serum, primer, router, drill) — translate where natural
+- Sound like a knowledgeable French friend sharing tips, NOT a dictionary""",
+
+    "nl": """Translate to modern conversational Dutch.
+- Use "je/jij" form, not "u"
+- Keep a warm, informal tone — like a Dutch blogger, not a formal textbook
+- Skincare/DIY terms: keep English borrowings where Dutch readers commonly use them (serum, primer, drill)
+- Sound natural and direct — Dutch readers appreciate straightforwardness""",
+
+    "pt": """Translate to conversational Brazilian Portuguese.
+- Use "você" form (Brazilian, not European)
+- Use colloquial Brazilian phrasing — avoid European Portuguese constructions
+- Skincare/DIY terms: keep English borrowings where common in Brazil (serum, primer, drill)
+- Sound like a Brazilian friend sharing beauty/DIY advice on Instagram""",
 }
 
 DOMAIN_GLOSSARY = """
@@ -276,13 +294,13 @@ BODY TO TRANSLATE:
 
 def main():
     parser = argparse.ArgumentParser(description="Translate satellite site content")
-    parser.add_argument("--site", choices=["cosmetics", "wellness"], help="Site to translate")
+    parser.add_argument("--site", choices=["cosmetics", "wellness", "build-coded"], help="Site to translate")
     parser.add_argument("--lang", choices=LOCALES, help="Target language")
     parser.add_argument("--ui-only", action="store_true", help="Only translate UI strings")
     parser.add_argument("--articles-only", action="store_true", help="Only translate articles")
     args = parser.parse_args()
 
-    sites = [args.site] if args.site else ["cosmetics", "wellness"]
+    sites = [args.site] if args.site else ["cosmetics", "wellness", "build-coded"]
     langs = [args.lang] if args.lang else LOCALES
     status = load_status()
 

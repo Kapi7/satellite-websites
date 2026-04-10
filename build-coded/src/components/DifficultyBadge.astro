@@ -1,0 +1,33 @@
+---
+import { t, type Locale } from '../i18n/utils';
+
+interface Props {
+  difficulty: 'beginner' | 'intermediate' | 'advanced';
+  locale?: Locale;
+}
+
+const { difficulty, locale = 'en' } = Astro.props;
+
+const colorMap: Record<string, string> = {
+  beginner: 'bg-green-100 text-green-800 border-green-200',
+  intermediate: 'bg-amber-100 text-amber-800 border-amber-200',
+  advanced: 'bg-red-100 text-red-800 border-red-200',
+};
+
+const iconMap: Record<string, string> = {
+  beginner: 'M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z',
+  intermediate: 'M12 9v3.75m0 0v.008M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z',
+  advanced: 'M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126Z',
+};
+
+const label = t(locale, `difficulty.${difficulty}`);
+const classes = colorMap[difficulty] || colorMap.beginner;
+const iconPath = iconMap[difficulty] || iconMap.beginner;
+---
+
+<span class={`inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold uppercase tracking-wide rounded-full border ${classes}`}>
+  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+    <path stroke-linecap="round" stroke-linejoin="round" d={iconPath} />
+  </svg>
+  {label}
+</span>
