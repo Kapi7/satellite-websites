@@ -1,0 +1,229 @@
+---
+title: "LED-stripverlichting: Zo installeer je het zelf onder keukenkastjes, als accent en meer"
+description: "Een complete gids voor het plannen, bedraden en installeren van je eigen LED-stripverlichting voor onder keukenkastjes, accentmuren en decoratieve toepassingen."
+date: 2026-04-07
+category: "electronics"
+type: "guide"
+tags: ["LED strips", "verlichting", "klussen", "smart home", "DIY", "accentverlichting", "onderbouw"]
+image: "/images/how-to-build-led-strip-lighting.jpg"
+imageAlt: "Warmwitte LED-stripverlichting geïnstalleerd onder keukenkastjes die een aanrechtblad verlicht."
+draft: false
+locale: nl
+difficulty: "intermediate"
+estimatedTime: "2-4 hours"
+estimatedCost: "$30-80"
+hub: "diy-smart-home-on-a-budget"
+---
+---
+
+## Waarom LED-stripverlichting een van de beste upgrades voor je huis is
+
+Voor elke euro die je erin steekt, is LED-stripverlichting een van de meest impactvolle upgrades die je je huis kunt geven. Onderbouwverlichting in de keuken, verlichte tv-meubels, accentverlichting in koofjes, trapverlichting en kastverlichting: ze transformeren allemaal je ruimte voor een fractie van de kosten van traditionele verlichting.
+
+LED strips zijn ook een van de meest bevredigende DIY-projecten, omdat de resultaten direct zichtbaar en echt nuttig zijn. Voor een basisinstallatie is solderen niet nodig (hoewel het handig is voor aangepaste lengtes), en de hele klus is meestal in een middag geklaard.
+
+Deze gids behandelt alles: stripsoorten, vermogensberekeningen, controllers, installatie en smart home-integratie.
+
+## Materialen en Gereedschap
+
+### Wat je nodig hebt
+
+| Item | Doel | Geschatte Kosten |
+|------|---------|---------------|
+| [LED strip (zie types hieronder)](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) | De lichtbron | $10-30 |
+| Voeding (12V of 24V DC) | Converteert AC-netstroom naar DC | $8-20 |
+| LED controller/dimmer | Past helderheid en kleur aan | $5-15 |
+| [Aluminium profiel met diffuser](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) | Strakke look, warmteafvoer, lichtspreiding | $10-25 |
+| Soldeerloze LED-connectoren of soldeer + bout | Verbinden van stripsegmenten | $5-10 |
+| 20-22 AWG draad | Stroomtoevoer tussen secties | $5 |
+| Montageclips of 3M VHB tape | Bevestigen van de installatie | $5 |
+
+### Gereedschap
+
+- Meetlint
+- Schaar (LED strips knip je op markeerpunten)
+- Striptang
+- Boormachine (voor het monteren van profielen)
+- Soldeerbout (optioneel, maar aanbevolen voor betrouwbare verbindingen)
+
+## LED-strip types begrijpen
+
+### Eénkleurig vs. RGB vs. RGBW vs. Tunable White
+
+**Eénkleurig (warm wit, koel wit of neutraal wit):** Het eenvoudigst en meest praktisch voor taakverlichting, zoals onder keukenkastjes en in kasten. Warm wit (2700-3000K) past bij de meeste huisverlichting. Koel wit (5000-6500K) is beter voor werkplaatsen en garages.
+
+**RGB (Rood, Groen, Blauw):** Kan miljoenen kleuren produceren, maar geen zuiver, kwalitatief hoogwaardig wit. Het beste voor accent- en sfeerverlichting, niet voor taakverlichting.
+
+**RGBW (RGB + dedicated White):** Voegt een speciale witte LED-chip toe naast de RGB-chips. Dit geeft je zowel kleureffecten ALS een goed wit voor taakverlichting. Dit is de meest veelzijdige optie.
+
+**Tunable white (CCT):** Heeft twee typen witte LED's (warm en koel) die je kunt mengen tot elke gewenste kleurtemperatuur. Ideaal als je 's avonds warm licht wilt en overdag energiegevend koel licht. Geen kleurmogelijkheden, maar de witkwaliteit is uitstekend.
+
+### LED-dichtheid: 30/m, 60/m, 120/m
+
+Het aantal LED-chips per meter beïnvloedt de helderheid en hoe egaal het licht eruitziet.
+
+- **30 LEDs/m:** Zichtbare individuele puntjes, zelfs met een diffuser. Geschikt voor achtergrondverlichting waarbij je de strip niet direct ziet.
+- **60 LEDs/m:** Goede balans tussen helderheid en uitstraling. De standaard voor de meeste installaties.
+- **120 LEDs/m:** Vloeiende, continue lichtopbrengst. Ideaal voor onderbouw- en koofverlichting waar de diffuser zichtbaar is.
+
+**Aanbeveling:** Voor de meeste installaties is 60 LEDs/m de ideale middenweg. Ga voor 120/m als het diffuserprofiel zichtbaar zal zijn.
+
+### 12V vs. 24V
+
+**12V strips** zijn gangbaarder en goedkoper, maar spanningsval over afstand is een echt probleem. Na ongeveer 5 meter (16 feet) is het einde van de strip merkbaar minder fel dan het begin.
+
+**24V strips** kunnen langere afstanden beter aan, omdat ze de helft van de stroom trekken voor hetzelfde wattage, wat spanningsval vermindert. Voor elke lengte boven de 3 meter is 24V de betere keuze.
+
+**Pro tip:** Combineer nooit 12V strips met een 24V voeding (of andersom). Een 12V strip op 24V stroom zal oververhitten en kan brandgevaarlijk zijn. Stem altijd de stripvoltage af op de voltage van de voeding.
+
+## Je voeding berekenen
+
+Deze stap is cruciaal. Een te kleine voeding wordt heet en kan uitvallen. Zo bereken je de juiste maat.
+
+### Stap 1: Bepaal het totale wattage
+
+LED strips worden beoordeeld in watt per meter. Veelvoorkomende waarden:
+- Eénkleurig 60 LEDs/m: ~5W/m
+- RGB 60 LEDs/m: ~14W/m
+- RGBW 60 LEDs/m: ~18W/m
+
+Vermenigvuldig het wattage per meter met de totale lengte van de strip die je installeert.
+
+**Voorbeeld:** 4 meter RGBW strip à 18W/m = 72W totaal.
+
+### Stap 2: Voeg 20% marge toe
+
+Laat een voeding nooit op 100% capaciteit draaien. Voeg 20% toe voor veiligheid en levensduur.
+
+**Voorbeeld:** 72W x 1.2 = 86.4W. Kies een 100W voeding.
+
+### Stap 3: Controleer de stroomsterkte
+
+Controleer of de voeding voldoende ampèrage levert. Voor een 12V systeem: Ampère = Watt / 12. Voor een 24V systeem: Ampère / 24.
+
+**Voorbeeld:** 100W bij 24V = 4.17A. Een 24V/5A voeding zou werken.
+
+### Aanbevolen voedingen
+
+Voor de meeste thuisinstallaties is een [Mean Well LPV serie voeding](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) de industriestandaard. Ze zijn betrouwbaar, efficiënt en hebben de juiste veiligheidscertificeringen. Vermijd de goedkoopste 'no-name' voedingen — een falende voeding in de buurt van brandbare kastjes is de besparing van vijf euro niet waard.
+
+**Veiligheidswaarschuwing:** LED-voedingen zetten huishoudelijke AC-spanning (120V/240V) om naar laagspannings-DC. De AC-kant is gevaarlijk. Als je niet comfortabel bent met het bedraden van AC-stroom, gebruik dan een voeding met een voorgemonteerde AC-stekker. Laat AC-draadverbindingen nooit bloot of toegankelijk.
+
+## Controllers en Smart Integratie
+
+### Basis dimmer
+
+Voor éénkleurige strips past een eenvoudige [PWM-dimmer](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) met een draaiknop of afstandsbediening de helderheid aan. Deze kosten $5-10 en werken prima.
+
+### Smart Controllers
+
+Voor smart home-integratie kun je met een WiFi-enabled controller je LED strips bedienen vanaf je telefoon, met je stem of via automatiseringen.
+
+**Budget smart optie:** [GLEDOPTO Zigbee LED controller](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) — werkt met Alexa, Google Home en Home Assistant via een Zigbee hub. Ongeveer $15-20. Verkrijgbaar in éénkleurige, CCT, RGB en RGBW versies.
+
+**WiFi optie:** [BTF-Lighting WiFi controller](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) — werkt direct met Alexa en Google Home zonder aparte hub. Ongeveer $10-15.
+
+**Geavanceerde DIY optie:** Een ESP32-board met WLED-firmware geeft je volledige controle over individueel adresseerbare LED strips (WS2812B, SK6812, etc.) met honderden effecten, muziekreactiviteit en Home Assistant-integratie. Dit is een project op zich, maar is enorm bevredigend.
+
+### Bedradingsschema
+
+De basis bedradingsketen is:
+
+```
+Stopcontact → Voeding → Controller → LED strip
+```
+
+Voor RGBW strips heeft de controller 5 uitgangsdraden (V+, R, G, B, W). Voor éénkleurige strips zijn het alleen V+ en V-. De controller zit tussen de voeding en de LED strip.
+
+## Installatiegids: Onderbouwverlichting voor de keuken
+
+Dit is het populairste LED strip project, dus laten we het in detail bekijken.
+
+### Planning
+
+1.  **Meet elk kastgedeelte** waar je verlichting wilt. Meet de lengte van de onderkant van elke kast en noteer eventuele openingen (afzuigkap, gootsteenraam, etc.).
+2.  **Beslis over de plaatsing van de strip.** Monteer de strip naar de voorkant van de onderkant van de kast voor maximale aanrechtverlichting, of naar achteren (tegen de muur) voor een zachter, meer sfeervol effect. Plaatsing aan de voorkant wordt aanbevolen voor taakverlichting.
+3.  **Plan je bedradingsroute.** De voeding en controller moeten verborgen zijn — in een kast, bovenop de kasten, of in een aangrenzende berging. Plan hoe draden tussen kasten zullen lopen.
+
+### Stap 1: Aluminium profielen installeren
+
+Aluminium profielen dienen drie doelen: ze voeren warmte af (verlengen de levensduur van LED's), bieden een schone montageoppervlak en de diffuserkap elimineert zichtbare LED-puntjes.
+
+1.  Zaag het aluminium profiel op maat voor elk kastgedeelte met een ijzerzaag of afkortzaag.
+2.  Boor voorboorgaten door de montagelipjes van het profiel.
+3.  Schroef de profielen aan de onderkant van elke kast. Als je kasten een voorrand/sierlijst hebben, monteer dan erachter om het profiel uit het zicht te houden.
+
+### Stap 2: LED strips knippen en verbinden
+
+LED strips hebben markeerpunten om de 3-6 LED's (afhankelijk van de strip). Knip alleen op deze markeringen.
+
+1.  Meet elk profiel en knip een strip op maat.
+2.  Verbind strips tussen kasten met soldeerloze connectoren of gesoldeerde draden.
+
+**Over soldeerloze connectoren:** Ze werken, maar ze zijn het zwakste punt in elke installatie. De clips kunnen na verloop van tijd losraken, wat flikkerende of dode secties veroorzaakt. Voor een permanente installatie is solderen betrouwbaarder. Bekijk onze [gids voor soldeerbasics](/nl/blog/en/soldering-basics-complete-guide) als je nog nooit hebt gesoldeerd.
+
+### Stap 3: Strips in profielen plaatsen
+
+1.  Trek de zelfklevende achterkant van de LED strip eraf en druk deze in het profiel. Zorg ervoor dat het plat en gecentreerd ligt.
+2.  Klik de diffuserkap op het profiel.
+
+### Stap 4: Alles bedraden
+
+1.  Leid draden van elk stripgedeelte terug naar de locatie van de controller. Gebruik 20 AWG draad voor lengtes onder de 3 meter, 18 AWG voor langere lengtes.
+2.  Verbind alle stripsecties parallel (elke strip loopt terug naar de controller), niet in serie (achter elkaar doorgelust). Parallelle bedrading zorgt voor een gelijkmatige helderheid over alle secties.
+3.  Verbind de controller met de voeding.
+4.  Steek de stekker in het stopcontact en test voordat je de kabelbeheer afrondt.
+
+### Stap 5: Bedrading netjes afwerken
+
+- Gebruik zelfklevende kabelclips om draden netjes langs kastranden en in hoekverbindingen te leiden.
+- Als je draden door de binnenkant van kasten leidt, boor dan kleine gaatjes in de zijkanten van de kast (net groot genoeg voor de draad om door te passen).
+- Gebruik kabelgoten of overschilderbare draadkanalen voor zichtbare draadlopen op de muur.
+
+## Andere populaire toepassingen
+
+### Tv-meubel achtergrondverlichting (Bias Lighting)
+
+Monteer een LED strip rond de achterrand van je tv. Dit vermindert vermoeidheid van de ogen tijdens donkere scènes en laat het beeld levendiger lijken. Een eenvoudige USB-gevoede strip die je in de tv zelf steekt, werkt perfect — deze gaat automatisch aan en uit met de tv.
+
+Een [voorgesneden TV bias lighting kit](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) vereenvoudigt deze installatie tot minder dan 10 minuten.
+
+### Trapverlichting
+
+Monteer strips onder de trede van elke trap voor veiligheidsverlichting. Combineer met een bewegingssensor bovenaan en onderaan de trap, zodat de lampen automatisch aangaan in het donker. Gebruik warm wit (2700K) om een harde, commerciële uitstraling te vermijden.
+
+**Veiligheidsopmerking:** Zorg ervoor dat alle bedrading stevig is bevestigd en geen loopvlakken kruist. Laagspannings-DC-bedrading is niet gevaarlijk qua schokrisico, maar een losse draad op een trap is een struikelgevaar.
+
+### Kastverlichting
+
+Eén enkele strip op een magnetische deursensor — het licht gaat aan wanneer de deur opent en uit wanneer deze sluit. Geen schakelaar nodig, geen bedradingsaanpassingen aan je huis, en het verlicht de kast beter dan één enkele plafondlamp.
+
+### Koofverlichting
+
+Monteer strips in een plafondkoof of kroonlijst om indirecte sfeerverlichting te creëren. Dit zorgt voor een zwevend, professioneel lichteffect. Koofverlichting werkt het beste met 120 LEDs/m strips en een breed diffusieprofiel voor een vloeiende, gelijkmatige lichtopbrengst.
+
+## Probleemoplossing
+
+### Strip is aan één kant gedimd
+
+Dit is spanningsval. Oplossingen:
+- Gebruik 24V strips in plaats van 12V.
+- Voer stroom toe aan beide uiteinden van de strip.
+- Gebruik dikkere draaddikte voor lange afstanden.
+
+### Strip flikkert
+
+- Controleer alle verbindingen (vooral soldeerloze connectoren — opnieuw plaatsen of vervangen).
+- Controleer of de voeding voldoende groot is (herbereken met 20% marge).
+- Als je een dimmer gebruikt, zorg er dan voor dat deze PWM-gebaseerd is, en geen resistieve/AC-dimmer.
+
+### Kleuren zijn verkeerd op RGB strips
+
+- Controleer de draadvolgorde bij de verbindingen. RGB strips hebben specifieke draadtoewijzingen (meestal gelabeld R, G, B op de strip).
+- Controleer of het controllertype overeenkomt met het strip type (common anode vs. common cathode).
+
+### Striphechting werkt niet
+
+- Reinig het oppervlak met isopropylalcohol voordat je de strip aanbrengt.
+- Gebruik aluminium profielen (de lijm hecht beter op een plat oppervlak, en het profiel is mechanisch bevestigd).
+- Vul aan

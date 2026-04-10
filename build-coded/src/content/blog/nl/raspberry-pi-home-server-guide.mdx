@@ -1,0 +1,340 @@
+---
+title: "Raspberry Pi Home Server Gids: Zo zet je 'm in een middag op!"
+description: "Maak van je Raspberry Pi een krachtige home server voor bestandsdeling, mediastreaming, ad blocking en meer, met dit stap-voor-stap project dat je in één middag afrondt."
+date: 2026-04-07
+category: "electronics"
+type: "guide"
+tags: ["raspberry pi", "home server", "self-hosted", "plex", "pi-hole", "file server", "linux"]
+image: "/images/raspberry-pi-home-server-guide.jpg"
+imageAlt: "Raspberry Pi 4 in een aluminium behuizing, aangesloten op een externe harde schijf en een Ethernetkabel."
+draft: false
+locale: nl
+difficulty: "intermediate"
+estimatedTime: "3-5 hours"
+estimatedCost: "$60-120"
+hub: "diy-smart-home-on-a-budget"
+---
+## Waarom een Home Server op een Raspberry Pi?
+
+Een Raspberry Pi verbruikt ongeveer 5 watt stroom. Dat is zo'n euro per maand aan elektriciteit. Voor die kosten krijg je een file server, een media streamer, een netwerkbrede ad blocker en wat je er verder ook op wilt draaien — allemaal op een computer ter grootte van een creditcard die rustig in een hoekje staat.
+
+Cloud storage abonnementen, streamingdiensten en smart home hubs kosten allemaal maandelijkse fees. Een Pi home server vervangt er een aantal van met een eenmalige aankoop. En je bent eigenaar van je eigen data.
+
+Deze gids leidt je door een complete setup, van het uitpakken tot een werkende server met bestandsdeling, Plex mediastreaming en Pi-hole ad blocking.
+
+## Wat heb je nodig?
+
+### Benodigde Hardware
+
+| Item | Doel | Geschatte Kosten |
+|------|---------|---------------|
+| [Raspberry Pi 4 (4GB of 8GB)](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) | De server zelf | $55-75 |
+| [MicroSD-kaart (32GB+)](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) | Boot drive | $8-12 |
+| USB-C voeding (5V/3A) | Stroom | $8-10 |
+| Ethernetkabel | Betrouwbare netwerkverbinding | $5 |
+| [Externe USB harde schijf](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) | Opslag voor bestanden en media | $40-80 |
+
+### Optioneel, maar aanbevolen
+
+- [Aluminium passieve koelbehuizing](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) — houdt de Pi koel zonder ventilator (stille werking)
+- USB SSD in plaats van HDD — sneller, betrouwbaarder, maar duurder
+- UPS batterijbackup — beschermt tegen stroomuitval die je data kan beschadigen
+
+### Software (Allemaal gratis)
+
+- Raspberry Pi OS Lite (geen desktop nodig)
+- Samba (bestandsdeling)
+- Plex Media Server
+- Pi-hole (ad blocking)
+
+## Stap 1: Raspberry Pi OS flashen
+
+Download de [Raspberry Pi Imager](https://www.raspberrypi.com/software/) op je hoofdcomputer. Plaats je microSD-kaart en volg deze stappen:
+
+1. Open Raspberry Pi Imager.
+2. Kies **Raspberry Pi OS Lite (64-bit)** — je hebt geen desktopomgeving nodig voor een headless server.
+3. Klik op het tandwielicoon (Geavanceerde Opties) voordat je schrijft:
+   - Stel een hostname in (bijv. `piserver`).
+   - Schakel SSH in met wachtwoordverificatie.
+   - Stel je gebruikersnaam en wachtwoord in.
+   - Configureer je WiFi (als backup, maar gebruik Ethernet voor de server).
+   - Stel je locale en tijdzone in.
+4. Schrijf de image naar de SD-kaart.
+
+**Pro tip:** Schrijf de gebruikersnaam en het wachtwoord op die je instelt. Je zult verbaasd zijn hoeveel mensen ze vergeten en opnieuw moeten flashen.
+
+## Stap 2: Eerste keer opstarten en initiële configuratie
+
+Plaats de SD-kaart in je Pi, sluit Ethernet aan, plug de voeding in en wacht ongeveer 90 seconden.
+
+### Zoek je Pi op in het netwerk
+
+Vanaf een andere computer in hetzelfde netwerk:
+
+```bash
+ping piserver.local
+```
+
+Als dat niet werkt, controleer dan de adminpagina van je router voor het IP-adres van de Pi, of gebruik `nmap -sn 192.168.1.0/24` (vervang door je subnet).
+
+### SSH Inloggen
+
+```bash
+ssh youruser@piserver.local
+```
+
+### Alles updaten
+
+```bash
+sudo apt update && sudo apt full-upgrade -y
+```
+
+Dit kan 5-10 minuten duren. Laat het volledig afmaken.
+
+### De Pi configureren
+
+```bash
+sudo raspi-config
+```
+
+Belangrijke instellingen om aan te passen:
+- **Bestandssysteem uitbreiden** — zorgt ervoor dat je de volledige SD-kaart gebruikt.
+- **GPU geheugen** — stel in op 16MB aangezien er geen scherm is aangesloten.
+- **Tijdzone** — controleer of deze overeenkomt met je locatie.
+
+Herstart wanneer daarom wordt gevraagd.
+
+## Stap 3: Externe opslag instellen
+
+Sluit je externe USB-schijf aan. Identificeer deze:
+
+```bash
+lsblk
+```
+
+Je zou je schijf moeten zien staan (meestal als `/dev/sda`). Als deze nieuw is of je wilt een schone start, formatteer hem dan als ext4:
+
+```bash
+sudo mkfs.ext4 /dev/sda1
+```
+
+**Waarschuwing:** Dit wist alles op de schijf. Controleer goed of je het juiste apparaat formatteert.
+
+### Een mount point aanmaken en automatisch mounten
+
+```bash
+sudo mkdir /mnt/storage
+sudo mount /dev/sda1 /mnt/storage
+```
+
+Om het automatisch te laten mounten bij elke boot, haal je de UUID van de schijf op:
+
+```bash
+sudo blkid /dev/sda1
+```
+
+Voeg deze regel toe aan `/etc/fstab` (vervang de UUID door die van jou):
+
+```
+UUID=your-uuid-here /mnt/storage ext4 defaults,nofail 0 2
+```
+
+De `nofail` optie is belangrijk — het voorkomt dat de Pi niet opstart als de schijf is losgekoppeld.
+
+### Mappenstructuur aanmaken
+
+```bash
+sudo mkdir -p /mnt/storage/{shared,media,backups}
+sudo chown -R youruser:youruser /mnt/storage
+```
+
+## Stap 4: Samba bestandsdeling instellen
+
+Met Samba heb je toegang tot bestanden vanaf Windows-, Mac- en Linux-computers in je netwerk.
+
+```bash
+sudo apt install samba samba-common-bin -y
+```
+
+Bewerk de Samba-configuratie:
+
+```bash
+sudo nano /etc/samba/smb.conf
+```
+
+Voeg dit onderaan toe:
+
+```ini
+[Shared]
+path = /mnt/storage/shared
+browseable = yes
+writeable = yes
+create mask = 0775
+directory mask = 0775
+valid users = youruser
+
+[Media]
+path = /mnt/storage/media
+browseable = yes
+read only = yes
+guest ok = yes
+```
+
+Stel je Samba-wachtwoord in:
+
+```bash
+sudo smbpasswd -a youruser
+```
+
+Herstart Samba:
+
+```bash
+sudo systemctl restart smbd
+```
+
+### Toegang vanaf andere apparaten
+
+- **Windows:** Open Verkenner, typ `\\piserver.local` in de adresbalk.
+- **Mac:** Druk in Finder op Cmd+K en voer `smb://piserver.local` in.
+- **Linux:** Gebruik de "Verbinden met server" functie van je bestandsbeheerder of mount via `cifs`.
+
+## Stap 5: Plex Media Server installeren
+
+Plex verandert je Pi in een media streaming server. Je krijgt toegang tot je film-, muziek- en fotobibliotheken vanaf elk apparaat met een webbrowser of de Plex-app.
+
+```bash
+# Add the Plex repository
+curl https://downloads.plex.tv/plex-keys/PlexSign.key | gpg --dearmor | sudo tee /usr/share/keyrings/plex-archive-keyring.gpg > /dev/null
+echo "deb [signed-by=/usr/share/keyrings/plex-archive-keyring.gpg] https://downloads.plex.tv/repo/deb public main" | sudo tee /etc/apt/sources.list.d/plexmediaserver.list
+
+# Install
+sudo apt update
+sudo apt install plexmediaserver -y
+```
+
+### Plex configureren
+
+1. Open `http://piserver.local:32400/web` in een browser.
+2. Log in of maak een Plex-account aan.
+3. Geef je server een naam.
+4. Voeg bibliotheekmappen toe die verwijzen naar `/mnt/storage/media/movies`, `/mnt/storage/media/tv`, etc.
+
+**Belangrijke opmerking over transcoding:** De Raspberry Pi 4 kan video niet hardwarematig transcoderen. Voor soepel streamen, zorg ervoor dat je mediabestanden overeenkomen met het formaat dat je afspeelapparaat ondersteunt (de meeste moderne apparaten verwerken H.264 MP4 native). Direct play werkt prima; transcoding niet.
+
+**Pro tip:** Organiseer je media in de verwachte mappenstructuur van Plex:
+```
+/mnt/storage/media/movies/Movie Name (Year)/Movie Name (Year).mkv
+/mnt/storage/media/tv/Show Name/Season 01/Show Name - S01E01.mkv
+```
+
+## Stap 6: Pi-hole installeren voor netwerkbrede Ad Blocking
+
+Pi-hole fungeert als een DNS-server voor je hele netwerk en blokkeert advertenties en trackers voordat ze überhaupt laden. Elk apparaat in je netwerk profiteert ervan — inclusief telefoons, smart-tv's en IoT-apparaten waarop je geen ad blocker kunt installeren.
+
+```bash
+curl -sSL https://install.pi-hole.net | bash
+```
+
+De installer is interactief. Belangrijke keuzes:
+- Selecteer je Ethernet-interface.
+- Kies een willekeurige upstream DNS-provider (Cloudflare `1.1.1.1` of Google `8.8.8.8` zijn populair).
+- Installeer de web admin interface (ja).
+- Log queries (ja, handig voor debugging).
+
+Na de installatie, noteer het admin wachtwoord dat op het scherm wordt getoond, of stel een nieuw in:
+
+```bash
+pihole -a -p
+```
+
+### Je netwerk naar Pi-hole laten wijzen
+
+De makkelijkste methode: log in op je router en stel de primaire DNS-server in op het IP-adres van je Pi. Elk apparaat in het netwerk zal automatisch Pi-hole gebruiken.
+
+Open het dashboard op `http://piserver.local/admin` om geblokkeerde queries, topdomeinen en statistieken te zien.
+
+## Stap 7: Beveilig je Server
+
+### Een Firewall instellen
+
+```bash
+sudo apt install ufw -y
+sudo ufw allow ssh
+sudo ufw allow samba
+sudo ufw allow 32400/tcp    # Plex
+sudo ufw allow 53           # Pi-hole DNS
+sudo ufw allow 80/tcp       # Pi-hole web interface
+sudo ufw enable
+```
+
+### Automatische beveiligingsupdates inschakelen
+
+```bash
+sudo apt install unattended-upgrades -y
+sudo dpkg-reconfigure -plow unattended-upgrades
+```
+
+### SSH Key Authenticatie instellen (Aanbevolen)
+
+Vanaf je hoofdcomputer:
+
+```bash
+ssh-keygen -t ed25519
+ssh-copy-id youruser@piserver.local
+```
+
+Schakel vervolgens wachtwoordauthenticatie uit in `/etc/ssh/sshd_config` door `PasswordAuthentication no` in te stellen en SSH opnieuw te starten.
+
+### Regelmatige Backups plannen
+
+Voeg een cron job toe om kritieke configuraties te back-uppen:
+
+```bash
+crontab -e
+```
+
+Voeg toe:
+
+```
+0 3 * * 0 tar -czf /mnt/storage/backups/pi-config-$(date +\%Y\%m\%d).tar.gz /etc/samba /etc/pihole /etc/fstab
+```
+
+Dit draait elke zondag om 3 uur 's nachts en zorgt ervoor dat je configuraties zijn geback-upt.
+
+## Prestatie tips
+
+- **Gebruik altijd Ethernet** — WiFi voegt latency toe en vermindert de doorvoer voor bestandsoverdrachten.
+- **Gebruik een USB 3.0 schijf** — De Pi 4 heeft USB 3.0 poorten (de blauwe). Zorg ervoor dat je schijf daar is aangesloten.
+- **Overweeg een SSD** — Een [USB 3.0 SSD enclosure](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) met een reserve SATA SSD verbetert de toegangssnelheden van bestanden drastisch.
+- **Monitor de temperatuur** — Voer `vcgencmd measure_temp` periodiek uit. Als deze constant boven de 70C komt, verbeter dan je koeling.
+- **Houd de SD-kaart gezond** — SD-kaarten slijten door overmatig schrijven. Gebruik `log2ram` om logs in RAM te bewaren: `sudo apt install log2ram`.
+
+## Probleemoplossing
+
+### Pi niet gevonden in het netwerk
+
+- Controleer of de Ethernetkabel is aangesloten en het linklampje brandt.
+- Controleer de DHCP-clientlijst van je router voor het IP van de Pi.
+- Als je WiFi gebruikt, controleer dan of de inloggegevens in Imager correct waren.
+
+### Externe schijf wordt niet gemount
+
+- Voer `dmesg | tail -20` uit nadat je de schijf hebt aangesloten om te controleren op fouten.
+- Sommige schijven verbruiken te veel stroom van de USB-poorten van de Pi. Gebruik indien nodig een powered USB-hub.
+
+### Plex buffert
+
+- Controleer of de client Direct Play doet en niet transcodering (check het Plex-dashboard tijdens afspelen).
+- Converteer media naar H.264 MP4-formaat met HandBrake op je hoofdcomputer.
+
+## Wat kan je Pi Server nog meer?
+
+Als de basis eenmaal staat, kun je meer services toevoegen:
+
+- **Home Assistant** — smart home automatisatiehub
+- **Nextcloud** — je eigen cloud storage (zoals Google Drive)
+- **WireGuard VPN** — veilig toegang tot je thuisnetwerk vanaf elke locatie
+- **Gitea** — self-hosted Git server
+- **Grafana + InfluxDB** — monitoring dashboards voor al je thuisdata
+
+Een vijf-watt computer die 24/7 draait, je bestanden serveert, je media streamt en advertenties blokkeert in je hele netwerk. Dat is een productieve middag.
