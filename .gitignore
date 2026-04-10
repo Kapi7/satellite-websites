@@ -23,4 +23,6 @@ scripts/seo/signup_status.json
 scripts/seo/outreach_queue.json
 scripts/seo/outreach_log.json
 scripts/seo/screenshots/
+scripts/seo/reports/
 scripts/bing_i18n_state.json
+.venv-seo/
