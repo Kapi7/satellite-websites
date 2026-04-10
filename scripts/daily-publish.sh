@@ -148,3 +148,24 @@ if [ $PUBLISHED -gt 0 ]; then
 else
   echo "Nothing to publish today."
 fi
+
+# ---------------------------------------------------------------------------
+# SEO morning brief — self-installs venv on first run, pings Telegram digest
+# ---------------------------------------------------------------------------
+if [ -f scripts/seo/morning_brief.py ]; then
+  # Create venv + install claude-agent-sdk if missing (idempotent, ~30s first run)
+  if [ ! -x .venv-seo/bin/python ]; then
+    echo "[seo] bootstrapping .venv-seo/"
+    python3 -m venv .venv-seo 2>/dev/null || true
+    .venv-seo/bin/pip install -q --upgrade pip claude-agent-sdk 2>&1 | tail -3 || true
+  fi
+
+  if [ -x .venv-seo/bin/python ] && command -v claude >/dev/null 2>&1; then
+    echo "[seo] running morning brief"
+    .venv-seo/bin/python scripts/seo/morning_brief.py \
+      >> scripts/seo/reports/cron.log 2>&1 || \
+      echo "[seo] morning brief failed (see scripts/seo/reports/cron.log)"
+  else
+    echo "[seo] skipped — .venv-seo or claude CLI not ready"
+  fi
+fi
