@@ -9,8 +9,11 @@ import el from './translations/el.json';
 import ru from './translations/ru.json';
 import it from './translations/it.json';
 import ar from './translations/ar.json';
+import fr from './translations/fr.json';
+import nl from './translations/nl.json';
+import pt from './translations/pt.json';
 
-const translations: Record<Locale, Record<string, any>> = { en, es, de, el, ru, it, ar };
+const translations: Record<Locale, Record<string, any>> = { en, es, de, el, ru, it, ar, fr, nl, pt };
 
 /**
  * Get a translated string by dot-notation key. Falls back to English.
@@ -75,6 +78,9 @@ export function formatDate(date: Date, locale: Locale): string {
     ru: 'ru-RU',
     it: 'it-IT',
     ar: 'ar-SA',
+    fr: 'fr-FR',
+    nl: 'nl-NL',
+    pt: 'pt-PT',
   };
   return date.toLocaleDateString(localeMap[locale], {
     year: 'numeric',
@@ -92,6 +98,9 @@ export function formatDateShort(date: Date, locale: Locale): string {
     ru: 'ru-RU',
     it: 'it-IT',
     ar: 'ar-SA',
+    fr: 'fr-FR',
+    nl: 'nl-NL',
+    pt: 'pt-PT',
   };
   return date.toLocaleDateString(localeMap[locale], {
     year: 'numeric',

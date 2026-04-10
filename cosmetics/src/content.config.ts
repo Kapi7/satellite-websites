@@ -22,7 +22,8 @@ const blog = defineCollection({
     affiliateProduct: z.string().optional(),
     hub: z.string().optional(),
     routine: z.string().optional(),
-    locale: z.enum(['en', 'es', 'de', 'el', 'ru', 'it', 'ar']).default('en'),
+    author: z.string().optional(),
+    locale: z.enum(['en', 'es', 'de', 'el', 'ru', 'it', 'ar', 'fr', 'nl', 'pt']).default('en'),
   }),
 });
 
@@ -30,6 +31,7 @@ const authors = defineCollection({
   loader: glob({ pattern: '**/*.json', base: './src/content/authors' }),
   schema: z.object({
     name: z.string(),
+    role: z.string().optional(),
     bio: z.string(),
     avatar: z.string().optional(),
   }),
@@ -59,7 +61,7 @@ const pages = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    locale: z.enum(['en', 'es', 'de', 'el', 'ru', 'it', 'ar']).default('en'),
+    locale: z.enum(['en', 'es', 'de', 'el', 'ru', 'it', 'ar', 'fr', 'nl', 'pt']).default('en'),
   }),
 });
 

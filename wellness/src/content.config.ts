@@ -21,7 +21,8 @@ const blog = defineCollection({
     draft: z.boolean().default(false),
     affiliateProduct: z.string().optional(),
     hub: z.string().optional(),
-    locale: z.enum(['en', 'es', 'de', 'el', 'ru', 'it', 'ar']).default('en'),
+    author: z.string().optional(),
+    locale: z.enum(['en', 'es', 'de', 'el', 'ru', 'it', 'ar', 'fr', 'nl', 'pt']).default('en'),
   }),
 });
 
@@ -39,7 +40,7 @@ const pages = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    locale: z.enum(['en', 'es', 'de', 'el', 'ru', 'it', 'ar']).default('en'),
+    locale: z.enum(['en', 'es', 'de', 'el', 'ru', 'it', 'ar', 'fr', 'nl', 'pt']).default('en'),
   }),
 });
 

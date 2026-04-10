@@ -26,7 +26,7 @@ function scanDir(dir) {
 }
 scanDir(blogDir);
 
-const locales = ['en', 'es', 'de', 'el', 'ru', 'it', 'ar'];
+const locales = ['en', 'es', 'de', 'el', 'ru', 'it', 'ar', 'fr', 'nl', 'pt'];
 const sitemapLocales = Object.fromEntries(locales.map(l => [l, l]));
 
 export default defineConfig({
@@ -49,7 +49,7 @@ export default defineConfig({
       serialize(item) {
         const slug = item.url.replace('https://glow-coded.com/', '').replace(/\/$/, '');
         // Strip locale prefix to match slug
-        const cleanSlug = slug.replace(/^(es|de|el|ru|it|ar)\//, '');
+        const cleanSlug = slug.replace(/^(es|de|el|ru|it|ar|fr|nl|pt)\//, '');
         const d = slugDateMap.get(cleanSlug);
         if (d) item.lastmod = new Date(d).toISOString();
         return item;
