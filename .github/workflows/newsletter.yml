@@ -29,7 +29,7 @@ jobs:
           CF_REFRESH_TOKEN: ${{ secrets.CF_OAUTH_REFRESH_TOKEN }}
         run: |
           set +e
-          RESPONSE=$(curl -sS -X POST "https://accounts.cloudflare.com/oauth2/token" \
+          RESPONSE=$(curl -sS -X POST "https://dash.cloudflare.com/oauth2/token" \
             -H "Content-Type: application/x-www-form-urlencoded" \
             --data-urlencode "grant_type=refresh_token" \
             --data-urlencode "refresh_token=$CF_REFRESH_TOKEN" \
