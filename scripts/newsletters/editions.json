@@ -43,6 +43,27 @@
           "blurb": "How sleep quality, stress management, and skin health are deeply connected — and why fixing one often fixes the others."
         }
       ]
+    },
+    "build-coded": {
+      "subject": "Your DIY Starting Point: Tools, Skills, and First Projects",
+      "intro": "Whether you're setting up your first workshop or looking for a weekend project, these guides will get you building with confidence. No experience required.",
+      "articles": [
+        {
+          "slug": "best-beginner-woodworking-tools",
+          "title": "Best Beginner Woodworking Tools: Everything You Need to Start",
+          "blurb": "The essential tools every beginner needs — without spending a fortune on gear you won't use."
+        },
+        {
+          "slug": "how-to-build-a-floating-shelf",
+          "title": "How to Build a Floating Shelf: Step-by-Step Guide",
+          "blurb": "Your first real woodworking project — a clean, modern floating shelf you can build in an afternoon."
+        },
+        {
+          "slug": "beginner-woodworking-joints-guide",
+          "title": "Woodworking Joints Guide: 8 Essential Joints Every Beginner Should Know",
+          "blurb": "From butt joints to dovetails — the fundamental connections that hold every project together."
+        }
+      ]
     }
   },
   {
@@ -87,6 +108,27 @@
           "slug": "bone-broth-benefits",
           "title": "Bone Broth Benefits: Why Your Grandmother Was Right",
           "blurb": "Collagen, gelatin, amino acids, and minerals that support gut health, joint function, and skin elasticity."
+        }
+      ]
+    },
+    "build-coded": {
+      "subject": "Tool Talk: Saws, Sanders, and Choosing the Right Gear",
+      "intro": "The right tool makes every project easier. This week — saw showdowns, sander reviews, and practical advice on building your tool collection without breaking the bank.",
+      "articles": [
+        {
+          "slug": "table-saw-vs-circular-saw",
+          "title": "Table Saw vs Circular Saw: Which Should You Buy First?",
+          "blurb": "Two essential saws, one budget — we break down when to use each and which to buy first."
+        },
+        {
+          "slug": "best-orbital-sanders",
+          "title": "Best Random Orbital Sanders: 6 Models Tested",
+          "blurb": "We tested 6 orbital sanders on real projects. Here are the ones that deliver smooth results without fatigue."
+        },
+        {
+          "slug": "best-cordless-drills",
+          "title": "Best Cordless Drills for Every Budget: 7 Models Compared",
+          "blurb": "DeWalt, Milwaukee, Makita, Ryobi — we compared 7 drills to find the best for every budget and use case."
         }
       ]
     }
@@ -135,6 +177,27 @@
           "blurb": "Clear sweat, calm redness, repair damage, and protect skin after every workout."
         }
       ]
+    },
+    "build-coded": {
+      "subject": "Home Improvement Essentials: Drywall, Caulk, and DIY Confidence",
+      "intro": "You don't need a contractor for every home repair. This week — patching walls, sealing gaps, and knowing when to DIY vs. when to call a pro.",
+      "articles": [
+        {
+          "slug": "how-to-patch-drywall-like-a-pro",
+          "title": "How to Patch Drywall Like a Pro: Small Holes to Large Repairs",
+          "blurb": "From nail holes to fist-sized damage — step-by-step drywall repair that looks professional."
+        },
+        {
+          "slug": "how-to-caulk-like-a-pro",
+          "title": "How to Caulk Like a Pro: Clean Lines Every Time",
+          "blurb": "The technique that separates messy caulk jobs from clean, professional results. It's easier than you think."
+        },
+        {
+          "slug": "diy-vs-hire-when-to-call-a-pro",
+          "title": "DIY vs Hire a Pro: When to Call a Professional",
+          "blurb": "Which projects are safe to DIY and which ones need a licensed professional? A practical decision guide."
+        }
+      ]
     }
   },
   {
@@ -179,6 +242,27 @@
           "slug": "how-to-start-cold-water-therapy",
           "title": "The Complete Guide to Cold Water Therapy",
           "blurb": "Cold showers, ice baths, and cold plunges — the science, how to start safely, and what to realistically expect."
+        }
+      ]
+    },
+    "build-coded": {
+      "subject": "Workshop Builds: Workbench, Planter Box, and Wood Finishes",
+      "intro": "Time to build something real. This week — a workbench that'll last decades, an outdoor planter box for spring, and the finish options that protect your projects.",
+      "articles": [
+        {
+          "slug": "how-to-build-a-workbench",
+          "title": "How to Build a Simple Workbench: Weekend Project",
+          "blurb": "A sturdy, practical workbench you can build in a weekend — the foundation of every workshop."
+        },
+        {
+          "slug": "how-to-build-outdoor-planter-box",
+          "title": "How to Build an Outdoor Planter Box: Cedar Planter Plans",
+          "blurb": "A beautiful cedar planter box that resists rot and looks great on any patio. Beginner-friendly build."
+        },
+        {
+          "slug": "best-wood-finishes-beginners",
+          "title": "Best Wood Finishes for Beginners: Oil, Wax, Poly, and More",
+          "blurb": "Oil, wax, polyurethane, lacquer — which finish is right for your project? A clear guide for beginners."
         }
       ]
     }
@@ -227,6 +311,27 @@
           "blurb": "The science behind why running slower actually produces better results and builds your aerobic engine."
         }
       ]
+    },
+    "build-coded": {
+      "subject": "Electronics Corner: Arduino, Soldering, and Your First Circuit",
+      "intro": "Ready to go beyond wood and paint? This week — beginner electronics projects, soldering fundamentals, and the best multimeters for home use.",
+      "articles": [
+        {
+          "slug": "arduino-projects-beginners",
+          "title": "10 Arduino Projects for Beginners: Learn by Building",
+          "blurb": "10 progressively harder Arduino projects that teach you real skills — from LED blink to weather station."
+        },
+        {
+          "slug": "soldering-basics-complete-guide",
+          "title": "Soldering Basics: The Complete Beginner's Guide",
+          "blurb": "From choosing a soldering iron to making your first clean joint. Everything you need to start soldering."
+        },
+        {
+          "slug": "best-multimeters-home-use",
+          "title": "Best Multimeters for Home Use: 5 Models from Budget to Pro",
+          "blurb": "Fluke, Klein, AstroAI — we tested 5 multimeters to find the best for DIY electronics and home electrical work."
+        }
+      ]
     }
   },
   {
@@ -271,6 +376,27 @@
           "slug": "foods-that-sharpen-focus-science-backed",
           "title": "Foods That Sharpen Focus: A Science-Backed Guide",
           "blurb": "Your brain uses 20% of your daily calories. Feed it the right fuel and everything improves — skin included."
+        }
+      ]
+    },
+    "build-coded": {
+      "subject": "Smart Home on a Budget: Lights, Switches, and Automation",
+      "intro": "A smart home doesn't have to cost thousands. This week — affordable smart lighting, DIY switch installation, and a complete budget automation setup guide.",
+      "articles": [
+        {
+          "slug": "diy-smart-home-on-a-budget",
+          "title": "DIY Smart Home on a Budget: Complete Setup Guide",
+          "blurb": "Smart lighting, sensors, voice assistants, and automation — all for under $500. A complete budget guide."
+        },
+        {
+          "slug": "how-to-install-smart-light-switches",
+          "title": "How to Install Smart Light Switches: No Electrician Needed",
+          "blurb": "Step-by-step guide to replacing your light switches with smart ones — safely and without an electrician."
+        },
+        {
+          "slug": "how-to-build-led-strip-lighting",
+          "title": "How to Build Custom LED Strip Lighting",
+          "blurb": "Under-cabinet, accent, and ambient LED strip lighting — types, power supplies, controllers, and installation."
         }
       ]
     }
@@ -319,6 +445,27 @@
           "blurb": "How to build real strength at home with minimal equipment — bodyweight progressions and kettlebell essentials."
         }
       ]
+    },
+    "build-coded": {
+      "subject": "Big Projects: Flooring, Bookshelves, and Renovation Planning",
+      "intro": "Ready to tackle something bigger? This week — installing luxury vinyl flooring, building bookshelves for every skill level, and budgeting a bathroom renovation.",
+      "articles": [
+        {
+          "slug": "how-to-install-lvp-flooring",
+          "title": "How to Install Luxury Vinyl Plank Flooring: Complete DIY Guide",
+          "blurb": "From subfloor prep to the final row — a complete guide to installing LVP flooring yourself."
+        },
+        {
+          "slug": "diy-bookshelf-plans-every-skill-level",
+          "title": "DIY Bookshelf Plans for Every Skill Level",
+          "blurb": "Three bookshelf designs: simple board-and-bracket, mid-century modern, and built-in — pick your level."
+        },
+        {
+          "slug": "bathroom-renovation-cost-breakdown",
+          "title": "Bathroom Renovation Cost Breakdown: Budget, Mid-Range, and High-End",
+          "blurb": "Detailed cost breakdowns for three budget tiers — so you know exactly what to expect before you start."
+        }
+      ]
     }
   },
   {
@@ -363,6 +510,27 @@
           "slug": "high-protein-breakfasts-without-grains",
           "title": "15 High-Protein Breakfasts Without Grains",
           "blurb": "Quick, filling breakfast ideas that keep you full until lunch — no cereal, no toast, no grain required."
+        }
+      ]
+    },
+    "build-coded": {
+      "subject": "Crafts & Creative Builds: Resin, Candles, and Concrete",
+      "intro": "Not every project needs power tools. This week — creative builds that make beautiful gifts and home decor. Epoxy resin, soy candles, and modern concrete planters.",
+      "articles": [
+        {
+          "slug": "epoxy-resin-beginners-guide",
+          "title": "Epoxy Resin for Beginners: Everything You Need to Know",
+          "blurb": "Types of resin, safety gear, mixing ratios, pouring techniques, and common mistakes to avoid."
+        },
+        {
+          "slug": "how-to-make-soy-candles",
+          "title": "How to Make Soy Candles at Home: Step-by-Step Guide",
+          "blurb": "A complete candle-making tutorial — wax melting, fragrance ratios, wick selection, and pouring technique."
+        },
+        {
+          "slug": "diy-concrete-planters-home-decor",
+          "title": "DIY Concrete Planters: Modern Home Decor You Can Make This Weekend",
+          "blurb": "Cast modern concrete planters using simple molds. Mix, pour, demold, seal — done in a weekend."
         }
       ]
     }
@@ -411,6 +579,27 @@
           "blurb": "5 minutes of prep for a probiotic-rich fermented drink that supports gut health and detoxification."
         }
       ]
+    },
+    "build-coded": {
+      "subject": "Digital Making: Raspberry Pi, 3D Printing, and Home Servers",
+      "intro": "Where software meets hardware. This week — set up a Raspberry Pi home server, choose your first 3D printer, and build custom LED lighting.",
+      "articles": [
+        {
+          "slug": "raspberry-pi-home-server-guide",
+          "title": "Raspberry Pi Home Server Guide: Set Up in an Afternoon",
+          "blurb": "File sharing, Plex, Pi-hole, and more — turn a $60 Raspberry Pi into a powerful home server."
+        },
+        {
+          "slug": "best-3d-printers-beginners",
+          "title": "Best 3D Printers for Beginners: 6 Models Under $500",
+          "blurb": "Build volume, ease of use, print quality, and community support — we compared 6 entry-level FDM printers."
+        },
+        {
+          "slug": "how-to-build-led-strip-lighting",
+          "title": "How to Build Custom LED Strip Lighting",
+          "blurb": "LED strip types, power supplies, controllers, and installation — everything for custom accent lighting."
+        }
+      ]
     }
   },
   {
@@ -455,6 +644,94 @@
           "slug": "toxin-free-living-where-to-start",
           "title": "Toxin-Free Living: Where to Start",
           "blurb": "The biggest culprits in your home, the swaps that matter most, and how to prioritize without losing your mind."
+        }
+      ]
+    },
+    "build-coded": {
+      "subject": "Level Up: Routers, Paint Sprayers, and Furniture Upcycling",
+      "intro": "Ready for intermediate projects? This week — wood routers for precision work, paint sprayers for flawless finishes, and techniques for breathing new life into old furniture.",
+      "articles": [
+        {
+          "slug": "best-router-woodworking",
+          "title": "Best Wood Routers: Top Picks for Every Budget",
+          "blurb": "From budget trim routers to full-size plunge models — the routers that unlock precision woodworking."
+        },
+        {
+          "slug": "best-paint-sprayers-home-use",
+          "title": "Best Paint Sprayers for Home Use: Airless, HVLP, and Handheld",
+          "blurb": "Airless, HVLP, and handheld — which paint sprayer type is right for your project? We compared 6 models."
+        },
+        {
+          "slug": "upcycling-furniture-paint-techniques",
+          "title": "Upcycling Furniture with Paint: Techniques That Actually Work",
+          "blurb": "Chalk paint, milk paint, distressing, and sealing — transform old furniture into statement pieces."
+        }
+      ]
+    }
+  },
+  {
+    "edition": 11,
+    "theme": "New AI Tools + Korean SPF Deep Dive",
+    "glow-coded": {
+      "subject": "Korean SPF vs Western SPF: The Real Difference",
+      "intro": "This week we went deep into the regulatory chemistry behind why Korean sunscreens feel so different from anything at the American drugstore. Plus a new guide to non-comedogenic picks for acne-prone skin.",
+      "articles": [
+        {
+          "slug": "korean-spf-vs-western-spf",
+          "title": "Korean SPF vs Western SPF: The Real Difference",
+          "blurb": "Uvinul, Tinosorb, and the UVA-I coverage gap most people don't know about. A complete breakdown of why Korean and EU sunscreens outperform American ones on cosmetic elegance and anti-aging protection."
+        },
+        {
+          "slug": "korean-sunscreens-acne-prone-skin",
+          "title": "Best Korean Sunscreens for Acne-Prone Skin",
+          "blurb": "Non-comedogenic, fragrance-free, and fungal-acne-safe picks from the Korean market. Tested on truly reactive skin — and we tell you which ones actively calm breakouts."
+        },
+        {
+          "slug": "best-korean-sunscreens-oily-skin-no-white-cast",
+          "title": "Best Korean Sunscreens for Oily Skin",
+          "blurb": "Our updated oily-skin guide now cross-references the new acne and chemistry pieces. The 8 sunscreens that control shine, leave zero white cast, and actually feel good to wear."
+        }
+      ]
+    },
+    "rooted-glow": {
+      "subject": "Introducing: 3 AI Wellness Tools (Quiz, Running Plan, Recipes)",
+      "intro": "We just shipped something we've been working on for weeks. Three AI-powered tools designed to help you turn reading into action — personalized wellness profiles, training plans for any distance, and nutrient-dense recipes tailored to your goals. All free, all private, all built to actually work.",
+      "articles": [
+        {
+          "slug": "/tools/quiz/",
+          "title": "Wellness Archetype Quiz",
+          "blurb": "A 2-minute assessment across the four wellness pillars — movement, sleep, stress, and nutrition. Discover your archetype, your strengths, your growth areas, and a 7-day quick-start plan tailored to you."
+        },
+        {
+          "slug": "/tools/running-plan/",
+          "title": "AI Running Plan Generator",
+          "blurb": "Pick your distance (5K, 10K, or Half Marathon), tell us your level and weekly schedule, and our AI coach builds a full week-by-week training plan with pace zones, recovery days, and taper week."
+        },
+        {
+          "slug": "/tools/recipe-generator/",
+          "title": "AI Recipe Generator",
+          "blurb": "Tell the AI what you have on hand, your dietary goals (high-protein, anti-inflammatory, gut-healing), and any restrictions. It builds a whole-food ancestral recipe in seconds — no seed oils, no ultra-processed shortcuts."
+        }
+      ]
+    },
+    "build-coded": {
+      "subject": "Weekend Workshop: Plans, Jigs, and Quick Wins",
+      "intro": "A short mid-month digest: the three pieces our readers spent the most time on this week. Pick one and build something this weekend.",
+      "articles": [
+        {
+          "slug": "best-beginner-woodworking-tools",
+          "title": "Best Beginner Woodworking Tools",
+          "blurb": "The essential tool list. Build this kit first — everything else is a luxury."
+        },
+        {
+          "slug": "how-to-build-a-floating-shelf",
+          "title": "How to Build a Floating Shelf",
+          "blurb": "The afternoon project that actually teaches you useful skills — measuring, drilling, leveling, and finish work."
+        },
+        {
+          "slug": "how-to-build-a-workbench",
+          "title": "How to Build a Workbench",
+          "blurb": "The bench is the project that makes every other project possible. Our build guide covers everything from lumber choice to vise installation."
         }
       ]
     }

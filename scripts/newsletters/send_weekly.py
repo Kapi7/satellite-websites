@@ -70,6 +70,21 @@ SITES = {
         "light_color": "#dcfce7",
         "accent_color": "#4ade80",
     },
+    "build-coded": {
+        "domain": "build-coded.com",
+        "name": "Build Coded",
+        "tagline": "DIY Projects, Decoded",
+        "from_name": "Build Coded",
+        "kv_namespace_env": "CF_KV_NAMESPACE_BUILDCODED",
+        "smtp_server_env": "SMTP_BUILDCODED_SERVER",
+        "smtp_port_env": "SMTP_BUILDCODED_PORT",
+        "smtp_password_env": "SMTP_BUILDCODED_PASSWORD",
+        "email_env": "OUTREACH_BUILDCODED_EMAIL",
+        "primary_color": "#334e68",
+        "bg_color": "#f0f4f8",
+        "light_color": "#d9e2ec",
+        "accent_color": "#f0b429",
+    },
 }
 
 NEWSLETTER_SECRET = os.getenv("NEWSLETTER_SECRET", "")
@@ -161,7 +176,10 @@ def generate_html(site_key: str, edition: dict, unsub_link: str) -> str:
 
     article_blocks = ""
     for i, a in enumerate(ed["articles"]):
-        url = f"https://{domain}/blog/{a['slug']}/"
+        slug = a["slug"]
+        # Support full paths (starting with /) for tool pages; otherwise use root /slug/
+        path = slug if slug.startswith("/") else f"/{slug}/"
+        url = f"https://{domain}{path}"
         article_blocks += f"""
         <tr><td style="padding:0 0 24px 0;">
           <table cellpadding="0" cellspacing="0" border="0" width="100%"><tr><td style="background:#ffffff;border-radius:12px;padding:24px;border:1px solid {light};">
@@ -244,9 +262,11 @@ def generate_plain_text(site_key: str, edition: dict, unsub_link: str) -> str:
         "",
     ]
     for a in ed["articles"]:
+        slug = a["slug"]
+        path = slug if slug.startswith("/") else f"/{slug}/"
         lines.append(f"* {a['title']}")
         lines.append(f"  {a['blurb']}")
-        lines.append(f"  https://{domain}/blog/{a['slug']}/")
+        lines.append(f"  https://{domain}{path}")
         lines.append("")
     lines.append(f"Visit: https://{domain}")
     lines.append(f"Unsubscribe: {unsub_link}")
