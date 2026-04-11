@@ -34,10 +34,13 @@ NOTIFY_SCRIPT = REPO_ROOT / "scripts" / "notify.py"
 GSC_TOKEN_FILE = Path(os.path.expanduser("~/.config/gsc-token.json"))
 
 SITES = [
-    ("glow-coded.com", "cosmetics", "sc-domain:glow-coded.com"),
-    ("rooted-glow.com", "wellness", "sc-domain:rooted-glow.com"),
-    ("mirai-skin.com", None, "sc-domain:mirai-skin.com"),  # no local repo
-    ("build-coded.com", "build-coded", None),  # no GSC (not verified yet)
+    # (domain, site_dir, gsc_id, action_mode)
+    #   action_mode: "allowed" — may propose missions / edits / commits
+    #                "readonly" — visible in brief, NEVER proposed for action
+    ("glow-coded.com", "cosmetics", "sc-domain:glow-coded.com", "allowed"),
+    ("rooted-glow.com", "wellness", "sc-domain:rooted-glow.com", "allowed"),
+    ("build-coded.com", "build-coded", None, "allowed"),  # no GSC (not verified yet)
+    ("mirai-skin.com", None, "sc-domain:mirai-skin.com", "readonly"),  # monitoring only
 ]
 
 
@@ -389,6 +392,252 @@ def crawl_site(site_dir: str, domain: str) -> str:
     return "\n".join(lines)
 
 
+# ── Summary + mission builder (for Telegram digest) ─────────────────────────
+
+def _parse_gsc_block(block: str) -> dict:
+    """Extract key metrics from a single GSC markdown block."""
+    out: dict = {}
+    header = re.search(r"^## ([^\s·]+) · 7d vs prev 7d", block, re.MULTILINE)
+    if header:
+        out["domain"] = header.group(1)
+    clicks = re.search(r"^Clicks: (\d+) → (\d+) \(([^)]+)\)", block, re.MULTILINE)
+    if clicks:
+        out["clicks_prev"] = int(clicks.group(1))
+        out["clicks_cur"] = int(clicks.group(2))
+        out["clicks_delta"] = clicks.group(3)
+    impr = re.search(r"^Impressions: (\d+) → (\d+) \(([^)]+)\)", block, re.MULTILINE)
+    if impr:
+        out["impr_prev"] = int(impr.group(1))
+        out["impr_cur"] = int(impr.group(2))
+        out["impr_delta"] = impr.group(3)
+    pos = re.search(r"^Avg pos: ([\d.]+) → ([\d.]+)", block, re.MULTILINE)
+    if pos:
+        out["pos_prev"] = float(pos.group(1))
+        out["pos_cur"] = float(pos.group(2))
+
+    # First striking-distance line
+    strike = re.search(
+        r"^### Striking distance[^\n]*\n- (\"[^\"]+\"[^\n]+)", block, re.MULTILINE
+    )
+    if strike:
+        out["top_striker"] = strike.group(1)
+
+    # First new query line
+    new_q = re.search(
+        r"^### New queries[^\n]*\n- (\"[^\"]+\"[^\n]+)", block, re.MULTILINE
+    )
+    if new_q:
+        out["top_new"] = new_q.group(1)
+
+    # First 2 declining pages
+    dec = re.findall(r"^- (\S[^\n]+? — \d+ → \d+ clicks)", block, re.MULTILINE)
+    if dec:
+        out["decliners"] = dec[:2]
+
+    return out
+
+
+def _parse_crawler_block(block: str) -> dict:
+    """Extract counts and queue head from a single crawler markdown block."""
+    out: dict = {}
+    header = re.search(r"^## (\S+) / (\S+) audit", block, re.MULTILINE)
+    if header:
+        out["site_dir"] = header.group(1)
+        out["domain"] = header.group(2)
+    total = re.search(r"^Total MDX \(en\): (\d+)\s+\(drafts: (\d+)\)", block, re.MULTILINE)
+    if total:
+        out["total"] = int(total.group(1))
+        out["drafts"] = int(total.group(2))
+    else:
+        out["total"] = 0
+        out["drafts"] = 0
+    orph = re.search(r"^### Orphans \((\d+) total", block, re.MULTILINE)
+    out["orphans"] = int(orph.group(1)) if orph else 0
+    thin = re.search(r"^### Thin content[^(]*\((\d+) total", block, re.MULTILINE)
+    out["thin"] = int(thin.group(1)) if thin else 0
+    miss = re.search(r"^### Missing frontmatter \((\d+) total", block, re.MULTILINE)
+    out["missing_fm"] = int(miss.group(1)) if miss else 0
+    faq = re.search(r"^### Missing FAQ blocks \((\d+) total", block, re.MULTILINE)
+    out["missing_faq"] = int(faq.group(1)) if faq else 0
+
+    # Hub coverage — count WEAK
+    hubs = re.findall(r"^- (\S+) · in: (\d+) · out: (\d+) · (\w+)", block, re.MULTILINE)
+    weak_hubs = [(slug, int(inb), int(outb)) for slug, inb, outb, h in hubs if h == "WEAK"]
+    out["weak_hubs"] = weak_hubs
+    out["hubs_total"] = len(hubs)
+
+    # Draft slugs (for mission targeting)
+    drafts_section = re.search(
+        r"^### Drafts pending \(\d+ total\)\n((?:- \S+\n?)+)", block, re.MULTILINE
+    )
+    if drafts_section:
+        out["draft_slugs"] = [
+            m.strip("- ").strip() for m in drafts_section.group(1).splitlines() if m.strip()
+        ]
+    else:
+        out["draft_slugs"] = []
+
+    return out
+
+
+def _next_publish_queue_head(site_dir: str, draft_slugs: list[str]) -> str | None:
+    """Parse daily-publish.sh to find the first queued draft for this site."""
+    publish_sh = REPO_ROOT / "scripts" / "daily-publish.sh"
+    if not publish_sh.exists():
+        return draft_slugs[0] if draft_slugs else None
+    text = publish_sh.read_text()
+    # Find articles for this site_dir
+    pattern = re.compile(rf'"{re.escape(site_dir)}/src/content/blog/en/([a-z0-9-]+)\.mdx"')
+    queued = pattern.findall(text)
+    draft_set = set(draft_slugs)
+    for slug in queued:
+        if slug in draft_set:
+            return slug
+    return draft_slugs[0] if draft_slugs else None
+
+
+def build_summary(gsc_blocks: list[str], crawler_blocks: list[str]) -> str:
+    """Build a condensed Telegram-friendly summary + mission list."""
+    today = datetime.now().strftime("%Y-%m-%d")
+    mode_by_domain = {d: m for d, _, _, m in SITES}
+
+    gsc_by_domain: dict[str, dict] = {}
+    for b in gsc_blocks:
+        parsed = _parse_gsc_block(b)
+        if parsed.get("domain"):
+            gsc_by_domain[parsed["domain"]] = parsed
+
+    crawl_by_domain: dict[str, dict] = {}
+    for b in crawler_blocks:
+        parsed = _parse_crawler_block(b)
+        if parsed.get("domain"):
+            crawl_by_domain[parsed["domain"]] = parsed
+
+    lines: list[str] = [f"📊 SEO morning brief · {today}", ""]
+
+    # Per-site blocks — action-allowed sites first, read-only after
+    def site_block(domain: str) -> list[str]:
+        out: list[str] = []
+        mode = mode_by_domain.get(domain, "allowed")
+        tag = "(action-allowed)" if mode == "allowed" else "(read-only, monitoring)"
+        out.append(f"🔎 {domain}   {tag}")
+        g = gsc_by_domain.get(domain)
+        if g:
+            out.append(
+                f"  Clicks 7d: {g.get('clicks_prev', 0)} → {g.get('clicks_cur', 0)} "
+                f"({g.get('clicks_delta', '—')})"
+            )
+            out.append(
+                f"  Impr: {g.get('impr_prev', 0)} → {g.get('impr_cur', 0)} "
+                f"({g.get('impr_delta', '—')})"
+            )
+            if "pos_prev" in g:
+                out.append(f"  Avg pos: {g['pos_prev']:.1f} → {g['pos_cur']:.1f}")
+            if g.get("top_striker"):
+                out.append(f"  Striking: {g['top_striker'][:80]}")
+            if g.get("top_new"):
+                out.append(f"  Top new query: {g['top_new'][:80]}")
+            if g.get("decliners"):
+                out.append(f"  Declining: {g['decliners'][0][:80]}")
+        else:
+            out.append("  (no GSC data yet)")
+        c = crawl_by_domain.get(domain)
+        if c:
+            out.append(
+                f"  En articles: {c.get('total', 0)}  ·  Drafts: {c.get('drafts', 0)}  ·  "
+                f"Orphans: {c.get('orphans', 0)}"
+            )
+            if c.get("hubs_total"):
+                out.append(
+                    f"  Hubs: {len(c.get('weak_hubs', []))}/{c['hubs_total']} WEAK  ·  "
+                    f"Missing FAQ: {c.get('missing_faq', 0)}"
+                )
+        out.append("")
+        return out
+
+    action_domains = [d for d, _, _, m in SITES if m == "allowed"]
+    readonly_domains = [d for d, _, _, m in SITES if m == "readonly"]
+    for d in action_domains + readonly_domains:
+        lines.extend(site_block(d))
+
+    # Missions — only for action-allowed sites
+    missions: list[tuple[str, str]] = []  # (letter, description)
+    letter_idx = 0
+    letters = "ABCDEFGHIJ"
+
+    def add(desc: str) -> None:
+        nonlocal letter_idx
+        if letter_idx < len(letters):
+            missions.append((letters[letter_idx], desc))
+            letter_idx += 1
+
+    # A/B: publish next draft on each allowed site with drafts pending
+    for d in action_domains:
+        c = crawl_by_domain.get(d)
+        if not c or not c.get("draft_slugs"):
+            continue
+        site_dir = c.get("site_dir", "")
+        head = _next_publish_queue_head(site_dir, c["draft_slugs"])
+        if head:
+            add(f"Publish next draft on {d}\n     → {head}")
+
+    # C: internal-linking sweep for sites with WEAK hubs
+    for d in action_domains:
+        c = crawl_by_domain.get(d)
+        if not c:
+            continue
+        weak = c.get("weak_hubs", [])
+        if not weak:
+            continue
+        targets = ", ".join(slug for slug, _, _ in weak[:4])
+        add(
+            f"Internal-linking sweep on {d}\n"
+            f"     → Strengthen {len(weak)} WEAK hub(s): {targets}"
+        )
+
+    # D: target top new GSC query on each allowed site
+    for d in action_domains:
+        g = gsc_by_domain.get(d)
+        if not g or not g.get("top_new"):
+            continue
+        add(
+            f"Refresh content on {d} for new query\n"
+            f"     → {g['top_new'][:70]}"
+        )
+
+    # E: batch-fix missing author / tags / FAQ
+    total_missing_fm = sum(
+        (crawl_by_domain.get(d) or {}).get("missing_fm", 0) for d in action_domains
+    )
+    total_missing_faq = sum(
+        (crawl_by_domain.get(d) or {}).get("missing_faq", 0) for d in action_domains
+    )
+    if total_missing_fm or total_missing_faq:
+        add(
+            f"Batch frontmatter + FAQ fix across allowed sites\n"
+            f"     → {total_missing_fm} frontmatter gaps · {total_missing_faq} missing FAQ"
+        )
+
+    lines.append("────────")
+    lines.append("✅ Proposed missions for today")
+    lines.append("")
+    if missions:
+        for letter, desc in missions:
+            lines.append(f"{letter}. {desc}")
+            lines.append("")
+    else:
+        lines.append("(no missions proposed — nothing actionable today)")
+        lines.append("")
+
+    lines.append("────────")
+    lines.append(
+        "Reply with mission letters to approve (e.g. \"mission A B approved, rest not\")"
+    )
+    lines.append(f"Full report: scripts/seo/reports/{today}-morning.md")
+
+    return "\n".join(lines)
+
+
 # ── Telegram notification ────────────────────────────────────────────────────
 
 def load_dotenv() -> None:
@@ -412,14 +661,33 @@ def notify_telegram(title: str, body: str) -> None:
     if not os.getenv("TELEGRAM_BOT_TOKEN") or not os.getenv("TELEGRAM_CHAT_ID"):
         print("notify: TELEGRAM_BOT_TOKEN/CHAT_ID not set, skipping", file=sys.stderr)
         return
-    try:
-        subprocess.run(
-            [sys.executable, str(NOTIFY_SCRIPT), "--stdin",
-             "--level", "report", "--title", title],
-            input=body, text=True, check=True, timeout=20,
-        )
-    except Exception as e:
-        print(f"notify: send failed ({e})", file=sys.stderr)
+    # Chunk at ~3800 chars (Telegram hard limit ~4096, leave room for title wrap)
+    MAX = 3800
+    if len(body) <= MAX:
+        chunks = [body]
+    else:
+        chunks = []
+        remaining = body
+        while remaining:
+            if len(remaining) <= MAX:
+                chunks.append(remaining)
+                break
+            # Break on last blank line before the cap
+            split_at = remaining.rfind("\n\n", 0, MAX)
+            if split_at < MAX // 2:
+                split_at = MAX
+            chunks.append(remaining[:split_at])
+            remaining = remaining[split_at:].lstrip("\n")
+    for i, chunk in enumerate(chunks, 1):
+        chunk_title = title if len(chunks) == 1 else f"{title} ({i}/{len(chunks)})"
+        try:
+            subprocess.run(
+                [sys.executable, str(NOTIFY_SCRIPT), "--stdin",
+                 "--level", "report", "--title", chunk_title],
+                input=chunk, text=True, check=True, timeout=20,
+            )
+        except Exception as e:
+            print(f"notify: send failed ({e})", file=sys.stderr)
 
 
 # ── Main ─────────────────────────────────────────────────────────────────────
@@ -427,7 +695,8 @@ def notify_telegram(title: str, body: str) -> None:
 def main() -> int:
     parser = argparse.ArgumentParser(description="Manual SEO morning brief (no Agent SDK).")
     parser.add_argument("--skip-telegram", action="store_true")
-    parser.add_argument("--stdout", action="store_true", help="Print to stdout instead of saving")
+    parser.add_argument("--stdout", action="store_true", help="Print full report to stdout instead of saving")
+    parser.add_argument("--print-summary", action="store_true", help="Print the Telegram summary to stdout (implies --skip-telegram)")
     parser.add_argument("--skip-gsc", action="store_true")
     parser.add_argument("--skip-crawler", action="store_true")
     args = parser.parse_args()
@@ -444,7 +713,7 @@ def main() -> int:
             gsc_blocks.append(f"(GSC auth failed: {e})")
             access_token = None
         if access_token:
-            for domain, _site_dir, gsc_id in SITES:
+            for domain, _site_dir, gsc_id, _mode in SITES:
                 if not gsc_id:
                     continue
                 print(f"[gsc] {domain} …")
@@ -455,7 +724,7 @@ def main() -> int:
 
     crawler_blocks: list[str] = []
     if not args.skip_crawler:
-        for domain, site_dir, _gsc_id in SITES:
+        for domain, site_dir, _gsc_id, _mode in SITES:
             if not site_dir:
                 continue
             print(f"[crawl] {site_dir} …")
@@ -481,12 +750,16 @@ def main() -> int:
         out.write_text(digest)
         print(f"[ok] wrote {out.relative_to(REPO_ROOT)}")
 
-    if not args.skip_telegram:
-        summary = (
-            f"Morning brief ready for {len(gsc_blocks)} GSC sites + "
-            f"{len(crawler_blocks)} repos.\n"
-            f"scripts/seo/reports/{today}-morning.md"
-        )
+    summary = build_summary(gsc_blocks, crawler_blocks)
+
+    if args.print_summary:
+        print("─" * 60)
+        print("TELEGRAM SUMMARY PREVIEW")
+        print("─" * 60)
+        print(summary)
+        print("─" * 60)
+        print(f"({len(summary)} chars)")
+    elif not args.skip_telegram:
         notify_telegram(f"SEO morning brief · {today}", summary)
 
     return 0
