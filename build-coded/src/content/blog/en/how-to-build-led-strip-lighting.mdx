@@ -1,0 +1,240 @@
+---
+title: "How to Build Custom LED Strip Lighting: Under Cabinet, Accent, and More"
+description: "A complete guide to planning, wiring, and installing custom LED strip lighting for under cabinets, accent walls, and decorative applications."
+date: 2026-04-07
+category: "electronics"
+type: "guide"
+tags: ["LED strips", "lighting", "home improvement", "smart home", "DIY", "accent lighting", "under cabinet"]
+image: "/images/how-to-build-led-strip-lighting.jpg"
+imageAlt: "Warm white LED strip lighting installed under kitchen cabinets illuminating a countertop"
+draft: false
+locale: en
+author: "Danny Herrera"
+difficulty: "intermediate"
+estimatedTime: "2-4 hours"
+estimatedCost: "$30-80"
+hub: "diy-smart-home-on-a-budget"
+---
+
+## Why LED Strip Lighting Is One of the Best Home Upgrades
+
+Dollar for dollar, LED strip lighting is one of the most impactful upgrades you can make to a room. Under-cabinet kitchen lights, backlit entertainment centers, accent coves, stairway lighting, and closet illumination all transform a space for a fraction of what traditional lighting costs.
+
+LED strips are also one of the most satisfying DIY projects because the results are immediately visible and genuinely useful. No soldering is required for a basic installation (though it helps for custom lengths), and the whole job typically takes an afternoon.
+
+This guide covers everything: strip types, power calculations, controllers, installation, and smart home integration.
+
+## Materials and Tools
+
+### What You Need
+
+| Item | Purpose | Estimated Cost |
+|------|---------|---------------|
+| [LED strip (see types below)](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) | The light source | $10-30 |
+| Power supply (12V or 24V DC) | Converts AC wall power to DC | $8-20 |
+| LED controller/dimmer | Adjusts brightness and color | $5-15 |
+| [Aluminum channel with diffuser](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) | Clean look, heat dissipation, diffusion | $10-25 |
+| Solderless LED connectors or solder + iron | Connecting strip segments | $5-10 |
+| 20-22 AWG wire | Running power between sections | $5 |
+| Mounting clips or 3M VHB tape | Securing the installation | $5 |
+
+### Tools
+
+- Measuring tape
+- Scissors (LED strips cut at marked intervals)
+- Wire strippers
+- Drill (for mounting channels)
+- Soldering iron (optional but recommended for reliable connections)
+
+## Understanding LED Strip Types
+
+### Single Color vs. RGB vs. RGBW vs. Tunable White
+
+**Single color (warm white, cool white, or neutral white):** The simplest and most practical for task lighting like under-cabinet and closet illumination. Warm white (2700-3000K) matches most home lighting. Cool white (5000-6500K) is better for workshops and garages.
+
+**RGB (Red, Green, Blue):** Can produce millions of colors but cannot produce a clean, high-quality white. Best for accent and mood lighting, not task lighting.
+
+**RGBW (RGB + dedicated White):** Adds a dedicated white LED chip alongside the RGB chips. This gives you both color effects AND a proper white for task lighting. This is the most versatile option.
+
+**Tunable white (CCT):** Has two white LED types (warm and cool) that you can blend to any color temperature. Ideal if you want warm light in the evening and energizing cool light during the day. No color capability, but the white quality is excellent.
+
+### LED Density: 30/m, 60/m, 120/m
+
+The number of LED chips per meter affects brightness and how smooth the light appears.
+
+- **30 LEDs/m:** Visible individual dots, even with a diffuser. Suitable for backlighting where you do not see the strip directly.
+- **60 LEDs/m:** Good balance of brightness and appearance. The standard for most installations.
+- **120 LEDs/m:** Smooth, continuous light output. Ideal for under-cabinet and cove lighting where the diffuser is visible.
+
+**Recommendation:** For most installations, 60 LEDs/m hits the sweet spot. Step up to 120/m if the diffuser channel will be visible.
+
+### 12V vs. 24V
+
+**12V strips** are more common and cheaper, but voltage drop over distance is a real issue. Beyond about 5 meters (16 feet), the end of the strip is noticeably dimmer than the beginning.
+
+**24V strips** handle longer runs better because they draw half the current for the same wattage, reducing voltage drop. For any run over 3 meters, 24V is the better choice.
+
+**Pro tip:** Never mix 12V strips with a 24V power supply (or vice versa). A 12V strip on 24V power will overheat and can be a fire hazard. Always match the strip voltage to the power supply voltage.
+
+## Calculating Your Power Supply
+
+This step is critical. An undersized power supply runs hot and may fail. Here is how to size it correctly.
+
+### Step 1: Determine Total Wattage
+
+LED strips are rated in watts per meter. Common values:
+- Single color 60 LEDs/m: ~5W/m
+- RGB 60 LEDs/m: ~14W/m
+- RGBW 60 LEDs/m: ~18W/m
+
+Multiply the wattage per meter by the total length of strip you are installing.
+
+**Example:** 4 meters of RGBW strip at 18W/m = 72W total.
+
+### Step 2: Add 20% Headroom
+
+Never run a power supply at 100% capacity. Add 20% for safety and longevity.
+
+**Example:** 72W x 1.2 = 86.4W. Choose a 100W power supply.
+
+### Step 3: Check the Current Rating
+
+Verify the power supply provides enough amperage. For a 12V system: Amps = Watts / 12. For a 24V system: Amps / 24.
+
+**Example:** 100W at 24V = 4.17A. A 24V/5A power supply would work.
+
+### Recommended Power Supplies
+
+For most home installations, a [Mean Well LPV series power supply](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) is the industry standard. They are reliable, efficient, and have proper safety certifications. Avoid the cheapest no-name power supplies — a failing power supply near combustible cabinets is not worth saving five dollars.
+
+**Safety warning:** LED power supplies convert household AC voltage (120V/240V) to low-voltage DC. The AC side is dangerous. If you are not comfortable wiring AC power, use a power supply with a pre-attached AC plug. Never leave AC wire connections exposed or accessible.
+
+## Controllers and Smart Integration
+
+### Basic Dimmer
+
+For single-color strips, a simple [PWM dimmer](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) with a rotary knob or remote control adjusts brightness. These cost $5-10 and work well.
+
+### Smart Controllers
+
+For smart home integration, a WiFi-enabled controller lets you control your LED strips from your phone, by voice, or through automations.
+
+**Budget smart option:** [GLEDOPTO Zigbee LED controller](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) — works with Alexa, Google Home, and Home Assistant via a Zigbee hub. About $15-20. Available in single-color, CCT, RGB, and RGBW versions.
+
+**WiFi option:** [BTF-Lighting WiFi controller](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) — works directly with Alexa and Google Home without a separate hub. About $10-15.
+
+**Advanced DIY option:** An ESP32 board running WLED firmware gives you full control over individually addressable LED strips (WS2812B, SK6812, etc.) with hundreds of effects, music reactivity, and Home Assistant integration. This is a project in itself but is extremely rewarding.
+
+### Wiring Diagram
+
+The basic wiring chain is:
+
+```
+AC outlet → Power supply → Controller → LED strip
+```
+
+For RGBW strips, the controller has 5 output wires (V+, R, G, B, W). For single color, it is just V+ and V-. The controller sits between the power supply and the LED strip.
+
+## Installation Guide: Under-Cabinet Kitchen Lighting
+
+This is the most popular LED strip project, so let us walk through it in detail.
+
+### Planning
+
+1. **Measure each cabinet section** where you want lighting. Measure the underside length of each cabinet, noting any gaps (range hood, sink window, etc.).
+2. **Decide on strip placement.** Mount the strip toward the front edge of the cabinet underside for maximum counter illumination, or toward the back (against the wall) for a softer, more ambient effect. Front placement is recommended for task lighting.
+3. **Plan your wiring route.** The power supply and controller should be hidden — inside a cabinet, on top of the cabinets, or in an adjacent closet. Plan how wires will run between cabinets.
+
+### Step 1: Install Aluminum Channels
+
+Aluminum channels serve three purposes: they dissipate heat (extending LED life), provide a clean mounting surface, and the diffuser cover eliminates visible LED dots.
+
+1. Cut the aluminum channel to match each cabinet section using a hacksaw or miter saw.
+2. Drill pilot holes through the channel's mounting tabs.
+3. Screw the channels to the underside of each cabinet. If your cabinets have a front lip/face frame, mount behind it to hide the channel from view.
+
+### Step 2: Cut and Connect LED Strips
+
+LED strips have marked cut points every 3-6 LEDs (depending on the strip). Cut only at these marks.
+
+1. Measure each channel and cut a strip to fit.
+2. Connect strips between cabinets using either solderless connectors or soldered wires.
+
+**On solderless connectors:** They work, but they are the weakest point in any installation. The clips can loosen over time, creating flickering or dead sections. For a permanent installation, soldering is more reliable. See our [soldering basics guide](/blog/en/soldering-basics-complete-guide) if you have never soldered before.
+
+### Step 3: Place Strips in Channels
+
+1. Peel the adhesive backing on the LED strip and press it into the channel. Make sure it sits flat and centered.
+2. Snap the diffuser cover onto the channel.
+
+### Step 4: Wire Everything Together
+
+1. Run wires from each strip section back to the controller location. Use 20 AWG wire for runs under 3 meters, 18 AWG for longer runs.
+2. Connect all strip sections in parallel (each strip runs back to the controller), not in series (daisy-chained end to end). Parallel wiring ensures even brightness across all sections.
+3. Connect the controller to the power supply.
+4. Plug in and test before finalizing wire management.
+
+### Step 5: Clean Up Wiring
+
+- Use adhesive cable clips to route wires neatly along cabinet edges and inside corner joints.
+- If running wires through cabinet interiors, drill small holes in the cabinet sides (just large enough for the wire to pass through).
+- Use cable raceways or paintable wire channels for any visible wire runs on the wall.
+
+## Other Popular Applications
+
+### Entertainment Center Backlighting (Bias Lighting)
+
+Mount an LED strip around the back edge of your TV. This reduces eye strain during dark scenes and makes the image appear more vivid. A simple USB-powered strip that plugs into the TV itself works perfectly — it turns on and off with the TV automatically.
+
+A [pre-cut TV bias lighting kit](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) simplifies this installation to under 10 minutes.
+
+### Stairway Lighting
+
+Mount strips under the lip of each stair tread for safety lighting. Pair with a motion sensor at the top and bottom of the stairs so lights activate automatically in the dark. Use warm white (2700K) to avoid a harsh, commercial look.
+
+**Safety note:** Ensure all wiring is securely fastened and not crossing any walking surfaces. Low-voltage DC wiring is not dangerous from a shock perspective, but a loose wire on stairs is a tripping hazard.
+
+### Closet Lighting
+
+A single strip on a magnetic door sensor — the light turns on when the door opens and off when it closes. No switch needed, no wiring modifications to your house, and it illuminates the closet better than a single overhead bulb.
+
+### Cove Lighting
+
+Mount strips inside a ceiling cove or crown molding ledge to create indirect ambient lighting. This creates a floating, professional lighting effect. Cove lighting works best with 120 LEDs/m strips and a wide diffusion channel for smooth, even output.
+
+## Troubleshooting
+
+### Strip is dim at one end
+
+This is voltage drop. Solutions:
+- Use 24V strips instead of 12V.
+- Inject power at both ends of the strip.
+- Use thicker gauge wire for long runs.
+
+### Strip flickers
+
+- Check all connections (especially solderless connectors — reseat or replace).
+- Verify the power supply is adequately sized (recalculate with 20% headroom).
+- If using a dimmer, ensure it is PWM-based, not a resistive/AC dimmer.
+
+### Colors are wrong on RGB strips
+
+- Check wire order at connections. RGB strips have specific wire assignments (usually labeled R, G, B on the strip).
+- Verify the controller type matches the strip type (common anode vs. common cathode).
+
+### Strip adhesive will not stick
+
+- Clean the surface with isopropyl alcohol before applying.
+- Use aluminum channels (the adhesive holds better on a flat surface, and the channel is mechanically fastened).
+- Supplement with 3M VHB tape for surfaces where the included adhesive fails.
+
+## Maintenance and Longevity
+
+Quality LED strips last 30,000-50,000 hours (over 10 years of 8 hours per day use). To maximize lifespan:
+
+- **Use aluminum channels.** Heat is the enemy of LEDs. Aluminum channels act as heat sinks, keeping strip temperatures lower.
+- **Do not exceed rated power.** Running 12V strips on a 12V supply is fine. Running them on anything higher is not.
+- **Keep connections clean and secure.** Corrosion and loose connections cause most failures.
+- **Avoid tight bends.** LED strips can flex gently but should not be bent sharply (minimum bend radius is usually about 2cm). Use corner connectors for 90-degree turns.
+
+LED strip lighting is one of those projects where the effort-to-reward ratio is exceptionally high. A few hours of work, modest materials cost, and you have lighting that transforms the look and functionality of any room. Start with the kitchen — that is where you will appreciate it most.
