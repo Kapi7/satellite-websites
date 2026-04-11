@@ -127,8 +127,33 @@ def parse_promo_reddit():
 
 
 def generate_reddit_schedule():
-    """Generate Reddit posting schedule."""
+    """Generate Reddit posting schedule.
+
+    Merge behaviour: any existing entries in reddit_schedule.json are
+    preserved exactly (keeps karma posts, posted/failed status, dates).
+    Only new articles/promo posts not already in the schedule get appended.
+    """
     promo_entries = parse_promo_reddit()
+
+    # Load existing schedule (if any) and index by a stable key.
+    # Karma entries use topic+subreddit as key; promo entries use URL.
+    existing = []
+    if REDDIT_SCHEDULE.exists():
+        try:
+            with open(REDDIT_SCHEDULE) as f:
+                existing = json.load(f)
+        except Exception:
+            existing = []
+
+    existing_urls = {
+        e["url"].rstrip("/") for e in existing
+        if e.get("url") and e.get("comment_type", "link") == "link"
+    }
+    existing_karma_keys = {
+        (e.get("subreddit", ""), e.get("topic", ""))
+        for e in existing if e.get("comment_type") == "value"
+    }
+    next_id = max((e.get("id", 0) for e in existing), default=0) + 1
 
     # Get all published articles for auto-generating beyond the 9 pre-written
     all_articles = []
@@ -138,13 +163,23 @@ def generate_reddit_schedule():
     # Track URLs already covered by promo entries
     promo_urls = {e["url"].rstrip("/") for e in promo_entries}
 
-    schedule = []
-    # Start date: next Monday from today
+    # Start new appended entries the day after the latest existing date
     today = datetime.now().date()
-    days_until_monday = (7 - today.weekday()) % 7
-    if days_until_monday == 0:
-        days_until_monday = 7
-    start_date = today + timedelta(days=days_until_monday)
+    latest_date = today
+    for e in existing:
+        try:
+            d = datetime.fromisoformat(e["scheduled_date"]).date()
+            if d > latest_date:
+                latest_date = d
+        except Exception:
+            pass
+
+    # Start date: Monday on or after (latest_date + 1)
+    start_seed = latest_date + timedelta(days=1)
+    days_until_monday = (7 - start_seed.weekday()) % 7
+    start_date = start_seed + timedelta(days=days_until_monday)
+
+    schedule = []  # only NEW entries get appended here
 
     # Schedule pre-written posts first (Mon/Wed/Fri)
     post_days = [0, 2, 4]  # Mon=0, Wed=2, Fri=4
@@ -152,10 +187,13 @@ def generate_reddit_schedule():
     day_idx = 0
 
     for entry in promo_entries:
+        if entry["url"].rstrip("/") in existing_urls:
+            continue  # already in schedule
         post_date = start_date + timedelta(weeks=week, days=post_days[day_idx])
         schedule.append({
-            "id": len(schedule) + 1,
+            "id": next_id + len(schedule),
             "type": "pre-written",
+            "comment_type": "link",
             "post_num": entry["post_num"],
             "subreddit": entry["subreddit"],
             "search_terms": entry["search_terms"],
@@ -169,8 +207,12 @@ def generate_reddit_schedule():
             day_idx = 0
             week += 1
 
-    # Auto-generate entries for remaining articles
-    remaining = [a for a in all_articles if a["url"].rstrip("/") not in promo_urls]
+    # Auto-generate entries for remaining articles (skip if already covered)
+    remaining = [
+        a for a in all_articles
+        if a["url"].rstrip("/") not in promo_urls
+        and a["url"].rstrip("/") not in existing_urls
+    ]
     for article in remaining:
         category = article["category"]
         subreddits = SUBREDDIT_MAP.get(category, ["SkincareAddiction"])
@@ -191,8 +233,9 @@ def generate_reddit_schedule():
 
         post_date = start_date + timedelta(weeks=week, days=post_days[day_idx])
         schedule.append({
-            "id": len(schedule) + 1,
+            "id": next_id + len(schedule),
             "type": "auto-generated",
+            "comment_type": "link",
             "subreddit": subreddit,
             "search_terms": search_terms,
             "comment": comment,
@@ -206,7 +249,8 @@ def generate_reddit_schedule():
             day_idx = 0
             week += 1
 
-    return schedule
+    # Return existing + newly appended entries, preserving karma + posted status
+    return existing + schedule
 
 
 def generate_pinterest_schedule():
