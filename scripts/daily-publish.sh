@@ -13,6 +13,15 @@ git pull --rebase --quiet origin main 2>/dev/null || true
 
 echo "=== Daily Publish $(date) ==="
 
+# ─────────────────────────────────────────────────────────────
+# Pre-flight: queue health check (author rotation + hero auto-gen)
+# Non-blocking — always exits 0 even on failure.
+# ─────────────────────────────────────────────────────────────
+if [ -f scripts/queue_health.py ]; then
+  echo "[pre-flight] running queue_health.py"
+  python3 scripts/queue_health.py || echo "[pre-flight] queue_health returned non-zero"
+fi
+
 LOCALES="es de el ru it ar"
 PUBLISHED=0
 PUBLISHED_FILES=""
@@ -168,6 +177,20 @@ if [ $PUBLISHED -gt 0 ]; then
   fi
 
   echo "Done! Published $PUBLISHED article(s) and deployed."
+
+  # Fire-and-forget Telegram ping with the list of newly-published slugs
+  if [ -f scripts/notify.py ]; then
+    SLUGS=$(for f in $PUBLISHED_FILES; do
+      if echo "$f" | grep -q "/blog/en/"; then
+        site=$(echo "$f" | cut -d/ -f1)
+        slug=$(basename "$f" .mdx)
+        echo "• $site: $slug"
+      fi
+    done)
+    printf "Published %d article(s) today:\n%s" "$PUBLISHED" "$SLUGS" \
+      | python3 scripts/notify.py --stdin --level ship --title "Daily publisher" \
+      || true
+  fi
 else
   echo "Nothing to publish today."
 fi
