@@ -950,7 +950,8 @@
       "longevity"
     ],
     "scheduled_date": "2026-04-10",
-    "status": "pending"
+    "status": "posted",
+    "posted_at": "2026-04-11T10:01:20.961957"
   },
   {
     "id": 45,
@@ -971,7 +972,8 @@
       "sunscreen review"
     ],
     "scheduled_date": "2026-04-11",
-    "status": "pending"
+    "status": "posted",
+    "posted_at": "2026-04-11T10:02:43.054315"
   },
   {
     "id": 46,
@@ -991,7 +993,8 @@
       "clean eating"
     ],
     "scheduled_date": "2026-04-11",
-    "status": "pending"
+    "status": "posted",
+    "posted_at": "2026-04-11T11:01:17.964739"
   },
   {
     "id": 47,
@@ -1012,7 +1015,8 @@
       "endurance"
     ],
     "scheduled_date": "2026-04-11",
-    "status": "pending"
+    "status": "posted",
+    "posted_at": "2026-04-11T11:02:46.619275"
   },
   {
     "id": 48,
@@ -1141,7 +1145,8 @@
       "acne marks"
     ],
     "scheduled_date": "2026-04-04",
-    "status": "pending"
+    "status": "posted",
+    "posted_at": "2026-04-11T11:03:46.389376"
   },
   {
     "id": 54,
@@ -1162,7 +1167,8 @@
       "moisturizer"
     ],
     "scheduled_date": "2026-04-04",
-    "status": "pending"
+    "status": "posted",
+    "posted_at": "2026-04-11T16:36:16.145324"
   },
   {
     "id": 55,
@@ -1183,7 +1189,8 @@
       "eye care"
     ],
     "scheduled_date": "2026-04-04",
-    "status": "pending"
+    "status": "posted",
+    "posted_at": "2026-04-11T16:37:38.684787"
   },
   {
     "id": 56,
@@ -1204,7 +1211,8 @@
       "gentle routine"
     ],
     "scheduled_date": "2026-04-04",
-    "status": "pending"
+    "status": "posted",
+    "posted_at": "2026-04-11T16:39:06.298286"
   },
   {
     "id": 57,
@@ -1224,7 +1232,8 @@
       "k-beauty essentials"
     ],
     "scheduled_date": "2026-04-04",
-    "status": "pending"
+    "status": "posted",
+    "posted_at": "2026-04-11T16:40:23.950994"
   },
   {
     "id": 58,
@@ -1430,6 +1439,590 @@
       "skincare routine"
     ],
     "scheduled_date": "2026-04-11",
+    "status": "pending"
+  },
+  {
+    "id": 68,
+    "title": "Top 10 Korean Lip Products That Actually Hydrate",
+    "description": "Cracked, peeling lips deserve better than petroleum jelly. We tested 10 Korean lip products \u2014 balms, serums, masks, and tints \u2014 that deliver real, lasting hydration.",
+    "url": "https://glow-coded.com/best-korean-lip-products-hydration/",
+    "image_path": "/Users/kapi7/satellite-websites/cosmetics/public/images/korean-lip-products.jpg",
+    "board": "Product Reviews",
+    "site": "cosmetics",
+    "domain": "glow-coded.com",
+    "category": "reviews",
+    "tags": [
+      "lip care",
+      "lip balm",
+      "lip mask",
+      "lip serum",
+      "hydration",
+      "korean lip products"
+    ],
+    "scheduled_date": "2026-04-12",
+    "status": "pending"
+  },
+  {
+    "id": 69,
+    "title": "8 Best Korean Sheet Masks for Every Skin Concern",
+    "description": "Sheet masks for hydration, brightening, acne, anti-aging, and more. We tested dozens and picked the 8 that actually deliver results, not just a nice selfie.",
+    "url": "https://glow-coded.com/best-korean-sheet-masks-by-skin-concern/",
+    "image_path": "/Users/kapi7/satellite-websites/cosmetics/public/images/sheet-masks-by-concern.jpg",
+    "board": "Product Reviews",
+    "site": "cosmetics",
+    "domain": "glow-coded.com",
+    "category": "reviews",
+    "tags": [
+      "sheet masks",
+      "face masks",
+      "hydration",
+      "brightening",
+      "acne",
+      "sensitive skin"
+    ],
+    "scheduled_date": "2026-04-12",
+    "status": "pending"
+  },
+  {
+    "id": 70,
+    "title": "Korean SPF vs Western SPF: The Real Difference (2026 Guide)",
+    "description": "Why do Korean sunscreens feel lighter, cosmetically elegant, and layer better than most American and European options? The answer is UV filter chemistry, and it's not as simple as 'newer is better'.",
+    "url": "https://glow-coded.com/korean-spf-vs-western-spf/",
+    "image_path": "/Users/kapi7/satellite-websites/cosmetics/public/images/korean-vs-western-spf.jpg",
+    "board": "K-Beauty Ingredients",
+    "site": "cosmetics",
+    "domain": "glow-coded.com",
+    "category": "ingredients",
+    "tags": [
+      "sunscreen",
+      "UV filters",
+      "korean sunscreen",
+      "SPF chemistry",
+      "tinosorb",
+      "uvinul",
+      "avobenzone"
+    ],
+    "scheduled_date": "2026-04-12",
+    "status": "pending"
+  },
+  {
+    "id": 71,
+    "title": "Best Korean Sunscreens for Acne-Prone Skin (Non-Comedogenic Picks)",
+    "description": "Sunscreen is non-negotiable when you have acne-prone skin, but most formulas clog pores or sting active breakouts. These 7 Korean sunscreens are non-comedogenic, fragrance-free, and tested on truly reactive skin.",
+    "url": "https://glow-coded.com/korean-sunscreens-acne-prone-skin/",
+    "image_path": "/Users/kapi7/satellite-websites/cosmetics/public/images/korean-sunscreens-acne-prone.jpg",
+    "board": "Product Reviews",
+    "site": "cosmetics",
+    "domain": "glow-coded.com",
+    "category": "reviews",
+    "tags": [
+      "sunscreen",
+      "acne-prone skin",
+      "non-comedogenic",
+      "korean sunscreen",
+      "SPF",
+      "fungal acne safe"
+    ],
+    "scheduled_date": "2026-04-12",
+    "status": "pending"
+  },
+  {
+    "id": 72,
+    "title": "5 Recovery Tools That Actually Speed Up Muscle Healing",
+    "description": "Not all recovery tools are gimmicks. We tested foam rollers, percussion guns, compression, cold therapy, and EMS to find what actually reduces soreness and improves recovery time.",
+    "url": "https://rooted-glow.com/5-recovery-tools-speed-muscle-healing/",
+    "image_path": "/Users/kapi7/satellite-websites/wellness/public/images/recovery-tools.jpg",
+    "board": "Fitness & Movement",
+    "site": "wellness",
+    "domain": "rooted-glow.com",
+    "category": "movement",
+    "tags": [
+      "recovery",
+      "muscle recovery",
+      "foam roller",
+      "massage gun",
+      "cold therapy",
+      "compression"
+    ],
+    "scheduled_date": "2026-04-12",
+    "status": "pending"
+  },
+  {
+    "id": 73,
+    "title": "Best Double Cleansing Products for Every Skin Type",
+    "description": "Our tested picks for oil cleansers, cleansing balms, and second cleansers across every skin type. Korean double cleansing products that actually work.",
+    "url": "https://rooted-glow.com/best-double-cleansing-products/",
+    "image_path": "/Users/kapi7/satellite-websites/wellness/public/images/double-cleansing-products.jpg",
+    "board": "Korean Beauty",
+    "site": "wellness",
+    "domain": "rooted-glow.com",
+    "category": "k-beauty",
+    "tags": [
+      "double cleansing",
+      "double cleanser",
+      "best double cleansing products",
+      "oil cleanser korean",
+      "cleansing oil",
+      "cleansing balm",
+      "k-beauty"
+    ],
+    "scheduled_date": "2026-04-12",
+    "status": "pending"
+  },
+  {
+    "id": 74,
+    "title": "Best Korean Products for Stress-Related Breakouts",
+    "description": "When stress triggers breakouts, your skincare needs to change. These K-beauty products calm inflammation, repair the barrier, and clear stress acne without making it worse.",
+    "url": "https://rooted-glow.com/best-korean-products-stress-breakouts/",
+    "image_path": "/Users/kapi7/satellite-websites/wellness/public/images/stress-breakout-products.jpg",
+    "board": "Korean Beauty",
+    "site": "wellness",
+    "domain": "rooted-glow.com",
+    "category": "k-beauty",
+    "tags": [
+      "stress acne",
+      "breakouts",
+      "cortisol",
+      "K-beauty",
+      "cica",
+      "calming skincare"
+    ],
+    "scheduled_date": "2026-04-12",
+    "status": "pending"
+  },
+  {
+    "id": 75,
+    "title": "Bone Broth Benefits: Why Your Grandmother Was Right",
+    "description": "The science behind bone broth. Collagen, gelatin, amino acids, and minerals that support gut health, joint function, skin elasticity, and immune response.",
+    "url": "https://rooted-glow.com/bone-broth-benefits/",
+    "image_path": "/Users/kapi7/satellite-websites/wellness/public/images/bone-broth-benefits.jpg",
+    "board": "Nutrition & Recipes",
+    "site": "wellness",
+    "domain": "rooted-glow.com",
+    "category": "nutrition",
+    "tags": [
+      "bone broth",
+      "collagen",
+      "gut health",
+      "ancestral eating",
+      "amino acids",
+      "gelatin"
+    ],
+    "scheduled_date": "2026-04-12",
+    "status": "pending"
+  },
+  {
+    "id": 76,
+    "title": "Bone Broth for Gut Health: The Collagen Connection",
+    "description": "How the collagen, gelatin, and amino acids in bone broth repair gut lining, support digestion, and improve the gut-skin axis.",
+    "url": "https://rooted-glow.com/bone-broth-gut-health-collagen-connection/",
+    "image_path": "/Users/kapi7/satellite-websites/wellness/public/images/bone-broth-gut-health.jpg",
+    "board": "Nutrition & Recipes",
+    "site": "wellness",
+    "domain": "rooted-glow.com",
+    "category": "nutrition",
+    "tags": [
+      "bone broth",
+      "gut health",
+      "collagen",
+      "gelatin",
+      "leaky gut",
+      "gut-skin axis"
+    ],
+    "scheduled_date": "2026-04-12",
+    "status": "pending"
+  },
+  {
+    "id": 77,
+    "title": "Chicken Coop Plans for Every Budget: 5 Designs from $75 to $600",
+    "description": "Five proven chicken coop designs for every skill level and budget \u2014 from a simple A-frame for under $100 to a fully predator-proof walk-in coop. Includes materials, dimensions, and difficulty ratings.",
+    "url": "https://build-coded.com/chicken-coop-plans-every-budget/",
+    "image_path": "/Users/kapi7/satellite-websites/build-coded/public/images/chicken-coop-plans.jpg",
+    "board": "Woodworking Projects",
+    "site": "build-coded",
+    "domain": "build-coded.com",
+    "category": "woodworking",
+    "tags": [],
+    "scheduled_date": "2026-04-12",
+    "status": "pending"
+  },
+  {
+    "id": 78,
+    "title": "How to Change a Tire: A Step-by-Step Guide That Could Save Your Day",
+    "description": "Getting a flat tire is inevitable. Knowing how to change one is essential. This guide walks through every step \u2014 from pulling over safely to torquing the lug nuts \u2014 so you are never stranded.",
+    "url": "https://build-coded.com/how-to-change-a-tire/",
+    "image_path": "/Users/kapi7/satellite-websites/build-coded/public/images/change-a-tire.jpg",
+    "board": "Home Improvement DIY",
+    "site": "build-coded",
+    "domain": "build-coded.com",
+    "category": "home-improvement",
+    "tags": [],
+    "scheduled_date": "2026-04-12",
+    "status": "pending"
+  },
+  {
+    "id": 79,
+    "title": "How to Fix a Running Toilet: Diagnose and Repair in Under an Hour",
+    "description": "A running toilet wastes hundreds of gallons a day. Learn how to diagnose the cause \u2014 flapper, fill valve, or float \u2014 and fix it yourself with basic tools and a few dollars in parts.",
+    "url": "https://build-coded.com/how-to-fix-a-running-toilet/",
+    "image_path": "/Users/kapi7/satellite-websites/build-coded/public/images/fix-running-toilet.jpg",
+    "board": "Home Improvement DIY",
+    "site": "build-coded",
+    "domain": "build-coded.com",
+    "category": "home-improvement",
+    "tags": [],
+    "scheduled_date": "2026-04-12",
+    "status": "pending"
+  },
+  {
+    "id": 80,
+    "title": "How to Get Rid of Ants Naturally: Methods That Actually Work",
+    "description": "Stop ants from invading your home without harsh chemicals. This guide covers identifying ant species, proven natural deterrents like diatomaceous earth, borax baits, and essential oils, plus how to seal entry points and prevent them from coming back.",
+    "url": "https://build-coded.com/how-to-get-rid-of-ants-naturally/",
+    "image_path": "/Users/kapi7/satellite-websites/build-coded/public/images/get-rid-ants-naturally.jpg",
+    "board": "DIY Crafts",
+    "site": "build-coded",
+    "domain": "build-coded.com",
+    "category": "crafts",
+    "tags": [],
+    "scheduled_date": "2026-04-12",
+    "status": "pending"
+  },
+  {
+    "id": 81,
+    "title": "How to Install a French Drain: Stop Water Problems for Good",
+    "description": "A complete DIY guide to french drain installation. Learn when you need one, how to plan the route, choose the right pipe, and install it correctly \u2014 plus the common mistakes that cause french drains to fail.",
+    "url": "https://build-coded.com/how-to-install-french-drain/",
+    "image_path": "/Users/kapi7/satellite-websites/build-coded/public/images/french-drain-installation.jpg",
+    "board": "Home Improvement DIY",
+    "site": "build-coded",
+    "domain": "build-coded.com",
+    "category": "home-improvement",
+    "tags": [],
+    "scheduled_date": "2026-04-12",
+    "status": "pending"
+  },
+  {
+    "id": 82,
+    "title": "Couch to 5K in 8 Weeks: The Plan That Actually Works for Beginners",
+    "description": "Zero running experience? This week-by-week plan has helped thousands go from couch to 5K in 8 weeks. Printable schedule, walk/run intervals, and rest days included.",
+    "url": "https://rooted-glow.com/couch-to-5k-8-week-running-plan/",
+    "image_path": "/Users/kapi7/satellite-websites/wellness/public/images/couch-to-5k.jpg",
+    "board": "Fitness & Movement",
+    "site": "wellness",
+    "domain": "rooted-glow.com",
+    "category": "movement",
+    "tags": [
+      "couch to 5k",
+      "running plan",
+      "5K",
+      "beginner running",
+      "training plan",
+      "cardio"
+    ],
+    "scheduled_date": "2026-04-13",
+    "status": "pending"
+  },
+  {
+    "id": 83,
+    "title": "How to Double Cleanse Without Oil: Alternatives That Work",
+    "description": "Not everyone wants to use oil on their face. Here are oil-free double cleansing methods that actually remove sunscreen and makeup, plus when they make sense and when they don't.",
+    "url": "https://rooted-glow.com/double-cleansing-without-oil/",
+    "image_path": "/Users/kapi7/satellite-websites/wellness/public/images/double-cleansing-without-oil.jpg",
+    "board": "Korean Beauty",
+    "site": "wellness",
+    "domain": "rooted-glow.com",
+    "category": "k-beauty",
+    "tags": [
+      "double cleansing",
+      "how to double cleanse without oil",
+      "micellar water",
+      "double cleanse alternatives",
+      "oil-free cleansing",
+      "k-beauty"
+    ],
+    "scheduled_date": "2026-04-13",
+    "status": "pending"
+  },
+  {
+    "id": 84,
+    "title": "Fermented Beetroot Kvass: Easy Probiotic Drink",
+    "description": "How to make beetroot kvass at home. A simple, probiotic-rich fermented drink that takes 5 minutes of prep and supports gut health and detoxification.",
+    "url": "https://rooted-glow.com/fermented-beetroot-kvass-probiotic-drink/",
+    "image_path": "/Users/kapi7/satellite-websites/wellness/public/images/beetroot-kvass.jpg",
+    "board": "Nutrition & Recipes",
+    "site": "wellness",
+    "domain": "rooted-glow.com",
+    "category": "nutrition",
+    "tags": [
+      "kvass",
+      "fermentation",
+      "beetroot",
+      "probiotics",
+      "gut health",
+      "probiotic drink"
+    ],
+    "scheduled_date": "2026-04-13",
+    "status": "pending"
+  },
+  {
+    "id": 85,
+    "title": "Foods That Sharpen Focus: A Science-Backed Guide",
+    "description": "Your brain uses 20% of your daily calories. Feed it the right fuel and focus improves measurably. These are the foods with real research behind their cognitive benefits.",
+    "url": "https://rooted-glow.com/foods-that-sharpen-focus-science-backed/",
+    "image_path": "/Users/kapi7/satellite-websites/wellness/public/images/foods-sharpen-focus.jpg",
+    "board": "Nutrition & Recipes",
+    "site": "wellness",
+    "domain": "rooted-glow.com",
+    "category": "nutrition",
+    "tags": [
+      "brain food",
+      "focus",
+      "cognitive function",
+      "concentration",
+      "nutrition",
+      "mental performance"
+    ],
+    "scheduled_date": "2026-04-13",
+    "status": "pending"
+  },
+  {
+    "id": 86,
+    "title": "Heart Rate Zones Explained: Train Smarter, Not Harder",
+    "description": "A complete guide to heart rate zone training. Understand the 5 zones, calculate your own, and learn how to use them to improve fitness, burn fat, and avoid overtraining.",
+    "url": "https://rooted-glow.com/heart-rate-zones-explained-train-smarter/",
+    "image_path": "/Users/kapi7/satellite-websites/wellness/public/images/heart-rate-zones.jpg",
+    "board": "Fitness & Movement",
+    "site": "wellness",
+    "domain": "rooted-glow.com",
+    "category": "movement",
+    "tags": [
+      "heart rate zones",
+      "training",
+      "cardio",
+      "fitness",
+      "running",
+      "exercise science"
+    ],
+    "scheduled_date": "2026-04-13",
+    "status": "pending"
+  },
+  {
+    "id": 87,
+    "title": "How to Install Gutter Guards: The Complete DIY Guide",
+    "description": "Learn how to install gutter guards yourself and stop cleaning gutters twice a year. This guide covers every type \u2014 mesh, micro-mesh, brush, foam, and reverse curve \u2014 with honest pros and cons, tools needed, and step-by-step installation.",
+    "url": "https://build-coded.com/how-to-install-gutter-guards/",
+    "image_path": "/Users/kapi7/satellite-websites/build-coded/public/images/install-gutter-guards.jpg",
+    "board": "Home Improvement DIY",
+    "site": "build-coded",
+    "domain": "build-coded.com",
+    "category": "home-improvement",
+    "tags": [],
+    "scheduled_date": "2026-04-13",
+    "status": "pending"
+  },
+  {
+    "id": 88,
+    "title": "How to Replace a Circuit Breaker: A Safety-First Guide",
+    "description": "A step-by-step guide to replacing a circuit breaker in your electrical panel. Covers safety warnings, signs of a failing breaker, tools, and when to call a licensed electrician instead.",
+    "url": "https://build-coded.com/how-to-replace-circuit-breaker/",
+    "image_path": "/Users/kapi7/satellite-websites/build-coded/public/images/replace-circuit-breaker.jpg",
+    "board": "Electronics & Maker",
+    "site": "build-coded",
+    "domain": "build-coded.com",
+    "category": "electronics",
+    "tags": [],
+    "scheduled_date": "2026-04-13",
+    "status": "pending"
+  },
+  {
+    "id": 89,
+    "title": "10 Patio Ideas on a Budget That Actually Look Good",
+    "description": "Transform your backyard without draining your bank account. These 10 budget-friendly patio ideas include cost estimates, difficulty ratings, and honest time commitments for each project.",
+    "url": "https://build-coded.com/patio-ideas-on-a-budget/",
+    "image_path": "/Users/kapi7/satellite-websites/build-coded/public/images/patio-ideas-budget.jpg",
+    "board": "Home Improvement DIY",
+    "site": "build-coded",
+    "domain": "build-coded.com",
+    "category": "home-improvement",
+    "tags": [],
+    "scheduled_date": "2026-04-13",
+    "status": "pending"
+  },
+  {
+    "id": 90,
+    "title": "Raised Garden Bed DIY: Build a Cedar Bed That Lasts for Years",
+    "description": "Build a sturdy, long-lasting raised garden bed from scratch. This guide covers wood selection, sizing, step-by-step construction, soil mix, drainage, and placement \u2014 everything you need for a productive garden bed.",
+    "url": "https://build-coded.com/raised-garden-bed-diy/",
+    "image_path": "/Users/kapi7/satellite-websites/build-coded/public/images/raised-garden-bed-diy.jpg",
+    "board": "Woodworking Projects",
+    "site": "build-coded",
+    "domain": "build-coded.com",
+    "category": "woodworking",
+    "tags": [],
+    "scheduled_date": "2026-04-13",
+    "status": "pending"
+  },
+  {
+    "id": 91,
+    "title": "Water Heater Maintenance Checklist: Keep It Running for 15+ Years",
+    "description": "A complete annual maintenance checklist for tank and tankless water heaters. Learn how to flush sediment, test the TPR valve, check the anode rod, and spot the warning signs that mean it is time for a replacement.",
+    "url": "https://build-coded.com/water-heater-maintenance-checklist/",
+    "image_path": "/Users/kapi7/satellite-websites/build-coded/public/images/water-heater-maintenance.jpg",
+    "board": "Home Improvement DIY",
+    "site": "build-coded",
+    "domain": "build-coded.com",
+    "category": "home-improvement",
+    "tags": [],
+    "scheduled_date": "2026-04-13",
+    "status": "pending"
+  },
+  {
+    "id": 92,
+    "title": "How to Make Natural Fruit Soda (Healthy Fanta Alternative)",
+    "description": "Make your own naturally fizzy fruit soda at home using real fruit, water kefir, or ginger bug. Zero refined sugar, real probiotics, and genuinely delicious.",
+    "url": "https://rooted-glow.com/how-to-make-natural-fruit-soda/",
+    "image_path": "/Users/kapi7/satellite-websites/wellness/public/images/natural-fruit-soda.jpg",
+    "board": "Nutrition & Recipes",
+    "site": "wellness",
+    "domain": "rooted-glow.com",
+    "category": "nutrition",
+    "tags": [
+      "fruit soda",
+      "fermentation",
+      "healthy soda",
+      "water kefir",
+      "ginger bug",
+      "sugar-free"
+    ],
+    "scheduled_date": "2026-04-14",
+    "status": "pending"
+  },
+  {
+    "id": 93,
+    "title": "How to Make Sauerkraut at Home",
+    "description": "A simple guide to making your own probiotic-rich sauerkraut. Just cabbage, salt, and time. No special equipment required.",
+    "url": "https://rooted-glow.com/how-to-make-sauerkraut-at-home/",
+    "image_path": "/Users/kapi7/satellite-websites/wellness/public/images/homemade-sauerkraut.jpg",
+    "board": "Nutrition & Recipes",
+    "site": "wellness",
+    "domain": "rooted-glow.com",
+    "category": "nutrition",
+    "tags": [
+      "sauerkraut",
+      "fermentation",
+      "probiotics",
+      "gut health",
+      "homemade",
+      "recipe"
+    ],
+    "scheduled_date": "2026-04-14",
+    "status": "pending"
+  },
+  {
+    "id": 94,
+    "title": "Korean Skincare for Runners: Protect Your Skin",
+    "description": "How to protect your skin from sun damage, sweat-related breakouts, and environmental stress when you run outdoors. A K-beauty routine built for athletes.",
+    "url": "https://rooted-glow.com/korean-skincare-for-runners/",
+    "image_path": "/Users/kapi7/satellite-websites/wellness/public/images/skincare-for-runners.jpg",
+    "board": "Korean Beauty",
+    "site": "wellness",
+    "domain": "rooted-glow.com",
+    "category": "k-beauty",
+    "tags": [
+      "running",
+      "sunscreen",
+      "exercise skincare",
+      "sweat",
+      "outdoor exercise",
+      "K-beauty"
+    ],
+    "scheduled_date": "2026-04-14",
+    "status": "pending"
+  },
+  {
+    "id": 95,
+    "title": "Meditation and Cortisol: How Stillness Heals Skin",
+    "description": "The science connecting meditation, cortisol reduction, and skin health. How managing stress through stillness directly improves acne, aging, and skin conditions.",
+    "url": "https://rooted-glow.com/meditation-cortisol-stillness-heals-skin/",
+    "image_path": "/Users/kapi7/satellite-websites/wellness/public/images/meditation-cortisol-skin.jpg",
+    "board": "Natural Wellness",
+    "site": "wellness",
+    "domain": "rooted-glow.com",
+    "category": "natural-health",
+    "tags": [
+      "meditation",
+      "cortisol",
+      "skin health",
+      "stress",
+      "hormones",
+      "mind-body"
+    ],
+    "scheduled_date": "2026-04-14",
+    "status": "pending"
+  },
+  {
+    "id": 96,
+    "title": "Meditation for Beginners: Start With Just 5 Minutes",
+    "description": "A practical, no-nonsense guide to starting a meditation practice. No spirituality required. Just 5 minutes, a quiet spot, and your breath.",
+    "url": "https://rooted-glow.com/meditation-for-beginners-start-5-minutes/",
+    "image_path": "/Users/kapi7/satellite-websites/wellness/public/images/meditation-beginners.jpg",
+    "board": "Natural Wellness",
+    "site": "wellness",
+    "domain": "rooted-glow.com",
+    "category": "natural-health",
+    "tags": [
+      "meditation",
+      "mindfulness",
+      "stress relief",
+      "mental health",
+      "cortisol",
+      "beginners"
+    ],
+    "scheduled_date": "2026-04-14",
+    "status": "pending"
+  },
+  {
+    "id": 97,
+    "title": "Oil Cleansing for Oily Skin: Why It Actually Works",
+    "description": "Putting oil on oily skin sounds wrong. The chemistry says otherwise. How oil cleansing reduces excess sebum, clears pores, and works especially well for acne-prone skin.",
+    "url": "https://rooted-glow.com/oil-cleansing-oily-skin/",
+    "image_path": "/Users/kapi7/satellite-websites/wellness/public/images/oil-cleansing-oily-skin.jpg",
+    "board": "Korean Beauty",
+    "site": "wellness",
+    "domain": "rooted-glow.com",
+    "category": "k-beauty",
+    "tags": [
+      "double cleansing",
+      "oil double cleansing",
+      "oil cleansing oily skin",
+      "cleansing oil for acne prone skin",
+      "oil cleanser",
+      "sebum",
+      "k-beauty"
+    ],
+    "scheduled_date": "2026-04-15",
+    "status": "pending"
+  },
+  {
+    "id": 98,
+    "title": "Post-Workout K-Beauty Recovery Routine",
+    "description": "A complete Korean skincare routine designed for after exercise. Clear sweat, calm redness, repair damage, and protect skin after every workout.",
+    "url": "https://rooted-glow.com/post-workout-k-beauty-recovery-routine/",
+    "image_path": "/Users/kapi7/satellite-websites/wellness/public/images/post-workout-kbeauty.jpg",
+    "board": "Korean Beauty",
+    "site": "wellness",
+    "domain": "rooted-glow.com",
+    "category": "k-beauty",
+    "tags": [
+      "post-workout",
+      "exercise skincare",
+      "K-beauty routine",
+      "recovery",
+      "sweat",
+      "redness"
+    ],
+    "scheduled_date": "2026-04-15",
     "status": "pending"
   }
 ]

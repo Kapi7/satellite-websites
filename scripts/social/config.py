@@ -29,6 +29,15 @@ PINTEREST_ACCOUNTS = {
     },
 }
 
+# Pin routing: which Pinterest account posts pins for each site.
+# build-coded has no dedicated Pinterest account — its pins are
+# posted from the rooted-glow account.
+PINTEREST_ACCOUNT_MAP = {
+    "cosmetics": "cosmetics",
+    "wellness": "wellness",
+    "build-coded": "wellness",
+}
+
 # ── Paths ────────────────────────────────────────────────────
 
 SOCIAL_DIR = Path(__file__).resolve().parent
@@ -39,14 +48,17 @@ PINTEREST_SCHEDULE = SOCIAL_DIR / "pinterest_schedule.json"
 
 COSMETICS_BLOG = PROJECT_ROOT / "cosmetics" / "src" / "content" / "blog"
 WELLNESS_BLOG = PROJECT_ROOT / "wellness" / "src" / "content" / "blog"
+BUILDCODED_BLOG = PROJECT_ROOT / "build-coded" / "src" / "content" / "blog"
 COSMETICS_IMAGES = PROJECT_ROOT / "cosmetics" / "public" / "images"
 WELLNESS_IMAGES = PROJECT_ROOT / "wellness" / "public" / "images"
+BUILDCODED_IMAGES = PROJECT_ROOT / "build-coded" / "public" / "images"
 
 # ── Site domains ─────────────────────────────────────────────
 
 SITES = {
     "cosmetics": "glow-coded.com",
     "wellness": "rooted-glow.com",
+    "build-coded": "build-coded.com",
 }
 
 # ── Subreddit mapping by article category ────────────────────
@@ -79,12 +91,26 @@ PINTEREST_BOARD_MAP = {
         "k-beauty": "Korean Beauty",
         "natural-health": "Natural Wellness",
     },
+    "build-coded": {
+        "woodworking": "Woodworking Projects",
+        "home-improvement": "Home Improvement DIY",
+        "electronics": "Electronics & Maker",
+        "crafts": "DIY Crafts",
+    },
 }
 
 # ── Rate limits ──────────────────────────────────────────────
 
 REDDIT_MAX_PER_DAY = 8
+# Per-site daily pin cap. Total = 15 (5 glow-coded + 5 rooted-glow + 5
+# build-coded). The rooted-glow Pinterest account handles wellness AND
+# build-coded (= 10/day/account), glow-coded account handles 5/day.
 PINTEREST_MAX_PER_DAY = 5
+PINTEREST_DAILY_LIMITS = {
+    "cosmetics": 5,
+    "wellness": 5,
+    "build-coded": 5,
+}
 
 # ── Browser settings ────────────────────────────────────────
 

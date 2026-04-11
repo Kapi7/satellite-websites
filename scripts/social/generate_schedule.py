@@ -12,7 +12,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from config import (
-    COSMETICS_BLOG, WELLNESS_BLOG, COSMETICS_IMAGES, WELLNESS_IMAGES,
+    COSMETICS_BLOG, WELLNESS_BLOG, BUILDCODED_BLOG,
+    COSMETICS_IMAGES, WELLNESS_IMAGES, BUILDCODED_IMAGES,
     SITES, SUBREDDIT_MAP, PINTEREST_BOARD_MAP,
     REDDIT_SCHEDULE, PINTEREST_SCHEDULE,
 )
@@ -209,51 +210,95 @@ def generate_reddit_schedule():
 
 
 def generate_pinterest_schedule():
-    """Generate Pinterest pinning schedule for all articles."""
-    all_articles = []
-    all_articles.extend(get_articles(COSMETICS_BLOG, COSMETICS_IMAGES, "cosmetics"))
-    all_articles.extend(get_articles(WELLNESS_BLOG, WELLNESS_IMAGES, "wellness"))
+    """Generate Pinterest pinning schedule, merging with existing schedule.
 
-    schedule = []
+    Per-site cadence: 5 glow-coded + 5 rooted-glow + 5 build-coded per day,
+    regardless of account. The poster routes build-coded pins through the
+    rooted-glow account (see config.PINTEREST_ACCOUNT_MAP).
+
+    Merge behaviour: existing pins (matched by URL) are preserved exactly,
+    keeping their status/posted_at/scheduled_date. Only new articles not
+    already in the schedule get new pending entries appended, starting
+    the day after the latest existing scheduled_date.
+    """
+    import math
+
+    cosmetics = get_articles(COSMETICS_BLOG / "en", COSMETICS_IMAGES, "cosmetics")
+    wellness = get_articles(WELLNESS_BLOG / "en", WELLNESS_IMAGES, "wellness")
+    buildcoded = []
+    if BUILDCODED_BLOG.exists():
+        buildcoded = get_articles(BUILDCODED_BLOG / "en", BUILDCODED_IMAGES, "build-coded")
+
+    # Load existing schedule (if any) and index by URL
+    existing = []
+    if PINTEREST_SCHEDULE.exists():
+        try:
+            with open(PINTEREST_SCHEDULE) as f:
+                existing = json.load(f)
+        except Exception:
+            existing = []
+
+    existing_by_url = {p["url"].rstrip("/"): p for p in existing}
+    next_id = max((p.get("id", 0) for p in existing), default=0) + 1
+
+    # Determine start date for NEW pins: day after the latest scheduled date
     today = datetime.now().date()
-    # Start tomorrow
-    start_date = today + timedelta(days=1)
-    pins_per_day = 4
-    day_offset = 0
-    daily_count = 0
+    latest_date = today
+    for p in existing:
+        try:
+            d = datetime.fromisoformat(p["scheduled_date"]).date()
+            if d > latest_date:
+                latest_date = d
+        except Exception:
+            pass
+    start_date = latest_date + timedelta(days=1)
+    daily_per_site = 5
 
-    for article in all_articles:
-        if not article["image_path"]:
-            continue
+    # Build per-site queues of NEW articles only (those not already in the schedule)
+    def filter_new(articles):
+        return [
+            a for a in articles
+            if a["image_path"] and a["url"].rstrip("/") not in existing_by_url
+        ]
 
-        category = article["category"]
-        site_boards = PINTEREST_BOARD_MAP.get(article["site"], {})
-        domain_name = article["domain"].split(".")[0].replace("-", " ").title()
-        board = site_boards.get(category, f"{domain_name} — General")
+    queues = {
+        "cosmetics": filter_new(cosmetics),
+        "wellness": filter_new(wellness),
+        "build-coded": filter_new(buildcoded),
+    }
 
+    max_days = max((math.ceil(len(q) / daily_per_site) for q in queues.values() if q), default=0)
+
+    new_pins = []
+    for day_offset in range(max_days):
         pin_date = start_date + timedelta(days=day_offset)
+        for site_key, queue in queues.items():
+            start = day_offset * daily_per_site
+            day_batch = queue[start : start + daily_per_site]
+            for article in day_batch:
+                category = article["category"]
+                site_boards = PINTEREST_BOARD_MAP.get(article["site"], {})
+                domain_name = article["domain"].split(".")[0].replace("-", " ").title()
+                board = site_boards.get(category, f"{domain_name} — General")
 
-        schedule.append({
-            "id": len(schedule) + 1,
-            "title": article["title"],
-            "description": article["description"],
-            "url": article["url"],
-            "image_path": article["image_path"],
-            "board": board,
-            "site": article["site"],
-            "domain": article["domain"],
-            "category": category,
-            "tags": article.get("tags", []),
-            "scheduled_date": pin_date.isoformat(),
-            "status": "pending",
-        })
+                new_pins.append({
+                    "id": next_id,
+                    "title": article["title"],
+                    "description": article["description"],
+                    "url": article["url"],
+                    "image_path": article["image_path"],
+                    "board": board,
+                    "site": article["site"],
+                    "domain": article["domain"],
+                    "category": category,
+                    "tags": article.get("tags", []),
+                    "scheduled_date": pin_date.isoformat(),
+                    "status": "pending",
+                })
+                next_id += 1
 
-        daily_count += 1
-        if daily_count >= pins_per_day:
-            daily_count = 0
-            day_offset += 1
-
-    return schedule
+    # Return existing + new, preserving all statuses
+    return existing + new_pins
 
 
 def main():

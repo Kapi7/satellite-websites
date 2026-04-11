@@ -23,8 +23,9 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from config import (
-    PINTEREST_ACCOUNTS,
+    PINTEREST_ACCOUNTS, PINTEREST_ACCOUNT_MAP, PINTEREST_DAILY_LIMITS,
     PINTEREST_SCHEDULE, PINTEREST_MAX_PER_DAY,
+    SITES,
     BROWSER_STATE_DIR, DATA_DIR,
     BROWSER_ARGS, DELAY_SHORT, DELAY_MEDIUM, DELAY_LONG, DELAY_PAGE_LOAD,
 )
@@ -58,23 +59,41 @@ def get_due_pins(schedule):
     return [p for p in schedule if p["status"] == "pending" and p["scheduled_date"] <= today]
 
 
+def get_due_pins_capped(schedule):
+    """Return due pins capped by per-site daily limit (5/5/5 by default)."""
+    due = get_due_pins(schedule)
+    capped = []
+    seen = {site: 0 for site in SITES}
+    for pin in due:
+        site = pin.get("site", "")
+        limit = PINTEREST_DAILY_LIMITS.get(site, PINTEREST_MAX_PER_DAY)
+        if seen.get(site, 0) >= limit:
+            continue
+        capped.append(pin)
+        seen[site] = seen.get(site, 0) + 1
+    return capped
+
+
 def show_status(schedule):
     pending = [p for p in schedule if p["status"] == "pending"]
     posted = [p for p in schedule if p["status"] == "posted"]
     failed = [p for p in schedule if p["status"] == "failed"]
     due = get_due_pins(schedule)
+    capped = get_due_pins_capped(schedule)
 
     print(f"\nPinterest Schedule Status")
     print(f"{'='*50}")
     print(f"Total: {len(schedule)} | Posted: {len(posted)} | Pending: {len(pending)} | Failed: {len(failed)}")
-    print(f"Due today: {len(due)}")
+    print(f"Due today: {len(due)} | After daily caps: {len(capped)}")
 
     # By site
-    for site in ["cosmetics", "wellness"]:
+    for site in SITES:
         site_pins = [p for p in schedule if p["site"] == site]
         site_posted = sum(1 for p in site_pins if p["status"] == "posted")
         site_due = sum(1 for p in due if p["site"] == site)
-        print(f"  {site}: {site_posted}/{len(site_pins)} posted, {site_due} due")
+        site_capped = sum(1 for p in capped if p["site"] == site)
+        limit = PINTEREST_DAILY_LIMITS.get(site, PINTEREST_MAX_PER_DAY)
+        print(f"  {site}: {site_posted}/{len(site_pins)} posted, {site_due} due, {site_capped}/{limit} runnable")
 
     if due:
         print(f"\nDue pins:")
@@ -344,7 +363,7 @@ def run_poster(args):
             print(f"Pin #{args.post} not found")
             sys.exit(1)
     elif args.run_due:
-        pins_to_post = get_due_pins(schedule)[:PINTEREST_MAX_PER_DAY]
+        pins_to_post = get_due_pins_capped(schedule)
         if not pins_to_post:
             log("No pins due today")
             return
@@ -356,28 +375,31 @@ def run_poster(args):
     if args.site:
         pins_to_post = [p for p in pins_to_post if p["site"] == args.site]
 
-    # Group pins by site (each site uses its own account/session)
-    sites = {}
+    # Group pins by ACCOUNT (not site) so wellness + build-coded share one session.
+    # PINTEREST_ACCOUNT_MAP routes each site to its posting account.
+    accounts = {}
     for pin in pins_to_post:
-        sites.setdefault(pin["site"], []).append(pin)
+        account_key = PINTEREST_ACCOUNT_MAP.get(pin["site"], pin["site"])
+        accounts.setdefault(account_key, []).append(pin)
 
-    log(f"Posting {len(pins_to_post)} pin(s) across {len(sites)} site(s)...")
+    log(f"Posting {len(pins_to_post)} pin(s) across {len(accounts)} account(s)...")
 
     with sync_playwright() as pw:
         BROWSER_STATE_DIR.mkdir(exist_ok=True)
 
-        for site_key, site_pins in sites.items():
-            account = PINTEREST_ACCOUNTS.get(site_key, {})
+        for account_key, account_pins in accounts.items():
+            account = PINTEREST_ACCOUNTS.get(account_key, {})
             email = account.get("email", "")
             password = account.get("password", "")
 
             if not email or not password:
-                log(f"No Pinterest credentials for {site_key}, skipping")
+                log(f"No Pinterest credentials for account '{account_key}', skipping {len(account_pins)} pin(s)")
                 continue
 
-            log(f"\n--- Processing {site_key} ({len(site_pins)} pins) ---")
+            sites_in_batch = sorted({p["site"] for p in account_pins})
+            log(f"\n--- Processing account '{account_key}' ({len(account_pins)} pins for {', '.join(sites_in_batch)}) ---")
 
-            state_path = BROWSER_STATE_DIR / f"pinterest-{site_key}"
+            state_path = BROWSER_STATE_DIR / f"pinterest-{account_key}"
             state_file = state_path / "state.json"
 
             browser = pw.chromium.launch(
@@ -397,8 +419,8 @@ def run_poster(args):
 
             page = context.new_page()
 
-            if not login_pinterest(page, email, password, site_key):
-                log(f"Login failed for {site_key}, skipping")
+            if not login_pinterest(page, email, password, account_key):
+                log(f"Login failed for account '{account_key}', skipping")
                 browser.close()
                 continue
 
@@ -406,7 +428,7 @@ def run_poster(args):
             context.storage_state(path=str(state_file))
 
             posted_count = 0
-            for pin in site_pins:
+            for pin in account_pins:
                 success = post_pin(page, pin, dry_run=args.dry_run)
 
                 for entry in schedule:
@@ -423,7 +445,7 @@ def run_poster(args):
                 if not args.dry_run:
                     save_schedule(schedule)
 
-                if pin != site_pins[-1]:
+                if pin != account_pins[-1]:
                     delay = random.uniform(30, 90)
                     log(f"Waiting {delay:.0f}s before next pin...")
                     time.sleep(delay)
@@ -431,7 +453,7 @@ def run_poster(args):
             context.storage_state(path=str(state_file))
             browser.close()
 
-            log(f"{site_key}: Posted {posted_count}/{len(site_pins)}")
+            log(f"account '{account_key}': Posted {posted_count}/{len(account_pins)}")
 
 
 def main():
@@ -441,7 +463,7 @@ def main():
     parser.add_argument("--post", type=int, help="Post specific pin by ID")
     parser.add_argument("--dry-run", action="store_true", help="Simulate posting")
     parser.add_argument("--headed", action="store_true", help="Show browser window")
-    parser.add_argument("--site", choices=["cosmetics", "wellness"], help="Only process one site")
+    parser.add_argument("--site", choices=list(SITES.keys()), help="Only process one site")
     args = parser.parse_args()
 
     if not any([args.check, args.run_due, args.post]):
