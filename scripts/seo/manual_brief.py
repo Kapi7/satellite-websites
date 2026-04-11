@@ -249,13 +249,30 @@ def parse_frontmatter(text: str) -> tuple[dict, str]:
         return {}, text
     fm_text = m.group(1)
     fm: dict = {}
-    for line in fm_text.splitlines():
-        if ":" not in line:
+    lines = fm_text.splitlines()
+    i = 0
+    while i < len(lines):
+        line = lines[i]
+        # Only treat top-level keys (no leading whitespace) as mapping keys
+        if ":" not in line or line.startswith((" ", "\t")):
+            i += 1
             continue
         k, _, v = line.partition(":")
         k = k.strip()
         v = v.strip().strip('"').strip("'")
+        if not v:
+            # Multi-line value — collect subsequent indented `  - item` lines
+            items: list[str] = []
+            j = i + 1
+            while j < len(lines) and lines[j].startswith((" ", "\t")) and lines[j].lstrip().startswith("- "):
+                items.append(lines[j].lstrip()[2:].strip().strip('"').strip("'"))
+                j += 1
+            if items:
+                fm[k] = items
+                i = j
+                continue
         fm[k] = v
+        i += 1
     return fm, text[m.end():]
 
 
