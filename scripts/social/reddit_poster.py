@@ -37,6 +37,7 @@ from config import (
     BROWSER_ARGS, DELAY_SHORT, DELAY_MEDIUM, DELAY_LONG, DELAY_PAGE_LOAD,
     GEMINI_API_KEY,
 )
+from tg import notify as tg_notify
 
 
 # ── Utilities ─────────────────────────────────────────────────
@@ -703,6 +704,11 @@ def run_poster(args):
 
             if not thread_url:
                 log(f"  No thread found for #{entry['id']}, skipping")
+                tg_notify(
+                    f"Reddit #{entry['id']} skipped — no thread found in r/{entry['subreddit']} "
+                    f"(terms: {search_terms[:60]})",
+                    level="warn",
+                )
                 for e in schedule:
                     if e["id"] == entry["id"]:
                         e["status"] = "skipped"
@@ -733,6 +739,22 @@ def run_poster(args):
                     e["generated_comment"] = comment
                     break
 
+            if not args.dry_run:
+                ctype = entry.get("comment_type", "link")
+                short_title = (thread_title or "")[:70]
+                if success:
+                    tg_notify(
+                        f"Reddit #{entry['id']} [{ctype}] posted to r/{entry['subreddit']}\n"
+                        f"Thread: {short_title}\n{thread_url}",
+                        level="ok",
+                    )
+                else:
+                    tg_notify(
+                        f"Reddit #{entry['id']} [{ctype}] FAILED on r/{entry['subreddit']}\n"
+                        f"Thread: {short_title}",
+                        level="err",
+                    )
+
             if success:
                 posted_count += 1
             if not args.dry_run:
@@ -746,6 +768,12 @@ def run_poster(args):
         save_browser_state(context, state_path)
         browser.close()
         log(f"Done. Posted: {posted_count}/{len(posts_to_make)}")
+        if not args.dry_run and posts_to_make:
+            tg_notify(
+                f"Reddit run done: {posted_count}/{len(posts_to_make)} posted",
+                level="report",
+                title="Reddit poster",
+            )
 
 
 def run_reply_checker(args):

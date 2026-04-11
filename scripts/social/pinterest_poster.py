@@ -29,6 +29,7 @@ from config import (
     BROWSER_STATE_DIR, DATA_DIR,
     BROWSER_ARGS, DELAY_SHORT, DELAY_MEDIUM, DELAY_LONG, DELAY_PAGE_LOAD,
 )
+from tg import notify as tg_notify
 
 
 def human_delay(delay_range):
@@ -394,6 +395,10 @@ def run_poster(args):
 
             if not email or not password:
                 log(f"No Pinterest credentials for account '{account_key}', skipping {len(account_pins)} pin(s)")
+                tg_notify(
+                    f"Pinterest: no credentials for '{account_key}' — skipped {len(account_pins)} pin(s)",
+                    level="warn",
+                )
                 continue
 
             sites_in_batch = sorted({p["site"] for p in account_pins})
@@ -421,6 +426,10 @@ def run_poster(args):
 
             if not login_pinterest(page, email, password, account_key):
                 log(f"Login failed for account '{account_key}', skipping")
+                tg_notify(
+                    f"Pinterest login failed for '{account_key}' — {len(account_pins)} pin(s) skipped",
+                    level="err",
+                )
                 browser.close()
                 continue
 
@@ -439,6 +448,21 @@ def run_poster(args):
                         entry["posted_at"] = datetime.now().isoformat()
                         break
 
+                if not args.dry_run:
+                    short_title = pin.get("title", "")[:70]
+                    if success:
+                        tg_notify(
+                            f"Pin #{pin['id']} [{pin['site']}] posted to '{pin['board']}'\n"
+                            f"{short_title}\n{pin['url']}",
+                            level="ok",
+                        )
+                    else:
+                        tg_notify(
+                            f"Pin #{pin['id']} [{pin['site']}] FAILED on '{pin['board']}'\n"
+                            f"{short_title}",
+                            level="err",
+                        )
+
                 if success:
                     posted_count += 1
 
@@ -454,6 +478,12 @@ def run_poster(args):
             browser.close()
 
             log(f"account '{account_key}': Posted {posted_count}/{len(account_pins)}")
+            if not args.dry_run and account_pins:
+                tg_notify(
+                    f"Pinterest '{account_key}': {posted_count}/{len(account_pins)} pins posted",
+                    level="report",
+                    title="Pinterest poster",
+                )
 
 
 def main():
