@@ -9,7 +9,11 @@
     "search_terms": "routine order, layering, what order, product order",
     "length": "medium",
     "scheduled_date": "2026-04-12",
-    "status": "pending"
+    "status": "posted",
+    "posted_at": "2026-04-12T14:06:25.664568",
+    "thread_url": "https://old.reddit.com/r/SkincareAddiction/comments/1siym6z/routine_help_facials_and_glymed/",
+    "thread_title": "[Routine Help] Facials and Glymed +",
+    "generated_comment": "your skin might be extra sensitive right now from the extractions and already being on tret 0.025%. introducing the glymed clear exfoliant cleanser and the daily skin clarifier at the same time as tret, right after a facial, could definitely lead to major irritation and make you think you have sensitive skin when it's just overloaded. i\u2019d seriously just stick to your gentle cleanser, vanicream, and tret for a bit until your skin calms down.\n\nwhen you feel ready, maybe swap your cetaphil for the glymed mega cream cleanser at night for a week. the restoring fulvic elixir could be a nice addition after cleansing and before tret, or on non-tret nights, since fulvic acid can be great for soothing redness. but definitely don't try using the exfoliating cleanser or the daily skin clarifier on the same nights as tret, or even every night at first, until your skin is totally used to them, because slowly adding one thing at a time is key to avoid irritation."
   },
   {
     "id": 2,
@@ -253,28 +257,6 @@
   {
     "id": 22,
     "type": "pre-written",
-    "post_num": 2,
-    "subreddit": "AsianBeauty",
-    "search_terms": "snail mucin, COSRX 96, alternatives, snail mucin comparisons",
-    "comment": "I've used the COSRX 96 for years but recently tried the Torriden Dive-In Serum as an alternative. Very different products honestly.\n\nCOSRX 96 \u2014 viscous, slimy texture, incredibly hydrating and healing. Best for repair and overnight hydration.\nTorriden Dive-In \u2014 watery, layers of lightweight hydration. Better under makeup, absorbs faster.\n\nThey're not really competitors. COSRX for PM routine, Torriden for AM. I wrote up a full side-by-side if anyone's deciding between them: https://glow-coded.com/cosrx-snail-mucin-vs-torriden-dive-in-serum/",
-    "url": "https://glow-coded.com/cosrx-snail-mucin-vs-torriden-dive-in-serum/",
-    "scheduled_date": "2026-05-06",
-    "status": "pending"
-  },
-  {
-    "id": 23,
-    "type": "pre-written",
-    "post_num": 3,
-    "subreddit": "AsianBeauty",
-    "search_terms": "best Korean toners, hydrating toners, toner for [skin type]",
-    "comment": "Depends on your skin type honestly:\n\n- Dry: I'm From Rice Toner (nourishing, milky, gentle)\n- Oily: SOME BY MI AHA BHA PHA Miracle Toner (controls sebum, mild exfoliation)\n- Sensitive: Klairs Supple Preparation Unscented (fragrance-free, calming)\n- All-rounder: Anua Heartleaf 77% (soothing, lightweight, works for everyone)\n\nThe 7-skin method works amazingly with the lighter ones like Klairs and Anua. Pat in thin layers instead of one thick application.\n\nLonger comparison of these + 4 more: https://glow-coded.com/korean-toners-ranked-best-every-skin-type/",
-    "url": "https://glow-coded.com/korean-toners-ranked-best-every-skin-type/",
-    "scheduled_date": "2026-05-08",
-    "status": "pending"
-  },
-  {
-    "id": 24,
-    "type": "pre-written",
     "post_num": 4,
     "subreddit": "SkincareAddiction",
     "search_terms": "fading dark spots, PIH, PIE, hyperpigmentation treatment",
@@ -284,58 +266,36 @@
     "status": "pending"
   },
   {
-    "id": 25,
-    "type": "pre-written",
-    "post_num": 5,
-    "subreddit": "SkincareAddiction",
-    "search_terms": "rosacea skincare, redness, centella/cica products",
-    "comment": "Fellow rosacea sufferer here. What helped me:\n\n- Stripped routine down to 4 steps (cleanser, toner, moisturizer, SPF)\n- Every product is fragrance-free, no alcohol, no essential oils\n- Centella/cica is my holy grail ingredient \u2014 calms flares within hours\n- Best finds: SKIN1004 Centella Ampoule, Purito Dermide Moisturizer, COSRX Cica Toner\n\nBiggest mistake I made: too many actives at once. Rosacea skin needs barrier repair first, actives later.\n\nFull routine breakdown: https://glow-coded.com/korean-skincare-routine-rosacea/",
-    "url": "https://glow-coded.com/korean-skincare-routine-rosacea/",
-    "scheduled_date": "2026-05-13",
-    "status": "pending"
-  },
-  {
-    "id": 26,
+    "id": 23,
     "type": "pre-written",
     "post_num": 6,
     "subreddit": "running",
     "search_terms": "starting to run, couch to 5k, beginner tips",
     "comment": "Started running last year from zero. Things I wish I knew:\n\n1. Run slower than you think. If you can't hold a conversation, slow down. Zone 2 heart rate is where beginners should live.\n2. Walk breaks are not cheating. Run 2 min / walk 1 min. Progress from there.\n3. Don't increase weekly mileage more than 10% \u2014 injury prevention is everything.\n4. Get fitted for proper shoes at a running store. Worth every penny.\n\nThe biggest reason beginners quit is going too fast too soon, getting injured or burned out. Slow and consistent wins.\n\nI put together a structured 8-week plan if anyone wants something to follow: https://rooted-glow.com/couch-to-5k-8-week-running-plan/",
     "url": "https://rooted-glow.com/couch-to-5k-8-week-running-plan/",
-    "scheduled_date": "2026-05-15",
-    "status": "pending"
-  },
-  {
-    "id": 27,
-    "type": "pre-written",
-    "post_num": 7,
-    "subreddit": "running",
-    "search_terms": "easy pace, heart rate training, zone 2, why running slow",
-    "comment": "Zone 2 changed my running completely. Was running every run at \"comfortably hard\" pace and constantly tired. Switched to 80% easy / 20% hard and within 2 months:\n\n- Easy pace got 45 sec/mile faster\n- Could run longer without feeling destroyed\n- Actually started enjoying runs again\n\nZone 2 formula: roughly 180 minus your age for max HR. If you're 30, keep easy runs under ~150 bpm. It feels absurdly slow at first. Trust the process.\n\nDeeper dive on the science: https://rooted-glow.com/zone-2-training-slow-running-burns-fat/",
-    "url": "https://rooted-glow.com/zone-2-training-slow-running-burns-fat/",
     "scheduled_date": "2026-05-18",
     "status": "pending"
   },
   {
-    "id": 28,
+    "id": 24,
     "type": "pre-written",
     "post_num": 8,
     "subreddit": "Meditation",
     "search_terms": "how to start meditating, beginner meditation, can't quiet my mind",
     "comment": "\"I can't quiet my mind\" means you're doing it right, honestly. The point isn't to stop thoughts. It's to notice them and come back to your breath. That IS the practice.\n\nStart here: 5 minutes, sit comfortably (chair is fine), close eyes, breathe normally, count breaths 1-10. When you lose count (you will), start over. That's it.\n\nDon't try to do 20 minutes day 1. 5 minutes consistently beats 20 minutes once.\n\nThe two things that made it stick for me: same time every day (right after waking, before phone), and zero judgment when I miss a day.\n\nLonger guide with different techniques to try: https://rooted-glow.com/meditation-for-beginners-start-5-minutes/",
     "url": "https://rooted-glow.com/meditation-for-beginners-start-5-minutes/",
-    "scheduled_date": "2026-05-20",
+    "scheduled_date": "2026-05-25",
     "status": "pending"
   },
   {
-    "id": 29,
+    "id": 25,
     "type": "pre-written",
     "post_num": 9,
     "subreddit": "fermentation",
     "search_terms": "first ferment, sauerkraut tips, beginner fermentation",
     "comment": "Sauerkraut is the perfect first ferment. You literally need: cabbage, salt, a jar, and patience.\n\nThe ratio: 2% salt by weight of cabbage. Massage until it releases liquid. Pack tight in jar, liquid should cover cabbage. Weight it down. Wait 1-4 weeks depending on temp and your taste preference.\n\nCommon beginner mistakes: not enough salt (mold risk), not submerging under liquid, opening the jar too often (introduces oxygen).\n\nFull walkthrough with photos of each step: https://rooted-glow.com/how-to-make-sauerkraut-at-home/",
     "url": "https://rooted-glow.com/how-to-make-sauerkraut-at-home/",
-    "scheduled_date": "2026-05-22",
+    "scheduled_date": "2026-06-01",
     "status": "pending"
   }
 ]
