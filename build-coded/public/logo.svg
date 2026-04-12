@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 48" fill="none">
+  <!-- Wrench mark -->
+  <g transform="translate(4, 4)">
+    <rect x="2" y="2" width="36" height="36" rx="8" stroke="#334e68" stroke-width="1.5" fill="none"/>
+    <path d="M14 10 L14 20 L11 23 L11 30 L17 30 L17 23 L14 20" stroke="#334e68" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M26 10 L26 20 L29 23 L29 30 L23 30 L23 23 L26 20" stroke="#486581" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="12" y="8" width="4" height="4" rx="1" fill="#f7c948" opacity="0.8"/>
+    <rect x="24" y="8" width="4" height="4" rx="1" fill="#f7c948" opacity="0.6"/>
+    <line x1="10" y1="34" x2="30" y2="34" stroke="#bcccdc" stroke-width="1" opacity="0.5"/>
+  </g>
+  <!-- Wordmark -->
+  <text x="52" y="22" font-family="Georgia, 'Times New Roman', serif" font-size="22" font-weight="400" fill="#102a43" letter-spacing="-0.5">Build</text>
+  <text x="52" y="40" font-family="Georgia, 'Times New Roman', serif" font-size="22" font-weight="400" fill="#334e68" letter-spacing="-0.5">Coded</text>
+</svg>
