@@ -1,0 +1,163 @@
+{
+  "cosmetics": {
+    "site_name": "Glow Coded",
+    "site_url": "https://glow-coded.com",
+    "authors": ["Ava Chen", "Sophie Laurent", "Mina Park"],
+    "topics": [
+      {
+        "slug": "retinol-vs-bakuchiol",
+        "title": "Retinol vs Bakuchiol: Which Anti-Aging Active Is Right for You?",
+        "a": "Retinol",
+        "b": "Bakuchiol",
+        "category": "ingredients",
+        "tags": ["retinol", "bakuchiol", "anti-aging", "ingredients", "sensitive skin"],
+        "image_prompt": "Minimalist flat lay of two skincare serum bottles on a neutral beige surface, one amber glass (retinol) and one green glass (bakuchiol), with a small sprig of babchi plant. Soft natural light. Clean K-beauty editorial photography. 16:9 landscape, no text."
+      },
+      {
+        "slug": "hyaluronic-acid-vs-glycerin",
+        "title": "Hyaluronic Acid vs Glycerin: Which Hydrator Does Your Skin Need?",
+        "a": "Hyaluronic Acid",
+        "b": "Glycerin",
+        "category": "ingredients",
+        "tags": ["hyaluronic acid", "glycerin", "hydration", "moisturizer", "dry skin"],
+        "image_prompt": "Close-up photograph of two clear skincare drops on a glass surface, one thick and viscous (glycerin) and one lighter (hyaluronic acid serum). Soft backlight creating refractive sparkles. Clean beauty product photography. 16:9 landscape, no text."
+      },
+      {
+        "slug": "toner-vs-essence",
+        "title": "Toner vs Essence: What's the Difference and Do You Need Both?",
+        "a": "Toner",
+        "b": "Essence",
+        "category": "skincare",
+        "tags": ["toner", "essence", "korean skincare", "skincare routine", "k-beauty basics"],
+        "image_prompt": "Two elegant skincare bottles side by side on a white marble surface — one clear toner bottle and one milky essence bottle. Small dropper and cotton pad nearby. Soft diffused natural light. K-beauty editorial photography. 16:9 landscape, no text."
+      },
+      {
+        "slug": "snail-mucin-vs-centella-asiatica",
+        "title": "Snail Mucin vs Centella Asiatica: Which K-Beauty Hero Ingredient Wins?",
+        "a": "Snail Mucin",
+        "b": "Centella Asiatica",
+        "category": "ingredients",
+        "tags": ["snail mucin", "centella asiatica", "cica", "k-beauty", "skincare ingredients"],
+        "image_prompt": "Artistic flat lay of two K-beauty product jars on a sage green surface, with natural botanical elements — a small snail shell and fresh centella asiatica leaves. Clean minimal styling. Korean beauty editorial. 16:9 landscape, no text."
+      },
+      {
+        "slug": "double-cleansing-vs-single-cleansing",
+        "title": "Double Cleansing vs Single Cleansing: Which Method Is Better for Your Skin?",
+        "a": "Double Cleansing",
+        "b": "Single Cleansing",
+        "category": "skincare",
+        "tags": ["double cleansing", "cleansing", "skincare routine", "oil cleanser", "face wash"],
+        "image_prompt": "Bathroom counter with two cleansing setups side by side — left side has an oil cleanser and foam cleanser (double cleansing), right side has a single micellar water bottle. Soft bathroom lighting, white tiles. Clean beauty photography. 16:9 landscape, no text."
+      }
+    ]
+  },
+  "wellness": {
+    "site_name": "Rooted Glow",
+    "site_url": "https://rooted-glow.com",
+    "authors": ["Nadia Okafor", "James Reeves", "Tara Benson"],
+    "topics": [
+      {
+        "slug": "yoga-vs-pilates",
+        "title": "Yoga vs Pilates: Which Practice Is Better for Your Body?",
+        "a": "Yoga",
+        "b": "Pilates",
+        "category": "movement",
+        "tags": ["yoga", "pilates", "exercise", "flexibility", "strength training"],
+        "image_prompt": "Split-frame photograph: left side shows a woman in a serene yoga warrior pose in a bright studio, right side shows a woman on a Pilates reformer. Both in minimal athletic wear. Soft natural studio light. Wellness lifestyle photography. 16:9 landscape, no text."
+      },
+      {
+        "slug": "probiotics-vs-prebiotics",
+        "title": "Probiotics vs Prebiotics: What's the Difference and Which Do You Need?",
+        "a": "Probiotics",
+        "b": "Prebiotics",
+        "category": "nutrition",
+        "tags": ["probiotics", "prebiotics", "gut health", "digestion", "microbiome"],
+        "image_prompt": "Styled flat lay on a light wood surface: left side has fermented foods (yogurt, kimchi, kefir), right side has prebiotic-rich foods (garlic, onions, bananas, asparagus). Bright natural daylight. Clean wellness nutrition photography. 16:9 landscape, no text."
+      },
+      {
+        "slug": "ashwagandha-vs-rhodiola",
+        "title": "Ashwagandha vs Rhodiola: Which Adaptogen Is Right for You?",
+        "a": "Ashwagandha",
+        "b": "Rhodiola",
+        "category": "natural-health",
+        "tags": ["ashwagandha", "rhodiola", "adaptogens", "stress relief", "supplements"],
+        "image_prompt": "Two amber supplement jars on a natural stone surface, surrounded by dried ashwagandha root on one side and rhodiola rosea flowers on the other. Warm golden hour lighting. Natural health editorial photography. 16:9 landscape, no text."
+      },
+      {
+        "slug": "walking-vs-running",
+        "title": "Walking vs Running: Which Burns More Fat and Builds Better Health?",
+        "a": "Walking",
+        "b": "Running",
+        "category": "movement",
+        "tags": ["walking", "running", "cardio", "weight loss", "fitness"],
+        "image_prompt": "Side-by-side photograph on a park trail at golden hour: left shows a woman power walking in athletic wear, right shows a woman running with dynamic stride. Green trees, warm evening light. Fitness lifestyle photography. 16:9 landscape, no text."
+      },
+      {
+        "slug": "collagen-peptides-vs-bone-broth",
+        "title": "Collagen Peptides vs Bone Broth: Which Is the Better Collagen Source?",
+        "a": "Collagen Peptides",
+        "b": "Bone Broth",
+        "category": "nutrition",
+        "tags": ["collagen", "bone broth", "collagen peptides", "joint health", "skin health"],
+        "image_prompt": "Kitchen counter with a scoop of white collagen peptide powder in a glass jar on the left and a steaming bowl of golden bone broth on the right. Fresh herbs and bones visible. Warm kitchen lighting. Wellness nutrition photography. 16:9 landscape, no text."
+      }
+    ]
+  },
+  "build-coded": {
+    "site_name": "Build Coded",
+    "site_url": "https://build-coded.com",
+    "authors": ["Marcus Webb", "Danny Herrera"],
+    "topics": [
+      {
+        "slug": "impact-driver-vs-drill",
+        "title": "Impact Driver vs Drill: Which Power Tool Do You Need?",
+        "a": "Impact Driver",
+        "b": "Drill",
+        "category": "woodworking",
+        "tags": ["impact driver", "drill", "power tools", "tool comparison", "beginner tools"],
+        "difficulty": "beginner",
+        "image_prompt": "Side-by-side photograph of a cordless impact driver and a cordless drill on a clean wooden workbench. Both DEWALT yellow. Various screws and drill bits scattered between them. Workshop lighting. DIY tool photography. 16:9 landscape, no text."
+      },
+      {
+        "slug": "brad-nailer-vs-finish-nailer",
+        "title": "Brad Nailer vs Finish Nailer: Which Nail Gun Should You Buy?",
+        "a": "Brad Nailer (18-gauge)",
+        "b": "Finish Nailer (15/16-gauge)",
+        "category": "woodworking",
+        "tags": ["brad nailer", "finish nailer", "nail gun", "trim work", "woodworking tools"],
+        "difficulty": "intermediate",
+        "image_prompt": "Two pneumatic nail guns side by side on a workbench with trim pieces and crown molding. One smaller brad nailer, one larger finish nailer. Wood shavings and nails visible. Workshop photography. 16:9 landscape, no text."
+      },
+      {
+        "slug": "orbital-sander-vs-belt-sander",
+        "title": "Orbital Sander vs Belt Sander: Which One Do You Need?",
+        "a": "Random Orbital Sander",
+        "b": "Belt Sander",
+        "category": "woodworking",
+        "tags": ["orbital sander", "belt sander", "sanding", "power tools", "woodworking"],
+        "difficulty": "beginner",
+        "image_prompt": "Two power sanders on a dusty workshop table: a compact round orbital sander and a larger belt sander. Sandpaper discs and belts nearby. A half-sanded wood panel showing the finish difference. Workshop photography. 16:9 landscape, no text."
+      },
+      {
+        "slug": "latex-paint-vs-oil-based-paint",
+        "title": "Latex Paint vs Oil-Based Paint: Which Should You Use?",
+        "a": "Latex (Water-Based) Paint",
+        "b": "Oil-Based Paint",
+        "category": "home-improvement",
+        "tags": ["latex paint", "oil paint", "painting", "home improvement", "interior paint"],
+        "difficulty": "beginner",
+        "image_prompt": "Two open paint cans on a drop cloth — one with white latex paint showing a brush, one with glossy oil-based paint with a different brush. Paint samples on wood swatches between them. Home improvement photography. 16:9 landscape, no text."
+      },
+      {
+        "slug": "hardwood-vs-laminate-flooring",
+        "title": "Hardwood vs Laminate Flooring: The Complete Comparison Guide",
+        "a": "Hardwood Flooring",
+        "b": "Laminate Flooring",
+        "category": "home-improvement",
+        "tags": ["hardwood flooring", "laminate flooring", "flooring", "home improvement", "renovation"],
+        "difficulty": "intermediate",
+        "image_prompt": "Close-up photograph showing two types of flooring planks side by side: real oak hardwood on the left and high-quality laminate on the right. A cross-section piece showing the internal structure of each. Showroom lighting. Home improvement photography. 16:9 landscape, no text."
+      }
+    ]
+  }
+}
