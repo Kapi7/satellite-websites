@@ -97,8 +97,8 @@ def save_status(status):
     STATUS_FILE.write_text(json.dumps(status, indent=2))
 
 
-def call_gemini(prompt, max_retries=3):
-    """Call Gemini API with retry logic."""
+def call_gemini(prompt, max_retries=6):
+    """Call Gemini API with exponential backoff for rate limits."""
     import urllib.request
     import urllib.error
 
@@ -122,10 +122,21 @@ def call_gemini(prompt, max_retries=3):
                 result = json.loads(resp.read())
                 text = result["candidates"][0]["content"]["parts"][0]["text"]
                 return text
+        except urllib.error.HTTPError as e:
+            wait = min(10 * (2 ** attempt), 300)  # 10s, 20s, 40s, 80s, 160s, 300s
+            if e.code in (429, 403):
+                print(f"  Rate limited (attempt {attempt + 1}/{max_retries}), waiting {wait}s...")
+                time.sleep(wait)
+            elif attempt < max_retries - 1:
+                print(f"  HTTP {e.code} (attempt {attempt + 1}), retrying in {wait}s...")
+                time.sleep(wait)
+            else:
+                raise
         except Exception as e:
-            print(f"  Attempt {attempt + 1} failed: {e}")
+            wait = 10 * (attempt + 1)
+            print(f"  Error (attempt {attempt + 1}): {e}")
             if attempt < max_retries - 1:
-                time.sleep(5 * (attempt + 1))
+                time.sleep(wait)
             else:
                 raise
 

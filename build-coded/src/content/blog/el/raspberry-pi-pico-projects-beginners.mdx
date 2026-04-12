@@ -1,0 +1,364 @@
+---
+title: "10 Έργα Raspberry Pi Pico για Αρχάριους (Με Πλήρη Κώδικα)"
+description: "Δέκα πρακτικά έργα Raspberry Pi Pico για αρχάριους, το καθένα με λίστα εξαρτημάτων, επίπεδο δυσκολίας, εκτίμηση χρόνου και ένα λειτουργικό απόσπασμα κώδικα MicroPython."
+date: 2026-04-11
+category: electronics
+type: listicle
+tags:
+  - raspberry pi pico
+  - micropython
+  - beginner projects
+  - rp2040
+  - electronics
+image: /images/raspberry-pi-pico-projects-beginners.jpg
+imageAlt: 'Ένα Raspberry Pi Pico συνδεδεμένο σε breadboard με οθόνη OLED και αισθητήρες'
+draft: true
+locale: el
+author: "Danny Herrera"
+difficulty: beginner
+---
+TITLE: 10 Έργα Raspberry Pi Pico για Αρχάριους (Με Πλήρη Κώδικα)
+DESCRIPTION: Δέκα πρακτικά έργα Raspberry Pi Pico για αρχάριους, το καθένα με λίστα εξαρτημάτων, επίπεδο δυσκολίας, εκτίμηση χρόνου και ένα λειτουργικό απόσπασμα κώδικα MicroPython.
+IMAGE_ALT: 'Ένα Raspberry Pi Pico συνδεδεμένο σε breadboard με οθόνη OLED και αισθητήρες'
+TAGS:
+
+## Γιατί το Raspberry Pi Pico είναι ένας Υπέροχος Πρώτος Μικροελεγκτής
+
+Το Raspberry Pi Pico είναι φθηνό, γρήγορο και συγχωρητικό (εύκολο στη χρήση). Για περίπου 4 $ παίρνεις έναν διπύρηνο επεξεργαστή ARM Cortex-M0+ που τρέχει στα 133 MHz, 264 KB SRAM, 2 MB flash, 26 GPIO pins και μια θύρα USB-C. Αυτό είναι απίστευτη αξία. Το Pico W προσθέτει Wi-Fi και Bluetooth για περίπου 6 $. Σε αντίθεση με ένα Arduino Uno, μπορείς να το προγραμματίσεις σε Python (MicroPython) καθώς και σε C/C++, γεγονός που το καθιστά πολύ λιγότερο επώδυνο για τους αρχάριους.
+
+Όλα τα δέκα έργα παρακάτω χρησιμοποιούν MicroPython. Λειτουργούν τόσο στο Pico όσο και στο Pico W (το τελευταίο χρειάζεται συγκεκριμένα ένα Pico W). Για να ξεκινήσεις, πάρε ένα [Raspberry Pi Pico W Starter Kit](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) ή φτιάξε το δικό σου με ένα [original Raspberry Pi Pico W](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) και ένα καλό [breadboard και σετ καλωδίων jumper](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20).
+
+Πριν ξεκινήσεις, φλάσαρε το MicroPython στο Pico σου. Κράτα πατημένο το BOOTSEL ενώ το συνδέεις, σύρε το αρχείο `.uf2` στον δίσκο που εμφανίζεται και χρησιμοποίησε το Thonny IDE για να τρέξεις κώδικα. Το Thonny είναι δωρεάν και φτιαγμένο γι' αυτό. Δεν χρειάζεσαι τίποτα πιο εξεζητημένο.
+
+## 1. Αναβόσβησε το Ενσωματωμένο LED (Hello World)
+
+**Δυσκολία:** Πολύ Εύκολο
+**Χρόνος:** 5 λεπτά
+**Εξαρτήματα:** Μόνο το Pico
+
+Κάθε ταξίδι στον κόσμο των μικροελεγκτών ξεκινάει από εδώ. Το Pico έχει ένα ενσωματωμένο LED συνδεδεμένο στο GPIO 25 (στο κανονικό Pico) ή ελεγχόμενο μέσω του ασύρματου τσιπ στο Pico W. Αυτό το μικρό απόσπασμα κώδικα αποδεικνύει ότι η εγκατάστασή σου λειτουργεί.
+
+```python
+from machine import Pin
+from time import sleep
+
+led = Pin("LED", Pin.OUT)
+
+while True:
+    led.toggle()
+    sleep(0.5)
+```
+
+Αν βλέπεις ένα LED να αναβοσβήνει, γράφεις επίσημα ενσωματωμένο λογισμικό. Αν όχι, έλεγξε ότι επέλεξες τον σωστό διερμηνέα MicroPython στο Thonny.
+
+## 2. Καταγραφέας Δεδομένων Αισθητήρα Θερμοκρασίας
+
+**Δυσκολία:** Εύκολο
+**Χρόνος:** 30 λεπτά
+**Εξαρτήματα:** Pico, τίποτα άλλο (ο ενσωματωμένος αισθητήρας είναι αρκετά καλός), ή ένας [αδιάβροχος αισθητήρας DS18B20](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) αν θέλεις να καταγράφεις την εξωτερική θερμοκρασία.
+
+Το Pico έχει έναν ενσωματωμένο αισθητήρα θερμοκρασίας συνδεδεμένο στον εσωτερικό ADC στο κανάλι 4. Δεν είναι εργαστηριακά ακριβές, αλλά είναι τέλειο για μάθηση. Αυτό το έργο διαβάζει τη θερμοκρασία κάθε 10 δευτερόλεπτα και την γράφει σε ένα αρχείο CSV στην flash μνήμη του Pico.
+
+```python
+from machine import ADC, Pin
+from time import sleep, time
+
+sensor = ADC(4)
+conversion = 3.3 / 65535
+
+with open("temp_log.csv", "a") as log:
+    log.write("timestamp,celsius\n")
+    while True:
+        reading = sensor.read_u16() * conversion
+        temp_c = 27 - (reading - 0.706) / 0.001721
+        log.write(f"{time()},{temp_c:.2f}\n")
+        log.flush()
+        sleep(10)
+```
+
+**Τι μαθαίνεις:** Αναγνώσεις ADC, μετατροπή μονάδων, εγγραφή αρχείων σε μικροελεγκτή, επίμονη καταγραφή.
+
+## 3. Διακόπτης Φωτός με Χωρητική Αφή
+
+**Δυσκολία:** Εύκολο
+**Χρόνος:** 30 λεπτά
+**Εξαρτήματα:** Pico, αντίσταση 1 M-ohm, έναν συνδετήρα (paperclip) ή μια λωρίδα χάλκινης ταινίας, LED
+
+Το RP2040 του Pico δεν έχει ειδικό υλικό χωρητικής αφής όπως ένα ESP32, αλλά μπορείς να το προσομοιώσεις με μια αντίσταση υψηλής τιμής και χρονισμό λογισμικού. Όταν αγγίζεις το εκτεθειμένο καλώδιο, η χωρητικότητα του δαχτύλου σου επιβραδύνει το πόσο γρήγορα σταθεροποιείται ένας πείρος, και μπορείς να ανιχνεύσεις την αλλαγή. Σύνδεσε το GPIO 16 στο ένα άκρο μιας αντίστασης 1M, το άλλο άκρο στο GPIO 17, και άγγιξε ένα καλώδιο συνδεδεμένο στο GPIO 17.
+
+```python
+from machine import Pin
+from time import sleep
+
+out = Pin(16, Pin.OUT)
+sense = Pin(17, Pin.IN)
+led = Pin("LED", Pin.OUT)
+on = False
+
+def read_touch():
+    out.value(1)
+    count = 0
+    while sense.value() == 0 and count < 1000:
+        count += 1
+    out.value(0)
+    return count
+
+while True:
+    if read_touch() > 200:
+        on = not on
+        led.value(on)
+        sleep(0.3)
+    sleep(0.05)
+```
+
+**Τι μαθαίνεις:** Βρόχους χρονισμού, ανίχνευση λογισμικού, λογική κατάστασης εναλλαγής.
+
+## 4. Συναγερμός Ανιχνευτή Κίνησης PIR
+
+**Δυσκολία:** Εύκολο
+**Χρόνος:** 20 λεπτά
+**Εξαρτήματα:** Pico, [αισθητήρας HC-SR501 PIR](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20), παθητικός βομβητής (passive buzzer), καλώδια jumper
+
+Ένας μικρός συναγερμός δωματίου. Ο αισθητήρας PIR βγάζει υψηλή τάση όταν ανιχνεύει κίνηση, και εσύ ενεργοποιείς τον βομβητή στην αλλαγή κατάστασης.
+
+```python
+from machine import Pin, PWM
+from time import sleep
+
+pir = Pin(15, Pin.IN)
+buzzer = PWM(Pin(14))
+buzzer.duty_u16(0)
+
+while True:
+    if pir.value():
+        buzzer.freq(1000)
+        buzzer.duty_u16(32768)
+        sleep(1)
+        buzzer.duty_u16(0)
+        sleep(2)
+    sleep(0.1)
+```
+
+**Τι μαθαίνεις:** Ψηφιακή είσοδος, PWM για παραγωγή ήχου, βασική καλωδίωση αισθητήρων.
+
+## 5. Αισθητήρας Απόστασης Υπερήχων
+
+**Δυσκολία:** Εύκολο έως μέτριο
+**Χρόνος:** 30 λεπτά
+**Εξαρτήματα:** Pico, [αισθητήρας υπερήχων HC-SR04](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20), μια αντίσταση 10k και μια 20k (ο αισθητήρας είναι 5 V, το Pico είναι 3.3 V)
+
+Σημαντικό: Ο πείρος echo του HC-SR04 βγάζει 5 V. Μην τον συνδέεις απευθείας σε ένα GPIO του Pico. Χρησιμοποίησε έναν διαιρέτη τάσης (10k από το echo στον πείρο του Pico σου, 20k από τον πείρο του Pico σου στη γείωση) ή έναν σωστό μετατοπιστή επιπέδου (level shifter).
+
+```python
+from machine import Pin
+from time import sleep_us, ticks_us, ticks_diff, sleep
+
+trig = Pin(3, Pin.OUT)
+echo = Pin(2, Pin.IN)
+
+def distance_cm():
+    trig.value(0)
+    sleep_us(2)
+    trig.value(1)
+    sleep_us(10)
+    trig.value(0)
+    while echo.value() == 0:
+        start = ticks_us()
+    while echo.value() == 1:
+        end = ticks_us()
+    return (ticks_diff(end, start) * 0.0343) / 2
+
+while True:
+    print(f"{distance_cm():.1f} cm")
+    sleep(0.5)
+```
+
+**Τι μαθαίνεις:** Χρονισμός σε μικροδευτερόλεπτα, μέτρηση παλμών, μετατόπιση επιπέδου στον πραγματικό κόσμο.
+
+## 6. Μενού με Περιστροφικό Κωδικοποιητή
+
+**Δυσκολία:** Μέτριο
+**Χρόνος:** 45 λεπτά
+**Εξαρτήματα:** Pico, [περιστροφικός κωδικοποιητής KY-040](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20), μερικές αντιστάσεις pull-up (συχνά περιλαμβάνονται στο module)
+
+Οι περιστροφικοί κωδικοποιητές είναι η μέθοδος εισόδου επιλογής για κάθε έργο με επιλογές. Αυτό το παράδειγμα μετράει προς τα πάνω ή προς τα κάτω όταν γυρίζεις τον άξονα και μηδενίζει όταν πατάς.
+
+```python
+from machine import Pin
+from time import sleep
+
+clk = Pin(10, Pin.IN, Pin.PULL_UP)
+dt = Pin(11, Pin.IN, Pin.PULL_UP)
+sw = Pin(12, Pin.IN, Pin.PULL_UP)
+
+counter = 0
+last_clk = clk.value()
+
+while True:
+    current = clk.value()
+    if current != last_clk and current == 0:
+        if dt.value() != current:
+            counter += 1
+        else:
+            counter -= 1
+        print(f"Counter: {counter}")
+    last_clk = current
+    if sw.value() == 0:
+        counter = 0
+        print("Reset")
+        sleep(0.3)
+    sleep(0.001)
+```
+
+**Τι μαθαίνεις:** Ανίχνευση άκρων, debouncing, χειρισμός πολλαπλών εισόδων.
+
+## 7. Πίνακας Ελέγχου με Οθόνη OLED
+
+**Δυσκολία:** Μέτριο
+**Χρόνος:** 45 λεπτά
+**Εξαρτήματα:** Pico, [0.96 ιντσών 128x64 SSD1306 OLED (I2C)](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20), καλώδια jumper
+
+Οι μικρές I2C OLED οθόνες είναι ο ευκολότερος τρόπος να βάλεις μια πραγματική οθόνη στο έργο σου. Εγκατέστησε τη βιβλιοθήκη `ssd1306` MicroPython από τον διαχειριστή πακέτων του Thonny. Σύνδεσε το SDA στο GPIO 4, το SCL στο GPIO 5, το VCC στα 3.3 V, το GND στο GND.
+
+```python
+from machine import Pin, I2C, ADC
+from ssd1306 import SSD1306_I2C
+from time import sleep
+
+i2c = I2C(0, sda=Pin(4), scl=Pin(5))
+oled = SSD1306_I2C(128, 64, i2c)
+sensor = ADC(4)
+
+while True:
+    temp_c = 27 - (sensor.read_u16() * (3.3 / 65535) - 0.706) / 0.001721
+    oled.fill(0)
+    oled.text("Pico Dashboard", 0, 0)
+    oled.text(f"Temp: {temp_c:.1f} C", 0, 20)
+    oled.text("build-coded.com", 0, 50)
+    oled.show()
+    sleep(1)
+```
+
+**Τι μαθαίνεις:** Δίαυλος I2C, εξωτερικές βιβλιοθήκες, βασικά γραφικά.
+
+## 8. Servo Ελεγχόμενο με Κουμπί
+
+**Δυσκολία:** Εύκολο
+**Χρόνος:** 30 λεπτά
+**Εξαρτήματα:** Pico, [micro servo SG90](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20), κουμπί, αντίσταση 220 ohm, συνιστάται εξωτερική τροφοδοσία 5 V
+
+Πάτα ένα κουμπί, το servo κινείται στις 180 μοίρες. Πάτα ξανά, επιστρέφει στις 0. Το SG90 λειτουργεί μια χαρά από τον πείρο VBUS του Pico για δοκιμές μιας χρήσης, αλλά για οποιοδήποτε πραγματικό έργο τροφοδότησε το servo ξεχωριστά και μοιράσου τη γείωση.
+
+```python
+from machine import Pin, PWM
+from time import sleep
+
+servo = PWM(Pin(15))
+servo.freq(50)
+button = Pin(14, Pin.IN, Pin.PULL_UP)
+open_pos = False
+
+def set_angle(angle):
+    duty = int(1638 + (angle / 180) * 6553)
+    servo.duty_u16(duty)
+
+set_angle(0)
+
+while True:
+    if button.value() == 0:
+        open_pos = not open_pos
+        set_angle(180 if open_pos else 0)
+        sleep(0.5)
+    sleep(0.05)
+```
+
+**Τι μαθαίνεις:** Μαθηματικά PWM servo, μηχανική έξοδος, απομόνωση ισχύος.
+
+## 9. Ρολόι 7-Segment
+
+**Δυσκολία:** Μέτριο
+**Χρόνος:** 1 ώρα
+**Εξαρτήματα:** Pico, [οθόνη 4 ψηφίων 7-segment TM1637](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20), προαιρετικό module RTC
+
+Το TM1637 είναι μια οθόνη LED 4 ψηφίων με μια απίστευτα απλή διεπαφή 2 καλωδίων και μια έτοιμη βιβλιοθήκη MicroPython. Εγκατέστησε το `micropython-tm1637` από το Thonny. Το Pico δεν έχει δικό του RTC, οπότε αυτή η απλή έκδοση μετράει τα δευτερόλεπτα από την εκκίνηση. Πρόσθεσε ένα module DS3231 RTC αν θέλεις ένα ρολόι που να επιβιώνει από την απενεργοποίηση.
+
+```python
+from machine import Pin
+from time import sleep
+import tm1637
+
+display = tm1637.TM1637(clk=Pin(16), dio=Pin(17))
+seconds = 0
+
+while True:
+    hours = (seconds // 3600) % 24
+    minutes = (seconds // 60) % 60
+    display.numbers(hours, minutes)
+    sleep(1)
+    seconds += 1
+```
+
+**Τι μαθαίνεις:** Εξωτερικούς drivers οθόνης, μαθηματικά χρόνου, γιατί υπάρχουν τα RTC.
+
+## 10. Μετεωρολογικός Σταθμός Wi-Fi (Pico W)
+
+**Δυσκολία:** Μέτριο
+**Χρόνος:** 1 έως 2 ώρες
+**Εξαρτήματα:** [Raspberry Pi Pico W](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20), αισθητήρας BME280 προαιρετικός για τοπικά δεδομένα
+
+Αυτό το έργο χρειάζεται το Pico W επειδή χρησιμοποιεί Wi-Fi. Συνδέεται στο δίκτυό σου, κάνει μια κλήση σε ένα δημόσιο API καιρού (OpenWeatherMap, δωρεάν επίπεδο) και εκτυπώνει τις τρέχουσες συνθήκες. Δημιούργησε ένα δωρεάν κλειδί API στο openweathermap.org πριν ξεκινήσεις.
+
+```python
+import network
+import urequests
+from time import sleep
+
+SSID = "your-ssid"
+PASSWORD = "your-password"
+API_KEY = "your-openweather-key"
+CITY = "Austin"
+
+wlan = network.WLAN(network.STA_IF)
+wlan.active(True)
+wlan.connect(SSID, PASSWORD)
+
+while not wlan.isconnected():
+    sleep(0.5)
+
+print("Connected:", wlan.ifconfig())
+
+url = f"https://api.openweathermap.org/data/2.5/weather?q={CITY}&appid={API_KEY}&units=metric"
+
+while True:
+    try:
+        r = urequests.get(url)
+        data = r.json()
+        print(f"{CITY}: {data['main']['temp']} C, {data['weather'][0]['description']}")
+        r.close()
+    except Exception as e:
+        print("Error:", e)
+    sleep(600)
+```
+
+**Τι μαθαίνεις:** Σύνδεση Wi-Fi, αιτήματα HTTPS, ανάλυση JSON, κλειδιά API και όρια αιτημάτων (rate limits).
+
+## Προτάσεις για Εξαρτήματα και Κιτ
+
+Αν προτιμάς να αγοράσεις ένα πακέτο αντί για μεμονωμένα εξαρτήματα, ένα κιτ θα καλύψει σχεδόν τα πάντα σε αυτή τη λίστα για $30 έως $50:
+
+- [Freenove Ultimate Starter Kit for Raspberry Pi Pico W](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) — καλύπτει και τα 10 έργα εδώ, περιλαμβάνει το Pico W
+- [Elegoo Complete Pico Kit](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) — εναλλακτικό, ελαφρώς φθηνότερο, το Pico δεν περιλαμβάνεται πάντα
+- [Συλλογή αισθητήρων και modules](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) — αν έχεις ήδη ένα Pico
+
+Για μεμονωμένες αναβαθμίσεις που συνεχίζω να προτείνω πέρα από τα αρχικά κιτ: ένα σωστό σετ [καλωδίων jumper DuPont](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) και μια [ποιοτική breadboard 830 σημείων](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) αντέχουν περισσότερο από τα λεπτεπίλεπτα που συνοδεύουν τα κιτ.
+
+## Μερικές Συμβουλές που θα σου Εξοικονομήσουν Ώρες
+
+Πριν αρχίσεις να καις τα Σαββατοκύριακά σου:
+
+1.  Να διαβάζεις πάντα από αριστερά προς τα δεξιά κατά την καλωδίωση. Ταίριαξε το διάγραμμα pinout με τη φυσική σου πλακέτα αντί να εμπιστεύεσαι τα χρώματα.
+2.  Κράτα το Pico σου σε ένα breadboard για πρωτοτυποποίηση. Μην κολλάς τίποτα (do not solder) μέχρι το έργο να λειτουργήσει.
+3.  Χρησιμοποίησε `print()` παντού κατά τον εντοπισμό σφαλμάτων (debugging). Το Thonny δείχνει την έξοδο ζωντανά στο REPL.
+4.  Αποθήκευσε τα scripts σου στον υπολογιστή σου, όχι μόνο στο Pico. Η καταστροφή της flash μνήμης είναι σπάνια αλλά συμβαίνει.
+5.  Όταν κάτι δεν λειτουργεί, αποσύνδεσε και ξανασύνδεσε το Pico. Το REPL του MicroPython μερικές φορές χρειάζεται ένα reset.
+6.  Κράτησε όλα
