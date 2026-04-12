@@ -1,0 +1,54 @@
+[
+  {
+    "site": "wellness",
+    "slug": "best-running-shoes-beginners",
+    "title": "Best Running Shoes for Beginners: How to Choose Your First Pair",
+    "description": "A beginner-friendly guide to choosing your first running shoes. Covers cushioning, stability, fit, and our top picks for new runners in 2026.",
+    "category": "movement",
+    "type": "listicle",
+    "tags": ["running shoes", "beginner running", "running gear", "fitness", "walking to running"],
+    "author": "James Reeves",
+    "imageAlt": "Pair of cushioned running shoes on a trail path at sunrise",
+    "image_prompt": "skip",
+    "prompt": "You are a certified running coach and gear reviewer writing for Rooted Glow (rooted-glow.com), a wellness site.\n\nWrite a detailed guide: \"Best Running Shoes for Beginners: How to Choose Your First Pair\"\n\nIMPORTANT: Use ONLY the following 2026-current shoe models with their EXACT specs. Do NOT use older versions:\n\n1. Brooks Ghost 18 (released April 2026) — $150, 10.1oz men's/9.0oz women's, 10mm drop, 36mm stack, DNA LOFT v3 nitrogen-infused cushioning, flat knit tongue, air mesh upper. The reliable all-rounder.\n2. Nike Pegasus 42 (released April 2026) — $145, full-length curved Air Zoom unit, ReactX foam midsole, 15% more energy return than Peg 41, modernized waffle outsole, midfoot support system. The legendary workhorse.\n3. ASICS Gel-Nimbus 28 (released January 2026) — softest in the Nimbus line, FF BLAST PLUS ECO foam, PureGEL technology, plush max-cushion daily trainer, ~10.5oz men's, 8mm drop.\n4. New Balance Fresh Foam X 1080v14 (current 2025-2026) — triple jacquard mesh upper, Fresh Foam X DNA midsole, rocker sole, max-cushion comfort, excellent shock absorption, ~$160.\n5. Hoka Clifton 10 (released April 2025, current) — $155, 44.4mm stack height, wider toebox (97.2mm), 3mm more drop than v9, compression-molded EVA, jacquard upper with double-lace lock.\n\nStructure:\n- Engaging intro about starting to run and why shoes matter\n- ## How to Choose Your First Running Shoes (subsections: cushioning, stability vs neutral, fit tips, when to replace)\n- ## 5 Best Running Shoes for Beginners in 2026 (## heading per shoe with ### Why We Like It, ### Best For, ### Price Range — use the exact models and specs above)\n- ## Common Beginner Mistakes with Running Shoes\n- ## How to Break In New Running Shoes\n- ## Our Verdict\n- Include a comparison table of all 5 shoes (price, cushioning level, weight, drop, best for)\n- Link to plausible internal articles: [shoe rotation guide](/running-shoe-rotation-guide), [walking vs running](/walking-vs-running)\n- 2000-2500 words, conversational expert tone\n- NO external links, NO affiliate links\n- NO frontmatter"
+  },
+  {
+    "site": "wellness",
+    "slug": "best-running-shoes-intermediate",
+    "title": "Best Running Shoes for Intermediate Runners: Level Up Your Gear",
+    "description": "Running 20-40km per week? Here are the best running shoes for intermediate runners who want more speed, better support, and smarter shoe rotation in 2026.",
+    "category": "movement",
+    "type": "listicle",
+    "tags": ["running shoes", "intermediate running", "tempo shoes", "running gear", "shoe rotation"],
+    "author": "James Reeves",
+    "imageAlt": "Lightweight running shoes on a track with morning fog",
+    "image_prompt": "skip",
+    "prompt": "You are a certified running coach writing for Rooted Glow (rooted-glow.com), a wellness site.\n\nWrite: \"Best Running Shoes for Intermediate Runners: Level Up Your Gear\"\n\nTarget audience: runners doing 20-40km/week, have been running 6+ months, ready for more specialized shoes.\n\nIMPORTANT: Use ONLY these 2026-current shoe models with their EXACT specs:\n\n1. Nike Vomero Plus (2025-2026, current) — towering stack of ZoomX foam, incredibly bouncy and comfortable, best cushioned Nike shoe, excellent for easy and long runs, ~$180.\n2. Brooks Hyperion Max 2 (2025, current) — lightweight speed trainer, nitrogen-infused DNA FLASH midsole, versatile for tempo and fast training, ~$165, ~8.4oz.\n3. ASICS Novablast 5 (2025, current) — FF BLAST PLUS foam, bouncy and energetic daily trainer, great for long-distance comfort, updated upper, ~$140.\n4. Saucony Kinvara 16 (2025-2026, current) — back to original 29mm stack height, PWRRUN foam, smooth and stable ride, lightweight natural feel, great for uptempo work, ~$130, ~7.5oz.\n5. New Balance FuelCell Rebel v5 (2025, current) — FuelCell midsole, lightweight speed trainer, 30mm stack, energetic ride, great for fast sessions, ~$140, ~7.2oz.\n\nStructure:\n- Intro: you've outgrown beginner shoes, here's what to look for next\n- ## What Changes at the Intermediate Level (training variety, pace work, mileage increase)\n- ## Types of Shoes You Need (daily trainer, tempo/speed shoe, long run shoe — introduce rotation concept)\n- ## 5 Best Running Shoes for Intermediate Runners in 2026 (## per shoe with ### Why It Made the Cut, ### Best For, ### Price)\n- ## Building Your First Shoe Rotation\n- ## When to Retire a Shoe (mileage guidelines)\n- Comparison table of all 5\n- ## Our Verdict\n- Internal links: [beginner shoes](/best-running-shoes-beginners), [shoe rotation](/running-shoe-rotation-guide), [walking vs running](/walking-vs-running)\n- 2000-2500 words, expert but approachable\n- NO external links, NO frontmatter"
+  },
+  {
+    "site": "wellness",
+    "slug": "best-running-shoes-advanced",
+    "title": "Best Running Shoes for Advanced Runners: Race-Day and Training Picks",
+    "description": "Elite-level running shoe guide for experienced runners. Carbon-plated racers, super trainers, and the best shoes for marathon training and PRs in 2026.",
+    "category": "movement",
+    "type": "listicle",
+    "tags": ["running shoes", "advanced running", "carbon plate shoes", "marathon shoes", "racing flats"],
+    "author": "James Reeves",
+    "imageAlt": "Carbon-plated racing shoes on a starting line at a track",
+    "image_prompt": "skip",
+    "prompt": "You are an elite running coach and shoe expert writing for Rooted Glow (rooted-glow.com).\n\nWrite: \"Best Running Shoes for Advanced Runners: Race-Day and Training Picks\"\n\nTarget: experienced runners (50+ km/week), racing regularly, targeting PRs.\n\nIMPORTANT: Use ONLY these 2026-current shoe models with their EXACT specs:\n\n**Race Day Shoes:**\n1. Nike Vaporfly 4 (2025, current) — $250, 5.85oz/166g (13% lighter than v3), ZoomX foam + carbon plate, firmer more direct ride, best for 5K-half marathon, 8mm drop.\n2. Adidas Adios Pro 4 (2025, current) — $250, LIGHTSTRIKE PRO foam + carbon rods, plush and bouncy for long distances, best energy return in class, durable outsole, best for marathon.\n3. Saucony Endorphin Elite 2 (March 2025, current) — $275, 7oz/199g, IncrediRUN foam (softest/bounciest super racer midsole), slotted carbon fiber plate, 39.5mm stack, 8mm drop, best for neutral runners at half/full marathon.\n4. New Balance SC Elite v4 (2025, current) — FuelCell Elite foam + carbon plate, lightweight racer for 10K to marathon, ~$250.\n\n**Super Trainers for High Mileage:**\n5. Nike Invincible 3 (2024-2025, still current) — ZoomX foam, max cushion daily trainer, improved stability vs v2, best for easy/recovery miles at high volume, ~$180.\n6. ASICS Superblast 3 (March 2026) — NEW A-TPU superfoam FF Leap + EVA layer, 15% more energy return, 46.6mm stack, 10g lighter than v2, one of 2026's most anticipated shoes, ~$200.\n7. Hoka Mach 7 (2026) — updated upper and outsole from Mach 6, PEBA foam, versatile daily trainer with speed capability, ~$150.\n\nStructure:\n- Intro: at this level, shoes are a performance tool\n- ## What Advanced Runners Need in a Shoe (stack height, carbon plates, weight, energy return, heel-toe drop)\n- ## Race Day Shoes (## per shoe: shoes 1-4 — ### Performance Edge, ### Best Race Distance, ### Price)\n- ## Super Trainers for High Mileage (## per shoe: shoes 5-7 — for daily training at high volume)\n- ## The Advanced Shoe Rotation (table: workout type → shoe type → example)\n- ## Carbon Plate Shoes: Worth the Hype?\n- Comparison table (all 7 shoes: weight, drop, stack, carbon plate Y/N, best for, price)\n- ## Our Verdict\n- Internal links: [intermediate shoes](/best-running-shoes-intermediate), [shoe rotation](/running-shoe-rotation-guide)\n- 2500-3000 words\n- NO external links, NO frontmatter"
+  },
+  {
+    "site": "wellness",
+    "slug": "running-shoe-rotation-guide",
+    "title": "Running Shoe Rotation: Why Multiple Pairs Make You Faster and Healthier",
+    "description": "Learn how rotating between 2-4 pairs of running shoes reduces injury risk, improves performance, and extends shoe life. Complete rotation guide for every level.",
+    "category": "movement",
+    "type": "guide",
+    "tags": ["shoe rotation", "running shoes", "injury prevention", "running gear", "training plan"],
+    "author": "James Reeves",
+    "imageAlt": "Three different pairs of running shoes lined up on a shelf",
+    "image_prompt": "skip",
+    "prompt": "You are a running coach writing for Rooted Glow (rooted-glow.com).\n\nWrite: \"Running Shoe Rotation: Why Multiple Pairs Make You Faster and Healthier\"\n\nIMPORTANT: When referencing specific shoe models as examples, use ONLY 2026-current models:\n- Daily trainers: Brooks Ghost 18, Nike Pegasus 42, Hoka Clifton 10, ASICS Gel-Nimbus 28\n- Speed/tempo: Saucony Kinvara 16, Brooks Hyperion Max 2, NB FuelCell Rebel v5\n- Long run: Nike Vomero Plus, ASICS Novablast 5, NB 1080v14\n- Recovery: Hoka Bondi 9, Nike Invincible 3\n- Race day: Nike Vaporfly 4, Adidas Adios Pro 4, Saucony Endorphin Elite 2\n- Super trainers: ASICS Superblast 3, Hoka Mach 7\n\nStructure:\n- Intro: most runners use one pair for everything — here's why that's a mistake\n- ## The Science Behind Shoe Rotation (studies showing 39% lower injury risk, biomechanical variety, foam recovery between runs)\n- ## The Core Shoe Categories (### Daily Trainer, ### Speed/Tempo Shoe, ### Long Run Shoe, ### Recovery Shoe, ### Race Day Shoe — what each does, key features, 2026 examples)\n- ## Rotation by Runner Level (### Beginner: 2 shoes, ### Intermediate: 3 shoes, ### Advanced: 4-5 shoes — specific rotation tables with 2026 model examples)\n- ## Sample Weekly Rotation Schedule (table: Mon-Sun, workout type, shoe category, example shoe)\n- ## How to Build Your Rotation on a Budget (buy last year's models, stagger purchases)\n- ## When to Retire Each Shoe (mileage ranges by category)\n- ## Our Verdict\n- Internal links: [beginner shoes](/best-running-shoes-beginners), [intermediate shoes](/best-running-shoes-intermediate), [advanced shoes](/best-running-shoes-advanced)\n- 2000-2500 words\n- NO external links, NO frontmatter"
+  }
+]

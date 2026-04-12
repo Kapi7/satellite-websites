@@ -88,8 +88,9 @@ def generate_one(spec: dict, pub_date: str):
     print(f"\n  [{spec['slug']}] ({site})")
 
     # Hero image
-    imagen_generate(spec["image_prompt"], image_dir / f"{slug}.jpg")
-    time.sleep(2)
+    if spec.get("image_prompt") and spec["image_prompt"] != "skip":
+        imagen_generate(spec["image_prompt"], image_dir / f"{slug}.jpg")
+        time.sleep(2)
 
     # Article content
     print(f"    Generating content...")
