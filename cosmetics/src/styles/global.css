@@ -196,12 +196,61 @@ h1, h2, h3, h4, h5, h6 {
   margin: 2.5rem 0;
 }
 
-/* Table styles for comparison articles */
+/* ===== Premium Table Styles ===== */
+.prose .table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 2rem 0;
+  border-radius: 0.75rem;
+  border: 1px solid var(--color-rose-200);
+}
+
 .prose table {
   width: 100%;
-  border-collapse: collapse;
-  margin: 2rem 0;
-  font-size: 0.875rem;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 0;
+  font-size: 0.9rem;
+  min-width: 480px;
+}
+
+.prose thead {
+  background: var(--color-rose-600);
+}
+
+.prose th {
+  text-align: left;
+  padding: 0.875rem 1.25rem;
+  font-weight: 600;
+  color: #fff;
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: none;
+  white-space: nowrap;
+}
+
+.prose td {
+  padding: 0.875rem 1.25rem;
+  color: var(--color-charcoal-light);
+  border-bottom: 1px solid var(--color-rose-100);
+}
+
+.prose tbody tr:nth-child(even) {
+  background: var(--color-rose-50);
+}
+
+.prose tbody tr:nth-child(odd) {
+  background: #fff;
+}
+
+.prose tbody tr:hover {
+  background: var(--color-rose-100);
+  transition: background 0.15s ease;
+}
+
+.prose tbody tr:last-child td {
+  border-bottom: none;
 }
 
 /* Expandable table wrapper */
@@ -210,7 +259,7 @@ h1, h2, h3, h4, h5, h6 {
   margin: 2rem 0;
 }
 
-.table-expand-wrapper table {
+.table-expand-wrapper .table-wrap {
   margin: 0;
 }
 
@@ -256,29 +305,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .table-expand-wrapper.expanded .table-expand-btn svg {
   transform: rotate(180deg);
-}
-
-
-
-.prose th {
-  text-align: left;
-  padding: 0.75rem 1rem;
-  border-bottom: 2px solid var(--color-rose-200);
-  font-weight: 600;
-  color: var(--color-charcoal);
-  font-size: 0.8125rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.prose td {
-  padding: 0.75rem 1rem;
-  border-bottom: 1px solid var(--color-cream-dark);
-  color: var(--color-charcoal-light);
-}
-
-.prose tr:last-child td {
-  border-bottom: none;
 }
 
 /* Product card styling — targets product image links to mirai-skin.com */
@@ -405,6 +431,34 @@ html.dark .prose img {
   box-shadow: 0 4px 20px rgba(0,0,0,0.3);
 }
 
+html.dark .prose .table-wrap {
+  border-color: var(--color-rose-200);
+}
+
+html.dark .prose thead {
+  background: var(--color-rose-300);
+}
+
+html.dark .prose th {
+  color: #fff;
+}
+
+html.dark .prose td {
+  border-bottom-color: var(--color-rose-100);
+}
+
+html.dark .prose tbody tr:nth-child(even) {
+  background: var(--color-rose-50);
+}
+
+html.dark .prose tbody tr:nth-child(odd) {
+  background: var(--color-cream);
+}
+
+html.dark .prose tbody tr:hover {
+  background: var(--color-rose-100);
+}
+
 /* Ingredient tooltips */
 [data-ingredient] {
   position: relative;
@@ -465,6 +519,11 @@ html.dark .prose img {
 
 [dir="rtl"] nav[aria-label="Breadcrumb"] svg {
   transform: rotate(180deg);
+}
+
+[dir="rtl"] .prose th,
+[dir="rtl"] .prose td {
+  text-align: right;
 }
 
 [dir="rtl"] .flex {
