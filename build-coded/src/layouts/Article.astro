@@ -45,12 +45,16 @@ const formattedDate = formatDate(date, locale);
 const formattedUpdated = updated ? formatDate(updated, locale) : undefined;
 const articleUrl = new URL(localePath(`/${slug}`, locale), Astro.site).href;
 
+const authorObj = author
+  ? { '@type': 'Person', name: author }
+  : { '@type': 'Organization', name: 'Build Coded Editorial' };
+
 const articleSchema = JSON.stringify({
   '@context': 'https://schema.org', '@type': 'Article',
-  headline: title, description, image,
+  headline: title, description, image, url: articleUrl,
   datePublished: date.toISOString(), dateModified: updated?.toISOString() || date.toISOString(),
-  author: { '@type': 'Organization', name: 'Build Coded Editorial' },
-  publisher: { '@type': 'Organization', name: 'Build Coded' },
+  author: authorObj,
+  publisher: { '@type': 'Organization', name: 'Build Coded', url: 'https://build-coded.com' },
   mainEntityOfPage: { '@type': 'WebPage', '@id': articleUrl },
   inLanguage: locale,
 });
@@ -59,7 +63,7 @@ const breadcrumbSchema = JSON.stringify({
   itemListElement: [
     { '@type': 'ListItem', position: 1, name: t(locale, 'common.home'), item: new URL(localePath('/', locale), Astro.site).href },
     { '@type': 'ListItem', position: 2, name: categoryLabel, item: new URL(localePath(`/category/${category}`, locale), Astro.site).href },
-    { '@type': 'ListItem', position: 3, name: title },
+    { '@type': 'ListItem', position: 3, name: title, item: articleUrl },
   ],
 });
 
@@ -116,6 +120,23 @@ if (headings) {
     schemas.push(JSON.stringify({
       '@context': 'https://schema.org', '@type': 'FAQPage',
       mainEntity: faqEntries, inLanguage: locale,
+    }));
+  }
+}
+
+// ItemList schema — auto-detect for listicle type ("best X", "top X" articles)
+if (type === 'listicle' && headings) {
+  const listHeadings = headings.filter(
+    (h) => h.depth === 2 && /^(\d+[\.\)]\s|best|top|\w+\s#?\d)/i.test(h.text)
+  );
+  if (listHeadings.length >= 3) {
+    schemas.push(JSON.stringify({
+      '@context': 'https://schema.org', '@type': 'ItemList',
+      name: title, numberOfItems: listHeadings.length,
+      itemListElement: listHeadings.map((h, i) => ({
+        '@type': 'ListItem', position: i + 1, name: h.text,
+        url: `${articleUrl}#${h.slug}`,
+      })),
     }));
   }
 }
