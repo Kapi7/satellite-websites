@@ -149,6 +149,7 @@ if [ $PUBLISHED -gt 0 ]; then
   git push origin main
 
   # Auto-translate newly published articles to all 9 locales
+  # Uses --article flag to translate ONLY the just-published file (fast path).
   TRANSLATE_SCRIPT="scripts/translate-content.py"
   BUILD_CODED_TOUCHED=0
   if [ -f "$TRANSLATE_SCRIPT" ]; then
@@ -157,7 +158,7 @@ if [ $PUBLISHED -gt 0 ]; then
       # Only translate English articles (skip i18n files)
       if echo "$f" | grep -q "/blog/en/"; then
         site=$(echo "$f" | cut -d/ -f1)
-        python3 "$TRANSLATE_SCRIPT" --site "$site" --articles-only 2>&1 | tail -5 || true
+        python3 "$TRANSLATE_SCRIPT" --article "$f" 2>&1 | tail -20 || true
         if [ "$site" = "build-coded" ]; then BUILD_CODED_TOUCHED=1; fi
       fi
     done

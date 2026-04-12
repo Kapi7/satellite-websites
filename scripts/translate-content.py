@@ -298,11 +298,45 @@ def main():
     parser.add_argument("--lang", choices=LOCALES, help="Target language")
     parser.add_argument("--ui-only", action="store_true", help="Only translate UI strings")
     parser.add_argument("--articles-only", action="store_true", help="Only translate articles")
+    parser.add_argument("--article", help="Translate a single article file (path relative to repo root, e.g. cosmetics/src/content/blog/en/slug.mdx)")
     args = parser.parse_args()
 
-    sites = [args.site] if args.site else ["cosmetics", "wellness", "build-coded"]
     langs = [args.lang] if args.lang else LOCALES
     status = load_status()
+
+    # ── Single-article fast path (used by daily-publish.sh) ──────────
+    if args.article:
+        article_path = BASE_DIR / args.article
+        if not article_path.exists():
+            print(f"Article not found: {article_path}")
+            sys.exit(1)
+        # Infer site from path (first directory component)
+        site = args.article.split("/")[0]
+        print(f"Translating single article: {article_path.name} ({site})")
+        for lang in langs:
+            key = f"{site}/article/{lang}/{article_path.name}"
+            if key in status and status[key] == "done":
+                print(f"  Skipping {lang} (already done)")
+                continue
+            print(f"  {article_path.name} -> {lang}")
+            try:
+                success = translate_article(site, lang, article_path)
+                if success:
+                    status[key] = "done"
+                    save_status(status)
+                    print(f"  ✓ {lang}")
+                else:
+                    status[key] = "failed"
+                    save_status(status)
+            except Exception as e:
+                print(f"  ✗ Failed ({lang}): {e}")
+                status[key] = "failed"
+                save_status(status)
+            time.sleep(3)
+        return
+
+    # ── Full-site batch path ─────────────────────────────────────────
+    sites = [args.site] if args.site else ["cosmetics", "wellness", "build-coded"]
 
     for site in sites:
         print(f"\n{'='*60}")
@@ -332,8 +366,7 @@ def main():
                 for i, article in enumerate(articles):
                     key = f"{site}/article/{lang}/{article.name}"
                     if key in status and status[key] == "done":
-                        print(f"  [{i+1}/{len(articles)}] Skipping {article.name} (already done)")
-                        continue
+                        continue  # silent skip in batch mode
 
                     print(f"  [{i+1}/{len(articles)}] {article.name} -> {lang}")
                     try:

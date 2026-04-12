@@ -21,13 +21,16 @@ jobs:
           python-version: '3.12'
 
       - name: Install dependencies
-        run: pip install google-genai
+        run: pip install google-genai python-dotenv
 
       - name: Write .env from secrets
+        env:
+          GEMINI_KEY: ${{ secrets.GEMINI_API_KEY }}
+          TG_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TG_CHAT: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
-          cat > .env << 'ENV_EOF'
-          GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}
-          ENV_EOF
+          printf 'GEMINI_API_KEY=%s\nTELEGRAM_BOT_TOKEN=%s\nTELEGRAM_CHAT_ID=%s\n' \
+            "$GEMINI_KEY" "$TG_TOKEN" "$TG_CHAT" > .env
 
       - name: Write GSC token
         run: echo '${{ secrets.GSC_TOKEN_JSON }}' | base64 -d > /tmp/gsc-token.json
@@ -46,6 +49,8 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
           BING_API_KEY: ${{ secrets.BING_API_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
 
       - name: Push changes if any
         run: |
