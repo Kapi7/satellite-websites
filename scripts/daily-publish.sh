@@ -62,6 +62,12 @@ publish_article() {
 
 # Publish next draft from cosmetics (ordered by keyword value: vol desc, KD asc)
 for article in \
+  "cosmetics/src/content/blog/en/beauty-of-joseon-best-products-complete-guide.mdx" \
+  "cosmetics/src/content/blog/en/best-retinol-creams-serums-beginner-advanced.mdx" \
+  "cosmetics/src/content/blog/en/laneige-lip-sleeping-mask-review-dupes.mdx" \
+  "cosmetics/src/content/blog/en/best-niacinamide-serums-every-skin-type.mdx" \
+  "cosmetics/src/content/blog/en/best-cosrx-products-every-skin-concern.mdx" \
+  "cosmetics/src/content/blog/en/best-centella-asiatica-ampoules-products.mdx" \
   "cosmetics/src/content/blog/en/tirtir-cushion-foundation-shade-guide.mdx" \
   "cosmetics/src/content/blog/en/best-korean-moisturizers-sensitive-skin.mdx" \
   "cosmetics/src/content/blog/en/korean-eye-cream-guide.mdx" \
@@ -95,6 +101,13 @@ done
 
 # Publish next draft from wellness (ordered by keyword value: vol desc, KD asc)
 for article in \
+  "wellness/src/content/blog/en/magnesium-glycinate-benefits-dosage-guide.mdx" \
+  "wellness/src/content/blog/en/nike-vomero-plus-review.mdx" \
+  "wellness/src/content/blog/en/best-protein-powders-clean-natural.mdx" \
+  "wellness/src/content/blog/en/best-probiotics-for-women-gut-health.mdx" \
+  "wellness/src/content/blog/en/hip-flexor-stretches-exercises-tight-hips.mdx" \
+  "wellness/src/content/blog/en/asics-novablast-5-review.mdx" \
+  "wellness/src/content/blog/en/best-electrolyte-drinks-runners.mdx" \
   "wellness/src/content/blog/en/best-double-cleansing-products.mdx" \
   "wellness/src/content/blog/en/double-cleansing-without-oil.mdx" \
   "wellness/src/content/blog/en/oil-cleansing-oily-skin.mdx" \
@@ -129,8 +142,22 @@ for article in \
   fi
 done
 
-# Publish next draft from build-coded (alphabetical fallback — no curated queue yet)
-if [ -d build-coded/src/content/blog/en ]; then
+# Publish next draft from build-coded (ordered by keyword value: vol desc, KD asc)
+for article in \
+  "build-coded/src/content/blog/en/diy-shelving-ideas-built-in-floating-wall.mdx" \
+  "build-coded/src/content/blog/en/vinyl-plank-flooring-guide-lvp-vs-lvt.mdx" \
+  "build-coded/src/content/blog/en/floating-shelves-install-guide-best-picks.mdx" \
+  "build-coded/src/content/blog/en/best-miter-saws-beginners-to-pro.mdx" \
+  "build-coded/src/content/blog/en/best-tool-boxes-organizers-workshop.mdx" \
+  "build-coded/src/content/blog/en/how-to-install-crown-molding.mdx"; do
+  if [ -f "$article" ] && grep -q "^draft: true" "$article"; then
+    publish_article "$article" "Build Coded"
+    PUBLISHED=$((PUBLISHED + 1))
+    break
+  fi
+done
+# Fallback: alphabetical for any remaining drafts
+if [ $PUBLISHED -lt 3 ] && [ -d build-coded/src/content/blog/en ]; then
   for article in build-coded/src/content/blog/en/*.mdx; do
     [ -f "$article" ] || continue
     if grep -q "^draft: true" "$article"; then

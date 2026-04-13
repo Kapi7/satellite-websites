@@ -11,6 +11,7 @@ BING_API_KEY="282fd9e402f641b9a21fe8c171b6925e"
 SITES=(
   "https://glow-coded.com"
   "https://rooted-glow.com"
+  "https://build-coded.com"
 )
 
 for SITE in "${SITES[@]}"; do
