@@ -1,12 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 48" fill="none">
-  <!-- Wrench mark -->
-  <g transform="translate(4, 4)">
-    <rect x="2" y="2" width="36" height="36" rx="8" stroke="#334e68" stroke-width="1.5" fill="none"/>
-    <path d="M14 10 L14 20 L11 23 L11 30 L17 30 L17 23 L14 20" stroke="#334e68" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M26 10 L26 20 L29 23 L29 30 L23 30 L23 23 L26 20" stroke="#486581" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-    <rect x="12" y="8" width="4" height="4" rx="1" fill="#f7c948" opacity="0.8"/>
-    <rect x="24" y="8" width="4" height="4" rx="1" fill="#f7c948" opacity="0.6"/>
-    <line x1="10" y1="34" x2="30" y2="34" stroke="#bcccdc" stroke-width="1" opacity="0.5"/>
+  <!-- Gear mark -->
+  <g transform="translate(24, 24)">
+    <!-- Blue circle border -->
+    <circle cx="0" cy="0" r="19" stroke="#334e68" stroke-width="1.5" fill="none"/>
+    <!-- Gear/cog shape -->
+    <path d="M0,-13 L2,-13 L2.5,-10.5 L4.5,-9.5 L6.5,-11.5 L8,-10 L6.5,-8 L7.5,-6 L10,-5.5 L10,-3.5 L7.5,-3 L7.5,-1 L10,0 L10,2 L7.5,2 L6.5,4 L8,6 L6.5,7.5 L4.5,6 L2.5,7 L2.5,9.5 L0.5,9.5 L0,7.5 L-2,7 L-4,9 L-6,7.5 L-4.5,5.5 L-5.5,4 L-8,4 L-8,2 L-6,0.5 L-6,-1 L-8.5,-2 L-8.5,-4.5 L-6,-4.5 L-5,-6.5 L-6.5,-8.5 L-5,-10 L-3,-8.5 L-1,-9.5 L-1,-13Z"
+          fill="#f7c948" stroke="#de911d" stroke-width="0.5" opacity="0.9"/>
+    <!-- Center -->
+    <circle cx="0" cy="0" r="4" fill="white" stroke="#334e68" stroke-width="0.8"/>
+    <circle cx="0" cy="0" r="1.5" fill="#f7c948"/>
   </g>
   <!-- Wordmark -->
   <text x="52" y="22" font-family="Georgia, 'Times New Roman', serif" font-size="22" font-weight="400" fill="#102a43" letter-spacing="-0.5">Build</text>
