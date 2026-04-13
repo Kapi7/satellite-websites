@@ -1,14 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 48" fill="none">
-  <!-- Gear mark -->
-  <g transform="translate(24, 24)">
-    <!-- Blue circle border -->
-    <circle cx="0" cy="0" r="19" stroke="#334e68" stroke-width="1.5" fill="none"/>
-    <!-- Gear/cog shape -->
-    <path d="M0,-13 L2,-13 L2.5,-10.5 L4.5,-9.5 L6.5,-11.5 L8,-10 L6.5,-8 L7.5,-6 L10,-5.5 L10,-3.5 L7.5,-3 L7.5,-1 L10,0 L10,2 L7.5,2 L6.5,4 L8,6 L6.5,7.5 L4.5,6 L2.5,7 L2.5,9.5 L0.5,9.5 L0,7.5 L-2,7 L-4,9 L-6,7.5 L-4.5,5.5 L-5.5,4 L-8,4 L-8,2 L-6,0.5 L-6,-1 L-8.5,-2 L-8.5,-4.5 L-6,-4.5 L-5,-6.5 L-6.5,-8.5 L-5,-10 L-3,-8.5 L-1,-9.5 L-1,-13Z"
-          fill="#f7c948" stroke="#de911d" stroke-width="0.5" opacity="0.9"/>
-    <!-- Center -->
-    <circle cx="0" cy="0" r="4" fill="white" stroke="#334e68" stroke-width="0.8"/>
-    <circle cx="0" cy="0" r="1.5" fill="#f7c948"/>
+  <!-- Gear mark matching favicon -->
+  <g transform="translate(24,24)">
+    <path d="M-2,-15 L2,-15 L2.5,-12 L5,-11 L7.5,-13 L10,-10.5 L8,-8 L9,-5.5 L12,-5 L12,-2 L9,-1.5 L9,1 L12,2.5 L12,5.5 L9,5 L8,7.5 L10,10 L7.5,12 L5,10 L2.5,11 L2,14 L-2,14 L-2.5,11 L-5,10 L-7.5,12 L-10,10 L-8,7.5 L-9,5 L-12,5.5 L-12,2.5 L-9,1 L-9,-1.5 L-12,-2 L-12,-5 L-9,-5.5 L-8,-8 L-10,-10.5 L-7.5,-13 L-5,-11 L-2.5,-12Z"
+          fill="#334e68" stroke="#243b53" stroke-width="0.5"/>
+    <circle cx="0" cy="-0.5" r="5.5" fill="#f7c948" stroke="#de911d" stroke-width="0.8"/>
+    <circle cx="0" cy="-0.5" r="2.2" fill="#fce588"/>
   </g>
   <!-- Wordmark -->
   <text x="52" y="22" font-family="Georgia, 'Times New Roman', serif" font-size="22" font-weight="400" fill="#102a43" letter-spacing="-0.5">Build</text>
