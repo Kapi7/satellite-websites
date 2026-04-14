@@ -87,6 +87,7 @@ body {
   font-family: var(--font-body);
   color: var(--color-charcoal);
   background-color: var(--color-cream);
+  overflow-x: hidden;
   font-size: 16px;
   line-height: 1.6;
 }
@@ -211,7 +212,6 @@ h1, h2, h3, h4, h5, h6 {
   border-spacing: 0;
   margin: 0;
   font-size: 0.9rem;
-  min-width: 480px;
 }
 
 .prose thead {
@@ -227,7 +227,6 @@ h1, h2, h3, h4, h5, h6 {
   text-transform: uppercase;
   letter-spacing: 0.05em;
   border: none;
-  white-space: nowrap;
 }
 
 .prose td {
@@ -350,6 +349,24 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Mobile optimizations */
 @media (max-width: 639px) {
+  .prose .table-wrap {
+    margin-left: -1rem;
+    margin-right: -1rem;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+
+  .prose th {
+    padding: 0.625rem 0.75rem;
+    font-size: 0.6875rem;
+  }
+
+  .prose td {
+    padding: 0.625rem 0.75rem;
+    font-size: 0.8125rem;
+  }
+
   .prose a[href*="mirai-skin.com"]:has(img) {
     max-width: 200px;
   }

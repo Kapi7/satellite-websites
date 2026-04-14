@@ -35,6 +35,7 @@ const cleanSlug = post.id.includes('/') ? post.id.split('/').slice(1).join('/') 
   headings={headings} slug={cleanSlug}
   rawContent={post.body}
   type={post.data.type}
+  author={post.data.author}
   difficulty={post.data.difficulty}
   estimatedTime={post.data.estimatedTime}
   estimatedCost={post.data.estimatedCost}

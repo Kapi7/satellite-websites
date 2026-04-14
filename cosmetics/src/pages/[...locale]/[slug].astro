@@ -36,6 +36,7 @@ const cleanSlug = post.id.includes('/') ? post.id.split('/').slice(1).join('/') 
   rawContent={post.body}
   routine={post.data.routine}
   type={post.data.type}
+  author={post.data.author}
   locale={locale}
 >
   <Content />

@@ -36,6 +36,7 @@ const { Content, headings } = await render(post);
   slug={post.id.includes('/') ? post.id.split('/').slice(1).join('/') : post.id}
   rawContent={post.body}
   type={post.data.type}
+  author={post.data.author}
   locale={locale}
 >
   <Content />

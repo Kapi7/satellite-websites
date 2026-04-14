@@ -254,6 +254,27 @@ def generate_hero(product_paths, prompt, output_path, dry_run=False):
 
 # ── The 28 images to regenerate ──────────────────────────────
 
+BASE_PROMPT = (
+    "Create a flat-lay product photograph in landscape 16:9 ratio. "
+    "Place these Korean skincare products on a white marble surface with soft lighting and small botanical accents. "
+    "The products should look exactly like these reference photos — same bottles, labels, and colors. "
+    "Premium beauty blog photography. No text overlays. No watermarks."
+)
+
+TOOL_PROMPT = (
+    "Create a product photograph in landscape 16:9 ratio. "
+    "Place these tools on a clean workshop workbench with warm lighting. "
+    "The tools should look exactly like these reference photos — same colors, brand logos, designs. "
+    "Professional tool photography. No text overlays. No watermarks."
+)
+
+SHOE_PROMPT = (
+    "Create a product photograph in landscape 16:9 ratio. "
+    "Place these running shoes side by side on a clean surface with bright natural lighting. "
+    "The shoes should look exactly like these reference photos — same colors, designs, brand logos. "
+    "Premium athletic photography. No text overlays. No watermarks."
+)
+
 HEROES = [
     # ─── COSMETICS (glow-coded.com) ───
     {
@@ -264,7 +285,7 @@ HEROES = [
             {"name": "COSRX Ultra-Light Invisible Sunscreen", "url": "https://www.cosrx.com/products/ultra-light-invisible-sunscreen-spf50"},
             {"name": "Isntree Hyaluronic Acid Watery Sun Gel", "url": "https://www.iherb.com/pr/isntree-hyaluronic-acid-watery-sun-gel-50-spf-50-pa-1-69-fl-oz-50-ml/113671"},
         ],
-        "prompt": "Create a beautiful flat-lay blog hero image in landscape orientation (16:9 ratio). Arrange these three Korean sunscreen products aesthetically on a clean white marble surface with soft natural morning light. Add subtle botanical accents — a few small green leaves. The products should look exactly like these reference photos — same bottles, labels, and colors. Bright, airy, premium beauty blog photography. No text overlays. No watermarks.",
+        "prompt": BASE_PROMPT,
     },
     {
         "site": "glow-coded.com",
@@ -273,7 +294,7 @@ HEROES = [
             {"name": "ETUDE SoonJung Hydro Barrier Cream", "url": "https://www.sephora.com/productimages/sku/s2624831-main-zoom.jpg"},
             {"name": "Dr.Jart+ Ceramidin Cream", "url": "https://www.sephora.com/productimages/sku/s2210557-main-zoom.jpg"},
         ],
-        "prompt": "Create a beautiful flat-lay blog hero image in landscape orientation (16:9 ratio). Arrange these two sensitive skin moisturizers on a soft cream linen surface with warm gentle light. Add a small sprig of chamomile or lavender for a calming accent. Products should look exactly like these reference photos — same packaging, labels, colors. Soft, calming, premium beauty blog photography. No text overlays. No watermarks.",
+        "prompt": BASE_PROMPT,
     },
     {
         "site": "glow-coded.com",
@@ -282,7 +303,7 @@ HEROES = [
             {"name": "K-SECRET SEOUL 1988 Glow Serum", "url": "https://ksecretcosmetics.com/products/seoul-1988-glow-serum-niacinamide-15-yuja"},
             {"name": "AXIS-Y Dark Spot Correcting Glow Toner", "url": "https://www.axis-y.com/products/dark-spot-correcting-glow-toner"},
         ],
-        "prompt": "Create a beautiful flat-lay blog hero image in landscape orientation (16:9 ratio). Arrange these two Korean brightening products on a clean white marble surface with warm golden-hour light. Add a thin slice of yuzu citrus as an accent. Products should look exactly like these reference photos. Bright, luminous, premium beauty blog photography. No text overlays. No watermarks.",
+        "prompt": BASE_PROMPT,
     },
     {
         "site": "glow-coded.com",
@@ -292,7 +313,7 @@ HEROES = [
             {"name": "Banila Co Clean It Zero", "url": "https://banilausa.com/products/clean-it-zero-cleansing-balm-original"},
             {"name": "Anua Heartleaf Cleansing Oil", "url": "https://anua.com/products/heartleaf-pore-control-cleansing-oil-200ml"},
         ],
-        "prompt": "Create a beautiful flat-lay blog hero image in landscape orientation (16:9 ratio). Arrange these three Korean cleansing oil/balm products on a light-toned bathroom vanity with soft morning light. Add a small folded white towel and a few water droplets for freshness. Products should look exactly like these reference photos. Fresh, clean, premium beauty blog photography. No text overlays. No watermarks.",
+        "prompt": BASE_PROMPT,
     },
     {
         "site": "glow-coded.com",
@@ -301,7 +322,7 @@ HEROES = [
             {"name": "Anua Heartleaf 77% Soothing Toner", "url": "https://anua.com/products/heartleaf-77-soothing-toner"},
             {"name": "COSRX Pure Fit Cica Toner", "url": "https://www.cosrx.com/products/pure-fit-cica-toner"},
         ],
-        "prompt": "Create a beautiful flat-lay blog hero image in landscape orientation (16:9 ratio). Arrange these two Korean toner bottles on a clean white surface with soft diffused natural light. Add small green botanical accents. Products should look exactly like these reference photos — same bottles, labels, colors. Clean, minimal, premium beauty blog photography. No text overlays. No watermarks.",
+        "prompt": BASE_PROMPT,
     },
     {
         "site": "glow-coded.com",
@@ -310,7 +331,7 @@ HEROES = [
             {"name": "Beauty of Joseon Revive Eye Serum", "url": "https://beautyofjoseon.com/products/revive-eye-serum-ginseng-retinal"},
             {"name": "COSRX Advanced Snail Peptide Eye Cream", "url": "https://www.cosrx.com/products/advanced-snail-peptide-eye-cream"},
         ],
-        "prompt": "Create a beautiful flat-lay blog hero image in landscape orientation (16:9 ratio). Arrange these two Korean eye care products on a soft cream surface with warm gentle light. Add a small jade roller as an accent. Products should look exactly like these reference photos. Soft, premium beauty blog photography. No text overlays. No watermarks.",
+        "prompt": BASE_PROMPT,
     },
     {
         "site": "glow-coded.com",
@@ -319,7 +340,7 @@ HEROES = [
             {"name": "COSRX The Retinol 0.5 Oil", "url": "https://www.cosrx.com/products/the-retinol-0-5-oil"},
             {"name": "medicube Triple Collagen Serum", "url": "https://medicube.us/products/triple-collagen-serum"},
         ],
-        "prompt": "Create a beautiful flat-lay blog hero image in landscape orientation (16:9 ratio). Arrange these two Korean anti-aging serums on a mirrored tray with warm elegant lighting. Add a small gold accent piece. Products should look exactly like these reference photos. Luxurious, premium beauty blog photography. No text overlays. No watermarks.",
+        "prompt": BASE_PROMPT,
     },
     {
         "site": "glow-coded.com",
@@ -328,7 +349,7 @@ HEROES = [
             {"name": "COSRX AHA 7 Whitehead Power Liquid", "url": "https://www.cosrx.com/products/aha-7-whitehead-power-liquid"},
             {"name": "COSRX BHA Blackhead Power Liquid", "url": "https://www.cosrx.com/products/bha-blackhead-power-liquid"},
         ],
-        "prompt": "Create a beautiful flat-lay blog hero image in landscape orientation (16:9 ratio). Arrange these two Korean exfoliating products on a clean white surface with soft natural light. Add small citrus slices as natural accent. Products should look exactly like these reference photos. Clean, scientific yet beautiful, premium beauty blog photography. No text overlays. No watermarks.",
+        "prompt": BASE_PROMPT,
     },
     {
         "site": "glow-coded.com",
@@ -337,7 +358,7 @@ HEROES = [
             {"name": "COSRX The Retinol 0.5 Oil", "url": "https://www.cosrx.com/products/the-retinol-0-5-oil"},
             {"name": "innisfree Retinol Cica Repair Ampoule", "url": "https://us.innisfree.com/"},
         ],
-        "prompt": "Create a beautiful flat-lay blog hero image in landscape orientation (16:9 ratio). Place these Korean retinol products on a soft neutral surface with warm evening-like lighting. Products should look exactly like these reference photos. Elegant, approachable, premium beauty blog photography. No text overlays. No watermarks.",
+        "prompt": BASE_PROMPT,
     },
     {
         "site": "glow-coded.com",
@@ -346,7 +367,7 @@ HEROES = [
             {"name": "SKIN1004 Centella Toning Toner", "url": "https://www.skin1004.com/products/skin1004-madagascar-centella-toning-toner"},
             {"name": "Torriden Balanceful Cica Serum", "url": "https://torriden.us/products/balanceful-serum"},
         ],
-        "prompt": "Create a beautiful flat-lay blog hero image in landscape orientation (16:9 ratio). Arrange these two Korean cica/centella products on a soft sage-green linen surface with calming natural light. Add a small centella asiatica leaf as accent. Products should look exactly like these reference photos. Calming, soothing, premium beauty blog photography. No text overlays. No watermarks.",
+        "prompt": BASE_PROMPT,
     },
     {
         "site": "glow-coded.com",
@@ -355,7 +376,7 @@ HEROES = [
             {"name": "COSRX Snail 96 Mucin Essence", "url": "https://www.cosrx.com/products/advanced-snail-96-mucin-power-essence"},
             {"name": "COSRX Hyaluronic Acid Intensive Cream", "url": "https://www.cosrx.com/products/hyaluronic-acid-intensive-cream"},
         ],
-        "prompt": "Create a beautiful flat-lay blog hero image in landscape orientation (16:9 ratio). Arrange these two Korean hydrating products on a cozy cream knit blanket surface with warm soft winter light. Add a small dried flower accent. Products should look exactly like these reference photos. Cozy, hydrating, premium beauty blog photography. No text overlays. No watermarks.",
+        "prompt": BASE_PROMPT,
     },
     {
         "site": "glow-coded.com",
@@ -364,7 +385,7 @@ HEROES = [
             {"name": "Beauty of Joseon Relief Sun", "url": "https://beautyofjoseon.com/products/relief-sun-rice-probiotics-spf50-pa-uk"},
             {"name": "COSRX Aloe Soothing Sun Cream", "url": "https://www.cosrx.com/products/aloe-soothing-sun-cream-spf50-pa"},
         ],
-        "prompt": "Create a beautiful comparison blog hero image in landscape orientation (16:9 ratio). Place these two sunscreens side by side on a bright white surface in natural sunlight — one representing Korean SPF (lightweight) and one representing a different approach. Products should look exactly like these reference photos. Bright, comparative, premium beauty blog photography. No text overlays. No watermarks.",
+        "prompt": BASE_PROMPT,
     },
     {
         "site": "glow-coded.com",
@@ -373,7 +394,7 @@ HEROES = [
             {"name": "Beauty of Joseon Relief Sun", "url": "https://beautyofjoseon.com/products/relief-sun-rice-probiotics-spf50-pa-uk"},
             {"name": "COSRX Aloe Soothing Sun Cream", "url": "https://www.cosrx.com/products/aloe-soothing-sun-cream-spf50-pa"},
         ],
-        "prompt": "Create a beautiful flat-lay blog hero image in landscape orientation (16:9 ratio). Arrange these two Korean sunscreens for acne-prone skin on a clean white surface with bright natural light. Add a small aloe vera leaf accent. Products should look exactly like these reference photos. Fresh, clean, premium beauty blog photography. No text overlays. No watermarks.",
+        "prompt": BASE_PROMPT,
     },
     {
         "site": "glow-coded.com",
@@ -383,7 +404,7 @@ HEROES = [
             {"name": "Beauty of Joseon Relief Sun", "url": "https://beautyofjoseon.com/products/relief-sun-rice-probiotics-spf50-pa-uk"},
             {"name": "COSRX Low pH Good Morning Cleanser", "url": "https://www.cosrx.com/products/low-ph-good-morning-gel-cleanser"},
         ],
-        "prompt": "Create a colorful flat-lay blog hero image in landscape orientation (16:9 ratio). Arrange these three affordable K-beauty products on a fun pastel-toned surface with bright soft lighting. Products should look exactly like these reference photos. Fun, accessible, colorful, premium beauty blog photography. No text overlays. No watermarks.",
+        "prompt": BASE_PROMPT,
     },
     {
         "site": "glow-coded.com",
@@ -392,7 +413,7 @@ HEROES = [
             {"name": "Torriden Dive-In HA Serum", "url": "https://torriden.us/products/dive-in-serum"},
             {"name": "Illiyoon Ceramide Ato Cream", "url": "https://media.ulta.com/i/ulta/2610363?w=600"},
         ],
-        "prompt": "Create a beautiful flat-lay blog hero image in landscape orientation (16:9 ratio). Arrange these two Korean hydrating products on a cozy cream surface with warm winter light. Add a small dried eucalyptus sprig. Products should look exactly like these reference photos. Cozy, nourishing, premium beauty blog photography. No text overlays. No watermarks.",
+        "prompt": BASE_PROMPT,
     },
 
     # ─── WELLNESS (rooted-glow.com) ───
@@ -403,7 +424,7 @@ HEROES = [
             {"name": "Nike Pegasus 42", "url": "https://www.nike.com/t/pegasus-42-mens-road-running-shoes-S1bYkOza"},
             {"name": "ASICS Gel-Nimbus 28", "url": "https://images.asics.com/is/image/asics/1011C127_100_SR_RT_GLB?wid=800"},
         ],
-        "prompt": "Create a beautiful product photography blog hero image in landscape orientation (16:9 ratio). Arrange these two running shoes in a dynamic lineup on a light wooden floor with warm natural sunlight streaming in. Show them at a slight angle for visual interest. Shoes should look exactly like these reference photos — same colors, designs, brand logos. Clean, energetic, premium athletic photography. No text overlays. No watermarks.",
+        "prompt": SHOE_PROMPT,
     },
     {
         "site": "rooted-glow.com",
@@ -412,7 +433,7 @@ HEROES = [
             {"name": "Nike Vomero 18", "url": "https://www.nike.com/t/vomero-18-mens-road-running-shoes-BWk4Dn"},
             {"name": "ASICS Novablast 5", "url": "https://images.asics.com/is/image/asics/1011B974_002_SR_RT_GLB?wid=800"},
         ],
-        "prompt": "Create a beautiful product photography blog hero image in landscape orientation (16:9 ratio). Arrange these two running shoes in a row on a clean concrete surface with dramatic natural side-lighting. Show the cushioning and technical details. Shoes should look exactly like these reference photos. Premium athletic editorial photography. No text overlays. No watermarks.",
+        "prompt": SHOE_PROMPT,
     },
     {
         "site": "rooted-glow.com",
@@ -421,7 +442,7 @@ HEROES = [
             {"name": "Nike Vaporfly 4", "url": "https://www.nike.com/t/vaporfly-4-mens-road-racing-shoes-HK05JWOf"},
             {"name": "Saucony Endorphin Elite 2", "url": "https://www.saucony.com/en/endorphin-elite-2/59824U.html"},
         ],
-        "prompt": "Create a beautiful product photography blog hero image in landscape orientation (16:9 ratio). Arrange these two elite racing shoes dynamically on a dark surface with dramatic spotlight lighting to emphasize their lightweight carbon-plated design. Shoes should look exactly like these reference photos. High-performance, premium athletic photography. No text overlays. No watermarks.",
+        "prompt": SHOE_PROMPT,
     },
     {
         "site": "rooted-glow.com",
@@ -430,7 +451,7 @@ HEROES = [
             {"name": "Saucony Kinvara 16", "url": "https://www.saucony.com/en/kinvara-16/60309M.html"},
             {"name": "Nike Pegasus 42", "url": "https://www.nike.com/t/pegasus-42-mens-road-running-shoes-S1bYkOza"},
         ],
-        "prompt": "Create a beautiful product photography blog hero image in landscape orientation (16:9 ratio). Arrange these two different types of running shoes on a warm wooden shelf — showing variety in a rotation collection. Shoes should look exactly like these reference photos. Organized, lifestyle-meets-athletic photography. No text overlays. No watermarks.",
+        "prompt": SHOE_PROMPT,
     },
     {
         "site": "rooted-glow.com",
@@ -439,7 +460,7 @@ HEROES = [
             {"name": "SKIN1004 Centella Toning Toner", "url": "https://www.skin1004.com/products/skin1004-madagascar-centella-toning-toner"},
             {"name": "Torriden Balanceful Cica Serum", "url": "https://torriden.us/products/balanceful-serum"},
         ],
-        "prompt": "Create a beautiful flat-lay blog hero image in landscape orientation (16:9 ratio). Arrange these two Korean calming skincare products on a soft sage linen surface with calming natural light. Add a small lavender sprig for a stress-relief accent. Products should look exactly like these reference photos. Calming, soothing, premium beauty blog photography. No text overlays. No watermarks.",
+        "prompt": BASE_PROMPT,
     },
     {
         "site": "rooted-glow.com",
@@ -449,7 +470,7 @@ HEROES = [
             {"name": "COSRX Low pH Good Morning Cleanser", "url": "https://www.cosrx.com/products/low-ph-good-morning-gel-cleanser"},
             {"name": "Torriden Balanceful Cica Serum", "url": "https://torriden.us/products/balanceful-serum"},
         ],
-        "prompt": "Create a beautiful lifestyle blog hero image in landscape orientation (16:9 ratio). Arrange these three Korean skincare products in a gym bag or on a bench beside running gear with bright natural light. Products should look exactly like these reference photos. Fresh, athletic-meets-beauty photography. No text overlays. No watermarks.",
+        "prompt": BASE_PROMPT,
     },
     {
         "site": "rooted-glow.com",
@@ -459,7 +480,7 @@ HEROES = [
             {"name": "Torriden Balanceful Cica Serum", "url": "https://torriden.us/products/balanceful-serum"},
             {"name": "COSRX Snail 96 Mucin Essence", "url": "https://www.cosrx.com/products/advanced-snail-96-mucin-power-essence"},
         ],
-        "prompt": "Create a beautiful lifestyle blog hero image in landscape orientation (16:9 ratio). Arrange these three Korean skincare products on a clean white gym locker room bench with bright clean lighting. Products should look exactly like these reference photos. Fresh, clean, recovery-focused beauty photography. No text overlays. No watermarks.",
+        "prompt": BASE_PROMPT,
     },
 
     # ─── BUILD-CODED (build-coded.com) ───
@@ -470,7 +491,7 @@ HEROES = [
             {"name": "Milwaukee M18 FUEL 2903-20", "url": "https://www.milwaukeetool.com/products/details/m18-fuel-1-2-drill-driver/2903-20"},
             {"name": "DeWalt DCD800", "url": "https://www.dewalt.com/product/dcd800b/20v-max-xr-12-brushless-cordless-drilldriver-tool-only"},
         ],
-        "prompt": "Create a beautiful product photography blog hero image in landscape orientation (16:9 ratio). Arrange these two cordless drills on a clean workbench with warm workshop lighting. Show the tools at a slight angle. Tools should look exactly like these reference photos — same colors, brand logos, designs. Professional tool photography. No text overlays. No watermarks.",
+        "prompt": TOOL_PROMPT,
     },
     {
         "site": "build-coded.com",
@@ -479,7 +500,7 @@ HEROES = [
             {"name": "Klein Tools MM400", "url": "https://www.kleintools.com/catalog/multimeters/digital-multimeter-auto-ranging-600v"},
             {"name": "Fluke 117", "url": "https://www.fluke.com/en-us/product/electrical-testing/digital-multimeters/fluke-117"},
         ],
-        "prompt": "Create a beautiful product photography blog hero image in landscape orientation (16:9 ratio). Arrange these two multimeters on an electronics workbench with components and wires visible in background. Warm workshop lighting. Tools should look exactly like these reference photos. Professional tool photography. No text overlays. No watermarks.",
+        "prompt": TOOL_PROMPT,
     },
     {
         "site": "build-coded.com",
@@ -487,7 +508,7 @@ HEROES = [
         "products": [
             {"name": "Bambu Lab A1 Mini", "url": "https://bambulab.com/en/a1-mini"},
         ],
-        "prompt": "Create a beautiful product photography blog hero image in landscape orientation (16:9 ratio). Show this 3D printer on a clean modern desk with small 3D printed objects nearby. Bright maker-space lighting. Printer should look exactly like this reference photo. Clean, modern, maker-space photography. No text overlays. No watermarks.",
+        "prompt": TOOL_PROMPT,
     },
     {
         "site": "build-coded.com",
@@ -495,7 +516,7 @@ HEROES = [
         "products": [
             {"name": "Minwax Fast-Drying Polyurethane", "url": "https://www.minwax.com/en/products/protective-finishes/fast-drying-polyurethane"},
         ],
-        "prompt": "Create a beautiful product photography blog hero image in landscape orientation (16:9 ratio). Arrange this wood finish product on a woodworking bench alongside wood samples showing different finishes (raw vs finished). Warm workshop lighting. Product should look exactly like this reference photo. Craft workshop photography. No text overlays. No watermarks.",
+        "prompt": TOOL_PROMPT,
     },
     {
         "site": "build-coded.com",
@@ -504,7 +525,7 @@ HEROES = [
             {"name": "Pine64 Pinecil V2", "url": "https://pine64.com/product/pinecil-smart-mini-portable-soldering-iron/"},
             {"name": "Hakko FX-888D", "url": "https://www.adafruit.com/product/1204"},
         ],
-        "prompt": "Create a beautiful product photography blog hero image in landscape orientation (16:9 ratio). Arrange these two soldering tools on an electronics workbench with circuit boards and solder wire visible. Cool blue accent lighting mixed with warm workshop light. Tools should look exactly like these reference photos. Maker-space photography. No text overlays. No watermarks.",
+        "prompt": TOOL_PROMPT,
     },
     {
         "site": "build-coded.com",
@@ -512,7 +533,7 @@ HEROES = [
         "products": [
             {"name": "DEWALT DWE575SB Circular Saw", "url": "https://www.dewalt.com/product/dwe575sb/7-14-lightweight-circular-saw-contractor-bag-tool-only"},
         ],
-        "prompt": "Create a beautiful comparison product photography blog hero image in landscape orientation (16:9 ratio). Show a circular saw in a workshop setting with wood boards being cut. Warm workshop lighting with wood and sawdust accents. The circular saw should look exactly like this reference photo — yellow and black DeWalt design. Professional tool photography. No text overlays. No watermarks.",
+        "prompt": TOOL_PROMPT,
     },
 ]
 

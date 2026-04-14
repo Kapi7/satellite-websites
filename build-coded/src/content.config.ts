@@ -25,6 +25,7 @@ const blog = defineCollection({
     estimatedTime: z.string().optional(),
     estimatedCost: z.string().optional(),
     locale: z.enum(['en', 'es', 'de', 'el', 'ru', 'it', 'ar', 'fr', 'nl', 'pt']).default('en'),
+    author: z.string().optional(),
   }),
 });
 
