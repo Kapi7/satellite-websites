@@ -91,6 +91,19 @@ AUTHOR_ROTATION = {
 RUNWAY_WARN_DAYS = 10   # ping Telegram as warn if any site has < this many drafts
 RUNWAY_CRIT_DAYS = 5    # ping Telegram as err below this
 
+# Known brand domains — if an article links to these, it recommends real products
+# and its hero image must show real product photos (not AI-generated fakes).
+PRODUCT_DOMAINS = {
+    "cosrx.com", "beautyofjoseon.com", "skin1004.com", "torriden.us",
+    "anua.com", "medicube.us", "banilausa.com", "ksecretcosmetics.com",
+    "axis-y.com", "innisfree.com", "us.innisfree.com", "pyunkangyul.us",
+    "purito.com", "drjart.com", "etude.com",
+    "nike.com", "brooksrunning.com", "asics.com", "saucony.com", "adidas.com",
+    "dewalt.com", "milwaukeetool.com", "makitatools.com", "kleintools.com",
+    "fluke.com", "hakko.com", "bambulab.com", "creality.com",
+    "amazon.com",  # product reviews often link to Amazon
+}
+
 IMAGEN_MODEL = "imagen-4.0-fast-generate-001"
 IMAGEN_URL = (
     f"https://generativelanguage.googleapis.com/v1beta/models/{IMAGEN_MODEL}:predict"
@@ -158,6 +171,15 @@ def ensure_author(mdx: Path, site_key: str, dry_run: bool) -> str | None:
     new_text = m.group(1) + new_fm + m.group(3) + text[m.end():]
     mdx.write_text(new_text, encoding="utf-8")
     return author
+
+
+def is_product_article(mdx: Path) -> bool:
+    """Check if an article recommends real products (links to brand/retailer sites)."""
+    text = mdx.read_text(encoding="utf-8")
+    # Count links to known product domains
+    links = re.findall(r"https?://(?:www\.)?([a-z0-9.-]+)", text)
+    product_links = sum(1 for domain in links if any(domain.endswith(pd) for pd in PRODUCT_DOMAINS))
+    return product_links >= 2  # 2+ product links = product article
 
 
 def build_image_prompt(fm: dict, site_key: str) -> str:
@@ -239,6 +261,7 @@ def main() -> int:
         authors_fixed = []
         images_fixed = []
         image_failed = []
+        product_hero_warnings = []  # articles with products that need real-product heroes
 
         for mdx in drafts:
             # Author rotation
@@ -265,6 +288,23 @@ def main() -> int:
                         else:
                             image_failed.append(mdx.stem)
 
+            # Product-hero check: if article links to real products, warn that
+            # the hero image should use real product photos (not text-to-image).
+            if is_product_article(mdx):
+                if image_raw and (cfg["images"] / image_raw).exists():
+                    # Hero exists — check if file is small (< 50KB) which may
+                    # indicate a text-only AI generation. Real-product heroes
+                    # are typically 80-400KB.
+                    hero_size = (cfg["images"] / image_raw).stat().st_size
+                    if hero_size < 50_000:
+                        product_hero_warnings.append(
+                            f"{mdx.stem} (hero {hero_size // 1024}KB — may need real product photos)"
+                        )
+                elif not image_raw:
+                    product_hero_warnings.append(
+                        f"{mdx.stem} (no hero image set — product article needs one)"
+                    )
+
         # Determine severity for this site
         if runway <= RUNWAY_CRIT_DAYS:
             level = "err"
@@ -283,6 +323,8 @@ def main() -> int:
             line += f"\n    heroes generated: {len(images_fixed)}"
         if image_failed:
             line += f"\n    heroes FAILED: {len(image_failed)}"
+        if product_hero_warnings:
+            line += f"\n    ⚠ product-hero check: {len(product_hero_warnings)} need review"
         report_lines.append(line)
 
         print(line)
@@ -292,6 +334,8 @@ def main() -> int:
             print(f"    [hero]   {i}")
         for i in image_failed:
             print(f"    [FAIL]   {i}")
+        for w in product_hero_warnings:
+            print(f"    [PRODUCT] {w}")
 
     summary = "\n".join(report_lines)
     if dry:
