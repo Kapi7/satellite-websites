@@ -28,6 +28,11 @@ SITES = {
         "sitemap": "https://rooted-glow.com/sitemap-0.xml",
         "bing_url": "https://rooted-glow.com/",
     },
+    "build-coded.com": {
+        "gsc": "sc-domain:build-coded.com",
+        "sitemap": "https://build-coded.com/sitemap-0.xml",
+        "bing_url": "https://build-coded.com/",
+    },
 }
 
 # Keyword value for prioritizing unindexed URLs (slug -> approximate monthly volume)

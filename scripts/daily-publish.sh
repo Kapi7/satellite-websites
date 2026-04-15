@@ -22,9 +22,10 @@ if [ -f scripts/queue_health.py ]; then
   python3 scripts/queue_health.py || echo "[pre-flight] queue_health returned non-zero"
 fi
 
-LOCALES="es de el ru it ar"
+LOCALES="es de el ru it ar fr nl pt"
 PUBLISHED=0
 PUBLISHED_FILES=""
+ENGLISH_TO_PUBLISH=""
 
 # Helper: remove draft: true from a file (cross-platform sed)
 undraft() {
@@ -36,7 +37,7 @@ undraft() {
   fi
 }
 
-# Helper: undraft English article + all its translations
+# Helper: ensure translations exist for an article, then undraft everything
 publish_article() {
   local article="$1"
   local label="$2"
@@ -44,18 +45,35 @@ publish_article() {
   filename=$(basename "$article")
   local blog_base
   blog_base=$(dirname "$(dirname "$article")")  # e.g. cosmetics/src/content/blog
+  local site
+  site=$(echo "$article" | cut -d/ -f1)
 
+  # ── Step 1: Generate missing translations BEFORE undrafting ──
+  TRANSLATE_SCRIPT="scripts/translate-content.py"
+  if [ -f "$TRANSLATE_SCRIPT" ]; then
+    for lang in $LOCALES; do
+      local i18n_file="$blog_base/$lang/$filename"
+      if [ ! -f "$i18n_file" ]; then
+        echo "  [$label] Translating $filename -> $lang"
+        python3 "$TRANSLATE_SCRIPT" --article "$article" --lang "$lang" 2>&1 | tail -5 || true
+      fi
+    done
+  fi
+
+  # ── Step 2: Undraft English + all translations ──
   undraft "$article"
   echo "[$label] Published: $(basename "$article" .mdx)"
   PUBLISHED_FILES="$PUBLISHED_FILES $article"
 
-  # Also undraft all translated versions
   for lang in $LOCALES; do
     local i18n_file="$blog_base/$lang/$filename"
     if [ -f "$i18n_file" ] && grep -q "^draft: true" "$i18n_file"; then
       undraft "$i18n_file"
       PUBLISHED_FILES="$PUBLISHED_FILES $i18n_file"
       echo "  [$label] Undrafted $lang translation"
+    elif [ -f "$i18n_file" ]; then
+      PUBLISHED_FILES="$PUBLISHED_FILES $i18n_file"
+      echo "  [$label] $lang translation ready"
     fi
   done
 }
@@ -175,24 +193,15 @@ if [ $PUBLISHED -gt 0 ]; then
   git pull --rebase --quiet origin main 2>/dev/null || true
   git push origin main
 
-  # Auto-translate newly published articles to all 9 locales
-  # Uses --article flag to translate ONLY the just-published file (fast path).
-  TRANSLATE_SCRIPT="scripts/translate-content.py"
-  BUILD_CODED_TOUCHED=0
-  if [ -f "$TRANSLATE_SCRIPT" ]; then
-    echo "Running auto-translation for published articles..."
-    for f in $PUBLISHED_FILES; do
-      # Only translate English articles (skip i18n files)
-      if echo "$f" | grep -q "/blog/en/"; then
-        site=$(echo "$f" | cut -d/ -f1)
-        python3 "$TRANSLATE_SCRIPT" --article "$f" 2>&1 | tail -20 || true
-        if [ "$site" = "build-coded" ]; then BUILD_CODED_TOUCHED=1; fi
-      fi
-    done
-  fi
+  # Translations now happen inside publish_article() BEFORE undrafting,
+  # so all languages go live in the same commit.
 
   # build-coded is deployed via direct wrangler upload (no CF Pages GitHub integration)
   # so rebuild + deploy it explicitly when new articles were published.
+  BUILD_CODED_TOUCHED=0
+  for f in $PUBLISHED_FILES; do
+    if echo "$f" | grep -q "^build-coded/"; then BUILD_CODED_TOUCHED=1; break; fi
+  done
   if [ "$BUILD_CODED_TOUCHED" = "1" ] && [ -d build-coded ]; then
     echo "[build-coded] rebuilding and deploying via wrangler..."
     (cd build-coded && npm run build 2>&1 | tail -5 && \

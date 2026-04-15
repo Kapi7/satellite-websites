@@ -23,6 +23,7 @@ REPORTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "reports"
 SITES = {
     "glow-coded.com": {"gsc": "sc-domain:glow-coded.com", "url": "https://glow-coded.com"},
     "rooted-glow.com": {"gsc": "sc-domain:rooted-glow.com", "url": "https://rooted-glow.com"},
+    "build-coded.com": {"gsc": "sc-domain:build-coded.com", "url": "https://build-coded.com"},
 }
 
 TODAY = datetime.now().strftime("%Y-%m-%d")

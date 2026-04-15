@@ -101,7 +101,7 @@ PINTEREST_BOARD_MAP = {
 
 # ── Rate limits ──────────────────────────────────────────────
 
-REDDIT_MAX_PER_DAY = 8
+REDDIT_MAX_PER_DAY = 50
 # Per-site daily pin cap. Total = 15 (5 glow-coded + 5 rooted-glow + 5
 # build-coded). The rooted-glow Pinterest account handles wellness AND
 # build-coded (= 10/day/account), glow-coded account handles 5/day.
