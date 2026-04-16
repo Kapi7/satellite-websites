@@ -113,18 +113,18 @@ const webSiteSchema = JSON.stringify({
       <HeroSlideshow slides={slides} />
     </div>
 
-    <!-- Trending (GSC top performers) -->
+    <!-- Reader Favorites -->
     {trendingPosts.length > 0 && (
       <section class="max-w-[1400px] mx-auto px-5 sm:px-8 pt-14 sm:pt-20 mb-16 sm:mb-24">
         <div class="flex justify-between items-end mb-12">
           <div>
-            <span class="block text-[11px] font-semibold uppercase tracking-wide text-charcoal-light/50 mb-2">{t(locale, 'home.trending') || 'Trending'}</span>
-            <h2 class="font-heading text-4xl italic text-charcoal tracking-tight">{t(locale, 'home.mostPopular') || 'Most Popular'}</h2>
+            <span class="block text-[11px] font-semibold uppercase tracking-wide text-charcoal-light/50 mb-2">{t(locale, 'home.trending')}</span>
+            <h2 class="font-heading text-4xl italic text-charcoal tracking-tight">{t(locale, 'home.readerFavorites')}</h2>
           </div>
         </div>
 
         <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
-          {trendingPosts.map((post: any) => (
+          {trendingPosts.map((post: any, i: number) => (
             <ArticleCard
               title={post.data.title}
               description={post.data.description}
@@ -133,6 +133,7 @@ const webSiteSchema = JSON.stringify({
               slug={post.id.includes('/') ? post.id.split('/').slice(1).join('/') : post.id}
               image={post.data.image}
               type={post.data.type}
+              featured={i === 0}
               locale={locale}
             />
           ))}

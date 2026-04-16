@@ -1,26 +1,30 @@
 ---
-title: "Créer un éclairage LED sur mesure : sous les armoires, d'appoint, et au-delà"
-description: "Un guide complet pour planifier, câbler et installer un éclairage LED sur mesure sous les armoires, pour les murs d'accent et les applications décoratives."
+title: "Comment installer un éclairage LED personnalisé"
+description: "Le guide complet pour planifier, câbler et installer un éclairage LED personnalisé sous les meubles de cuisine, sur les murs décoratifs et pour diverses applications."
 date: 2026-04-07
 category: "electronics"
 type: "guide"
-tags: ["bandeaux LED", "éclairage", "aménagement intérieur", "maison connectée", "DIY", "éclairage d'appoint", "sous-armoire"]
+tags: ["bandeaux LED", "éclairage", "bricolage", "maison connectée", "éclairage d'ambiance", "sous meuble"]
 image: "/images/how-to-build-led-strip-lighting.jpg"
 imageAlt: "Éclairage LED blanc chaud installé sous les armoires de cuisine illuminant un plan de travail"
 draft: false
 locale: fr
+author: "Danny Herrera"
 difficulty: "intermediate"
 estimatedTime: "2-4 hours"
 estimatedCost: "$30-80"
 hub: "diy-smart-home-on-a-budget"
 ---
-## Pourquoi l'éclairage par bandeaux LED est l'une des meilleures améliorations pour ta maison
+BODY TO TRANSLATE:
 
-Franchement, pour chaque euro dépensé, l'éclairage par bandeaux LED est l'une des améliorations les plus impactantes que tu puisses apporter à une pièce. Les lumières sous les armoires de cuisine, les centres de divertissement rétroéclairés, les corniches d'accentuation, l'éclairage des escaliers et l'illumination des placards transforment un espace pour une fraction du coût de l'éclairage traditionnel.
 
-Les bandeaux LED sont aussi l'un des projets DIY les plus gratifiants, car les résultats sont immédiatement visibles et vraiment utiles. Aucune soudure n'est requise pour une installation de base (bien que ça aide pour des longueurs personnalisées), et tout le travail prend généralement une après-midi.
+## Pourquoi l'éclairage LED est l'une des meilleures améliorations pour la maison
 
-Ce guide couvre tout : les types de bandeaux, les calculs de puissance, les contrôleurs, l'installation et l'intégration à la maison connectée.
+Dollar pour dollar, l'éclairage LED est l'une des améliorations les plus efficaces que tu puisses apporter à une pièce. Les lumières sous les meubles de cuisine, les centres de divertissement rétroéclairés, les corniches décoratives, l'éclairage d'escalier et l'illumination de placards transforment un espace pour une fraction du coût de l'éclairage traditionnel.
+
+Les bandes LED sont aussi l'un des projets DIY les plus satisfaisants car les résultats sont immédiatement visibles et vraiment utiles. Aucune soudure n'est nécessaire pour une installation basique (même si ça aide pour les longueurs personnalisées), et tout le travail prend généralement un après-midi.
+
+Ce guide couvre tout : les types de bandes, les calculs de puissance, les contrôleurs, l'installation et l'intégration [domotique](/diy-smart-home-on-a-budget/).
 
 ## Matériel et Outils
 
@@ -28,200 +32,199 @@ Ce guide couvre tout : les types de bandeaux, les calculs de puissance, les cont
 
 | Article | Utilité | Coût estimé |
 |------|---------|---------------|
-| [Bandeau LED (voir les types ci-dessous)](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) | La source de lumière | 10-30 $ |
-| Alimentation électrique (12V ou 24V DC) | Convertit le courant mural AC en DC | 8-20 $ |
-| Contrôleur/variateur LED | Ajuste la luminosité et la couleur | 5-15 $ |
-| [Profilé en aluminium avec diffuseur](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) | Aspect propre, dissipation thermique, diffusion | 10-25 $ |
-| Connecteurs LED sans soudure ou fer à souder + étain | Connexion des segments de bandeaux | 5-10 $ |
-| Fil 20-22 AWG | Alimentation entre les sections | 5 $ |
-| Clips de fixation ou ruban 3M VHB | Sécurisation de l'installation | 5 $ |
+| [Bande LED (voir types ci-dessous)](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) | La source lumineuse | 10-30 € |
+| Alimentation (12V ou 24V DC) | Convertit le courant mural AC en DC | 8-20 € |
+| Contrôleur/variateur LED | Ajuste la luminosité et la couleur | 5-15 € |
+| [Profilé aluminium avec diffuseur](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) | Look soigné, dissipation de chaleur, diffusion | 10-25 € |
+| Connecteurs LED sans soudure ou fer à souder + étain | Connecter les segments de bande | 5-10 € |
+| Fil 20-22 AWG | Faire passer le courant entre les sections | 5 € |
+| Clips de fixation ou ruban adhésif 3M VHB | Fixer l'installation | 5 € |
 
 ### Outils
 
 - Mètre ruban
-- Ciseaux (les bandeaux LED se coupent à intervalles marqués)
-- Dénude-fils
+- Ciseaux (les bandes LED se coupent à intervalles marqués)
+- Pince à dénuder
 - Perceuse (pour fixer les profilés)
-- Fer à souder (facultatif, mais recommandé pour des connexions fiables)
+- Fer à souder (optionnel mais recommandé pour des connexions fiables)
 
-## Comprendre les types de bandeaux LED
+## Comprendre les types de bandes LED
 
-### Couleur unique vs. RGB vs. RGBW vs. Blanc tunable
+### Monocolore vs RGB vs RGBW vs Blanc réglable
 
-**Couleur unique (blanc chaud, blanc froid ou blanc neutre) :** Le plus simple et le plus pratique pour l'éclairage fonctionnel, comme sous les armoires et dans les placards. Le blanc chaud (2700-3000K) correspond à la plupart des éclairages domestiques. Le blanc froid (5000-6500K) est mieux adapté aux ateliers et garages.
+**Monocolore (blanc chaud, blanc froid, ou blanc neutre) :** Le plus simple et le plus pratique pour l'éclairage fonctionnel comme sous les meubles et dans les placards. Le blanc chaud (2700-3000K) correspond à la plupart des éclairages domestiques. Le blanc froid (5000-6500K) est mieux pour les ateliers et les garages.
 
-**RGB (Rouge, Vert, Bleu) :** Peut produire des millions de couleurs, mais ne peut pas produire un blanc pur et de haute qualité. Idéal pour l'éclairage d'appoint et d'ambiance, pas pour l'éclairage fonctionnel.
+**RGB (Rouge, Vert, Bleu) :** Peut produire des millions de couleurs mais ne peut pas produire un blanc pur et de haute qualité. Idéal pour l'éclairage d'ambiance et d'accentuation, pas pour l'éclairage fonctionnel.
 
-**RGBW (RGB + Blanc dédié) :** Ajoute une puce LED blanche dédiée aux puces RGB. Cela te donne à la fois des effets de couleur ET un blanc approprié pour l'éclairage fonctionnel. C'est l'option la plus polyvalente.
+**RGBW (RGB + Blanc dédié) :** Ajoute une puce LED blanche dédiée à côté des puces RGB. Cela te donne à la fois des effets de couleur ET un vrai blanc pour l'éclairage fonctionnel. C'est l'option la plus polyvalente.
 
-**Blanc tunable (CCT) :** Possède deux types de LED blanches (chaude et froide) que tu peux mélanger pour obtenir n'importe quelle température de couleur. Idéal si tu veux une lumière chaude le soir et une lumière froide énergisante pendant la journée. Pas de capacité de couleur, mais la qualité du blanc est excellente.
+**Blanc réglable (CCT) :** Possède deux types de LED blanches (chaude et froide) que tu peux mélanger pour obtenir n'importe quelle température de couleur. Idéal si tu veux une lumière chaude le soir et une lumière froide énergisante pendant la journée. Pas de capacité de couleur, mais la qualité du blanc est excellente.
 
 ### Densité des LED : 30/m, 60/m, 120/m
 
-Le nombre de puces LED par mètre affecte la luminosité et l'uniformité de la lumière.
+Le nombre de puces LED par mètre affecte la luminosité et la douceur de la lumière.
 
-- **30 LED/m :** Points individuels visibles, même avec un diffuseur. Convient pour le rétroéclairage où tu ne vois pas directement le bandeau.
-- **60 LED/m :** Bon équilibre entre luminosité et apparence. C'est le standard pour la plupart des installations.
-- **120 LED/m :** Éclairage continu et homogène. Idéal pour l'éclairage sous les armoires et les corniches où le diffuseur est visible.
+- **30 LEDs/m :** Points individuels visibles, même avec un diffuseur. Convient pour le rétroéclairage où tu ne vois pas la bande directement.
+- **60 LEDs/m :** Bon équilibre entre luminosité et apparence. Le standard pour la plupart des installations.
+- **120 LEDs/m :** Sortie lumineuse lisse et continue. Idéal pour l'éclairage sous les meubles et dans les corniches où le diffuseur est visible.
 
-**Recommandation :** Pour la plupart des installations, 60 LED/m est un excellent compromis. Passe à 120/m si le profilé diffuseur sera visible.
+**Recommandation :** Pour la plupart des installations, 60 LEDs/m est le juste milieu. Passe à 120/m si le profilé diffuseur sera visible.
 
-### 12V vs. 24V
+### 12V vs 24V
 
-Les **bandeaux 12V** sont plus courants et moins chers, mais la chute de tension sur de longues distances est un vrai problème. Au-delà d'environ 5 mètres, l'extrémité du bandeau est nettement moins lumineuse que le début.
+**Bandes 12V :** Plus courantes et moins chères, mais la chute de tension sur la distance est un vrai problème. Au-delà d'environ 5 mètres, le bout de la bande est nettement moins lumineux que le début.
 
-Les **bandeaux 24V** gèrent mieux les longues distances car ils consomment la moitié du courant pour la même puissance, réduisant ainsi la chute de tension. Pour toute installation de plus de 3 mètres, le 24V est le meilleur choix.
+**Bandes 24V :** Gèrent mieux les longues distances car elles tirent deux fois moins de courant pour la même puissance, réduisant la chute de tension. Pour toute longueur supérieure à 3 mètres, le 24V est le meilleur choix.
 
-**Conseil de pro :** Ne mélange jamais des bandeaux 12V avec une alimentation 24V (ou vice versa). Un bandeau 12V alimenté en 24V surchauffera et peut présenter un risque d'incendie. Fais toujours correspondre la tension du bandeau à celle de l'alimentation.
+**Astuce de pro :** Ne mélange jamais les bandes 12V avec une alimentation 24V (ou vice versa). Une bande 12V sous 24V surchauffera et peut présenter un risque d'incendie. Fais toujours correspondre la tension de la bande à celle de l'alimentation.
 
-## Calculer la puissance de ton alimentation
+## Calculer ton alimentation
 
 Cette étape est cruciale. Une alimentation sous-dimensionnée chauffe et peut tomber en panne. Voici comment la dimensionner correctement.
 
-### Étape 1 : Déterminer la puissance totale en Watts
+### Étape 1 : Déterminer la puissance totale
 
-Les bandeaux LED sont évalués en watts par mètre. Valeurs courantes :
-- Couleur unique 60 LED/m : ~5W/m
-- RGB 60 LED/m : ~14W/m
-- RGBW 60 LED/m : ~18W/m
+Les bandes LED sont évaluées en watts par mètre. Valeurs courantes :
+- Monocolore 60 LEDs/m : ~5W/m
+- RGB 60 LEDs/m : ~14W/m
+- RGBW 60 LEDs/m : ~18W/m
 
-Multiplie la puissance par mètre par la longueur totale du bandeau que tu installes.
+Multiplie la puissance par mètre par la longueur totale de bande que tu installes.
 
-**Exemple :** 4 mètres de bandeau RGBW à 18W/m = 72W au total.
+**Exemple :** 4 mètres de bande RGBW à 18W/m = 72W au total.
 
-### Étape 2 : Ajouter une marge de sécurité de 20%
+### Étape 2 : Ajouter 20% de marge
 
 Ne fais jamais fonctionner une alimentation à 100% de sa capacité. Ajoute 20% pour la sécurité et la longévité.
 
-**Exemple :** 72W x 1.2 = 86.4W. Choisis une alimentation de 100W.
+**Exemple :** 72W x 1,2 = 86,4W. Choisis une alimentation de 100W.
 
-### Étape 3 : Vérifier l'intensité nominale
+### Étape 3 : Vérifier l'ampérage
 
-Vérifie que l'alimentation fournit suffisamment d'ampérage. Pour un système 12V : Ampères = Watts / 12. Pour un système 24V : Ampères / 24.
+Vérifie que l'alimentation fournit suffisamment d'ampères. Pour un système 12V : Ampères = Watts / 12. Pour un système 24V : Ampères / 24.
 
-**Exemple :** 100W à 24V = 4.17A. Une alimentation 24V/5A fonctionnerait.
+**Exemple :** 100W sous 24V = 4,17A. Une alimentation 24V/5A fonctionnerait.
 
 ### Alimentations recommandées
 
-Pour la plupart des installations domestiques, une [alimentation Mean Well série LPV](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) est la référence de l'industrie. Elles sont fiables, efficaces et possèdent les certifications de sécurité appropriées. Évite les alimentations les moins chères et sans marque – une alimentation défaillante près d'armoires combustibles ne vaut pas la peine d'économiser cinq dollars.
+Pour la plupart des installations domestiques, une alimentation [série Mean Well LPV](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) est la norme de l'industrie. Elles sont fiables, efficaces et ont les certifications de sécurité appropriées. Évite les alimentations bas de gamme les moins chères — une alimentation défectueuse près de placards inflammables ne vaut pas les cinq euros économisés.
 
-**Avertissement de sécurité :** Les alimentations LED convertissent la tension AC domestique (120V/240V) en basse tension DC. Le côté AC est dangereux. Si tu n'es pas à l'aise avec le câblage AC, utilise une alimentation avec une fiche AC pré-attachée. Ne laisse jamais les connexions de fils AC exposées ou accessibles.
+**Avertissement de sécurité :** Les alimentations LED convertissent la tension secteur domestique (120V/240V) en courant continu basse tension. Le côté AC est dangereux. Si tu n'es pas à l'aise avec le câblage du courant alternatif, utilise une alimentation avec une prise AC pré-attachée. Ne laisse jamais les connexions des fils AC exposées ou accessibles.
 
-## Contrôleurs et intégration intelligente
+## Contrôleurs et Intégration Intelligente
 
-### Variateur de base
+### Gradateur Basique
 
-Pour les bandeaux de couleur unique, un simple [variateur PWM](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) avec un bouton rotatif ou une télécommande ajuste la luminosité. Ceux-ci coûtent 5 à 10 $ et fonctionnent très bien.
+Pour les bandes monocolores, un simple [gradateur PWM](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) avec un bouton rotatif ou une télécommande ajuste la luminosité. Ils coûtent 5-10 € et fonctionnent bien.
 
-### Contrôleurs intelligents
+### Contrôleurs Intelligents
 
-Pour l'intégration à la maison connectée, un contrôleur compatible WiFi te permet de contrôler tes bandeaux LED depuis ton téléphone, par la voix ou via des automatisations.
+Pour l'intégration domotique, un contrôleur WiFi te permet de contrôler tes bandes LED depuis ton téléphone, par la voix, ou via des automatisations.
 
-**Option intelligente économique :** [Contrôleur LED GLEDOPTO Zigbee](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) — fonctionne avec Alexa, Google Home et Home Assistant via un hub Zigbee. Environ 15 à 20 $. Disponible en versions couleur unique, CCT, RGB et RGBW.
+**Option intelligente économique :** [Contrôleur LED Zigbee GLEDOPTO](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) — fonctionne avec Alexa, Google Home et Home Assistant via un hub Zigbee. Environ 15-20 €. Disponible en versions monocolore, CCT, RGB et RGBW.
 
-**Option WiFi :** [Contrôleur WiFi BTF-Lighting](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) — fonctionne directement avec Alexa et Google Home sans hub séparé. Environ 10 à 15 $.
+**Option WiFi :** [Contrôleur WiFi BTF-Lighting](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) — fonctionne directement avec Alexa et Google Home sans hub séparé. Environ 10-15 €.
 
-**Option DIY avancée :** Une carte ESP32 exécutant le firmware WLED te donne un contrôle total sur les bandeaux LED adressables individuellement (WS2812B, SK6812, etc.) avec des centaines d'effets, une réactivité musicale et une intégration Home Assistant. C'est un projet en soi, mais c'est extrêmement gratifiant.
+**Option DIY avancée :** Une carte ESP32 exécutant le firmware WLED te donne un contrôle total sur les bandes LED individuellement adressables (WS2812B, SK6812, etc.) avec des centaines d'effets, réactivité musicale et intégration Home Assistant. C'est un projet en soi mais très gratifiant.
 
 ### Schéma de câblage
 
-La chaîne de câblage de base est la suivante :
+La chaîne de câblage basique est :
 
 ```
-Prise AC → Alimentation → Contrôleur → Bandeau LED
+Prise AC → Alimentation → Contrôleur → Bande LED
 ```
 
-Pour les bandeaux RGBW, le contrôleur a 5 fils de sortie (V+, R, G, B, W). Pour une couleur unique, il n'y a que V+ et V-. Le contrôleur se situe entre l'alimentation et le bandeau LED.
+Pour les bandes RGBW, le contrôleur a 5 fils de sortie (V+, R, G, B, W). Pour le monocolore, c'est juste V+ et V-. Le contrôleur se place entre l'alimentation et la bande LED.
 
-## Guide d'installation : Éclairage LED sous les armoires de cuisine
+## Guide d'installation : Éclairage sous les meubles de cuisine
 
-C'est le projet de bandeau LED le plus populaire, alors explorons-le en détail.
+C'est le projet de bande LED le plus populaire, alors détaillons-le.
 
 ### Planification
 
-1.  **Mesure chaque section d'armoire** où tu souhaites un éclairage. Mesure la longueur du dessous de chaque armoire, en notant les éventuels espaces (hotte, fenêtre au-dessus de l'évier, etc.).
-2.  **Décide de l'emplacement du bandeau.** Monte le bandeau vers le bord avant du dessous de l'armoire pour un éclairage maximal du plan de travail, ou vers l'arrière (contre le mur) pour un effet plus doux et plus ambiant. Le placement avant est recommandé pour l'éclairage fonctionnel.
-3.  **Planifie ton parcours de câblage.** L'alimentation et le contrôleur doivent être cachés — à l'intérieur d'une armoire, sur le dessus des armoires, ou dans un placard adjacent. Planifie comment les fils passeront entre les armoires.
+1. **Mesure chaque section de meuble** où tu veux de l'éclairage. Mesure la longueur du dessous de chaque meuble, en notant les éventuels espaces (hotte, fenêtre de lavabo, etc.).
+2. **Décide du placement de la bande.** Monte la bande près du bord avant du dessous du meuble pour un éclairage maximal du plan de travail, ou près de l'arrière (contre le mur) pour un effet plus doux et ambiant. Le placement avant est recommandé pour l'éclairage fonctionnel.
+3. **Planifie ton trajet de câblage.** L'alimentation et le contrôleur doivent être cachés — à l'intérieur d'un meuble, sur le dessus des meubles, ou dans un placard adjacent. Planifie comment les fils passeront d'un meuble à l'autre.
 
-### Étape 1 : Installer les profilés en aluminium
+### Étape 1 : Installer les profilés aluminium
 
-Les profilés en aluminium ont trois objectifs : ils dissipent la chaleur (prolongeant la durée de vie des LED), offrent une surface de montage propre et le couvercle diffuseur élimine les points LED visibles.
+Les profilés aluminium servent trois objectifs : ils dissipent la chaleur (prolongeant la durée de vie des LED), fournissent une surface de montage propre, et le couvercle diffuseur élimine les points LED visibles.
 
-1.  Coupe le profilé en aluminium pour qu'il corresponde à chaque section d'armoire à l'aide d'une scie à métaux ou d'une scie à onglet.
-2.  Perce des avant-trous à travers les pattes de montage du profilé.
-3.  Visse les profilés au dessous de chaque armoire. Si tes armoires ont une lèvre/un cadre frontal, monte-les derrière pour cacher le profilé.
+1. Coupe le profilé aluminium pour qu'il corresponde à chaque section de meuble à l'aide d'une scie à métaux ou d'une scie à onglet.
+2. Perce des avant-trous à travers les languettes de montage du profilé.
+3. Visse les profilés sous chaque meuble. Si tes meubles ont un rebord avant ou un cadre, monte derrière pour cacher le profilé de la vue.
 
-### Étape 2 : Couper et connecter les bandeaux LED
+### Étape 2 : Couper et connecter les bandes LED
 
-Les bandeaux LED ont des points de coupe marqués tous les 3 à 6 LED (selon le bandeau). Ne coupe qu'à ces marques.
+Les bandes LED ont des points de coupe marqués tous les 3-6 LEDs (selon la bande). Coupe uniquement à ces marques.
 
-1.  Mesure chaque profilé et coupe un bandeau pour l'adapter.
-2.  Connecte les bandeaux entre les armoires en utilisant des connecteurs sans soudure ou des fils soudés.
+1. Mesure chaque profilé et coupe une bande à la bonne taille.
+2. Connecte les bandes entre les meubles en utilisant soit des connecteurs sans soudure, soit des fils soudés.
 
-**À propos des connecteurs sans soudure :** Ils fonctionnent, mais ils sont le point le plus faible de toute installation. Les clips peuvent se desserrer avec le temps, créant des scintillements ou des sections mortes. Pour une installation permanente, la soudure est plus fiable. Consulte notre [guide des bases de la soudure](/fr/blog/en/soldering-basics-complete-guide) si tu n'as jamais soudé auparavant.
+**Concernant les connecteurs sans soudure :** Ils fonctionnent, mais ils sont le point faible de toute installation. Les clips peuvent se desserrer avec le temps, créant des clignotements ou des sections mortes. Pour une installation permanente, la soudure est plus fiable. Consulte notre [guide des bases de la soudure](/blog/en/soldering-basics-complete-guide) si tu n'as jamais soudé.
 
-### Étape 3 : Placer les bandeaux dans les profilés
+### Étape 3 : Placer les bandes dans les profilés
 
-1.  Retire le film adhésif du bandeau LED et presse-le dans le profilé. Assure-toi qu'il est bien à plat et centré.
-2.  Enclenche le couvercle diffuseur sur le profilé.
+1. Décolle le support adhésif de la bande LED et appuie-la dans le profilé. Assure-toi qu'elle est bien à plat et centrée.
+2. Clipse le couvercle diffuseur sur le profilé.
 
-### Étape 4 : Tout câbler ensemble
+### Étape 4 : Tout câbler
 
-1.  Fais passer les fils de chaque section de bandeau jusqu'à l'emplacement du contrôleur. Utilise du fil 20 AWG pour les longueurs inférieures à 3 mètres, et du 18 AWG pour les longueurs plus importantes.
-2.  Connecte toutes les sections de bandeaux en parallèle (chaque bandeau revient au contrôleur), et non en série (chaînées de bout en bout). Le câblage parallèle assure une luminosité uniforme sur toutes les sections.
-3.  Connecte le contrôleur à l'alimentation.
-4.  Branche et teste avant de finaliser la gestion des câbles.
+1. Fais passer les fils de chaque section de bande jusqu'à l'emplacement du contrôleur. Utilise du fil 20 AWG pour les longueurs inférieures à 3 mètres, du 18 AWG pour les longueurs plus longues.
+2. Connecte toutes les sections de bande en parallèle (chaque bande revient au contrôleur), pas en série (en chaîne bout à bout). Le câblage parallèle assure une luminosité uniforme sur toutes les sections.
+3. Connecte le contrôleur à l'alimentation.
+4. Branche et teste avant de finaliser la gestion des câbles.
 
-### Étape 5 : Ranger le câblage
+### Étape 5 : Ranger les câbles
 
-- Utilise des serre-câbles adhésifs pour acheminer proprement les fils le long des bords des armoires et à l'intérieur des coins.
-- Si tu fais passer des fils à l'intérieur des armoires, perce de petits trous dans les côtés de l'armoire (juste assez grands pour que le fil puisse passer).
-- Utilise des goulottes ou des chemins de câbles peignables pour tout passage de fil visible sur le mur.
+- Utilise des clips adhésifs pour câble pour guider proprement les fils le long des bords des meubles et à l'intérieur des coins.
+- Si tu fais passer des fils à travers l'intérieur des meubles, perce de petits trous dans les côtés des meubles (juste assez grands pour que le fil passe).
+- Utilise des goulottes ou des chemins de câbles peignables pour les fils visibles sur le mur.
 
 ## Autres applications populaires
 
-### Rétroéclairage de centre de divertissement (Bias Lighting)
+### Rétroéclairage d'un centre de divertissement (Lighting d'ambiance)
 
-Monte un bandeau LED autour du bord arrière de ta télévision. Cela réduit la fatigue oculaire pendant les scènes sombres et rend l'image plus vivante. Un simple bandeau alimenté par USB qui se branche directement sur la télévision fonctionne parfaitement — il s'allume et s'éteint automatiquement avec la TV.
+Monte une bande LED autour du bord arrière de ta TV. Cela réduit la fatigue oculaire pendant les scènes sombres et rend l'image plus vivante. Une simple bande alimentée par USB qui se branche directement sur la TV fonctionne parfaitement — elle s'allume et s'éteint avec la TV automatiquement.
 
-Un [kit de Bias Lighting TV prédécoupé](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) simplifie cette installation à moins de 10 minutes.
+Un [kit d'éclairage TV pré-coupé](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) simplifie cette installation à moins de 10 minutes.
 
 ### Éclairage d'escalier
 
-Monte des bandeaux sous le nez de chaque marche d'escalier pour un éclairage de sécurité. Associe-les à un détecteur de mouvement en haut et en bas de l'escalier pour que les lumières s'activent automatiquement dans l'obscurité. Utilise un blanc chaud (2700K) pour éviter un aspect trop dur et commercial.
+Monte des bandes sous le rebord de chaque marche pour un éclairage de sécurité. Associe-les à un détecteur de mouvement en haut et en bas des escaliers pour que les lumières s'activent automatiquement dans l'obscurité. Utilise du blanc chaud (2700K) pour éviter un look dur et commercial.
 
-**Note de sécurité :** Assure-toi que tout le câblage est solidement fixé et ne traverse aucune surface de marche. Le câblage basse tension DC n'est pas dangereux du point de vue des chocs électriques, mais un fil lâche dans les escaliers est un risque de trébuchement.
+**Note de sécurité :** Assure-toi que tout le câblage est solidement fixé et ne traverse aucune zone de passage. Le câblage DC basse tension n'est pas dangereux en termes de choc électrique, mais un fil lâche dans les escaliers est un risque de trébuchement.
 
 ### Éclairage de placard
 
-Un simple bandeau avec un capteur de porte magnétique — la lumière s'allume quand la porte s'ouvre et s'éteint quand elle se ferme. Pas besoin d'interrupteur, aucune modification du câblage de ta maison, et ça éclaire mieux le placard qu'une seule ampoule au plafond.
+Une seule bande sur un capteur de porte magnétique — la lumière s'allume quand la porte s'ouvre et s'éteint quand elle se ferme. Pas d'interrupteur nécessaire, pas de modifications de câblage de ta maison, et cela éclaire mieux le placard qu'une seule ampoule au plafond.
 
 ### Éclairage de corniche
 
-Monte des bandeaux à l'intérieur d'une corniche de plafond ou d'une moulure pour créer un éclairage ambiant indirect. Cela crée un effet lumineux flottant et professionnel. L'éclairage de corniche fonctionne mieux avec des bandeaux de 120 LED/m et un profilé de diffusion large pour un rendu lisse et uniforme.
+Monte des bandes à l'intérieur d'une corniche de plafond ou d'un rebord de moulure pour créer un éclairage ambiant indirect. Cela crée un effet d'éclairage flottant et professionnel. L'éclairage de corniche fonctionne mieux avec des bandes 120 LEDs/m et un profilé diffuseur large pour une sortie lisse et uniforme.
 
 ## Dépannage
 
-### Le bandeau est faible à une extrémité
+### La bande est faible à une extrémité
 
 C'est une chute de tension. Solutions :
-- Utilise des bandeaux 24V au lieu de 12V.
-- Injecte l'alimentation aux deux extrémités du bandeau.
+- Utilise des bandes 24V au lieu de 12V.
+- Injecte du courant aux deux extrémités de la bande.
 - Utilise un fil de plus gros calibre pour les longues distances.
 
-### Le bandeau scintille
+### La bande clignote
 
-- Vérifie toutes les connexions (surtout les connecteurs sans soudure — replace-les ou remplace-les).
-- Vérifie que l'alimentation est correctement dimensionnée (recalcule avec une marge de sécurité de 20%).
-- Si tu utilises un variateur, assure-toi qu'il est basé sur PWM, et non un variateur résistif/AC.
+- Vérifie toutes les connexions (surtout les connecteurs sans soudure — remets-les ou remplace-les).
+- Vérifie que l'alimentation est suffisamment dimensionnée (recalcule avec 20% de marge).
+- Si tu utilises un variateur, assure-toi qu'il est basé sur PWM, pas un variateur résistif/AC.
 
-### Les couleurs sont fausses sur les bandeaux RGB
+### Les couleurs sont incorrectes sur les bandes RGB
 
-- Vérifie l'ordre des fils aux connexions. Les bandeaux RGB ont des affectations de fils spécifiques (généralement étiquetées R, G, B sur le bandeau).
-- Vérifie que le type de contrôleur correspond au type de bandeau (anode commune vs. cathode commune).
+- Vérifie l'ordre des fils aux connexions. Les bandes RGB ont des affectations de fils spécifiques (généralement marquées R, G, B sur la bande).
+- Vérifie que le type de contrôleur correspond au type de bande (anode commune vs cathode commune).
 
-### L'adhésif du bandeau ne colle pas
+### L'adhésif de la bande ne colle pas
 
-- Nettoie la surface avec de l'alcool isopropylique avant d'appliquer.
-- Utilise des profilés en aluminium (l'adhésif tient mieux sur une surface plane, et le profilé est fixé mécaniquement).
-- Compléte
+- Nettoie la surface avec de l'alcool isopropylique avant de l'appliquer.
+- Utilise des profilés aluminium (l'adhésif tient mieux sur une surface plane, et le profilé est mieux)

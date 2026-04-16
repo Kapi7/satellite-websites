@@ -1,0 +1,190 @@
+---
+title: "Le Kit de Démarrage Domotique : Tout ce qu'il te faut pour commencer"
+description: "Crée un kit de démarrage domotique à moins de 200 $. Compare Home Assistant, SmartThings et HomeKit, et découvre Matter, Thread, Zigbee et Z-Wave."
+date: 2026-04-11
+category: electronics
+type: hub
+tags:
+  - home automation
+  - smart home
+  - home assistant
+  - matter
+  - zigbee
+image: /images/home-automation-starter-kit.jpg
+imageAlt: Kit de démarrage pour maison connectée avec prise, hub, détecteur de mouvement et ampoule connectée sur une table
+draft: true
+locale: fr
+author: "Danny Herrera"
+difficulty: beginner
+---
+---
+
+## La Première Chose à Savoir sur la Domotique
+
+Le marché de la maison connectée en 2026 n'est enfin plus une catastrophe. Pendant des années, c'était un vrai bazar d'applis incompatibles, de ponts et de clouds propriétaires. Ceux qui s'accrochaient, c'était ceux qui acceptaient de passer un samedi à essayer de comprendre pourquoi leur détecteur de mouvement avait arrêté de parler à leur ampoule. Ça, c'est en grande partie du passé. Entre Matter, Thread et les gros écosystèmes qui se prennent enfin au sérieux sur l'interopérabilité, tu peux vraiment construire une maison connectée cohérente à partir de zéro sans avoir un diplôme en informatique.
+
+Mais tu peux quand même jeter ton argent par les fenêtres. Beaucoup d'argent. Ce guide te montre les étapes à suivre dans le bon ordre : choisir un écosystème, choisir un protocole de connexion, acheter l'essentiel, construire ta première automatisation. Le coût total pour une installation de départ vraiment utile : moins de 200 $.
+
+## Les Trois Écosystèmes : Choisis-en un d'abord
+
+Avant même d'acheter un seul appareil, choisis le cerveau de ton système. C'est l'appli que tu vas regarder à chaque fois que quelque chose ne fonctionne pas.
+
+### Home Assistant
+
+Home Assistant, c'est l'option open-source, auto-hébergée. Tu le fais tourner sur un Raspberry Pi, un mini PC ou une petite boîte style NUC. Il communique avec plus de types d'appareils que tout le reste sur le marché, il n'y a pas de frais d'abonnement, et tu peux écrire des automatisations aussi complexes que tu veux. La communauté est énorme et super aidante.
+
+**Les plus :** Le plus puissant, le plus flexible, compatible avec tout, pas d'abonnement, totale confidentialité.
+**Les moins :** Nécessite du matériel dédié, courbe d'apprentissage plus raide, demande parfois un peu de bidouillage.
+**Idéal pour :** Les passionnés de DIY, ceux qui tiennent à leur vie privée, ceux qui ont déjà un Raspberry Pi.
+
+Le moyen le plus simple de commencer : achète [Home Assistant Green](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20), une boîte prête à l'emploi de Nabu Casa, ou installe Home Assistant OS sur un [Raspberry Pi 5 avec son boîtier et son alimentation](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20).
+
+### Samsung SmartThings
+
+SmartThings, c'est le mode "facile" de l'écosystème cloud. Samsung l'a intégré en profondeur dans ses téléphones et téléviseurs, mais tu n'as pas besoin de matériel Samsung pour l'utiliser. Il supporte nativement Matter, a une appli mobile bien polie, et ça marche généralement direct. Il te faut un hub SmartThings (soit seul, soit intégré dans une TV Samsung ou un appareil compatible hub) pour utiliser Zigbee et Z-Wave.
+
+**Les plus :** Installation facile, appli solide, large compatibilité d'appareils, gratuit.
+**Les moins :** Dépend du cloud, moins flexible que Home Assistant, compte Samsung obligatoire.
+**Idéal pour :** Ceux qui veulent un truc qui marche sans avoir à bidouiller.
+
+### Apple HomeKit
+
+HomeKit, c'est la réponse d'Apple. Ça tourne sur n'importe quel iPhone et utilise un HomePod, une Apple TV ou un iPad comme hub. L'appli (qui s'appelle juste "Maison") est la plus épurée des trois, la confidentialité est nickel (la plupart du traitement se fait localement), et l'intégration avec Siri est aussi poussée que tu peux t'y attendre.
+
+**Les plus :** Meilleure confidentialité, intégration iPhone au top, interface épurée, traitement local.
+**Les moins :** Écosystème d'appareils plus petit que les autres, pas de support natif Windows/Android, automatisations moins puissantes.
+**Idéal pour :** Les foyers 100 % Apple avec déjà un HomePod mini ou une Apple TV.
+
+### Lequel choisir ?
+
+- Si tu as des appareils Apple et que tu veux le moins de complications possible, choisis HomeKit.
+- Si tu veux construire quelque chose de puissant, apprendre un peu, et garder tes données chez toi, choisis Home Assistant.
+- Si tu veux un juste milieu avec une appli sympa et un backend cloud gratuit, choisis SmartThings.
+
+Il n'y a pas de mauvaise réponse. Les trois supportent Matter, donc tu peux mixer les appareils plus tard si tu changes d'avis.
+
+## Hub ou pas Hub ? La question du protocole
+
+Chaque appareil connecté parle un ou plusieurs protocoles radio. Voici la version courte de chacun.
+
+### Wi-Fi
+
+**Les plus :** Pas de hub supplémentaire nécessaire, les appareils sont peu chers, installation rapide.
+**Les moins :** Gourmand en énergie (pas top pour les capteurs à piles), sature ton routeur avec 30 appareils en plus, certaines marques sont bloquées sur leur cloud.
+**Idéal pour :** Prises, caméras, TVs, tout ce qui est branché sur secteur et déjà près du routeur.
+
+### Zigbee
+
+**Les plus :** Faible consommation, réseau maillé (mesh), écosystème mature, appareils peu chers, super autonomie des capteurs à piles.
+**Les moins :** Nécessite un coordinateur (hub ou clé USB), technologie un peu ancienne, implémentations propriétaires qui font parfois des siennes.
+**Idéal pour :** Capteurs à piles, ampoules, interrupteurs, le pain quotidien de la maison connectée.
+
+### Z-Wave
+
+**Les plus :** Réseau maillé robuste, chiffrement fort, excellent pour les interrupteurs et les serrures, n'utilise pas la bande 2.4 GHz avec le Wi-Fi.
+**Les moins :** Appareils plus chers, écosystème plus petit que Zigbee, bloqué régionalement (les fréquences US et EU sont différentes, donc les appareils ne sont pas interchangeables).
+**Idéal pour :** Installations permanentes, interrupteurs muraux, serrures, appareils de sécurité.
+
+### Thread
+
+**Les plus :** Le plus récent protocole de réseau maillé, faible consommation, basé sur IP, conçu pour Matter dès le départ, excellente autonomie de batterie.
+**Les moins :** Nécessite des "border routers" Thread (HomePod mini, Apple TV 4K, Echo Hub, SmartThings Station, Nest Hub 2).
+**Idéal pour :** Capteurs à piles dans une configuration axée sur Matter, pour être paré pour l'avenir.
+
+### Matter
+
+Matter, ce n'est pas une radio. C'est un langage d'appareil à appareil qui fonctionne au-dessus du Wi-Fi et de Thread. L'idée, c'est que tu achètes un appareil avec le logo Matter et il fonctionne avec Home Assistant, SmartThings, HomeKit et Google Home sans souci. En 2026, le support de Matter est suffisamment bon pour qu'on puisse vraiment compter dessus. Achète des appareils certifiés Matter quand tu as le choix.
+
+### Alors, tu as besoin d'un hub ?
+
+Si tu veux seulement des appareils Wi-Fi et Matter, non. Si tu veux des capteurs Zigbee, Z-Wave ou Thread (et tu devrais probablement, pour une meilleure autonomie), oui. Un hub coûte entre 30 $ et 100 $ une fois pour toutes, et il se rentabilise en quelques achats.
+
+Pour Home Assistant, le moyen le moins cher est une clé [SONOFF Zigbee 3.0 USB Dongle Plus](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) branchée sur ta boîte HA. Ça te donne le Zigbee et, avec une autre clé, le Thread aussi. SmartThings et HomeKit ont les radios intégrées dans leurs hubs de marque.
+
+## Les Cinq Premiers Appareils Essentiels
+
+Oublie ce que le marketing te raconte. Ces cinq types d'appareils couvrent 90 % des automatisations utiles dans une maison connectée.
+
+### 1. Une Prise Connectée (Smart Plug)
+
+Le moyen le moins cher de rendre "intelligent" n'importe quel appareil qui se branche. Utilise-les pour les lampes, les ventilateurs, les guirlandes de Noël ou une cafetière. Programme-les. Déclenche-les avec le mouvement. Surveille la consommation d'énergie (sur les prises qui le permettent).
+
+Recommandation : [Kasa Matter Smart Plug Mini](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) pour le Wi-Fi, ou [Third Reality Zigbee Smart Plug](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) pour le réseau Zigbee. Environ 12 $ à 15 $ pièce.
+
+### 2. Un Détecteur de Mouvement
+
+Le déclencheur de presque toutes les bonnes automatisations. Les lumières qui s'allument quand tu entres dans le couloir. Des notifications quand le chien entre dans une pièce. Le ventilateur de salle de bain qui tourne quand tu es dedans. Les détecteurs de mouvement fonctionnent avec des piles bouton, donc Zigbee ou Thread battent le Wi-Fi haut la main.
+
+Recommandation : [Aqara Motion Sensor (Zigbee)](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20). Environ 20 $ et ça dure deux ans avec une seule pile.
+
+### 3. Un Capteur d'Ouverture (Porte/Fenêtre)
+
+Deux aimants qui savent si une porte est ouverte ou fermée. Utilise-les pour des alertes de sécurité, des rappels pour fermer le garage, ou de simples automatisations "bienvenue à la maison". La même histoire Zigbee ou Thread s'applique pour des raisons d'autonomie.
+
+Recommandation : [Aqara Door and Window Sensor](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20). Environ 15 $.
+
+### 4. Une Ampoule Connectée (Smart Bulb)
+
+Les ampoules sont le chouchou des tutoriels domotiques, mais il y a un inconvénient : si quelqu'un éteint l'interrupteur mural, l'ampoule est coupée du réseau jusqu'à ce que l'interrupteur soit rallumé. C'est bien pour les lampes, moins idéal pour les plafonniers. Quand même, une ampoule connectée qui change de couleur dans une chambre ou un bureau, c'est un premier achat vraiment sympa.
+
+Recommandation : [Philips Hue White and Color Ambiance starter bulb](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) si tu veux le top du top, ou une [Sengled Zigbee bulb](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) à moitié prix.
+
+### 5. Un Interrupteur Connecté (Pas une Ampoule)
+
+Pour les installations permanentes, un interrupteur connecté qui remplace ton interrupteur mural est presque toujours mieux qu'une ampoule connectée. Tout le monde à la maison peut toujours l'utiliser comme un interrupteur normal, et tu as en plus toute l'automatisation. Tu auras besoin d'un fil neutre dans la boîte pour la plupart.
+
+Recommandation : [Lutron Caseta Diamond (avec le Lutron Smart Hub)](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) est le plus fiable du marché, ou un [TP-Link Kasa Matter Smart Switch](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) pour les configurations natives Matter. 25 $ à 60 $ pièce.
+
+## Liste d'Achats de Départ à Moins de 200 $
+
+Voici une configuration concrète, en supposant que tu veux une vraie maison connectée avec une bonne couverture :
+
+| Article | Prix Estimé |
+|---|---|
+| Raspberry Pi 5 8Go avec boîtier et alimentation (pour Home Assistant) | 90 $ |
+| Clé USB SONOFF Zigbee 3.0 Plus | 25 $ |
+| 2 x Prises Connectées Kasa Matter | 25 $ |
+| 2 x Détecteurs de Mouvement Aqara (Zigbee) | 40 $ |
+| 1 x Capteur d'Ouverture Aqara (Zigbee) | 15 $ |
+| **Total** | **195 $** |
+
+Avec ce kit, tu as un cerveau local, une radio Zigbee, une couverture dans deux pièces, des déclencheurs d'automatisation pour le mouvement et les portes, et deux prises contrôlables. Tu peux ajouter des ampoules et des interrupteurs un par un à partir de là.
+
+Si tu es à fond sur SmartThings ou HomeKit, soustrais le Raspberry Pi et ajoute soit un [SmartThings Hub](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) (70 $) soit un [HomePod mini](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) (99 $), et le reste de la liste reste le même.
+
+## Ta Première Automatisation : Lumières Activées par le Mouvement
+
+Toute maison connectée commence par ça. Tu entres dans une pièce, les lumières s'allument automatiquement. Tu quittes la pièce, elles s'éteignent après quelques minutes.
+
+Voici la logique en langage simple que les trois écosystèmes peuvent implémenter :
+
+1.  **Déclencheur :** Le détecteur de mouvement détecte un mouvement.
+2.  **Condition :** Il fait nuit dehors (après le coucher du soleil et avant le lever du soleil).
+3.  **Action :** Allumer la prise connectée / l'ampoule / l'interrupteur.
+4.  **Déclencheur 2 :** Le détecteur de mouvement n'a signalé aucun mouvement pendant 5 minutes.
+5.  **Condition 2 :** La lumière a été allumée par cette automatisation.
+6.  **Action 2 :** Éteindre la lumière.
+
+Dans Home Assistant, ça représente environ 20 lignes de YAML. Dans SmartThings et HomeKit, tu peux le construire avec des interfaces tactiles en quelques minutes. Si tu arrives à faire fonctionner ça, tu auras maîtrisé un déclencheur de mouvement, une condition horaire, une action, et une contre-action basée sur un état, qui sont les bases de toutes les automatisations plus avancées que tu écriras un jour.
+
+À partir de là, voici de bonnes idées à construire ensuite :
+
+*   La porte d'entrée s'ouvre après minuit envoie une notification push.
+*   Le ventilateur de salle de bain tourne pendant 15 minutes après l'allumage de la lumière.
+*   La lampe de bureau s'allume quand tu t'assois (tapis de pression sous la chaise).
+*   Les lumières du couloir s'allument à 10 % de luminosité après 23h.
+*   Notification d'alerte si la porte du garage est toujours ouverte au coucher du soleil.
+
+## Pièges Courants et Comment les Éviter
+
+Après avoir passé plus d'heures sur ce hobby que je ne voudrais l'admettre, voici les erreurs que tous les débutants font.
+
+**Acheter trop d'appareils Wi-Fi.** Une maison connectée en Wi-Fi fonctionne jusqu'à ce qu'elle ne fonctionne plus, et là elle flanche de partout en même temps. Garde le Wi-Fi pour une poignée d'appareils et utilise Zigbee/Thread/Z-Wave pour tout ce qui fonctionne à pile. Ton routeur te remerciera.
+
+**Sauter le hub.** Un hub semble être un achat supplémentaire ennuyeux. C'est pourtant LA chose qui fait que le reste fonctionne sans problème. Achète le hub d'abord.
+
+**Acheter des capteurs pas chers de marques inconnues.** Ils fonctionnent pendant six mois, puis le jumelage Zigbee tombe à l'eau ou la pile est morte. Aqara, Philips Hue, SONOFF, Third Reality, et les favoris de la communauté Home Assistant valent le petit supplément.
+
+**Trop automatiser.** Chaque automatisation a un mode d'échec. Commence avec cinq ou six automatisations utiles et vis avec elles pendant un mois avant d'en ajouter d'autres. Une automatisation agaçante qui se déclenche au mauvais moment fera détester la maison connectée à tout ton foyer.
+
+**Ne pas étiqueter correctement les appareils.** Nomme tes appareils comme "Lampe Salon" et "Capteur Porte Entrée" dès que tu les associes. Retrouver "Detecteur_Mouvement_EB234" six mois plus tard, c'est sa propre forme de torture.

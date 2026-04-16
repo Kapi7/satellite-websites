@@ -64,7 +64,9 @@
     "slideVanity": "Your Vanity, Simplified",
     "slideVanityDesc": "Fewer products, better results. We tested hundreds so you don't have to.",
     "slideIngredients": "Ingredients That Actually Work",
-    "slideIngredientsDesc": "Beyond the marketing claims. What the research says about your favorite actives."
+    "slideIngredientsDesc": "Beyond the marketing claims. What the research says about your favorite actives.",
+    "trending": "Trending",
+    "readerFavorites": "Reader Favorites"
   },
   "footer": {
     "tagline": "Beauty, decoded.",

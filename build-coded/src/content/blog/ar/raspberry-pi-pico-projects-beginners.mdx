@@ -1,0 +1,359 @@
+---
+title: "10 مشاريع Raspberry Pi Pico للمبتدئين (مع كود كامل)"
+description: "عشرة مشاريع عملية لـ Raspberry Pi Pico للمبتدئين، كل منها يتضمن قائمة بالأجزاء، مستوى الصعوبة، تقدير الوقت، وشفرة MicroPython قابلة للتشغيل."
+date: 2026-04-11
+category: electronics
+type: listicle
+tags:
+  - raspberry pi pico
+  - micropython
+  - beginner projects
+  - rp2040
+  - electronics
+image: /images/raspberry-pi-pico-projects-beginners.jpg
+imageAlt: 'Raspberry Pi Pico موصل على لوحة تجارب مع شاشة OLED ومستشعرات'
+draft: true
+locale: ar
+author: "Danny Herrera"
+difficulty: beginner
+---
+## لماذا يعتبر Raspberry Pi Pico متحكمًا دقيقًا رائعًا للمبتدئين
+
+يتميز Raspberry Pi Pico بكونه رخيصًا وسريعًا ويتسامح مع الأخطاء. مقابل حوالي 4 دولارات، تحصل على معالج ARM Cortex-M0+ ثنائي النواة يعمل بسرعة 133 ميجاهرتز، و 264 كيلوبايت من ذاكرة SRAM، و 2 ميجابايت من ذاكرة الفلاش، و 26 دبوس GPIO، ومنفذ USB-C. هذه قيمة هائلة حقًا. يضيف Pico W خاصية Wi-Fi والبلوتوث بحوالي 6 دولارات. على عكس Arduino Uno، يمكنك برمجته بلغة Python (MicroPython) وكذلك بلغة C/C++، مما يجعله أقل إزعاجًا بكثير للمبتدئين.
+
+جميع المشاريع العشرة أدناه تستخدم MicroPython. تعمل على كل من Pico و Pico W (المشروع الأخير يتطلب Pico W تحديدًا). للبدء، احصل على [مجموعة أدوات Raspberry Pi Pico W Starter Kit](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) أو قم ببناء مجموعتك الخاصة باستخدام [Raspberry Pi Pico W الأصلي](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) مع [لوحة تجارب جيدة ومجموعة أسلاك توصيل](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20).
+
+قبل أن تبدأ، قم بتثبيت MicroPython على Pico الخاص بك. اضغط مع الاستمرار على BOOTSEL أثناء توصيله، واسحب ملف `.uf2` إلى محرك الأقراص الذي يظهر، واستخدم بيئة Thonny IDE لتشغيل الكود. Thonny مجاني ومصمم خصيصًا لهذا الغرض. لن تحتاج إلى أي شيء أكثر تعقيدًا.
+
+## 1. وميض مؤشر LED المدمج (Hello World)
+
+**مستوى الصعوبة:** بسيط جدًا
+**الوقت:** 5 دقائق
+**الأجزاء:** Pico فقط
+
+كل رحلة مع المتحكمات الدقيقة تبدأ من هنا. يحتوي Pico على مؤشر LED مدمج متصل بـ GPIO 25 (في Pico العادي) أو يتم التحكم فيه عبر شريحة الاتصال اللاسلكي في Pico W. هذا المقطع البسيط يثبت أن إعداداتك تعمل.
+
+```python
+from machine import Pin
+from time import sleep
+
+led = Pin("LED", Pin.OUT)
+
+while True:
+    led.toggle()
+    sleep(0.5)
+```
+
+إذا رأيت مؤشر LED يومض، فأنت رسميًا تكتب برمجيات مدمجة. إذا لم يحدث ذلك، تحقق من أنك اخترت مترجم MicroPython الصحيح في Thonny.
+
+## 2. مسجل بيانات مستشعر درجة الحرارة
+
+**مستوى الصعوبة:** سهل
+**الوقت:** 30 دقيقة
+**الأجزاء:** Pico، لا شيء آخر (المستشعر المدمج جيد بما يكفي)، أو [مسبار DS18B20 مقاوم للماء](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) إذا كنت ترغب في تسجيل درجة الحرارة الخارجية.
+
+يحتوي Pico على مستشعر درجة حرارة مدمج متصل بـ ADC الداخلي على القناة 4. إنه ليس دقيقًا كدقة المختبر، ولكنه مثالي للتعلم. يقرأ هذا المشروع درجة الحرارة كل 10 ثوانٍ ويكتبها إلى ملف CSV في ذاكرة الفلاش الخاصة بـ Pico.
+
+```python
+from machine import ADC, Pin
+from time import sleep, time
+
+sensor = ADC(4)
+conversion = 3.3 / 65535
+
+with open("temp_log.csv", "a") as log:
+    log.write("timestamp,celsius\n")
+    while True:
+        reading = sensor.read_u16() * conversion
+        temp_c = 27 - (reading - 0.706) / 0.001721
+        log.write(f"{time()},{temp_c:.2f}\n")
+        log.flush()
+        sleep(10)
+```
+
+**ما ستتعلمه:** قراءات ADC، تحويل الوحدات، كتابة الملفات على متحكم دقيق، تسجيل دائم.
+
+## 3. مفتاح إضاءة باللمس السعوي
+
+**مستوى الصعوبة:** سهل
+**الوقت:** 30 دقيقة
+**الأجزاء:** Pico، مقاوم 1 ميجا أوم، مشبك ورق أو شريط من شريط نحاسي، مؤشر LED
+
+لا يحتوي RP2040 في Pico على أجهزة مخصصة للمس السعوي مثل ESP32، ولكن يمكنك محاكاتها باستخدام مقاوم عالي القيمة وتوقيت برمجي. عندما تلمس السلك المكشوف، فإن السعة الكهربائية لإصبعك تبطئ سرعة استقرار الدبوس، ويمكنك اكتشاف التغيير. قم بتوصيل GPIO 16 بأحد طرفي مقاوم 1 ميجا أوم، والطرف الآخر بـ GPIO 17، ولمس سلك متصل بـ GPIO 17.
+
+```python
+from machine import Pin
+from time import sleep
+
+out = Pin(16, Pin.OUT)
+sense = Pin(17, Pin.IN)
+led = Pin("LED", Pin.OUT)
+on = False
+
+def read_touch():
+    out.value(1)
+    count = 0
+    while sense.value() == 0 and count < 1000:
+        count += 1
+    out.value(0)
+    return count
+
+while True:
+    if read_touch() > 200:
+        on = not on
+        led.value(on)
+        sleep(0.3)
+    sleep(0.05)
+```
+
+**ما ستتعلمه:** حلقات التوقيت، الاستشعار البرمجي، منطق تبديل الحالة.
+
+## 4. إنذار كاشف الحركة PIR
+
+**مستوى الصعوبة:** سهل
+**الوقت:** 20 دقيقة
+**الأجزاء:** Pico، [مستشعر PIR HC-SR501](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20)، جرس سلبي، أسلاك توصيل
+
+إنذار صغير للغرفة. يخرج مستشعر PIR إشارة عالية عند اكتشاف الحركة، ويقوم بتشغيل الجرس عند الحافة.
+
+```python
+from machine import Pin, PWM
+from time import sleep
+
+pir = Pin(15, Pin.IN)
+buzzer = PWM(Pin(14))
+buzzer.duty_u16(0)
+
+while True:
+    if pir.value():
+        buzzer.freq(1000)
+        buzzer.duty_u16(32768)
+        sleep(1)
+        buzzer.duty_u16(0)
+        sleep(2)
+    sleep(0.1)
+```
+
+**ما ستتعلمه:** المدخلات الرقمية، PWM لتوليد النغمات، توصيل المستشعرات الأساسي.
+
+## 5. مستشعر المسافة بالموجات فوق الصوتية
+
+**مستوى الصعوبة:** سهل إلى متوسط
+**الوقت:** 30 دقيقة
+**الأجزاء:** Pico، [مستشعر HC-SR04 بالموجات فوق الصوتية](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20)، مقاوم 10k ومقاوم 20k (المستشعر 5 فولت، Pico 3.3 فولت)
+
+هام: يخرج دبوس الصدى في HC-SR04 جهد 5 فولت. لا تقم بتوصيله مباشرة بـ GPIO في Pico. استخدم مقسم جهد (10k من الصدى إلى دبوس Pico الخاص بك، و 20k من دبوس Pico الخاص بك إلى الأرض) أو محول مستوى مناسب.
+
+```python
+from machine import Pin
+from time import sleep_us, ticks_us, ticks_diff, sleep
+
+trig = Pin(3, Pin.OUT)
+echo = Pin(2, Pin.IN)
+
+def distance_cm():
+    trig.value(0)
+    sleep_us(2)
+    trig.value(1)
+    sleep_us(10)
+    trig.value(0)
+    while echo.value() == 0:
+        start = ticks_us()
+    while echo.value() == 1:
+        end = ticks_us()
+    return (ticks_diff(end, start) * 0.0343) / 2
+
+while True:
+    print(f"{distance_cm():.1f} cm")
+    sleep(0.5)
+```
+
+**ما ستتعلمه:** التوقيت بالميكروثانية، قياس النبضات، تحويل المستوى في العالم الحقيقي.
+
+## 6. قائمة بكرة دوارة (Rotary Encoder)
+
+**مستوى الصعوبة:** متوسط
+**الوقت:** 45 دقيقة
+**الأجزاء:** Pico، [بكرة دوارة KY-040](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20)، عدد قليل من مقاومات السحب لأعلى (غالبًا ما تكون مضمنة في الوحدة)
+
+تعتبر البكرات الدوارة وسيلة الإدخال المفضلة لأي مشروع يحتوي على خيارات. يقوم هذا المثال بالعد تصاعديًا أو تنازليًا عند تدوير المحور وإعادة الضبط إلى الصفر عند النقر.
+
+```python
+from machine import Pin
+from time import sleep
+
+clk = Pin(10, Pin.IN, Pin.PULL_UP)
+dt = Pin(11, Pin.IN, Pin.PULL_UP)
+sw = Pin(12, Pin.IN, Pin.PULL_UP)
+
+counter = 0
+last_clk = clk.value()
+
+while True:
+    current = clk.value()
+    if current != last_clk and current == 0:
+        if dt.value() != current:
+            counter += 1
+        else:
+            counter -= 1
+        print(f"Counter: {counter}")
+    last_clk = current
+    if sw.value() == 0:
+        counter = 0
+        print("Reset")
+        sleep(0.3)
+    sleep(0.001)
+```
+
+**ما ستتعلمه:** اكتشاف الحافة، إزالة الارتداد (debouncing)، معالجة مدخلات متعددة.
+
+## 7. لوحة معلومات بشاشة OLED
+
+**مستوى الصعوبة:** متوسط
+**الوقت:** 45 دقيقة
+**الأجزاء:** Pico، [شاشة OLED SSD1306 بحجم 0.96 بوصة ودقة 128x64 (I2C)](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20)، أسلاك توصيل
+
+تعتبر شاشات OLED الصغيرة التي تعمل بتقنية I2C أسهل طريقة لوضع شاشة عرض حقيقية في مشروعك. قم بتثبيت مكتبة MicroPython `ssd1306` من مدير حزم Thonny. قم بتوصيل SDA بـ GPIO 4، و SCL بـ GPIO 5، و VCC بـ 3.3 فولت، و GND بـ GND.
+
+```python
+from machine import Pin, I2C, ADC
+from ssd1306 import SSD1306_I2C
+from time import sleep
+
+i2c = I2C(0, sda=Pin(4), scl=Pin(5))
+oled = SSD1306_I2C(128, 64, i2c)
+sensor = ADC(4)
+
+while True:
+    temp_c = 27 - (sensor.read_u16() * (3.3 / 65535) - 0.706) / 0.001721
+    oled.fill(0)
+    oled.text("Pico Dashboard", 0, 0)
+    oled.text(f"Temp: {temp_c:.1f} C", 0, 20)
+    oled.text("build-coded.com", 0, 50)
+    oled.show()
+    sleep(1)
+```
+
+**ما ستتعلمه:** ناقل I2C، مكتبات خارجية، أساسيات الرسوميات.
+
+## 8. محرك سيرفو يتم التحكم فيه بزر
+
+**مستوى الصعوبة:** سهل
+**الوقت:** 30 دقيقة
+**الأجزاء:** Pico، [محرك سيرفو صغير SG90](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20)، زر ضغط، مقاوم 220 أوم، يوصى بإمداد طاقة خارجي 5 فولت
+
+اضغط على زر، يتحرك السيرفو إلى 180 درجة. اضغط مرة أخرى، يعود إلى 0. محرك SG90 سعيد بالعمل من دبوس VBUS في Pico للاختبار لمرة واحدة، ولكن لأي مشروع حقيقي، قم بتزويد السيرفو بالطاقة بشكل منفصل وشارك الأرضي.
+
+```python
+from machine import Pin, PWM
+from time import sleep
+
+servo = PWM(Pin(15))
+servo.freq(50)
+button = Pin(14, Pin.IN, Pin.PULL_UP)
+open_pos = False
+
+def set_angle(angle):
+    duty = int(1638 + (angle / 180) * 6553)
+    servo.duty_u16(duty)
+
+set_angle(0)
+
+while True:
+    if button.value() == 0:
+        open_pos = not open_pos
+        set_angle(180 if open_pos else 0)
+        sleep(0.5)
+    sleep(0.05)
+```
+
+**ما ستتعلمه:** حسابات PWM للسيرفو، الإخراج الميكانيكي، عزل الطاقة.
+
+## 9. ساعة عرض 7-Segment
+
+**مستوى الصعوبة:** متوسط
+**الوقت:** ساعة واحدة
+**الأجزاء:** Pico، [شاشة عرض 7-segment TM1637 بأربعة أرقام](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20)، وحدة RTC اختيارية
+
+شاشة TM1637 هي شاشة عرض LED بأربعة أرقام مع واجهة بسيطة للغاية مكونة من سلكين ومكتبة MicroPython جاهزة. قم بتثبيت `micropython-tm1637` من Thonny. لا يمتلك Pico وحدة RTC خاصة به، لذا هذا الإصدار البسيط يعد الثواني منذ التشغيل. أضف وحدة RTC DS3231 إذا كنت تريد ساعة تبقى تعمل بعد انقطاع التيار الكهربائي.
+
+```python
+from machine import Pin
+from time import sleep
+import tm1637
+
+display = tm1637.TM1637(clk=Pin(16), dio=Pin(17))
+seconds = 0
+
+while True:
+    hours = (seconds // 3600) % 24
+    minutes = (seconds // 60) % 60
+    display.numbers(hours, minutes)
+    sleep(1)
+    seconds += 1
+```
+
+**ما ستتعلمه:** مشغلات العرض الخارجية، حسابات الوقت، سبب وجود وحدات RTC.
+
+## 10. محطة طقس تعمل بالواي فاي (Pico W)
+
+**مستوى الصعوبة:** متوسط
+**الوقت:** 1 إلى 2 ساعة
+**الأجزاء:** [Raspberry Pi Pico W](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20)، مستشعر BME280 اختياري للبيانات المحلية
+
+يتطلب هذا المشروع Pico W لأنه يستخدم Wi-Fi. يتصل بشبكتك، ويصل إلى واجهة برمجة تطبيقات طقس عامة (OpenWeatherMap، طبقة مجانية)، ويطبع الظروف الحالية. قم بإنشاء مفتاح API مجاني على openweathermap.org قبل البدء.
+
+```python
+import network
+import urequests
+from time import sleep
+
+SSID = "your-ssid"
+PASSWORD = "your-password"
+API_KEY = "your-openweather-key"
+CITY = "Austin"
+
+wlan = network.WLAN(network.STA_IF)
+wlan.active(True)
+wlan.connect(SSID, PASSWORD)
+
+while not wlan.isconnected():
+    sleep(0.5)
+
+print("Connected:", wlan.ifconfig())
+
+url = f"https://api.openweathermap.org/data/2.5/weather?q={CITY}&appid={API_KEY}&units=metric"
+
+while True:
+    try:
+        r = urequests.get(url)
+        data = r.json()
+        print(f"{CITY}: {data['main']['temp']} C, {data['weather'][0]['description']}")
+        r.close()
+    except Exception as e:
+        print("Error:", e)
+    sleep(600)
+```
+
+**ما ستتعلمه:** اتصال Wi-Fi، طلبات HTTPS، تحليل JSON، مفاتيح API وحدود المعدل.
+
+## اقتراحات للأجزاء والمجموعات
+
+إذا كنت تفضل شراء حزمة بدلاً من أجزاء فردية، فستغطي المجموعة تقريبًا كل ما في هذه القائمة مقابل 30 إلى 50 دولارًا:
+
+- [مجموعة Freenove Ultimate Starter Kit لـ Raspberry Pi Pico W](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) - تغطي جميع المشاريع العشرة هنا، وتتضمن Pico W
+- [مجموعة Elegoo Complete Pico Kit](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) - بديل، أرخص قليلاً، Pico غير متضمن دائمًا
+- [تشكيلة من المستشعرات والوحدات](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) - إذا كنت تمتلك Pico بالفعل
+
+للترقيات الفردية التي أوصي بها باستمرار بعد مجموعات البداية: مجموعة جيدة من [أسلاك توصيل DuPont](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) و [لوحة تجارب عالية الجودة بسعة 830 نقطة](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) تدوم أطول من تلك الضعيفة التي تأتي مع المجموعات.
+
+## بضع نصائح ستوفر عليك ساعات
+
+قبل أن تبدأ في إضاعة عطلات نهاية الأسبوع:
+
+1. اقرأ دائمًا من اليسار إلى اليمين عند توصيل الأسلاك. طابق مخطط الدبابيس مع لوحتك الفعلية بدلاً من الوثوق بالألوان.
+2. احتفظ بـ Pico الخاص بك على لوحة تجارب للنماذج الأولية. لا تقم بلحام أي شيء حتى يعمل المشروع.
+3. استخدم `print()` في كل مكان أثناء التصحيح. تعرض Thonny المخرجات مباشرة في REPL.
+4. احفظ نصوصك البرمجية على جهاز الكمبيوتر الخاص بك، وليس فقط على Pico. تلف الفلاش نادر ولكنه يحدث.
+5. عندما لا يعمل شيء ما، افصل Pico وأعد توصيله. غالبًا ما تحتاج REPL في MicroPython إلى إعادة تشغيل.
+6. حافظ على جميع

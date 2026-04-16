@@ -66,7 +66,9 @@
     "slideWorkshop": "Your Workshop, Simplified",
     "slideWorkshopDesc": "Fewer tools, better results. We tested hundreds so you don't have to.",
     "slideTools": "Tools That Actually Work",
-    "slideToolsDesc": "Beyond the marketing claims. What we actually use in the workshop every day."
+    "slideToolsDesc": "Beyond the marketing claims. What we actually use in the workshop every day.",
+    "trending": "Trending",
+    "readerFavorites": "Reader Favorites"
   },
   "footer": {
     "tagline": "DIY Projects, Decoded.",

@@ -1,0 +1,361 @@
+---
+title: "10 Progetti Raspberry Pi Pico per Principianti (con Codice Completo)"
+description: "Dieci progetti pratici con Raspberry Pi Pico per principianti, ognuno con lista componenti, livello di difficoltà, stima del tempo e uno snippet di codice MicroPython funzionante."
+date: 2026-04-11
+category: electronics
+type: listicle
+tags:
+  - raspberry pi pico
+  - micropython
+  - beginner projects
+  - rp2040
+  - electronics
+image: /images/raspberry-pi-pico-projects-beginners.jpg
+imageAlt: 'Raspberry Pi Pico collegato su una breadboard con display OLED e sensori'
+draft: true
+locale: it
+author: "Danny Herrera"
+difficulty: beginner
+---
+BODY TO TRANSLATE:
+
+## Perché il Raspberry Pi Pico è un Ottimo Primo Microcontrollore
+
+Il Raspberry Pi Pico è economico, veloce e ti perdona gli errori. Per circa 4€ hai un dual-core ARM Cortex-M0+ che gira a 133 MHz, 264 KB di SRAM, 2 MB di flash, 26 pin GPIO e una porta USB-C. Un valore pazzesco, davvero. Il Pico W aggiunge Wi-Fi e Bluetooth per circa 6€. A differenza di un Arduino Uno, puoi programmarlo in Python (MicroPython) così come in C/C++, il che lo rende drasticamente meno "spaventoso" per chi è alle prime armi.
+
+Tutti e dieci i progetti qui sotto usano MicroPython. Funzionano sia sul Pico che sul Pico W (l'ultimo progetto richiede specificamente un Pico W). Per iniziare, procurati un [Raspberry Pi Pico W Starter Kit](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) o costruisci il tuo con un [Raspberry Pi Pico W originale](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) e un buon [set di breadboard e cavi jumper](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20).
+
+Prima di iniziare, carica MicroPython sul tuo Pico. Tieni premuto BOOTSEL mentre lo colleghi, trascina il file `.uf2` sul drive che appare e usa l'IDE Thonny per eseguire il codice. Thonny è gratuito ed è fatto apposta. Non ti serve niente di più complicato.
+
+## 1. Far Lampeggiare il LED Integrato (Hello World)
+
+**Difficoltà:** Banale
+**Tempo:** 5 minuti
+**Componenti:** Solo il Pico
+
+Ogni percorso nel mondo dei microcontrollori inizia qui. Il Pico ha un LED integrato collegato al GPIO 25 (sul Pico normale) o controllato tramite il chip wireless sul Pico W. Questo piccolo snippet di codice ti dimostra che la tua configurazione funziona.
+
+```python
+from machine import Pin
+from time import sleep
+
+led = Pin("LED", Pin.OUT)
+
+while True:
+    led.toggle()
+    sleep(0.5)
+```
+
+Se vedi un LED che lampeggia, stai ufficialmente scrivendo software embedded. Se no, controlla di aver selezionato l'interprete MicroPython corretto in Thonny.
+
+## 2. Registratore di Dati con Sensore di Temperatura
+
+**Difficoltà:** Facile
+**Tempo:** 30 minuti
+**Componenti:** Pico, nient'altro (il sensore integrato è abbastanza buono), oppure una [sonda impermeabile DS18B20](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) se vuoi registrare la temperatura esterna.
+
+Il Pico ha un sensore di temperatura integrato collegato all'ADC interno sul canale 4. Non è preciso come uno da laboratorio, ma è perfetto per imparare. Questo progetto legge la temperatura ogni 10 secondi e la scrive su un file CSV nella memoria flash del Pico.
+
+```python
+from machine import ADC, Pin
+from time import sleep, time
+
+sensor = ADC(4)
+conversion = 3.3 / 65535
+
+with open("temp_log.csv", "a") as log:
+    log.write("timestamp,celsius\n")
+    while True:
+        reading = sensor.read_u16() * conversion
+        temp_c = 27 - (reading - 0.706) / 0.001721
+        log.write(f"{time()},{temp_c:.2f}\n")
+        log.flush()
+        sleep(10)
+```
+
+**Cosa impari:** Lettura ADC, conversione unità, scrittura file su un microcontrollore, logging persistente.
+
+## 3. Interruttore Luminoso Capacitivo
+
+**Difficoltà:** Facile
+**Tempo:** 30 minuti
+**Componenti:** Pico, resistenza da 1 M-ohm, una graffetta o una striscia di nastro di rame, LED
+
+Il chip RP2040 del Pico non ha hardware dedicato per il touch capacitivo come un ESP32, ma puoi simularlo con una resistenza di alto valore e un timing software. Quando tocchi il filo scoperto, la capacità del tuo dito rallenta la velocità con cui un pin si stabilizza, e tu puoi rilevare il cambiamento. Collega il GPIO 16 a un'estremità di una resistenza da 1M, l'altra estremità al GPIO 17, e tocca un filo collegato al GPIO 17.
+
+```python
+from machine import Pin
+from time import sleep
+
+out = Pin(16, Pin.OUT)
+sense = Pin(17, Pin.IN)
+led = Pin("LED", Pin.OUT)
+on = False
+
+def read_touch():
+    out.value(1)
+    count = 0
+    while sense.value() == 0 and count < 1000:
+        count += 1
+    out.value(0)
+    return count
+
+while True:
+    if read_touch() > 200:
+        on = not on
+        led.value(on)
+        sleep(0.3)
+    sleep(0.05)
+```
+
+**Cosa impari:** Cicli di timing, rilevamento software, logica di stato alternata (toggle).
+
+## 4. Allarme Rilevatore di Movimento PIR
+
+**Difficoltà:** Facile
+**Tempo:** 20 minuti
+**Componenti:** Pico, [sensore PIR HC-SR501](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20), buzzer passivo, cavi jumper
+
+Un piccolo allarme per la stanza. Il sensore PIR emette un segnale alto quando rileva movimento, e tu fai suonare il buzzer al cambio di stato.
+
+```python
+from machine import Pin, PWM
+from time import sleep
+
+pir = Pin(15, Pin.IN)
+buzzer = PWM(Pin(14))
+buzzer.duty_u16(0)
+
+while True:
+    if pir.value():
+        buzzer.freq(1000)
+        buzzer.duty_u16(32768)
+        sleep(1)
+        buzzer.duty_u16(0)
+        sleep(2)
+    sleep(0.1)
+```
+
+**Cosa impari:** Input digitale, PWM per generare toni, cablaggio base di sensori.
+
+## 5. Sensore di Distanza Ultrasonico
+
+**Difficoltà:** Da facile a moderata
+**Tempo:** 30 minuti
+**Componenti:** Pico, [sensore ultrasonico HC-SR04](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20), resistenze da 10k e 20k (il sensore è a 5 V, il Pico a 3.3 V)
+
+Importante: l'eco pin dell'HC-SR04 emette 5 V. Non collegarlo direttamente a un GPIO del Pico. Usa un partitore di tensione (10k dall'eco al tuo pin Pico, 20k dal tuo pin Pico a massa) o un level shifter adeguato.
+
+```python
+from machine import Pin
+from time import sleep_us, ticks_us, ticks_diff, sleep
+
+trig = Pin(3, Pin.OUT)
+echo = Pin(2, Pin.IN)
+
+def distance_cm():
+    trig.value(0)
+    sleep_us(2)
+    trig.value(1)
+    sleep_us(10)
+    trig.value(0)
+    while echo.value() == 0:
+        start = ticks_us()
+    while echo.value() == 1:
+        end = ticks_us()
+    return (ticks_diff(end, start) * 0.0343) / 2
+
+while True:
+    print(f"{distance_cm():.1f} cm")
+    sleep(0.5)
+```
+
+**Cosa impari:** Timing in microsecondi, misurazione di impulsi, level shifting nel mondo reale.
+
+## 6. Menu con Encoder Rotativo
+
+**Difficoltà:** Moderata
+**Tempo:** 45 minuti
+**Componenti:** Pico, [encoder rotativo KY-040](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20), alcune resistenze di pull-up (spesso incluse sul modulo)
+
+Gli encoder rotativi sono il metodo di input preferito per qualsiasi progetto con delle opzioni. Questo esempio conta su o giù quando giri la manopola e si resetta a zero quando premi.
+
+```python
+from machine import Pin
+from time import sleep
+
+clk = Pin(10, Pin.IN, Pin.PULL_UP)
+dt = Pin(11, Pin.IN, Pin.PULL_UP)
+sw = Pin(12, Pin.IN, Pin.PULL_UP)
+
+counter = 0
+last_clk = clk.value()
+
+while True:
+    current = clk.value()
+    if current != last_clk and current == 0:
+        if dt.value() != current:
+            counter += 1
+        else:
+            counter -= 1
+        print(f"Counter: {counter}")
+    last_clk = current
+    if sw.value() == 0:
+        counter = 0
+        print("Reset")
+        sleep(0.3)
+    sleep(0.001)
+```
+
+**Cosa impari:** Rilevamento di fronte (edge detection), debouncing, gestione di input multipli.
+
+## 7. Dashboard su Display OLED
+
+**Difficoltà:** Moderata
+**Tempo:** 45 minuti
+**Componenti:** Pico, [OLED SSD1306 da 0.96 pollici 128x64 (I2C)](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20), cavi jumper
+
+I piccoli display OLED I2C sono il modo più semplice per aggiungere un vero display al tuo progetto. Installa la libreria MicroPython `ssd1306` dal package manager di Thonny. Collega SDA al GPIO 4, SCL al GPIO 5, VCC a 3.3 V, GND a GND.
+
+```python
+from machine import Pin, I2C, ADC
+from ssd1306 import SSD1306_I2C
+from time import sleep
+
+i2c = I2C(0, sda=Pin(4), scl=Pin(5))
+oled = SSD1306_I2C(128, 64, i2c)
+sensor = ADC(4)
+
+while True:
+    temp_c = 27 - (sensor.read_u16() * (3.3 / 65535) - 0.706) / 0.001721
+    oled.fill(0)
+    oled.text("Pico Dashboard", 0, 0)
+    oled.text(f"Temp: {temp_c:.1f} C", 0, 20)
+    oled.text("build-coded.com", 0, 50)
+    oled.show()
+    sleep(1)
+```
+
+**Cosa impari:** Bus I2C, librerie esterne, basi della grafica.
+
+## 8. Servo Controllato da Pulsante
+
+**Difficoltà:** Facile
+**Tempo:** 30 minuti
+**Componenti:** Pico, [micro servo SG90](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20), pulsante, resistenza da 220 ohm, alimentatore esterno da 5 V consigliato
+
+Premi un pulsante, il servo si muove a 180 gradi. Premi di nuovo, torna a 0. L'SG90 funziona volentieri dalla porta VBUS del Pico per test veloci, ma per qualsiasi progetto serio alimenta il servo separatamente e condividi la massa.
+
+```python
+from machine import Pin, PWM
+from time import sleep
+
+servo = PWM(Pin(15))
+servo.freq(50)
+button = Pin(14, Pin.IN, Pin.PULL_UP)
+open_pos = False
+
+def set_angle(angle):
+    duty = int(1638 + (angle / 180) * 6553)
+    servo.duty_u16(duty)
+
+set_angle(0)
+
+while True:
+    if button.value() == 0:
+        open_pos = not open_pos
+        set_angle(180 if open_pos else 0)
+        sleep(0.5)
+    sleep(0.05)
+```
+
+**Cosa impari:** Calcoli PWM per servo, output meccanico, isolamento dell'alimentazione.
+
+## 9. Orologio su Display a 7 Segmenti
+
+**Difficoltà:** Moderata
+**Tempo:** 1 ora
+**Componenti:** Pico, [display a 4 cifre a 7 segmenti TM1637](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20), modulo RTC opzionale
+
+Il TM1637 è un display a 4 cifre con un'interfaccia a 2 fili incredibilmente semplice e una libreria MicroPython già pronta. Installa `micropython-tm1637` da Thonny. Il Pico non ha un RTC integrato, quindi questa versione semplice conta i secondi dall'avvio. Aggiungi un modulo RTC DS3231 se vuoi un orologio che sopravviva allo spegnimento.
+
+```python
+from machine import Pin
+from time import sleep
+import tm1637
+
+display = tm1637.TM1637(clk=Pin(16), dio=Pin(17))
+seconds = 0
+
+while True:
+    hours = (seconds // 3600) % 24
+    minutes = (seconds // 60) % 60
+    display.numbers(hours, minutes)
+    sleep(1)
+    seconds += 1
+```
+
+**Cosa impari:** Driver di display esterni, calcoli temporali, perché esistono gli RTC.
+
+## 10. Stazione Meteo Wi-Fi (Pico W)
+
+**Difficoltà:** Moderata
+**Tempo:** 1-2 ore
+**Componenti:** [Raspberry Pi Pico W](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20), sensore BME280 opzionale per dati locali
+
+Questo progetto richiede il Pico W perché usa il Wi-Fi. Si connette alla tua rete, interroga una API meteo pubblica (OpenWeatherMap, versione gratuita) e stampa le condizioni attuali. Crea una chiave API gratuita su openweathermap.org prima di iniziare.
+
+```python
+import network
+import urequests
+from time import sleep
+
+SSID = "your-ssid"
+PASSWORD = "your-password"
+API_KEY = "your-openweather-key"
+CITY = "Austin"
+
+wlan = network.WLAN(network.STA_IF)
+wlan.active(True)
+wlan.connect(SSID, PASSWORD)
+
+while not wlan.isconnected():
+    sleep(0.5)
+
+print("Connected:", wlan.ifconfig())
+
+url = f"https://api.openweathermap.org/data/2.5/weather?q={CITY}&appid={API_KEY}&units=metric"
+
+while True:
+    try:
+        r = urequests.get(url)
+        data = r.json()
+        print(f"{CITY}: {data['main']['temp']} C, {data['weather'][0]['description']}")
+        r.close()
+    except Exception as e:
+        print("Error:", e)
+    sleep(600)
+```
+
+**Cosa impari:** Connessione Wi-Fi, richieste HTTPS, parsing JSON, chiavi API e limiti di utilizzo.
+
+## Suggerimenti per Componenti e Kit
+
+Se preferisci comprare un pacchetto invece dei singoli componenti, un kit coprirà quasi tutto quello che c'è in questa lista per 30-50€:
+
+- [Freenove Ultimate Starter Kit per Raspberry Pi Pico W](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) — copre tutti i 10 progetti qui, include il Pico W
+- [Elegoo Complete Pico Kit](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) — alternativa, leggermente più economica, il Pico non è sempre incluso
+- [Assortimento di sensori e moduli](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) — se possiedi già un Pico
+
+Per aggiornamenti singoli che consiglio sempre al di là dei kit base: un buon set di [cavi jumper DuPont](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) e una [breadboard di qualità da 830 punti](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) durano molto di più di quelle fragili che di solito si trovano nei kit.
+
+## Qualche Consiglio Che Ti Farà Risparmiare Ore
+
+Prima di iniziare a bruciare weekend:
+
+1. Leggi sempre da sinistra a destra quando fai i collegamenti. Abbina lo schema dei pin alla tua scheda fisica invece di fidarti dei colori.
+2. Tieni il tuo Pico su una breadboard per prototipare. Non saldare niente finché il progetto non funziona.
+3. Usa `print()` ovunque durante il debugging. Thonny mostra l'output in tempo reale nella REPL.
+4. Salva i tuoi script sul computer, non solo sul Pico. La corruzione della flash è rara ma succede.
+5. Quando qualcosa non funziona, scollega e ricollega il Pico. La REPL di MicroPython a volte ha bisogno di un reset.
+6. Tieni tutti i... (il testo originale si interrompe qui, quindi mi fermo anche io!)

@@ -1,0 +1,190 @@
+---
+title: "Kit Base per la Domotica: Tutto Quello che Ti Serve per Iniziare"
+description: "Crea un kit base per la domotica sotto i 200€. Confronta Home Assistant, SmartThings e HomeKit, e scopri Matter, Thread, Zigbee e Z-Wave."
+date: 2026-04-11
+category: electronics
+type: hub
+tags:
+  - home automation
+  - smart home
+  - home assistant
+  - matter
+  - zigbee
+image: /images/home-automation-starter-kit.jpg
+imageAlt: Kit base per la smart home con presa, hub, sensore di movimento e lampadina smart su un tavolo
+draft: true
+locale: it
+author: "Danny Herrera"
+difficulty: beginner
+---
+---
+
+## La Prima Cosa da Sapere sulla Domotica
+
+Il mercato della smart home nel 2026 non è più un disastro. Per anni è stato un pasticcio di app incompatibili, bridge e cloud proprietari, e chi ci è rimasto fedele era disposto a passare il sabato a capire perché il sensore di movimento avesse smesso di parlare con la lampadina. Per fortuna, la maggior parte di questo è ormai alle spalle. Tra Matter, Thread e i grandi ecosistemi che si stanno impegnando seriamente sull'interoperabilità, puoi finalmente costruire una smart home coerente da zero senza una laurea in informatica.
+
+Però, puoi ancora buttare soldi. Tanti soldi. Questa guida ti accompagnerà nelle decisioni da prendere nell'ordine giusto: scegli un ecosistema, scegli un protocollo di connessione, compra l'essenziale, crea la tua prima automazione. Spesa totale per una configurazione di partenza davvero utile: meno di 200€.
+
+## I Tre Ecosistemi: Scegli Uno Prima di Tutto
+
+Prima di comprare un singolo dispositivo, scegli il "cervello" del sistema. Questa è l'app che guarderai ogni volta che qualcosa non va.
+
+### Home Assistant
+
+Home Assistant è l'opzione open-source, self-hosted. Lo installi su un Raspberry Pi, un mini PC o un economico box in stile NUC. Parla con più tipi di dispositivi di chiunque altro sul mercato, non ha costi di abbonamento e ti permette di scrivere automazioni complesse quanto vuoi. La community è enorme e davvero disponibile.
+
+**Pro:** Più potente, più flessibile, supporta tutto, nessun abbonamento, completamente privato.
+**Contro:** Richiede hardware dedicato, curva di apprendimento più ripida, occasionalmente richiede qualche smanettamento.
+**Ideale per:** Persone a cui piace il fai-da-te, utenti attenti alla privacy, chiunque possieda già un Raspberry Pi.
+
+Il modo più semplice per iniziare: compra [Home Assistant Green](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20), una scatola pronta all'uso da Nabu Casa, oppure installa Home Assistant OS su un [Raspberry Pi 5 con case e alimentatore](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20).
+
+### Samsung SmartThings
+
+SmartThings è l'ecosistema cloud in "modalità facile". Samsung l'ha integrato profondamente con i suoi telefoni e TV, ma non hai bisogno di hardware Samsung per usarlo. Supporta Matter nativamente, ha un'app mobile curata e di solito funziona subito. Hai bisogno di un hub SmartThings (standalone o integrato in una Smart TV Samsung o in un dispositivo compatibile con hub) per usare Zigbee e Z-Wave.
+
+**Pro:** Setup facile, app solida, ampio supporto per i dispositivi, gratuito.
+**Contro:** Dipendente dal cloud, meno flessibile di Home Assistant, richiede un account Samsung.
+**Ideale per:** Persone che vogliono qualcosa che funzioni e basta, senza smanettamenti.
+
+### Apple HomeKit
+
+HomeKit è la risposta di Apple. Funziona su qualsiasi iPhone e usa un HomePod, Apple TV o iPad come hub. L'app (chiamata semplicemente Home) è la più pulita delle tre, la privacy è eccellente (la maggior parte dell'elaborazione è locale) e l'integrazione con Siri è stretta come ti aspetteresti.
+
+**Pro:** Migliore privacy, integrazione stretta con iPhone, interfaccia pulita, elaborazione locale.
+**Contro:** Ecosistema di dispositivi più piccolo rispetto agli altri, nessun supporto nativo per Windows/Android, automazioni meno potenti.
+**Ideale per:** Famiglie completamente immerse nell'ecosistema Apple con un HomePod mini o Apple TV già presente.
+
+### Quale Dovresti Scegliere?
+
+- Se possiedi dispositivi Apple e vuoi il minor attrito possibile, scegli HomeKit.
+- Se vuoi costruire qualcosa di potente, imparare un po' e tenere i tuoi dati a casa, scegli Home Assistant.
+- Se vuoi una via di mezzo con un'app curata e un backend cloud gratuito, scegli SmartThings.
+
+Non c'è una risposta sbagliata. Tutti e tre supportano Matter, quindi puoi mischiare e abbinare dispositivi in seguito se cambi idea.
+
+## Hub Sì o No? La Questione del Protocollo
+
+Ogni dispositivo smart parla uno o più protocolli radio. Ecco la versione breve di ciascuno.
+
+### Wi-Fi
+
+Pro: nessun hub aggiuntivo necessario, i dispositivi sono economici, setup veloce.
+Contro: consuma molta energia (non ideale per sensori a batteria), intasa il router con 30 dispositivi in più, alcuni marchi sono bloccati nel cloud.
+Ideale per: prese, telecamere, TV, qualsiasi cosa sia alimentata dalla rete elettrica e sia già vicina al router.
+
+### Zigbee
+
+Pro: basso consumo energetico, rete mesh, ecosistema maturo, dispositivi economici, ottima durata della batteria dei sensori.
+Contro: necessita di un coordinatore (hub o chiavetta USB), tecnologia leggermente più vecchia, implementazioni proprietarie occasionalmente problematiche.
+Ideale per: sensori a batteria, lampadine, interruttori, il pane quotidiano della smart home tradizionale.
+
+### Z-Wave
+
+Pro: rete mesh robusta, crittografia forte, eccellente per interruttori e serrature, non condivide la banda a 2.4 GHz con il Wi-Fi.
+Contro: dispositivi più costosi, ecosistema più piccolo di Zigbee, bloccato a livello regionale (USA e UE hanno frequenze diverse, quindi i dispositivi non sono portabili).
+Ideale per: installazioni permanenti, interruttori a muro, serrature, dispositivi di sicurezza.
+
+### Thread
+
+Pro: il più recente protocollo mesh, basso consumo energetico, basato su IP, progettato per Matter fin dal principio, eccellente durata della batteria.
+Contro: necessita di "Thread border router" (HomePod mini, Apple TV 4K, Echo Hub, SmartThings Station, Nest Hub 2).
+Ideale per: sensori a batteria in una configurazione "Matter-first", a prova di futuro.
+
+### Matter
+
+Matter non è una radio. È un linguaggio da dispositivo a dispositivo che funziona sopra Wi-Fi e Thread. Il punto di Matter è che compri un dispositivo con il logo Matter e funziona con Home Assistant, SmartThings, HomeKit e Google Home senza problemi. Nel 2026 il supporto Matter è abbastanza buono da potersi fidare. Compra dispositivi certificati Matter quando hai la possibilità.
+
+### Quindi Hai Bisogno di un Hub?
+
+Se vuoi solo dispositivi Wi-Fi e Matter, no. Se vuoi sensori Zigbee, Z-Wave o Thread (e probabilmente dovresti, per una migliore durata della batteria), sì. Un hub costa da 30 a 100€ una tantum e si ripaga da solo in pochi acquisti.
+
+Per Home Assistant, il percorso più economico è una [SONOFF Zigbee 3.0 USB Dongle Plus](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) collegata al tuo box HA. Questo ti dà Zigbee e, con una chiavetta diversa, anche Thread. SmartThings e HomeKit hanno le radio integrate nei loro hub di marca.
+
+## I Primi Cinque Dispositivi Essenziali
+
+Dimentica quello che dice il marketing. Questi cinque tipi di dispositivi coprono il 90% delle automazioni utili in una smart home.
+
+### 1. Una Presa Smart (Smart Plug)
+
+Il modo più economico per rendere "smart" qualsiasi cosa abbia una spina. Usale per lampade, ventilatori, luci di Natale o una macchina del caffè. Imposta degli orari. Attivale con il movimento. Monitora il consumo energetico (sulle prese che lo supportano).
+
+Raccomandazione: [Kasa Matter Smart Plug Mini](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) per Wi-Fi, o [Third Reality Zigbee Smart Plug](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) per la rete mesh Zigbee. Circa 12-15€ l'una.
+
+### 2. Un Sensore di Movimento
+
+Il trigger per quasi tutte le buone automazioni. Luci che si accendono quando entri in corridoio. Notifiche quando il cane entra in una stanza. Ventilatore del bagno che si accende quando sei lì. I sensori di movimento funzionano con pile a bottone, quindi Zigbee o Thread battono il Wi-Fi a chilometri di distanza.
+
+Raccomandazione: [Aqara Motion Sensor (Zigbee)](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20). Circa 20€ e dura due anni con una sola batteria.
+
+### 3. Un Sensore di Contatto (Porta/Finestra)
+
+Due magneti che sanno quando una porta è aperta o chiusa. Usali per avvisi di sicurezza, promemoria per chiudere il garage o semplici automazioni "bentornato a casa". La stessa storia di Zigbee o Thread vale per motivi di durata della batteria.
+
+Raccomandazione: [Aqara Door and Window Sensor](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20). Circa 15€.
+
+### 4. Una Lampadina Smart (Smart Bulb)
+
+Le lampadine sono il "tutorial darling" della smart home, ma hanno un compromesso: se qualcuno spegne l'interruttore a muro, la lampadina è morta per la rete finché l'interruttore non viene riacceso. Va bene per le lampade, meno ideale per le luci a soffitto. Comunque, una lampadina smart a colori in una camera da letto o in ufficio è un primo acquisto davvero divertente.
+
+Raccomandazione: [Philips Hue White and Color Ambiance starter bulb](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) se vuoi lo standard d'oro, o una [Sengled Zigbee bulb](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) a metà prezzo.
+
+### 5. Un Interruttore Smart (Non una Lampadina)
+
+Per installazioni permanenti, un interruttore smart che sostituisce il tuo interruttore a muro è quasi sempre meglio di una lampadina smart. Tutti in casa possono ancora usarlo come un normale interruttore, e hai un'automazione completa in più. Avrai bisogno di un filo neutro nella scatola per la maggior parte di essi.
+
+Raccomandazione: [Lutron Caseta Diamond (con l'Hub Smart Lutron)](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) è il più affidabile sul mercato, o un [TP-Link Kasa Matter Smart Switch](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) per configurazioni native Matter. 25-60€ l'uno.
+
+## Lista della Spesa Base Sotto i 200€
+
+Ecco una configurazione concreta, supponendo che tu voglia una vera smart home con una copertura adeguata:
+
+| Articolo | Prezzo Stimato |
+|---|---|
+| Raspberry Pi 5 8GB con case e alimentatore (per Home Assistant) | 90€ |
+| SONOFF Zigbee 3.0 USB Dongle Plus | 25€ |
+| 2 x Kasa Matter Smart Plugs | 25€ |
+| 2 x Aqara Motion Sensors (Zigbee) | 40€ |
+| 1 x Aqara Contact Sensor (Zigbee) | 15€ |
+| **Totale** | **195€** |
+
+Con questo kit hai un cervello locale, una radio Zigbee, copertura in due stanze, trigger di automazione per movimento e porte, e due prese controllabili. Da qui puoi aggiungere lampadine e interruttori uno alla volta.
+
+Se sei completamente nell'ecosistema SmartThings o HomeKit, sottrai il Raspberry Pi e aggiungi un [SmartThings Hub](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) (70€) o un [HomePod mini](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) (99€), e il resto della lista rimane lo stesso.
+
+## La Tua Prima Automazione: Luci Attivate dal Movimento
+
+Ogni smart home inizia con questa. Entri in una stanza, le luci si accendono automaticamente. Esci dalla stanza, si spengono dopo qualche minuto.
+
+Ecco la logica in parole semplici che tutti e tre gli ecosistemi possono implementare:
+
+1.  **Trigger:** Il sensore di movimento rileva movimento.
+2.  **Condizione:** È buio fuori (dopo il tramonto e prima dell'alba).
+3.  **Azione:** Accendi la presa smart / lampadina / interruttore.
+4.  **Trigger 2:** Il sensore di movimento non ha segnalato movimento per 5 minuti.
+5.  **Condizione 2:** La luce è stata accesa da questa automazione.
+6.  **Azione 2:** Spegni la luce.
+
+In Home Assistant si tratta di circa 20 righe di YAML. In SmartThings e HomeKit puoi costruirla con interfacce basate su tocchi in un paio di minuti. Se riesci a far funzionare questa, hai padroneggiato un trigger di movimento, una condizione temporale, un'azione e un'azione di contro-stato basata su un contatore, che sono gli elementi fondamentali di ogni automazione più avanzata che scriverai.
+
+Da lì, buone idee per costruire dopo:
+
+-   La porta d'ingresso si apre dopo mezzanotte invia una notifica push
+-   Il ventilatore del bagno funziona per 15 minuti dopo che la luce si è accesa
+-   La lampada da scrivania si accende quando ti siedi (tappetino sensibile sotto la sedia)
+-   Luci del corridoio al 10% di luminosità dopo le 23:00
+-   Notifica di avviso se la porta del garage è ancora aperta al tramonto
+
+## Errori Comuni e Come Evitarli
+
+Avendo passato più ore su questo hobby di quanto voglia ammettere, ecco gli errori che ogni principiante commette.
+
+**Comprare troppi dispositivi Wi-Fi.** Una smart home Wi-Fi funziona finché non smette, e poi fallisce in 40 punti contemporaneamente. Riserva il Wi-Fi a una manciata di dispositivi e usa Zigbee/Thread/Z-Wave per tutto ciò che è alimentato a batteria. Il tuo router ti ringrazierà.
+
+**Saltare l'hub.** Un hub sembra un acquisto extra fastidioso. È l'unica cosa che fa funzionare tutto il resto in modo fluido. Compra prima l'hub.
+
+**Comprare sensori economici di marche sconosciute.** Funzionano per sei mesi, poi l'accoppiamento Zigbee cade o la batteria si scarica. Aqara, Philips Hue, SONOFF, Third Reality e i preferiti della community di Home Assistant valgono qualche soldo in più.
+
+**Automatizzare troppo.** Ogni automazione ha una modalità di fallimento. Inizia con cinque o sei automazioni utili e vivici per un mese prima di aggiungerne altre. Un'automazione fastidiosa che si attiva al momento sbagliato farà odiare la smart home a tutta la tua famiglia.
+
+**Non etichettare correttamente i dispositivi.** Dai nomi ai dispositivi come "Lampada Salotto" e "Sensore Porta d'Ingresso" dal momento in cui li accoppi. Rintracciare "Motion_Sensor_EB234" sei mesi dopo è un tipo di problema tutto suo.

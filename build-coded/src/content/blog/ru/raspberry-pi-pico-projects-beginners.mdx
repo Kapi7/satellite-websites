@@ -1,0 +1,359 @@
+---
+title: "10 проектов на Raspberry Pi Pico для новичков (со всем кодом!)"
+description: "Десять крутых проектов на Raspberry Pi Pico для начинающих. Для каждого есть список деталей, уровень сложности, примерное время и рабочий код на MicroPython."
+date: 2026-04-11
+category: electronics
+type: listicle
+tags:
+  - raspberry pi pico
+  - micropython
+  - beginner projects
+  - rp2040
+  - electronics
+image: /images/raspberry-pi-pico-projects-beginners.jpg
+imageAlt: Raspberry Pi Pico, подключенный к макетной плате с OLED-дисплеем и сенсорами
+draft: true
+locale: ru
+author: "Danny Herrera"
+difficulty: beginner
+---
+## Почему Raspberry Pi Pico — отличный первый микроконтроллер
+
+Raspberry Pi Pico — это дешево, быстро и прощает ошибки. Всего за ~4 доллара вы получаете двухъядерный ARM Cortex-M0+ с частотой 133 МГц, 264 КБ SRAM, 2 МБ флэш-памяти, 26 GPIO-пинов и порт USB-C. Это просто невероятное предложение! А Pico W добавляет Wi-Fi и Bluetooth примерно за 6 долларов. В отличие от Arduino Uno, его можно программировать на Python (MicroPython), а также на C/C++, что делает его намного проще для новичков.
+
+Все десять проектов ниже написаны на MicroPython. Они работают как на Pico, так и на Pico W (последний проект требует именно Pico W). Для старта возьмите [стартовый набор Raspberry Pi Pico W](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) или соберите свой собственный с [оригинальным Raspberry Pi Pico W](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) и хорошим [набором макетных плат и соединительных проводов](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20).
+
+Прежде чем начать, прошейте MicroPython на ваш Pico. Зажмите BOOTSEL, подключите его к компьютеру, перетащите `.uf2` файл на появившийся диск, а затем используйте IDE Thonny для запуска кода. Thonny бесплатный и отлично подходит для этого. Ничего сложнее не нужно!
+
+## 1. Мигаем встроенным светодиодом (Hello World)
+
+**Сложность:** Очень легко
+**Время:** 5 минут
+**Детали:** Только Pico
+
+Каждое путешествие в мир микроконтроллеров начинается здесь. На Pico есть встроенный светодиод, подключенный к GPIO 25 (на обычном Pico) или управляемый через беспроводной чип на Pico W. Этот маленький фрагмент кода докажет, что ваша установка работает.
+
+```python
+from machine import Pin
+from time import sleep
+
+led = Pin("LED", Pin.OUT)
+
+while True:
+    led.toggle()
+    sleep(0.5)
+```
+
+Если вы видите мигающий светодиод, значит, вы официально пишете встроенное ПО. Если нет, проверьте, правильно ли вы выбрали интерпретатор MicroPython в Thonny.
+
+## 2. Регистратор данных с датчика температуры
+
+**Сложность:** Легко
+**Время:** 30 минут
+**Детали:** Pico, ничего больше (встроенного датчика достаточно) или [водонепроницаемый зонд DS18B20](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20), если хотите записывать температуру снаружи.
+
+У Pico есть встроенный датчик температуры, подключенный к внутреннему АЦП (ADC) на канале 4. Он не суперточный, как лабораторный, но идеально подходит для обучения. Этот проект считывает температуру каждые 10 секунд и записывает ее в CSV-файл во флэш-памяти Pico.
+
+```python
+from machine import ADC, Pin
+from time import sleep, time
+
+sensor = ADC(4)
+conversion = 3.3 / 65535
+
+with open("temp_log.csv", "a") as log:
+    log.write("timestamp,celsius\n")
+    while True:
+        reading = sensor.read_u16() * conversion
+        temp_c = 27 - (reading - 0.706) / 0.001721
+        log.write(f"{time()},{temp_c:.2f}\n")
+        log.flush()
+        sleep(10)
+```
+
+**Что вы узнаете:** Считывание АЦП, преобразование единиц измерения, запись файлов на микроконтроллере, постоянное логирование.
+
+## 3. Емкостный сенсорный выключатель света
+
+**Сложность:** Легко
+**Время:** 30 минут
+**Детали:** Pico, резистор 1 МОм, скрепка или полоска медной ленты, светодиод
+
+RP2040 в Pico не имеет специального аппаратного обеспечения для емкостного сенсора, как ESP32, но вы можете имитировать его с помощью резистора высокого номинала и программного тайминга. Когда вы касаетесь оголенного провода, емкость вашего пальца замедляет стабилизацию пина, и вы можете обнаружить это изменение. Подключите GPIO 16 к одному концу резистора 1 МОм, другой конец к GPIO 17, а к GPIO 17 подключите провод, которого будете касаться.
+
+```python
+from machine import Pin
+from time import sleep
+
+out = Pin(16, Pin.OUT)
+sense = Pin(17, Pin.IN)
+led = Pin("LED", Pin.OUT)
+on = False
+
+def read_touch():
+    out.value(1)
+    count = 0
+    while sense.value() == 0 and count < 1000:
+        count += 1
+    out.value(0)
+    return count
+
+while True:
+    if read_touch() > 200:
+        on = not on
+        led.value(on)
+        sleep(0.3)
+    sleep(0.05)
+```
+
+**Что вы узнаете:** Циклы тайминга, программное определение касания, логику переключения состояния.
+
+## 4. Сигнализация с PIR-датчиком движения
+
+**Сложность:** Легко
+**Время:** 20 минут
+**Детали:** Pico, [PIR-сенсор HC-SR501](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20), пассивный зуммер, соединительные провода
+
+Крошечная комнатная сигнализация. PIR-сенсор выдает высокий сигнал при обнаружении движения, и вы активируете зуммер по этому фронту.
+
+```python
+from machine import Pin, PWM
+from time import sleep
+
+pir = Pin(15, Pin.IN)
+buzzer = PWM(Pin(14))
+buzzer.duty_u16(0)
+
+while True:
+    if pir.value():
+        buzzer.freq(1000)
+        buzzer.duty_u16(32768)
+        sleep(1)
+        buzzer.duty_u16(0)
+        sleep(2)
+    sleep(0.1)
+```
+
+**Что вы узнаете:** Цифровой вход, ШИМ (PWM) для генерации звука, основы подключения датчиков.
+
+## 5. Ультразвуковой датчик расстояния
+
+**Сложность:** Легко-средне
+**Время:** 30 минут
+**Детали:** Pico, [ультразвуковой сенсор HC-SR04](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20), резисторы 10 кОм и 20 кОм (сенсор работает от 5 В, Pico — от 3.3 В)
+
+Важно: выходной пин эхо (echo) у HC-SR04 выдает 5 В. Не подключайте его напрямую к GPIO Pico. Используйте делитель напряжения (10 кОм от эхо к пину Pico, 20 кОм от пина Pico к земле) или соответствующий преобразователь уровня.
+
+```python
+from machine import Pin
+from time import sleep_us, ticks_us, ticks_diff, sleep
+
+trig = Pin(3, Pin.OUT)
+echo = Pin(2, Pin.IN)
+
+def distance_cm():
+    trig.value(0)
+    sleep_us(2)
+    trig.value(1)
+    sleep_us(10)
+    trig.value(0)
+    while echo.value() == 0:
+        start = ticks_us()
+    while echo.value() == 1:
+        end = ticks_us()
+    return (ticks_diff(end, start) * 0.0343) / 2
+
+while True:
+    print(f"{distance_cm():.1f} cm")
+    sleep(0.5)
+```
+
+**Что вы узнаете:** Тайминг в микросекундах, измерение импульсов, реальное преобразование уровней напряжения.
+
+## 6. Меню на энкодере
+
+**Сложность:** Средне
+**Время:** 45 минут
+**Детали:** Pico, [роторный энкодер KY-040](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20), несколько подтягивающих резисторов (часто идут в комплекте с модулем)
+
+Роторные энкодеры — это лучший способ ввода для любого проекта с опциями. Этот пример считает вверх или вниз при вращении ручки и сбрасывается в ноль при нажатии.
+
+```python
+from machine import Pin
+from time import sleep
+
+clk = Pin(10, Pin.IN, Pin.PULL_UP)
+dt = Pin(11, Pin.IN, Pin.PULL_UP)
+sw = Pin(12, Pin.IN, Pin.PULL_UP)
+
+counter = 0
+last_clk = clk.value()
+
+while True:
+    current = clk.value()
+    if current != last_clk and current == 0:
+        if dt.value() != current:
+            counter += 1
+        else:
+            counter -= 1
+        print(f"Counter: {counter}")
+    last_clk = current
+    if sw.value() == 0:
+        counter = 0
+        print("Reset")
+        sleep(0.3)
+    sleep(0.001)
+```
+
+**Что вы узнаете:** Детектирование фронта сигнала, подавление дребезга контактов, обработка нескольких входов.
+
+## 7. Дашборд на OLED-дисплее
+
+**Сложность:** Средне
+**Время:** 45 минут
+**Детали:** Pico, [0.96-дюймовый OLED SSD1306 (I2C)](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20), соединительные провода
+
+Маленькие I2C OLED-дисплеи — самый простой способ добавить настоящий экран в ваш проект. Установите библиотеку `ssd1306` для MicroPython из менеджера пакетов Thonny. Подключите SDA к GPIO 4, SCL к GPIO 5, VCC к 3.3 В, GND к GND.
+
+```python
+from machine import Pin, I2C, ADC
+from ssd1306 import SSD1306_I2C
+from time import sleep
+
+i2c = I2C(0, sda=Pin(4), scl=Pin(5))
+oled = SSD1306_I2C(128, 64, i2c)
+sensor = ADC(4)
+
+while True:
+    temp_c = 27 - (sensor.read_u16() * (3.3 / 65535) - 0.706) / 0.001721
+    oled.fill(0)
+    oled.text("Pico Dashboard", 0, 0)
+    oled.text(f"Temp: {temp_c:.1f} C", 0, 20)
+    oled.text("build-coded.com", 0, 50)
+    oled.show()
+    sleep(1)
+```
+
+**Что вы узнаете:** Шина I2C, внешние библиотеки, основы графики.
+
+## 8. Сервопривод, управляемый кнопкой
+
+**Сложность:** Легко
+**Время:** 30 минут
+**Детали:** Pico, [микросервопривод SG90](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20), кнопка, резистор 220 Ом, рекомендуется внешнее питание 5 В
+
+Нажмите кнопку — сервопривод повернется на 180 градусов. Нажмите еще раз — вернется к 0. SG90 без проблем работает от пина VBUS Pico для разового тестирования, но для любого реального проекта лучше запитать сервопривод отдельно и использовать общий "земляной" провод.
+
+```python
+from machine import Pin, PWM
+from time import sleep
+
+servo = PWM(Pin(15))
+servo.freq(50)
+button = Pin(14, Pin.IN, Pin.PULL_UP)
+open_pos = False
+
+def set_angle(angle):
+    duty = int(1638 + (angle / 180) * 6553)
+    servo.duty_u16(duty)
+
+set_angle(0)
+
+while True:
+    if button.value() == 0:
+        open_pos = not open_pos
+        set_angle(180 if open_pos else 0)
+        sleep(0.5)
+    sleep(0.05)
+```
+
+**Что вы узнаете:** Математика ШИМ для сервоприводов, механические выходы, изоляция питания.
+
+## 9. Часы на 7-сегментном индикаторе
+
+**Сложность:** Средне
+**Время:** 1 час
+**Детали:** Pico, [4-разрядный 7-сегментный дисплей TM1637](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20), опционально модуль RTC
+
+TM1637 — это 4-разрядный светодиодный дисплей с невероятно простым 2-проводным интерфейсом и готовой библиотекой для MicroPython. Установите `micropython-tm1637` через Thonny. У Pico нет собственного RTC, поэтому эта простая версия считает секунды с момента загрузки. Добавьте модуль DS3231 RTC, если вам нужны часы, которые сохраняют время при отключении питания.
+
+```python
+from machine import Pin
+from time import sleep
+import tm1637
+
+display = tm1637.TM1637(clk=Pin(16), dio=Pin(17))
+seconds = 0
+
+while True:
+    hours = (seconds // 3600) % 24
+    minutes = (seconds // 60) % 60
+    display.numbers(hours, minutes)
+    sleep(1)
+    seconds += 1
+```
+
+**Что вы узнаете:** Драйверы внешних дисплеев, математика времени, зачем нужны RTC.
+
+## 10. Погодная станция по Wi-Fi (Pico W)
+
+**Сложность:** Средне
+**Время:** 1-2 часа
+**Детали:** [Raspberry Pi Pico W](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20), сенсор BME280 опционально для локальных данных
+
+Этот проект требует Pico W, потому что использует Wi-Fi. Он подключается к вашей сети, обращается к публичному погодному API (OpenWeatherMap, бесплатный тариф) и выводит текущие условия. Создайте бесплатный API-ключ на openweathermap.org перед началом.
+
+```python
+import network
+import urequests
+from time import sleep
+
+SSID = "your-ssid"
+PASSWORD = "your-password"
+API_KEY = "your-openweather-key"
+CITY = "Austin"
+
+wlan = network.WLAN(network.STA_IF)
+wlan.active(True)
+wlan.connect(SSID, PASSWORD)
+
+while not wlan.isconnected():
+    sleep(0.5)
+
+print("Connected:", wlan.ifconfig())
+
+url = f"https://api.openweathermap.org/data/2.5/weather?q={CITY}&appid={API_KEY}&units=metric"
+
+while True:
+    try:
+        r = urequests.get(url)
+        data = r.json()
+        print(f"{CITY}: {data['main']['temp']} C, {data['weather'][0]['description']}")
+        r.close()
+    except Exception as e:
+        print("Error:", e)
+    sleep(600)
+```
+
+**Что вы узнаете:** Подключение к Wi-Fi, HTTPS-запросы, парсинг JSON, API-ключи и ограничения скорости.
+
+## Предложения по деталям и наборам
+
+Если вы предпочитаете купить готовый набор, а не отдельные компоненты, то набор покроет почти все из этого списка за 30-50 долларов:
+
+- [Freenove Ultimate Starter Kit for Raspberry Pi Pico W](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) — охватывает все 10 проектов здесь, включает Pico W
+- [Elegoo Complete Pico Kit](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) — альтернатива, немного дешевле, Pico не всегда включен
+- [Assortment of sensors and modules](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) — если у вас уже есть Pico
+
+Для отдельных улучшений, которые я всегда рекомендую помимо стартовых наборов: хороший набор [соединительных проводов DuPont](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) и [качественная макетная плата на 830 точек](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) прослужат дольше, чем хлипкие, которые идут в комплекте.
+
+## Несколько советов, которые сэкономят вам часы
+
+Прежде чем вы начнете тратить выходные:
+
+1. Всегда читайте слева направо при подключении проводов. Сверяйте схему распиновки с вашей физической платой, а не полагайтесь на цвета.
+2. Держите Pico на макетной плате для прототипирования. Не паяйте ничего, пока проект не заработает.
+3. Используйте `print()` везде при отладке. Thonny показывает вывод в реальном времени в REPL.
+4. Сохраняйте ваши скрипты на компьютер, а не только на Pico. Повреждение прошивки случается редко, но бывает.
+5. Когда что-то не работает, отключите и снова подключите Pico. REPL MicroPython иногда нуждается в перезагрузке.
+6. Держите все

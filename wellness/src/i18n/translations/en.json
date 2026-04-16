@@ -56,7 +56,9 @@
     "slideKBeautyDesc": "Korean skincare, simplified. Real routines from real people.",
     "toolsTitle": "AI-Powered\nWellness Tools",
     "toolsDesc": "Interactive tools to support your wellness journey. Personalised plans, healthy recipes, and more.",
-    "toolsLabel": "Interactive"
+    "toolsLabel": "Interactive",
+    "trending": "Trending",
+    "readerFavorites": "Reader Favorites"
   },
   "footer": {
     "brandName": "Rooted Glow",

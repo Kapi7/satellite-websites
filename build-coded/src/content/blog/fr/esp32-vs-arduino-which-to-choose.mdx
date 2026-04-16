@@ -1,0 +1,156 @@
+---
+title: "ESP32 vs Arduino : lequel choisir pour ton projet ?"
+description: "On compare l'ESP32 et l'Arduino : architecture, Wi-Fi, GPIO, ADC, vitesse, consommation, prix... Et on te dit lequel est le plus adapté pour ton prochain projet."
+date: 2026-04-11
+category: electronics
+type: hub
+tags:
+  - esp32
+  - arduino
+  - microcontroller
+  - beginner electronics
+  - iot
+image: /images/esp32-vs-arduino-which-to-choose.jpg
+imageAlt: 'Des cartes ESP32 DevKit et Arduino Uno côte à côte sur un établi avec des fils de connexion'
+draft: true
+locale: fr
+author: "Danny Herrera"
+difficulty: beginner
+---
+FRONTMATTER TO TRANSLATE:
+TITLE: ESP32 vs Arduino : lequel choisir pour ton projet ?
+DESCRIPTION: On compare l'ESP32 et l'Arduino : architecture, Wi-Fi, GPIO, ADC, vitesse, consommation, prix... Et on te dit lequel est le plus adapté pour ton prochain projet.
+IMAGE_ALT: 'Des cartes ESP32 DevKit et Arduino Uno côte à côte sur un établi avec des fils de connexion'
+TAGS:
+
+BODY TO TRANSLATE:
+
+
+## La réponse courte avant de plonger
+
+Si ton projet a besoin du Wi-Fi, du Bluetooth, de plus de vitesse, de plus de mémoire, ou si tu comptes connecter quelque chose à Internet, choisis un ESP32. Si tu apprends l'électronique, que tu suis des tutos, ou que tu construis un simple capteur qui doit être fiable pendant des années sur batterie, choisis un Arduino Uno (ou un Nano). Les deux sont géniaux. Ils résolvent juste des problèmes différents.
+
+Voilà le résumé. Le reste de cet article est pour toi si tu veux vraiment comprendre pourquoi, car choisir un microcontrôleur en fonction de "qui est le moins cher sur Amazon" te mènera à réécrire ton projet trois mois plus tard.
+
+## Un peu d'histoire pour les deux plateformes
+
+Arduino a commencé en 2005 à l'Interaction Design Institute à Ivrea, en Italie. Il a été créé pour donner aux étudiants en design un moyen de travailler avec l'électronique sans avoir à apprendre l'assembleur ou à acheter un programmateur à 500 $. L'Arduino original utilisait l'ATmega8, et l'idée de base n'a pas beaucoup changé depuis : un microcontrôleur AVR, un bootloader simple, un IDE basé sur C++, et un écosystème de librairies énorme. Arduino a gagné car il était open source, simple, et la barrière à l'entrée était quasi inexistante.
+
+L'ESP32 est arrivé d'un tout autre angle. Il est sorti en 2016 par Espressif Systems, une entreprise basée à Shanghai qui s'était déjà fait un nom avec le module Wi-Fi ESP8266 en 2014. L'ESP8266 était initialement vendu comme un module Wi-Fi pas cher pour Arduino, mais les hobbyistes ont vite compris qu'on pouvait programmer la puce directement. Espressif a vu la demande et a construit l'ESP32 comme un microcontrôleur à part entière, complet, avec Wi-Fi, Bluetooth et un processeur dual-core, visant directement l'IoT.
+
+Donc l'un est un outil d'apprentissage devenu une plateforme professionnelle. L'autre a été conçu dès le départ pour les appareils connectés.
+
+## Architecture : ce qu'il y a dedans
+
+C'est là que les deux divergent sérieusement.
+
+L'Arduino Uno classique utilise un ATmega328P. C'est un microcontrôleur AVR 8 bits tournant à 16 MHz avec 32 Ko de flash, 2 Ko de SRAM, et 1 Ko d'EEPROM. C'est une architecture Harvard, basée RISC, et extrêmement prévisible. Les nouvelles cartes Arduino comme la Nano 33 IoT, l'Uno R4, et la série MKR utilisent des puces ARM Cortex 32 bits, mais quand la plupart des gens disent "Arduino", ils pensent encore aux cartes AVR de classe Uno.
+
+L'ESP32 est une bête complètement différente. L'ESP32 original utilise un processeur dual-core Tensilica Xtensa LX6 tournant jusqu'à 240 MHz, avec 520 Ko de SRAM, et typiquement 4 Mo de flash sur le module. Les variantes plus récentes utilisent un cœur RISC-V (ESP32-C3, ESP32-C6) ou des designs single-core Xtensa (ESP32-S2, ESP32-S3). Tous ont le Wi-Fi intégré, et la plupart ont le Bluetooth.
+
+En pratique, cela signifie qu'un ESP32 peut tourner environ 15 fois plus vite qu'un Arduino Uno, avec environ 260 fois plus de RAM et plus de 100 fois plus de stockage flash. Ce n'est pas une petite différence. C'est la différence entre faire tourner une poignée de capteurs et faire tourner un serveur web complet avec un tableau de bord en direct.
+
+## La question du Wi-Fi et du Bluetooth
+
+C'est la raison n°1 pour laquelle les gens choisissent l'ESP32. Il a le Wi-Fi 2,4 GHz et le Bluetooth (classique et BLE) intégrés dans la puce. Pas de shield, pas de module supplémentaire, pas de liaison série. Tu appelles juste la bonne librairie, tu lui donnes un SSID et un mot de passe, et tu es en ligne.
+
+Avec Arduino, ajouter le Wi-Fi signifie soit utiliser un shield comme le WiFi Rev2, acheter une carte qui l'a intégré (Nano 33 IoT, Uno R4 WiFi, MKR WiFi 1010), soit accrocher un ESP8266 sur le côté. Toutes ces options fonctionnent, mais elles ajoutent toutes du coût ou de la complexité, ou les deux. Si ton projet communique avec Internet, l'ESP32 est le chemin de moindre résistance, et de loin.
+
+## GPIO, ADC, et périphériques
+
+L'Arduino Uno te donne 14 broches d'E/S numériques (dont 6 supportent le PWM) et 6 entrées analogiques avec une résolution de 10 bits. Cela signifie que l'ADC lit des valeurs de 0 à 1023. C'est suffisant pour la plupart des projets débutants, mais tu sens les limites dès que tu essaies de lire un signal audio ou un capteur analogique précis.
+
+L'ESP32 te donne jusqu'à 34 broches GPIO (selon la variante), bien que certaines soient uniquement en entrée et d'autres soient liées à la flash interne, donc tu ne peux pas utiliser chaque broche pour chaque usage. La résolution de l'ADC est de 12 bits, ce qui signifie des lectures de 0 à 4095. Quatre fois plus de résolution, ça compte quand tu mesures des choses comme la tension de la batterie, les niveaux de lumière, ou n'importe quel capteur analogique où le détail est important.
+
+L'ESP32 a aussi plus de canaux PWM, deux DAC (l'Uno n'en a aucun), de l'I2S pour l'audio, un contrôleur de capteur tactile, un capteur à effet Hall, et un support matériel pour SPI, I2C, CAN bus, et plus encore. C'est un ensemble de périphériques vraiment costaud.
+
+Une mise en garde importante : les GPIO de l'ESP32 sont uniquement en 3,3 V. Si tu lui envoies 5 V, tu vas griller une broche. L'Arduino Uno tolère le 5 V, ce qui le rend plus convivial quand tu utilises de vieux capteurs et composants hobby qui attendent du logique 5 V.
+
+## Consommation d'énergie et autonomie de la batterie
+
+L'Arduino Uno à pleine puissance consomme environ 45 mA. Tu peux réduire ça significativement en éteignant les périphériques, en mettant la puce en veille, et en utilisant un ATmega328P nu sur une carte custom. Des gens ont fait fonctionner des capteurs basés sur Arduino sur une pile bouton pendant un an ou plus.
+
+L'ESP32 est plus gourmand. Actif avec le Wi-Fi, il peut consommer 160 à 260 mA par rafales. Sans Wi-Fi et avec le CPU qui tourne normalement, tu es entre 20 et 30 mA. Cependant, le deep sleep, c'est là que l'ESP32 brille : il peut descendre en dessous de 10 microampères dans certains modes, ce qui signifie que tu peux construire un capteur alimenté par batterie qui se réveille toutes les quelques minutes, communique via Wi-Fi, et se rendort pendant des semaines avec une seule cellule 18650.
+
+La règle générale : si ton appareil est toujours allumé et toujours en train d'émettre, l'Arduino consomme moins. Si ton appareil est majoritairement en veille et communique occasionnellement, l'ESP32 peut en fait être plus efficace en usage réel car il passe la plupart de son temps en deep sleep.
+
+## Prix
+
+Un Arduino Uno R3 authentique coûte entre 22 et 27 $. Un clone (fonctionnellement identique) coûte entre 8 et 12 $ chez des vendeurs corrects.
+
+Une carte ESP32 DevKit-C générique coûte entre 5 et 10 $ sur AliExpress ou Amazon. Une carte de qualité Pro d'Adafruit ou SparkFun coûte entre 15 et 25 $. Un ESP32-S3 avec plus de périphériques coûte environ 10 à 18 $.
+
+Donc l'ESP32 est en fait moins cher qu'un Arduino authentique et comparable à un clone, et il apporte beaucoup plus de capacités. D'un point de vue purement monétaire, l'ESP32 gagne.
+
+## IDE et support logiciel
+
+Voici la bonne nouvelle : tu n'as pas à choisir ton IDE quand tu choisis ta puce. L'Arduino IDE supporte l'ESP32 via un package de gestion de cartes qu'Espressif maintient officiellement. Tu l'installes une fois, tu sélectionnes ta carte ESP32 dans le menu, et tu peux utiliser les mêmes fonctions `setup()` et `loop()` style Arduino, les mêmes librairies que tu connais déjà, et le même flux de téléversement.
+
+Tu peux aussi utiliser PlatformIO (un plugin VS Code) pour les deux plateformes, ce qui est beaucoup plus sympa pour tout ce qui est sérieux. Pour l'ESP32 spécifiquement, tu peux descendre jusqu'à ESP-IDF, le framework C natif d'Espressif, quand tu as besoin d'un contrôle total. MicroPython et CircuitPython tournent aussi sur ESP32, si tu préfères Python à C++.
+
+Le support des librairies, c'est là où Arduino a toujours un léger avantage. L'écosystème Arduino est plus ancien et il y a des librairies pour presque tous les capteurs imaginables. La plupart d'entre elles fonctionnent bien sur ESP32 via le core Arduino, mais parfois tu tombes sur une librairie qui suppose un comportement AVR 8 bits et qui a besoin d'un patch. C'est rare, mais ça arrive.
+
+## Tableau comparatif
+
+| Caractéristique | Arduino Uno R3 | ESP32 (original) |
+|---|---|---|
+| CPU | AVR ATmega328P 8 bits | Tensilica Xtensa LX6 dual-core 32 bits |
+| Vitesse d'horloge | 16 MHz | 240 MHz |
+| Flash | 32 Ko | 4 Mo typiquement |
+| SRAM | 2 Ko | 520 Ko |
+| E/S numériques | 14 (6 PWM) | jusqu'à 34 (beaucoup de PWM) |
+| Entrées analogiques | 6 en 10 bits | jusqu'à 18 en 12 bits |
+| DAC | Aucun | 2 x 8 bits |
+| Wi-Fi | Non | Oui (2,4 GHz) |
+| Bluetooth | Non | Classique + BLE |
+| Niveau logique | 5 V | 3,3 V (pas tolérant au 5 V) |
+| Courant actif | ~45 mA | 160-260 mA avec Wi-Fi |
+| Courant deep sleep | ~35 microampères | ~10 microampères |
+| Programmation USB | Intégré | Intégré (S3/C3), via CP2102/CH340 sur les cartes plus anciennes |
+| Prix (clone) | 8-12 $ | 5-10 $ |
+| IDE | Arduino IDE, PlatformIO | Arduino IDE, PlatformIO, ESP-IDF, MicroPython |
+
+## Projets typiques pour chacun
+
+Projets où l'Arduino Uno est le meilleur choix :
+
+- Apprendre l'électronique et la programmation embarquée à partir de zéro
+- Faire clignoter des LEDs, piloter un seul servo
+- Lire un petit ensemble de capteurs et afficher les valeurs en série
+- Capteurs autonomes sur batterie qui nécessitent la tolérance 5 V pour des composants existants
+- Projets de robotique où le comportement temps réel prévisible et beaucoup d'E/S 5 V sont plus importants que la vitesse brute
+- Tout ce que tu copies directement d'un tutoriel vieux de 10 ans
+
+Projets où l'ESP32 est le meilleur choix :
+
+- Tout type de capteur connecté au Wi-Fi ou appareil domotique
+- Nœuds domotiques communiquant en MQTT avec Home Assistant
+- Un appareil qui sert son propre tableau de bord web
+- Projets de caméra (l'ESP32-CAM est bon marché et étonnamment capable)
+- Télécommandes Bluetooth, manettes de jeu ou objets connectés portables
+- Mises à jour firmware OTA (over-the-air)
+- Tout projet que tu veux surveiller ou contrôler depuis ton téléphone
+
+## Comment décider concrètement
+
+Parcours ces questions dans l'ordre :
+
+1. Le projet doit-il accéder à Internet ou communiquer avec un téléphone ? Si oui, ESP32. Arrête de lire.
+2. Suis-tu un tutoriel débutant spécifique qui suppose un Arduino Uno ? Utilise l'Uno. Tu pourras toujours changer plus tard.
+3. Tes capteurs ou drivers de moteur attendent-ils du logique 5 V ? L'Arduino est plus simple. L'ESP32 fonctionnera avec des convertisseurs de niveau, mais c'est du travail en plus.
+4. As-tu besoin de faire des choses type vision par ordinateur, traitement audio, ou de faire tourner plusieurs tâches en même temps ? ESP32.
+5. Est-ce un projet hobby unique que tu vas construire et oublier ? Celui qui est le moins cher et qui a les meilleurs tutoriels pour ton cas d'usage spécifique. Généralement, c'est égal.
+
+Ne réfléchis pas trop. Les deux plateformes sont suffisamment abordables pour qu'avoir une de chaque sur ton bureau soit tout à fait raisonnable, et honnêtement, c'est ce que la plupart des gens qui restent dans le hobby finissent par faire.
+
+## Un mot sur les nouvelles cartes Arduino
+
+Il est bon de mentionner qu'Arduino ne reste pas immobile. L'Arduino Uno R4 WiFi (sortie en 2023) utilise un Renesas RA4M1 ARM Cortex-M4 à 48 MHz, a un ESP32-S3 intégré pour le Wi-Fi et le Bluetooth, 256 Ko de flash, et 32 Ko de SRAM. C'est une réponse claire à la pression de l'ESP32. Si tu veux l'écosystème Arduino et le format, mais que tu veux aussi le Wi-Fi, l'Uno R4 WiFi est un bon compromis. Il coûte environ 28 $, ce qui est plus cher qu'une carte ESP32 nue, mais moins cher que ce que tu pourrais penser pour le polish supplémentaire.
+
+La Nano 33 IoT et la MKR WiFi 1010 sont d'autres options intéressantes si tu veux des formats plus petits avec le sans fil intégré.
+
+## Dernières réflexions
+
+La vérité, c'est que le débat ESP32 vs Arduino est moins un débat en 2026 qu'il ne l'était il y a cinq ans. L'ESP32 est devenu le choix par défaut pour tout projet qui se connecte à quelque chose, et Arduino reste la référence pour l'apprentissage et pour l'électronique filaire simple. Ils ne sont pas tant en concurrence qu'ils ne couvrent des recoins différents du même hobby.
+
+Si tu es encore bloqué, achète un clone d'Arduino Uno pour 10 $ et un ESP32 DevKit-C pour 8 $ en même temps. Le total sera sous les 20 $. Passe un week-end à faire clignoter des LEDs sur l'un, puis à téléverser sur l'autre, et tu sauras en un après-midi lequel correspond à ta façon de penser. C'est la bonne façon de décider.
