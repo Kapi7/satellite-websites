@@ -12,9 +12,14 @@ import time
 import argparse
 from pathlib import Path
 
-# Gemini API
+# Force unbuffered output so background runs show progress immediately
+if not os.environ.get("PYTHONUNBUFFERED"):
+    sys.stdout = os.fdopen(sys.stdout.fileno(), 'w', buffering=1)
+    sys.stderr = os.fdopen(sys.stderr.fileno(), 'w', buffering=1)
+
+# Gemini API — use the stable versioned endpoint (not the unversioned alias)
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
-GEMINI_MODEL = "gemini-2.5-flash"
+GEMINI_MODEL = "gemini-2.5-flash-lite"
 GEMINI_URL = f"https://generativelanguage.googleapis.com/v1beta/models/{GEMINI_MODEL}:generateContent?key={GEMINI_API_KEY}"
 
 LOCALES = ["es", "de", "el", "ru", "it", "ar", "fr", "nl", "pt"]
@@ -118,19 +123,25 @@ def call_gemini(prompt, max_retries=6):
                 headers={"Content-Type": "application/json"},
                 method="POST"
             )
-            with urllib.request.urlopen(req, timeout=120) as resp:
+            with urllib.request.urlopen(req, timeout=60) as resp:
                 result = json.loads(resp.read())
                 text = result["candidates"][0]["content"]["parts"][0]["text"]
                 return text
         except urllib.error.HTTPError as e:
+            body = e.read().decode("utf-8", errors="replace")[:500] if hasattr(e, 'read') else ""
             wait = min(10 * (2 ** attempt), 300)  # 10s, 20s, 40s, 80s, 160s, 300s
-            if e.code in (429, 403):
-                print(f"  Rate limited (attempt {attempt + 1}/{max_retries}), waiting {wait}s...")
+            if e.code in (429, 403, 500, 503):
+                print(f"  Rate limited/server error HTTP {e.code} (attempt {attempt + 1}/{max_retries}), waiting {wait}s...")
+                if body:
+                    print(f"    Response: {body[:200]}")
                 time.sleep(wait)
             elif attempt < max_retries - 1:
                 print(f"  HTTP {e.code} (attempt {attempt + 1}), retrying in {wait}s...")
+                if body:
+                    print(f"    Response: {body[:200]}")
                 time.sleep(wait)
             else:
+                print(f"  HTTP {e.code} final failure. Response: {body[:300]}")
                 raise
         except Exception as e:
             wait = 10 * (attempt + 1)
