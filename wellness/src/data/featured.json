@@ -1,0 +1,43 @@
+{
+  "updated": "2026-04-16",
+  "period": "2026-03-17 to 2026-04-14",
+  "trending": [
+    {
+      "slug": "snail-mucin-everything-you-need-to-know",
+      "clicks": 1,
+      "impressions": 302,
+      "position": 36.1
+    },
+    {
+      "slug": "how-to-start-running-beginners-guide",
+      "clicks": 0,
+      "impressions": 120,
+      "position": 74.1
+    },
+    {
+      "slug": "complete-guide-ancestral-eating",
+      "clicks": 0,
+      "impressions": 47,
+      "position": 41.2
+    },
+    {
+      "slug": "couch-to-5k-8-week-running-plan",
+      "clicks": 0,
+      "impressions": 35,
+      "position": 10
+    },
+    {
+      "slug": "fermented-beetroot-kvass-probiotic-drink",
+      "clicks": 0,
+      "impressions": 36,
+      "position": 52.1
+    },
+    {
+      "slug": "double-cleansing-why-and-how",
+      "clicks": 0,
+      "impressions": 27,
+      "position": 50.1
+    }
+  ],
+  "rising": []
+}

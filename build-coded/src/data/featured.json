@@ -1,0 +1,62 @@
+{
+  "updated": "2026-04-16",
+  "period": "2026-03-17 to 2026-04-14",
+  "trending": [
+    {
+      "slug": "arduino-projects-beginners",
+      "clicks": 2,
+      "impressions": 30,
+      "position": 6.7
+    },
+    {
+      "slug": "beginner-woodworking-joints-guide",
+      "clicks": 0,
+      "impressions": 64,
+      "position": 7.6
+    },
+    {
+      "slug": "best-3d-printers-beginners",
+      "clicks": 0,
+      "impressions": 55,
+      "position": 40.6
+    },
+    {
+      "slug": "best-multimeters-home-use",
+      "clicks": 1,
+      "impressions": 26,
+      "position": 36.4
+    },
+    {
+      "slug": "best-orbital-sanders",
+      "clicks": 0,
+      "impressions": 42,
+      "position": 46.8
+    },
+    {
+      "slug": "bathroom-renovation-cost-breakdown",
+      "clicks": 0,
+      "impressions": 34,
+      "position": 34.2
+    }
+  ],
+  "rising": [
+    {
+      "slug": "best-soldering-irons-beginners",
+      "clicks": 0,
+      "impressions": 18,
+      "days_old": 5
+    },
+    {
+      "slug": "best-heat-guns-crafts-diy",
+      "clicks": 0,
+      "impressions": 20,
+      "days_old": 9
+    },
+    {
+      "slug": "how-to-fix-a-running-toilet",
+      "clicks": 0,
+      "impressions": 19,
+      "days_old": 7
+    }
+  ]
+}

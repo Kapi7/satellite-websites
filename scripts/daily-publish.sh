@@ -22,6 +22,14 @@ if [ -f scripts/queue_health.py ]; then
   python3 scripts/queue_health.py || echo "[pre-flight] queue_health returned non-zero"
 fi
 
+# ─────────────────────────────────────────────────────────────
+# Update featured articles from GSC (feeds homepage "Trending" section)
+# ─────────────────────────────────────────────────────────────
+if [ -f scripts/update-featured.py ]; then
+  echo "[featured] updating homepage trending articles from GSC"
+  python3 scripts/update-featured.py 2>&1 | tail -10 || echo "[featured] update-featured failed"
+fi
+
 LOCALES="es de el ru it ar fr nl pt"
 PUBLISHED=0
 PUBLISHED_FILES=""

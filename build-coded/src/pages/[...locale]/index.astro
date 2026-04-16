@@ -22,7 +22,31 @@ const { locale } = Astro.props as { locale: Locale };
 const now = new Date();
 const allPosts = await getCollection('blog', ({ data }) => !data.draft && data.locale === locale && data.date <= now);
 const sortedPosts = allPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
-const recent = sortedPosts.slice(0, 6);
+
+// Load GSC-based featured articles
+let featuredData = { trending: [], rising: [] };
+try {
+  const raw = await import('../../data/featured.json');
+  featuredData = raw.default || raw;
+} catch { /* no featured data yet — fall back to recent */ }
+
+const trendingSlugs = new Set(featuredData.trending.map((t: any) => t.slug));
+
+const trendingPosts = featuredData.trending
+  .map((t: any) => sortedPosts.find(p => {
+    const slug = p.id.includes('/') ? p.id.split('/').slice(1).join('/') : p.id;
+    return slug === t.slug || slug.replace('.mdx', '').replace('.md', '') === t.slug;
+  }))
+  .filter(Boolean)
+  .slice(0, 6);
+
+const recent = sortedPosts
+  .filter(p => {
+    const slug = p.id.includes('/') ? p.id.split('/').slice(1).join('/') : p.id;
+    const cleanSlug = slug.replace('.mdx', '').replace('.md', '');
+    return !trendingSlugs.has(cleanSlug);
+  })
+  .slice(0, 6);
 
 const slides = [
   {
@@ -77,6 +101,33 @@ const webSiteSchema = JSON.stringify({
     <div class="pt-6 animate-fade-in">
       <HeroSlideshow slides={slides} />
     </div>
+
+    <!-- Trending (GSC top performers) -->
+    {trendingPosts.length > 0 && (
+      <section class="max-w-[1400px] mx-auto px-5 sm:px-8 pt-14 sm:pt-20 mb-16 sm:mb-24">
+        <div class="flex justify-between items-end mb-12">
+          <div>
+            <span class="block text-[11px] font-semibold uppercase tracking-wide text-charcoal-light/50 mb-2">{t(locale, 'home.trending') || 'Trending'}</span>
+            <h2 class="font-heading text-4xl text-charcoal tracking-tight">{t(locale, 'home.mostPopular') || 'Most Popular'}</h2>
+          </div>
+        </div>
+
+        <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+          {trendingPosts.map((post: any) => (
+            <ArticleCard
+              title={post.data.title}
+              description={post.data.description}
+              date={post.data.date}
+              category={post.data.category}
+              slug={post.id.includes('/') ? post.id.split('/').slice(1).join('/') : post.id}
+              image={post.data.image}
+              type={post.data.type}
+              locale={locale}
+            />
+          ))}
+        </div>
+      </section>
+    )}
 
     <!-- Fresh from the Workshop -->
     <section class="max-w-[1400px] mx-auto px-5 sm:px-8 pt-14 sm:pt-20 mb-16 sm:mb-24">
