@@ -1,0 +1,359 @@
+---
+title: "10 Raspberry Pi Pico Projecten voor Beginners (Met Volledige Code)"
+description: "Tien praktische Raspberry Pi Pico projecten voor beginners, elk met een onderdelenlijst, moeilijkheidsgraad, tijdsinschatting en een werkende MicroPython code snippet."
+date: 2026-04-11
+category: electronics
+type: listicle
+tags:
+  - raspberry pi pico
+  - micropython
+  - beginner projects
+  - rp2040
+  - electronics
+image: /images/raspberry-pi-pico-projects-beginners.jpg
+imageAlt: 'Raspberry Pi Pico bedraad op een breadboard met een OLED display en sensoren'
+draft: true
+locale: nl
+author: "Danny Herrera"
+difficulty: beginner
+---
+## Waarom de Raspberry Pi Pico Een Geweldige Eerste Microcontroller Is
+
+De Raspberry Pi Pico is goedkoop, snel en vergevingsgezind. Voor ongeveer €4 krijg je een dual-core ARM Cortex-M0+ die draait op 133 MHz, 264 KB SRAM, 2 MB flash, 26 GPIO-pinnen en een USB-C-poort. Dat is absurd veel waarde. De Pico W voegt Wi-Fi en Bluetooth toe voor ongeveer €6. In tegenstelling tot een Arduino Uno, kun je hem programmeren in Python (MicroPython) en C/C++, wat het voor beginners aanzienlijk minder pijnlijk maakt.
+
+Alle tien projecten hieronder gebruiken MicroPython. Ze werken op zowel de Pico als de Pico W (de laatste heeft specifiek een Pico W nodig). Om te beginnen, pak een [Raspberry Pi Pico W Starter Kit](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) of bouw je eigen met een [originele Raspberry Pi Pico W](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) en een fatsoenlijke [breadboard en jumper wire set](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20).
+
+Voordat je begint, flasht MicroPython op je Pico. Houd BOOTSEL ingedrukt terwijl je hem aansluit, sleep het `.uf2`-bestand naar het station dat verschijnt, en gebruik de Thonny IDE om code uit te voeren. Thonny is gratis en hiervoor gemaakt. Je hebt niets geavanceerders nodig.
+
+## 1. De Onboard LED Laten Knipperen (Hello World)
+
+**Moeilijkheidsgraad:** Trivial
+**Tijd:** 5 minuten
+**Onderdelen:** Alleen de Pico
+
+Elke microcontroller-reis begint hier. De Pico heeft een onboard LED die is gekoppeld aan GPIO 25 (op de gewone Pico) of wordt aangestuurd via de draadloze chip op de Pico W. Dit ene snippet bewijst dat je setup werkt.
+
+```python
+from machine import Pin
+from time import sleep
+
+led = Pin("LED", Pin.OUT)
+
+while True:
+    led.toggle()
+    sleep(0.5)
+```
+
+Als je een knipperende LED ziet, schrijf je officieel embedded software. Zo niet, controleer dan of je de juiste MicroPython interpreter hebt geselecteerd in Thonny.
+
+## 2. Temperatuursensor Data Logger
+
+**Moeilijkheidsgraad:** Makkelijk
+**Tijd:** 30 minuten
+**Onderdelen:** Pico, niets anders (de onboard sensor is goed genoeg), of een [DS18B20 waterdichte probe](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) als je buitentemperatuur wilt loggen.
+
+De Pico heeft een ingebouwde temperatuursensor die is aangesloten op de interne ADC op kanaal 4. Hij is niet laboratorium-accuraat, maar perfect om te leren. Dit project leest de temperatuur elke 10 seconden uit en schrijft deze naar een CSV-bestand in de flashopslag van de Pico.
+
+```python
+from machine import ADC, Pin
+from time import sleep, time
+
+sensor = ADC(4)
+conversion = 3.3 / 65535
+
+with open("temp_log.csv", "a") as log:
+    log.write("timestamp,celsius\n")
+    while True:
+        reading = sensor.read_u16() * conversion
+        temp_c = 27 - (reading - 0.706) / 0.001721
+        log.write(f"{time()},{temp_c:.2f}\n")
+        log.flush()
+        sleep(10)
+```
+
+**Wat je leert:** ADC-uitlezingen, eenheidsconversie, bestanden schrijven op een microcontroller, persistente logging.
+
+## 3. Capacitieve Touch Lichtschakelaar
+
+**Moeilijkheidsgraad:** Makkelijk
+**Tijd:** 30 minuten
+**Onderdelen:** Pico, 1 M-ohm weerstand, een paperclip of strookje koperen tape, LED
+
+De RP2040 van de Pico heeft geen speciale hardware voor capacitieve touch zoals een ESP32, maar je kunt het nabootsen met een hoge weerstand en softwarematige timing. Wanneer je de blootgestelde draad aanraakt, vertraagt de capaciteit van je vinger hoe snel een pin stabiliseert, en je kunt de verandering detecteren. Sluit GPIO 16 aan op het ene uiteinde van een 1M weerstand, het andere uiteinde op GPIO 17, en raak een draad aan die aan GPIO 17 is bevestigd.
+
+```python
+from machine import Pin
+from time import sleep
+
+out = Pin(16, Pin.OUT)
+sense = Pin(17, Pin.IN)
+led = Pin("LED", Pin.OUT)
+on = False
+
+def read_touch():
+    out.value(1)
+    count = 0
+    while sense.value() == 0 and count < 1000:
+        count += 1
+    out.value(0)
+    return count
+
+while True:
+    if read_touch() > 200:
+        on = not on
+        led.value(on)
+        sleep(0.3)
+    sleep(0.05)
+```
+
+**Wat je leert:** Timing loops, softwarematige detectie, toggle state logica.
+
+## 4. PIR Bewegingsmelder Alarm
+
+**Moeilijkheidsgraad:** Makkelijk
+**Tijd:** 20 minuten
+**Onderdelen:** Pico, [HC-SR501 PIR sensor](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20), passieve buzzer, jumper wires
+
+Een klein kameralarm. De PIR-sensor geeft een hoog signaal als hij beweging detecteert, en je activeert de buzzer bij de flank.
+
+```python
+from machine import Pin, PWM
+from time import sleep
+
+pir = Pin(15, Pin.IN)
+buzzer = PWM(Pin(14))
+buzzer.duty_u16(0)
+
+while True:
+    if pir.value():
+        buzzer.freq(1000)
+        buzzer.duty_u16(32768)
+        sleep(1)
+        buzzer.duty_u16(0)
+        sleep(2)
+    sleep(0.1)
+```
+
+**Wat je leert:** Digitale input, PWM voor toonopwekking, basis sensorbedrading.
+
+## 5. Ultrasone Afstandssensor
+
+**Moeilijkheidsgraad:** Makkelijk tot gemiddeld
+**Tijd:** 30 minuten
+**Onderdelen:** Pico, [HC-SR04 ultrasone sensor](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20), een 10k en 20k weerstand (de sensor is 5 V, Pico is 3.3 V)
+
+Belangrijk: de echo-pin van de HC-SR04 geeft 5 V uit. Sluit deze niet direct aan op een Pico GPIO. Gebruik een spanningsdeler (10k van echo naar je Pico-pin, 20k van je Pico-pin naar aarde) of een correcte level shifter.
+
+```python
+from machine import Pin
+from time import sleep_us, ticks_us, ticks_diff, sleep
+
+trig = Pin(3, Pin.OUT)
+echo = Pin(2, Pin.IN)
+
+def distance_cm():
+    trig.value(0)
+    sleep_us(2)
+    trig.value(1)
+    sleep_us(10)
+    trig.value(0)
+    while echo.value() == 0:
+        start = ticks_us()
+    while echo.value() == 1:
+        end = ticks_us()
+    return (ticks_diff(end, start) * 0.0343) / 2
+
+while True:
+    print(f"{distance_cm():.1f} cm")
+    sleep(0.5)
+```
+
+**Wat je leert:** Microseconde timing, pulsmeting, real-world level shifting.
+
+## 6. Roterende Encoder Menu
+
+**Moeilijkheidsgraad:** Gemiddeld
+**Tijd:** 45 minuten
+**Onderdelen:** Pico, [KY-040 roterende encoder](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20), een paar pull-up weerstanden (vaak inbegrepen op de module)
+
+Roterende encoders zijn de favoriete invoermethode voor elk project met opties. Dit voorbeeld telt op of af wanneer je aan de as draait en reset naar nul wanneer je klikt.
+
+```python
+from machine import Pin
+from time import sleep
+
+clk = Pin(10, Pin.IN, Pin.PULL_UP)
+dt = Pin(11, Pin.IN, Pin.PULL_UP)
+sw = Pin(12, Pin.IN, Pin.PULL_UP)
+
+counter = 0
+last_clk = clk.value()
+
+while True:
+    current = clk.value()
+    if current != last_clk and current == 0:
+        if dt.value() != current:
+            counter += 1
+        else:
+            counter -= 1
+        print(f"Counter: {counter}")
+    last_clk = current
+    if sw.value() == 0:
+        counter = 0
+        print("Reset")
+        sleep(0.3)
+    sleep(0.001)
+```
+
+**Wat je leert:** Edge detection, debouncing, multi-input handling.
+
+## 7. OLED Display Dashboard
+
+**Moeilijkheidsgraad:** Gemiddeld
+**Tijd:** 45 minuten
+**Onderdelen:** Pico, [0.96 inch 128x64 SSD1306 OLED (I2C)](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20), jumper wires
+
+Kleine I2C OLED's zijn de makkelijkste manier om een echt display op je project te zetten. Installeer de `ssd1306` MicroPython library vanuit Thonny's package manager. Sluit SDA aan op GPIO 4, SCL op GPIO 5, VCC op 3.3 V, GND op GND.
+
+```python
+from machine import Pin, I2C, ADC
+from ssd1306 import SSD1306_I2C
+from time import sleep
+
+i2c = I2C(0, sda=Pin(4), scl=Pin(5))
+oled = SSD1306_I2C(128, 64, i2c)
+sensor = ADC(4)
+
+while True:
+    temp_c = 27 - (sensor.read_u16() * (3.3 / 65535) - 0.706) / 0.001721
+    oled.fill(0)
+    oled.text("Pico Dashboard", 0, 0)
+    oled.text(f"Temp: {temp_c:.1f} C", 0, 20)
+    oled.text("build-coded.com", 0, 50)
+    oled.show()
+    sleep(1)
+```
+
+**Wat je leert:** I2C bus, externe libraries, grafische basics.
+
+## 8. Knop-gestuurde Servo
+
+**Moeilijkheidsgraad:** Makkelijk
+**Tijd:** 30 minuten
+**Onderdelen:** Pico, [SG90 micro servo](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20), drukknop, 220 ohm weerstand, externe 5 V voeding aanbevolen
+
+Druk op een knop, de servo zwaait naar 180 graden. Druk nogmaals, hij gaat terug naar 0. De SG90 draait graag vanaf de VBUS-pin van de Pico voor eenmalige tests, maar voor elk echt project voed je de servo apart en deel je de ground.
+
+```python
+from machine import Pin, PWM
+from time import sleep
+
+servo = PWM(Pin(15))
+servo.freq(50)
+button = Pin(14, Pin.IN, Pin.PULL_UP)
+open_pos = False
+
+def set_angle(angle):
+    duty = int(1638 + (angle / 180) * 6553)
+    servo.duty_u16(duty)
+
+set_angle(0)
+
+while True:
+    if button.value() == 0:
+        open_pos = not open_pos
+        set_angle(180 if open_pos else 0)
+        sleep(0.5)
+    sleep(0.05)
+```
+
+**Wat je leert:** Servo PWM-wiskunde, mechanische output, stroomisolatie.
+
+## 9. 7-Segment Klok
+
+**Moeilijkheidsgraad:** Gemiddeld
+**Tijd:** 1 uur
+**Onderdelen:** Pico, [TM1637 4-cijferige 7-segment display](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20), optionele RTC module
+
+De TM1637 is een 4-cijferig LED-display met een ongelooflijk eenvoudige 2-draads interface en een kant-en-klare MicroPython library. Installeer `micropython-tm1637` vanuit Thonny. De Pico heeft geen eigen RTC, dus deze simpele versie telt seconden sinds boot. Voeg een DS3231 RTC module toe als je een klok wilt die na stroomuitval doorgaat.
+
+```python
+from machine import Pin
+from time import sleep
+import tm1637
+
+display = tm1637.TM1637(clk=Pin(16), dio=Pin(17))
+seconds = 0
+
+while True:
+    hours = (seconds // 3600) % 24
+    minutes = (seconds // 60) % 60
+    display.numbers(hours, minutes)
+    sleep(1)
+    seconds += 1
+```
+
+**Wat je leert:** Externe display drivers, tijdwiskunde, waarom RTC's bestaan.
+
+## 10. Wi-Fi Weerstations (Pico W)
+
+**Moeilijkheidsgraad:** Gemiddeld
+**Tijd:** 1 tot 2 uur
+**Onderdelen:** [Raspberry Pi Pico W](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20), BME280 sensor optioneel voor lokale data
+
+Deze vereist de Pico W omdat deze Wi-Fi gebruikt. Hij maakt verbinding met je netwerk, belt een publieke weer-API (OpenWeatherMap, gratis tier) en print de huidige omstandigheden. Maak een gratis API-sleutel aan op openweathermap.org voordat je begint.
+
+```python
+import network
+import urequests
+from time import sleep
+
+SSID = "your-ssid"
+PASSWORD = "your-password"
+API_KEY = "your-openweather-key"
+CITY = "Austin"
+
+wlan = network.WLAN(network.STA_IF)
+wlan.active(True)
+wlan.connect(SSID, PASSWORD)
+
+while not wlan.isconnected():
+    sleep(0.5)
+
+print("Connected:", wlan.ifconfig())
+
+url = f"https://api.openweathermap.org/data/2.5/weather?q={CITY}&appid={API_KEY}&units=metric"
+
+while True:
+    try:
+        r = urequests.get(url)
+        data = r.json()
+        print(f"{CITY}: {data['main']['temp']} C, {data['weather'][0]['description']}")
+        r.close()
+    except Exception as e:
+        print("Error:", e)
+    sleep(600)
+```
+
+**Wat je leert:** Wi-Fi verbinding, HTTPS requests, JSON parsen, API-sleutels en rate limits.
+
+## Onderdelen en Kit Suggesties
+
+Als je liever een bundel koopt dan losse onderdelen, dekt een kit bijna alles op deze lijst voor €30 tot €50:
+
+- [Freenove Ultimate Starter Kit for Raspberry Pi Pico W](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) — dekt alle 10 projecten hier, inclusief de Pico W
+- [Elegoo Complete Pico Kit](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) — alternatief, iets goedkoper, Pico niet altijd inbegrepen
+- [Assortiment van sensoren en modules](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) — als je al een Pico hebt
+
+Voor individuele upgrades die ik blijf aanbevelen naast starterkits: een fatsoenlijke set [DuPont jumper wires](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) en een [kwaliteits 830-punts breadboard](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) gaan langer mee dan de slappe exemplaren die bij kits worden geleverd.
+
+## Een Paar Tips Die Je Uren Zullen Besparen
+
+Voordat je weekenden verbrandt:
+
+1. Lees altijd van links naar rechts bij het bedraden. Match de pinout diagram met je fysieke bord in plaats van kleuren te vertrouwen.
+2. Houd je Pico op een breadboard voor prototyping. Soldeer niets totdat het project werkt.
+3. Gebruik `print()` overal tijdens het debuggen. Thonny toont output live in de REPL.
+4. Sla je scripts op je computer op, niet alleen op de Pico. Flash-corruptie is zeldzaam, maar het gebeurt.
+5. Als iets niet werkt, haal de Pico eruit en plug hem er weer in. MicroPython's REPL heeft soms een reset nodig.
+6. Houd alle

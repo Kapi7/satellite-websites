@@ -1,75 +1,74 @@
 ---
-title: "Guia Completo: Monte seu Servidor Doméstico com Raspberry Pi em uma Tarde!"
-description: "Transforme seu Raspberry Pi em um servidor doméstico super potente para compartilhar arquivos, fazer streaming de mídia, bloquear anúncios e muito mais! Um projeto passo a passo que você faz em uma tarde!"
+title: "Guia do Raspberry Pi para Montar um Servidor Caseiro em Uma Tarde"
+description: "Transforme um Raspberry Pi em um poderoso servidor doméstico para compartilhamento de arquivos, streaming de mídia, bloqueio de anúncios e muito mais com este projeto passo a passo de uma tarde."
 date: 2026-04-07
 category: "electronics"
 type: "guide"
-tags: ["raspberry pi", "servidor doméstico", "self-hosted", "plex", "pi-hole", "servidor de arquivos", "linux"]
+tags: ["raspberry pi", "servidor caseiro", "auto-hospedado", "plex", "pi-hole", "servidor de arquivos", "linux"]
 image: "/images/raspberry-pi-home-server-guide.jpg"
-imageAlt: "Raspberry Pi 4 em um gabinete de alumínio conectado a um disco rígido externo e cabo Ethernet"
+imageAlt: "Raspberry Pi 4 em um case de alumínio conectado a um HD externo e cabo de rede"
 draft: false
 locale: pt
+author: "Danny Herrera"
 difficulty: "intermediate"
 estimatedTime: "3-5 hours"
 estimatedCost: "$60-120"
 hub: "diy-smart-home-on-a-budget"
 ---
----
+## Por que ter um Servidor Caseiro em um Raspberry Pi?
 
-## Por Que Rodar um Servidor Doméstico em um Raspberry Pi?
+Um Raspberry Pi consome uns 5 watts de energia. Isso dá mais ou menos um dólar por mês de eletricidade. E por esse precinho, você ganha um servidor de arquivos, um streamer de mídia, um bloqueador de anúncios pra rede toda, e o que mais você quiser rodar — tudo isso num computador do tamanho de um cartão de crédito, quietinho num canto.
 
-Um Raspberry Pi consome cerca de 5 watts de energia. Isso dá mais ou menos um dólar por mês de eletricidade. Com esse custo, você tem um servidor de arquivos, um streamer de mídia, um bloqueador de anúncios para toda a sua rede e tudo mais que quiser rodar — tudo em um computador do tamanho de um cartão de crédito, quietinho num canto.
+Assinaturas de cloud storage, serviços de streaming e hubs [smart home](/diy-smart-home-on-a-budget/) custam mensalidades. Um servidor caseiro com Pi substitui vários deles com uma compra única. E o melhor: seus dados são seus.
 
-Assinaturas de armazenamento na nuvem, serviços de streaming e hubs de casa inteligente (smart home hubs) — todos têm custos mensais. Um servidor doméstico com Pi substitui vários deles com uma compra única. E o melhor: você é o dono dos seus dados!
-
-Este guia te leva por uma configuração completa, desde tirar da caixa até ter um servidor funcionando com compartilhamento de arquivos, streaming de mídia com Plex e bloqueio de anúncios com Pi-hole.
+Este guia te leva desde a caixa até um servidor funcionando com compartilhamento de arquivos, streaming de mídia com Plex e bloqueio de anúncios com Pi-hole.
 
 ## O Que Você Vai Precisar
 
-### Hardware Necessário
+### Hardware Essencial
 
-| Item | Finalidade | Custo Estimado |
-|------|------------|---------------|
-| [Raspberry Pi 4 (4GB ou 8GB)](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) | O servidor em si | $55-75 |
-| [Cartão MicroSD (32GB+)](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) | Disco de boot | $8-12 |
-| Fonte de alimentação USB-C (5V/3A) | Energia | $8-10 |
-| Cabo Ethernet | Conexão de rede confiável | $5 |
-| [Disco rígido externo USB](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) | Armazenamento para arquivos e mídia | $40-80 |
+| Item | Propósito | Custo Estimado |
+|------|---------|---------------|
+| [Raspberry Pi 4 (4GB ou 8GB)](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) | O próprio servidor | R$ 250-350 |
+| [Cartão MicroSD (32GB+)](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) | Drive de boot | R$ 40-60 |
+| Fonte USB-C (5V/3A) | Alimentação | R$ 40-50 |
+| Cabo de rede Ethernet | Conexão de rede confiável | R$ 25 |
+| [HD Externo USB](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) | Armazenamento pra arquivos e mídia | R$ 200-400 |
 
 ### Opcional, mas Recomendado
 
-- [Gabinete de alumínio com resfriamento passivo](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) — mantém o Pi resfriado sem ventoinha (operação silenciosa)
-- SSD USB em vez de HDD — mais rápido, mais confiável, mas custa mais
-- No-break (UPS battery backup) — protege contra quedas de energia que podem corromper seus dados
+- [Case de alumínio com refrigeração passiva](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) — mantém o Pi resfriado sem ventoinha (silencioso)
+- SSD USB em vez de HD — mais rápido, mais confiável, mas custa mais
+- Nobreak (UPS) — protege contra quedas de energia que podem corromper seus dados
 
 ### Software (Tudo Grátis)
 
-- Raspberry Pi OS Lite (não precisa de desktop)
+- Raspberry Pi OS Lite (não precisa de interface gráfica)
 - Samba (compartilhamento de arquivos)
 - Plex Media Server
-- Pi-hole (bloqueio de anúncios)
+- Pi-hole (bloqueador de anúncios)
 
-## Passo 1: Flash do Raspberry Pi OS
+## Passo 1: Gravar o Raspberry Pi OS
 
-Baixe o [Raspberry Pi Imager](https://www.raspberrypi.com/software/) no seu computador principal. Insira seu cartão microSD e siga estes passos:
+Baixe o [Raspberry Pi Imager](https://www.raspberrypi.com/software/) no seu computador principal. Insira o cartão microSD e siga estes passos:
 
 1. Abra o Raspberry Pi Imager.
-2. Escolha **Raspberry Pi OS Lite (64-bit)** — você não precisa de um ambiente de desktop para um servidor *headless*.
-3. Clique no ícone de engrenagem (Opções Avançadas) antes de gravar:
-   - Defina um hostname (por exemplo, `piserver`).
-   - Habilite SSH com autenticação por senha.
-   - Defina seu nome de usuário e senha.
-   - Configure seu WiFi (como backup, mas use Ethernet para o servidor).
-   - Defina sua localidade e fuso horário.
+2. Escolha **Raspberry Pi OS Lite (64-bit)** — você não precisa de ambiente gráfico pra um servidor headless.
+3. Clique no ícone de engrenagem (Advanced Options) antes de gravar:
+   - Defina um hostname (tipo `piserver`).
+   - Habilite o SSH com autenticação por senha.
+   - Defina seu usuário e senha.
+   - Configure seu WiFi (como backup, mas use Ethernet pro servidor).
+   - Defina sua região e fuso horário.
 4. Grave a imagem no cartão SD.
 
-**Dica de Pro:** Anote o nome de usuário e a senha que você definiu. Você ficaria surpreso com quantas pessoas esquecem e precisam regravar tudo.
+**Dica de ouro:** Anote o usuário e a senha que você definiu. Você vai se surpreender com quantas pessoas esquecem e têm que formatar tudo de novo.
 
 ## Passo 2: Primeiro Boot e Configuração Inicial
 
-Insira o cartão SD no seu Pi, conecte o cabo Ethernet, ligue a fonte de alimentação e espere uns 90 segundos.
+Insira o cartão SD no seu Pi, conecte o cabo de rede, ligue a fonte de energia e espere uns 90 segundos.
 
-### Encontre Seu Pi na Rede
+### Ache Seu Pi na Rede
 
 De outro computador na mesma rede:
 
@@ -77,12 +76,12 @@ De outro computador na mesma rede:
 ping piserver.local
 ```
 
-Se isso não resolver, verifique a página de administração do seu roteador para o endereço IP do Pi, ou use `nmap -sn 192.168.1.0/24` (substitua pela sua sub-rede).
+Se isso não funcionar, confira a página de admin do seu roteador pra achar o IP do Pi, ou use `nmap -sn 192.168.1.0/24` (substitua pela sua sub-rede).
 
-### Conecte Via SSH
+### Conecte-se via SSH
 
 ```bash
-ssh youruser@piserver.local
+ssh seu_usuario@piserver.local
 ```
 
 ### Atualize Tudo
@@ -99,28 +98,28 @@ Isso pode levar de 5 a 10 minutos. Deixe terminar completamente.
 sudo raspi-config
 ```
 
-Configurações importantes para ajustar:
-- **Expand filesystem** — garante que você use todo o cartão SD.
-- **GPU memory** — defina para 16MB, já que não há display conectado.
-- **Timezone** — confirme se corresponde à sua localização.
+Configurações importantes pra ajustar:
+- **Expand filesystem** — garante que você use o cartão SD inteiro.
+- **GPU memory** — defina pra 16MB, já que não tem tela conectada.
+- **Timezone** — confirme se tá batendo com sua localização.
 
-Reinicie quando solicitado.
+Reinicie quando for solicitado.
 
-## Passo 3: Configure o Armazenamento Externo
+## Passo 3: Configurar o Armazenamento Externo
 
-Conecte seu disco rígido USB externo. Identifique-o:
+Conecte seu HD externo USB. Identifique-o:
 
 ```bash
 lsblk
 ```
 
-Você deve ver seu disco listado (geralmente como `/dev/sda`). Se for novo ou se você quiser começar do zero, formate-o como ext4:
+Você deve ver seu drive listado (geralmente como `/dev/sda`). Se for novo ou você quiser começar do zero, formate ele como ext4:
 
 ```bash
 sudo mkfs.ext4 /dev/sda1
 ```
 
-**Atenção:** Isso apaga tudo no disco. Verifique duas vezes para ter certeza de que está formatando o dispositivo correto.
+**Atenção:** Isso apaga tudo no drive. Verifique duas vezes se você tá formatando o dispositivo certo.
 
 ### Crie um Ponto de Montagem e Monte Automaticamente
 
@@ -129,30 +128,30 @@ sudo mkdir /mnt/storage
 sudo mount /dev/sda1 /mnt/storage
 ```
 
-Para que ele seja montado automaticamente em cada boot, obtenha o UUID do disco:
+Pra fazer ele montar automaticamente em cada boot, pegue o UUID do drive:
 
 ```bash
 sudo blkid /dev/sda1
 ```
 
-Adicione esta linha ao `/etc/fstab` (substitua o UUID pelo seu):
+Adicione esta linha em `/etc/fstab` (substitua o UUID pelo seu):
 
 ```
-UUID=your-uuid-here /mnt/storage ext4 defaults,nofail 0 2
+UUID=seu-uuid-aqui /mnt/storage ext4 defaults,nofail 0 2
 ```
 
-A opção `nofail` é importante — ela evita que o Pi não consiga inicializar se o disco for desconectado.
+A opção `nofail` é importante — ela impede que o Pi falhe ao iniciar se o drive estiver desconectado.
 
 ### Crie a Estrutura de Pastas
 
 ```bash
 sudo mkdir -p /mnt/storage/{shared,media,backups}
-sudo chown -R youruser:youruser /mnt/storage
+sudo chown -R seu_usuario:seu_usuario /mnt/storage
 ```
 
-## Passo 4: Configure o Compartilhamento de Arquivos Samba
+## Passo 4: Configurar o Compartilhamento de Arquivos com Samba
 
-Samba permite que você acesse arquivos de computadores Windows, Mac e Linux na sua rede.
+O Samba permite que você acesse arquivos de computadores Windows, Mac e Linux na sua rede.
 
 ```bash
 sudo apt install samba samba-common-bin -y
@@ -164,7 +163,7 @@ Edite a configuração do Samba:
 sudo nano /etc/samba/smb.conf
 ```
 
-Adicione isso no final:
+Adicione isso no final do arquivo:
 
 ```ini
 [Shared]
@@ -173,7 +172,7 @@ browseable = yes
 writeable = yes
 create mask = 0775
 directory mask = 0775
-valid users = youruser
+valid users = seu_usuario
 
 [Media]
 path = /mnt/storage/media
@@ -185,7 +184,7 @@ guest ok = yes
 Defina sua senha do Samba:
 
 ```bash
-sudo smbpasswd -a youruser
+sudo smbpasswd -a seu_usuario
 ```
 
 Reinicie o Samba:
@@ -198,64 +197,64 @@ sudo systemctl restart smbd
 
 - **Windows:** Abra o Explorador de Arquivos, digite `\\piserver.local` na barra de endereço.
 - **Mac:** No Finder, pressione Cmd+K e digite `smb://piserver.local`.
-- **Linux:** Use o "Conectar ao Servidor" do seu gerenciador de arquivos ou monte via `cifs`.
+- **Linux:** Use a opção "Conectar ao Servidor" do seu gerenciador de arquivos ou monte via `cifs`.
 
-## Passo 5: Instale o Plex Media Server
+## Passo 5: Instalar o Plex Media Server
 
-O Plex transforma seu Pi em um servidor de streaming de mídia. Você acessa suas bibliotecas de filmes, músicas e fotos de qualquer dispositivo com um navegador web ou o aplicativo Plex.
+O Plex transforma seu Pi num servidor de streaming de mídia. Você acessa suas coleções de filmes, músicas e fotos de qualquer dispositivo com um navegador ou o app Plex.
 
 ```bash
-# Adicione o repositório do Plex
+# Adiciona o repositório do Plex
 curl https://downloads.plex.tv/plex-keys/PlexSign.key | gpg --dearmor | sudo tee /usr/share/keyrings/plex-archive-keyring.gpg > /dev/null
 echo "deb [signed-by=/usr/share/keyrings/plex-archive-keyring.gpg] https://downloads.plex.tv/repo/deb public main" | sudo tee /etc/apt/sources.list.d/plexmediaserver.list
 
-# Instale
+# Instala
 sudo apt update
 sudo apt install plexmediaserver -y
 ```
 
-### Configure o Plex
+### Configurar o Plex
 
 1. Abra `http://piserver.local:32400/web` em um navegador.
 2. Faça login ou crie uma conta Plex.
-3. Dê um nome ao seu servidor.
-4. Adicione pastas da biblioteca apontando para `/mnt/storage/media/movies`, `/mnt/storage/media/tv`, etc.
+3. Dê um nome pro seu servidor.
+4. Adicione pastas de biblioteca apontando pra `/mnt/storage/media/movies`, `/mnt/storage/media/tv`, etc.
 
-**Observação importante sobre transcodificação:** O Raspberry Pi 4 não consegue transcodificar vídeo por hardware. Para um streaming fluido, certifique-se de que seus arquivos de mídia correspondam ao formato suportado pelo seu dispositivo de reprodução (a maioria dos dispositivos modernos lida com H.264 MP4 nativamente). A reprodução direta funciona muito bem; a transcodificação, não.
+**Observação importante sobre transcodificação:** O Raspberry Pi 4 não consegue fazer transcodificação de vídeo por hardware. Pra um streaming suave, garanta que seus arquivos de mídia sejam compatíveis com o formato que seu dispositivo de reprodução suporta (a maioria dos dispositivos modernos lida nativamente com H.264 MP4). O "direct play" funciona super bem; a transcodificação, nem tanto.
 
-**Dica de Pro:** Organize sua mídia na estrutura de pastas esperada pelo Plex:
+**Dica de ouro:** Organize sua mídia na estrutura de pastas esperada pelo Plex:
 ```
 /mnt/storage/media/movies/Nome do Filme (Ano)/Nome do Filme (Ano).mkv
 /mnt/storage/media/tv/Nome da Série/Temporada 01/Nome da Série - S01E01.mkv
 ```
 
-## Passo 6: Instale o Pi-hole para Bloqueio de Anúncios em Toda a Rede
+## Passo 6: Instalar o Pi-hole para Bloqueio de Anúncios na Rede Toda
 
-O Pi-hole funciona como um servidor DNS para toda a sua rede, bloqueando anúncios e rastreadores antes mesmo de carregarem. Todo dispositivo na sua rede se beneficia — incluindo celulares, smart TVs e dispositivos IoT onde você não consegue instalar um bloqueador de anúncios.
+O Pi-hole funciona como um servidor DNS pra toda a sua rede, bloqueando anúncios e rastreadores antes mesmo de carregarem. Cada dispositivo na sua rede se beneficia — incluindo celulares, smart TVs e dispositivos IoT que você não consegue instalar um bloqueador.
 
 ```bash
 curl -sSL https://install.pi-hole.net | bash
 ```
 
 O instalador é interativo. Escolhas importantes:
-- Selecione sua interface Ethernet.
-- Escolha qualquer provedor de DNS *upstream* (Cloudflare `1.1.1.1` ou Google `8.8.8.8` são populares).
+- Selecione sua interface de rede Ethernet.
+- Escolha qualquer provedor de DNS upstream (Cloudflare `1.1.1.1` ou Google `8.8.8.8` são populares).
 - Instale a interface web de administração (sim).
-- Registre as consultas (*log queries*) (sim, útil para depuração).
+- Registre as consultas (sim, é útil pra depuração).
 
-Após a instalação, anote a senha de administrador exibida na tela, ou defina uma nova:
+Após a instalação, anote a senha de admin mostrada na tela, ou defina uma nova:
 
 ```bash
 pihole -a -p
 ```
 
-### Aponte Sua Rede para o Pi-hole
+### Direcione Sua Rede para o Pi-hole
 
-O método mais fácil: faça login no seu roteador e defina o servidor DNS primário para o endereço IP do seu Pi. Todo dispositivo na rede usará o Pi-hole automaticamente.
+O método mais fácil: faça login no seu roteador e defina o servidor DNS principal pro endereço IP do seu Pi. Cada dispositivo na rede vai usar o Pi-hole automaticamente.
 
-Acesse o painel em `http://piserver.local/admin` para ver consultas bloqueadas, principais domínios e estatísticas.
+Acesse o painel em `http://piserver.local/admin` pra ver consultas bloqueadas, domínios mais usados e estatísticas.
 
-## Passo 7: Proteja Seu Servidor
+## Passo 7: Proteger Seu Servidor
 
 ### Configure um Firewall
 
@@ -269,27 +268,27 @@ sudo ufw allow 80/tcp       # Interface web do Pi-hole
 sudo ufw enable
 ```
 
-### Habilite Atualizações de Segurança Automáticas
+### Habilite Atualizações Automáticas de Segurança
 
 ```bash
 sudo apt install unattended-upgrades -y
 sudo dpkg-reconfigure -plow unattended-upgrades
 ```
 
-### Configure a Autenticação por Chave SSH (Recomendado)
+### Configure Autenticação por Chave SSH (Recomendado)
 
 Do seu computador principal:
 
 ```bash
 ssh-keygen -t ed25519
-ssh-copy-id youruser@piserver.local
+ssh-copy-id seu_usuario@piserver.local
 ```
 
-Em seguida, desabilite a autenticação por senha em `/etc/ssh/sshd_config` definindo `PasswordAuthentication no` e reiniciando o SSH.
+Depois, desabilite a autenticação por senha em `/etc/ssh/sshd_config` definindo `PasswordAuthentication no` e reinicie o SSH.
 
 ### Agende Backups Regulares
 
-Adicione um *cron job* para fazer backup de configurações críticas:
+Adicione um job no cron pra fazer backup das configurações críticas:
 
 ```bash
 crontab -e
@@ -301,42 +300,44 @@ Adicione:
 0 3 * * 0 tar -czf /mnt/storage/backups/pi-config-$(date +\%Y\%m\%d).tar.gz /etc/samba /etc/pihole /etc/fstab
 ```
 
-Isso é executado todo domingo às 3 da manhã e mantém suas configurações salvas.
+Isso roda todo domingo às 3 da manhã e mantém suas configurações salvas.
 
 ## Dicas de Performance
 
-- **Sempre use Ethernet** — WiFi adiciona latência e reduz a taxa de transferência para transferências de arquivos.
-- **Use um disco USB 3.0** — O Pi 4 tem portas USB 3.0 (as azuis). Certifique-se de que seu disco esteja conectado lá.
-- **Considere um SSD** — Um [case USB 3.0 para SSD](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) com um SSD SATA sobressalente melhora drasticamente as velocidades de acesso a arquivos.
-- **Monitore a temperatura** — Execute `vcgencmd measure_temp` periodicamente. Se exceder consistentemente 70C, melhore seu resfriamento.
-- **Mantenha o cartão SD saudável** — Cartões SD se desgastam com muitas gravações. Use `log2ram` para manter os logs na RAM: `sudo apt install log2ram`.
+- **Sempre use Ethernet** — WiFi adiciona latência e reduz a velocidade pra transferências de arquivos.
+- **Use um drive USB 3.0** — O Pi 4 tem portas USB 3.0 (as azuis). Certifique-se de que seu drive tá conectado nelas.
+- **Considere um SSD** — Um [case de SSD USB 3.0](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) com um SSD SATA sobrando melhora MUITO a velocidade de acesso aos arquivos.
+- **Monitore a temperatura** — Rode `vcgencmd measure_temp` de vez em quando. Se a temperatura estiver sempre acima de 70°C, melhore a refrigeração.
+- **Mantenha o cartão SD saudável** — Cartões SD desgastam com escritas excessivas. Use `log2ram` pra manter os logs na RAM: `sudo apt install log2ram`.
 
 ## Solução de Problemas
 
 ### Pi não encontrado na rede
 
-- Verifique se o cabo Ethernet está conectado e se a luz de link está acesa.
-- Verifique a lista de clientes DHCP do seu roteador para o IP do Pi.
-- Se estiver usando WiFi, certifique-se de que as credenciais no Imager estavam corretas.
+- Verifique se o cabo de rede tá conectado e a luz de link tá acesa.
+- Confira a lista de clientes DHCP do seu roteador pra achar o IP do Pi.
+- Se estiver usando WiFi, garanta que as credenciais no Imager estavam corretas.
 
-### Disco externo não está montando
+### HD externo não montando
 
-- Execute `dmesg | tail -20` depois de conectar o disco para verificar erros.
-- Alguns discos consomem muita energia das portas USB do Pi. Use um hub USB com alimentação externa, se necessário.
+- Rode `dmesg | tail -20` depois de conectar o drive pra verificar se tem erros.
+- Alguns drives consomem energia demais das portas USB do Pi. Use um hub USB com alimentação própria, se precisar.
 
 ### Plex com buffering
 
-- Confirme se o cliente está fazendo Direct Play, e não transcodificação (verifique o painel do Plex durante a reprodução).
-- Converta a mídia para o formato H.264 MP4 usando o HandBrake no seu computador principal.
+- Confirme se o cliente tá fazendo "Direct Play", não transcodificação (verifique o painel do Plex durante a reprodução).
+- Converta a mídia pra formato H.264 MP4 usando o HandBrake no seu computador principal.
 
 ## O Que Mais Seu Servidor Pi Pode Fazer?
 
-Uma vez que a base esteja pronta, você pode adicionar mais serviços:
+Depois que a base estiver pronta, você pode adicionar mais serviços:
 
-- **Home Assistant** — hub de automação para casa inteligente
+- **Home Assistant** — hub de automação pra casa inteligente
 - **Nextcloud** — seu próprio armazenamento na nuvem (tipo Google Drive)
 - **WireGuard VPN** — acesse sua rede doméstica com segurança de qualquer lugar
-- **Gitea** — servidor Git *self-hosted*
-- **Grafana + InfluxDB** — painéis de monitoramento para todos os seus dados domésticos
+- **Gitea** — servidor Git auto-hospedado
+- **Grafana + InfluxDB** — dashboards de monitoramento pra todos os seus dados domésticos
 
-Um computador de cinco watts rodando 24 horas por dia, 7 dias por semana, servindo seus arquivos, fazendo streaming da sua mídia e bloqueando anúncios em toda a sua rede. Isso sim é uma tarde produtiva!
+Um computador de cinco watts rodando 24/7, servindo seus arquivos, transmitindo sua mídia e bloqueando anúncios em toda a sua rede. Isso sim é uma tarde produtiva.
+
+---
