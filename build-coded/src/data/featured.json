@@ -1,6 +1,6 @@
 {
-  "updated": "2026-04-16",
-  "period": "2026-03-17 to 2026-04-14",
+  "updated": "2026-04-17",
+  "period": "2026-03-18 to 2026-04-15",
   "trending": [
     {
       "slug": "arduino-projects-beginners",
@@ -44,19 +44,19 @@
       "slug": "best-soldering-irons-beginners",
       "clicks": 0,
       "impressions": 18,
-      "days_old": 5
+      "days_old": 6
     },
     {
       "slug": "best-heat-guns-crafts-diy",
       "clicks": 0,
       "impressions": 20,
-      "days_old": 9
+      "days_old": 10
     },
     {
       "slug": "how-to-fix-a-running-toilet",
       "clicks": 0,
       "impressions": 19,
-      "days_old": 7
+      "days_old": 8
     }
   ]
 }
