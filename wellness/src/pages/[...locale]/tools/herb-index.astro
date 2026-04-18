@@ -1,0 +1,105 @@
+---
+import Base from '../../../layouts/Base.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import BackToTop from '../../../components/BackToTop.astro';
+import { locales, defaultLocale, type Locale } from '../../../i18n/locales';
+import { t, localePath } from '../../../i18n/utils';
+
+export function getStaticPaths() {
+  return locales.map(l => ({
+    params: { locale: l === defaultLocale ? undefined : l },
+    props: { locale: l },
+  }));
+}
+
+const { locale } = Astro.props as { locale: Locale };
+
+interface Herb {
+  g: string;
+  n: string;
+  lat: string;
+  d: string;
+  tags: string[];
+}
+
+const herbs: Herb[] = [
+  { g: 'A', n: 'Ashwagandha', lat: 'Withania somnifera', d: 'Calming adaptogen. Reduces cortisol, supports sleep and stress resilience. 300–600mg/day, with food.', tags: ['stress', 'sleep', 'adrenal'] },
+  { g: 'R', n: 'Rhodiola', lat: 'Rhodiola rosea', d: 'Stimulating adaptogen. Fatigue, focus, mild depression. 200–400mg, morning only.', tags: ['energy', 'mood'] },
+  { g: 'T', n: 'Tulsi', lat: 'Ocimum sanctum', d: 'Holy basil. Daily tonic, anti-inflammatory, stress-modulating. Tea or capsule.', tags: ['daily', 'inflammation'] },
+  { g: 'R', n: 'Reishi', lat: 'Ganoderma lucidum', d: 'Immune-modulating, sleep-supporting. Slow-acting — 6+ weeks. Evening dose.', tags: ['immune', 'sleep'] },
+  { g: 'L', n: "Lion's Mane", lat: 'Hericium erinaceus', d: 'Nootropic mushroom. Nerve growth factor, cognitive support. 500–1000mg/day.', tags: ['focus', 'cognition'] },
+  { g: 'S', n: 'Schisandra', lat: 'Schisandra chinensis', d: 'Five-flavor berry. Liver support, adaptogen, bright energy. 500mg before 2pm.', tags: ['liver', 'energy'] },
+  { g: 'H', n: 'Holy Milk Thistle', lat: 'Silybum marianum', d: 'Liver repair, detoxification support. Silymarin 140mg 2–3x/day.', tags: ['liver', 'detox'] },
+  { g: 'C', n: 'Chamomile', lat: 'Matricaria chamomilla', d: 'Digestive, calming, bedtime ritual. Loose-leaf over bag. Avoid if ragweed-allergic.', tags: ['sleep', 'digestive'] },
+  { g: 'N', n: 'Nettle', lat: 'Urtica dioica', d: 'Mineral-dense spring tonic. Iron, calcium, silica. Freeze-dried for allergies.', tags: ['minerals', 'allergies'] },
+  { g: 'D', n: 'Dandelion', lat: 'Taraxacum officinale', d: 'Liver and digestive tonic. Roast-root coffee or tincture. Bitter, spring-suited.', tags: ['liver', 'digestive'] },
+  { g: 'G', n: 'Ginger', lat: 'Zingiber officinale', d: 'Warming digestive, anti-nausea, circulation. Fresh preferred. 1–2 g/day.', tags: ['digestive', 'warming'] },
+  { g: 'C', n: 'Cordyceps', lat: 'Cordyceps sinensis', d: 'Energy, VO₂ max, winter vitality. Dual-extracted for bioavailability.', tags: ['energy', 'immune'] },
+];
+
+const pageTitle = 'Herb Index · Rooted Glow';
+const pageDesc = 'Every herb we recommend — cross-referenced with dose, timing, contraindications, and research. Searchable.';
+---
+
+<Base title={pageTitle} description={pageDesc} locale={locale}>
+  <Header locale={locale} />
+  <main class="flex-1 linen">
+    <div class="rgd-herbs">
+      <a href={localePath('/tools/', locale)} class="rgd-back">{t(locale, 'seasonal.backToTools')}</a>
+      <div class="mono" style="color:var(--ochre);">{t(locale, 'herbs.stamp')}</div>
+      <h1 class="animate-fade-in-up" style="font-family:'Instrument Serif',serif;font-size:clamp(60px,10vw,112px);line-height:0.92;letter-spacing:-0.025em;margin:12px 0 14px;font-weight:400;color:var(--forest);" set:html={t(locale, 'herbs.title')} />
+      <p style="font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(18px,2vw,22px);line-height:1.45;color:var(--forest-soft);max-width:640px;margin-bottom:28px;">
+        {t(locale, 'herbs.sub')}
+      </p>
+
+      <input id="herb-search" class="search" type="search" placeholder={t(locale, 'herbs.searchPlaceholder')} />
+
+      <div class="mono" style="color:var(--ink-soft);margin-bottom:18px;" id="herb-count">
+        <span data-count="visible">{herbs.length}</span> {t(locale, 'herbs.of')} <span data-count="total">{herbs.length}</span> {t(locale, 'herbs.herbs')}
+      </div>
+
+      <div class="h-grid" id="herb-grid">
+        {herbs.map((h) => (
+          <div class="h-card" data-herb={`${h.n} ${h.lat} ${h.tags.join(' ')}`.toLowerCase()}>
+            <div class="gly">{h.g}</div>
+            <div>
+              <h4>{h.n}</h4>
+              <div class="lat">{h.lat}</div>
+              <div class="desc">{h.d}</div>
+              <div class="tags">
+                {h.tags.map((tag) => <span class="tag">{tag}</span>)}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div id="herb-empty" style="display:none;padding:40px;text-align:center;background:var(--cream);border-radius:16px;font-family:'Instrument Serif',serif;font-style:italic;font-size:22px;color:var(--forest-soft);margin-top:18px;">
+        {t(locale, 'herbs.resultsNone')}
+      </div>
+    </div>
+  </main>
+  <Footer locale={locale} />
+  <BackToTop locale={locale} />
+</Base>
+
+<script>
+  const input = document.getElementById('herb-search') as HTMLInputElement;
+  const cards = document.querySelectorAll<HTMLElement>('.h-card');
+  const visibleEl = document.querySelector<HTMLElement>('[data-count="visible"]');
+  const emptyState = document.getElementById('herb-empty');
+  const grid = document.getElementById('herb-grid');
+
+  input?.addEventListener('input', () => {
+    const q = input.value.trim().toLowerCase();
+    let visible = 0;
+    cards.forEach((c) => {
+      const match = !q || (c.dataset.herb || '').includes(q);
+      c.style.display = match ? '' : 'none';
+      if (match) visible++;
+    });
+    if (visibleEl) visibleEl.textContent = String(visible);
+    if (emptyState) emptyState.style.display = visible === 0 ? 'block' : 'none';
+    if (grid) grid.style.display = visible === 0 ? 'none' : '';
+  });
+</script>

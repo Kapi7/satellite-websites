@@ -1,0 +1,90 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import BackToTop from '../../components/BackToTop.astro';
+import { getCollection } from 'astro:content';
+import { locales, defaultLocale, type Locale } from '../../i18n/locales';
+import { t, localePath, formatDateShort } from '../../i18n/utils';
+
+export function getStaticPaths() {
+  return locales.map(l => ({
+    params: { locale: l === defaultLocale ? undefined : l },
+    props: { locale: l },
+  }));
+}
+
+const { locale } = Astro.props as { locale: Locale };
+
+const now = new Date();
+const all = await getCollection('blog', ({ data }) => !data.draft && data.locale === locale && data.date <= now);
+const posts = all.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const categoryMap: Record<string, string> = {
+  'nutrition': t(locale, 'categories.nutrition'),
+  'movement': t(locale, 'categories.movement'),
+  'k-beauty': t(locale, 'categories.kBeauty'),
+  'natural-health': t(locale, 'categories.naturalHealth'),
+};
+const authorLabel = t(locale, 'article.editorial');
+
+function postSlug(p: any) {
+  const slug = p.id.includes('/') ? p.id.split('/').slice(1).join('/') : p.id;
+  return slug.replace('.mdx', '').replace('.md', '');
+}
+
+const pageTitle = `${t(locale, 'nav.library')} · Rooted Glow`;
+const pageDesc = t(locale, 'library.sub');
+---
+
+<Base title={pageTitle} description={pageDesc} locale={locale}>
+  <Header locale={locale} />
+  <main class="flex-1 rgd-page linen paper-grain">
+    <header style="padding:60px 0 30px;border-bottom:1px solid rgba(47,61,42,0.15);">
+      <div class="mono" style="color:var(--ink-soft);">{t(locale, 'library.stamp').toUpperCase()} · {posts.length} {t(locale, 'common.articles').toUpperCase()}</div>
+      <h1 class="animate-fade-in-up" style="font-family:'Instrument Serif',serif;font-size:clamp(60px,10vw,120px);line-height:0.92;letter-spacing:-0.025em;margin:20px 0 20px;font-weight:400;color:var(--forest);" set:html={t(locale, 'library.title')} />
+      <p style="font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(18px,2vw,22px);line-height:1.45;color:var(--forest-soft);max-width:680px;margin:0 0 22px;">{t(locale, 'library.sub')}</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;" id="lib-filter">
+        <button class="rg-chip active" data-cat="all">{t(locale, 'library.filterAll')}</button>
+        {Object.entries(categoryMap).map(([slug, label]) => (
+          <button class="rg-chip" data-cat={slug}>{label}</button>
+        ))}
+      </div>
+    </header>
+
+    <div class="rgd-grid" style="padding:50px 0 80px;" id="lib-grid">
+      {posts.map((p) => (
+        <a href={localePath(`/${postSlug(p)}/`, locale)} class="rgd-article-card" data-cat={p.data.category}>
+          <div class="img rg-tint-sage">
+            {p.data.image && (
+              <img src={p.data.image} alt={p.data.imageAlt || p.data.title} loading="lazy" width="600" height="400" />
+            )}
+            <span class="tag">{categoryMap[p.data.category] || p.data.category}</span>
+          </div>
+          <h3>{p.data.title}</h3>
+          <p>{p.data.description}</p>
+          <div class="byline">
+            <span>{p.data.author || authorLabel}</span>
+            <span>{formatDateShort(p.data.date, locale)}</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </main>
+  <Footer locale={locale} />
+  <BackToTop locale={locale} />
+</Base>
+
+<script>
+  const chips = document.querySelectorAll<HTMLButtonElement>('#lib-filter .rg-chip');
+  const cards = document.querySelectorAll<HTMLElement>('#lib-grid [data-cat]');
+  chips.forEach((chip) => {
+    chip.addEventListener('click', () => {
+      const cat = chip.dataset.cat;
+      chips.forEach((c) => c.classList.toggle('active', c === chip));
+      cards.forEach((card) => {
+        card.style.display = (cat === 'all' || card.dataset.cat === cat) ? '' : 'none';
+      });
+    });
+  });
+</script>

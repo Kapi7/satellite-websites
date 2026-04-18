@@ -160,77 +160,69 @@ if (type === 'listicle' && headings) {
   <ReadingProgress />
   <Header locale={locale} />
 
-  <main class="flex-1">
-    <!-- Hero Image — wider, more impactful -->
-    <div class="animate-fade-in">
-      {image && (
-        <div class="max-w-[1400px] mx-auto px-4 sm:px-8 pt-4 sm:pt-8">
-          <div class="aspect-[3/2] sm:aspect-[5/2] max-h-[50vh] sm:max-h-[40vh] overflow-hidden rounded-lg sm:rounded-2xl bg-sage-100">
-            <img src={image} alt={imageAlt || title} class="w-full h-full object-cover" loading="eager" width="1200" height="675" />
+  <main class="flex-1 rgd-page linen">
+    <!-- Breadcrumb -->
+    <nav class="animate-fade-in-up" aria-label="Breadcrumb" style="padding:28px 0 0;display:flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink-soft);">
+      <a href={localePath('/', locale)} style="color:var(--forest);text-decoration:none;">{t(locale, 'common.home')}</a>
+      <svg width="10" height="10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+      <a href={localePath(`/category/${category}/`, locale)} style="color:var(--forest);text-decoration:none;">{categoryLabel}</a>
+    </nav>
+
+    <div class={`rgd-article-layout ${products.length > 0 ? 'has-aside' : ''}`}>
+      <article data-pagefind-body class="rgd-article-main">
+        <!-- Article header -->
+        <header class="animate-fade-in-up stagger-1" style="padding:28px 0 0;">
+          <div class="meta">
+            <span>{categoryLabel}</span>
+            <span>·</span>
+            {readingTime && <span>{readingTime} {t(locale, 'common.minRead')}</span>}
+            {readingTime && <span>·</span>}
+            <span>{formattedDate}</span>
           </div>
-        </div>
-      )}
-    </div>
-
-    <!-- Main content area — wider container -->
-    <div class={`max-w-[1400px] mx-auto px-4 sm:px-8 py-6 sm:py-10 ${products.length > 0 ? "xl:flex xl:gap-16" : ""}`}>
-      <article data-pagefind-body class={`flex-1 min-w-0 ${products.length === 0 ? "max-w-5xl mx-auto" : ""}`}>
-        <!-- Breadcrumb -->
-        <nav class="flex items-center gap-2 text-[11px] uppercase tracking-wide text-charcoal-light/50 mb-8 animate-fade-in-up" aria-label="Breadcrumb">
-          <a href={localePath('/', locale)} class="hover:text-sage-700 transition-colors">{t(locale, 'common.home')}</a>
-          <svg class="w-3 h-3 text-sage-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
-          <a href={localePath(`/category/${category}`, locale)} class="hover:text-sage-700 transition-colors">{categoryLabel}</a>
-        </nav>
-
-        <!-- Article header — bigger, bolder -->
-        <header class="mb-10 animate-fade-in-up stagger-1 max-w-5xl">
-          <h1 class="font-heading text-4xl sm:text-5xl md:text-[3.5rem] text-charcoal leading-[1.08] tracking-tight mb-6">{title}</h1>
-          <p class="text-lg sm:text-xl text-charcoal-light/60 leading-relaxed mb-6 max-w-3xl">{description}</p>
-          <div class="flex items-center gap-4 border-t border-sage-200/40 pt-6">
-            {author ? (
-              <img src={`/images/team/${author.toLowerCase().replace(/\s+/g, '-')}.jpg`} alt={author} class="w-9 h-9 rounded-full object-cover" />
-            ) : (
-              <img src="/logo.svg" alt="" class="w-8 h-8 rounded-full" />
-            )}
+          <h1>{title}</h1>
+          <p class="lede">{description}</p>
+          <div class="byline">
+            <div class="av">
+              {author ? (
+                <img src={`/images/team/${author.toLowerCase().replace(/\s+/g, '-')}.jpg`} alt={author} width="42" height="42" />
+              ) : (
+                <span>{(author || 'R')[0]}</span>
+              )}
+            </div>
             <div>
-              <span class="text-[11px] font-semibold uppercase tracking-wide text-charcoal block">{author || t(locale, 'article.editorial')}</span>
-              <div class="flex items-center gap-3 text-[11px] uppercase tracking-[0.1em] text-charcoal-light/50 mt-0.5">
-                <time datetime={date.toISOString()}>{formattedDate}</time>
-                {formattedUpdated && (
-                  <>
-                    <span class="w-1 h-1 rounded-full bg-charcoal-light/20"></span>
-                    <span>{t(locale, 'common.updated')} {formattedUpdated}</span>
-                  </>
-                )}
-                {readingTime && (
-                  <>
-                    <span class="w-1 h-1 rounded-full bg-charcoal-light/20"></span>
-                    <span>{readingTime} {t(locale, 'common.minRead')}</span>
-                  </>
-                )}
-              </div>
+              By {(author || t(locale, 'article.editorial')).toUpperCase()}
+              {formattedUpdated && <span> · {t(locale, 'common.updated')} {formattedUpdated}</span>}
             </div>
           </div>
         </header>
+
+        <!-- Hero image -->
+        {image && (
+          <div class="animate-fade-in-up stagger-2" style="margin:38px 0 34px;">
+            <div class="rg-tint-sage" style="aspect-ratio:5/2;border-radius:12px;overflow:hidden;">
+              <img src={image} alt={imageAlt || title} style="width:100%;height:100%;object-fit:cover;" loading="eager" width="1200" height="480" />
+            </div>
+          </div>
+        )}
 
         <!-- Table of contents -->
         <div class="animate-fade-in-up stagger-2">
           <TableOfContents headings={headings} locale={locale} />
         </div>
 
-        <!-- Article body — wider prose -->
+        <!-- Article body -->
         <div class="prose prose-wide animate-fade-in-up stagger-3">
           <slot />
         </div>
 
-        <!-- Tags -->
+        <!-- Tags + share -->
         {tags.length > 0 && (
-          <div class="mt-16 pt-8 border-t border-sage-200/30 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
+          <div style="margin-top:56px;padding-top:28px;border-top:1px solid rgba(47,61,42,0.15);display:flex;flex-direction:column;gap:20px;">
             <div>
-              <span class="text-[11px] font-semibold uppercase tracking-wide text-charcoal-light/50 mr-3">{t(locale, 'common.tagged')}</span>
-              <div class="inline-flex flex-wrap gap-2 mt-2">
+              <span class="mono" style="color:var(--ink-soft);margin-right:10px;">{t(locale, 'common.tagged')}</span>
+              <div style="display:inline-flex;flex-wrap:wrap;gap:8px;margin-top:10px;">
                 {tags.map((tag) => (
-                  <a class="px-4 py-1.5 bg-sage-100/60 text-sage-600 text-xs font-medium rounded-full hover:bg-sage-200 transition-colors">{tag}</a>
+                  <span class="rg-chip" style="cursor:default;">{tag}</span>
                 ))}
               </div>
             </div>
@@ -239,23 +231,25 @@ if (type === 'listicle' && headings) {
         )}
 
         {tags.length === 0 && (
-          <ShareButtons title={title} url={articleUrl} locale={locale} />
+          <div style="margin-top:40px;">
+            <ShareButtons title={title} url={articleUrl} locale={locale} />
+          </div>
         )}
       </article>
 
-      <!-- Sidebar — Stitch-inspired card design -->
+      <!-- Sidebar: featured products + TL;DR -->
       {products.length > 0 && (
-        <aside class="hidden xl:block w-[220px] shrink-0">
-          <div class="bg-sage-50/50 rounded-xl p-5 space-y-6">
-            <h3 class="font-heading text-xs uppercase tracking-wide text-sage-600 pb-2 border-b border-sage-200/40">{t(locale, 'common.featuredProducts')}</h3>
-            <div class="space-y-6">
+        <aside class="rgd-article-aside">
+          <div class="rg-card" style="padding:22px 22px;">
+            <h5 class="mono" style="color:var(--ink-soft);margin:0 0 12px;">{t(locale, 'common.featuredProducts')}</h5>
+            <div style="display:flex;flex-direction:column;gap:20px;">
               {products.slice(0, 3).map((product) => (
-                <a href={product.url} target="_blank" rel="noopener noreferrer" class="block group">
-                  <div class="aspect-[4/5] overflow-hidden rounded-lg bg-white mb-3">
-                    <img src={product.image} alt={product.name} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                <a href={product.url} target="_blank" rel="noopener noreferrer" class="group" style="display:block;text-decoration:none;color:inherit;">
+                  <div style="aspect-ratio:4/5;overflow:hidden;border-radius:10px;background:var(--linen);margin-bottom:10px;">
+                    <img src={product.image} alt={product.name} style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s;" loading="lazy" />
                   </div>
-                  <p class="font-heading text-sm text-charcoal leading-snug mb-1">{product.name}</p>
-                  <span class="text-[11px] font-semibold uppercase tracking-wide text-sage-600 group-hover:text-sage-800 transition-colors">{t(locale, 'common.shopNow')} &rarr;</span>
+                  <p class="serif" style="font-size:15px;color:var(--forest);line-height:1.2;margin:0 0 4px;">{product.name}</p>
+                  <span class="mono" style="color:var(--terracotta-dark);">{t(locale, 'common.shopNow')} &rarr;</span>
                 </a>
               ))}
             </div>
@@ -264,12 +258,38 @@ if (type === 'listicle' && headings) {
       )}
     </div>
 
-    <!-- Newsletter + Related — wider container -->
-    <div class="max-w-[1400px] mx-auto px-4 sm:px-8">
+    <!-- Related + Newsletter -->
+    <div style="padding-top:40px;">
       <RelatedArticles currentSlug={slug} category={category} locale={locale} />
       <NewsletterSignup locale={locale} />
     </div>
   </main>
+
+  <style>
+    .rgd-article-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 40px;
+      padding: 20px 0 40px;
+    }
+    .rgd-article-main { min-width: 0; max-width: 760px; margin: 0 auto; width: 100%; }
+    .rgd-article-aside { display: none; }
+    @media (min-width: 1100px) {
+      .rgd-article-layout.has-aside {
+        grid-template-columns: minmax(0, 1fr) 280px;
+        gap: 60px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .rgd-article-layout.has-aside .rgd-article-main { margin: 0; }
+      .rgd-article-layout.has-aside .rgd-article-aside {
+        display: block;
+        position: sticky;
+        top: 100px;
+        align-self: start;
+      }
+    }
+  </style>
 
   <Footer locale={locale} />
   <BackToTop locale={locale} />

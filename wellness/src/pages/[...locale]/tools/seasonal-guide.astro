@@ -1,0 +1,175 @@
+---
+import Base from '../../../layouts/Base.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import BackToTop from '../../../components/BackToTop.astro';
+import { locales, defaultLocale, type Locale } from '../../../i18n/locales';
+import { t, localePath } from '../../../i18n/utils';
+
+export function getStaticPaths() {
+  return locales.map(l => ({
+    params: { locale: l === defaultLocale ? undefined : l },
+    props: { locale: l },
+  }));
+}
+
+const { locale } = Astro.props as { locale: Locale };
+
+type Row = [string, string];
+interface SeasonData {
+  key: string;
+  months: string;
+  tabMonths: string;
+  nameHtml: string;
+  focus: Row[];
+  herbs: { g: string; n: string; lat: string }[];
+}
+
+const seasons: SeasonData[] = [
+  {
+    key: 'spring',
+    months: 'MAR · APR · MAY',
+    tabMonths: 'MAR—MAY',
+    nameHtml: t(locale, 'seasonal.springName'),
+    focus: [
+      [t(locale, 'seasonal.focusFavor'), 'Bitter greens · lemon · asparagus · young ginger'],
+      [t(locale, 'seasonal.focusMove'), 'Morning walks · yin yoga · lymphatic'],
+      [t(locale, 'seasonal.focusSleep'), 'In bed by 10:30 · wake with sun'],
+      [t(locale, 'seasonal.focusDaylight'), '15+ minutes before 9am, every morning'],
+      [t(locale, 'seasonal.focusAvoid'), 'Heavy dairy, cold drinks, stagnant schedules'],
+    ],
+    herbs: [
+      { g: 'D', n: 'Dandelion', lat: 'T. officinale' },
+      { g: 'N', n: 'Nettle', lat: 'U. dioica' },
+      { g: 'B', n: 'Burdock', lat: 'A. lappa' },
+    ],
+  },
+  {
+    key: 'summer',
+    months: 'JUN · JUL · AUG',
+    tabMonths: 'JUN—AUG',
+    nameHtml: t(locale, 'seasonal.summerName'),
+    focus: [
+      [t(locale, 'seasonal.focusFavor'), 'Cucumber · mint · melon · coconut · cilantro'],
+      [t(locale, 'seasonal.focusMove'), 'Swim · early walks · avoid peak sun'],
+      [t(locale, 'seasonal.focusSleep'), 'Lights down by 9:30 · cool room'],
+      [t(locale, 'seasonal.focusDaylight'), 'Dawn + dusk · shade midday'],
+      [t(locale, 'seasonal.focusAvoid'), 'Spicy food, late caffeine, overheating'],
+    ],
+    herbs: [
+      { g: 'T', n: 'Tulsi', lat: 'O. sanctum' },
+      { g: 'R', n: 'Rose', lat: 'Rosa spp.' },
+      { g: 'C', n: 'Chamomile', lat: 'M. chamomilla' },
+    ],
+  },
+  {
+    key: 'autumn',
+    months: 'SEP · OCT · NOV',
+    tabMonths: 'SEP—NOV',
+    nameHtml: t(locale, 'seasonal.autumnName'),
+    focus: [
+      [t(locale, 'seasonal.focusFavor'), 'Root veg · warm grains · pears · ghee · cinnamon'],
+      [t(locale, 'seasonal.focusMove'), 'Strength · slow hikes · breath work'],
+      [t(locale, 'seasonal.focusSleep'), 'Early · 8 hrs · wake before sunrise'],
+      [t(locale, 'seasonal.focusDaylight'), 'Chase every sunny hour · supplement D'],
+      [t(locale, 'seasonal.focusAvoid'), 'Raw salads all day, erratic meal times'],
+    ],
+    herbs: [
+      { g: 'A', n: 'Ashwagandha', lat: 'W. somnifera' },
+      { g: 'R', n: 'Reishi', lat: 'G. lucidum' },
+      { g: 'S', n: 'Schisandra', lat: 'S. chinensis' },
+    ],
+  },
+  {
+    key: 'winter',
+    months: 'DEC · JAN · FEB',
+    tabMonths: 'DEC—FEB',
+    nameHtml: t(locale, 'seasonal.winterName'),
+    focus: [
+      [t(locale, 'seasonal.focusFavor'), 'Bone broth · stews · black sesame · miso'],
+      [t(locale, 'seasonal.focusMove'), 'Strength · qigong · rest without guilt'],
+      [t(locale, 'seasonal.focusSleep'), '9 hrs · dark room · no screens past 9'],
+      [t(locale, 'seasonal.focusDaylight'), 'Every window · red-light therapy ok'],
+      [t(locale, 'seasonal.focusAvoid'), 'Overtraining, social overcommitment'],
+    ],
+    herbs: [
+      { g: 'G', n: 'Ginger', lat: 'Z. officinale' },
+      { g: 'R', n: 'Rhodiola', lat: 'R. rosea' },
+      { g: 'C', n: 'Cordyceps', lat: 'C. sinensis' },
+    ],
+  },
+];
+
+const pageTitle = 'Seasonal Guide · Rooted Glow';
+const pageDesc = 'What your body needs in Spring, Summer, Autumn, and Winter. Foods to favour, herbs to rotate, and how much daylight to chase.';
+---
+
+<Base title={pageTitle} description={pageDesc} locale={locale}>
+  <Header locale={locale} />
+  <main class="flex-1 linen">
+    <div class="rgd-season">
+      <a href={localePath('/tools/', locale)} class="rgd-back">{t(locale, 'seasonal.backToTools')}</a>
+      <div class="mono" style="color:var(--ochre);">{t(locale, 'seasonal.stamp')}</div>
+      <h1 class="animate-fade-in-up" style="font-family:'Instrument Serif',serif;font-size:clamp(60px,10vw,112px);line-height:0.92;letter-spacing:-0.025em;margin:12px 0 14px;font-weight:400;color:var(--forest);" set:html={t(locale, 'seasonal.title')} />
+      <p style="font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(18px,2vw,22px);line-height:1.45;color:var(--forest-soft);max-width:640px;margin-bottom:32px;">
+        {t(locale, 'seasonal.sub')}
+      </p>
+
+      <div class="season-tabs" role="tablist">
+        {seasons.map((s) => (
+          <button class={`season-tab ${s.key === 'spring' ? 'on' : ''}`} data-season={s.key} role="tab">
+            <div class="mo">{s.tabMonths}</div>
+            <div class="nm" set:html={s.nameHtml} />
+          </button>
+        ))}
+      </div>
+
+      {seasons.map((s) => (
+        <div class="season-panel" data-season={s.key} style={s.key === 'spring' ? '' : 'display:none;'}>
+          <div class="mono" style="color:var(--ink-soft);margin-bottom:18px;">{s.months}</div>
+          <div class="season-content">
+            <div class="col">
+              <h3>Daily <em>rhythm.</em></h3>
+              {s.focus.map(([k, v]) => (
+                <div class="focus-row">
+                  <div class="k">{k}</div>
+                  <div class="v">{v}</div>
+                </div>
+              ))}
+            </div>
+            <div class="col">
+              <h3>Herbs for the <em>season.</em></h3>
+              <p style="font-size:13.5px;color:var(--forest-soft);line-height:1.55;margin:0 0 12px;">{t(locale, 'seasonal.herbsNote')}</p>
+              <div class="herbs">
+                {s.herbs.map((h) => (
+                  <div class="herb-chip">
+                    <div class="g">{h.g}</div>
+                    <div class="n">{h.n}</div>
+                    <div class="lat">{h.lat}</div>
+                  </div>
+                ))}
+              </div>
+              <a href={localePath('/category/natural-health/', locale)} class="rg-btn rg-btn-terra" style="margin-top:22px;">{t(locale, 'seasonal.shopHerbs')}</a>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </main>
+  <Footer locale={locale} />
+  <BackToTop locale={locale} />
+</Base>
+
+<script>
+  const tabs = document.querySelectorAll<HTMLButtonElement>('.season-tab');
+  const panels = document.querySelectorAll<HTMLElement>('.season-panel');
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const key = tab.dataset.season;
+      tabs.forEach((t) => t.classList.toggle('on', t === tab));
+      panels.forEach((p) => {
+        p.style.display = p.dataset.season === key ? '' : 'none';
+      });
+    });
+  });
+</script>

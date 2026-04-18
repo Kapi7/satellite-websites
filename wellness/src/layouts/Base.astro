@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import MobileTabBar from '../components/MobileTabBar.astro';
 import { localePath } from '../i18n/utils';
 import { isRtl, locales, type Locale } from '../i18n/locales';
 
@@ -84,9 +85,14 @@ const rtl = isRtl(locale);
     ))}
     <link rel="alternate" hreflang="x-default" href={new URL(localePath(cleanBasePath, 'en'), Astro.site).href} />
 
-    <!-- Font preloads: Instrument Serif + Inter -->
+    <!-- Preconnect + font loads: Instrument Serif (self-hosted) + JetBrains Mono + General Sans -->
     <link rel="preload" href="/fonts/jizBRFtNs2ka5fXjeivQ4LroWlx-6zUTjnTLgNs.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/jizHRFtNs2ka5fXjeivQ4LroWlx-6zAjjH7Motmp5g.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" />
+    <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600&display=swap" />
 
     <!-- Arabic font preload (Noto Sans Arabic) -->
     {locale === 'ar' && (
@@ -96,8 +102,8 @@ const rtl = isRtl(locale);
     <!-- RTL font-family override -->
     {locale === 'ar' && (
       <style>
-        body { font-family: 'Noto Sans Arabic', 'Inter', sans-serif; }
-        .font-heading { font-family: 'Noto Sans Arabic', 'Instrument Serif', serif; }
+        body { font-family: 'Noto Sans Arabic', 'General Sans', sans-serif; }
+        .font-heading, .serif { font-family: 'Noto Sans Arabic', 'Instrument Serif', serif; }
       </style>
     )}
 
@@ -133,7 +139,8 @@ const rtl = isRtl(locale);
       <script type="application/ld+json" set:html={schema} />
     ))}
   </head>
-  <body class="min-h-screen flex flex-col">
+  <body class="min-h-screen flex flex-col linen">
     <slot />
+    <MobileTabBar locale={locale} />
   </body>
 </html>

@@ -1,0 +1,112 @@
+---
+import Base from '../../../layouts/Base.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import BackToTop from '../../../components/BackToTop.astro';
+import { locales, defaultLocale, type Locale } from '../../../i18n/locales';
+import { t, localePath } from '../../../i18n/utils';
+
+export function getStaticPaths() {
+  return locales.map(l => ({
+    params: { locale: l === defaultLocale ? undefined : l },
+    props: { locale: l },
+  }));
+}
+
+const { locale } = Astro.props as { locale: Locale };
+
+const tools = [
+  {
+    k: 'quiz',
+    num: 'TOOL 01',
+    featured: true,
+    badge: t(locale, 'toolsHub.badgeMostUsed'),
+    seal: '\u2726',
+    href: localePath('/tools/quiz/', locale),
+    title: t(locale, 'toolsHub.cardQuizTitle'),
+    desc: t(locale, 'toolsHub.cardQuizDesc'),
+    meta: ['2 min', 'no email', 'personalised'],
+  },
+  {
+    k: 'seasonal',
+    num: 'TOOL 02',
+    seal: '\u25c7',
+    href: localePath('/tools/seasonal-guide/', locale),
+    title: t(locale, 'toolsHub.cardSeasonalTitle'),
+    desc: t(locale, 'toolsHub.cardSeasonalDesc'),
+    meta: ['4 seasons', '12 herbs', 'cross-referenced'],
+  },
+  {
+    k: 'herbs',
+    num: 'TOOL 03',
+    seal: '\u2766',
+    href: localePath('/tools/herb-index/', locale),
+    title: t(locale, 'toolsHub.cardHerbsTitle'),
+    desc: t(locale, 'toolsHub.cardHerbsDesc'),
+    meta: ['searchable', 'PubMed links', 'practitioner-reviewed'],
+  },
+  {
+    k: 'recipes',
+    num: 'TOOL 04',
+    badge: t(locale, 'toolsHub.badgeNew'),
+    seal: '\u273f',
+    href: localePath('/tools/recipe-generator/', locale),
+    title: t(locale, 'toolsHub.cardRecipesTitle'),
+    desc: t(locale, 'toolsHub.cardRecipesDesc'),
+    meta: ['AI-assisted', 'seasonal', 'ad-free'],
+  },
+  {
+    k: 'running',
+    num: 'TOOL 05',
+    seal: '\u273d',
+    href: localePath('/tools/running-plan/', locale),
+    title: t(locale, 'toolsHub.cardRunningTitle'),
+    desc: t(locale, 'toolsHub.cardRunningDesc'),
+    meta: ['5K–half', 'AI coach', 'weekly plan'],
+  },
+];
+
+const pageTitle = 'Tools · Rooted Glow';
+const pageDesc = 'Free, calm wellness tools. Protocol builder, seasonal guide, herb index, recipe box, and running plan. No accounts, no data sold.';
+---
+
+<Base title={pageTitle} description={pageDesc} locale={locale}>
+  <Header locale={locale} />
+  <main class="flex-1 linen">
+    <div class="rgd-tools-hub">
+      <div class="rgd-tools-head animate-fade-in-up">
+        <div>
+          <div class="stamp">{t(locale, 'toolsHub.stamp')}</div>
+          <h1 set:html={t(locale, 'toolsHub.title')} />
+        </div>
+        <div class="sub">{t(locale, 'toolsHub.sub')}</div>
+      </div>
+
+      <div class="rgd-tools-grid">
+        {tools.map((tool) => (
+          <a href={tool.href} class={`rg-tool-card ${tool.featured ? 'feat' : ''}`}>
+            {tool.badge && <span class="badge">{tool.badge}</span>}
+            <div class="num">{tool.num}</div>
+            <h3 set:html={tool.title} />
+            <div class="desc">{tool.desc}</div>
+            <div class="meta">
+              {tool.meta.map((m) => <span>· {m}</span>)}
+            </div>
+            <div class="cta">{t(locale, 'toolsHub.launchTool')} <span>→</span></div>
+            <div class="seal">{tool.seal}</div>
+          </a>
+        ))}
+      </div>
+
+      <div class="rgd-tools-foot">
+        <div>
+          <h4 set:html={t(locale, 'toolsHub.suggestTitle')} />
+          <p>{t(locale, 'toolsHub.suggestDesc')}</p>
+        </div>
+        <a href={localePath('/about/', locale)} class="cta-btn">{t(locale, 'toolsHub.joinTheLetter')}</a>
+      </div>
+    </div>
+  </main>
+  <Footer locale={locale} />
+  <BackToTop locale={locale} />
+</Base>

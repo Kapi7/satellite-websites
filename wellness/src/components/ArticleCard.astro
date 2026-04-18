@@ -21,7 +21,6 @@ const categoryKeyMap: Record<string, string> = {
   'k-beauty': 'categories.kBeauty',
   'natural-health': 'categories.naturalHealth',
 };
-
 const typeKeyMap: Record<string, string> = {
   hub: 'types.hub',
   guide: 'types.guide',
@@ -33,43 +32,33 @@ const typeKeyMap: Record<string, string> = {
 const categoryLabel = categoryKeyMap[category] ? t(locale, categoryKeyMap[category]) : category;
 const typeLabel = type && typeKeyMap[type] ? t(locale, typeKeyMap[type]) : type;
 const formattedDate = formatDateShort(date, locale);
+const href = localePath(`/${slug}/`, locale);
 ---
 
-<article class={`group flex flex-col ${featured ? 'md:col-span-2' : ''}`}>
-  <a href={localePath(`/${slug}/`, locale)} class="flex flex-col h-full">
+<a href={href} class="rgd-article-card" data-featured={featured}>
+  <div class="img rg-tint-sage">
     {image && (
-      <div class={`overflow-hidden rounded-2xl mb-6 bg-sage-100 ${featured ? 'aspect-[16/9]' : 'aspect-[3/2]'}`}>
-        <img
-          src={image}
-          alt={title}
-          class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-          loading="lazy"
-          width="600"
-          height="400"
-        />
-      </div>
+      <img src={image} alt={title} loading="lazy" width="600" height="400" />
     )}
-    <div class="flex items-center gap-2 mb-2">
-      <span class="text-xs tracking-wide uppercase text-charcoal-light/60">
-        {categoryLabel}
-      </span>
-      {typeLabel && (
-        <>
-          <span class="w-1 h-1 rounded-full bg-charcoal-light/20"></span>
-          <span class="text-xs tracking-wide uppercase text-charcoal-light/40">
-            {typeLabel}
-          </span>
-        </>
-      )}
-    </div>
-    <h3 class={`font-heading text-charcoal group-hover:text-sage-700 transition-colors mb-2.5 leading-snug ${featured ? 'text-3xl' : 'text-xl'}`}>
-      {title}
-    </h3>
-    <p class={`text-charcoal-light/70 text-sm mb-4 flex-grow ${featured ? 'line-clamp-3' : 'line-clamp-2'}`}>
-      {description}
-    </p>
-    <time class="text-xs text-charcoal-light/40 uppercase tracking-wide" datetime={date.toISOString()}>
-      {formattedDate}
-    </time>
-  </a>
-</article>
+    <span class="tag">{categoryLabel}</span>
+  </div>
+  <h3>{title}</h3>
+  <p>{description}</p>
+  <div class="byline">
+    <span>{typeLabel || t(locale, 'article.editorial')}</span>
+    <span>{formattedDate}</span>
+  </div>
+</a>
+
+<style>
+  a.rgd-article-card[data-featured="true"] {
+    grid-column: span 1;
+  }
+  @media (min-width: 901px) {
+    a.rgd-article-card[data-featured="true"] {
+      grid-column: span 2;
+    }
+    a.rgd-article-card[data-featured="true"] .img { height: 400px; }
+    a.rgd-article-card[data-featured="true"] h3 { font-size: 38px; }
+  }
+</style>

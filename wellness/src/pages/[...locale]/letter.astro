@@ -1,0 +1,142 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import BackToTop from '../../components/BackToTop.astro';
+import { getCollection } from 'astro:content';
+import { locales, defaultLocale, type Locale } from '../../i18n/locales';
+import { t, localePath, formatDateShort } from '../../i18n/utils';
+
+export function getStaticPaths() {
+  return locales.map(l => ({
+    params: { locale: l === defaultLocale ? undefined : l },
+    props: { locale: l },
+  }));
+}
+
+const { locale } = Astro.props as { locale: Locale };
+
+const now = new Date();
+const posts = await getCollection('blog', ({ data }) => !data.draft && data.locale === locale && data.date <= now);
+const recent = posts
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 4);
+
+function postSlug(p: any) {
+  const slug = p.id.includes('/') ? p.id.split('/').slice(1).join('/') : p.id;
+  return slug.replace('.mdx', '').replace('.md', '');
+}
+
+const cards = [
+  { roman: t(locale, 'letter.cardRoman1'), title: t(locale, 'letter.card1Title'), desc: t(locale, 'letter.card1Desc') },
+  { roman: t(locale, 'letter.cardRoman2'), title: t(locale, 'letter.card2Title'), desc: t(locale, 'letter.card2Desc') },
+  { roman: t(locale, 'letter.cardRoman3'), title: t(locale, 'letter.card3Title'), desc: t(locale, 'letter.card3Desc') },
+];
+
+const pageTitle = `${t(locale, 'nav.letter')} · Rooted Glow`;
+const pageDesc = t(locale, 'letter.sub');
+---
+
+<Base title={pageTitle} description={pageDesc} locale={locale}>
+  <Header locale={locale} />
+  <main class="flex-1 rgd-page linen paper-grain" style="padding-top:40px;">
+    <div style="max-width:860px;margin:0 auto;">
+      <div class="mono" style="color:var(--ink-soft);">{t(locale, 'letter.stamp').toUpperCase()} · 14,820 READERS</div>
+      <h1 class="animate-fade-in-up" style="font-family:'Instrument Serif',serif;font-size:clamp(60px,10vw,128px);line-height:0.92;letter-spacing:-0.025em;margin:20px 0 24px;font-weight:400;color:var(--forest);" set:html={t(locale, 'letter.title')} />
+      <p style="font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(18px,2vw,24px);line-height:1.4;color:var(--forest-soft);max-width:680px;margin:0 0 36px;">{t(locale, 'letter.sub')}</p>
+
+      <!-- Signup card -->
+      <form class="newsletter-form" data-locale={locale} style="background:var(--cream);border:1px solid rgba(47,61,42,0.12);border-radius:20px;padding:36px;">
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <input type="email" name="email" required placeholder={t(locale, 'footer.emailPlaceholder')} style="flex:1;min-width:200px;padding:14px 20px;border:1px solid rgba(47,61,42,0.2);border-radius:999px;font-family:inherit;font-size:15px;background:var(--linen);color:var(--ink);" />
+          <button type="submit" style="background:var(--forest);color:var(--cream);border:none;padding:14px 32px;border-radius:999px;font-family:inherit;font-size:13px;font-weight:500;cursor:pointer;letter-spacing:0.02em;">{t(locale, 'common.subscribe')}</button>
+        </div>
+        <p class="newsletter-msg" style="display:none;margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;"></p>
+        <p class="mono" style="color:var(--ink-soft);margin:14px 0 0;">No spam. Free. Unsubscribe any time.</p>
+      </form>
+
+      <!-- Inside every letter -->
+      <section style="margin-top:60px;">
+        <h2 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(32px,4vw,44px);letter-spacing:-0.015em;margin:0 0 24px;color:var(--forest);">Inside every letter</h2>
+        {cards.map((c) => (
+          <div style="display:flex;gap:18px;padding:18px 0;border-bottom:1px solid rgba(47,61,42,0.1);">
+            <div style="font-family:'Instrument Serif',serif;font-style:italic;font-size:32px;color:var(--terracotta);min-width:40px;">{c.roman}</div>
+            <div>
+              <h3 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:22px;margin:0 0 4px;color:var(--forest);">{c.title}</h3>
+              <p style="font-size:13.5px;color:var(--forest-soft);margin:0;line-height:1.5;">{c.desc}</p>
+            </div>
+          </div>
+        ))}
+      </section>
+
+      <!-- Stats block -->
+      <section style="margin-top:40px;background:var(--forest);color:var(--cream);padding:28px 24px;border-radius:14px;text-align:center;">
+        <div style="font-family:'Instrument Serif',serif;font-size:48px;color:var(--ochre);line-height:1;">14,820</div>
+        <div class="mono" style="margin-top:8px;color:var(--clay);">{t(locale, 'letter.stats')}</div>
+      </section>
+
+      <!-- Recent letters -->
+      <section style="margin-top:60px;padding-bottom:60px;">
+        <h2 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(32px,4vw,44px);letter-spacing:-0.015em;margin:0 0 24px;color:var(--forest);">{t(locale, 'letter.recentTitle')}</h2>
+        {recent.map((p, i) => (
+          <a href={localePath(`/${postSlug(p)}/`, locale)} style="display:grid;grid-template-columns:70px 1fr auto;gap:24px;align-items:center;padding:22px 0;border-top:1px solid rgba(47,61,42,0.15);text-decoration:none;color:inherit;">
+            <div style="font-family:'Instrument Serif',serif;font-style:italic;font-size:36px;color:var(--terracotta);">№{String(i + 1).padStart(2, '0')}</div>
+            <div>
+              <h3 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:24px;letter-spacing:-0.01em;margin:0 0 4px;color:var(--forest);">{p.data.title}</h3>
+              <p style="font-size:14px;color:var(--forest-soft);margin:0;">{p.data.description}</p>
+            </div>
+            <div class="mono" style="color:var(--ink-soft);">{formatDateShort(p.data.date, locale)}</div>
+          </a>
+        ))}
+      </section>
+    </div>
+  </main>
+  <Footer locale={locale} />
+  <BackToTop locale={locale} />
+</Base>
+
+<script>
+  document.querySelectorAll<HTMLFormElement>('.newsletter-form').forEach((form) => {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const f = e.currentTarget as HTMLFormElement;
+      const btn = f.querySelector('button[type="submit"]') as HTMLButtonElement;
+      const msg = f.querySelector('.newsletter-msg') as HTMLElement;
+      const input = f.querySelector('input[type="email"]') as HTMLInputElement;
+      const email = input.value.trim();
+      if (!email) return;
+
+      btn.disabled = true;
+      btn.style.opacity = '0.6';
+      msg.style.display = 'none';
+
+      try {
+        const res = await fetch('/api/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, locale: (f.dataset.locale as string) || 'en' }),
+        });
+        const data = await res.json();
+        msg.style.display = 'block';
+        if (data.status === 'subscribed') {
+          msg.textContent = 'Welcome \u2014 your first letter arrives Sunday.';
+          msg.style.color = 'var(--forest)';
+          input.value = '';
+        } else if (data.status === 'already_subscribed') {
+          msg.textContent = 'You are already subscribed.';
+          msg.style.color = 'var(--ochre)';
+        } else {
+          msg.textContent = 'Something went wrong.';
+          msg.style.color = 'var(--terracotta-dark)';
+        }
+      } catch {
+        msg.style.display = 'block';
+        msg.textContent = 'Network error \u2014 please try again.';
+        msg.style.color = 'var(--terracotta-dark)';
+      } finally {
+        btn.disabled = false;
+        btn.style.opacity = '1';
+      }
+    });
+  });
+</script>
