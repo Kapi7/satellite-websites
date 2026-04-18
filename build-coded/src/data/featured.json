@@ -1,62 +1,62 @@
 {
-  "updated": "2026-04-17",
-  "period": "2026-03-18 to 2026-04-15",
+  "updated": "2026-04-18",
+  "period": "2026-03-19 to 2026-04-16",
   "trending": [
     {
       "slug": "arduino-projects-beginners",
       "clicks": 2,
-      "impressions": 30,
-      "position": 6.7
+      "impressions": 38,
+      "position": 6.3
     },
     {
       "slug": "beginner-woodworking-joints-guide",
       "clicks": 0,
-      "impressions": 64,
-      "position": 7.6
+      "impressions": 77,
+      "position": 7.5
     },
     {
       "slug": "best-3d-printers-beginners",
       "clicks": 0,
-      "impressions": 55,
-      "position": 40.6
-    },
-    {
-      "slug": "best-multimeters-home-use",
-      "clicks": 1,
-      "impressions": 26,
-      "position": 36.4
+      "impressions": 101,
+      "position": 42.6
     },
     {
       "slug": "best-orbital-sanders",
       "clicks": 0,
-      "impressions": 42,
-      "position": 46.8
+      "impressions": 74,
+      "position": 50.6
     },
     {
-      "slug": "bathroom-renovation-cost-breakdown",
+      "slug": "best-soldering-irons-beginners",
       "clicks": 0,
-      "impressions": 34,
-      "position": 34.2
+      "impressions": 49,
+      "position": 17.7
+    },
+    {
+      "slug": "best-multimeters-home-use",
+      "clicks": 1,
+      "impressions": 33,
+      "position": 35.3
     }
   ],
   "rising": [
     {
-      "slug": "best-soldering-irons-beginners",
-      "clicks": 0,
-      "impressions": 18,
-      "days_old": 6
-    },
-    {
       "slug": "best-heat-guns-crafts-diy",
       "clicks": 0,
-      "impressions": 20,
-      "days_old": 10
+      "impressions": 43,
+      "days_old": 11
+    },
+    {
+      "slug": "best-hot-glue-guns-crafters",
+      "clicks": 1,
+      "impressions": 11,
+      "days_old": 7
     },
     {
       "slug": "how-to-fix-a-running-toilet",
-      "clicks": 0,
-      "impressions": 19,
-      "days_old": 8
+      "clicks": 1,
+      "impressions": 13,
+      "days_old": 9
     }
   ]
 }
