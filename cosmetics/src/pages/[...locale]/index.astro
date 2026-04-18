@@ -336,10 +336,10 @@ const webSiteSchema = JSON.stringify({
         <small>{GC_CATEGORIES.length} TOPICS</small>
       </div>
       <div class="grid">
-        {GC_CATEGORIES.slice(0, 4).map((c, i) => (
+        {GC_CATEGORIES.map((c, i) => (
           <a
             href={localePath(`/category/${c.slug}/`, locale)}
-            class="tile"
+            class={`tile${i === 4 ? ' tile-wide' : ''}`}
             style={`background: var(--${c.tint === 'coral' ? 'color-rose-500' : c.tint === 'butter' ? 'butter' : c.tint === 'mint' ? 'mint' : c.tint === 'plum' ? 'color-plum-300' : 'sky'}); transform: ${i % 2 ? 'rotate(-0.8deg)' : 'rotate(0.6deg)'};`}
           >
             <div class="num">{String(i + 1).padStart(2, '0')} / {c.count} POSTS</div>

@@ -959,6 +959,7 @@ html.dark .prose tbody tr:hover {
 .gcm-home .cats .tile .tag {
   font-size: 11px; font-style: italic;
 }
+.gcm-home .cats .tile.tile-wide { grid-column: 1 / -1; }
 
 /* Quiz card */
 .gcm-home .quiz-card {
