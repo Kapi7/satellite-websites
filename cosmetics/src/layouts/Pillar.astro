@@ -18,7 +18,10 @@ const { title, description, category, locale = 'en' } = Astro.props;
 
 const now = new Date();
 const allPosts = await getCollection('blog', ({ data }) => {
-  return data.category === category && !data.draft && data.locale === locale && data.date <= now;
+  if (data.draft || data.locale !== locale || data.date > now) return false;
+  /* 'routines' is a pseudo-category: filter by article type === 'routine' */
+  if (category === 'routines') return data.type === 'routine';
+  return data.category === category;
 });
 
 const sortedPosts = allPosts.sort(

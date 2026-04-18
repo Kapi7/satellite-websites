@@ -4,7 +4,7 @@ import { locales, defaultLocale, type Locale } from '../../../i18n/locales';
 import { t } from '../../../i18n/utils';
 
 export function getStaticPaths() {
-  const categories = ['skincare', 'ingredients', 'reviews', 'how-tos'];
+  const categories = ['skincare', 'ingredients', 'reviews', 'how-tos', 'routines'];
   const paths: { params: { locale?: string; cat: string }; props: { locale: Locale } }[] = [];
 
   for (const l of locales) {
@@ -22,19 +22,29 @@ export function getStaticPaths() {
 const { locale } = Astro.props as { locale: Locale };
 
 const categoryMetaKeys: Record<string, { titleKey: string; descKey: string }> = {
-  'skincare': { titleKey: 'categories.skincare', descKey: 'categoryDescriptions.skincare' },
+  'skincare':    { titleKey: 'categories.skincare',    descKey: 'categoryDescriptions.skincare' },
   'ingredients': { titleKey: 'categories.ingredients', descKey: 'categoryDescriptions.ingredients' },
-  'reviews': { titleKey: 'categories.reviews', descKey: 'categoryDescriptions.reviews' },
-  'how-tos': { titleKey: 'categories.howTos', descKey: 'categoryDescriptions.howTos' },
+  'reviews':     { titleKey: 'categories.reviews',     descKey: 'categoryDescriptions.reviews' },
+  'how-tos':     { titleKey: 'categories.howTos',      descKey: 'categoryDescriptions.howTos' },
 };
 
 const { cat } = Astro.params;
-const meta = categoryMetaKeys[cat!] || { titleKey: cat, descKey: '' };
+let title: string;
+let description: string;
+
+if (cat === 'routines') {
+  title = 'Routines';
+  description = "Morning, night, and the in-between. Step-by-step K-beauty routines for every skin concern.";
+} else {
+  const meta = categoryMetaKeys[cat!] || { titleKey: cat, descKey: '' };
+  title = t(locale, meta.titleKey);
+  description = t(locale, meta.descKey);
+}
 ---
 
 <Pillar
-  title={t(locale, meta.titleKey)}
-  description={t(locale, meta.descKey)}
+  title={title}
+  description={description}
   category={cat!}
   locale={locale}
 />
