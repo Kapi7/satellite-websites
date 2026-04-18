@@ -19,8 +19,13 @@ const { title, description, category, locale = 'en' } = Astro.props;
 const now = new Date();
 const allPosts = await getCollection('blog', ({ data }) => {
   if (data.draft || data.locale !== locale || data.date > now) return false;
-  /* 'routines' is a pseudo-category: filter by article type === 'routine' */
-  if (category === 'routines') return data.type === 'routine';
+  /* 'routines' is a pseudo-category: match type === 'routine' OR title/tags containing 'routine' */
+  if (category === 'routines') {
+    if (data.type === 'routine') return true;
+    const title = (data.title || '').toLowerCase();
+    const tags = (data.tags || []).map((t: string) => t.toLowerCase());
+    return title.includes('routine') || tags.some((t: string) => t.includes('routine'));
+  }
   return data.category === category;
 });
 

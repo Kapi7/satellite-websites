@@ -58,11 +58,18 @@ const cats = [
   { slug: 'how-tos', label: 'How-Tos', tint: 'sky', tagline: 'Less confusing, more glowing.' },
   { slug: 'routines', label: 'Routines', tint: 'plum', tagline: 'Morning, night, and the in-between.' },
 ];
-const GC_CATEGORIES = cats.map((c) => ({
-  ...c,
-  count: sortedPosts.filter((p) => p.data.category === c.slug).length
-      || (c.slug === 'routines' ? sortedPosts.filter((p) => p.data.type === 'routine').length : 0),
-}));
+const GC_CATEGORIES = cats.map((c) => {
+  if (c.slug === 'routines') {
+    const n = sortedPosts.filter((p) => {
+      if (p.data.type === 'routine') return true;
+      const title = (p.data.title || '').toLowerCase();
+      const tags = (p.data.tags || []).map((t: string) => t.toLowerCase());
+      return title.includes('routine') || tags.some((t: string) => t.includes('routine'));
+    }).length;
+    return { ...c, count: n };
+  }
+  return { ...c, count: sortedPosts.filter((p) => p.data.category === c.slug).length };
+});
 
 /* ===== Shop products (curated — matches prototype exactly) ===== */
 const GC_PRODUCTS = [
