@@ -9,136 +9,313 @@ interface Props {
 const { locale = 'en' } = Astro.props;
 
 const navItems = [
+  { key: 'home', label: t(locale, 'nav.home'), href: localePath('/', locale) },
+  { key: 'departments', label: t(locale, 'nav.departments'), href: localePath('/departments/', locale), match: ['/departments/', '/category/'] },
+  { key: 'freeTools', label: t(locale, 'nav.freeTools'), href: localePath('/free-tools/', locale), match: ['/free-tools/', '/tool-finder/', '/cost-calculator/', '/idea-generator/'] },
+  { key: 'newsletter', label: t(locale, 'nav.newsletter'), href: localePath('/#newsletter', locale) },
+  { key: 'about', label: t(locale, 'nav.about'), href: localePath('/about/', locale) },
+];
+
+const departments = [
   { label: t(locale, 'nav.woodworking'), href: localePath('/category/woodworking/', locale) },
   { label: t(locale, 'nav.homeImprovement'), href: localePath('/category/home-improvement/', locale) },
   { label: t(locale, 'nav.electronics'), href: localePath('/category/electronics/', locale) },
   { label: t(locale, 'nav.crafts'), href: localePath('/category/crafts/', locale) },
-  { label: t(locale, 'nav.about'), href: localePath('/about/', locale) },
 ];
 
 const tools = [
-  { label: t(locale, 'nav.costCalculator'), href: localePath('/cost-calculator/', locale), desc: t(locale, 'nav.costCalculatorDesc'), icon: '<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17 17.25 21A2.652 2.652 0 0 0 21 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 1 1-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 0 0 4.486-6.336l-3.276 3.277a3.004 3.004 0 0 1-2.25-2.25l3.276-3.276a4.5 4.5 0 0 0-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085" /></svg>' },
-  { label: t(locale, 'nav.toolFinder'), href: localePath('/tool-finder/', locale), desc: t(locale, 'nav.toolFinderDesc'), icon: '<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" /></svg>' },
-  { label: t(locale, 'nav.ideaGenerator'), href: localePath('/idea-generator/', locale), desc: t(locale, 'nav.ideaGeneratorDesc'), icon: '<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.478a12.06 12.06 0 0 1-4.5 0m3.75 2.383a14.406 14.406 0 0 1-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 1 0-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" /></svg>' },
+  { label: t(locale, 'nav.toolFinder'), href: localePath('/tool-finder/', locale) },
+  { label: t(locale, 'nav.costCalculator'), href: localePath('/cost-calculator/', locale) },
+  { label: t(locale, 'nav.ideaGenerator'), href: localePath('/idea-generator/', locale) },
 ];
+
+const now = new Date();
+const monthNames = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+const issueStamp = `VOL. IV \u00b7 ${monthNames[now.getMonth()]} ${now.getFullYear()}`;
 ---
-<header class="bg-cream/80 backdrop-blur-xl sticky top-0 z-50 transition-all duration-300" id="site-header">
-  <div class="max-w-[1400px] mx-auto px-6 sm:px-10">
-    <div class="flex items-center justify-between py-5">
-      <!-- Logo -->
-      <a href={localePath('/', locale)} class="group shrink-0">
-        <img src="/logo.svg" alt="Build Coded" class="h-10 sm:h-11 w-auto" />
+<header class="bcd-header sticky top-0 z-50" id="site-header">
+  <div class="bcd-top-wrap">
+    <!-- Desktop top bar -->
+    <div class="bcd-top">
+      <a href={localePath('/', locale)} class="brand" aria-label="Build Coded">
+        <span class="sq"></span>
+        <span class="brand-mark">BUILD CODED</span>
       </a>
-
-      <!-- Desktop Nav -->
-      <nav class="hidden lg:flex items-center gap-7">
+      <nav class="links" aria-label="Primary">
         {navItems.map((item) => (
-          <a
-            href={item.href}
-            class="text-[16px] font-heading italic tracking-tight text-charcoal-light/60 hover:text-steel-600 transition-colors duration-200 relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[0.5px] after:bg-steel-500 after:transition-all after:duration-300 hover:after:w-full"
-          >
-            {item.label}
-          </a>
+          item.external ? (
+            <a href={item.href} class="bcd-top-link" data-nav-key={item.key} target="_blank" rel="noopener noreferrer">{item.label}</a>
+          ) : (
+            <a href={item.href} class="bcd-top-link" data-nav-key={item.key} data-match={Array.isArray(item.match) ? item.match.join(',') : (item.match || '')}>{item.label}</a>
+          )
         ))}
-
-        <!-- Tools Dropdown -->
-        <div class="relative" id="tools-dropdown">
-          <button
-            id="tools-trigger"
-            class="text-[16px] font-heading italic tracking-tight text-charcoal-light/60 hover:text-steel-600 transition-colors duration-200 flex items-center gap-1 cursor-pointer"
-          >
-            {t(locale, 'nav.tools')}
-            <svg class="w-3.5 h-3.5 transition-transform duration-200" id="tools-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="m19.5 8.25-7.5 7.5-7.5-7.5"/></svg>
-          </button>
-          <div id="tools-panel" class="hidden absolute top-full right-0 mt-3 w-72 bg-white rounded-xl shadow-lg border border-steel-100/60 overflow-hidden z-50">
-            {tools.map((tool) => (
-              <a
-                href={tool.href}
-                class="group flex items-start gap-3 px-5 py-3.5 hover:bg-steel-50/60 transition-colors border-b border-steel-50 last:border-0"
-              >
-                <div class="w-9 h-9 rounded-lg bg-steel-50 flex items-center justify-center text-steel-500 group-hover:bg-steel-100 group-hover:text-steel-600 transition-colors shrink-0 mt-0.5" set:html={tool.icon} />
-                <div>
-                  <span class="block text-sm font-medium text-charcoal group-hover:text-steel-700 transition-colors">{tool.label}</span>
-                  <span class="block text-xs text-charcoal-light/60 leading-snug">{tool.desc}</span>
-                </div>
-              </a>
-            ))}
-          </div>
-        </div>
       </nav>
-
-      <!-- Actions -->
-      <div class="flex items-center gap-3">
-        <LanguageSwitcher locale={locale} />
-        <!-- Dark Mode Toggle -->
-        <button id="dark-mode-toggle" class="p-2 text-charcoal-light/60 hover:text-steel-600 transition-colors duration-200 rounded-full hover:bg-steel-50/60" aria-label={t(locale, 'common.toggleDarkMode')}>
-          <svg class="w-[18px] h-[18px] block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" /></svg>
-          <svg class="w-[18px] h-[18px] hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" /></svg>
-        </button>
-
-        <!-- Mobile Menu Button -->
-        <button id="mobile-menu-btn" class="lg:hidden p-2 -mr-2 text-charcoal-light/60 hover:text-steel-600 transition-colors duration-200" aria-label={t(locale, 'common.openMenu')}>
-          <svg id="menu-icon-open" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9h16.5m-16.5 6.75h16.5" /></svg>
-          <svg id="menu-icon-close" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" /></svg>
-        </button>
+      <div class="issue">
+        <span class="dot"></span>{issueStamp}
       </div>
+    </div>
+
+    <!-- Mobile top bar (matches prototype phone header: hamburger left, centered brand, search right) -->
+    <div class="bcd-top-mobile">
+      <button id="mobile-menu-btn" class="bcd-menu-btn" aria-label={t(locale, 'common.openMenu')}>
+        <span id="menu-icon-open" class="bcd-hamburger">
+          <span style="width: 22px;"></span>
+          <span style="width: 18px;"></span>
+          <span style="width: 22px;"></span>
+        </span>
+        <svg id="menu-icon-close" class="hidden" width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" /></svg>
+      </button>
+      <a href={localePath('/', locale)} class="brand brand-centered" aria-label="Build Coded">
+        <span class="sq-nested"><span class="sq-nested-inner"></span></span>
+        <span class="brand-mark">BUILD CODED</span>
+      </a>
+      <button class="bcd-search-btn" aria-label="Search" onclick="window.location.href='/'; return false;">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="M16 16 L21 21" stroke-linecap="round"/></svg>
+      </button>
     </div>
   </div>
 
-  <!-- Subtle bottom rule -->
-  <div class="h-[0.5px] bg-gradient-to-r from-transparent via-steel-300/50 to-transparent"></div>
-
-  <!-- Mobile Menu -->
-  <div id="mobile-menu" class="hidden lg:hidden bg-cream/95 backdrop-blur-xl border-t border-steel-100/60">
-    <nav class="max-w-[1400px] mx-auto px-6 py-6 flex flex-col gap-1">
+  <div id="mobile-menu" class="hidden bcd-mobile-menu">
+    <nav>
       {navItems.map((item) => (
-        <a
-          href={item.href}
-          class="py-2.5 text-[16px] font-heading italic tracking-tight text-charcoal-light/60 hover:text-steel-600 transition-colors duration-200 border-b border-steel-100/40 last:border-0"
-        >
-          {item.label}
-        </a>
+        item.external ? (
+          <a href={item.href} class="bcd-mobile-link" data-nav-key={item.key} target="_blank" rel="noopener noreferrer">{item.label}</a>
+        ) : (
+          <a href={item.href} class="bcd-mobile-link" data-nav-key={item.key}>{item.label}</a>
+        )
       ))}
-      <!-- Tools section in mobile -->
-      <div class="pt-3 mt-2 border-t border-steel-200/40">
-        <span class="block text-[10px] font-bold uppercase tracking-widest text-charcoal-light/40 mb-2 px-0">{t(locale, 'nav.tools')}</span>
-        {tools.map((tool) => (
-          <a
-            href={tool.href}
-            class="flex items-center gap-3 py-2.5 text-[16px] font-heading italic tracking-tight text-charcoal-light/60 hover:text-steel-600 transition-colors duration-200"
-          >
-            <span class="text-steel-400 w-5 h-5 shrink-0" set:html={tool.icon} />
-            {tool.label}
-          </a>
+      <div class="bcd-mobile-section">
+        <span class="bcd-mobile-section-label">{t(locale, 'nav.departments')}</span>
+        {departments.map((d) => (
+          <a href={d.href} class="bcd-mobile-link">{d.label}</a>
         ))}
+      </div>
+      <div class="bcd-mobile-section">
+        <span class="bcd-mobile-section-label">{t(locale, 'nav.tools')}</span>
+        {tools.map((tool) => (
+          <a href={tool.href} class="bcd-mobile-link">{tool.label}</a>
+        ))}
+      </div>
+      <div class="bcd-mobile-section">
+        <LanguageSwitcher locale={locale} />
       </div>
     </nav>
   </div>
 </header>
 
-<script>
-  // Tools dropdown
-  const toolsTrigger = document.getElementById('tools-trigger');
-  const toolsPanel = document.getElementById('tools-panel');
-  const toolsChevron = document.getElementById('tools-chevron');
-  let toolsOpen = false;
+<style>
+  .bcd-header {
+    background: var(--paper-light);
+    border-bottom: 1.5px solid var(--ink);
+  }
+  .bcd-top-wrap {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+  .bcd-top {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 28px;
+    padding: 16px 0 14px;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--ink);
+  }
+  .brand .sq {
+    width: 14px; height: 14px;
+    background: var(--safety);
+    border: 1.5px solid var(--ink);
+    display: inline-block;
+  }
+  .brand .brand-mark {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+  .links {
+    display: flex;
+    gap: 4px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .bcd-top-link {
+    color: var(--ink);
+    text-decoration: none;
+    cursor: pointer;
+    padding: 6px 12px;
+    border: 1.5px solid transparent;
+    border-radius: 2px;
+    font-family: inherit;
+    font-size: inherit;
+    letter-spacing: inherit;
+    text-transform: inherit;
+    transition: all 0.15s;
+  }
+  .bcd-top-link:hover { border-color: var(--ink); }
+  .bcd-top-link.active {
+    background: var(--ink);
+    color: var(--paper-light);
+  }
+  .issue {
+    text-align: right;
+    color: var(--pencil);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    justify-content: flex-end;
+  }
+  .issue .dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    background: var(--safety);
+    margin-right: 6px;
+    vertical-align: 2px;
+  }
+  .bcd-header-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: 8px;
+  }
+  .bcd-dark-btn {
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 4px;
+    color: var(--ink);
+  }
+  .bcd-top-mobile { display: none; }
 
-  toolsTrigger?.addEventListener('click', (e) => {
-    e.stopPropagation();
-    toolsOpen = !toolsOpen;
-    toolsPanel?.classList.toggle('hidden', !toolsOpen);
-    toolsChevron?.classList.toggle('rotate-180', toolsOpen);
-  });
-
-  document.addEventListener('click', (e) => {
-    if (toolsOpen && !document.getElementById('tools-dropdown')?.contains(e.target as Node)) {
-      toolsOpen = false;
-      toolsPanel?.classList.add('hidden');
-      toolsChevron?.classList.remove('rotate-180');
+  /* Mobile styles */
+  @media (max-width: 960px) {
+    .bcd-top { display: none; }
+    .bcd-top-mobile {
+      display: grid;
+      grid-template-columns: 36px 1fr 36px;
+      align-items: center;
+      padding: 14px 0 12px;
     }
-  });
+    .bcd-top-mobile .brand-centered {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      justify-self: center;
+    }
+    .bcd-top-mobile .brand-mark {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 16px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .sq-nested {
+      width: 16px;
+      height: 16px;
+      background: var(--safety);
+      position: relative;
+      display: inline-block;
+    }
+    .sq-nested-inner {
+      position: absolute;
+      inset: 3px;
+      background: var(--paper-light);
+      display: block;
+    }
+    .bcd-hamburger {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+    }
+    .bcd-hamburger span {
+      height: 2px;
+      background: var(--ink);
+      display: block;
+    }
+    .bcd-menu-btn,
+    .bcd-search-btn {
+      border: none;
+      background: transparent;
+      padding: 6px 0;
+      cursor: pointer;
+      color: var(--ink);
+      justify-self: start;
+    }
+    .bcd-search-btn { justify-self: end; }
+    .bcd-top-wrap { padding: 0 18px; }
+  }
 
-  // Mobile menu toggle
+  .bcd-mobile-menu {
+    background: var(--paper-light);
+    border-top: 1.5px solid var(--ink);
+  }
+  .bcd-mobile-menu nav {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 14px 18px 20px;
+  }
+  .bcd-mobile-link {
+    display: block;
+    padding: 12px 0;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px dashed var(--rule);
+  }
+  .bcd-mobile-link.active { color: var(--safety); }
+  .bcd-mobile-section {
+    padding-top: 14px;
+    margin-top: 8px;
+    border-top: 1.5px solid var(--ink);
+  }
+  .bcd-mobile-section-label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--pencil);
+    margin-bottom: 6px;
+  }
+  .hidden { display: none; }
+</style>
+
+<script>
+  function setActiveNav() {
+    const path = window.location.pathname;
+    document.querySelectorAll('[data-nav-key]').forEach((el) => {
+      const key = el.getAttribute('data-nav-key');
+      const match = el.getAttribute('data-match') || '';
+      let isActive = false;
+      if (key === 'home') {
+        isActive = path === '/' || !!path.match(/^\/[a-z]{2}\/?$/);
+      } else if (match) {
+        isActive = match.split(',').some((m) => m && path.startsWith(m));
+      } else {
+        const href = el.getAttribute('href') || '';
+        isActive = href !== '/' && path.startsWith(href);
+      }
+      if (isActive) el.classList.add('active');
+    });
+  }
+  setActiveNav();
+
   const btn = document.getElementById('mobile-menu-btn');
   const menu = document.getElementById('mobile-menu');
   const iconOpen = document.getElementById('menu-icon-open');
@@ -149,20 +326,9 @@ const tools = [
     iconClose?.classList.toggle('hidden', isHidden);
   });
 
-  // Scroll shadow
-  const header = document.getElementById('site-header');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 60) {
-      header?.classList.add('shadow-sm');
-    } else {
-      header?.classList.remove('shadow-sm');
-    }
-  }, { passive: true });
-
-  // Dark mode toggle
-  const toggle = document.getElementById('dark-mode-toggle');
-  toggle?.addEventListener('click', () => {
+  const toggleDark = () => {
     const isDark = document.documentElement.classList.toggle('dark');
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
-  });
+  };
+  document.getElementById('dark-mode-toggle')?.addEventListener('click', toggleDark);
 </script>

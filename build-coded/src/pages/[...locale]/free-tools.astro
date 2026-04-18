@@ -1,0 +1,267 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { locales, defaultLocale, type Locale } from '../../i18n/locales';
+import { t, localePath } from '../../i18n/utils';
+
+export function getStaticPaths() {
+  return locales.map(l => ({
+    params: { locale: l === defaultLocale ? undefined : l },
+    props: { locale: l },
+  }));
+}
+
+const { locale } = Astro.props as { locale: Locale };
+
+const tools = [
+  {
+    num: 'TOOL 01', badge: 'Most Used', featured: true,
+    title: t(locale, 'nav.toolFinder'),
+    em: 'finder.',
+    href: localePath('/tool-finder/', locale),
+    desc: "Four questions. We recommend from 200+ tools we've personally tested — matched to your project, skill, budget, and timeline. Amazon affiliate links; price you pay is the same.",
+    meta: ['4 questions', '2 min', 'no email'],
+    mark: '01',
+  },
+  {
+    num: 'TOOL 02', badge: 'New',
+    title: t(locale, 'nav.costCalculator'),
+    em: 'calculator.',
+    href: localePath('/cost-calculator/', locale),
+    desc: 'Pick a project, see the material breakdown and recommended tools. Export as a plain-text shopping list.',
+    meta: ['material DB', 'plywood \u00b7 pine \u00b7 mdf', 'tax-aware'],
+    mark: '02',
+  },
+  {
+    num: 'TOOL 03',
+    title: t(locale, 'nav.ideaGenerator'),
+    em: 'generator.',
+    href: localePath('/idea-generator/', locale),
+    desc: 'Tell us your space, skill level, budget, and interests. We generate personalized DIY project ideas for your weekend.',
+    meta: ['AI-powered', 'photo optional', 'personalized'],
+    mark: '03',
+  },
+];
+---
+
+<Base title={t(locale, 'nav.freeTools')} description={t(locale, 'freeTools.description')} locale={locale}>
+  <Header locale={locale} />
+  <main class="flex-1">
+    <div class="bcd-tool-wrap wide">
+      <div class="bcd-tools-mast">
+        <div>
+          <div class="bcd-kicker">&sect; FREE TOOLS &middot; NO ACCOUNTS &middot; AMAZON AFFILIATE</div>
+          <h1 class="bcd-tool-title">Free<br/><em>tools.</em></h1>
+        </div>
+        <div class="bcd-tool-lede">
+          Calculators and checklists we built for ourselves. Free to use, no login, no email required.
+        </div>
+      </div>
+
+      <div class="bcd-tools-docket">
+        <div><b>DOC</b>TOOLS.INDEX</div>
+        <div><b>COUNT</b>0{tools.length} &middot; MORE COMING</div>
+        <div><b>UPDATED</b>APR 2026</div>
+        <div><b>LICENSE</b>FREE</div>
+      </div>
+
+      <div class="bcd-tools-grid">
+        {tools.map((tl) => (
+          <a href={tl.href} class={'bc-tool-card' + (tl.featured ? ' feat' : '')}>
+            {tl.badge && <span class="badge">{tl.badge}</span>}
+            <div class="num">{tl.num}</div>
+            <h3>The {tl.title.toLowerCase().replace(/^ai /, '').replace(/^(tool|cost|idea) /i, '')} <em>{tl.em}</em></h3>
+            <div class="desc">{tl.desc}</div>
+            <div class="meta">
+              {tl.meta.map((m) => (<span>&middot; {m}</span>))}
+            </div>
+            <div class="cta">Launch tool &rarr;</div>
+            <div class="mark">{tl.mark}</div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </main>
+  <Footer locale={locale} />
+
+  <style>
+    .bcd-tools-mast {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 40px;
+      padding-bottom: 28px;
+      margin-bottom: 40px;
+      border-bottom: 2px solid var(--ink);
+      align-items: end;
+    }
+    .bcd-tools-mast .bcd-tool-title {
+      font-size: clamp(80px, 11vw, 140px);
+      margin: 12px 0 0;
+      line-height: 0.86;
+      letter-spacing: -0.025em;
+    }
+    .bcd-tools-mast .bcd-tool-lede {
+      padding-bottom: 10px;
+      max-width: 440px;
+    }
+    .bcd-tools-docket {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      padding: 14px 24px;
+      background: var(--ink);
+      color: #a8b3c0;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      border-radius: 2px;
+    }
+    .bcd-tools-docket b {
+      color: var(--amber);
+      font-weight: 400;
+      margin-right: 8px;
+    }
+    .bcd-tools-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    .bc-tool-card {
+      position: relative;
+      background: var(--paper-light);
+      border: 1.8px solid var(--ink);
+      border-radius: 3px;
+      padding: 34px 32px;
+      cursor: pointer;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: transform 0.15s, box-shadow 0.15s;
+      box-shadow: 4px 4px 0 var(--ink);
+      min-height: 300px;
+      text-decoration: none;
+      color: inherit;
+    }
+    .bc-tool-card:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0 var(--safety);
+    }
+    .bc-tool-card.feat {
+      grid-column: 1 / span 2;
+      background: var(--steel);
+      color: #e4e9f0;
+      border-color: var(--steel);
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    .bc-tool-card.feat .num,
+    .bc-tool-card.feat .meta { color: var(--amber); }
+    .bc-tool-card.feat .desc { color: rgba(228, 233, 240, 0.82); }
+    .bc-tool-card .num {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--pencil);
+    }
+    .bc-tool-card h3 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 44px;
+      line-height: 0.95;
+      letter-spacing: -0.01em;
+      margin: 0;
+      text-transform: uppercase;
+    }
+    .bc-tool-card.feat h3 { font-size: 68px; }
+    .bc-tool-card h3 em {
+      font-style: italic;
+      color: var(--safety);
+      font-weight: 500;
+      text-transform: none;
+    }
+    .bc-tool-card.feat h3 em { color: var(--amber); }
+    .bc-tool-card .desc {
+      font-size: 14.5px;
+      line-height: 1.55;
+      color: #3a3f47;
+      max-width: 400px;
+      flex: 1;
+    }
+    .bc-tool-card.feat .desc {
+      max-width: 520px;
+      font-size: 15.5px;
+    }
+    .bc-tool-card .meta {
+      display: flex;
+      gap: 18px;
+      padding-top: 14px;
+      border-top: 1.3px dashed var(--rule);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--pencil);
+      flex-wrap: wrap;
+    }
+    .bc-tool-card.feat .meta { border-top-color: rgba(255, 255, 255, 0.18); }
+    .bc-tool-card .cta {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--safety);
+      font-weight: 600;
+    }
+    .bc-tool-card.feat .cta { color: var(--amber); }
+    .bc-tool-card .badge {
+      position: absolute;
+      top: 16px;
+      right: 18px;
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      background: var(--safety);
+      color: #fff;
+      padding: 4px 8px;
+      border-radius: 2px;
+    }
+    .bc-tool-card.feat .badge {
+      background: var(--amber);
+      color: var(--ink);
+    }
+    .bc-tool-card .mark {
+      position: absolute;
+      right: -30px;
+      bottom: -60px;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 280px;
+      line-height: 1;
+      color: rgba(27, 32, 39, 0.05);
+      user-select: none;
+      pointer-events: none;
+      text-transform: uppercase;
+    }
+    .bc-tool-card.feat .mark {
+      color: rgba(255, 255, 255, 0.06);
+      font-size: 340px;
+    }
+
+    @media (max-width: 900px) {
+      .bcd-tools-mast { grid-template-columns: 1fr; }
+      .bcd-tools-docket { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .bcd-tools-grid { grid-template-columns: 1fr; }
+      .bc-tool-card.feat { grid-column: auto; }
+      .bc-tool-card h3 { font-size: 34px; }
+      .bc-tool-card.feat h3 { font-size: 44px; }
+    }
+  </style>
+</Base>

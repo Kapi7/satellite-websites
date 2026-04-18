@@ -1,0 +1,113 @@
+---
+import { t, localePath, type Locale } from '../i18n/utils';
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = 'en' } = Astro.props;
+
+const tabs = [
+  {
+    key: 'home', label: t(locale, 'mobileNav.home'), href: localePath('/', locale), match: ['^/$', '^/[a-z]{2}/?$'],
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8 H12 L14 10 H18 L20 12 H22 M14 10 V14 L12 16 H3 Z M9 16 V22 L11 22 V16"/></svg>`
+  },
+  {
+    key: 'projects', label: t(locale, 'mobileNav.projects'), href: localePath('/departments/', locale), match: ['/departments/', '/category/'],
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8 L20 8 L21 11 L14 11"/><path d="M3 8 L4 14 L6 12 L7 14 L9 12 L10 14 L12 12 L13 14"/><rect x="14" y="7" width="2.5" height="5"/></svg>`
+  },
+  {
+    key: 'tools', label: t(locale, 'mobileNav.toolFind'), href: localePath('/free-tools/', locale), match: ['/free-tools/', '/tool-finder/', '/cost-calculator/', '/idea-generator/'],
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 5 A4 4 0 1 0 19 10 L21 12 L12 21 L3 12 L12 3 Z"/></svg>`
+  },
+  {
+    key: 'more', label: t(locale, 'mobileNav.more'), href: localePath('/about/', locale), match: ['/about/', '/privacy/'],
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><circle cx="6" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="18" cy="12" r="1.5"/></svg>`
+  },
+];
+---
+
+<div class="bc-tab-bar" aria-label="Mobile tab bar">
+  {tabs.map((tab) => (
+    <a href={tab.href} class="bc-tab" data-tab-key={tab.key} data-tab-match={tab.match.join('|')}>
+      <span class="bc-tab-dot"></span>
+      <span class="bc-tab-icon" set:html={tab.icon}></span>
+      <span class="bc-tab-label">{tab.label}</span>
+    </a>
+  ))}
+</div>
+
+<style>
+  .bc-tab-bar {
+    display: none;
+  }
+  @media (max-width: 960px) {
+    .bc-tab-bar {
+      display: flex;
+      justify-content: space-around;
+      background: var(--paper-light);
+      border-top: 1.5px solid var(--ink);
+      padding: 8px 8px calc(8px + env(safe-area-inset-bottom, 0px));
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 40;
+    }
+    /* Reserve space so fixed tab bar doesn't cover last content */
+    body { padding-bottom: calc(58px + env(safe-area-inset-bottom, 0px)); }
+  }
+  .bc-tab {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    font-family: var(--font-body);
+    font-size: 9.5px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--pencil);
+    padding: 4px 10px;
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .bc-tab.active { color: var(--ink); }
+  .bc-tab.active .bc-tab-dot { opacity: 1; }
+  .bc-tab-dot {
+    width: 20px;
+    height: 2px;
+    background: var(--safety);
+    opacity: 0;
+    transition: opacity 0.15s;
+  }
+  .bc-tab-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .bc-tab-label {
+    line-height: 1;
+  }
+</style>
+
+<script>
+  (function () {
+    const path = window.location.pathname;
+    const tabs = document.querySelectorAll('[data-tab-key]');
+    // Pick the most specific match first: non-home tabs win over home for non-root paths
+    let activeTab: Element | null = null;
+    tabs.forEach((tab) => {
+      const match = tab.getAttribute('data-tab-match') || '';
+      const patterns = match.split('|').filter(Boolean);
+      for (const p of patterns) {
+        const re = new RegExp(p);
+        if (re.test(path)) {
+          if (!activeTab || tab.getAttribute('data-tab-key') !== 'home') activeTab = tab;
+          break;
+        }
+      }
+    });
+    activeTab?.classList.add('active');
+  })();
+</script>

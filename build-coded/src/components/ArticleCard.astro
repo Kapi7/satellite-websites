@@ -11,9 +11,13 @@ interface Props {
   type?: string;
   featured?: boolean;
   locale?: Locale;
+  difficulty?: string;
+  cost?: string;
+  time?: string;
+  indexNo?: number;
 }
 
-const { title, description, date, category, slug, image, type, featured = false, locale = 'en' } = Astro.props;
+const { title, description, date, category, slug, image, type, featured = false, locale = 'en', difficulty, cost, time, indexNo } = Astro.props;
 
 const categoryKeyMap: Record<string, string> = {
   'woodworking': 'categories.woodworking',
@@ -30,46 +34,169 @@ const typeKeyMap: Record<string, string> = {
   tutorial: 'types.tutorial',
 };
 
+const tintByCategory: Record<string, string> = {
+  'woodworking': 'wood',
+  'home-improvement': 'steel',
+  'electronics': 'electronics',
+  'crafts': 'craft',
+};
+
 const categoryLabel = categoryKeyMap[category] ? t(locale, categoryKeyMap[category]) : category;
 const typeLabel = type && typeKeyMap[type] ? t(locale, typeKeyMap[type]) : type;
 const formattedDate = formatDateShort(date, locale);
+const tint = tintByCategory[category] || 'wood';
 ---
 
-<article class={`group flex flex-col ${featured ? 'md:col-span-2' : ''}`}>
-  <a href={localePath('/' + slug + '/', locale)} class="flex flex-col h-full">
-    {image && (
-      <div class={`overflow-hidden rounded-2xl mb-6 bg-steel-50 ${featured ? 'aspect-[16/9]' : 'aspect-[3/2]'}`}>
-        <img
-          src={image}
-          alt={title}
-          class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-          loading="lazy"
-          width="600"
-          height="400"
-        />
-      </div>
-    )}
-    <div class="flex items-center gap-2 mb-2">
-      <span class="text-xs tracking-wide uppercase text-charcoal-light/60">
-        {categoryLabel}
-      </span>
-      {typeLabel && (
-        <>
-          <span class="w-1 h-1 rounded-full bg-charcoal-light/20"></span>
-          <span class="text-xs tracking-wide uppercase text-charcoal-light/40">
-            {typeLabel}
-          </span>
-        </>
+<article class={`bcd-art ${featured ? 'feat' : ''}`}>
+  <a href={localePath('/' + slug + '/', locale)} class="bcd-art-link">
+    <div class="bcd-art-img">
+      <span class="bcd-art-cat">{categoryLabel.toUpperCase()}</span>
+      {typeof indexNo === 'number' && (
+        <span class="bcd-art-no">NO. {indexNo.toString().padStart(2, '0')}</span>
+      )}
+      {image ? (
+        <img src={image} alt={title} class="bcd-art-image" loading="lazy" width="600" height="400" />
+      ) : (
+        <div class={`bc-ph bc-ph-${tint} bcd-art-ph`}>
+          <span class="bcd-art-big">{title[0]}</span>
+        </div>
       )}
     </div>
-    <h3 class={`font-heading group-hover:text-charcoal-light transition-colors leading-snug text-charcoal tracking-tight ${featured ? 'text-3xl' : 'text-xl'}`}>
-      {title}
-    </h3>
-    <p class="text-charcoal-light/70 text-sm mb-4 line-clamp-2 flex-grow">
-      {description}
-    </p>
-    <time class="text-xs text-charcoal-light/40 uppercase tracking-wide" datetime={date.toISOString()}>
-      {formattedDate}
-    </time>
+    <div class="bcd-art-body">
+      <h3 class={featured ? 'xl' : ''}>{title}</h3>
+      <p>{description}</p>
+      <div class="bcd-art-foot">
+        <span>{difficulty || typeLabel || 'Project'}{cost ? ` \u00b7 ${cost}` : ''}{time ? ` \u00b7 ${time}` : ''}</span>
+        <time datetime={date.toISOString()}>{formattedDate}</time>
+      </div>
+    </div>
   </a>
 </article>
+
+<style>
+  .bcd-art {
+    background: var(--paper-light);
+    border: 1.5px solid var(--ink);
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 4px 4px 0 var(--ink);
+    cursor: pointer;
+    transition: transform 0.18s, box-shadow 0.18s;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .bcd-art:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 7px 7px 0 var(--ink);
+  }
+  .bcd-art.feat { grid-row: span 2; align-self: stretch; }
+  .bcd-art-link {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+  }
+  .bcd-art-img {
+    position: relative;
+    border-bottom: 1.5px solid var(--ink);
+    overflow: hidden;
+    height: 220px;
+  }
+  .bcd-art.feat .bcd-art-img { height: 440px; }
+  .bcd-art-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .bcd-art-ph {
+    position: absolute;
+    inset: 0;
+  }
+  .bcd-art-big {
+    font-family: var(--font-heading);
+    font-size: 140px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.3);
+    text-shadow: 4px 4px 0 var(--ink);
+    line-height: 1;
+  }
+  .bcd-art.feat .bcd-art-big { font-size: 200px; }
+  .bcd-art-cat {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 2;
+    background: var(--ink);
+    color: var(--paper-light);
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    padding: 4px 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+  .bcd-art-no {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    z-index: 2;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    color: var(--paper-light);
+    background: rgba(27, 32, 39, 0.6);
+    padding: 3px 8px;
+  }
+  .bcd-art-body {
+    padding: 18px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+  }
+  .bcd-art-body h3 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 1.08;
+    letter-spacing: -0.005em;
+    margin: 0;
+    color: var(--ink);
+  }
+  .bcd-art-body h3.xl {
+    font-size: 38px;
+    line-height: 0.98;
+  }
+  .bcd-art-body p {
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .bcd-art-foot {
+    margin-top: auto;
+    padding-top: 12px;
+    border-top: 1px dashed var(--rule);
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--pencil);
+  }
+
+  @media (max-width: 768px) {
+    .bcd-art.feat { grid-row: span 1; }
+    .bcd-art.feat .bcd-art-img { height: 240px; }
+    .bcd-art-img { height: 180px; }
+    .bcd-art-body h3.xl { font-size: 26px; }
+    .bcd-art.feat .bcd-art-big { font-size: 120px; }
+  }
+</style>

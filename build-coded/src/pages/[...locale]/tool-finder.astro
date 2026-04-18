@@ -20,43 +20,145 @@ const categoryKeys = Object.keys(toolData.categories);
 <Base title={t(locale, 'toolFinder.title')} description={t(locale, 'toolFinder.description')} locale={locale}>
   <Header locale={locale} />
   <main class="flex-1">
-    <div class="max-w-4xl mx-auto px-5 sm:px-8 py-16">
-      <span class="inline-block text-[11px] font-semibold uppercase tracking-[0.2em] text-amber-500 mb-5">{t(locale, 'toolFinder.toolLabel')}</span>
-      <h1 class="font-heading text-4xl sm:text-5xl text-charcoal tracking-tight leading-[1.1] mb-4">{t(locale, 'toolFinder.title')}</h1>
-      <p class="text-lg text-charcoal-light/60 leading-relaxed mb-12 max-w-2xl">{t(locale, 'toolFinder.description')}</p>
+    <div class="bcd-tool-wrap">
+      <a href={localePath('/', locale)} class="tool-back">&larr; {t(locale, 'common.backToHome')}</a>
+      <div class="bcd-kicker">&sect; TOOL 01 &middot; {t(locale, 'toolFinder.toolLabel').toUpperCase()} FINDER</div>
+      <h1 class="bcd-tool-title">Find the <em>right</em> tool.</h1>
+      <p class="bcd-tool-lede">{t(locale, 'toolFinder.description')}</p>
 
-      <!-- Step 1: Category -->
-      <div class="mb-8">
-        <label class="block text-sm font-semibold text-charcoal mb-3">1. What type of project?</label>
-        <div class="flex flex-wrap gap-3" id="cat-buttons">
-          {categoryKeys.map(cat => (
-            <button data-cat={cat} class="cat-btn px-5 py-2.5 rounded-full border border-steel-200/60 text-sm font-medium text-charcoal hover:border-amber-400 transition-all cursor-pointer capitalize">
-              {cat.replace('-', ' ')}
-            </button>
-          ))}
+      <div class="bcd-finder-body">
+        <!-- Step 1: Category -->
+        <div class="bcd-step">
+          <div class="bcd-step-label">&sect; 01 &middot; Project type</div>
+          <div class="bcd-step-options" id="cat-buttons">
+            {categoryKeys.map(cat => (
+              <button data-cat={cat} class="bcd-opt-btn">
+                {cat.replace(/-/g, ' ')}
+              </button>
+            ))}
+          </div>
         </div>
-      </div>
 
-      <!-- Step 2: Skill Level -->
-      <div class="mb-8">
-        <label class="block text-sm font-semibold text-charcoal mb-3">2. Your skill level?</label>
-        <div class="flex flex-wrap gap-3" id="level-buttons">
-          {['beginner', 'intermediate', 'advanced'].map(level => (
-            <button data-level={level} class="level-btn px-5 py-2.5 rounded-full border border-steel-200/60 text-sm font-medium text-charcoal hover:border-amber-400 transition-all cursor-pointer capitalize">
-              {level}
-            </button>
-          ))}
+        <!-- Step 2: Skill Level -->
+        <div class="bcd-step">
+          <div class="bcd-step-label">&sect; 02 &middot; Skill level</div>
+          <div class="bcd-step-options" id="level-buttons">
+            {['beginner', 'intermediate', 'advanced'].map(level => (
+              <button data-level={level} class="bcd-opt-btn">
+                {level}
+              </button>
+            ))}
+          </div>
         </div>
-      </div>
 
-      <!-- Results -->
-      <div id="tool-results" class="hidden">
-        <h2 class="font-heading text-2xl text-charcoal mb-6">Recommended Tools</h2>
-        <div id="tool-list" class="space-y-4"></div>
+        <!-- Results -->
+        <div id="tool-results" class="hidden">
+          <div class="bcd-step-label" style="color: var(--safety);">&sect; 03 &middot; Your match</div>
+          <h2 class="bcd-results-heading">Recommended tools</h2>
+          <div id="tool-list" class="tool-list"></div>
+        </div>
       </div>
     </div>
   </main>
   <Footer locale={locale} />
+
+  <style>
+    .bcd-finder-body {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+    .bcd-step-label {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--pencil);
+      margin-bottom: 12px;
+    }
+    .bcd-step-options {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .bcd-opt-btn {
+      padding: 10px 18px;
+      border: 1.5px solid var(--ink);
+      border-radius: 2px;
+      background: var(--paper-light);
+      cursor: pointer;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink);
+      transition: all 0.15s;
+      box-shadow: 3px 3px 0 var(--ink);
+    }
+    .bcd-opt-btn:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0 var(--safety);
+    }
+    .bcd-opt-btn.active {
+      background: var(--ink);
+      color: var(--paper-light);
+      box-shadow: 3px 3px 0 var(--amber);
+    }
+
+    .bcd-results-heading {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 32px;
+      letter-spacing: -0.01em;
+      margin: 0 0 22px;
+      text-transform: uppercase;
+    }
+    .tool-list {
+      display: grid;
+      gap: 14px;
+    }
+    .tool-card {
+      background: var(--paper-light);
+      border: 1.5px solid var(--ink);
+      border-radius: 3px;
+      padding: 20px 22px;
+      box-shadow: 4px 4px 0 var(--ink);
+    }
+    .tool-card .head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 8px;
+      gap: 16px;
+    }
+    .tool-card .name {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 20px;
+    }
+    .tool-card .budget {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--safety);
+      white-space: nowrap;
+    }
+    .tool-card .why {
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--ink-soft);
+      margin: 0 0 10px;
+    }
+    .tool-card .pick {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--pencil);
+    }
+    .hidden { display: none; }
+  </style>
 </Base>
 
 <script define:vars={{ toolData }}>
@@ -75,31 +177,28 @@ const categoryKeys = Object.keys(toolData.categories);
 
     tools.forEach(tool => {
       const card = document.createElement('div');
-      card.className = 'bg-white border border-steel-200/60 rounded-xl p-5 hover:shadow-md transition-shadow';
+      card.className = 'tool-card';
 
-      const header = document.createElement('div');
-      header.className = 'flex items-start justify-between mb-2';
-
+      const head = document.createElement('div');
+      head.className = 'head';
       const name = document.createElement('h3');
-      name.className = 'font-heading text-lg text-charcoal font-semibold';
+      name.className = 'name';
       name.textContent = tool.name;
-
       const budget = document.createElement('span');
-      budget.className = 'text-sm font-semibold text-amber-600 whitespace-nowrap ml-4';
+      budget.className = 'budget';
       budget.textContent = tool.budget;
-
-      header.appendChild(name);
-      header.appendChild(budget);
+      head.appendChild(name);
+      head.appendChild(budget);
 
       const why = document.createElement('p');
-      why.className = 'text-sm text-charcoal-light/70 mb-3';
+      why.className = 'why';
       why.textContent = tool.why;
 
       const pick = document.createElement('div');
-      pick.className = 'text-xs text-steel-500';
-      pick.textContent = `Our pick: ${tool.pick}`;
+      pick.className = 'pick';
+      pick.textContent = `◆ Our pick: ${tool.pick}`;
 
-      card.appendChild(header);
+      card.appendChild(head);
       card.appendChild(why);
       card.appendChild(pick);
       container.appendChild(card);
@@ -108,23 +207,19 @@ const categoryKeys = Object.keys(toolData.categories);
     document.getElementById('tool-results').classList.remove('hidden');
   }
 
-  document.querySelectorAll('.cat-btn').forEach(btn => {
+  document.querySelectorAll('.bcd-opt-btn[data-cat]').forEach(btn => {
     btn.addEventListener('click', () => {
-      document.querySelectorAll('.cat-btn').forEach(b => {
-        b.classList.remove('bg-steel-700', 'text-white', 'border-steel-700');
-      });
-      btn.classList.add('bg-steel-700', 'text-white', 'border-steel-700');
+      document.querySelectorAll('.bcd-opt-btn[data-cat]').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
       selectedCat = btn.dataset.cat;
       updateResults();
     });
   });
 
-  document.querySelectorAll('.level-btn').forEach(btn => {
+  document.querySelectorAll('.bcd-opt-btn[data-level]').forEach(btn => {
     btn.addEventListener('click', () => {
-      document.querySelectorAll('.level-btn').forEach(b => {
-        b.classList.remove('bg-amber-500', 'text-steel-900', 'border-amber-500');
-      });
-      btn.classList.add('bg-amber-500', 'text-steel-900', 'border-amber-500');
+      document.querySelectorAll('.bcd-opt-btn[data-level]').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
       selectedLevel = btn.dataset.level;
       updateResults();
     });

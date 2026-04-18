@@ -56,10 +56,11 @@ spaces.forEach(s => {
 <Base title={t(locale, 'ideaGenerator.title')} description={t(locale, 'ideaGenerator.description')} locale={locale}>
   <Header locale={locale} />
   <main class="flex-1">
-    <div class="max-w-4xl mx-auto px-5 sm:px-8 py-16">
-      <span class="inline-block text-[11px] font-semibold uppercase tracking-[0.2em] text-amber-500 mb-5">{t(locale, 'ideaGenerator.toolLabel')}</span>
-      <h1 class="font-heading text-4xl sm:text-5xl text-charcoal tracking-tight leading-[1.1] mb-4">{t(locale, 'ideaGenerator.title')}</h1>
-      <p class="text-lg text-charcoal-light/60 leading-relaxed mb-12 max-w-2xl">{t(locale, 'ideaGenerator.description')}</p>
+    <div class="bcd-tool-wrap">
+      <a href={localePath('/', locale)} class="tool-back">&larr; {t(locale, 'common.backToHome')}</a>
+      <div class="bcd-kicker">&sect; TOOL 03 &middot; {t(locale, 'ideaGenerator.toolLabel').toUpperCase()}</div>
+      <h1 class="bcd-tool-title">What should I <em>build?</em></h1>
+      <p class="bcd-tool-lede">{t(locale, 'ideaGenerator.description')}</p>
 
       <div id="questionnaire" class="space-y-10">
         <!-- Step 1: Space -->

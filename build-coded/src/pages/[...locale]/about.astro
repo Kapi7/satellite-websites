@@ -40,14 +40,11 @@ if (aboutPage) {
 <Base title={pageTitle} description={pageDesc} locale={locale}>
   <Header locale={locale} />
   <main class="flex-1">
-    <article class="max-w-6xl mx-auto px-5 sm:px-8 py-16">
-      <div class="max-w-3xl">
-        <span class="inline-block text-[11px] font-semibold uppercase tracking-[0.2em] text-steel-300 mb-5">{t(locale, 'about.label')}</span>
-        <h1 class="font-heading text-4xl sm:text-5xl text-charcoal tracking-tight leading-[1.1] mb-8">
-          {t(locale, 'about.heading')}
-        </h1>
-      </div>
-      <div class="max-w-3xl prose mt-8">
+    <article class="bcd-tool-wrap">
+      <div class="bcd-kicker">&sect; {t(locale, 'about.label').toUpperCase()} &middot; EST. 2024</div>
+      <h1 class="bcd-tool-title">DIY, <em>honestly.</em></h1>
+      <p class="bcd-tool-lede">{t(locale, 'about.description')}</p>
+      <div class="prose" style="max-width: 760px; padding-top: 20px; border-top: 1.5px solid var(--ink); margin-top: 24px;">
         {Content ? <Content /> : (
           <p>{pageDesc}</p>
         )}

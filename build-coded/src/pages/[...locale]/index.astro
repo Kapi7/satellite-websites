@@ -2,9 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
-import HeroSlideshow from '../../components/HeroSlideshow.astro';
 import ArticleCard from '../../components/ArticleCard.astro';
-import NewsletterSignup from '../../components/NewsletterSignup.astro';
 import BackToTop from '../../components/BackToTop.astro';
 import { getCollection } from 'astro:content';
 import { locales, defaultLocale, type Locale } from '../../i18n/locales';
@@ -48,32 +46,42 @@ const recent = sortedPosts
   })
   .slice(0, 6);
 
-const slides = [
-  {
-    image: '/images/hero-slide-1.jpg',
-    title: t(locale, 'home.slideProjects'),
-    subtitle: t(locale, 'home.slideProjectsDesc'),
-    category: t(locale, 'nav.woodworking'),
-  },
-  {
-    image: '/images/hero-slide-2.jpg',
-    title: t(locale, 'home.slideWorkshop'),
-    subtitle: t(locale, 'home.slideWorkshopDesc'),
-    category: t(locale, 'nav.homeImprovement'),
-  },
-  {
-    image: '/images/hero-slide-3.jpg',
-    title: t(locale, 'home.slideTools'),
-    subtitle: t(locale, 'home.slideToolsDesc'),
-    category: t(locale, 'nav.electronics'),
-  },
+const categories = [
+  { slug: 'woodworking', label: t(locale, 'categories.woodworking'), icon: 'saw', desc: 'saw · joinery · finish', tint: 'wood', count: sortedPosts.filter(p => p.data.category === 'woodworking').length },
+  { slug: 'home-improvement', label: t(locale, 'categories.homeImprovement'), icon: 'wrench', desc: 'repair · paint · tile', tint: 'steel', count: sortedPosts.filter(p => p.data.category === 'home-improvement').length },
+  { slug: 'electronics', label: t(locale, 'categories.electronics'), icon: 'chip', desc: 'arduino · solder · pcb', tint: 'electronics', count: sortedPosts.filter(p => p.data.category === 'electronics').length },
+  { slug: 'crafts', label: t(locale, 'categories.crafts'), icon: 'brush', desc: 'cast · sew · print', tint: 'craft', count: sortedPosts.filter(p => p.data.category === 'crafts').length },
 ];
 
-const categories = [
-  { slug: 'woodworking', label: t(locale, 'categories.woodworking'), icon: '🪚', desc: t(locale, 'categoryDescriptions.woodworking'), count: sortedPosts.filter(p => p.data.category === 'woodworking').length },
-  { slug: 'home-improvement', label: t(locale, 'categories.homeImprovement'), icon: '🏠', desc: t(locale, 'categoryDescriptions.homeImprovement'), count: sortedPosts.filter(p => p.data.category === 'home-improvement').length },
-  { slug: 'electronics', label: t(locale, 'categories.electronics'), icon: '⚡', desc: t(locale, 'categoryDescriptions.electronics'), count: sortedPosts.filter(p => p.data.category === 'electronics').length },
-  { slug: 'crafts', label: t(locale, 'categories.crafts'), icon: '🎨', desc: t(locale, 'categoryDescriptions.crafts'), count: sortedPosts.filter(p => p.data.category === 'crafts').length },
+const heroPost = trendingPosts[0] || sortedPosts[0];
+const editorialRest = (trendingPosts.length > 1 ? trendingPosts.slice(1, 5) : sortedPosts.slice(1, 5));
+
+const totalArticles = sortedPosts.length;
+const totalCategories = categories.length;
+
+const mobileGrid = editorialRest.slice(0, 4);
+const mobileList = recent.slice(0, 3);
+
+const chipTabs = [
+  { label: t(locale, 'home.chipLatest'), href: localePath('/', locale), active: true },
+  { label: t(locale, 'home.chipWoodworking'), href: localePath('/category/woodworking/', locale) },
+  { label: t(locale, 'home.chipHomeFix'), href: localePath('/category/home-improvement/', locale) },
+  { label: t(locale, 'home.chipElectronics'), href: localePath('/category/electronics/', locale) },
+  { label: t(locale, 'home.chipCrafts'), href: localePath('/category/crafts/', locale) },
+];
+
+const mobileMetrics = [
+  { n: String(totalArticles), l: t(locale, 'home.trustProjects') },
+  { n: '42', l: t(locale, 'home.trustTools') },
+  { n: '0', l: t(locale, 'home.trustSponsored') },
+];
+
+const marqueeItems = [
+  'NEW PLANS \u00b7 WEEKLY',
+  'FREE TOOL FINDER',
+  'NO GATEKEEPING',
+  'HONEST REVIEWS',
+  t(locale, 'home.issueStamp') || 'APR ISSUE \u00b7 OUT NOW',
 ];
 
 const orgSchema = JSON.stringify({
@@ -86,6 +94,15 @@ const webSiteSchema = JSON.stringify({
   '@context': 'https://schema.org', '@type': 'WebSite',
   name: 'Build Coded', url: 'https://build-coded.com',
 });
+
+const slugOf = (p: any) => (p.id.includes('/') ? p.id.split('/').slice(1).join('/') : p.id).replace('.mdx', '').replace('.md', '');
+
+const tintByCategory: Record<string, string> = {
+  'woodworking': 'wood',
+  'home-improvement': 'steel',
+  'electronics': 'electronics',
+  'crafts': 'craft',
+};
 ---
 
 <Base
@@ -96,188 +113,1543 @@ const webSiteSchema = JSON.stringify({
 >
   <Header locale={locale} />
 
-  <main class="flex-1">
-    <!-- Hero -->
-    <div class="pt-6 animate-fade-in">
-      <HeroSlideshow slides={slides} />
+  <!-- ============================================================ -->
+  <!-- MOBILE HOMEPAGE (visible <= 960px)                            -->
+  <!-- ============================================================ -->
+  <main class="bc-mobile-home flex-1">
+    <!-- Masthead -->
+    <section class="bc-mh-mast">
+      <div class="bc-mh-mast-row">
+        <span class="mono bc-mh-dim">{t(locale, 'home.volIssue')}</span>
+        <span class="mono bc-mh-dim">{t(locale, 'home.season')}</span>
+      </div>
+      <h1 class="bc-mh-headline">
+        {t(locale, 'home.mobileHeroHead1')}<br/>
+        <em>{t(locale, 'home.mobileHeroHead2')}</em> {t(locale, 'home.mobileHeroHead3')}<br/>
+        {t(locale, 'home.mobileHeroHead4')}
+      </h1>
+      <p class="bc-mh-sub">{t(locale, 'home.mobileSubhead')}</p>
+    </section>
+
+    <!-- Chip row -->
+    <div class="bc-mh-chips bc-scroll">
+      {chipTabs.map((chip, i) => (
+        <a href={chip.href} class={`bc-chip ${i === 0 ? 'active' : ''}`}>{chip.label}</a>
+      ))}
     </div>
 
-    <!-- Trending (GSC top performers) -->
-    {trendingPosts.length > 0 && (
-      <section class="max-w-[1400px] mx-auto px-5 sm:px-8 pt-14 sm:pt-20 mb-16 sm:mb-24">
-        <div class="flex justify-between items-end mb-12">
-          <div>
-            <span class="block text-[11px] font-semibold uppercase tracking-wide text-charcoal-light/50 mb-2">{t(locale, 'home.trending')}</span>
-            <h2 class="font-heading text-4xl text-charcoal tracking-tight">{t(locale, 'home.readerFavorites')}</h2>
+    <!-- Featured project -->
+    {heroPost && (
+      <section class="bc-mh-featured">
+        <div class="bc-mh-kicker">
+          <span class="bc-mh-kicker-rule"></span>
+          <span class="mono">{t(locale, 'home.featuredProject')}</span>
+        </div>
+        <a href={localePath('/' + slugOf(heroPost) + '/', locale)} class="bc-card bc-mh-hero-card">
+          <div class="bc-mh-hero-ph">
+            {heroPost.data.image ? (
+              <img src={heroPost.data.image} alt={heroPost.data.title} />
+            ) : (
+              <div class={`bc-ph bc-ph-${tintByCategory[heroPost.data.category] || 'wood'}`} style="position:absolute; inset:0;">
+                <svg viewBox="0 0 200 160" width="170" fill="none" stroke="#1b2027" stroke-width="1.3" stroke-linecap="round" style="position:relative; z-index:2;">
+                  <rect x="20" y="60" width="160" height="14" stroke-width="1.6"/>
+                  <path d="M20 74 L30 80 L170 80 L180 74"/>
+                  <path d="M12 44 L20 60 M20 44 V88 M28 44 L20 60"/>
+                  <circle cx="50" cy="50" r="2.5" fill="#1b2027"/>
+                  <circle cx="150" cy="50" r="2.5" fill="#1b2027"/>
+                  <path d="M50 50 L50 67 M150 50 L150 67" stroke-dasharray="2 2"/>
+                  <text x="150" y="30" font-family="Bitter,serif" font-size="8" font-style="italic" fill="#1b2027">fig. 01</text>
+                </svg>
+              </div>
+            )}
+            <span class="bc-mh-cat-badge mono">{t(locale, `categories.${heroPost.data.category === 'home-improvement' ? 'homeImprovement' : heroPost.data.category}`).toUpperCase()}</span>
+            {heroPost.data.difficulty && (
+              <span class="bc-mh-lvl-badge mono">LVL &middot; {heroPost.data.difficulty.charAt(0).toUpperCase() + heroPost.data.difficulty.slice(1)}</span>
+            )}
           </div>
-        </div>
-
-        <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
-          {trendingPosts.map((post: any, i: number) => (
-            <ArticleCard
-              title={post.data.title}
-              description={post.data.description}
-              date={post.data.date}
-              category={post.data.category}
-              slug={post.id.includes('/') ? post.id.split('/').slice(1).join('/') : post.id}
-              image={post.data.image}
-              type={post.data.type}
-              locale={locale}
-              featured={i === 0}
-            />
-          ))}
-        </div>
+          <div class="bc-mh-hero-body">
+            <h3>{heroPost.data.title}</h3>
+            <p>{heroPost.data.description}</p>
+            <div class="bc-mh-hero-meta">
+              {heroPost.data.estimatedCost && (
+                <span class="mono bc-mh-dim">COST &middot; <b>{heroPost.data.estimatedCost}</b></span>
+              )}
+              {heroPost.data.estimatedTime && (
+                <span class="mono bc-mh-dim">TIME &middot; <b>{heroPost.data.estimatedTime}</b></span>
+              )}
+            </div>
+          </div>
+        </a>
       </section>
     )}
 
-    <!-- Fresh from the Workshop -->
-    <section class="max-w-[1400px] mx-auto px-5 sm:px-8 pt-14 sm:pt-20 mb-16 sm:mb-24">
-      <div class="flex justify-between items-end mb-12">
-        <div>
-          <span class="block text-[11px] font-semibold uppercase tracking-wide text-charcoal-light/50 mb-2">{t(locale, 'home.latest')}</span>
-          <h2 class="font-heading text-4xl text-charcoal tracking-tight">{t(locale, 'home.freshFromTheShop')}</h2>
+    <!-- Metric strip -->
+    <div class="bc-mh-metrics">
+      {mobileMetrics.map((m) => (
+        <div class="bc-mh-metric">
+          <div class="bc-mh-metric-n">{m.n}</div>
+          <div class="mono bc-mh-metric-l">{m.l}</div>
         </div>
-        <a href={localePath('/category/woodworking/', locale)} class="hidden sm:inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wide text-charcoal-light/60 hover:text-steel-700 transition-colors">
-          {t(locale, 'common.viewAll')}
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+      ))}
+    </div>
+
+    <!-- Browse by trade -->
+    <section class="bc-mh-depts">
+      <div class="bc-mh-sec-head">
+        <h2>{t(locale, 'home.browseByTrade')}</h2>
+        <span class="mono bc-mh-dim">{t(locale, 'home.fourDepts')}</span>
+      </div>
+      <div class="bc-mh-dept-grid">
+        {categories.map((c) => (
+          <a href={localePath(`/category/${c.slug}/`, locale)} class="bc-card bc-mh-dept">
+            <div class="bc-mh-dept-top">
+              <div class={`bc-mh-dept-icon bc-mh-dept-icon-${c.tint}`}>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  {c.icon === 'saw' && (
+                    <>
+                      <path d="M3 8 L20 8 L21 11 L14 11"/>
+                      <path d="M3 8 L4 14 L6 12 L7 14 L9 12 L10 14 L12 12 L13 14"/>
+                      <rect x="14" y="7" width="2.5" height="5"/>
+                    </>
+                  )}
+                  {c.icon === 'wrench' && (<path d="M14 5 A4 4 0 1 0 19 10 L21 12 L12 21 L3 12 L12 3 Z"/>)}
+                  {c.icon === 'chip' && (
+                    <>
+                      <rect x="6" y="6" width="12" height="12"/>
+                      <rect x="9" y="9" width="6" height="6"/>
+                      <path d="M3 9 H6 M3 12 H6 M3 15 H6 M18 9 H21 M18 12 H21 M18 15 H21 M9 3 V6 M12 3 V6 M15 3 V6 M9 18 V21 M12 18 V21 M15 18 V21"/>
+                    </>
+                  )}
+                  {c.icon === 'brush' && (<path d="M9 15 L4 20 L6 22 L11 17 M9 15 L12 12 L18 6 A2 2 0 0 1 21 9 L15 15 L12 18 Z"/>)}
+                </svg>
+              </div>
+              <span class="mono bc-mh-dim">{String(c.count).padStart(2, '0')}</span>
+            </div>
+            <div class="bc-mh-dept-name">{c.label}</div>
+            <div class="mono bc-mh-dept-view">{t(locale, 'home.view')} &rarr;</div>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- This week's builds -->
+    <section class="bc-mh-thisweek">
+      <div class="bc-mh-sec-head">
+        <h2>{t(locale, 'home.thisWeeksBuilds')}</h2>
+        <a href={localePath('/departments/', locale)} class="mono bc-mh-dim">{t(locale, 'home.seeAll')}</a>
+      </div>
+      <div class="bc-mh-thisweek-grid">
+        {mobileGrid.map((post: any) => (
+          <a href={localePath('/' + slugOf(post) + '/', locale)} class="bc-card bc-mh-grid-card">
+            <div class={`bc-mh-grid-ph bc-ph bc-ph-${tintByCategory[post.data.category] || 'wood'}`}>
+              {post.data.image && (<img src={post.data.image} alt={post.data.title} />)}
+            </div>
+            <div class="bc-mh-grid-body">
+              <div class="mono bc-mh-grid-cat">{t(locale, `categories.${post.data.category === 'home-improvement' ? 'homeImprovement' : post.data.category}`).toUpperCase()}</div>
+              <h4>{post.data.title}</h4>
+              <div class="mono bc-mh-dim bc-mh-grid-meta">
+                {Math.max(4, Math.ceil((post.body?.length || 3000) / 1200))} min &middot; {post.data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- Tool finder promo -->
+    <a href={localePath('/tool-finder/', locale)} class="bc-mh-promo">
+      <div class="bc-mh-promo-grid"></div>
+      <div class="bc-mh-promo-inner">
+        <div class="mono bc-mh-promo-kicker">{t(locale, 'home.toolFinderKicker')}</div>
+        <div class="bc-mh-promo-head">
+          {t(locale, 'home.toolFinderMobileHead1')}<br/>
+          <em>{t(locale, 'home.toolFinderMobileHead2')}</em>
+        </div>
+        <p class="bc-mh-promo-body">{t(locale, 'home.toolFinderMobileBody')}</p>
+        <span class="bc-btn bc-btn-safety bc-mh-promo-cta">{t(locale, 'home.toolFinderCta')}</span>
+      </div>
+    </a>
+
+    <!-- Reviews & guides (side list) -->
+    <section class="bc-mh-reviews">
+      <div class="bc-mh-sec-head">
+        <h2>{t(locale, 'home.reviewsAndGuides')}</h2>
+        <span class="mono bc-mh-dim">{t(locale, 'home.handsOn')}</span>
+      </div>
+      <div class="mono bc-mh-dim bc-mh-reviews-note">{t(locale, 'home.honestTestBadge')}</div>
+      <div>
+        {mobileList.map((post: any) => (
+          <a href={localePath('/' + slugOf(post) + '/', locale)} class="bc-mh-side">
+            <div class="bc-mh-side-ph">
+              <div class={`bc-ph bc-ph-${tintByCategory[post.data.category] || 'wood'}`} style="position:absolute; inset:0;">
+                {post.data.image && (<img src={post.data.image} alt={post.data.title} />)}
+              </div>
+              {post.data.difficulty && (
+                <span class="mono bc-mh-side-lvl">{post.data.difficulty.slice(0, 3).toUpperCase()}</span>
+              )}
+            </div>
+            <div class="bc-mh-side-body">
+              <div class="mono bc-mh-side-cat">{t(locale, `categories.${post.data.category === 'home-improvement' ? 'homeImprovement' : post.data.category}`).toUpperCase()}</div>
+              <h4>{post.data.title}</h4>
+              <div class="mono bc-mh-dim bc-mh-side-meta">
+                <span>{Math.max(4, Math.ceil((post.body?.length || 3000) / 1200))} min read</span>
+                {post.data.estimatedCost && (<><span>&middot;</span><span>{post.data.estimatedCost}</span></>)}
+                {post.data.estimatedTime && (<><span>&middot;</span><span>{post.data.estimatedTime}</span></>)}
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- Saturday Brief newsletter -->
+    <section class="bc-mh-newsletter" id="newsletter">
+      <div class="bc-mh-newsletter-stamp">
+        <span class="bc-stamp">{t(locale, 'home.saturdayStamp')}</span>
+      </div>
+      <div class="mono bc-mh-newsletter-kicker">{t(locale, 'home.saturdayKicker')}</div>
+      <h3 class="bc-mh-newsletter-head">{t(locale, 'home.saturdayHeadline')}</h3>
+      <p class="bc-mh-newsletter-body">{t(locale, 'home.saturdayBody')}</p>
+      <form class="newsletter-form bc-mh-newsletter-form" data-locale={locale}>
+        <input type="email" placeholder={t(locale, 'footer.emailPlaceholder')} required />
+        <button type="submit">{t(locale, 'home.saturdaySub')}</button>
+      </form>
+      <p class="newsletter-msg hidden" style="margin-top: 8px; font-size: 12px;"></p>
+      <div class="mono bc-mh-newsletter-stats">{t(locale, 'home.saturdayStats')}</div>
+    </section>
+
+    <!-- Mini mobile footer -->
+    <div class="bc-mh-footer">
+      <div class="bc-mh-footer-brand">
+        <span class="bc-mh-footer-sq"></span>
+        <span class="bc-mh-footer-mark">BUILD CODED</span>
+      </div>
+      <p class="bc-mh-footer-tagline">{t(locale, 'home.mobileFooterTagline')}</p>
+      <div class="mono bc-mh-footer-affiliate">{t(locale, 'home.mobileAffiliate')}</div>
+    </div>
+  </main>
+
+  <!-- ============================================================ -->
+  <!-- DESKTOP HOMEPAGE (visible > 960px)                            -->
+  <!-- ============================================================ -->
+  <main class="bc-desktop-home flex-1">
+    <!-- Docket bar -->
+    <div class="bcd-docket">
+      <div class="bcd-page" style="display: flex; justify-content: space-between; align-items: center; max-width: 1360px; margin: 0 auto;">
+        <div class="docket-set">
+          <span>DOC &middot; <b>BC-HOME</b></span>
+          <span>SHEET <b>01/03</b></span>
+          <span>SCALE <b>1:1</b></span>
+        </div>
+        <div class="docket-set">
+          <span>EDITOR <b>R. CONNORS</b></span>
+          <span>APPROVED <b>&#10003;</b></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== MASTHEAD ===== -->
+    <section class="bcd-page">
+      <div class="bcd-mast">
+        <div>
+          <div class="bcd-mast-kicker">
+            {categories.map((c) => (<span class="tag">{c.label}</span>))}
+          </div>
+          <h1 class="bcd-mast-title">
+            Make<br/>something<br/><em>good.</em>
+          </h1>
+          <p class="bcd-mast-sub">{t(locale, 'home.mastSub') || "DIY projects with real material lists, honest costs, and the tools we'd actually use again. We write plans we'd follow ourselves — not content."}</p>
+        </div>
+        {heroPost && (
+          <a href={localePath('/' + slugOf(heroPost) + '/', locale)} class="bcd-hero-card">
+            <div class="bcd-hero-ph">
+              {heroPost.data.image ? (
+                <img src={heroPost.data.image} alt={heroPost.data.title} style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;" />
+              ) : (
+                <div class={`bc-ph bc-ph-${tintByCategory[heroPost.data.category] || 'wood'}`} style="position: absolute; inset: 0;">
+                  <span class="bcd-hero-big">{heroPost.data.title[0]}</span>
+                </div>
+              )}
+              <div class="stamp">Featured</div>
+              <div class="corner">FIG. 01 &middot; THIS WEEK</div>
+            </div>
+            <div class="body">
+              <div class="tag">{heroPost.data.category.toUpperCase()}</div>
+              <h3>{heroPost.data.title}</h3>
+              <div class="specs">
+                <div class="spec"><small>READ</small><b>{Math.max(4, Math.ceil((heroPost.body?.length || 3000) / 1200))} min</b></div>
+                <div class="spec"><small>DATE</small><b>{heroPost.data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</b></div>
+                <div class="spec"><small>TYPE</small><b>{(heroPost.data.type || 'Guide').slice(0, 8)}</b></div>
+              </div>
+            </div>
+          </a>
+        )}
+      </div>
+    </section>
+
+    <!-- ===== MARQUEE TAPE ===== -->
+    <div class="bcd-tape">
+      <div class="track">
+        {[0, 1, 2].map(() => (
+          <span class="track-inner">
+            {marqueeItems.map((item) => (
+              <>
+                <span>{item}</span>
+                <span class="star">&#9670;</span>
+              </>
+            ))}
+          </span>
+        ))}
+      </div>
+    </div>
+
+    <!-- ===== EDITORIAL GRID ===== -->
+    <section class="bcd-page">
+      <div class="bcd-sec-head">
+        <div>
+          <div class="bcd-sec-label">&sect; 01 &middot; {t(locale, 'home.latest').toUpperCase()}</div>
+          <h2>{t(locale, 'home.thisWeek') || 'This week'} <em>{t(locale, 'home.onTheBench') || 'on the bench'}</em></h2>
+        </div>
+        <a href={localePath('/category/woodworking/', locale)} class="bcd-meta-link">
+          {totalArticles} {t(locale, 'common.articles')} &middot; {t(locale, 'common.viewAll').toUpperCase()} &rarr;
         </a>
       </div>
 
-      <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
-        {recent.map((post) => (
+      <div class="bcd-edit-grid">
+        {editorialRest.length > 0 && heroPost && (
+          <ArticleCard
+            title={heroPost.data.title}
+            description={heroPost.data.description}
+            date={heroPost.data.date}
+            category={heroPost.data.category}
+            slug={slugOf(heroPost)}
+            image={heroPost.data.image}
+            type={heroPost.data.type}
+            locale={locale}
+            featured
+            indexNo={1}
+          />
+        )}
+        {editorialRest.map((post: any, i: number) => (
           <ArticleCard
             title={post.data.title}
             description={post.data.description}
             date={post.data.date}
             category={post.data.category}
-            slug={post.id.includes('/') ? post.id.split('/').slice(1).join('/') : post.id}
+            slug={slugOf(post)}
             image={post.data.image}
             type={post.data.type}
             locale={locale}
+            indexNo={i + 2}
           />
         ))}
       </div>
     </section>
 
-    <!-- Topics We Cover -->
-    <section class="max-w-[1400px] mx-auto px-5 sm:px-8 mb-20 sm:mb-32">
-      <div class="border-t border-steel-200/40 pt-16">
-        <div class="flex justify-between items-end mb-12">
-          <div>
-            <span class="block text-[11px] font-semibold uppercase tracking-wide text-charcoal-light/50 mb-2">{t(locale, 'home.explore')}</span>
-            <h2 class="font-heading text-4xl text-charcoal tracking-tight">{t(locale, 'home.topicsWeCover')}</h2>
-          </div>
-        </div>
-        <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {categories.map((cat) => (
-            <a
-              href={localePath(`/category/${cat.slug}`, locale)}
-              class="group relative aspect-square flex flex-col items-center justify-center text-center p-7 rounded-2xl border border-steel-200/60 bg-white overflow-hidden transition-all duration-400 hover:-translate-y-2 hover:shadow-xl"
-            >
-              <div class="absolute inset-0 bg-gradient-to-br from-steel-600/0 to-steel-700/0 group-hover:from-steel-600/5 group-hover:to-steel-700/10 transition-all duration-500 rounded-2xl"></div>
-
-              <div class="relative z-10 flex flex-col items-center">
-                <span class="text-4xl mb-4" aria-hidden="true">{cat.icon}</span>
-                <h3 class="font-heading text-xl text-charcoal mb-2 group-hover:text-steel-700 transition-colors">{cat.label}</h3>
-                <p class="text-xs text-charcoal-light/60 leading-relaxed mb-4 max-w-[180px]">{cat.desc}</p>
-                <span class="text-[11px] font-semibold uppercase tracking-wide text-charcoal-light/50 group-hover:text-amber-500 transition-colors">
-                  {cat.count} {cat.count === 1 ? t(locale, 'common.article') : t(locale, 'common.articles')}
-                </span>
-              </div>
-            </a>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Tools -->
-    <section class="max-w-[1400px] mx-auto px-5 sm:px-8 mb-20 sm:mb-32">
-      <div class="flex justify-between items-end mb-12">
+    <!-- ===== DEPARTMENTS ===== -->
+    <section class="bcd-page">
+      <div class="bcd-sec-head">
         <div>
-          <span class="block text-[11px] font-semibold uppercase tracking-wide text-charcoal-light/50 mb-2">{t(locale, 'home.interactive')}</span>
-          <h2 class="font-heading text-4xl text-charcoal tracking-tight">{t(locale, 'home.toolsAndGuides')}</h2>
+          <div class="bcd-sec-label">&sect; 02 &middot; {t(locale, 'home.departmentsLabel') || 'DEPARTMENTS'}</div>
+          <h2>{t(locale, 'home.fourBenches') || 'Four benches,'} <em>{t(locale, 'home.oneHouse') || 'one house'}</em></h2>
         </div>
+        <div class="bcd-meta">{totalArticles} {t(locale, 'home.plansSorted') || 'plans \u00b7 sorted by craft'}</div>
       </div>
-      <div class="grid gap-5 sm:grid-cols-3">
-        <a href={localePath('/cost-calculator/', locale)} class="group relative aspect-[2/1] sm:aspect-square flex flex-col items-center justify-center text-center p-7 rounded-2xl border border-steel-200/60 bg-white overflow-hidden transition-all duration-400 hover:-translate-y-2 hover:shadow-xl">
-          <div class="absolute inset-0 bg-gradient-to-br from-steel-600/0 to-steel-700/0 group-hover:from-steel-600/5 group-hover:to-steel-700/10 transition-all duration-500 rounded-2xl"></div>
-          <div class="relative z-10 flex flex-col items-center">
-            <div class="w-14 h-14 mb-4 rounded-full bg-steel-50 flex items-center justify-center group-hover:bg-steel-100 transition-colors">
-              <svg class="w-7 h-7 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 15.75V18m-7.5-6.75h.008v.008H8.25v-.008Zm0 2.25h.008v.008H8.25v-.008Zm0 2.25h.008v.008H8.25v-.008Zm0 2.25h.008v.008H8.25v-.008Zm2.25-4.5h.008v.008H10.5v-.008Zm0 2.25h.008v.008H10.5v-.008Zm0 2.25h.008v.008H10.5v-.008Zm2.25-4.5h.008v.008H12.75v-.008Zm0 2.25h.008v.008H12.75v-.008Zm2.25-2.25h.008v.008H15v-.008Zm0 2.25h.008v.008H15v-.008ZM5.248 6.79 15 2.604l3.002 1.125-9.752 4.188M5.25 6.788v13.462H18.75V6.788" /></svg>
+      <div class="bcd-depts">
+        {categories.map((cat) => (
+          <a href={localePath(`/category/${cat.slug}/`, locale)} class="bcd-dept">
+            <div class="swatch">
+              <div class={`bc-ph bc-ph-${cat.tint}`} style="position: absolute; inset: 0;"></div>
+              <svg viewBox="0 0 40 40" width="56" height="56" style={`position: absolute; inset: 0; margin: auto; z-index: 2;`} fill="none" stroke={cat.tint === 'wood' || cat.tint === 'craft' ? '#1b2027' : '#f3ede1'} stroke-width="1.3" stroke-linecap="round">
+                {cat.icon === 'saw' && (
+                  <>
+                    <path d="M5 18 L30 18 L30 22 L5 22 Z"/>
+                    <path d="M30 20 L36 20"/>
+                    <path d="M5 20 L8 16 M8 20 L11 16 M11 20 L14 16 M14 20 L17 16 M17 20 L20 16 M20 20 L23 16 M23 20 L26 16"/>
+                  </>
+                )}
+                {cat.icon === 'wrench' && (
+                  <path d="M26 8 A6 6 0 1 0 28 20 L36 28 L32 32 L24 24 A6 6 0 0 0 26 8 Z"/>
+                )}
+                {cat.icon === 'chip' && (
+                  <>
+                    <rect x="10" y="10" width="20" height="20" rx="1"/>
+                    <path d="M6 14 H10 M6 18 H10 M6 22 H10 M6 26 H10 M30 14 H34 M30 18 H34 M30 22 H34 M30 26 H34 M14 6 V10 M18 6 V10 M22 6 V10 M26 6 V10 M14 30 V34 M18 30 V34 M22 30 V34 M26 30 V34"/>
+                  </>
+                )}
+                {cat.icon === 'brush' && (
+                  <>
+                    <path d="M24 6 L34 16 L22 28 L12 18 Z"/>
+                    <path d="M12 18 L6 24 Q 2 28 6 32 Q 10 36 14 32 L20 26"/>
+                  </>
+                )}
+              </svg>
+              <span class="lbl">{cat.count} {t(locale, 'home.plansShort') || 'plans'}</span>
             </div>
-            <h3 class="font-heading text-xl text-charcoal mb-2 group-hover:text-steel-700 transition-colors">{t(locale, 'home.costCalcTitle')}</h3>
-            <p class="text-xs text-charcoal-light/60 leading-relaxed max-w-[180px]">{t(locale, 'home.costCalcDesc')}</p>
-          </div>
-        </a>
-        <a href={localePath('/tool-finder/', locale)} class="group relative aspect-[2/1] sm:aspect-square flex flex-col items-center justify-center text-center p-7 rounded-2xl border border-steel-200/60 bg-white overflow-hidden transition-all duration-400 hover:-translate-y-2 hover:shadow-xl">
-          <div class="absolute inset-0 bg-gradient-to-br from-steel-600/0 to-steel-700/0 group-hover:from-steel-600/5 group-hover:to-steel-700/10 transition-all duration-500 rounded-2xl"></div>
-          <div class="relative z-10 flex flex-col items-center">
-            <div class="w-14 h-14 mb-4 rounded-full bg-steel-50 flex items-center justify-center group-hover:bg-steel-100 transition-colors">
-              <svg class="w-7 h-7 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17l-5.6-5.6a8 8 0 1 1 11.31 0l-5.6 5.6a.75.75 0 0 1-1.06 0Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197" /></svg>
+            <div class="body">
+              <h4>{cat.label}</h4>
+              <small>{cat.desc}</small>
+              <span class="arrow">{t(locale, 'home.seeThePlans') || 'see the plans'} &rarr;</span>
             </div>
-            <h3 class="font-heading text-xl text-charcoal mb-2 group-hover:text-steel-700 transition-colors">{t(locale, 'home.toolFinderTitle')}</h3>
-            <p class="text-xs text-charcoal-light/60 leading-relaxed max-w-[180px]">{t(locale, 'home.toolFinderDesc')}</p>
-          </div>
-        </a>
-        <a href={localePath('/idea-generator/', locale)} class="group relative aspect-[2/1] sm:aspect-square flex flex-col items-center justify-center text-center p-7 rounded-2xl border border-steel-200/60 bg-white overflow-hidden transition-all duration-400 hover:-translate-y-2 hover:shadow-xl">
-          <div class="absolute inset-0 bg-gradient-to-br from-steel-600/0 to-steel-700/0 group-hover:from-steel-600/5 group-hover:to-steel-700/10 transition-all duration-500 rounded-2xl"></div>
-          <div class="relative z-10 flex flex-col items-center">
-            <div class="w-14 h-14 mb-4 rounded-full bg-steel-50 flex items-center justify-center group-hover:bg-steel-100 transition-colors">
-              <svg class="w-7 h-7 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.478a12.06 12.06 0 0 1-4.5 0m3.75 2.383a14.406 14.406 0 0 1-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 1 0-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" /></svg>
-            </div>
-            <h3 class="font-heading text-xl text-charcoal mb-2 group-hover:text-steel-700 transition-colors">{t(locale, 'home.ideaGeneratorTitle')}</h3>
-            <p class="text-xs text-charcoal-light/60 leading-relaxed max-w-[180px]">{t(locale, 'home.ideaGeneratorDesc')}</p>
-          </div>
-        </a>
+          </a>
+        ))}
       </div>
     </section>
 
-    <!-- Project CTA -->
-    <section class="max-w-[1400px] mx-auto px-5 sm:px-8 mb-20 sm:mb-32">
-      <div class="relative rounded-2xl sm:rounded-[2.5rem] bg-gradient-to-br from-steel-700 via-steel-800 to-steel-900 p-10 sm:p-16 text-center overflow-hidden">
-        <div class="absolute top-[-60px] left-[-40px] w-48 h-48 bg-amber-500/20 rounded-full blur-3xl pointer-events-none"></div>
-        <div class="absolute bottom-[-80px] right-[-40px] w-64 h-64 bg-amber-400/10 rounded-full blur-3xl pointer-events-none"></div>
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-steel-400/5 rounded-full blur-3xl pointer-events-none"></div>
+    <!-- ===== TOOL FINDER + NEWSLETTER ===== -->
+    <section class="bcd-page" id="newsletter">
+      <div class="bcd-duo">
+        <div class="bcd-finder">
+          <div class="label">{t(locale, 'home.interactiveLabel') || 'INTERACTIVE \u00b7 4 QUESTIONS'}</div>
+          <h3>{t(locale, 'home.whatTool') || 'What tool'}<br/>{t(locale, 'home.doYou') || 'do you'} <em>{t(locale, 'home.actually') || 'actually'}</em><br/>{t(locale, 'home.need') || 'need?'}</h3>
+          <p>{t(locale, 'home.finderDesc') || "Project, skill level, budget, timeframe. We'll point you at the one tool that unlocks the most next projects — not the full catalog."}</p>
+          <div class="steps">
+            <div class="step"><b>01</b>{t(locale, 'home.stepProject') || 'Project'}</div>
+            <div class="step"><b>02</b>{t(locale, 'home.stepSkill') || 'Skill'}</div>
+            <div class="step"><b>03</b>{t(locale, 'home.stepBudget') || 'Budget'}</div>
+            <div class="step"><b>04</b>{t(locale, 'home.stepMatch') || 'Match'}</div>
+          </div>
+          <a href={localePath('/tool-finder/', locale)} class="cta">{t(locale, 'home.startTheFinder') || 'Start the finder'} &rarr;</a>
+          <div class="rule">FIG. 02 &middot; DECISION TREE</div>
+        </div>
+        <div class="bcd-nl">
+          <div>
+            <div class="label">{t(locale, 'home.newsletterLabel') || 'WEEKLY \u00b7 12,400 BUILDERS'}</div>
+            <h3>{t(locale, 'home.theBlueprint') || 'The'} <em>{t(locale, 'home.blueprintEm') || 'Blueprint.'}</em></h3>
+            <p>{t(locale, 'home.newsletterPromoDesc') || 'One project plan, one tool review, one weekend brief — in your inbox every Thursday. No filler, unsubscribe any time.'}</p>
+          </div>
+          <div>
+            <form class="newsletter-form form" data-locale={locale}>
+              <input type="email" placeholder={t(locale, 'footer.emailPlaceholder')} required />
+              <button type="submit">{t(locale, 'common.subscribe')} &rarr;</button>
+            </form>
+            <p class="newsletter-msg hidden" style="margin-top: 8px; font-size: 12px;"></p>
+            <div class="disc">FREE &middot; NO SPAM &middot; PRINT-READY PDFS</div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        <div class="relative z-10">
-          <span class="inline-block text-[11px] font-semibold uppercase tracking-[0.25em] text-amber-300/80 mb-4">{t(locale, 'home.new')}</span>
-          <h2 class="font-heading text-4xl sm:text-5xl text-cream mb-4 leading-tight" set:html={t(locale, 'home.findYourProject').replace('\n', '<br />')} />
-          <p class="text-sm sm:text-base text-steel-200 mb-8 max-w-lg mx-auto leading-relaxed">{t(locale, 'home.projectCtaDesc')}</p>
-          <a href={localePath('/category/woodworking/', locale)} class="inline-flex items-center gap-2.5 px-9 py-3.5 bg-amber-500 text-steel-900 text-sm font-semibold rounded-full hover:bg-amber-400 hover:shadow-lg transition-all duration-300">
-            {t(locale, 'home.browseProjects')}
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+    <!-- ===== RECENT / FRESH ===== -->
+    {recent.length > 0 && (
+      <section class="bcd-page">
+        <div class="bcd-sec-head">
+          <div>
+            <div class="bcd-sec-label">&sect; 03 &middot; {t(locale, 'home.latest').toUpperCase()}</div>
+            <h2>{t(locale, 'home.freshFromTheShop')}</h2>
+          </div>
+          <a href={localePath('/category/woodworking/', locale)} class="bcd-meta-link">
+            {t(locale, 'common.viewAll').toUpperCase()} &rarr;
           </a>
         </div>
-      </div>
-    </section>
-
-    <!-- About -->
-    <section class="max-w-[1400px] mx-auto px-5 sm:px-8 mb-24">
-      <div class="rounded-2xl bg-steel-50 p-10 sm:p-16">
-        <div class="grid sm:grid-cols-2 gap-10 sm:gap-16 items-center">
-          <div>
-            <img src="/logo.svg" alt="Build Coded" class="w-32 h-32 mb-6" />
-            <h2 class="font-heading text-4xl text-charcoal tracking-tight mb-4">{t(locale, 'home.aboutTitle')}</h2>
-          </div>
-          <div>
-            <p class="text-sm sm:text-base text-steel-500 leading-relaxed mb-6">
-              {t(locale, 'home.aboutDesc')}
-            </p>
-            <a href={localePath('/about/', locale)} class="inline-flex items-center gap-2 text-sm font-medium text-steel-700 hover:text-steel-900 transition-colors group">
-              {t(locale, 'home.learnMore')}
-              <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-            </a>
-          </div>
+        <div class="bcd-recent-grid">
+          {recent.map((post, i: number) => (
+            <ArticleCard
+              title={post.data.title}
+              description={post.data.description}
+              date={post.data.date}
+              category={post.data.category}
+              slug={slugOf(post)}
+              image={post.data.image}
+              type={post.data.type}
+              locale={locale}
+              indexNo={i + 6}
+            />
+          ))}
         </div>
-      </div>
-    </section>
-
-    <!-- Newsletter -->
-    <div class="max-w-4xl mx-auto px-5 sm:px-8 mb-20">
-      <NewsletterSignup locale={locale} />
-    </div>
+      </section>
+    )}
   </main>
 
-  <Footer locale={locale} />
+  <div class="bc-desktop-home">
+    <Footer locale={locale} />
+  </div>
   <BackToTop />
 </Base>
+
+<style>
+  .bcd-page {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* Docket */
+  .bcd-docket {
+    padding: 10px 32px;
+    border-bottom: 1.5px solid var(--ink);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--pencil);
+    background: var(--paper-warm);
+  }
+  .docket-set {
+    display: flex;
+    gap: 26px;
+    flex-wrap: wrap;
+  }
+  .docket-set b {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  /* Masthead */
+  .bcd-mast {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 40px;
+    padding: 44px 0 36px;
+    border-bottom: 2px solid var(--ink);
+    position: relative;
+  }
+  .bcd-mast-kicker {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .bcd-mast-kicker .tag {
+    padding: 4px 10px;
+    border: 1.3px solid var(--ink);
+    border-radius: 2px;
+  }
+  .bcd-mast-title {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: clamp(76px, 10vw, 156px);
+    line-height: 0.86;
+    letter-spacing: -0.015em;
+    margin: 0;
+    text-transform: uppercase;
+  }
+  .bcd-mast-title em {
+    font-style: italic;
+    color: var(--safety);
+    font-weight: 500;
+    text-transform: none;
+  }
+  .bcd-mast-sub {
+    margin-top: 20px;
+    font-size: 16.5px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    max-width: 520px;
+  }
+
+  /* Hero card (right side masthead) */
+  .bcd-hero-card {
+    border: 1.5px solid var(--ink);
+    border-radius: 4px;
+    overflow: hidden;
+    background: var(--paper-light);
+    box-shadow: 8px 8px 0 var(--ink);
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    text-decoration: none;
+    color: inherit;
+  }
+  .bcd-hero-card:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 10px 10px 0 var(--ink);
+  }
+  .bcd-hero-ph {
+    height: 340px;
+    position: relative;
+    border-bottom: 1.5px solid var(--ink);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .bcd-hero-big {
+    font-family: var(--font-heading);
+    font-size: 200px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.35);
+    text-shadow: 5px 5px 0 var(--ink);
+    line-height: 0.9;
+  }
+  .bcd-hero-ph .stamp {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    transform: rotate(4deg);
+    background: transparent;
+    border: 2.5px solid var(--safety);
+    color: var(--safety);
+    padding: 6px 14px;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    background: var(--paper-light);
+    z-index: 2;
+  }
+  .bcd-hero-ph .corner {
+    position: absolute;
+    bottom: 10px;
+    left: 12px;
+    color: var(--paper-light);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 3px 8px;
+    z-index: 2;
+  }
+  .bcd-hero-card .body {
+    padding: 22px 24px 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .bcd-hero-card .tag {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--safety);
+  }
+  .bcd-hero-card h3 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 1.03;
+    margin: 0;
+  }
+  .bcd-hero-card .specs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px dashed var(--rule);
+  }
+  .bcd-hero-card .spec small {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    color: var(--pencil);
+    text-transform: uppercase;
+  }
+  .bcd-hero-card .spec b {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 16px;
+  }
+
+  /* Tape / marquee */
+  .bcd-tape {
+    overflow: hidden;
+    border-bottom: 2px solid var(--ink);
+    border-top: 2px solid var(--ink);
+    background: var(--safety);
+    color: var(--paper-light);
+    padding: 11px 0;
+    margin-top: 0;
+  }
+  .bcd-tape .track {
+    display: flex;
+    gap: 36px;
+    white-space: nowrap;
+    animation: marquee 34s linear infinite;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .bcd-tape .track-inner {
+    display: inline-flex;
+    align-items: center;
+    gap: 36px;
+  }
+  .bcd-tape .star {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 18px;
+    color: var(--paper);
+  }
+
+  /* Section header */
+  .bcd-sec-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 56px 0 22px;
+    border-bottom: 1.5px solid var(--ink);
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .bcd-sec-label {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    color: var(--pencil);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .bcd-sec-head h2 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: clamp(32px, 5vw, 54px);
+    letter-spacing: -0.01em;
+    margin: 0;
+    text-transform: uppercase;
+  }
+  .bcd-sec-head h2 em {
+    font-style: italic;
+    color: var(--safety);
+    font-weight: 500;
+    text-transform: none;
+  }
+  .bcd-meta-link,
+  .bcd-meta {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--pencil);
+    text-decoration: none;
+  }
+  .bcd-meta-link:hover { color: var(--safety); }
+
+  /* Editorial grid */
+  .bcd-edit-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    grid-auto-rows: auto;
+    gap: 26px;
+    padding-bottom: 10px;
+  }
+
+  .bcd-recent-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    padding-bottom: 20px;
+  }
+
+  /* Departments */
+  .bcd-depts {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding-bottom: 14px;
+  }
+  .bcd-dept {
+    position: relative;
+    border: 1.5px solid var(--ink);
+    border-radius: 4px;
+    overflow: hidden;
+    background: var(--paper-light);
+    cursor: pointer;
+    transition: transform 0.18s, box-shadow 0.18s;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+  }
+  .bcd-dept:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0 var(--ink);
+  }
+  .bcd-dept .swatch {
+    height: 160px;
+    border-bottom: 1.5px solid var(--ink);
+    position: relative;
+  }
+  .bcd-dept .swatch .lbl {
+    position: absolute;
+    bottom: 12px;
+    left: 14px;
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    letter-spacing: 0.16em;
+    color: var(--paper-light);
+    text-transform: uppercase;
+    background: rgba(0, 0, 0, 0.35);
+    padding: 3px 8px;
+    z-index: 3;
+  }
+  .bcd-dept .body { padding: 16px 18px 18px; }
+  .bcd-dept h4 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 22px;
+    margin: 0 0 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+  }
+  .bcd-dept small {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--pencil);
+  }
+  .bcd-dept .arrow {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 22px;
+    color: var(--safety);
+    margin-top: 10px;
+    display: block;
+  }
+
+  /* Finder + newsletter duo */
+  .bcd-duo {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 28px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+  .bcd-finder {
+    background: var(--steel);
+    color: #dce5ed;
+    background-image:
+      linear-gradient(rgba(220, 230, 240, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(220, 230, 240, 0.08) 1px, transparent 1px);
+    background-size: 48px 48px;
+    border: 1.5px solid var(--ink);
+    border-radius: 4px;
+    padding: 42px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .bcd-finder .label {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--amber);
+  }
+  .bcd-finder h3 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: clamp(40px, 5vw, 58px);
+    line-height: 0.96;
+    letter-spacing: -0.015em;
+    margin: 12px 0 16px;
+    text-transform: uppercase;
+  }
+  .bcd-finder h3 em {
+    font-style: italic;
+    color: var(--amber);
+    font-weight: 500;
+    text-transform: none;
+  }
+  .bcd-finder p {
+    font-size: 15px;
+    line-height: 1.55;
+    max-width: 430px;
+    margin-bottom: 26px;
+    color: rgba(220, 230, 240, 0.8);
+  }
+  .bcd-finder .steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+  .bcd-finder .step {
+    border: 1.3px solid rgba(220, 230, 240, 0.4);
+    padding: 10px 12px;
+    border-radius: 2px;
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(220, 230, 240, 0.8);
+    line-height: 1.4;
+  }
+  .bcd-finder .step b {
+    font-family: var(--font-heading);
+    font-size: 24px;
+    font-weight: 700;
+    display: block;
+    color: var(--amber);
+    margin-bottom: 4px;
+  }
+  .bcd-finder .cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--safety);
+    color: var(--paper-light);
+    border: 1.5px solid var(--ink);
+    border-radius: 2px;
+    padding: 14px 22px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+    box-shadow: 3px 3px 0 var(--ink);
+    text-decoration: none;
+  }
+  .bcd-finder .cta:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0 var(--ink);
+  }
+  .bcd-finder .rule {
+    position: absolute;
+    bottom: 14px;
+    right: 16px;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: rgba(220, 230, 240, 0.45);
+  }
+
+  .bcd-nl {
+    background: var(--paper-light);
+    border: 1.5px solid var(--ink);
+    box-shadow: 5px 5px 0 var(--ink);
+    border-radius: 4px;
+    padding: 36px 34px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+  }
+  .bcd-nl::before {
+    content: '';
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    width: 56px;
+    height: 56px;
+    border: 1.5px solid var(--ink);
+    border-radius: 999px;
+    background: var(--safety);
+  }
+  .bcd-nl .label {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--safety);
+  }
+  .bcd-nl h3 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: clamp(32px, 4.5vw, 44px);
+    line-height: 0.98;
+    margin: 10px 0 14px;
+    text-transform: uppercase;
+    letter-spacing: -0.005em;
+  }
+  .bcd-nl h3 em {
+    font-style: italic;
+    color: var(--safety);
+    font-weight: 500;
+    text-transform: none;
+  }
+  .bcd-nl p {
+    font-size: 14px;
+    line-height: 1.55;
+    margin: 0 0 20px;
+    color: var(--ink-soft);
+  }
+  .bcd-nl .form {
+    display: flex;
+    gap: 8px;
+  }
+  .bcd-nl input {
+    flex: 1;
+    border: 1.5px solid var(--ink);
+    background: #fff;
+    color: var(--ink);
+    padding: 12px 14px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    border-radius: 2px;
+    outline: none;
+  }
+  .bcd-nl button {
+    background: var(--ink);
+    color: var(--paper-light);
+    border: 1.5px solid var(--ink);
+    padding: 12px 22px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-weight: 600;
+    border-radius: 2px;
+    cursor: pointer;
+    box-shadow: 3px 3px 0 var(--ink);
+  }
+  .bcd-nl .disc {
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--pencil);
+    margin-top: 12px;
+  }
+  .hidden { display: none; }
+
+  @media (max-width: 1100px) {
+    .bcd-edit-grid { grid-template-columns: 1fr 1fr; }
+    .bcd-recent-grid { grid-template-columns: 1fr 1fr; }
+    .bcd-depts { grid-template-columns: 1fr 1fr; }
+    .bcd-duo { grid-template-columns: 1fr; }
+    .bcd-mast { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 768px) {
+    .bcd-page { padding: 0 18px; }
+    .bcd-docket { padding: 10px 18px; font-size: 9px; }
+    .docket-set { gap: 14px; }
+    .bcd-mast-title { font-size: 56px !important; }
+    .bcd-edit-grid { grid-template-columns: 1fr; }
+    .bcd-recent-grid { grid-template-columns: 1fr; }
+    .bcd-depts { grid-template-columns: 1fr; }
+    .bcd-finder { padding: 28px 24px; }
+    .bcd-nl { padding: 28px 24px; }
+    .bcd-tape .track { font-size: 18px; }
+  }
+  @media (max-width: 480px) {
+    .bcd-mast-title { font-size: 48px !important; }
+    .bcd-hero-ph { height: 240px; }
+    .bcd-hero-big { font-size: 120px; }
+    .bcd-hero-card .body { padding: 16px 18px 20px; }
+    .bcd-hero-card h3 { font-size: 24px; }
+  }
+
+  /* ============================================================ */
+  /* MOBILE HOMEPAGE (matches prototype screens-home.jsx)          */
+  /* ============================================================ */
+  .bc-mh-mast {
+    padding: 18px 16px 14px;
+    border-bottom: 1.5px solid var(--ink);
+    background: var(--paper-warm);
+  }
+  .bc-mh-mast-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 10px;
+  }
+  .mono {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .bc-mh-dim { color: var(--pencil); }
+  .bc-mh-headline {
+    font-family: var(--font-heading);
+    font-size: 36px;
+    line-height: 0.98;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 0 0 8px;
+    letter-spacing: -0.01em;
+    text-transform: none;
+  }
+  .bc-mh-headline em {
+    font-style: italic;
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .bc-mh-sub {
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.45;
+    max-width: 320px;
+    margin: 0;
+  }
+
+  /* Chip row */
+  .bc-mh-chips {
+    display: flex;
+    gap: 7px;
+    overflow-x: auto;
+    padding: 8px 16px 10px;
+    white-space: nowrap;
+  }
+
+  /* Featured project */
+  .bc-mh-featured { padding: 4px 16px 16px; }
+  .bc-mh-kicker {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    color: var(--safety);
+  }
+  .bc-mh-kicker-rule {
+    width: 18px;
+    height: 1.5px;
+    background: var(--safety);
+  }
+  .bc-mh-kicker .mono { color: var(--safety); }
+  .bc-mh-hero-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    overflow: hidden;
+  }
+  .bc-mh-hero-ph {
+    position: relative;
+    height: 240px;
+    border-bottom: 1.5px solid var(--ink);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .bc-mh-hero-ph img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .bc-mh-cat-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: var(--ink);
+    color: var(--paper-light);
+    padding: 4px 10px;
+    font-size: 9.5px;
+    z-index: 2;
+  }
+  .bc-mh-lvl-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: var(--paper-light);
+    border: 1.5px solid var(--ink);
+    padding: 4px 10px;
+    font-size: 9.5px;
+    z-index: 2;
+    color: var(--ink);
+  }
+  .bc-mh-hero-body { padding: 16px 16px 18px; }
+  .bc-mh-hero-body h3 {
+    font-family: var(--font-heading);
+    font-size: 22px;
+    line-height: 1.05;
+    color: var(--ink);
+    margin: 0 0 8px;
+    font-weight: 600;
+    text-transform: none;
+    letter-spacing: -0.005em;
+  }
+  .bc-mh-hero-body p {
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+    margin: 0 0 14px;
+  }
+  .bc-mh-hero-meta {
+    display: flex;
+    gap: 14px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--rule);
+  }
+  .bc-mh-hero-meta b { color: var(--ink); font-weight: 600; }
+
+  /* Metric strip */
+  .bc-mh-metrics {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    border-top: 1.5px solid var(--ink);
+    border-bottom: 1.5px solid var(--ink);
+    background: var(--paper-warm);
+  }
+  .bc-mh-metric {
+    padding: 14px 12px;
+    text-align: center;
+  }
+  .bc-mh-metric + .bc-mh-metric { border-left: 1.5px solid var(--ink); }
+  .bc-mh-metric-n {
+    font-family: var(--font-heading);
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--ink);
+  }
+  .bc-mh-metric-l {
+    color: var(--pencil);
+    font-size: 9px;
+    margin-top: 4px;
+    white-space: pre-line;
+    line-height: 1.3;
+  }
+
+  /* Section heads + shared */
+  .bc-mh-sec-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 14px;
+  }
+  .bc-mh-sec-head h2 {
+    font-family: var(--font-heading);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 0;
+    text-transform: none;
+    letter-spacing: -0.005em;
+  }
+  .bc-mh-sec-head a { text-decoration: none; }
+
+  /* Browse by trade */
+  .bc-mh-depts { padding: 22px 16px 14px; }
+  .bc-mh-dept-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .bc-mh-dept {
+    padding: 14px 14px 16px;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+  }
+  .bc-mh-dept-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 28px;
+  }
+  .bc-mh-dept-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1.5px solid var(--ink);
+    border-radius: 2px;
+    color: var(--ink);
+  }
+  .bc-mh-dept-icon-wood { background: #b48a5a; color: var(--ink); }
+  .bc-mh-dept-icon-steel { background: var(--steel); color: #dce5ed; }
+  .bc-mh-dept-icon-electronics { background: #2a3e29; color: #dce5ed; }
+  .bc-mh-dept-icon-craft { background: #e9b89e; color: var(--ink); }
+  .bc-mh-dept-name {
+    font-family: var(--font-heading);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.1;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+  .bc-mh-dept-view {
+    color: var(--pencil);
+    margin-top: 4px;
+    font-size: 9px;
+  }
+
+  /* This week's builds */
+  .bc-mh-thisweek {
+    padding: 14px 16px;
+    padding-top: 20px;
+    border-top: 1.5px solid var(--ink);
+    background: var(--paper-warm);
+  }
+  .bc-mh-thisweek-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .bc-mh-grid-card {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+  }
+  .bc-mh-grid-ph {
+    height: 110px;
+    border-bottom: 1.5px solid var(--ink);
+    position: relative;
+    overflow: hidden;
+  }
+  .bc-mh-grid-ph img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .bc-mh-grid-body { padding: 10px 12px 12px; }
+  .bc-mh-grid-cat { color: var(--safety); margin-bottom: 4px; font-size: 9px; }
+  .bc-mh-grid-body h4 {
+    font-family: var(--font-heading);
+    font-size: 14px;
+    line-height: 1.15;
+    color: var(--ink);
+    margin: 0 0 6px;
+    font-weight: 600;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+  .bc-mh-grid-meta { font-size: 9px; }
+
+  /* Tool finder promo */
+  .bc-mh-promo {
+    position: relative;
+    display: block;
+    padding: 20px 16px 22px;
+    background: var(--steel);
+    color: #dce5ed;
+    border-top: 1.5px solid var(--ink);
+    border-bottom: 1.5px solid var(--ink);
+    overflow: hidden;
+    text-decoration: none;
+  }
+  .bc-mh-promo-grid {
+    position: absolute;
+    inset: 0;
+    opacity: 0.08;
+    background-image:
+      linear-gradient(#dce5ed 1px, transparent 1px),
+      linear-gradient(90deg, #dce5ed 1px, transparent 1px);
+    background-size: 22px 22px;
+    pointer-events: none;
+  }
+  .bc-mh-promo-inner { position: relative; }
+  .bc-mh-promo-kicker { color: #e0a860; margin-bottom: 10px; }
+  .bc-mh-promo-head {
+    font-family: var(--font-heading);
+    font-size: 26px;
+    line-height: 1.05;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #dce5ed;
+    text-transform: none;
+    letter-spacing: -0.005em;
+  }
+  .bc-mh-promo-head em { font-style: italic; font-weight: 500; color: #dce5ed; }
+  .bc-mh-promo-body {
+    font-size: 13px;
+    opacity: 0.82;
+    margin: 0 0 14px;
+    line-height: 1.5;
+  }
+  .bc-mh-promo-cta { display: inline-flex; }
+
+  /* Reviews list */
+  .bc-mh-reviews { padding: 22px 16px 14px; }
+  .bc-mh-reviews-note { margin-bottom: 6px; }
+  .bc-mh-side {
+    display: flex;
+    gap: 12px;
+    padding: 14px 0;
+    border-bottom: 1px dashed var(--rule);
+    text-decoration: none;
+    color: inherit;
+  }
+  .bc-mh-side-ph {
+    width: 86px;
+    height: 86px;
+    flex-shrink: 0;
+    position: relative;
+    border: 1.5px solid var(--ink);
+    overflow: hidden;
+  }
+  .bc-mh-side-ph img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .bc-mh-side-lvl {
+    position: absolute;
+    bottom: -6px;
+    right: -6px;
+    background: var(--paper-light);
+    border: 1.5px solid var(--ink);
+    padding: 2px 5px;
+    font-size: 8px;
+    z-index: 2;
+  }
+  .bc-mh-side-body { flex: 1; min-width: 0; }
+  .bc-mh-side-cat { color: var(--safety); margin-bottom: 4px; font-size: 9.5px; }
+  .bc-mh-side-body h4 {
+    font-family: var(--font-heading);
+    font-size: 17px;
+    line-height: 1.1;
+    color: var(--ink);
+    margin: 0 0 6px;
+    font-weight: 600;
+    text-transform: none;
+    letter-spacing: -0.005em;
+  }
+  .bc-mh-side-meta {
+    display: flex;
+    gap: 10px;
+    font-size: 10.5px;
+  }
+
+  /* Saturday Brief newsletter */
+  .bc-mh-newsletter {
+    padding: 24px 16px 30px;
+    border-top: 1.5px solid var(--ink);
+    background: var(--paper-warm);
+    position: relative;
+  }
+  .bc-mh-newsletter-stamp {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+  }
+  .bc-mh-newsletter-kicker { color: var(--safety); margin-bottom: 8px; }
+  .bc-mh-newsletter-head {
+    font-family: var(--font-heading);
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.05;
+    color: var(--ink);
+    margin: 0 0 10px;
+    max-width: 260px;
+    text-transform: none;
+    letter-spacing: -0.005em;
+  }
+  .bc-mh-newsletter-body {
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin: 0 0 14px;
+  }
+  .bc-mh-newsletter-form {
+    display: flex;
+    gap: 0;
+    border: 1.5px solid var(--ink);
+    border-radius: 2px;
+    overflow: hidden;
+    background: var(--paper-light);
+  }
+  .bc-mh-newsletter-form input {
+    flex: 1;
+    padding: 12px 14px;
+    border: none;
+    outline: none;
+    font-family: inherit;
+    background: transparent;
+    font-size: 13px;
+    color: var(--ink);
+  }
+  .bc-mh-newsletter-form button {
+    background: var(--ink);
+    color: var(--paper-light);
+    border: none;
+    border-left: 1.5px solid var(--ink);
+    padding: 12px 18px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .bc-mh-newsletter-stats {
+    color: var(--pencil);
+    margin-top: 10px;
+    font-size: 9px;
+  }
+
+  /* Mini footer */
+  .bc-mh-footer {
+    background: var(--ink);
+    color: var(--paper-light);
+    padding: 24px 16px 30px;
+  }
+  .bc-mh-footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .bc-mh-footer-sq {
+    width: 16px;
+    height: 16px;
+    background: var(--safety);
+    display: inline-block;
+  }
+  .bc-mh-footer-mark {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .bc-mh-footer-tagline {
+    font-size: 12px;
+    opacity: 0.7;
+    line-height: 1.6;
+    margin: 0 0 14px;
+  }
+  .bc-mh-footer-affiliate {
+    font-size: 9px;
+    opacity: 0.5;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.newsletter-form').forEach((form) => {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const f = e.currentTarget as HTMLFormElement;
+        const btn = f.querySelector('button[type="submit"]') as HTMLButtonElement;
+        const msg = f.parentElement?.querySelector('.newsletter-msg') as HTMLElement;
+        const input = f.querySelector('input[type="email"]') as HTMLInputElement;
+        const email = input.value.trim();
+        if (!email) return;
+        btn.disabled = true;
+        btn.style.opacity = '0.6';
+        msg?.classList.add('hidden');
+        try {
+          const res = await fetch('/api/subscribe', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, locale: f.dataset.locale || 'en' }),
+          });
+          const data = await res.json();
+          msg?.classList.remove('hidden');
+          if (msg) {
+            if (data.status === 'subscribed') {
+              msg.textContent = 'Welcome! You are now subscribed.';
+              input.value = '';
+            } else if (data.status === 'already_subscribed') {
+              msg.textContent = 'You are already subscribed!';
+            } else {
+              msg.textContent = 'Something went wrong. Please try again.';
+            }
+          }
+        } catch {
+          msg?.classList.remove('hidden');
+          if (msg) msg.textContent = 'Network error. Please try again.';
+        } finally {
+          btn.disabled = false;
+          btn.style.opacity = '1';
+        }
+      });
+    });
+  });
+</script>

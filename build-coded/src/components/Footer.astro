@@ -7,124 +7,272 @@ interface Props {
 
 const { locale = 'en' } = Astro.props;
 const year = new Date().getFullYear();
-const exploreLinks = [
+
+const readLinks = [
   { label: t(locale, 'categories.woodworking'), href: localePath('/category/woodworking/', locale) },
   { label: t(locale, 'categories.homeImprovement'), href: localePath('/category/home-improvement/', locale) },
   { label: t(locale, 'categories.electronics'), href: localePath('/category/electronics/', locale) },
   { label: t(locale, 'categories.crafts'), href: localePath('/category/crafts/', locale) },
 ];
-const toolsLinks = [
-  { label: t(locale, 'nav.costCalculator'), href: localePath('/cost-calculator/', locale) },
+const toolLinks = [
   { label: t(locale, 'nav.toolFinder'), href: localePath('/tool-finder/', locale) },
+  { label: t(locale, 'nav.costCalculator'), href: localePath('/cost-calculator/', locale) },
   { label: t(locale, 'nav.ideaGenerator'), href: localePath('/idea-generator/', locale) },
+];
+const houseLinks = [
   { label: t(locale, 'nav.about'), href: localePath('/about/', locale) },
   { label: t(locale, 'footer.privacy'), href: localePath('/privacy/', locale) },
 ];
 ---
 
-<footer class="bg-steel-50/50 rounded-t-[2rem] mt-16">
-  <div class="grid grid-cols-2 md:grid-cols-4 gap-10 sm:gap-12 px-6 sm:px-12 py-12 sm:py-16 max-w-[1400px] mx-auto">
-
+<footer class="bcd-footer-wrap">
+  <div class="bcd-footer">
     <!-- Col 1: Brand -->
-    <div class="md:pr-4">
-      <a href={localePath('/', locale)} class="inline-block mb-4">
-        <img src="/logo.svg" alt="Build Coded" class="h-10 w-auto" />
-        <span class="font-heading text-2xl italic text-charcoal block mt-2">Build Coded</span>
+    <div>
+      <a href={localePath('/', locale)} class="bcd-footer-brand-link">
+        <div class="bcd-footer-brand-mark">BUILD<br /><em>CODED.</em></div>
       </a>
-      <p class="text-sm text-charcoal-light/60 leading-relaxed">
-        {t(locale, 'footer.brandDesc')}
-      </p>
-      <div class="mt-6 flex items-center gap-1">
-        <span class="inline-block w-8 h-[0.5px] bg-charcoal-light/20"></span>
-        <span class="text-[11px] font-heading italic text-charcoal-light/50 tracking-wide">DIY Projects, Decoded.</span>
+      <p class="bcd-footer-tagline">{t(locale, 'footer.brandDesc')}</p>
+      <div class="bcd-footer-founded">
+        <span>&#9670; AMAZON ASSOCIATE &middot; ID BUILDCODED-20</span>
+        <br />
+        <span>&#9670; EST. 2024 &middot; {t(locale, 'footer.tagline')}</span>
       </div>
     </div>
 
-    <!-- Col 2: Explore -->
+    <!-- Col 2: Read -->
     <div>
-      <h4 class="text-[11px] font-heading uppercase tracking-wide text-charcoal-light/50 mb-5">{t(locale, 'footer.explore')}</h4>
-      <ul class="space-y-3">
-        {exploreLinks.map((link) => (
-          <li>
-            <a href={link.href} class="text-sm text-charcoal-light/60 hover:text-amber-700 transition-colors duration-200">
-              {link.label}
-            </a>
-          </li>
+      <h5 class="bcd-footer-heading">{t(locale, 'footer.explore')}</h5>
+      <ul class="bcd-footer-links">
+        {readLinks.map((link) => (
+          <li><a href={link.href}>{link.label}</a></li>
         ))}
       </ul>
     </div>
 
-    <!-- Col 3: Tools & Info -->
+    <!-- Col 3: Tools -->
     <div>
-      <h4 class="text-[11px] font-heading uppercase tracking-wide text-charcoal-light/50 mb-5">{t(locale, 'footer.toolsAndInfo')}</h4>
-      <ul class="space-y-3">
-        {toolsLinks.map((link) => (
-          <li>
-            <a href={link.href} class="text-sm text-charcoal-light/60 hover:text-amber-700 transition-colors duration-200">
-              {link.label}
-            </a>
-          </li>
+      <h5 class="bcd-footer-heading">{t(locale, 'footer.toolsAndInfo')}</h5>
+      <ul class="bcd-footer-links">
+        {toolLinks.map((link) => (
+          <li><a href={link.href}>{link.label}</a></li>
         ))}
       </ul>
     </div>
 
-    <!-- Col 4: Newsletter -->
+    <!-- Col 4: House / Newsletter -->
     <div>
-      <h4 class="text-[11px] font-heading uppercase tracking-wide text-charcoal-light/50 mb-5">{t(locale, 'footer.getTheBlueprint')}</h4>
-      <p class="text-sm text-charcoal-light/60 leading-relaxed mb-4">
-        {t(locale, 'footer.newsletterDesc')}
-      </p>
-      <form class="newsletter-form flex flex-col gap-3" data-locale={locale}>
-        <input
-          type="email"
-          placeholder={t(locale, 'footer.emailPlaceholder')}
-          required
-          class="w-full px-4 py-2.5 text-sm bg-white/70 border border-steel-200/60 rounded-lg text-charcoal placeholder:text-charcoal-light/50 focus:outline-none focus:ring-1 focus:ring-steel-400 focus:border-steel-400 transition-all duration-200"
-        />
-        <button
-          type="submit"
-          class="w-full px-4 py-2.5 text-sm font-heading tracking-wide bg-steel-600 text-cream rounded-lg hover:bg-steel-700 transition-colors duration-200"
-        >
-          {t(locale, 'common.subscribe')}
-        </button>
-        <p class="newsletter-msg text-sm hidden"></p>
+      <h5 class="bcd-footer-heading">{t(locale, 'footer.getTheBlueprint')}</h5>
+      <p class="bcd-footer-newsletter-desc">{t(locale, 'footer.newsletterDesc')}</p>
+      <form class="newsletter-form bcd-footer-form" data-locale={locale}>
+        <input type="email" placeholder={t(locale, 'footer.emailPlaceholder')} required class="bcd-footer-input" />
+        <button type="submit" class="bcd-footer-btn">{t(locale, 'common.subscribe')}</button>
       </form>
+      <p class="newsletter-msg bcd-footer-msg hidden"></p>
+      <ul class="bcd-footer-links bcd-footer-house">
+        {houseLinks.map((link) => (
+          <li><a href={link.href}>{link.label}</a></li>
+        ))}
+      </ul>
     </div>
   </div>
 
-  <!-- Bottom Bar -->
-  <div class="border-t border-steel-200/40">
-    <div class="max-w-[1400px] mx-auto px-6 sm:px-12 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <span class="text-xs text-charcoal-light/50">&copy; {year} {t(locale, 'footer.copyright')}</span>
-
-      <!-- Social Links -->
-      <div class="flex items-center gap-4">
-        <a href="https://pinterest.com" target="_blank" rel="noopener noreferrer" class="text-charcoal-light/50 hover:text-steel-600 transition-colors duration-200" aria-label="Pinterest">
-          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.372 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 01.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.627 0 12-5.373 12-12 0-6.628-5.373-12-12-12z"/></svg>
-        </a>
-        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="text-charcoal-light/50 hover:text-steel-600 transition-colors duration-200" aria-label="YouTube">
-          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-        </a>
-      </div>
+  <div class="bcd-footer-bottom">
+    <span class="bcd-footer-copyright">&copy; {year} {t(locale, 'footer.copyright')}</span>
+    <div class="bcd-footer-socials">
+      <a href="https://pinterest.com" target="_blank" rel="noopener noreferrer" aria-label="Pinterest">
+        <svg class="w-4 h-4" width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.372 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 01.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.627 0 12-5.373 12-12 0-6.628-5.373-12-12-12z"/></svg>
+      </a>
+      <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      </a>
     </div>
   </div>
 </footer>
+
+<style>
+  .bcd-footer-wrap {
+    margin-top: 80px;
+    background: var(--ink);
+    color: var(--paper-light);
+    border-top: 2.5px solid var(--ink);
+  }
+  .bcd-footer {
+    display: grid;
+    grid-template-columns: 1.3fr repeat(3, 1fr);
+    gap: 40px;
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 50px 32px 30px;
+  }
+  .bcd-footer-brand-link {
+    text-decoration: none;
+    color: inherit;
+  }
+  .bcd-footer-brand-mark {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 46px;
+    line-height: 0.9;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+  }
+  .bcd-footer-brand-mark em {
+    font-style: italic;
+    color: var(--safety);
+    font-weight: 500;
+    text-transform: none;
+  }
+  .bcd-footer-tagline {
+    font-size: 13px;
+    opacity: 0.7;
+    line-height: 1.6;
+    margin: 0 0 16px;
+    max-width: 280px;
+  }
+  .bcd-footer-founded {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    opacity: 0.5;
+    line-height: 1.8;
+  }
+  .bcd-footer-heading {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin: 0 0 14px;
+  }
+  .bcd-footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 13.5px;
+    line-height: 2;
+  }
+  .bcd-footer-links a {
+    color: var(--paper-light);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .bcd-footer-links a:hover { color: var(--safety); }
+  .bcd-footer-newsletter-desc {
+    font-size: 13px;
+    opacity: 0.7;
+    line-height: 1.55;
+    margin: 0 0 14px;
+  }
+  .bcd-footer-form {
+    display: flex;
+    gap: 0;
+    border: 1.5px solid rgba(253, 251, 249, 0.25);
+    border-radius: 2px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.06);
+  }
+  .bcd-footer-input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    color: var(--paper-light);
+    padding: 10px 14px;
+    font-family: var(--font-body);
+    font-size: 13px;
+    outline: none;
+  }
+  .bcd-footer-input::placeholder { color: rgba(253, 251, 249, 0.45); }
+  .bcd-footer-btn {
+    background: var(--safety);
+    color: var(--paper-light);
+    border: none;
+    border-left: 1.5px solid rgba(253, 251, 249, 0.25);
+    padding: 10px 16px;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.15s;
+  }
+  .bcd-footer-btn:hover { background: var(--safety-dark); }
+  .bcd-footer-msg {
+    margin-top: 8px;
+    font-size: 12px;
+  }
+  .bcd-footer-house {
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px dashed rgba(253, 251, 249, 0.15);
+    line-height: 2;
+  }
+  .bcd-footer-bottom {
+    border-top: 1px dashed rgba(253, 251, 249, 0.15);
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 20px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .bcd-footer-copyright {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(253, 251, 249, 0.4);
+  }
+  .bcd-footer-socials {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .bcd-footer-socials a {
+    color: rgba(253, 251, 249, 0.4);
+    transition: color 0.15s;
+  }
+  .bcd-footer-socials a:hover { color: var(--safety); }
+  .hidden { display: none; }
+
+  @media (max-width: 960px) {
+    .bcd-footer {
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      padding: 36px 18px 24px;
+    }
+    .bcd-footer-brand-mark { font-size: 36px; }
+    .bcd-footer-bottom {
+      padding: 16px 18px;
+      flex-direction: column;
+      gap: 12px;
+    }
+  }
+  @media (max-width: 480px) {
+    .bcd-footer {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+  }
+</style>
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.newsletter-form').forEach((form) => {
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const f = e.currentTarget;
-        const btn = f.querySelector('button[type="submit"]');
-        const msg = f.querySelector('.newsletter-msg');
-        const input = f.querySelector('input[type="email"]');
+        const f = e.currentTarget as HTMLFormElement;
+        const btn = f.querySelector('button[type="submit"]') as HTMLButtonElement;
+        const msg = f.parentElement?.querySelector('.newsletter-msg') as HTMLElement;
+        const input = f.querySelector('input[type="email"]') as HTMLInputElement;
         const email = input.value.trim();
         if (!email) return;
 
         btn.disabled = true;
         btn.style.opacity = '0.6';
-        msg.classList.add('hidden');
+        msg?.classList.add('hidden');
 
         try {
           const res = await fetch('/api/subscribe', {
@@ -133,23 +281,26 @@ const toolsLinks = [
             body: JSON.stringify({ email, locale: f.dataset.locale || 'en' }),
           });
           const data = await res.json();
-
-          msg.classList.remove('hidden');
-          if (data.status === 'subscribed') {
-            msg.textContent = 'Welcome! You are now subscribed.';
-            msg.className = 'newsletter-msg text-sm text-green-700';
-            input.value = '';
-          } else if (data.status === 'already_subscribed') {
-            msg.textContent = 'You are already subscribed!';
-            msg.className = 'newsletter-msg text-sm text-amber-700';
-          } else {
-            msg.textContent = data.error === 'invalid_email' ? 'Please enter a valid email.' : 'Something went wrong. Please try again.';
-            msg.className = 'newsletter-msg text-sm text-red-600';
+          msg?.classList.remove('hidden');
+          if (msg) {
+            if (data.status === 'subscribed') {
+              msg.textContent = 'Welcome! You are now subscribed.';
+              msg.style.color = '#b8e0c8';
+              input.value = '';
+            } else if (data.status === 'already_subscribed') {
+              msg.textContent = 'You are already subscribed!';
+              msg.style.color = 'var(--amber)';
+            } else {
+              msg.textContent = data.error === 'invalid_email' ? 'Please enter a valid email.' : 'Something went wrong. Please try again.';
+              msg.style.color = 'var(--safety)';
+            }
           }
         } catch {
-          msg.classList.remove('hidden');
-          msg.textContent = 'Network error. Please try again.';
-          msg.className = 'newsletter-msg text-sm text-red-600';
+          msg?.classList.remove('hidden');
+          if (msg) {
+            msg.textContent = 'Network error. Please try again.';
+            msg.style.color = 'var(--safety)';
+          }
         } finally {
           btn.disabled = false;
           btn.style.opacity = '1';

@@ -32,52 +32,162 @@ const breadcrumbSchema = JSON.stringify({
     { '@type': 'ListItem', position: 2, name: title },
   ],
 });
+
+const categories = ['woodworking', 'home-improvement', 'electronics', 'crafts'];
+const deptNo = (categories.indexOf(category) + 1).toString().padStart(2, '0');
+
+// Split title for italic tail treatment
+const words = title.split(' ');
+const head = words.slice(0, -1).join(' ');
+const tail = words[words.length - 1];
+
+const slugOf = (p: any) => (p.id.includes('/') ? p.id.split('/').slice(1).join('/') : p.id).replace('.mdx', '').replace('.md', '');
 ---
 
 <Base title={title} description={description} jsonLd={[breadcrumbSchema]} locale={locale}>
   <Header locale={locale} />
 
   <main class="flex-1">
-    <div class="max-w-[1400px] mx-auto px-6 sm:px-8 py-16">
-      <nav class="flex items-center gap-2 text-[11px] uppercase tracking-wide text-charcoal-light/50 mb-10" aria-label="Breadcrumb">
-        <a href={localePath('/', locale)} class="hover:text-steel-700 transition-colors">{t(locale, 'common.home')}</a>
-        <svg class="w-3 h-3 text-steel-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
-        <span class="font-medium">{title}</span>
+    <div class="bcd-cat-page">
+      <nav class="bcd-crumbs" aria-label="Breadcrumb">
+        <a href={localePath('/', locale)}>{t(locale, 'common.home')}</a>
+        <span>&rsaquo;</span>
+        <span>{title}</span>
       </nav>
 
-      <header class="mb-14 max-w-3xl">
-        <span class="inline-block text-[11px] font-semibold uppercase tracking-wide text-charcoal-light/50 mb-4">{t(locale, 'common.category')}</span>
-        <h1 class="font-heading text-4xl sm:text-5xl md:text-6xl text-charcoal tracking-tight leading-[1.08] mb-5">
-          {title}
+      <header class="bcd-cat-hero">
+        <div class="bcd-sec-label">&sect; {t(locale, 'common.category').toUpperCase()} &middot; {title.toUpperCase()} &middot; DEPT {deptNo}</div>
+        <h1 class="bcd-cat-title">
+          {head ? <>{head} <em>{tail}</em></> : <em>{tail}</em>}
         </h1>
-        <p class="text-lg sm:text-xl text-charcoal-light/60 leading-relaxed max-w-2xl">{description}</p>
+        <p class="bcd-cat-desc">{description}</p>
+        <div class="bcd-cat-meta">{sortedPosts.length} {sortedPosts.length === 1 ? t(locale, 'common.article') : t(locale, 'common.articles')} &middot; UPDATED WEEKLY</div>
       </header>
 
-      <div class="border-t border-steel-200/30 pt-12" data-pagefind-body>
-        <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
-          {sortedPosts.map((post) => (
-            <ArticleCard
-              title={post.data.title}
-              description={post.data.description}
-              date={post.data.date}
-              category={post.data.category}
-              slug={post.id.includes('/') ? post.id.split('/').slice(1).join('/') : post.id}
-              image={post.data.image}
-              type={post.data.type}
-              locale={locale}
-            />
-          ))}
-        </div>
+      <div class="bcd-cat-grid" data-pagefind-body>
+        {sortedPosts.map((post, i: number) => (
+          <ArticleCard
+            title={post.data.title}
+            description={post.data.description}
+            date={post.data.date}
+            category={post.data.category}
+            slug={slugOf(post)}
+            image={post.data.image}
+            type={post.data.type}
+            locale={locale}
+            indexNo={i + 1}
+          />
+        ))}
       </div>
 
       {sortedPosts.length === 0 && (
-        <div class="text-center py-24">
-          <p class="text-charcoal-light/60 font-heading text-2xl">Articles coming soon.</p>
-          <p class="text-sm text-charcoal-light/50 mt-2">We're working on this section. Check back shortly.</p>
+        <div class="bcd-empty">
+          <p>Articles coming soon.</p>
+          <p class="bcd-empty-small">We're working on this section. Check back shortly.</p>
         </div>
       )}
     </div>
   </main>
 
   <Footer locale={locale} />
+
+  <style>
+    .bcd-cat-page {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 32px 32px 80px;
+    }
+    .bcd-crumbs {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 22px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--pencil);
+    }
+    .bcd-crumbs a {
+      color: var(--pencil);
+      text-decoration: none;
+    }
+    .bcd-crumbs a:hover { color: var(--safety); }
+
+    .bcd-cat-hero {
+      padding: 24px 0 30px;
+      border-bottom: 2px solid var(--ink);
+      margin-bottom: 40px;
+    }
+    .bcd-sec-label {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      letter-spacing: 0.18em;
+      color: var(--pencil);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .bcd-cat-title {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: clamp(56px, 9vw, 104px);
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+      margin: 0 0 20px;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+    .bcd-cat-title em {
+      font-style: italic;
+      color: var(--safety);
+      font-weight: 500;
+      text-transform: none;
+    }
+    .bcd-cat-desc {
+      font-size: 17px;
+      line-height: 1.55;
+      color: var(--ink-soft);
+      max-width: 640px;
+      margin: 0 0 18px;
+    }
+    .bcd-cat-meta {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--pencil);
+    }
+    .bcd-cat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .bcd-empty {
+      text-align: center;
+      padding: 96px 0;
+      color: var(--ink-soft);
+    }
+    .bcd-empty p {
+      font-family: var(--font-heading);
+      font-size: 28px;
+      font-weight: 600;
+      margin: 0;
+    }
+    .bcd-empty-small {
+      font-family: var(--font-body) !important;
+      font-size: 14px !important;
+      font-weight: 400 !important;
+      color: var(--pencil);
+      margin-top: 8px !important;
+    }
+
+    @media (max-width: 1100px) {
+      .bcd-cat-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .bcd-cat-page { padding: 20px 18px 60px; }
+      .bcd-cat-title { font-size: 48px; }
+      .bcd-cat-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </Base>

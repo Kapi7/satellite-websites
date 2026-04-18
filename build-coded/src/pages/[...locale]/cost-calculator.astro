@@ -20,47 +20,42 @@ const projects = Object.entries(projectCosts.projects);
 <Base title={t(locale, 'costCalculator.title')} description={t(locale, 'costCalculator.description')} locale={locale}>
   <Header locale={locale} />
   <main class="flex-1">
-    <div class="max-w-4xl mx-auto px-5 sm:px-8 py-16">
-      <span class="inline-block text-[11px] font-semibold uppercase tracking-[0.2em] text-amber-500 mb-5">{t(locale, 'costCalculator.toolLabel')}</span>
-      <h1 class="font-heading text-4xl sm:text-5xl text-charcoal tracking-tight leading-[1.1] mb-4">{t(locale, 'costCalculator.title')}</h1>
-      <p class="text-lg text-charcoal-light/60 leading-relaxed mb-12 max-w-2xl">{t(locale, 'costCalculator.description')}</p>
+    <div class="bcd-tool-wrap">
+      <a href={localePath('/', locale)} class="tool-back">&larr; {t(locale, 'common.backToHome')}</a>
+      <div class="bcd-kicker">&sect; TOOL 02 &middot; {t(locale, 'costCalculator.toolLabel').toUpperCase()} &middot; BETA</div>
+      <h1 class="bcd-tool-title">What will it <em>actually</em> cost?</h1>
+      <p class="bcd-tool-lede">{t(locale, 'costCalculator.description')}</p>
 
-      <div id="calculator" class="space-y-8">
-        <!-- Project selector -->
-        <div>
-          <label class="block text-sm font-semibold text-charcoal mb-3">Select a Project</label>
-          <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3" id="project-grid">
+      <div id="calculator" class="bcd-calc">
+        <div class="bcd-calc-section">
+          <div class="bcd-calc-label">&sect; Pick your project</div>
+          <div class="bcd-calc-grid" id="project-grid">
             {projects.map(([key, proj]) => (
-              <button
-                data-project={key}
-                class="project-btn text-left p-4 rounded-xl border border-steel-200/60 bg-white hover:border-amber-400 hover:shadow-md transition-all duration-200 cursor-pointer"
-              >
-                <span class="block text-sm font-heading font-semibold text-charcoal mb-1">{proj.name}</span>
-                <span class="block text-xs text-charcoal-light/60">{proj.category} &middot; {proj.difficulty}</span>
-                <span class="block text-xs text-amber-600 font-semibold mt-2">
-                  {typeof proj.totalEstimate === 'number' ? `~$${proj.totalEstimate}` : proj.totalEstimate}
-                </span>
+              <button data-project={key} class="bcd-project-btn">
+                <span class="p-name">{proj.name}</span>
+                <span class="p-meta">{proj.category} &middot; {proj.difficulty}</span>
+                <span class="p-price">{typeof proj.totalEstimate === 'number' ? `~$${proj.totalEstimate}` : proj.totalEstimate}</span>
               </button>
             ))}
           </div>
         </div>
 
-        <!-- Results -->
         <div id="results" class="hidden">
-          <div class="bg-steel-50/60 rounded-2xl p-6 sm:p-8 border border-steel-200/40">
-            <h2 id="result-title" class="font-heading text-2xl text-charcoal mb-2"></h2>
-            <div class="flex items-center gap-4 text-xs text-charcoal-light/60 mb-6">
+          <div class="bcd-calc-results">
+            <div class="bcd-calc-label" style="color: var(--amber); margin-bottom: 12px;">&sect; Project specs</div>
+            <h2 id="result-title"></h2>
+            <div class="result-meta">
               <span id="result-difficulty"></span>
               <span>&middot;</span>
               <span id="result-time"></span>
             </div>
 
-            <h3 class="text-sm font-semibold uppercase tracking-wide text-charcoal-light/50 mb-4">Materials</h3>
-            <div id="materials-list" class="space-y-2 mb-6"></div>
+            <div class="bcd-calc-label" style="margin: 20px 0 10px;">Materials</div>
+            <div id="materials-list" class="materials-list"></div>
 
-            <div class="flex items-center justify-between pt-4 border-t border-steel-200/40">
-              <span class="text-sm font-semibold text-charcoal">Estimated Total</span>
-              <span id="result-total" class="text-xl font-heading font-bold text-amber-600"></span>
+            <div class="result-total-row">
+              <span>Estimated Total</span>
+              <span id="result-total" class="result-total"></span>
             </div>
           </div>
         </div>
@@ -68,11 +63,143 @@ const projects = Object.entries(projectCosts.projects);
     </div>
   </main>
   <Footer locale={locale} />
+
+  <style>
+    .bcd-calc { display: flex; flex-direction: column; gap: 30px; }
+    .bcd-calc-section { }
+    .bcd-calc-label {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--pencil);
+      margin-bottom: 14px;
+    }
+    .bcd-calc-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .bcd-project-btn {
+      text-align: left;
+      padding: 16px 18px;
+      border: 1.5px solid var(--ink);
+      border-radius: 2px;
+      background: var(--paper-light);
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      box-shadow: 3px 3px 0 var(--ink);
+      font-family: inherit;
+    }
+    .bcd-project-btn:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 5px 5px 0 var(--safety);
+    }
+    .bcd-project-btn.active {
+      background: var(--ink);
+      color: var(--paper-light);
+      box-shadow: 3px 3px 0 var(--amber);
+    }
+    .bcd-project-btn .p-name {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 16px;
+    }
+    .bcd-project-btn .p-meta {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--pencil);
+    }
+    .bcd-project-btn.active .p-meta { color: var(--amber); }
+    .bcd-project-btn .p-price {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      color: var(--safety);
+      margin-top: 6px;
+    }
+    .bcd-project-btn.active .p-price { color: var(--amber); }
+
+    .bcd-calc-results {
+      background: var(--ink);
+      color: var(--paper-light);
+      border-radius: 3px;
+      padding: 28px;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 30px 30px;
+      box-shadow: 4px 4px 0 var(--amber);
+      border: 1.5px solid var(--ink);
+    }
+    .bcd-calc-results h2 {
+      font-family: var(--font-heading);
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin: 0 0 10px;
+      text-transform: uppercase;
+    }
+    .result-meta {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(228, 233, 240, 0.7);
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .materials-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .materials-list .row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 12px;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 2px;
+      font-size: 13.5px;
+    }
+    .result-total-row {
+      margin-top: 20px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(228, 233, 240, 0.2);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+    .result-total {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 40px;
+      color: var(--amber);
+      letter-spacing: -0.01em;
+    }
+    .hidden { display: none; }
+
+    @media (max-width: 900px) {
+      .bcd-calc-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .bcd-calc-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </Base>
 
 <script define:vars={{ projectCosts }}>
   const projects = projectCosts.projects;
-  const buttons = document.querySelectorAll('.project-btn');
+  const buttons = document.querySelectorAll('.bcd-project-btn');
   const results = document.getElementById('results');
 
   buttons.forEach(btn => {
@@ -81,8 +208,8 @@ const projects = Object.entries(projectCosts.projects);
       const proj = projects[key];
       if (!proj) return;
 
-      buttons.forEach(b => b.classList.remove('border-amber-400', 'shadow-md', 'bg-amber-50/30'));
-      btn.classList.add('border-amber-400', 'shadow-md', 'bg-amber-50/30');
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
 
       document.getElementById('result-title').textContent = proj.name;
       document.getElementById('result-difficulty').textContent = proj.difficulty;
@@ -92,19 +219,18 @@ const projects = Object.entries(projectCosts.projects);
       list.textContent = '';
       proj.materials.forEach(m => {
         const row = document.createElement('div');
-        row.className = 'flex items-center justify-between py-2 px-3 bg-white rounded-lg';
+        row.className = 'row';
         const nameSpan = document.createElement('span');
-        nameSpan.className = 'text-sm text-charcoal';
-        nameSpan.textContent = `${m.item} (x${m.qty})`;
+        nameSpan.textContent = `${m.item} (×${m.qty})`;
         const costSpan = document.createElement('span');
-        costSpan.className = 'text-sm font-semibold text-charcoal';
+        costSpan.style.fontWeight = '600';
         costSpan.textContent = `$${(m.cost * m.qty).toFixed(2)}`;
         row.appendChild(nameSpan);
         row.appendChild(costSpan);
         list.appendChild(row);
       });
 
-      const total = typeof proj.totalEstimate === 'number' ? `~$${proj.totalEstimate}` : proj.totalEstimate;
+      const total = typeof proj.totalEstimate === 'number' ? `$${proj.totalEstimate}` : proj.totalEstimate;
       document.getElementById('result-total').textContent = total;
 
       results.classList.remove('hidden');
