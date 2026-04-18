@@ -41,11 +41,17 @@ const ingredientsData = JSON.stringify(ingredients.map(i => ({
 >
   <Header locale={locale} />
   <main class="flex-1">
-    <section class="max-w-6xl mx-auto px-5 sm:px-8 py-12">
-      <div class="mb-10 animate-fade-in-up">
-        <span class="block text-[11px] font-semibold uppercase tracking-[0.2em] text-plum-300 mb-2">{t(locale, 'ingredientGlossary.reference')}</span>
-        <h1 class="font-heading text-4xl text-charcoal tracking-tight mb-3">{t(locale, 'ingredientGlossary.title')}</h1>
-        <p class="text-plum-400 max-w-xl">{t(locale, 'ingredientGlossary.description')}</p>
+    <section class="gcd-tool-wrap" style="max-width:1200px;">
+      <div class="gcd-tool-head animate-fade-in-up">
+        <a href={localePath('/', locale)} class="tool-back">&larr; {t(locale, 'common.home')}</a>
+        <div class="gcd-kicker">
+          <span class="pill">&#9672; TOOL 05</span>
+          <span>Ingredient Glossary</span>
+        </div>
+        <h1 class="gcd-tool-title">
+          {t(locale, 'ingredientGlossary.title').split(' ').slice(0, -1).join(' ')} <em>{t(locale, 'ingredientGlossary.title').split(' ').slice(-1)[0]}</em>
+        </h1>
+        <p class="gcd-tool-lede">{t(locale, 'ingredientGlossary.description')}</p>
       </div>
 
       <div class="flex flex-col sm:flex-row gap-4 mb-8 animate-fade-in-up stagger-1">

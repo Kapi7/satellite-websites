@@ -10,27 +10,157 @@ interface Props {
 const { title, url, locale = 'en' } = Astro.props;
 const encodedTitle = encodeURIComponent(title);
 const encodedUrl = encodeURIComponent(url);
+const pinUrl = `https://pinterest.com/pin/create/button/?url=${encodedUrl}&description=${encodedTitle}`;
+const xUrl = `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`;
+const fbUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`;
 ---
-<div class="flex items-center gap-3 mt-8 pt-6 border-t border-rose-200/60">
-  <span class="text-[11px] font-semibold uppercase tracking-wide text-charcoal-light/50 mr-1">{t(locale, 'common.share')}</span>
-  <a href={`https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`} target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-rose-50 flex items-center justify-center text-charcoal-light/60 hover:bg-rose-100 hover:text-plum-700 transition-all duration-200" aria-label="Share on X">
-    <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-  </a>
-  <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`} target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-rose-50 flex items-center justify-center text-charcoal-light/60 hover:bg-rose-100 hover:text-plum-700 transition-all duration-200" aria-label="Share on Facebook">
-    <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-  </a>
-  <button class="copy-link w-8 h-8 rounded-full bg-rose-50 flex items-center justify-center text-charcoal-light/60 hover:bg-rose-100 hover:text-plum-700 transition-all duration-200" data-url={url} aria-label="Copy link">
-    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
-  </button>
+
+<div class="share-section">
+  <!-- Top row: label + native share button -->
+  <div class="share-header">
+    <div>
+      <div class="share-kicker">{t(locale, 'common.share') === 'Share' ? 'ENJOYED THIS?' : t(locale, 'common.share')}</div>
+      <div class="share-title">Share it</div>
+    </div>
+    <button class="share-native-btn" data-title={title} data-url={url} aria-label="Share">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8M16 6l-4-4-4 4M12 2v13"/></svg>
+      <span class="share-native-label">Share</span>
+      <span class="share-native-copied hidden">Link copied!</span>
+    </button>
+  </div>
+
+  <!-- Bottom row: 3 platform buttons -->
+  <div class="share-buttons">
+    <a href={pinUrl} target="_blank" rel="noopener noreferrer" class="share-btn" aria-label="Pin on Pinterest">
+      <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.372 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 01.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.627 0 12-5.373 12-12 0-6.628-5.373-12-12-12z"/></svg>
+      Pin
+    </a>
+    <a href={xUrl} target="_blank" rel="noopener noreferrer" class="share-btn" aria-label="Post on X">
+      <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      Post
+    </a>
+    <a href={fbUrl} target="_blank" rel="noopener noreferrer" class="share-btn" aria-label="Share on Facebook">
+      <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      Share
+    </a>
+  </div>
 </div>
+
+<style>
+  .share-section {
+    border-top: 1.5px solid #1a1513;
+    border-bottom: 1.5px solid #1a1513;
+    padding: 18px;
+    margin: 18px 0;
+  }
+
+  .share-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+
+  .share-kicker {
+    font-family: 'Cutive Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #4a3f3a;
+    margin-bottom: 4px;
+  }
+
+  .share-title {
+    font-family: 'Rozha One', serif;
+    font-size: 18px;
+    line-height: 0.92;
+    letter-spacing: -0.01em;
+    color: #1a1513;
+  }
+
+  .share-native-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #ff5a4c;
+    color: #fff;
+    border: 1.5px solid #1a1513;
+    border-radius: 999px;
+    padding: 10px 18px;
+    font-family: 'Cutive Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    box-shadow: 3px 3px 0 rgba(255, 90, 76, 0.9);
+    transition: transform 0.12s, box-shadow 0.12s;
+  }
+
+  .share-native-btn:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 4px 4px 0 rgba(255, 90, 76, 0.9);
+  }
+
+  .share-buttons {
+    display: flex;
+    gap: 8px;
+  }
+
+  .share-btn {
+    flex: 1;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1.2px solid #1a1513;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    text-decoration: none;
+    color: #1a1513;
+    font-family: 'Cutive Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    transition: background 0.15s, color 0.15s;
+    background: transparent;
+  }
+
+  .share-btn:hover {
+    background: #1a1513;
+    color: #fdfbf9;
+  }
+
+  .hidden {
+    display: none !important;
+  }
+</style>
+
 <script>
-  document.querySelectorAll('.copy-link').forEach(btn => {
+  document.querySelectorAll('.share-native-btn').forEach(btn => {
     btn.addEventListener('click', async () => {
-      const url = (btn as HTMLElement).dataset.url || window.location.href;
-      await navigator.clipboard.writeText(url);
-      const orig = btn.innerHTML;
-      btn.innerHTML = '<svg class="w-3.5 h-3.5 text-plum-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>';
-      setTimeout(() => { btn.innerHTML = orig; }, 2000);
+      const el = btn as HTMLElement;
+      const title = el.dataset.title || document.title;
+      const url = el.dataset.url || window.location.href;
+      const labelEl = el.querySelector('.share-native-label');
+      const copiedEl = el.querySelector('.share-native-copied');
+
+      if (navigator.share) {
+        try {
+          await navigator.share({ title, url });
+        } catch (e) {
+          // User cancelled — ignore
+        }
+      } else {
+        await navigator.clipboard.writeText(url);
+        if (labelEl && copiedEl) {
+          labelEl.classList.add('hidden');
+          copiedEl.classList.remove('hidden');
+          setTimeout(() => {
+            labelEl.classList.remove('hidden');
+            copiedEl.classList.add('hidden');
+          }, 2000);
+        }
+      }
     });
   });
 </script>

@@ -1,0 +1,76 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import BackToTop from '../../components/BackToTop.astro';
+import { locales, defaultLocale, type Locale } from '../../i18n/locales';
+
+export function getStaticPaths() {
+  return locales.map(l => ({
+    params: { locale: l === defaultLocale ? undefined : l },
+    props: { locale: l },
+  }));
+}
+
+const { locale } = Astro.props as { locale: Locale };
+
+/* Curated Mirai × Glow Coded edit — matches homepage shop-rail exactly */
+const products = [
+  { slug: 'anua-cleansing-oil', name: 'Heartleaf Pore Control Cleansing Oil', brand: 'Anua', price: '$28', type: 'Oil cleanser', rating: 4.9, reviews: 1247, tag: 'STAFF PICK', image: '/images/products/anua-cleansing-oil.jpg', url: 'https://mirai-skin.com/products/anua-heartleaf-pore-control-cleansing-oil-200ml' },
+  { slug: 'beauty-of-joseon-sunscreen', name: 'Relief Sun: Rice + Probiotics SPF50+', brand: 'Beauty of Joseon', price: '$18', type: 'Sunscreen', rating: 4.8, reviews: 3102, tag: 'BESTSELLER', image: '/images/products/beauty-of-joseon-sunscreen.jpg', url: 'https://mirai-skin.com/products/beauty-joseon-relief-sun-ricex1' },
+  { slug: 'cosrx-snail-essence', name: 'Advanced Snail 96 Mucin Power Essence', brand: 'COSRX', price: '$25', type: 'Essence', rating: 4.7, reviews: 2041, tag: 'CULT FAVE', image: '/images/products/cosrx-snail-essence.jpg', url: 'https://mirai-skin.com/products/cosrx-advanced-snail-96-mucin-power-essence-100ml' },
+  { slug: 'laneige-lip-mask', name: 'Lip Sleeping Mask', brand: 'Laneige', price: '$24', type: 'Lip care', rating: 4.6, reviews: 1890, tag: 'NEW', image: '/images/products/laneige-lip-mask.jpg', url: 'https://mirai-skin.com/products/laneige-lip-sleeping-mask-20g' },
+  { slug: 'some-by-mi-toner', name: 'AHA BHA PHA 30 Days Miracle Toner', brand: 'Some By Mi', price: '$22', type: 'Toner', rating: 4.5, reviews: 987, image: '/images/products/some-by-mi-toner.jpg', url: 'https://mirai-skin.com/products/some-by-mi-aha-bha-pha-30-days-miracle-toner' },
+  { slug: 'innisfree-serum', name: 'Green Tea Ceramide Milk Barrier Essence', brand: 'Innisfree', price: '$30', type: 'Essence', rating: 4.7, reviews: 1456, image: '/images/products/innisfree-serum.jpg', url: 'https://mirai-skin.com/products/innisfree-green-tea-ceramide-milk-barrier-essence-160ml' },
+];
+
+const schema = JSON.stringify({
+  '@context': 'https://schema.org', '@type': 'CollectionPage',
+  name: 'The Edit — curated K-Beauty picks via Mirai Skin',
+  description: 'Everything we\'ve reviewed, in one place. Shop at Mirai Skin — affiliate disclosed.',
+});
+---
+
+<Base
+  title="The Edit — Glow Coded"
+  description="Curated K-Beauty picks via Mirai Skin. Everything we've reviewed, in one place."
+  jsonLd={[schema]}
+  locale={locale}
+>
+  <Header locale={locale} mobileTitle="THE EDIT" />
+
+  <main class="gcd-shop">
+    <div class="gcd-shop-head">
+      <div class="gcd-kicker">
+        <span class="pill">MIRAI &times;</span>
+        <span class="pill">K-BEAUTY</span>
+        <span>Curated monthly</span>
+      </div>
+      <h1>The <em>Edit</em>.</h1>
+      <p class="sub">Everything we've reviewed, in one place. Shop at Mirai Skin — we'll earn a small cut. Prices and stock refresh weekly.</p>
+    </div>
+
+    <div class="gcd-shop-grid">
+      {products.map((p) => (
+        <a href={p.url} target="_blank" rel="noopener" class="gcd-shop-card">
+          <div class="img">
+            {p.tag && <span class="tag-pill">{p.tag}</span>}
+            <img src={p.image} alt={p.name} loading="lazy" />
+          </div>
+          <div class="body">
+            <div class="brand">{p.brand}</div>
+            <h3>{p.name}</h3>
+            <p class="type">{p.type} &middot; &#9733; {p.rating} ({p.reviews.toLocaleString()})</p>
+            <div class="foot">
+              <span class="price">{p.price}</span>
+              <span>Shop at Mirai &rarr;</span>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </main>
+
+  <Footer locale={locale} />
+  <BackToTop />
+</Base>

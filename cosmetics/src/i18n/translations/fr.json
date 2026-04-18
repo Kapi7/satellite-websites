@@ -26,7 +26,7 @@
     "tagged": "Tagué",
     "home": "Accueil",
     "category": "Catégorie",
-    "keepReading": "Continuer la lecture",
+    "keepReading": "Continuer à lire",
     "backToTop": "Retour en haut",
     "toggleDarkMode": "Activer le mode sombre",
     "openMenu": "Ouvrir le menu",
@@ -37,7 +37,8 @@
     "featuredProducts": "Produits phares",
     "shopNow": "Acheter maintenant",
     "popularArticles": "Articles populaires",
-    "language": "Langue"
+    "language": "Langue",
+    "by": "Par"
   },
   "home": {
     "latest": "Les plus récents",
@@ -82,12 +83,15 @@
   "newsletter": {
     "preTitle": "L'Éclat Hebdomadaire",
     "title": "Obtenir l'éclat",
-    "description": "Nouveaux avis, analyses d'ingrédients et conseils de routine chaque semaine. Sans blabla."
+    "description": "Nouveaux avis, analyses d'ingrédients et conseils de routine chaque semaine. Sans blabla.",
+    "titleShort": "La Lettre",
+    "tagline": "Jeudis. Un email honnête. Une routine que nous utiliserions vraiment."
   },
   "article": {
     "editorial": "Éditorial Glow Coded",
     "expandFullScreen": "Agrandir en plein écran",
-    "collapse": "Réduire"
+    "collapse": "Réduire",
+    "keepReading": "Continuer à lire"
   },
   "categories": {
     "skincare": "Skincare",

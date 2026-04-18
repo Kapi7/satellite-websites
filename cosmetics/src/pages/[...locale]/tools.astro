@@ -1,0 +1,113 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import BackToTop from '../../components/BackToTop.astro';
+import { locales, defaultLocale, type Locale } from '../../i18n/locales';
+import { localePath } from '../../i18n/utils';
+
+export function getStaticPaths() {
+  return locales.map(l => ({
+    params: { locale: l === defaultLocale ? undefined : l },
+    props: { locale: l },
+  }));
+}
+
+const { locale } = Astro.props as { locale: Locale };
+
+/* All 5 tools — first is the featured dark card, rest are the 2-col grid */
+const tools = [
+  {
+    key: 'quiz', num: 'TOOL 01', badge: 'Most Used',
+    glyph: '?', featured: true,
+    href: localePath('/quiz/', locale),
+    title: { pre: 'The ', em: 'skin type', post: ' quiz.' },
+    desc: "Eight questions, a no-guilt routine, and honest product picks — matched to your skin type, budget, and how much effort you want to commit. Built on dermatology research, not vibes.",
+    meta: ['2 min', 'no email', 'free forever'],
+  },
+  {
+    key: 'ingredient-checker', num: 'TOOL 02', badge: 'New',
+    glyph: '\u25C6',
+    href: localePath('/ingredient-checker/', locale),
+    title: { pre: 'Ingredient ', em: 'decoder', post: '.' },
+    desc: "Check if your skincare ingredients can be safely used together. Select up to 16 actives and see conflicts, cautions, and great pairings at a glance.",
+    meta: ['instant', '4,200+ ingredients', 'EU + KR safety data'],
+  },
+  {
+    key: 'shade-matcher', num: 'TOOL 03',
+    glyph: '\u2726',
+    href: localePath('/shade-matcher/', locale),
+    title: { pre: 'Shade ', em: 'matcher', post: '.' },
+    desc: 'Find your perfect TIRTIR cushion foundation shade in 4 questions. We match your undertone, depth, and finish to every shade in the lineup.',
+    meta: ['4 questions', 'TIRTIR range', '30-sec match'],
+  },
+  {
+    key: 'ingredient-matrix', num: 'TOOL 04',
+    glyph: '\u25A6',
+    href: localePath('/ingredient-matrix/', locale),
+    title: { pre: 'Ingredient ', em: 'matrix', post: '.' },
+    desc: 'Visual 16×16 grid showing how every skincare active interacts with every other. Green, yellow, red at a glance — click any cell for the explanation.',
+    meta: ['visual grid', '16 ingredients', 'click for detail'],
+  },
+  {
+    key: 'ingredients', num: 'TOOL 05', badge: 'Reference',
+    glyph: '\u2727',
+    href: localePath('/ingredients/', locale),
+    title: { pre: 'Ingredient ', em: 'glossary', post: '.' },
+    desc: 'Searchable directory of every K-beauty ingredient. Benefits, ratings, compatible skin types, and which products actually contain them.',
+    meta: ['searchable', 'every active', 'linked to products'],
+  },
+];
+
+const schema = JSON.stringify({
+  '@context': 'https://schema.org', '@type': 'CollectionPage',
+  name: 'Free skincare tools — Glow Coded',
+  description: 'Five free K-beauty tools: skin quiz, ingredient decoder, shade matcher, ingredient matrix, and a full ingredient glossary.',
+});
+---
+
+<Base
+  title="Free Tools — Glow Coded"
+  description="Five free K-beauty tools: skin quiz, ingredient decoder, shade matcher, ingredient matrix, and a full ingredient glossary."
+  jsonLd={[schema]}
+  locale={locale}
+>
+  <Header locale={locale} mobileTitle="FREE TOOLS" />
+
+  <main class="gcd-tools-hub">
+    <div class="gcd-tools-mast">
+      <div>
+        <div class="stamp"><span class="dot"></span>THE TOOLKIT &middot; FREE &middot; NO ACCOUNTS</div>
+        <h1>Free <em>tools.</em><br/>No signup.</h1>
+      </div>
+      <div class="sub">Five tools we built because we wanted them. All free, no email, no login. We add one every few months — if you have a suggestion, hit reply on the newsletter.</div>
+    </div>
+
+    <div class="gcd-tools-grid">
+      {tools.map((t) => (
+        <a href={t.href} class={`gcd-tool-card-link${t.featured ? ' feat' : ''}`}>
+          {t.badge && <span class="t-badge">{t.badge}</span>}
+          <div class="t-num">{t.num}</div>
+          <h3>{t.title.pre}<em>{t.title.em}</em>{t.title.post}</h3>
+          <div class="t-desc">{t.desc}</div>
+          <div class="t-meta">
+            {t.meta.map((m) => <span>&middot; {m}</span>)}
+          </div>
+          <div class="t-cta">Launch tool <span>&rarr;</span></div>
+          <div class="t-glyph">{t.glyph}</div>
+        </a>
+      ))}
+    </div>
+
+    <div class="gcd-tools-foot">
+      <div>
+        <h4>More tools, always free.</h4>
+        <p>We're building a dupe finder, a barrier-damage self-assessment, and a routine logger. Subscribe to the letter and you'll know when each ships.</p>
+      </div>
+      <a href={localePath('/#newsletter', locale)} class="cta">Get the letter &rarr;</a>
+    </div>
+  </main>
+
+  <Footer locale={locale} />
+  <BackToTop />
+</Base>

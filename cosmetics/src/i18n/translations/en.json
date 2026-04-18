@@ -26,7 +26,7 @@
     "tagged": "Tagged",
     "home": "Home",
     "category": "Category",
-    "keepReading": "Keep Reading",
+    "keepReading": "Keep reading",
     "backToTop": "Back to top",
     "toggleDarkMode": "Toggle dark mode",
     "openMenu": "Open menu",
@@ -37,7 +37,8 @@
     "featuredProducts": "Featured Products",
     "shopNow": "Shop Now",
     "popularArticles": "Popular Articles",
-    "language": "Language"
+    "language": "Language",
+    "by": "By"
   },
   "home": {
     "latest": "Latest",
@@ -66,7 +67,38 @@
     "slideIngredients": "Ingredients That Actually Work",
     "slideIngredientsDesc": "Beyond the marketing claims. What the research says about your favorite actives.",
     "trending": "Trending",
-    "readerFavorites": "Reader Favorites"
+    "readerFavorites": "Reader Favorites",
+    "mastheadKicker1": "K-Beauty",
+    "mastheadKicker2": "Ingredient Science",
+    "mastheadKicker3": "No Gatekeeping",
+    "mastheadSub": "Skin science, honestly. Real routines, real reviews, and the K-beauty shelf tours you wish your friends would send you. We test before we recommend; we disclose when we get paid.",
+    "marquee1": "NEW · Snail Mucin, Ranked",
+    "marquee2": "14 Sunscreens Tested",
+    "marquee3": "Free Skin Quiz",
+    "marquee4": "K-Beauty 101",
+    "marquee5": "Mirai Drop · April",
+    "thisWeek": "This week",
+    "inTheFeed": "in the feed",
+    "storiesCount": "stories · updated daily",
+    "byCategory": "By category",
+    "articlesCount": "articles",
+    "sectionsCount": "sections",
+    "theEdit": "The Edit",
+    "kBeautyPicks": "K-Beauty picks · via Mirai Skin",
+    "shopIntroTitle": "Curated, tested, never pushy.",
+    "shopIntroDesc": "Six bottles we’re keeping on our shelf this month. Every product is stocked at Mirai Skin — we earn a small cut only when you shop, and never when we review.",
+    "shopFullEdit": "Shop the full edit →",
+    "quizLabel": "Interactive · 2 minutes",
+    "quizHeading": "What does your",
+    "quizHeadingSkin": "skin",
+    "quizHeadingEnd": "actually need?",
+    "quizPromoDesc": "Eight questions, a no-guilt routine, and honest product picks — matched to your skin type, budget, and how much effort you’re willing to commit. No email required.",
+    "quizPromoCta": "Take the quiz",
+    "newsletterLabel": "Thursdays · 10k readers",
+    "newsletterHeading": "The Letter.",
+    "newsletterPromoDesc": "One honest email, every Thursday. One routine, one ingredient, one product we’d recommend to a friend. Unsubscribe anytime.",
+    "newsletterSignUp": "Sign up",
+    "thisWeekTag": "THIS WEEK"
   },
   "footer": {
     "tagline": "Beauty, decoded.",
@@ -84,12 +116,15 @@
   "newsletter": {
     "preTitle": "The Weekly Glow",
     "title": "Get the Glow",
-    "description": "New reviews, ingredient breakdowns, and routine tips every week. No fluff."
+    "description": "New reviews, ingredient breakdowns, and routine tips every week. No fluff.",
+    "titleShort": "The Letter",
+    "tagline": "Thursdays. One honest email. One routine we'd actually use."
   },
   "article": {
     "editorial": "Glow Coded Editorial",
     "expandFullScreen": "Expand Full Screen",
-    "collapse": "Collapse"
+    "collapse": "Collapse",
+    "keepReading": "Keep reading"
   },
   "categories": {
     "skincare": "Skincare",

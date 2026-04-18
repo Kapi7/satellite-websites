@@ -37,7 +37,8 @@
     "featuredProducts": "Uitgelichte producten",
     "shopNow": "Shop nu",
     "popularArticles": "Populaire artikelen",
-    "language": "Taal"
+    "language": "Taal",
+    "by": "Door"
   },
   "home": {
     "latest": "Nieuwste",
@@ -82,12 +83,15 @@
   "newsletter": {
     "preTitle": "De Wekelijkse Glow",
     "title": "Krijg de Glow",
-    "description": "Elke week nieuwe reviews, ingrediëntenanalyses en routinetips. Geen onzin."
+    "description": "Elke week nieuwe reviews, ingrediëntenanalyses en routinetips. Geen onzin.",
+    "titleShort": "De Brief",
+    "tagline": "Donderdags. Eén eerlijke mail. Een routine die we echt zouden gebruiken."
   },
   "article": {
     "editorial": "Glow Coded Redactie",
     "expandFullScreen": "Volledig scherm",
-    "collapse": "Inklappen"
+    "collapse": "Inklappen",
+    "keepReading": "Lees verder"
   },
   "categories": {
     "skincare": "Skincare",

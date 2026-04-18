@@ -21,15 +21,19 @@ const dataJSON = JSON.stringify(conflictData);
 <Base title={t(locale, 'ingredientChecker.title')} description={t(locale, 'ingredientChecker.description')} locale={locale}>
   <Header locale={locale} />
   <main class="flex-1">
-    <section class="max-w-4xl mx-auto px-5 sm:px-8 py-12">
+    <section class="gcd-tool-wrap">
 
       <!-- Header -->
-      <div class="mb-10 animate-fade-in-up">
-        <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-rose-400 mb-2 block">{t(locale, 'ingredientChecker.toolLabel')}</span>
-        <h1 class="font-heading text-4xl sm:text-5xl text-charcoal tracking-tight mb-4 leading-tight">
-          {t(locale, 'ingredientChecker.title')}
+      <div class="gcd-tool-head animate-fade-in-up">
+        <a href={localePath('/', locale)} class="tool-back">&larr; {t(locale, 'common.home')}</a>
+        <div class="gcd-kicker">
+          <span class="pill">&#9670; TOOL 02</span>
+          <span>Ingredient Decoder</span>
+        </div>
+        <h1 class="gcd-tool-title">
+          {t(locale, 'ingredientChecker.title').split(' ').slice(0, -1).join(' ')} <em>{t(locale, 'ingredientChecker.title').split(' ').slice(-1)[0]}</em>
         </h1>
-        <p class="text-charcoal-light text-lg max-w-2xl leading-relaxed">
+        <p class="gcd-tool-lede">
           {t(locale, 'ingredientChecker.description')}
         </p>
       </div>

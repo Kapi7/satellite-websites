@@ -37,7 +37,8 @@
     "featuredProducts": "Ausgewählte Produkte",
     "shopNow": "Jetzt shoppen",
     "popularArticles": "Beliebte Artikel",
-    "language": "Sprache"
+    "language": "Sprache",
+    "by": "Von"
   },
   "home": {
     "latest": "Neueste Beiträge",
@@ -82,12 +83,15 @@
   "newsletter": {
     "preTitle": "Der wöchentliche Glow",
     "title": "Hol dir den Glow",
-    "description": "Jede Woche neue Reviews, Inhaltsstoff-Analysen und Routine-Tipps. Ohne Schnickschnack."
+    "description": "Jede Woche neue Reviews, Inhaltsstoff-Analysen und Routine-Tipps. Ohne Schnickschnack.",
+    "titleShort": "Der Brief",
+    "tagline": "Donnerstags. Eine ehrliche E-Mail. Eine Routine, die wir tatsächlich verwenden würden."
   },
   "article": {
     "editorial": "Glow Coded Redaktion",
     "expandFullScreen": "Im Vollbildmodus anzeigen",
-    "collapse": "Einklappen"
+    "collapse": "Einklappen",
+    "keepReading": "Weiterlesen"
   },
   "categories": {
     "skincare": "Skincare",

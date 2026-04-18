@@ -3,6 +3,7 @@ import '../styles/global.css';
 import type { Locale } from '../i18n/locales';
 import { isRtl, locales } from '../i18n/locales';
 import { localePath, defaultLocale } from '../i18n/utils';
+import TabBar from '../components/TabBar.astro';
 
 interface Props {
   title: string;
@@ -71,9 +72,10 @@ const pathWithoutLocale = pagePath.replace(new RegExp(`^/${locale}(?=/|$)`), '')
     <link rel="canonical" href={canonical} />
     <link rel="llms-txt" href="/llms.txt" />
 
-    <!-- Existing font preloads: Playfair Display & Inter -->
-    <link rel="preload" href="/fonts/nuFiD-vYSZviVYUb_rj3ij__anPXDTzYgEM86xQ.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2" as="font" type="font/woff2" crossorigin />
+    <!-- Font preloads: Rozha One, DM Sans, Cutive Mono -->
+    <link rel="preload" href="/fonts/rozha-one-regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/dm-sans-variable.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/cutive-mono-regular.woff2" as="font" type="font/woff2" crossorigin>
 
     {/* Arabic font preload — only when locale is 'ar' */}
     {locale === 'ar' && (
@@ -127,7 +129,8 @@ const pathWithoutLocale = pagePath.replace(new RegExp(`^/${locale}(?=/|$)`), '')
       </style>
     )}
   </head>
-  <body class="min-h-screen flex flex-col">
+  <body class="min-h-screen flex flex-col paper-bg">
     <slot />
+    <TabBar locale={locale} />
   </body>
 </html>

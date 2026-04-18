@@ -1,157 +1,119 @@
 ---
-import { t, localePath, type Locale } from '../i18n/utils';
+import { localePath, type Locale } from '../i18n/utils';
 
 interface Props {
   locale?: Locale;
 }
 
 const { locale = 'en' } = Astro.props;
-const year = new Date().getFullYear();
-const exploreLinks = [
-  { label: t(locale, 'categories.skincare'), href: localePath('/category/skincare/', locale) },
-  { label: t(locale, 'categories.ingredients'), href: localePath('/category/ingredients/', locale) },
-  { label: t(locale, 'categories.reviews'), href: localePath('/category/reviews/', locale) },
-  { label: t(locale, 'categories.howTos'), href: localePath('/category/how-tos/', locale) },
-  { label: t(locale, 'nav.skinQuiz'), href: localePath('/quiz/', locale) },
+
+/* Prototype-locked footer — 4 columns: brand | READ | TOOLS | HOUSE */
+const readLinks = [
+  { label: 'Routines',  href: localePath('/category/skincare/', locale) },
+  { label: 'Ingredients', href: localePath('/category/ingredients/', locale) },
+  { label: 'Reviews', href: localePath('/category/reviews/', locale) },
+  { label: 'How-Tos', href: localePath('/category/how-tos/', locale) },
 ];
+
 const toolsLinks = [
-  { label: t(locale, 'footer.glossary'), href: localePath('/ingredients/', locale) },
-  { label: t(locale, 'footer.conflictChecker'), href: localePath('/ingredient-checker/', locale) },
-  { label: t(locale, 'nav.about'), href: localePath('/about/', locale) },
-  { label: t(locale, 'footer.privacy'), href: localePath('/privacy/', locale) },
+  { label: 'Skin Quiz', href: localePath('/quiz/', locale) },
+  { label: 'Shelf Builder', href: localePath('/shade-matcher/', locale) },
+  { label: 'Ingredient Checker', href: localePath('/ingredient-checker/', locale) },
+  { label: 'Ingredient Matrix', href: localePath('/ingredient-matrix/', locale) },
+];
+
+const houseLinks = [
+  { label: 'About',  href: localePath('/about/', locale) },
+  { label: 'The Letter', href: localePath('/#newsletter', locale) },
+  { label: 'Ethics & disclosure', href: localePath('/privacy/', locale) },
+  { label: 'Contact', href: 'mailto:hello@glow-coded.com' },
 ];
 ---
 
-<footer class="bg-rose-50/50 rounded-t-[2rem] mt-16">
-  <div class="grid grid-cols-2 md:grid-cols-4 gap-10 sm:gap-12 px-6 sm:px-12 py-12 sm:py-16 max-w-[1400px] mx-auto">
-
-    <!-- Col 1: Brand -->
-    <div class="md:pr-4">
-      <a href={localePath('/', locale)} class="inline-block mb-4">
-        <img src="/logo.svg" alt="Glow Coded" class="h-10 w-auto" />
-        <span class="font-heading text-2xl italic text-charcoal block mt-2">Glow Coded</span>
-      </a>
-      <p class="text-sm text-charcoal-light/60 leading-relaxed">
-        {t(locale, 'footer.brandDesc')}
-      </p>
-      <div class="mt-6 flex items-center gap-1">
-        <span class="inline-block w-8 h-[0.5px] bg-charcoal-light/20"></span>
-        <span class="text-[11px] font-heading italic text-charcoal-light/50 tracking-wide">{t(locale, 'footer.tagline')}</span>
-      </div>
-    </div>
-
-    <!-- Col 2: Explore -->
-    <div>
-      <h4 class="text-[11px] font-heading uppercase tracking-wide text-charcoal-light/50 mb-5">{t(locale, 'footer.explore')}</h4>
-      <ul class="space-y-3">
-        {exploreLinks.map((link) => (
-          <li>
-            <a href={link.href} class="text-sm text-charcoal-light/60 hover:text-plum-700 transition-colors duration-200">
-              {link.label}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </div>
-
-    <!-- Col 3: Tools & Info -->
-    <div>
-      <h4 class="text-[11px] font-heading uppercase tracking-wide text-charcoal-light/50 mb-5">{t(locale, 'footer.toolsAndInfo')}</h4>
-      <ul class="space-y-3">
-        {toolsLinks.map((link) => (
-          <li>
-            <a href={link.href} class="text-sm text-charcoal-light/60 hover:text-plum-700 transition-colors duration-200">
-              {link.label}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </div>
-
-    <!-- Col 4: Newsletter -->
-    <div>
-      <h4 class="text-[11px] font-heading uppercase tracking-wide text-charcoal-light/50 mb-5">{t(locale, 'footer.getTheGlow')}</h4>
-      <p class="text-sm text-charcoal-light/60 leading-relaxed mb-4">
-        {t(locale, 'footer.newsletterDesc')}
-      </p>
-      <form class="newsletter-form flex flex-col gap-3" data-locale={locale}>
-        <input
-          type="email"
-          placeholder={t(locale, 'footer.emailPlaceholder')}
-          required
-          class="w-full px-4 py-2.5 text-sm bg-white/70 border border-rose-200/60 rounded-lg text-charcoal placeholder:text-charcoal-light/50 focus:outline-none focus:ring-1 focus:ring-rose-400 focus:border-rose-400 transition-all duration-200"
-        />
-        <button
-          type="submit"
-          class="w-full px-4 py-2.5 text-sm font-heading tracking-wide bg-rose-600 text-cream rounded-lg hover:bg-rose-700 transition-colors duration-200"
-        >
-          {t(locale, 'common.subscribe')}
-        </button>
-        <p class="newsletter-msg text-sm hidden"></p>
-      </form>
-    </div>
+<footer class="gcd-footer">
+  <div>
+    <a href={localePath('/', locale)} class="brand-link">
+      <div class="brand-mark">glow<em>coded</em>.</div>
+    </a>
+    <p class="brand-desc">Skin science, honestly. K-Beauty without the gatekeeping. Founded 2024.</p>
   </div>
-
-  <!-- Bottom Bar -->
-  <div class="border-t border-rose-200/40">
-    <div class="max-w-[1400px] mx-auto px-6 sm:px-12 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <span class="text-xs text-charcoal-light/50">&copy; {year} {t(locale, 'footer.copyright')}</span>
-
-      <!-- Social Links -->
-      <div class="flex items-center gap-4">
-        <a href="https://pinterest.com" target="_blank" rel="noopener noreferrer" class="text-charcoal-light/50 hover:text-rose-600 transition-colors duration-200" aria-label="Pinterest">
-          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.372 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 01.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.627 0 12-5.373 12-12 0-6.628-5.373-12-12-12z"/></svg>
-        </a>
-      </div>
-    </div>
+  <div>
+    <h5>READ</h5>
+    <ul>
+      {readLinks.map((l) => (
+        <li><a href={l.href}>{l.label}</a></li>
+      ))}
+    </ul>
+  </div>
+  <div>
+    <h5>TOOLS</h5>
+    <ul>
+      {toolsLinks.map((l) => (
+        <li><a href={l.href}>{l.label}</a></li>
+      ))}
+    </ul>
+  </div>
+  <div>
+    <h5>HOUSE</h5>
+    <ul>
+      {houseLinks.map((l) => {
+        const external = l.href.startsWith('http') || l.href.startsWith('mailto:');
+        return (
+          <li>
+            <a href={l.href} {...(external && !l.href.startsWith('mailto:') ? { target: '_blank', rel: 'noopener' } : {})}>{l.label}</a>
+          </li>
+        );
+      })}
+    </ul>
   </div>
 </footer>
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.newsletter-form').forEach((form) => {
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const f = e.currentTarget;
-        const btn = f.querySelector('button[type="submit"]');
-        const msg = f.querySelector('.newsletter-msg');
-        const input = f.querySelector('input[type="email"]');
-        const email = input.value.trim();
-        if (!email) return;
+<style>
+  .gcd-footer {
+    max-width: 1360px; margin: 80px auto 0;
+    padding: 50px 32px 30px;
+    border-top: 1.5px solid var(--color-charcoal);
+    display: grid; grid-template-columns: 1.2fr repeat(3, 1fr); gap: 40px;
+    background: var(--color-paper);
+  }
+  .brand-link { text-decoration: none; color: inherit; }
+  .brand-mark {
+    font-family: 'Rozha One', serif; font-size: 48px; line-height: 1;
+    margin-bottom: 10px; color: var(--color-charcoal);
+  }
+  .brand-mark em { font-style: italic; color: var(--color-rose-500); }
+  .brand-desc {
+    font-size: 13px; color: var(--color-charcoal-light); line-height: 1.6;
+    margin: 0; font-family: 'DM Sans', sans-serif;
+  }
 
-        btn.disabled = true;
-        btn.style.opacity = '0.6';
-        msg.classList.add('hidden');
+  .gcd-footer h5 {
+    font-family: 'Cutive Mono', monospace; font-size: 10.5px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--color-charcoal-light); margin: 0 0 14px;
+  }
+  .gcd-footer ul {
+    list-style: none; padding: 0; margin: 0;
+    font-size: 13.5px; line-height: 2;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .gcd-footer ul a {
+    color: var(--color-charcoal); text-decoration: none;
+    transition: color 0.15s;
+  }
+  .gcd-footer ul a:hover { color: var(--color-rose-500); }
 
-        try {
-          const res = await fetch('/api/subscribe', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, locale: f.dataset.locale || 'en' }),
-          });
-          const data = await res.json();
-
-          msg.classList.remove('hidden');
-          if (data.status === 'subscribed') {
-            msg.textContent = 'Welcome! You are now subscribed.';
-            msg.className = 'newsletter-msg text-sm text-green-700';
-            input.value = '';
-          } else if (data.status === 'already_subscribed') {
-            msg.textContent = 'You are already subscribed!';
-            msg.className = 'newsletter-msg text-sm text-amber-700';
-          } else {
-            msg.textContent = data.error === 'invalid_email' ? 'Please enter a valid email.' : 'Something went wrong. Please try again.';
-            msg.className = 'newsletter-msg text-sm text-red-600';
-          }
-        } catch {
-          msg.classList.remove('hidden');
-          msg.textContent = 'Network error. Please try again.';
-          msg.className = 'newsletter-msg text-sm text-red-600';
-        } finally {
-          btn.disabled = false;
-          btn.style.opacity = '1';
-        }
-      });
-    });
-  });
-</script>
+  @media (max-width: 1100px) {
+    .gcd-footer {
+      grid-template-columns: 1fr 1fr;
+      padding: 40px 32px 24px;
+    }
+  }
+  @media (max-width: 600px) {
+    .gcd-footer {
+      grid-template-columns: 1fr;
+      padding: 36px 20px 24px; gap: 28px;
+    }
+    .brand-mark { font-size: 40px; }
+  }
+</style>

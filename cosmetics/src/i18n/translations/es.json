@@ -26,7 +26,7 @@
     "tagged": "Etiquetado",
     "home": "Inicio",
     "category": "Categoría",
-    "keepReading": "Seguir leyendo",
+    "keepReading": "Sigue leyendo",
     "backToTop": "Volver arriba",
     "toggleDarkMode": "Activar modo oscuro",
     "openMenu": "Abrir menú",
@@ -37,7 +37,8 @@
     "featuredProducts": "Productos Destacados",
     "shopNow": "Comprar ahora",
     "popularArticles": "Artículos Populares",
-    "language": "Idioma"
+    "language": "Idioma",
+    "by": "Por"
   },
   "home": {
     "latest": "Lo más reciente",
@@ -82,12 +83,15 @@
   "newsletter": {
     "preTitle": "El Glow Semanal",
     "title": "Consigue el Glow",
-    "description": "Nuevas reseñas, análisis de ingredientes y tips de rutina cada semana. Sin rodeos."
+    "description": "Nuevas reseñas, análisis de ingredientes y tips de rutina cada semana. Sin rodeos.",
+    "titleShort": "La Carta",
+    "tagline": "Jueves. Un correo honesto. Una rutina que usaríamos."
   },
   "article": {
     "editorial": "Editorial de Glow Coded",
     "expandFullScreen": "Expandir a pantalla completa",
-    "collapse": "Colapsar"
+    "collapse": "Colapsar",
+    "keepReading": "Sigue leyendo"
   },
   "categories": {
     "skincare": "Cuidado de la piel",

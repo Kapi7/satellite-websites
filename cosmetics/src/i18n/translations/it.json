@@ -26,7 +26,7 @@
     "tagged": "Taggato",
     "home": "Home",
     "category": "Categoria",
-    "keepReading": "Continua a Leggere",
+    "keepReading": "Continua a leggere",
     "backToTop": "Torna su",
     "toggleDarkMode": "Attiva/Disattiva modalità scura",
     "openMenu": "Apri menu",
@@ -37,7 +37,8 @@
     "featuredProducts": "Prodotti in Evidenza",
     "shopNow": "Acquista Ora",
     "popularArticles": "Articoli Popolari",
-    "language": "Lingua"
+    "language": "Lingua",
+    "by": "Di"
   },
   "home": {
     "latest": "Le Ultime Novità",
@@ -82,12 +83,15 @@
   "newsletter": {
     "preTitle": "Il Glow Settimanale",
     "title": "Ottieni il Glow",
-    "description": "Nuove recensioni, analisi degli ingredienti e consigli per la routine ogni settimana. Niente chiacchiere inutili."
+    "description": "Nuove recensioni, analisi degli ingredienti e consigli per la routine ogni settimana. Niente chiacchiere inutili.",
+    "titleShort": "La Lettera",
+    "tagline": "Giovedì. Una email onesta. Una routine che useremmo davvero."
   },
   "article": {
     "editorial": "Editoriale di Glow Coded",
     "expandFullScreen": "Espandi a schermo intero",
-    "collapse": "Riduci"
+    "collapse": "Riduci",
+    "keepReading": "Continua a leggere"
   },
   "categories": {
     "skincare": "Skincare",

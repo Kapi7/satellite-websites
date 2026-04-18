@@ -26,7 +26,7 @@
     "tagged": "Marcado",
     "home": "Home",
     "category": "Categoria",
-    "keepReading": "Continue Lendo",
+    "keepReading": "Continue lendo",
     "backToTop": "Voltar ao topo",
     "toggleDarkMode": "Alternar modo escuro",
     "openMenu": "Abrir menu",
@@ -37,7 +37,8 @@
     "featuredProducts": "Produtos em Destaque",
     "shopNow": "Compre Agora",
     "popularArticles": "Artigos Populares",
-    "language": "Idioma"
+    "language": "Idioma",
+    "by": "Por"
   },
   "home": {
     "latest": "Mais Recentes",
@@ -82,12 +83,15 @@
   "newsletter": {
     "preTitle": "O Glow Semanal",
     "title": "Conquiste o Glow",
-    "description": "Novas resenhas, análises de ingredientes e dicas de rotina toda semana. Sem enrolação."
+    "description": "Novas resenhas, análises de ingredientes e dicas de rotina toda semana. Sem enrolação.",
+    "titleShort": "A Carta",
+    "tagline": "Quintas-feiras. Um email honesto. Uma rotina que realmente usaríamos."
   },
   "article": {
     "editorial": "Editorial Glow Coded",
     "expandFullScreen": "Expandir Tela Cheia",
-    "collapse": "Recolher"
+    "collapse": "Recolher",
+    "keepReading": "Continue lendo"
   },
   "categories": {
     "skincare": "Skincare",

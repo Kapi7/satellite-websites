@@ -73,15 +73,19 @@ const categoryColorsJSON = JSON.stringify(categoryColors);
 <Base title={t(locale, 'ingredientMatrix.title')} description={t(locale, 'ingredientMatrix.description')} locale={locale}>
   <Header locale={locale} />
   <main class="flex-1">
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
+    <section class="gcd-tool-wrap" style="max-width:1280px;">
 
       <!-- Header -->
-      <div class="mb-8 animate-fade-in-up text-center">
-        <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-rose-400 mb-2 block">{t(locale, 'ingredientMatrix.toolLabel')}</span>
-        <h1 class="font-heading text-3xl sm:text-4xl lg:text-5xl text-charcoal tracking-tight mb-3 leading-tight">
-          {t(locale, 'ingredientMatrix.title')}
+      <div class="gcd-tool-head animate-fade-in-up">
+        <a href={localePath('/', locale)} class="tool-back">&larr; {t(locale, 'common.home')}</a>
+        <div class="gcd-kicker">
+          <span class="pill">&#8962; TOOL 04</span>
+          <span>Compatibility Matrix</span>
+        </div>
+        <h1 class="gcd-tool-title">
+          {t(locale, 'ingredientMatrix.title').split(' ').slice(0, -1).join(' ')} <em>{t(locale, 'ingredientMatrix.title').split(' ').slice(-1)[0]}</em>
         </h1>
-        <p class="text-charcoal-light text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+        <p class="gcd-tool-lede">
           {t(locale, 'ingredientMatrix.description')}
         </p>
       </div>

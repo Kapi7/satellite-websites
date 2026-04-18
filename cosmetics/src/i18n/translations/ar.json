@@ -26,7 +26,7 @@
     "tagged": "الوسوم",
     "home": "الرئيسية",
     "category": "الفئة",
-    "keepReading": "واصلي القراءة",
+    "keepReading": "متابعة القراءة",
     "backToTop": "العودة للأعلى",
     "toggleDarkMode": "تبديل الوضع الداكن",
     "openMenu": "فتح القائمة",
@@ -37,7 +37,8 @@
     "featuredProducts": "منتجات مميزة",
     "shopNow": "تسوقي الآن",
     "popularArticles": "مقالات رائجة",
-    "language": "اللغة"
+    "language": "اللغة",
+    "by": "بقلم"
   },
   "home": {
     "latest": "الأحدث",
@@ -82,12 +83,15 @@
   "newsletter": {
     "preTitle": "إشراقة الأسبوع",
     "title": "احصلي على الإشراقة",
-    "description": "مراجعات جديدة، تحليلات للمكونات، ونصائح للروتين كل أسبوع. بدون حشو."
+    "description": "مراجعات جديدة، تحليلات للمكونات، ونصائح للروتين كل أسبوع. بدون حشو.",
+    "titleShort": "الرسالة",
+    "tagline": "الخميس. بريد واحد صادق. روتين نستخدمه فعلاً."
   },
   "article": {
     "editorial": "افتتاحية Glow Coded",
     "expandFullScreen": "توسيع لملء الشاشة",
-    "collapse": "تصغير"
+    "collapse": "تصغير",
+    "keepReading": "متابعة القراءة"
   },
   "categories": {
     "skincare": "العناية بالبشرة",

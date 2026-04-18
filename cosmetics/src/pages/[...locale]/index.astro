@@ -2,13 +2,10 @@
 import Base from '../../layouts/Base.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
-import HeroSlideshow from '../../components/HeroSlideshow.astro';
-import ArticleCard from '../../components/ArticleCard.astro';
-import NewsletterSignup from '../../components/NewsletterSignup.astro';
 import BackToTop from '../../components/BackToTop.astro';
 import { getCollection } from 'astro:content';
 import { locales, defaultLocale, type Locale } from '../../i18n/locales';
-import { t, localePath } from '../../i18n/utils';
+import { localePath } from '../../i18n/utils';
 
 export function getStaticPaths() {
   return locales.map(l => ({
@@ -19,72 +16,78 @@ export function getStaticPaths() {
 
 const { locale } = Astro.props as { locale: Locale };
 
+/* ===== Real content — all articles from MDX collection ===== */
 const now = new Date();
 const allPosts = await getCollection('blog', ({ data }) => !data.draft && data.locale === locale && data.date <= now);
 const sortedPosts = allPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
-// Load GSC-based featured articles
-let featuredData = { trending: [], rising: [] };
-try {
-  const raw = await import('../../data/featured.json');
-  featuredData = raw.default || raw;
-} catch { /* no featured data yet — fall back to recent */ }
+const getSlug = (post: any) => {
+  const id = post.id as string;
+  const s = id.includes('/') ? id.split('/').slice(1).join('/') : id;
+  return s.replace(/\.mdx?$/, '');
+};
 
-const trendingSlugs = new Set(featuredData.trending.map((t: any) => t.slug));
-const risingSlugs = new Set(featuredData.rising.map((r: any) => r.slug));
+/* Hero = most recent post; Editorial grid = next 5 */
+const hero = sortedPosts[0];
+const editorial = sortedPosts.slice(1, 6);
+const [featured, ...rest] = editorial;
 
-// Match trending slugs to actual posts
-const trendingPosts = featuredData.trending
-  .map((t: any) => sortedPosts.find(p => {
-    const slug = p.id.includes('/') ? p.id.split('/').slice(1).join('/') : p.id;
-    return slug === t.slug || slug === t.slug + '.mdx' || slug.replace('.mdx', '') === t.slug;
-  }))
-  .filter(Boolean)
-  .slice(0, 6);
+const formatDate = (d: Date) =>
+  d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }).toUpperCase();
 
-// Recent = latest 6 that aren't already in trending
-const recent = sortedPosts
-  .filter(p => {
-    const slug = p.id.includes('/') ? p.id.split('/').slice(1).join('/') : p.id;
-    const cleanSlug = slug.replace('.mdx', '').replace('.md', '');
-    return !trendingSlugs.has(cleanSlug);
-  })
-  .slice(0, 6);
+const readMinutes = (post: any) => {
+  const body = (post.body as string) || '';
+  return Math.max(1, Math.ceil(body.split(/\s+/).length / 200));
+};
 
-const slides = [
-  {
-    image: '/images/hero-slide-1.jpg',
-    title: t(locale, 'home.slideSkincare'),
-    subtitle: t(locale, 'home.slideSkincareDesc'),
-    category: t(locale, 'nav.skincare'),
-  },
-  {
-    image: '/images/korean-routine-hero.jpg',
-    title: 'Korean Skincare Routine: The Complete Guide',
-    subtitle: 'Everything you need to know, from the 10-step method to a realistic everyday approach.',
-    link: localePath('/korean-skincare-routine-complete-guide/', locale),
-    category: t(locale, 'nav.skincare'),
-  },
-  {
-    image: '/images/hero-slide-2.jpg',
-    title: t(locale, 'home.slideVanity'),
-    subtitle: t(locale, 'home.slideVanityDesc'),
-    category: t(locale, 'nav.reviews'),
-  },
-  {
-    image: '/images/hero-slide-3.jpg',
-    title: t(locale, 'home.slideIngredients'),
-    subtitle: t(locale, 'home.slideIngredientsDesc'),
-    link: localePath('/niacinamide-vs-vitamin-c/', locale),
-    category: t(locale, 'nav.ingredients'),
-  },
+const categoryLabelOf = (c: string) => {
+  const m: Record<string, string> = {
+    'skincare': 'SKINCARE',
+    'ingredients': 'INGREDIENTS',
+    'reviews': 'REVIEWS',
+    'how-tos': 'HOW-TOS',
+  };
+  return m[c] || c.toUpperCase();
+};
+
+/* ===== Categories — real counts from collection ===== */
+const cats = [
+  { slug: 'skincare', label: 'Skincare', tint: 'coral', tagline: 'From barrier to glow.' },
+  { slug: 'ingredients', label: 'Ingredients', tint: 'butter', tagline: "What's actually in the bottle." },
+  { slug: 'reviews', label: 'Reviews', tint: 'mint', tagline: 'We bought it. We tested it. We told you.' },
+  { slug: 'how-tos', label: 'How-Tos', tint: 'sky', tagline: 'Less confusing, more glowing.' },
+  { slug: 'routines', label: 'Routines', tint: 'plum', tagline: 'Morning, night, and the in-between.' },
+];
+const GC_CATEGORIES = cats.map((c) => ({
+  ...c,
+  count: sortedPosts.filter((p) => p.data.category === c.slug).length
+      || (c.slug === 'routines' ? sortedPosts.filter((p) => p.data.type === 'routine').length : 0),
+}));
+
+/* ===== Shop products (curated — matches prototype exactly) ===== */
+const GC_PRODUCTS = [
+  { slug: 'anua-cleansing-oil', name: 'Heartleaf Pore Control Cleansing Oil', brand: 'Anua', price: '$28', rating: 4.9, tag: 'STAFF PICK', image: '/images/products/anua-cleansing-oil.jpg', url: 'https://mirai-skin.com/products/anua-heartleaf-pore-control-cleansing-oil-200ml' },
+  { slug: 'beauty-of-joseon-sunscreen', name: 'Relief Sun: Rice + Probiotics SPF50+', brand: 'Beauty of Joseon', price: '$18', rating: 4.8, tag: 'BESTSELLER', image: '/images/products/beauty-of-joseon-sunscreen.jpg', url: 'https://mirai-skin.com/products/beauty-joseon-relief-sun-ricex1' },
+  { slug: 'cosrx-snail-essence', name: 'Advanced Snail 96 Mucin Power Essence', brand: 'COSRX', price: '$25', rating: 4.7, tag: 'CULT FAVE', image: '/images/products/cosrx-snail-essence.jpg', url: 'https://mirai-skin.com/products/cosrx-advanced-snail-96-mucin-power-essence-100ml' },
+  { slug: 'laneige-lip-mask', name: 'Lip Sleeping Mask', brand: 'Laneige', price: '$24', rating: 4.6, tag: 'NEW', image: '/images/products/laneige-lip-mask.jpg', url: 'https://mirai-skin.com/products/laneige-lip-sleeping-mask-20g' },
+  { slug: 'some-by-mi-toner', name: 'AHA BHA PHA 30 Days Miracle Toner', brand: 'Some By Mi', price: '$22', rating: 4.5, image: '/images/products/some-by-mi-toner.jpg', url: 'https://mirai-skin.com/products/some-by-mi-aha-bha-pha-30-days-miracle-toner' },
+  { slug: 'innisfree-serum', name: 'Green Tea Ceramide Milk Barrier Essence', brand: 'Innisfree', price: '$30', rating: 4.7, image: '/images/products/innisfree-serum.jpg', url: 'https://mirai-skin.com/products/innisfree-green-tea-ceramide-milk-barrier-essence-160ml' },
 ];
 
-const categories = [
-  { slug: 'skincare', label: t(locale, 'categories.skincare'), emoji: '✨', desc: t(locale, 'categoryDescriptions.skincare'), count: sortedPosts.filter(p => p.data.category === 'skincare').length },
-  { slug: 'ingredients', label: t(locale, 'categories.ingredients'), emoji: '🧪', desc: t(locale, 'categoryDescriptions.ingredients'), count: sortedPosts.filter(p => p.data.category === 'ingredients').length },
-  { slug: 'reviews', label: t(locale, 'categories.reviews'), emoji: '💎', desc: t(locale, 'categoryDescriptions.reviews'), count: sortedPosts.filter(p => p.data.category === 'reviews').length },
-  { slug: 'how-tos', label: t(locale, 'categories.howTos'), emoji: '🌸', desc: t(locale, 'categoryDescriptions.howTos'), count: sortedPosts.filter(p => p.data.category === 'how-tos').length },
+const tintBg: Record<string, string> = {
+  coral:  'repeating-linear-gradient(45deg, #ff8a7a 0 10px, #ffb0a3 10px 20px)',
+  butter: 'repeating-linear-gradient(45deg, #ffd964 0 10px, #ffe89a 10px 20px)',
+  mint:   'repeating-linear-gradient(45deg, #b8e0c8 0 10px, #d0eadb 10px 20px)',
+  sky:    'repeating-linear-gradient(45deg, #c5dfff 0 10px, #dce9ff 10px 20px)',
+  plum:   'repeating-linear-gradient(45deg, #d9bfd9 0 10px, #e6d3e6 10px 20px)',
+};
+
+const marqueeItems = [
+  'NEW · Snail Mucin, Ranked',
+  '14 Sunscreens Tested',
+  'Free Skin Quiz',
+  'K-Beauty 101',
+  'Mirai Drop · April',
 ];
 
 const orgSchema = JSON.stringify({
@@ -105,190 +108,771 @@ const webSiteSchema = JSON.stringify({
   jsonLd={[orgSchema, webSiteSchema]}
   locale={locale}
 >
-  <Header locale={locale} />
+  <Header locale={locale} mobileTitle="GLOW CODED" />
 
-  <main class="flex-1">
-    <!-- Hero -->
-    <div class="pt-6 animate-fade-in">
-      <HeroSlideshow slides={slides} />
+  <div class="gcd-page desktop-home">
+    {/* ===== MASTHEAD ===== */}
+    <section class="gcd-masthead">
+      <div>
+        <div class="gcd-kicker">
+          <span class="pill">K-Beauty</span>
+          <span class="pill">Ingredient Science</span>
+          <span class="pill">No Gatekeeping</span>
+        </div>
+        <h1 class="gcd-title">glow<br/><span class="i">coded</span>.</h1>
+        <p class="gcd-sub">Skin science, honestly. Real routines, real reviews, and the K-beauty shelf tours you wish your friends would send you. We test before we recommend; we disclose when we get paid.</p>
+      </div>
+      {hero && (
+        <a href={localePath(`/${getSlug(hero)}/`, locale)} class="gcd-hero-card">
+          <div class="gcd-hero-ph">
+            {hero.data.image ? (
+              <img src={hero.data.image} alt={hero.data.title} />
+            ) : (
+              <div class="big">{hero.data.title[0]}</div>
+            )}
+          </div>
+          <div class="gcd-hero-body">
+            <div class="tag">THIS WEEK &middot; {categoryLabelOf(hero.data.category)}</div>
+            <h3>{hero.data.title}</h3>
+            <div class="meta"><span>{readMinutes(hero)} MIN READ</span><span>{(hero.data.author || formatDate(hero.data.date)).toUpperCase()}</span></div>
+          </div>
+        </a>
+      )}
+    </section>
+
+    {/* ===== MARQUEE ===== */}
+    <div class="gcd-marquee">
+      <div class="track">
+        {[0, 1, 2].map(() => (
+          <span>
+            {marqueeItems.map((t) => (
+              <>
+                <span>{t}</span>
+                <span class="star">&#10022;</span>
+              </>
+            ))}
+          </span>
+        ))}
+      </div>
     </div>
 
-    <!-- Reader Favorites -->
-    {trendingPosts.length > 0 && (
-      <section class="max-w-[1400px] mx-auto px-5 sm:px-8 pt-14 sm:pt-20 mb-16 sm:mb-24">
-        <div class="flex justify-between items-end mb-12">
-          <div>
-            <span class="block text-[11px] font-semibold uppercase tracking-wide text-charcoal-light/50 mb-2">{t(locale, 'home.trending')}</span>
-            <h2 class="font-heading text-4xl italic text-charcoal tracking-tight">{t(locale, 'home.readerFavorites')}</h2>
+    {/* ===== EDITORIAL GRID ===== */}
+    <div class="section-head">
+      <h2>This week <em>in the feed</em></h2>
+      <div class="meta">05 stories &middot; updated daily</div>
+    </div>
+    <div class="edit-grid">
+      {featured && (
+        <a href={localePath(`/${getSlug(featured)}/`, locale)} class="edit-card feat">
+          <div class="img" style="height:420px;">
+            <span class="cat">{categoryLabelOf(featured.data.category)}</span>
+            {featured.data.image
+              ? <img src={featured.data.image} alt={featured.data.title} />
+              : <div class="ph">{featured.data.title[0]}</div>
+            }
           </div>
-        </div>
+          <div class="body">
+            <h3 class="xl">{featured.data.title}</h3>
+            <p>{featured.data.description}</p>
+            <div class="foot"><span>{formatDate(featured.data.date)}</span><span>{readMinutes(featured)} MIN READ</span></div>
+          </div>
+        </a>
+      )}
 
-        <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
-          {trendingPosts.map((post: any, i: number) => (
-            <ArticleCard
-              title={post.data.title}
-              description={post.data.description}
-              date={post.data.date}
-              category={post.data.category}
-              slug={post.id.includes('/') ? post.id.split('/').slice(1).join('/') : post.id}
-              image={post.data.image}
-              type={post.data.type}
-              featured={i === 0}
-              locale={locale}
-            />
-          ))}
+      {rest.slice(0, 4).map((p) => (
+        <a href={localePath(`/${getSlug(p)}/`, locale)} class="edit-card">
+          <div class="img small">
+            <span class="cat">{categoryLabelOf(p.data.category)}</span>
+            {p.data.image
+              ? <img src={p.data.image} alt={p.data.title} />
+              : <div class="ph">{p.data.title[0]}</div>
+            }
+          </div>
+          <div class="body">
+            <h3>{p.data.title}</h3>
+            <p style="font-size:13px;">{p.data.description}</p>
+            <div class="foot"><span>{formatDate(p.data.date)}</span><span>{readMinutes(p)} MIN READ</span></div>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    {/* ===== CATEGORIES STRIP ===== */}
+    <div class="section-head">
+      <h2>By category</h2>
+      <div class="meta">{sortedPosts.length} articles &middot; {GC_CATEGORIES.length} sections</div>
+    </div>
+    <div class="cats-strip">
+      {GC_CATEGORIES.map((c) => (
+        <a href={localePath(`/category/${c.slug}/`, locale)} class="cat-tile">
+          <div class="swatch" style={`background:${tintBg[c.tint] || tintBg.coral};`}>{c.label[0]}</div>
+          <div class="body">
+            <h4>{c.label}</h4>
+            <small>{c.count} &middot; {c.tagline}</small>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    {/* ===== SHOP RAIL — THE EDIT ===== */}
+    <div class="section-head" id="the-edit">
+      <h2>The <em>Edit</em></h2>
+      <div class="meta">K-Beauty picks &middot; via Mirai Skin</div>
+    </div>
+    <div class="shop-rail">
+      <div class="intro">
+        <h3>Curated, tested, never pushy.</h3>
+        <p>Six bottles we're keeping on our shelf this month. Every product is stocked at Mirai Skin — we earn a small cut only when you shop, and never when we review.</p>
+        <a href="https://mirai-skin.com" target="_blank" rel="noopener" class="btn btn-coral">Shop the full edit &rarr;</a>
+      </div>
+      <div class="products">
+        {GC_PRODUCTS.map((p) => (
+          <a href={p.url} target="_blank" rel="noopener" class="prod">
+            <div class="img">
+              {p.tag && <span class="tag-pill">{p.tag}</span>}
+              <img src={p.image} alt={p.name} />
+            </div>
+            <div class="body">
+              <div class="brand">{p.brand}</div>
+              <div class="name">{p.name}</div>
+              <div class="row">
+                <span class="price">{p.price}</span>
+                <span>&#9733; {p.rating}</span>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    {/* ===== QUIZ + NEWSLETTER PROMO ===== */}
+    <div class="quiz-promo" id="newsletter">
+      <div class="quiz-big">
+        <div class="label">Interactive &middot; 2 minutes</div>
+        <h3>What does your <em>skin</em><br/>actually need?</h3>
+        <p>Eight questions, a no-guilt routine, and honest product picks — matched to your skin type, budget, and how much effort you're willing to commit. No email required.</p>
+        <a href={localePath('/quiz/', locale)} class="cta">Take the quiz <span>&rarr;</span></a>
+        <div class="sticker-float">free &middot; no<br/>email<br/>required</div>
+      </div>
+      <div class="newsletter-block">
+        <div class="label">Thursdays &middot; 10k readers</div>
+        <h3>The Letter.</h3>
+        <p>One honest email, every Thursday. One routine, one ingredient, one product we'd recommend to a friend. Unsubscribe anytime.</p>
+        <form class="form newsletter-form" data-locale={locale}>
+          <input type="email" placeholder="your@email.com" required />
+          <button type="submit">Sign up</button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+  {/* ====================================================================
+     MOBILE HOMEPAGE — matches prototype/index.html GCHomeScreen pixel-for-pixel
+     ==================================================================== */}
+  <div class="gcm-home">
+    {/* Hero */}
+    <section class="hero">
+      <div class="issue">
+        <svg width="10" height="10" viewBox="0 0 24 24"><path d="M12 2 L14 10 L22 12 L14 14 L12 22 L10 14 L2 12 L10 10 Z" fill="var(--color-rose-500)"/></svg>
+        ISSUE NO. 042 &middot; APRIL 2026
+      </div>
+      <h1 class="title">
+        Skincare,<br/>
+        <span class="scribble">decoded.</span>
+      </h1>
+      <p class="tagline">
+        Ingredient deep-dives, routine guides, and <span class="highlight">honest reviews</span> from people who test what they write about. No gatekeeping.
+      </p>
+      <span class="star1">
+        <svg width="26" height="26" viewBox="0 0 24 24"><path d="M12 2 L13.5 9.5 L21 10.5 L15 15 L17 22 L12 18 L7 22 L9 15 L3 10.5 L10.5 9.5 Z" fill="var(--color-rose-500)" stroke="var(--color-rose-500)" stroke-width="1.5" stroke-linejoin="round"/></svg>
+      </span>
+      <span class="star2">
+        <svg width="14" height="14" viewBox="0 0 24 24"><path d="M12 2 L13.5 9.5 L21 10.5 L15 15 L17 22 L12 18 L7 22 L9 15 L3 10.5 L10.5 9.5 Z" fill="var(--color-plum-700)" stroke="var(--color-plum-700)" stroke-width="1.5" stroke-linejoin="round"/></svg>
+      </span>
+    </section>
+
+    {/* Dark marquee */}
+    <div class="m-marquee">
+      <div class="track">
+        {[0, 1].map(() => (
+          <>
+            <span>&#10022; NEW IN &middot; DOUBLE CLEANSING 101</span>
+            <span>&#10022; INGREDIENT DECODE &middot; NIACINAMIDE</span>
+            <span>&#10022; REVIEWED &middot; 14 SNAIL ESSENCES</span>
+            <span>&#10022; QUIZ &middot; WHAT'S YOUR SKIN TYPE?</span>
+            <span>&#10022; K-BEAUTY &middot; THE BASICS</span>
+          </>
+        ))}
+      </div>
+    </div>
+
+    {/* Feature article */}
+    {featured && (
+      <section class="feature">
+        <div class="pre">
+          <span class="dash"></span>
+          THIS WEEK'S DEEP-DIVE
         </div>
+        <a href={localePath(`/${getSlug(featured)}/`, locale)} class="feat-card z-card">
+          {featured.data.image && <img src={featured.data.image} alt={featured.data.title} />}
+          <div class="body">
+            <div class="meta">
+              <span class="sticker sticker-coral">{categoryLabelOf(featured.data.category)}</span>
+              <span class="rt">{readMinutes(featured)} MIN READ</span>
+            </div>
+            <h3>{featured.data.title}</h3>
+            <p>{featured.data.description}</p>
+          </div>
+        </a>
+        <div class="sticker sticker-coral rot-r4 wiggle sticker-float">READ ME &#9829;</div>
       </section>
     )}
 
-    <!-- Fresh from the Lab -->
-    <section class="max-w-[1400px] mx-auto px-5 sm:px-8 pt-14 sm:pt-20 mb-16 sm:mb-24">
-      <div class="flex justify-between items-end mb-12">
-        <div>
-          <span class="block text-[11px] font-semibold uppercase tracking-wide text-charcoal-light/50 mb-2">{t(locale, 'home.latest')}</span>
-          <h2 class="font-heading text-4xl italic text-charcoal tracking-tight">{t(locale, 'home.freshFromTheLab')}</h2>
-        </div>
-        <a href={localePath('/category/skincare/', locale)} class="hidden sm:inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wide text-charcoal-light/60 hover:text-plum-700 transition-colors">
-          {t(locale, 'common.viewAll')}
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-        </a>
+    {/* Browse by vibe — tilted categories */}
+    <section class="cats">
+      <div class="head">
+        <h2>Browse by vibe</h2>
+        <small>{GC_CATEGORIES.length} TOPICS</small>
       </div>
-
-      <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
-        {recent.map((post) => (
-          <ArticleCard
-            title={post.data.title}
-            description={post.data.description}
-            date={post.data.date}
-            category={post.data.category}
-            slug={post.id.includes('/') ? post.id.split('/').slice(1).join('/') : post.id}
-            image={post.data.image}
-            type={post.data.type}
-            locale={locale}
-          />
+      <div class="grid">
+        {GC_CATEGORIES.slice(0, 4).map((c, i) => (
+          <a
+            href={localePath(`/category/${c.slug}/`, locale)}
+            class="tile"
+            style={`background: var(--${c.tint === 'coral' ? 'color-rose-500' : c.tint === 'butter' ? 'butter' : c.tint === 'mint' ? 'mint' : c.tint === 'plum' ? 'color-plum-300' : 'sky'}); transform: ${i % 2 ? 'rotate(-0.8deg)' : 'rotate(0.6deg)'};`}
+          >
+            <div class="num">{String(i + 1).padStart(2, '0')} / {c.count} POSTS</div>
+            <div class="label">{c.label}</div>
+            <div class="tag">{c.tagline}</div>
+          </a>
         ))}
       </div>
     </section>
 
-    <!-- Topics We Cover -->
-    <section class="max-w-[1400px] mx-auto px-5 sm:px-8 mb-20 sm:mb-32">
-      <div class="border-t border-rose-200/40 pt-16">
-        <div class="flex justify-between items-end mb-12">
-          <div>
-            <span class="block text-[11px] font-semibold uppercase tracking-wide text-charcoal-light/50 mb-2">{t(locale, 'home.explore')}</span>
-            <h2 class="font-heading text-4xl italic text-charcoal tracking-tight">{t(locale, 'home.topicsWeCover')}</h2>
-          </div>
+    {/* Quiz card */}
+    <section class="quiz-card">
+      <div class="inner">
+        <div style="flex:1;">
+          <div class="pre">&#9733; TAKE THE QUIZ</div>
+          <h3>Find your<br/>skin type</h3>
+          <div class="sub">6 quick questions. No email required.</div>
+          <a href={localePath('/quiz/', locale)} class="btn">START QUIZ &rarr;</a>
         </div>
-        <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {categories.map((cat) => (
-            <a
-              href={localePath(`/category/${cat.slug}`, locale)}
-              class="group relative aspect-square flex flex-col items-center justify-center text-center p-7 rounded-2xl border border-rose-200/60 bg-white overflow-hidden transition-all duration-400 hover:-translate-y-2 hover:shadow-xl"
-            >
-              <div class="absolute inset-0 bg-gradient-to-br from-rose-600/0 to-rose-700/0 group-hover:from-rose-600/5 group-hover:to-rose-700/10 transition-all duration-500 rounded-2xl"></div>
-
-              <div class="relative z-10 flex flex-col items-center">
-                <span class="text-4xl mb-4" aria-hidden="true">{cat.emoji}</span>
-                <h3 class="font-heading text-xl text-charcoal mb-2 group-hover:text-rose-700 transition-colors">{cat.label}</h3>
-                <p class="text-xs text-charcoal-light/60 leading-relaxed mb-4 max-w-[180px]">{cat.desc}</p>
-                <span class="text-[11px] font-semibold uppercase tracking-wide text-charcoal-light/50 group-hover:text-rose-500 transition-colors">
-                  {cat.count} {cat.count === 1 ? t(locale, 'common.article') : t(locale, 'common.articles')}
-                </span>
-              </div>
-            </a>
-          ))}
+        <div class="face">
+          <svg width="100" height="100" viewBox="0 0 120 120">
+            <ellipse cx="60" cy="65" rx="42" ry="48" fill="#ffcfc8" stroke="var(--color-charcoal)" stroke-width="1.5"/>
+            <circle cx="45" cy="58" r="2.5" fill="var(--color-charcoal)"/>
+            <circle cx="75" cy="58" r="2.5" fill="var(--color-charcoal)"/>
+            <path d="M48 78 Q 60 88 72 78" stroke="var(--color-charcoal)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+            <circle cx="37" cy="70" r="4" fill="var(--color-rose-500)" opacity="0.5"/>
+            <circle cx="83" cy="70" r="4" fill="var(--color-rose-500)" opacity="0.5"/>
+            <path d="M22 50 Q 28 20 60 18 Q 92 20 98 50" fill="var(--color-charcoal)" stroke="var(--color-charcoal)" stroke-width="1.5"/>
+            <path d="M25 48 Q 40 40 55 52" stroke="#fdfbf9" stroke-width="1" fill="none"/>
+            <path d="M105 35 L107 41 L113 43 L107 45 L105 51 L103 45 L97 43 L103 41 Z" fill="var(--color-rose-500)"/>
+            <path d="M15 80 L16 83 L19 84 L16 85 L15 88 L14 85 L11 84 L14 83 Z" fill="var(--butter)" stroke="var(--color-charcoal)" stroke-width="0.5"/>
+          </svg>
         </div>
       </div>
     </section>
 
-    <!-- Tools -->
-    <section class="max-w-[1400px] mx-auto px-5 sm:px-8 mb-20 sm:mb-32">
-      <div class="flex justify-between items-end mb-12">
-        <div>
-          <span class="block text-[11px] font-semibold uppercase tracking-wide text-charcoal-light/50 mb-2">{t(locale, 'home.interactive')}</span>
-          <h2 class="font-heading text-4xl italic text-charcoal tracking-tight">{t(locale, 'home.toolsAndGuides')}</h2>
-        </div>
+    {/* Fresh off the press */}
+    <section class="fresh">
+      <div class="head">
+        <h2>Fresh off the press</h2>
+        <a href={localePath('/category/skincare/', locale)} class="all">SEE ALL &rarr;</a>
       </div>
-      <div class="grid gap-5 sm:grid-cols-3">
-        <a href={localePath('/quiz/', locale)} class="group relative aspect-square flex flex-col items-center justify-center text-center p-7 rounded-2xl border border-rose-200/60 bg-white overflow-hidden transition-all duration-400 hover:-translate-y-2 hover:shadow-xl">
-          <div class="absolute inset-0 bg-gradient-to-br from-rose-600/0 to-rose-700/0 group-hover:from-rose-600/5 group-hover:to-rose-700/10 transition-all duration-500 rounded-2xl"></div>
-          <div class="relative z-10 flex flex-col items-center">
-            <div class="w-14 h-14 mb-4 rounded-full bg-rose-50 flex items-center justify-center group-hover:bg-rose-100 transition-colors">
-              <svg class="w-7 h-7 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" /></svg>
-            </div>
-            <h3 class="font-heading text-xl text-charcoal mb-2 group-hover:text-rose-700 transition-colors">{t(locale, 'home.skinQuizTitle')}</h3>
-            <p class="text-xs text-charcoal-light/60 leading-relaxed max-w-[180px]">{t(locale, 'home.skinQuizDesc')}</p>
+      {rest.slice(0, 4).map((p) => (
+        <a href={localePath(`/${getSlug(p)}/`, locale)} class="row">
+          {p.data.image && <img src={p.data.image} alt={p.data.title} />}
+          <div style="flex:1;min-width:0;">
+            <div class="cat">{categoryLabelOf(p.data.category)}</div>
+            <div class="tt">{p.data.title}</div>
+            <div class="meta">{readMinutes(p)} MIN &bull; {formatDate(p.data.date)}</div>
           </div>
         </a>
-        <a href={localePath('/ingredients/', locale)} class="group relative aspect-square flex flex-col items-center justify-center text-center p-7 rounded-2xl border border-rose-200/60 bg-white overflow-hidden transition-all duration-400 hover:-translate-y-2 hover:shadow-xl">
-          <div class="absolute inset-0 bg-gradient-to-br from-rose-600/0 to-rose-700/0 group-hover:from-rose-600/5 group-hover:to-rose-700/10 transition-all duration-500 rounded-2xl"></div>
-          <div class="relative z-10 flex flex-col items-center">
-            <div class="w-14 h-14 mb-4 rounded-full bg-rose-50 flex items-center justify-center group-hover:bg-rose-100 transition-colors">
-              <svg class="w-7 h-7 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>
-            </div>
-            <h3 class="font-heading text-xl text-charcoal mb-2 group-hover:text-rose-700 transition-colors">{t(locale, 'home.ingredientGlossaryTitle')}</h3>
-            <p class="text-xs text-charcoal-light/60 leading-relaxed max-w-[180px]">{t(locale, 'home.ingredientGlossaryDesc')}</p>
-          </div>
-        </a>
-        <a href={localePath('/ingredient-checker/', locale)} class="group relative aspect-square flex flex-col items-center justify-center text-center p-7 rounded-2xl border border-rose-200/60 bg-white overflow-hidden transition-all duration-400 hover:-translate-y-2 hover:shadow-xl">
-          <div class="absolute inset-0 bg-gradient-to-br from-rose-600/0 to-rose-700/0 group-hover:from-rose-600/5 group-hover:to-rose-700/10 transition-all duration-500 rounded-2xl"></div>
-          <div class="relative z-10 flex flex-col items-center">
-            <div class="w-14 h-14 mb-4 rounded-full bg-rose-50 flex items-center justify-center group-hover:bg-rose-100 transition-colors">
-              <svg class="w-7 h-7 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" /></svg>
-            </div>
-            <h3 class="font-heading text-xl text-charcoal mb-2 group-hover:text-rose-700 transition-colors">{t(locale, 'home.conflictCheckerTitle')}</h3>
-            <p class="text-xs text-charcoal-light/60 leading-relaxed max-w-[180px]">{t(locale, 'home.conflictCheckerDesc')}</p>
-          </div>
-        </a>
-      </div>
+      ))}
     </section>
 
-    <!-- Quiz CTA -->
-    <section class="max-w-[1400px] mx-auto px-5 sm:px-8 mb-20 sm:mb-32">
-      <div class="relative rounded-2xl sm:rounded-[2.5rem] bg-gradient-to-br from-plum-700 via-plum-800 to-plum-900 p-10 sm:p-16 text-center overflow-hidden">
-        <div class="absolute top-[-60px] left-[-40px] w-48 h-48 bg-rose-500/20 rounded-full blur-3xl pointer-events-none"></div>
-        <div class="absolute bottom-[-80px] right-[-40px] w-64 h-64 bg-rose-400/10 rounded-full blur-3xl pointer-events-none"></div>
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-plum-400/5 rounded-full blur-3xl pointer-events-none"></div>
-
-        <div class="relative z-10">
-          <span class="inline-block text-[11px] font-semibold uppercase tracking-[0.25em] text-rose-300/80 mb-4">{t(locale, 'home.new')}</span>
-          <h2 class="font-heading text-4xl sm:text-5xl italic text-cream mb-4 leading-tight" set:html={t(locale, 'home.discoverSkinArchetype').replace('\n', '<br />')} />
-          <p class="text-sm sm:text-base text-rose-200 mb-8 max-w-lg mx-auto leading-relaxed">{t(locale, 'home.quizCtaDesc')}</p>
-          <a href={localePath('/quiz/', locale)} class="inline-flex items-center gap-2.5 px-9 py-3.5 bg-cream text-plum-800 text-sm font-semibold rounded-full hover:bg-white hover:shadow-lg transition-all duration-300">
-            {t(locale, 'home.takeTheQuiz')}
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-          </a>
-        </div>
-      </div>
+    {/* Dark shop banner */}
+    <section class="shop-banner-wrap">
+      <a href={localePath('/shop/', locale)} class="shop-banner">
+        <div class="pre">OUR CURATED SHOP</div>
+        <h3>The shelf we'd<br/><span class="y">actually buy</span></h3>
+        <p>Editor-tested K-beauty picks. Ships from Mirai Skin.</p>
+        <span class="cta">SHOP THE EDIT <span>&rarr;</span></span>
+        <svg class="bottle" width="110" height="154" viewBox="0 0 100 140">
+          <rect x="38" y="4" width="24" height="14" rx="2" fill="#1a1513"/>
+          <rect x="42" y="18" width="16" height="10" fill="#1a1513"/>
+          <rect x="20" y="28" width="60" height="100" rx="8" fill="#ff5a4c" stroke="#1a1513" stroke-width="1.5"/>
+          <rect x="22" y="52" width="56" height="42" fill="#fdfbf9" stroke="#1a1513" stroke-width="1.2"/>
+          <text x="50" y="72" text-anchor="middle" font-family="Cutive Mono, monospace" font-size="8" fill="#1a1513">MIRAI</text>
+          <text x="50" y="84" text-anchor="middle" font-family="Rozha One, serif" font-size="10" fill="#1a1513">SERUM</text>
+        </svg>
+        <svg class="tube" width="80" height="104" viewBox="0 0 100 130">
+          <rect x="20" y="2" width="60" height="16" rx="2" fill="#1a1513"/>
+          <path d="M18 20 L82 20 L74 124 Q 50 130 26 124 Z" fill="#ffd964" stroke="#1a1513" stroke-width="1.5"/>
+          <rect x="26" y="44" width="48" height="50" fill="#fdfbf9" stroke="#1a1513" stroke-width="1.2"/>
+          <text x="50" y="64" text-anchor="middle" font-family="Cutive Mono, monospace" font-size="7" fill="#1a1513">MIRAI</text>
+          <text x="50" y="78" text-anchor="middle" font-family="Rozha One, serif" font-size="11" fill="#1a1513">GLOW</text>
+        </svg>
+      </a>
     </section>
 
-    <!-- About -->
-    <section class="max-w-[1400px] mx-auto px-5 sm:px-8 mb-24">
-      <div class="rounded-2xl bg-rose-50 p-10 sm:p-16">
-        <div class="grid sm:grid-cols-2 gap-10 sm:gap-16 items-center">
-          <div>
-            <img src="/logo.svg" alt="Glow Coded" class="w-32 h-32 mb-6" />
-            <h2 class="font-heading text-4xl italic text-charcoal tracking-tight mb-4">{t(locale, 'home.aboutTitle')}</h2>
-          </div>
-          <div>
-            <p class="text-sm sm:text-base text-plum-500 leading-relaxed mb-6">
-              {t(locale, 'home.aboutDesc')}
-            </p>
-            <a href={localePath('/about/', locale)} class="inline-flex items-center gap-2 text-sm font-medium text-plum-700 hover:text-plum-900 transition-colors group">
-              {t(locale, 'home.learnMore')}
-              <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-            </a>
-          </div>
-        </div>
-      </div>
+    {/* Newsletter card */}
+    <section class="nl-card">
+      <a href={localePath('/#newsletter', locale)}>
+        <div class="pre">&#9993; THE LETTER</div>
+        <h3>One email a week.<br/>Zero filler.</h3>
+        <p>Sunday mornings. New finds, honest takes, one ingredient explained.</p>
+        <span class="cta">SUBSCRIBE &rarr;</span>
+      </a>
     </section>
 
-    <!-- Newsletter -->
-    <div class="max-w-4xl mx-auto px-5 sm:px-8 mb-20">
-      <NewsletterSignup locale={locale} />
+    {/* Centered footer (inside mobile) */}
+    <div class="foot">
+      <div class="brand">GLOW CODED</div>
+      <div class="mono">EST. 2024 &middot; MADE WITH &#9829;</div>
+      <div class="mono" style="margin-top:6px;">ABOUT &middot; SHOP &middot; CONTACT &middot; PRIVACY</div>
     </div>
-  </main>
+  </div>
 
-  <Footer locale={locale} />
+  <div class="desktop-footer"><Footer locale={locale} /></div>
   <BackToTop />
+</Base>
+
+<style is:global>
+  /* ===== Page container ===== */
+  .gcd-page {
+    max-width: 1360px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 32px 120px;
+    box-sizing: border-box;
+    overflow-x: clip;
+  }
+
+  /* Hide desktop footer when mobile layout is active */
+  @media (max-width: 900px) {
+    .desktop-footer { display: none; }
+  }
+
+  /* ===== Masthead ===== */
+  .gcd-masthead {
+    display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 28px;
+    padding: 34px 0 28px;
+    border-bottom: 2.5px solid var(--color-charcoal);
+    align-items: stretch;
+  }
+  .gcd-title {
+    font-family: 'Rozha One', serif;
+    font-size: clamp(78px, 11vw, 184px);
+    line-height: 0.82;
+    letter-spacing: -0.02em;
+    margin: 0;
+    font-weight: 400;
+    color: var(--color-charcoal);
+  }
+  .gcd-title .i { color: var(--color-rose-500); font-style: italic; font-family: 'Rozha One', serif; }
+  .gcd-masthead .gcd-kicker {
+    display: flex; gap: 10px; align-items: center; margin-bottom: 14px;
+    font-family: 'Cutive Mono', monospace; font-size: 11px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--color-charcoal);
+  }
+  .gcd-masthead .gcd-kicker .pill {
+    padding: 4px 10px; border: 1.3px solid var(--color-charcoal); border-radius: 999px;
+  }
+  .gcd-sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 17px; line-height: 1.5;
+    max-width: 560px;
+    color: var(--color-charcoal-light);
+    margin-top: 18px;
+  }
+
+  .gcd-hero-card {
+    border: 1.5px solid var(--color-charcoal);
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--color-cream);
+    box-shadow: 8px 8px 0 var(--color-charcoal);
+    display: flex; flex-direction: column;
+    transform: rotate(1deg);
+    cursor: pointer;
+    transition: transform 0.2s;
+    text-decoration: none; color: inherit;
+  }
+  .gcd-hero-card:hover { transform: rotate(0deg) translateY(-4px); }
+  .gcd-hero-ph {
+    height: 260px; position: relative;
+    background: repeating-linear-gradient(45deg, #ffb9b0 0 10px, #ffd4c0 10px 20px);
+    border-bottom: 1.5px solid var(--color-charcoal);
+    overflow: hidden;
+  }
+  .gcd-hero-ph img {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  }
+  .gcd-hero-ph .big {
+    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    font-family: 'Rozha One', serif; font-size: 210px; color: #fff5e8; line-height: 0.9;
+    text-shadow: 5px 5px 0 var(--color-charcoal);
+  }
+  .gcd-hero-body { padding: 22px 24px 26px; display: flex; flex-direction: column; gap: 10px; }
+  .gcd-hero-body .tag {
+    font-family: 'Cutive Mono', monospace; font-size: 10.5px;
+    text-transform: uppercase; letter-spacing: 0.14em;
+    color: var(--color-rose-600);
+  }
+  .gcd-hero-body h3 {
+    font-family: 'Rozha One', serif; font-weight: 400; font-size: 30px;
+    line-height: 1.02; letter-spacing: -0.01em; margin: 0;
+    color: var(--color-charcoal);
+  }
+  .gcd-hero-body .meta {
+    font-family: 'Cutive Mono', monospace; font-size: 10.5px;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    color: var(--color-charcoal-light);
+    display: flex; justify-content: space-between; padding-top: 12px;
+    border-top: 1px dashed rgba(26,21,19,0.2);
+  }
+
+  /* ===== Marquee ===== */
+  .gcd-marquee {
+    overflow: hidden; border-bottom: 2.5px solid var(--color-charcoal);
+    background: var(--color-rose-500); color: #fff1e8;
+    padding: 12px 0;
+    margin-left: -32px; margin-right: -32px;
+  }
+  .gcd-marquee .track {
+    display: flex; gap: 38px; white-space: nowrap;
+    animation: marquee 28s linear infinite;
+    font-family: 'Rozha One', serif; font-size: 26px; letter-spacing: 0.01em;
+  }
+  .gcd-marquee .track > span { display: inline-flex; align-items: center; gap: 38px; }
+  .gcd-marquee .star { color: var(--butter); font-family: 'DM Sans'; font-size: 16px; }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-33.333%); }
+  }
+
+  /* ===== Section heads ===== */
+  .section-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 48px 0 20px;
+  }
+  .section-head h2 {
+    font-family: 'Rozha One', serif; font-size: 52px; font-weight: 400; line-height: 1;
+    margin: 0; color: var(--color-charcoal);
+  }
+  .section-head h2 em { font-style: italic; color: var(--color-rose-500); }
+  .section-head .meta {
+    font-family: 'Cutive Mono', monospace; font-size: 11px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--color-charcoal-light);
+  }
+
+  /* ===== Editorial grid ===== */
+  .edit-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 24px;
+    padding-bottom: 14px;
+  }
+  .edit-card {
+    background: var(--color-cream);
+    border: 1.5px solid var(--color-charcoal);
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 4px 4px 0 var(--color-charcoal);
+    cursor: pointer;
+    transition: transform 0.18s, box-shadow 0.18s;
+    display: flex; flex-direction: column;
+    text-decoration: none; color: inherit;
+  }
+  .edit-card:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 7px 7px 0 var(--color-charcoal);
+  }
+  .edit-card.feat { grid-row: span 2; }
+  .edit-card .img {
+    position: relative; border-bottom: 1.5px solid var(--color-charcoal);
+    overflow: hidden;
+    background: repeating-linear-gradient(45deg, #ff8a7a 0 10px, #ffb0a3 10px 20px);
+  }
+  .edit-card .img.small { height: 220px; }
+  .edit-card.feat .img { height: 420px; }
+  .edit-card .img img {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  }
+  .edit-card .img .ph {
+    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    font-family: 'Rozha One', serif; font-size: 100px; color: rgba(255,255,255,0.75);
+    text-shadow: 4px 4px 0 var(--color-charcoal);
+  }
+  .edit-card.feat .img .ph { font-size: 180px; text-shadow: 6px 6px 0 var(--color-charcoal); }
+  .edit-card .cat {
+    position: absolute; top: 12px; left: 12px; z-index: 2;
+    background: var(--color-charcoal); color: var(--color-cream);
+    font-family: 'Cutive Mono', monospace; font-size: 10px;
+    padding: 4px 10px; letter-spacing: 0.14em;
+    text-transform: uppercase; border-radius: 999px;
+  }
+  .edit-card .body {
+    padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 8px; flex: 1;
+  }
+  .edit-card .body h3 {
+    font-family: 'Rozha One', serif; font-weight: 400; font-size: 24px;
+    line-height: 1.05; letter-spacing: -0.005em; margin: 0;
+    color: var(--color-charcoal);
+  }
+  .edit-card .body h3.xl { font-size: 42px; line-height: 0.98; }
+  .edit-card .body p {
+    font-size: 13.5px; line-height: 1.55; color: var(--color-charcoal-light); margin: 0;
+  }
+  .edit-card .foot {
+    margin-top: auto; padding-top: 12px; border-top: 1px dashed rgba(26,21,19,0.22);
+    display: flex; justify-content: space-between;
+    font-family: 'Cutive Mono', monospace; font-size: 10px;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--color-charcoal-light);
+  }
+
+  /* ===== Archive grid — same cards, 3-col responsive ===== */
+  .archive-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    padding-bottom: 14px;
+  }
+
+  /* ===== Categories strip ===== */
+  .cats-strip {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px;
+    padding-bottom: 20px;
+  }
+  .cat-tile {
+    position: relative;
+    border: 1.5px solid var(--color-charcoal); border-radius: 6px; overflow: hidden;
+    background: var(--color-cream); cursor: pointer;
+    transition: transform 0.18s, box-shadow 0.18s;
+    text-decoration: none; color: inherit;
+  }
+  .cat-tile:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 var(--color-charcoal); }
+  .cat-tile .swatch {
+    height: 150px; border-bottom: 1.5px solid var(--color-charcoal); position: relative;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Rozha One', serif; font-size: 82px; letter-spacing: -0.02em;
+    color: #fff5e8; text-shadow: 3px 3px 0 var(--color-charcoal);
+  }
+  .cat-tile .body { padding: 14px 16px 16px; }
+  .cat-tile h4 {
+    font-family: 'Rozha One', serif; font-weight: 400; font-size: 22px;
+    letter-spacing: -0.01em; margin: 0 0 4px; color: var(--color-charcoal);
+  }
+  .cat-tile small {
+    font-family: 'Cutive Mono', monospace; font-size: 9.5px;
+    text-transform: uppercase; letter-spacing: 0.14em;
+    color: var(--color-charcoal-light);
+  }
+
+  /* ===== Shop rail ===== */
+  .shop-rail {
+    display: grid; grid-template-columns: 1.1fr 2.2fr; gap: 32px; align-items: stretch;
+    background: var(--color-cream); border: 1.5px solid var(--color-charcoal); border-radius: 8px;
+    padding: 34px; box-shadow: 6px 6px 0 var(--color-charcoal);
+    position: relative;
+  }
+  .shop-rail::before {
+    content: 'MIRAI ×'; position: absolute; top: -16px; left: 28px;
+    background: var(--color-rose-500); color: #fff; padding: 5px 12px;
+    font-family: 'Cutive Mono', monospace; font-size: 11px; letter-spacing: 0.16em;
+    border: 1.5px solid var(--color-charcoal); border-radius: 999px;
+  }
+  .shop-rail .intro h3 {
+    font-family: 'Rozha One', serif; font-size: 44px; font-weight: 400;
+    line-height: 1; margin: 0 0 16px; letter-spacing: -0.01em;
+    color: var(--color-charcoal);
+  }
+  .shop-rail .intro p {
+    font-size: 14px; line-height: 1.6; color: var(--color-charcoal-light);
+    margin: 0 0 20px; max-width: 380px;
+  }
+  .shop-rail .btn-coral {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--color-rose-500); color: #fff;
+    border: 1.5px solid var(--color-charcoal); border-radius: 999px;
+    padding: 12px 22px; font-family: 'Cutive Mono', monospace; font-size: 12px;
+    text-transform: uppercase; letter-spacing: 0.14em;
+    cursor: pointer; text-decoration: none;
+    box-shadow: 3px 3px 0 var(--color-charcoal);
+    transition: transform 0.15s;
+  }
+  .shop-rail .btn-coral:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 var(--color-charcoal); }
+  .shop-rail .products { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .prod {
+    border: 1.3px solid var(--color-charcoal); border-radius: 6px; overflow: hidden;
+    cursor: pointer; background: #fdfbf9; transition: transform 0.15s;
+    text-decoration: none; color: inherit;
+  }
+  .prod:hover { transform: translateY(-3px); }
+  .prod .img {
+    height: 160px; position: relative; border-bottom: 1.3px solid var(--color-charcoal);
+    overflow: hidden; display: flex; align-items: center; justify-content: center;
+    background: #f5f0ea; padding: 10px;
+  }
+  .prod .img img { max-width: 100%; max-height: 100%; object-fit: contain; }
+  .prod .body { padding: 12px 14px 14px; }
+  .prod .brand {
+    font-family: 'Cutive Mono', monospace; font-size: 9.5px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-rose-600);
+  }
+  .prod .name {
+    font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 13.5px;
+    line-height: 1.3; margin: 3px 0 6px; color: var(--color-charcoal);
+  }
+  .prod .row {
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: 'Cutive Mono', monospace; font-size: 10.5px;
+    color: var(--color-charcoal);
+  }
+  .prod .price { font-weight: 600; }
+  .prod .tag-pill {
+    position: absolute; top: 10px; left: 10px; background: var(--butter);
+    border: 1px solid var(--color-charcoal); border-radius: 999px; padding: 3px 8px;
+    font-family: 'Cutive Mono', monospace; font-size: 9px; letter-spacing: 0.14em;
+    text-transform: uppercase; z-index: 2;
+  }
+
+  /* ===== Quiz + Newsletter promo ===== */
+  .quiz-promo {
+    display: grid; grid-template-columns: 1.1fr 1fr; gap: 28px; align-items: stretch;
+    margin-top: 40px;
+  }
+  .quiz-big {
+    background: var(--color-charcoal); color: var(--color-cream);
+    border-radius: 8px; padding: 48px 44px;
+    position: relative; overflow: hidden;
+    border: 1.5px solid var(--color-charcoal);
+  }
+  .quiz-big .label {
+    font-family: 'Cutive Mono', monospace; font-size: 11px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--butter);
+  }
+  .quiz-big h3 {
+    font-family: 'Rozha One', serif; font-size: 64px; font-weight: 400;
+    line-height: 0.95; letter-spacing: -0.015em; margin: 14px 0 18px;
+  }
+  .quiz-big h3 em { font-style: italic; color: var(--color-rose-500); }
+  .quiz-big p {
+    font-size: 15px; line-height: 1.55; max-width: 440px;
+    margin-bottom: 26px; color: #d9d0c6;
+  }
+  .quiz-big .cta {
+    display: inline-flex; align-items: center; gap: 12px;
+    background: var(--color-rose-500); color: #fff;
+    border: 1.5px solid var(--color-cream); border-radius: 999px;
+    padding: 14px 24px; font-family: 'Cutive Mono', monospace;
+    font-size: 12px; text-transform: uppercase; letter-spacing: 0.14em;
+    cursor: pointer; transition: transform 0.15s; text-decoration: none;
+  }
+  .quiz-big .cta:hover { transform: translate(-2px,-2px); }
+  .quiz-big .sticker-float {
+    position: absolute; bottom: -20px; right: -20px;
+    width: 140px; height: 140px; border-radius: 999px;
+    background: var(--butter); color: var(--color-charcoal);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Rozha One', serif; font-size: 18px; font-style: italic;
+    line-height: 1.05; text-align: center; padding: 14px;
+    border: 1.5px solid var(--color-charcoal);
+    transform: rotate(-8deg);
+    box-shadow: -4px -4px 0 var(--color-charcoal);
+  }
+
+  .newsletter-block {
+    background: var(--color-rose-500); color: #fff;
+    border-radius: 8px; padding: 36px 34px;
+    border: 1.5px solid var(--color-charcoal);
+    box-shadow: 5px 5px 0 var(--color-charcoal);
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .newsletter-block .label {
+    font-family: 'Cutive Mono', monospace; font-size: 10.5px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+  }
+  .newsletter-block h3 {
+    font-family: 'Rozha One', serif; font-size: 44px; font-weight: 400;
+    line-height: 0.98; letter-spacing: -0.01em; margin: 12px 0 16px;
+  }
+  .newsletter-block p {
+    font-size: 14px; line-height: 1.5; margin: 0 0 22px; color: #fff3e9;
+  }
+  .newsletter-block .form { display: flex; gap: 8px; }
+  .newsletter-block input {
+    flex: 1; border: 1.5px solid #fff; background: rgba(255,255,255,0.12);
+    color: #fff; padding: 12px 16px; font-family: 'DM Sans', sans-serif;
+    font-size: 14px; border-radius: 999px; outline: none;
+  }
+  .newsletter-block input::placeholder { color: rgba(255,255,255,0.65); }
+  .newsletter-block button {
+    background: var(--color-charcoal); color: #fff;
+    border: 1.5px solid var(--color-charcoal); padding: 12px 22px;
+    font-family: 'Cutive Mono', monospace; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.14em;
+    border-radius: 999px; cursor: pointer;
+  }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 1100px) {
+    .edit-grid { grid-template-columns: 1fr 1fr; }
+    .edit-card.feat { grid-row: auto; grid-column: 1 / -1; }
+    .archive-grid { grid-template-columns: 1fr 1fr; }
+    .cats-strip { grid-template-columns: repeat(3, 1fr); }
+    .shop-rail { grid-template-columns: 1fr; }
+    .shop-rail .products { grid-template-columns: repeat(3, 1fr); }
+    .quiz-promo { grid-template-columns: 1fr; }
+    .gcd-masthead { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 768px) {
+    .gcd-page { padding: 0 20px 80px; }
+    .gcd-marquee { margin-left: -20px; margin-right: -20px; }
+    .gcd-title { font-size: clamp(64px, 18vw, 120px); }
+    .edit-grid { grid-template-columns: 1fr; }
+    .archive-grid { grid-template-columns: 1fr; }
+    .edit-card.feat .img { height: 260px; }
+    .cats-strip { grid-template-columns: 1fr 1fr; }
+    .shop-rail { padding: 24px 20px; }
+    .shop-rail .products { grid-template-columns: 1fr 1fr; }
+    .section-head { flex-direction: column; align-items: flex-start; gap: 8px; padding: 32px 0 16px; }
+    .section-head h2 { font-size: 40px; }
+    .quiz-big { padding: 32px 24px; }
+    .quiz-big h3 { font-size: 44px; }
+    .newsletter-block { padding: 24px 22px; }
+    .newsletter-block h3 { font-size: 32px; }
+  }
+</style>
+
+<script>
+  document.querySelectorAll('.newsletter-form').forEach((form) => {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const f = e.currentTarget as HTMLFormElement;
+      const input = f.querySelector('input[type="email"]') as HTMLInputElement;
+      const btn = f.querySelector('button') as HTMLButtonElement;
+      const email = input.value.trim();
+      if (!email) return;
+      btn.disabled = true;
+      try {
+        await fetch('/api/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, locale: (f as HTMLElement).dataset.locale || 'en' }),
+        });
+        btn.textContent = 'Done';
+      } catch {
+        btn.textContent = 'Retry';
+      } finally {
+        btn.disabled = false;
+      }
+    });
+  });
+</script>
 </Base>
