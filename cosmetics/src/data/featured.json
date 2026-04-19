@@ -1,6 +1,6 @@
 {
-  "updated": "2026-04-18",
-  "period": "2026-03-19 to 2026-04-16",
+  "updated": "2026-04-19",
+  "period": "2026-03-20 to 2026-04-17",
   "trending": [
     {
       "slug": "best-korean-sunscreens-oily-skin-no-white-cast",
@@ -11,14 +11,14 @@
     {
       "slug": "cosrx-snail-mucin-vs-torriden-dive-in-serum",
       "clicks": 7,
-      "impressions": 361,
+      "impressions": 367,
       "position": 5.9
     },
     {
       "slug": "best-korean-moisturizers-sensitive-skin",
       "clicks": 3,
-      "impressions": 339,
-      "position": 9.7
+      "impressions": 347,
+      "position": 9.5
     },
     {
       "slug": "best-snail-mucin-products-2026",
@@ -43,20 +43,14 @@
     {
       "slug": "aha-vs-bha-vs-pha-which-exfoliant",
       "clicks": 0,
-      "impressions": 93,
-      "days_old": 13
-    },
-    {
-      "slug": "best-korean-cleansing-oils",
-      "clicks": 0,
-      "impressions": 60,
+      "impressions": 94,
       "days_old": 14
     },
     {
       "slug": "best-k-beauty-under-15",
       "clicks": 0,
       "impressions": 28,
-      "days_old": 10
+      "days_old": 11
     }
   ]
 }

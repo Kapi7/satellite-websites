@@ -1,18 +1,24 @@
 {
-  "updated": "2026-04-18",
-  "period": "2026-03-19 to 2026-04-16",
+  "updated": "2026-04-19",
+  "period": "2026-03-20 to 2026-04-17",
   "trending": [
     {
       "slug": "snail-mucin-everything-you-need-to-know",
       "clicks": 1,
-      "impressions": 322,
-      "position": 37.2
+      "impressions": 353,
+      "position": 39.3
+    },
+    {
+      "slug": "best-double-cleansing-products",
+      "clicks": 0,
+      "impressions": 64,
+      "position": 45.8
     },
     {
       "slug": "complete-guide-ancestral-eating",
       "clicks": 0,
-      "impressions": 48,
-      "position": 42.3
+      "impressions": 52,
+      "position": 41.2
     },
     {
       "slug": "couch-to-5k-8-week-running-plan",
@@ -23,28 +29,22 @@
     {
       "slug": "fermented-beetroot-kvass-probiotic-drink",
       "clicks": 0,
-      "impressions": 38,
-      "position": 51.6
+      "impressions": 42,
+      "position": 53.1
     },
     {
-      "slug": "best-double-cleansing-products",
-      "clicks": 0,
-      "impressions": 34,
-      "position": 42.3
-    },
-    {
-      "slug": "double-cleansing-why-and-how",
-      "clicks": 0,
-      "impressions": 27,
-      "position": 50.1
+      "slug": "high-protein-breakfasts-without-grains",
+      "clicks": 1,
+      "impressions": 11,
+      "position": 32.8
     }
   ],
   "rising": [
     {
       "slug": "best-stainless-steel-cookware",
       "clicks": 0,
-      "impressions": 10,
-      "days_old": 8
+      "impressions": 19,
+      "days_old": 9
     }
   ]
 }
