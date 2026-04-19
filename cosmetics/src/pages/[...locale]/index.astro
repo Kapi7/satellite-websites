@@ -230,11 +230,11 @@ const webSiteSchema = JSON.stringify({
       <div class="intro">
         <h3>Curated, tested, never pushy.</h3>
         <p>Six bottles we're keeping on our shelf this month. Every product is stocked at Mirai Skin — we earn a small cut only when you shop, and never when we review.</p>
-        <a href="https://mirai-skin.com" target="_blank" rel="noopener" class="btn btn-coral">Shop the full edit &rarr;</a>
+        <a href={localePath('/shop/', locale)} class="btn btn-coral">Shop the full edit &rarr;</a>
       </div>
       <div class="products">
         {GC_PRODUCTS.map((p) => (
-          <a href={p.url} target="_blank" rel="noopener" class="prod">
+          <a href={localePath(`/shop/#${p.slug}`, locale)} class="prod">
             <div class="img">
               {p.tag && <span class="tag-pill">{p.tag}</span>}
               <img src={p.image} alt={p.name} />

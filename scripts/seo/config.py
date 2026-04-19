@@ -162,6 +162,9 @@ COMPETITORS = {
     "build-coded": [
         "familyhandyman.com", "instructables.com", "woodmagazine.com",
         "thisoldhouse.com", "makezine.com",
+        "popularmechanics.com", "diynetwork.com", "bobvila.com",
+        "finewoodworking.com", "woodworkersjournal.com", "hackaday.com",
+        "adafruit.com", "sparkfun.com", "hometalk.com",
     ],
 }
 
@@ -271,6 +274,16 @@ RESOURCE_SEARCHES = {
         '"Arduino projects" "resources" OR "links"',
         '"woodworking blogs" "resources" 2025 OR 2026',
         '"DIY electronics" "resources" OR "beginners guide"',
+        '"home renovation" "resources" inurl:resources',
+        '"power tools" "recommended" OR "tool guide"',
+        '"3D printing" "resources" OR "links"',
+        '"DIY projects" "blogroll" OR "favorite blogs"',
+        '"epoxy resin" "resources" OR "tutorials"',
+        '"homesteading" "resources" inurl:resources',
+        '"smart home" "DIY" "resources"',
+        'allintitle: best DIY blogs 2025 OR 2026',
+        '"handyman" "resources" OR "links"',
+        '"workshop" "tool list" OR "recommended"',
     ],
 }
 

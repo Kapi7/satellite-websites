@@ -266,6 +266,25 @@ def print_ga4(access_token, property_id, domain):
         print(f"  Sessions: {fmt_num(sessions)}  |  Users: {fmt_num(users)}  |  Pageviews: {fmt_num(pageviews)}")
         print(f"  Avg Duration: {avg_dur:.0f}s  |  Bounce: {bounce:.1f}%")
 
+    # Traffic by channel — reconciles GA4 vs GSC (Organic Search slice = GSC comparable)
+    channel_body = {
+        "dateRanges": [{"startDate": start, "endDate": end}],
+        "dimensions": [{"name": "sessionDefaultChannelGroup"}],
+        "metrics": [{"name": "sessions"}, {"name": "activeUsers"}, {"name": "engagedSessions"}],
+        "limit": 10,
+        "orderBys": [{"metric": {"metricName": "sessions"}, "desc": True}],
+    }
+    channel_result = ga4_request(access_token, property_id, channel_body)
+    if channel_result and "rows" in channel_result:
+        print(f"\n  By channel (7d):")
+        print(f"  {'Channel':<22} {'Sessions':>9} {'Users':>7} {'Engaged':>8}")
+        for r in channel_result["rows"]:
+            ch = r["dimensionValues"][0]["value"] or "(not set)"
+            sess = int(r["metricValues"][0]["value"])
+            usrs = int(r["metricValues"][1]["value"])
+            eng = int(r["metricValues"][2]["value"])
+            print(f"  {ch[:20]:<22} {sess:>9} {usrs:>7} {eng:>8}")
+
     # Top pages by pageviews
     pages_body = {
         "dateRanges": [{"startDate": start, "endDate": end}],

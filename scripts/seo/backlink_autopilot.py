@@ -584,6 +584,11 @@ BRAND_SEARCHES = {
         "domain": "rooted-glow.com",
         "brand": "Rooted Glow",
     },
+    "build-coded": {
+        "query": '"build coded" -site:build-coded.com -site:reddit.com -site:pinterest.com',
+        "domain": "build-coded.com",
+        "brand": "Build Coded",
+    },
 }
 
 

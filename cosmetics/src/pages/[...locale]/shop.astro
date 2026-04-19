@@ -52,7 +52,7 @@ const schema = JSON.stringify({
 
     <div class="gcd-shop-grid">
       {products.map((p) => (
-        <a href={p.url} target="_blank" rel="noopener" class="gcd-shop-card">
+        <a href={p.url} target="_blank" rel="noopener" class="gcd-shop-card" id={p.slug}>
           <div class="img">
             {p.tag && <span class="tag-pill">{p.tag}</span>}
             <img src={p.image} alt={p.name} loading="lazy" />
