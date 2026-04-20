@@ -18,12 +18,48 @@ from datetime import datetime, timedelta
 GSC_TOKEN_FILE = os.environ.get("GSC_TOKEN_FILE", os.path.expanduser("~/.config/gsc-token.json"))
 AHREFS_API_KEY = os.environ.get("AHREFS_API_KEY", "bldAb-4QInmVjjFRldH6r-32VeDrIDnJQVReJhpw")
 BING_API_KEY = os.environ.get("BING_API_KEY", "282fd9e402f641b9a21fe8c171b6925e")
+GA4_SERVICE_ACCOUNT_FILE = os.environ.get(
+    "GA4_SERVICE_ACCOUNT_FILE",
+    os.path.expanduser("~/.config/ga4-service-account.json"),
+)
 REPORTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "reports")
 
+# Set GA4 property IDs via env or edit here (numeric string like "123456789").
 SITES = {
-    "glow-coded.com": {"gsc": "sc-domain:glow-coded.com", "url": "https://glow-coded.com"},
-    "rooted-glow.com": {"gsc": "sc-domain:rooted-glow.com", "url": "https://rooted-glow.com"},
-    "build-coded.com": {"gsc": "sc-domain:build-coded.com", "url": "https://build-coded.com"},
+    "glow-coded.com": {
+        "gsc": "sc-domain:glow-coded.com",
+        "url": "https://glow-coded.com",
+        "ga4": os.environ.get("GA4_PROPERTY_GLOW_CODED", ""),
+    },
+    "rooted-glow.com": {
+        "gsc": "sc-domain:rooted-glow.com",
+        "url": "https://rooted-glow.com",
+        "ga4": os.environ.get("GA4_PROPERTY_ROOTED_GLOW", ""),
+    },
+    "build-coded.com": {
+        "gsc": "sc-domain:build-coded.com",
+        "url": "https://build-coded.com",
+        "ga4": os.environ.get("GA4_PROPERTY_BUILD_CODED", ""),
+    },
+}
+
+# Referral hosts known to be AI assistants / chatbots.
+AI_REFERRER_HOSTS = {
+    "chatgpt.com": "ChatGPT",
+    "chat.openai.com": "ChatGPT (legacy)",
+    "openai.com": "OpenAI",
+    "perplexity.ai": "Perplexity",
+    "www.perplexity.ai": "Perplexity",
+    "gemini.google.com": "Gemini",
+    "bard.google.com": "Gemini (legacy Bard)",
+    "claude.ai": "Claude",
+    "copilot.microsoft.com": "Copilot",
+    "bing.com": "Bing (incl. Copilot chat)",
+    "www.bing.com": "Bing (incl. Copilot chat)",
+    "you.com": "You.com",
+    "phind.com": "Phind",
+    "poe.com": "Poe",
+    "duckduckgo.com": "DuckDuckGo (incl. DuckAssist)",
 }
 
 TODAY = datetime.now().strftime("%Y-%m-%d")
@@ -164,7 +200,9 @@ def ahrefs_section(domain, prev_data):
 
     bl = ahrefs_get("site-explorer/backlinks-stats", {"target": domain})
     if bl:
-        stats = bl.get("metrics", bl)
+        stats = bl.get("metrics") or bl
+        if not isinstance(stats, dict):
+            stats = {}
         live = stats.get("live", 0)
         refdoms = stats.get("live_refdomains", stats.get("refdomains", 0))
         data["backlinks"] = live
@@ -184,6 +222,117 @@ def ahrefs_section(domain, prev_data):
         lines.append(f"\n  Top Organic Keywords:")
         for kw in ok["keywords"]:
             lines.append(f"    {kw['keyword'][:45]:<47} vol: {kw.get('volume', 0)}")
+
+    return "\n".join(lines), data
+
+def ga4_access_token():
+    """Mint a short-lived access token from a service account JSON.
+    Returns None if the service-account file or google-auth isn't available.
+    """
+    if not os.path.exists(GA4_SERVICE_ACCOUNT_FILE):
+        return None
+    try:
+        from google.oauth2 import service_account
+        from google.auth.transport.requests import Request
+    except ImportError:
+        return None
+    scopes = ["https://www.googleapis.com/auth/analytics.readonly"]
+    creds = service_account.Credentials.from_service_account_file(
+        GA4_SERVICE_ACCOUNT_FILE, scopes=scopes
+    )
+    creds.refresh(Request())
+    return creds.token
+
+def ga4_run_report(access_token, property_id, body):
+    url = f"https://analyticsdata.googleapis.com/v1beta/properties/{property_id}:runReport"
+    req = urllib.request.Request(
+        url,
+        data=json.dumps(body).encode(),
+        headers={"Authorization": f"Bearer {access_token}", "Content-Type": "application/json"},
+        method="POST",
+    )
+    try:
+        resp = urllib.request.urlopen(req)
+        return json.loads(resp.read())
+    except urllib.error.HTTPError as e:
+        return {"_error": f"{e.code} {e.reason}: {e.read()[:200].decode('utf-8', 'replace')}"}
+
+def ga4_section(access_token, domain, property_id):
+    lines = []
+    lines.append(f"\n  GA4 — {domain}")
+    lines.append(f"  {'─'*50}")
+
+    if not access_token:
+        lines.append("  (GA4 not configured: drop service-account JSON at")
+        lines.append(f"   {GA4_SERVICE_ACCOUNT_FILE} and set GA4_PROPERTY_* env vars)")
+        return "\n".join(lines), {}
+    if not property_id:
+        lines.append("  (no GA4_PROPERTY_* env var set for this site)")
+        return "\n".join(lines), {}
+
+    end = datetime.now().strftime("%Y-%m-%d")
+    start = (datetime.now() - timedelta(days=7)).strftime("%Y-%m-%d")
+
+    totals = ga4_run_report(access_token, property_id, {
+        "dateRanges": [{"startDate": start, "endDate": end}],
+        "metrics": [
+            {"name": "sessions"},
+            {"name": "totalUsers"},
+            {"name": "engagedSessions"},
+        ],
+    })
+    data = {}
+    if totals and "rows" in totals and totals["rows"]:
+        row = totals["rows"][0]["metricValues"]
+        sessions = int(row[0]["value"])
+        users = int(row[1]["value"])
+        engaged = int(row[2]["value"])
+        data.update(sessions=sessions, users=users, engaged=engaged)
+        lines.append(f"  Sessions:   {sessions}   Users: {users}   Engaged: {engaged}")
+    elif totals and "_error" in totals:
+        lines.append(f"  API error: {totals['_error']}")
+        return "\n".join(lines), data
+
+    channels = ga4_run_report(access_token, property_id, {
+        "dateRanges": [{"startDate": start, "endDate": end}],
+        "dimensions": [{"name": "sessionDefaultChannelGroup"}],
+        "metrics": [{"name": "sessions"}],
+        "orderBys": [{"metric": {"metricName": "sessions"}, "desc": True}],
+    })
+    if channels and "rows" in channels:
+        lines.append("  Channels:")
+        for r in channels["rows"][:6]:
+            ch = r["dimensionValues"][0]["value"]
+            s = int(r["metricValues"][0]["value"])
+            lines.append(f"    {ch[:30]:<32} {s:>6}")
+
+    ai = ga4_run_report(access_token, property_id, {
+        "dateRanges": [{"startDate": start, "endDate": end}],
+        "dimensions": [{"name": "sessionSource"}],
+        "metrics": [{"name": "sessions"}, {"name": "engagedSessions"}],
+        "orderBys": [{"metric": {"metricName": "sessions"}, "desc": True}],
+        "limit": 200,
+    })
+    ai_total = 0
+    ai_rows = []
+    if ai and "rows" in ai:
+        for r in ai["rows"]:
+            src = r["dimensionValues"][0]["value"].lower().strip()
+            matched = next((label for host, label in AI_REFERRER_HOSTS.items() if host in src), None)
+            if matched:
+                s = int(r["metricValues"][0]["value"])
+                eg = int(r["metricValues"][1]["value"])
+                ai_rows.append((matched, src, s, eg))
+                ai_total += s
+    data["ai_sessions"] = ai_total
+    data["ai_sources"] = [{"label": lbl, "source": src, "sessions": s, "engaged": eg}
+                          for lbl, src, s, eg in ai_rows]
+    lines.append(f"  AI referrals: {ai_total} sessions")
+    if ai_rows:
+        for label, src, s, eg in ai_rows[:8]:
+            lines.append(f"    {label} ({src})  sessions: {s}  engaged: {eg}")
+    else:
+        lines.append("    (no AI-referral sessions this week)")
 
     return "\n".join(lines), data
 
@@ -227,6 +376,7 @@ def main():
 
     token_data = load_gsc_token()
     access_token = refresh_gsc_token(token_data)
+    ga4_token = ga4_access_token()
 
     report_data = {}
 
@@ -244,10 +394,13 @@ def main():
         ahrefs_text, ahrefs_data = ahrefs_section(domain, prev_site.get("ahrefs"))
         output.append(ahrefs_text)
 
+        ga4_text, ga4_data = ga4_section(ga4_token, domain, cfg.get("ga4", ""))
+        output.append(ga4_text)
+
         bing_text = bing_section(domain)
         output.append(bing_text)
 
-        report_data[domain] = {"gsc": gsc_data, "ahrefs": ahrefs_data}
+        report_data[domain] = {"gsc": gsc_data, "ahrefs": ahrefs_data, "ga4": ga4_data}
 
     output.append(f"\n{'='*60}")
     output.append(f"  Report generated: {datetime.now().strftime('%Y-%m-%d %H:%M')}")
