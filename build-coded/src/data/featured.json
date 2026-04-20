@@ -1,62 +1,62 @@
 {
-  "updated": "2026-04-19",
-  "period": "2026-03-20 to 2026-04-17",
+  "updated": "2026-04-20",
+  "period": "2026-03-21 to 2026-04-18",
   "trending": [
     {
       "slug": "arduino-projects-beginners",
       "clicks": 2,
-      "impressions": 67,
-      "position": 6.2
-    },
-    {
-      "slug": "best-3d-printers-beginners",
-      "clicks": 0,
-      "impressions": 155,
-      "position": 45.5
+      "impressions": 83,
+      "position": 5.9
     },
     {
       "slug": "best-soldering-irons-beginners",
       "clicks": 0,
-      "impressions": 98,
-      "position": 18.2
+      "impressions": 126,
+      "position": 18.5
     },
     {
       "slug": "best-orbital-sanders",
       "clicks": 0,
-      "impressions": 117,
-      "position": 52.1
+      "impressions": 137,
+      "position": 51.7
     },
     {
       "slug": "best-heat-guns-crafts-diy",
       "clicks": 0,
-      "impressions": 89,
+      "impressions": 103,
       "position": 12.6
     },
     {
       "slug": "best-multimeters-home-use",
       "clicks": 1,
-      "impressions": 48,
-      "position": 32.2
+      "impressions": 52,
+      "position": 31.2
+    },
+    {
+      "slug": "best-hot-glue-guns-crafters",
+      "clicks": 1,
+      "impressions": 26,
+      "position": 16.2
     }
   ],
   "rising": [
     {
       "slug": "beginner-woodworking-joints-guide",
       "clicks": 1,
-      "impressions": 14,
-      "days_old": 12
-    },
-    {
-      "slug": "best-hot-glue-guns-crafters",
-      "clicks": 1,
-      "impressions": 22,
-      "days_old": 8
+      "impressions": 15,
+      "days_old": 13
     },
     {
       "slug": "how-to-fix-a-running-toilet",
       "clicks": 1,
-      "impressions": 23,
-      "days_old": 10
+      "impressions": 27,
+      "days_old": 11
+    },
+    {
+      "slug": "best-beginner-woodworking-tools",
+      "clicks": 0,
+      "impressions": 40,
+      "days_old": 13
     }
   ]
 }
