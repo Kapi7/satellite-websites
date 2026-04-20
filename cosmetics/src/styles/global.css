@@ -117,7 +117,7 @@
 }
 
 .paper-bg {
-  background-color: var(--color-cream);
+  background-color: var(--color-paper);
   background-image:
     radial-gradient(circle at 20% 30%, rgba(0,0,0,0.015) 1px, transparent 1px),
     radial-gradient(circle at 70% 60%, rgba(0,0,0,0.012) 1px, transparent 1px);

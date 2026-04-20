@@ -2,7 +2,7 @@
 import Base from './Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import ArticleCard from '../components/ArticleCard.astro';
+import BackToTop from '../components/BackToTop.astro';
 import { getCollection } from 'astro:content';
 import type { Locale } from '../i18n/locales';
 import { t, localePath } from '../i18n/utils';
@@ -17,21 +17,62 @@ interface Props {
 const { title, description, category, locale = 'en' } = Astro.props;
 
 const now = new Date();
-const allPosts = await getCollection('blog', ({ data }) => {
-  if (data.draft || data.locale !== locale || data.date > now) return false;
-  /* 'routines' is a pseudo-category: match type === 'routine' OR title/tags containing 'routine' */
-  if (category === 'routines') {
-    if (data.type === 'routine') return true;
-    const title = (data.title || '').toLowerCase();
-    const tags = (data.tags || []).map((t: string) => t.toLowerCase());
-    return title.includes('routine') || tags.some((t: string) => t.includes('routine'));
-  }
-  return data.category === category;
-});
 
-const sortedPosts = allPosts.sort(
-  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+/* Count posts per category for the chip row */
+const isRoutine = (data: any) => {
+  if (data.type === 'routine') return true;
+  const ttl = (data.title || '').toLowerCase();
+  const tags = (data.tags || []).map((t: string) => t.toLowerCase());
+  return ttl.includes('routine') || tags.some((t: string) => t.includes('routine'));
+};
+
+const allLocalePosts = await getCollection('blog', ({ data }) =>
+  !data.draft && data.locale === locale && data.date <= now
 );
+
+const counts = {
+  all: allLocalePosts.length,
+  skincare: allLocalePosts.filter((p) => p.data.category === 'skincare').length,
+  ingredients: allLocalePosts.filter((p) => p.data.category === 'ingredients').length,
+  reviews: allLocalePosts.filter((p) => p.data.category === 'reviews').length,
+  'how-tos': allLocalePosts.filter((p) => p.data.category === 'how-tos').length,
+  routines: allLocalePosts.filter((p) => isRoutine(p.data)).length,
+};
+
+const chips = [
+  { slug: 'skincare',    label: 'Skincare'    },
+  { slug: 'ingredients', label: 'Ingredients' },
+  { slug: 'reviews',     label: 'Reviews'     },
+  { slug: 'how-tos',     label: 'How-Tos'     },
+  { slug: 'routines',    label: 'Routines'    },
+];
+
+const sortedPosts = allLocalePosts
+  .filter((p) => category === 'routines' ? isRoutine(p.data) : p.data.category === category)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const getSlug = (post: any) => {
+  const id = post.id as string;
+  const s = id.includes('/') ? id.split('/').slice(1).join('/') : id;
+  return s.replace(/\.mdx?$/, '');
+};
+
+const formatDate = (d: Date) =>
+  d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }).toUpperCase();
+const readMinutes = (post: any) => {
+  const body = (post.body as string) || '';
+  return Math.max(1, Math.ceil(body.split(/\s+/).length / 200));
+};
+const categoryLabelOf = (c: string) => {
+  const m: Record<string, string> = {
+    'skincare': 'SKINCARE',
+    'ingredients': 'INGREDIENTS',
+    'reviews': 'REVIEWS',
+    'how-tos': 'HOW-TOS',
+    'routines': 'ROUTINES',
+  };
+  return m[c] || c.toUpperCase();
+};
 
 const breadcrumbSchema = JSON.stringify({
   '@context': 'https://schema.org', '@type': 'BreadcrumbList',
@@ -43,49 +84,139 @@ const breadcrumbSchema = JSON.stringify({
 ---
 
 <Base title={title} description={description} jsonLd={[breadcrumbSchema]} locale={locale}>
-  <Header locale={locale} />
+  <Header locale={locale} mobileTitle="GLOW CODED" />
 
-  <main class="flex-1">
-    <div class="max-w-[1400px] mx-auto px-6 sm:px-8 py-16">
-      <nav class="flex items-center gap-2 text-[11px] uppercase tracking-wide text-charcoal-light/50 mb-10" aria-label="Breadcrumb">
-        <a href={localePath('/', locale)} class="hover:text-plum-700 transition-colors">{t(locale, 'common.home')}</a>
-        <svg class="w-3 h-3 text-rose-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
-        <span class="font-medium">{title}</span>
-      </nav>
-
-      <header class="mb-14 max-w-3xl">
-        <span class="inline-block text-[11px] font-semibold uppercase tracking-wide text-charcoal-light/50 mb-4">{t(locale, 'common.category')}</span>
-        <h1 class="font-heading text-4xl sm:text-5xl md:text-6xl italic text-charcoal tracking-tight leading-[1.08] mb-5">
-          {title}
-        </h1>
-        <p class="text-lg sm:text-xl text-charcoal-light/60 leading-relaxed max-w-2xl">{description}</p>
-      </header>
-
-      <div class="border-t border-rose-200/30 pt-12" data-pagefind-body>
-        <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
-          {sortedPosts.map((post) => (
-            <ArticleCard
-              title={post.data.title}
-              description={post.data.description}
-              date={post.data.date}
-              category={post.data.category}
-              slug={post.id.includes('/') ? post.id.split('/').slice(1).join('/') : post.id}
-              image={post.data.image}
-              type={post.data.type}
-              locale={locale}
-            />
-          ))}
-        </div>
+  <main class="gcd-cat" data-pagefind-body>
+    <div class="head">
+      <div class="gcd-kicker">
+        <span class="pill">LIBRARY</span>
+        <span>{counts.all} articles</span>
       </div>
+      <h1>{title.toLowerCase() === 'skincare' || title.toLowerCase() === 'ingredients' || title.toLowerCase() === 'reviews' || title.toLowerCase() === 'how-tos' || title.toLowerCase() === 'routines'
+        ? <>Everything we've <em>written</em>.</>
+        : <>{title}.</>}</h1>
+      <p class="desc">{description}</p>
 
-      {sortedPosts.length === 0 && (
-        <div class="text-center py-24">
-          <p class="text-charcoal-light/60 font-heading text-2xl italic">Articles coming soon.</p>
-          <p class="text-sm text-charcoal-light/50 mt-2">We're working on this section. Check back shortly.</p>
-        </div>
-      )}
+      <div class="chips">
+        <a href={localePath('/category/skincare/', locale)} class={`chip ${category === 'all' ? 'active' : ''}`}>
+          All <small>{counts.all}</small>
+        </a>
+        {chips.map((c) => (
+          <a href={localePath(`/category/${c.slug}/`, locale)} class={`chip ${category === c.slug ? 'active' : ''}`}>
+            {c.label} <small>{(counts as any)[c.slug]}</small>
+          </a>
+        ))}
+      </div>
     </div>
+
+    <div class="edit-grid cat-grid">
+      {sortedPosts.map((p) => (
+        <a href={localePath(`/${getSlug(p)}/`, locale)} class="edit-card">
+          <div class="img small">
+            <span class="cat">{categoryLabelOf(p.data.category)}</span>
+            {p.data.image && <img src={p.data.image} alt={p.data.title} loading="lazy" />}
+          </div>
+          <div class="body">
+            <h3>{p.data.title}</h3>
+            <p>{p.data.description}</p>
+            <div class="foot">
+              <span>{formatDate(p.data.date)}</span>
+              <span>{readMinutes(p)} MIN READ</span>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    {sortedPosts.length === 0 && (
+      <div class="empty">
+        <p>No articles in this category yet. Check back soon.</p>
+      </div>
+    )}
   </main>
 
   <Footer locale={locale} />
+  <BackToTop />
+</Base>
+
+<style is:global>
+  .gcd-cat {
+    max-width: 1360px; margin: 0 auto; padding: 0 32px 80px;
+  }
+  .gcd-cat .head {
+    padding: 40px 0 10px;
+    border-bottom: 1.5px solid var(--color-charcoal);
+  }
+  .gcd-cat .gcd-kicker {
+    display: flex; gap: 10px; align-items: center;
+    font-family: 'Cutive Mono', monospace; font-size: 11px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--color-charcoal);
+  }
+  .gcd-cat .gcd-kicker .pill {
+    padding: 4px 10px; border: 1.3px solid var(--color-charcoal); border-radius: 999px;
+  }
+  .gcd-cat h1 {
+    font-family: 'Rozha One', serif; font-weight: 400;
+    font-size: clamp(56px, 9vw, 96px);
+    line-height: 0.9; letter-spacing: -0.02em;
+    margin: 16px 0 20px;
+    color: var(--color-charcoal);
+  }
+  .gcd-cat h1 em {
+    font-style: italic; color: var(--color-rose-500);
+  }
+  .gcd-cat .desc {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 17px; line-height: 1.55;
+    color: var(--color-charcoal-light);
+    max-width: 640px; margin: 0 0 14px;
+  }
+
+  .gcd-cat .chips {
+    display: flex; gap: 10px; flex-wrap: wrap;
+    padding: 14px 0 22px;
+  }
+  .gcd-cat .chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--color-cream);
+    border: 1.2px solid var(--color-charcoal);
+    border-radius: 999px;
+    padding: 5px 12px;
+    font-family: 'Cutive Mono', monospace;
+    font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.08em;
+    text-decoration: none; color: var(--color-charcoal);
+    cursor: pointer; white-space: nowrap;
+    transition: background 0.15s, color 0.15s;
+  }
+  .gcd-cat .chip:hover {
+    background: var(--color-charcoal); color: var(--color-cream);
+  }
+  .gcd-cat .chip.active {
+    background: var(--color-charcoal); color: var(--color-cream);
+  }
+  .gcd-cat .chip small { opacity: 0.6; font-size: 10px; }
+
+  .cat-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    padding-top: 32px !important;
+    padding-bottom: 40px;
+  }
+  .cat-grid .edit-card.feat { grid-row: auto !important; }
+
+  .gcd-cat .empty {
+    text-align: center; padding: 48px 20px;
+    font-family: 'Rozha One', serif; font-size: 24px;
+    color: var(--color-charcoal-light);
+  }
+
+  @media (max-width: 1100px) {
+    .cat-grid { grid-template-columns: 1fr 1fr !important; }
+  }
+  @media (max-width: 768px) {
+    .gcd-cat { padding: 0 20px 80px; }
+    .gcd-cat h1 { font-size: 48px; }
+    .cat-grid { grid-template-columns: 1fr !important; }
+  }
+</style>
 </Base>

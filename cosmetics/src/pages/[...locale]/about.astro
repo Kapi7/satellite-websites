@@ -2,58 +2,167 @@
 import Base from '../../layouts/Base.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
-import { getCollection, render } from 'astro:content';
+import BackToTop from '../../components/BackToTop.astro';
 import { locales, defaultLocale, type Locale } from '../../i18n/locales';
-import { t } from '../../i18n/utils';
 
-export async function getStaticPaths() {
-  const paths: { params: { locale?: string }; props: { locale: Locale } }[] = [];
-
-  for (const l of locales) {
-    paths.push({
-      params: { locale: l === defaultLocale ? undefined : l },
-      props: { locale: l },
-    });
-  }
-
-  return paths;
+export function getStaticPaths() {
+  return locales.map(l => ({
+    params: { locale: l === defaultLocale ? undefined : l },
+    props: { locale: l },
+  }));
 }
 
 const { locale } = Astro.props as { locale: Locale };
 
-// Try to find content from pages collection for this locale
-const allPages = await getCollection('pages');
-const aboutPage = allPages.find(p => p.id.includes('about') && p.data.locale === locale)
-  || allPages.find(p => p.id.includes('about') && p.data.locale === 'en');
+const stats = [
+  { k: 'Reviewed',         v: '142',   s: 'products, tested on our own faces' },
+  { k: 'Monthly readers',  v: '84k',   s: 'across 38 countries' },
+  { k: 'Newsletter',       v: '10k+',  s: 'Thursday subscribers' },
+];
 
-let Content: any = null;
-let pageTitle = t(locale, 'about.title');
-let pageDesc = t(locale, 'about.description');
+const ethics = [
+  'We buy everything we review. No PR boxes drive our rankings.',
+  'Affiliate links are always disclosed. We get a small cut from Mirai Skin when you shop \u2014 that funds the testing.',
+  'We will tell you when something doesn\u2019t work. A \u201Cdo not buy\u201D is still a useful review.',
+  'Every ingredient claim is sourced. The footnotes are not decorative.',
+];
 
-if (aboutPage) {
-  const rendered = await render(aboutPage);
-  Content = rendered.Content;
-  pageTitle = aboutPage.data.title;
-  pageDesc = aboutPage.data.description;
-}
+const pageSchema = JSON.stringify({
+  '@context': 'https://schema.org', '@type': 'AboutPage',
+  name: 'About \u2014 Glow Coded',
+  url: 'https://glow-coded.com/about/',
+  description: 'Glow Coded is a small, opinionated publication about Korean skincare.',
+});
 ---
 
-<Base title={pageTitle} description={pageDesc} locale={locale}>
-  <Header locale={locale} />
-  <main class="flex-1">
-    <article class="max-w-6xl mx-auto px-5 sm:px-8 py-16">
-      <div class="max-w-3xl">
-        <span class="inline-block text-[11px] font-semibold uppercase tracking-[0.2em] text-plum-300 mb-5">{t(locale, 'about.label')}</span>
-        <h1 class="font-heading text-4xl sm:text-5xl text-charcoal tracking-tight leading-[1.1] mb-8">
-          {t(locale, 'about.heading')}
-        </h1>
-      </div>
-      <div class="max-w-3xl prose mt-8">
-        {Content ? <Content /> : (
-          <p>{pageDesc}</p>
-        )}
-      </div>
-    </article>
+<Base
+  title="About \u2014 Glow Coded"
+  description="Glow Coded is a small, opinionated publication about Korean skincare. Founded 2024."
+  jsonLd={[pageSchema]}
+  locale={locale}
+>
+  <Header locale={locale} mobileTitle="ABOUT" />
+  <main class="gcd-about">
+    <div class="gcd-kicker">
+      <span class="pill">ABOUT</span>
+      <span>Est. 2024</span>
+    </div>
+    <h1>K-beauty, <em>honestly</em>.</h1>
+    <p class="lede">
+      Glow Coded is a small, opinionated publication about Korean skincare. Founded by three friends \u2014 an esthetician, a cosmetic chemist, and a writer \u2014 who were tired of every skin blog being a thinly-veiled affiliate farm.
+    </p>
+
+    <div class="stats">
+      {stats.map((s) => (
+        <div class="stat">
+          <div class="v">{s.v}</div>
+          <div class="k">{s.k}</div>
+          <p>{s.s}</p>
+        </div>
+      ))}
+    </div>
+
+    <h2>Our ethics</h2>
+    <ol class="ethics">
+      {ethics.map((t, i) => (
+        <li>
+          <span class="n">{String(i + 1).padStart(2, '0')}</span>
+          <span class="t">{t}</span>
+        </li>
+      ))}
+    </ol>
   </main>
   <Footer locale={locale} />
+  <BackToTop />
+</Base>
+
+<style is:global>
+  .gcd-about {
+    max-width: 920px;
+    margin: 60px auto;
+    padding: 0 32px 80px;
+  }
+  .gcd-about .gcd-kicker {
+    display: flex; gap: 10px; align-items: center;
+    margin-bottom: 18px;
+    font-family: 'Cutive Mono', monospace; font-size: 11px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--color-charcoal);
+  }
+  .gcd-about .gcd-kicker .pill {
+    padding: 4px 10px; border: 1.3px solid var(--color-charcoal); border-radius: 999px;
+  }
+  .gcd-about h1 {
+    font-family: 'Rozha One', serif; font-weight: 400;
+    font-size: clamp(64px, 10vw, 112px);
+    line-height: 0.88; letter-spacing: -0.02em;
+    margin: 18px 0 24px;
+    color: var(--color-charcoal);
+  }
+  .gcd-about h1 em {
+    font-style: italic; color: var(--color-rose-500);
+  }
+  .gcd-about .lede {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 19px; line-height: 1.6;
+    color: var(--color-charcoal-light);
+    max-width: 720px; margin: 0 0 30px;
+  }
+
+  .gcd-about .stats {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px;
+    margin-bottom: 40px;
+  }
+  .gcd-about .stat {
+    border: 1.5px solid var(--color-charcoal); border-radius: 8px;
+    padding: 24px;
+    background: var(--color-cream);
+  }
+  .gcd-about .stat .v {
+    font-family: 'Rozha One', serif; font-size: 56px;
+    color: var(--color-rose-500); line-height: 1;
+  }
+  .gcd-about .stat .k {
+    font-family: 'Cutive Mono', monospace; font-size: 10.5px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    margin: 10px 0 6px; color: var(--color-charcoal);
+  }
+  .gcd-about .stat p {
+    font-size: 13px; color: var(--color-charcoal-light); margin: 0;
+  }
+
+  .gcd-about h2 {
+    font-family: 'Rozha One', serif; font-weight: 400;
+    font-size: 40px; letter-spacing: -0.01em;
+    margin: 0 0 20px; color: var(--color-charcoal);
+  }
+  .gcd-about .ethics {
+    list-style: none; padding: 0; display: grid; gap: 18px;
+    margin: 0;
+  }
+  .gcd-about .ethics li {
+    display: flex; gap: 18px; align-items: flex-start;
+    padding: 16px 0;
+    border-top: 1px dashed rgba(26, 21, 19, 0.2);
+  }
+  .gcd-about .ethics .n {
+    font-family: 'Rozha One', serif; font-size: 28px;
+    color: var(--color-rose-500); min-width: 40px;
+    line-height: 1;
+  }
+  .gcd-about .ethics .t {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px; line-height: 1.55;
+    color: var(--color-charcoal);
+  }
+
+  @media (max-width: 768px) {
+    .gcd-about { margin: 24px auto; padding: 0 20px 80px; }
+    .gcd-about h1 { font-size: 48px; }
+    .gcd-about .stats { grid-template-columns: 1fr; gap: 12px; }
+    .gcd-about .stat { padding: 18px; }
+    .gcd-about .stat .v { font-size: 44px; }
+    .gcd-about h2 { font-size: 32px; }
+  }
+</style>
 </Base>
