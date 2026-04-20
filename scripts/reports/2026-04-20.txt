@@ -1,0 +1,127 @@
+============================================================
+  WEEKLY SEO REPORT
+  Week of 2026-04-20
+============================================================
+
+============================================================
+  GLOW-CODED.COM
+============================================================
+
+  GSC — glow-coded.com
+  ──────────────────────────────────────────────────
+  Clicks:      10 ▼ -30
+  Impressions: 1167 ▼ -3195
+  CTR:         0.9% ▼ -0.1
+  Position:    25.3 ▲ +6.7
+
+  Top Queries:
+  Query                                    Clicks   Impr    CTR   Pos
+  skincare interaction checker                  1      1 100.0%  14.0
+  acido hialuronico                             0      2   0.0%  76.0
+  acne en de donkere huid                       0      1   0.0%  95.0
+  acne safe korean sunscreen                    0      1   0.0%  29.0
+  acne spots                                    0      2   0.0%  80.0
+  acne spots treatment                          0      2   0.0%  74.5
+  aha bha pha                                   0      3   0.0%  88.3
+  aha bha pha full form                         0      1   0.0%  69.0
+  aha bha pha meaning                           0      1   0.0%  93.0
+  aha-bha-pha                                   0      1   0.0%  83.0
+
+  Ahrefs — glow-coded.com
+  ──────────────────────────────────────────────────
+  DR:          10.0 ▲ +2.0
+  Ahrefs Rank: 16736616
+  Backlinks:   293 ▲ +9
+  Ref Domains: 22 ▲ +2
+
+  Top Organic Keywords:
+
+  Bing — glow-coded.com
+  ──────────────────────────────────────────────────
+  Crawled: 0  |  Indexed: 0
+  Daily quota left: 0  |  Monthly: 1000
+
+============================================================
+  ROOTED-GLOW.COM
+============================================================
+
+  GSC — rooted-glow.com
+  ──────────────────────────────────────────────────
+  Clicks:      7 ▼ -3
+  Impressions: 802 ▼ -29
+  CTR:         0.9% ▼ -0.3
+  Position:    32.4 ▲ +0.8
+
+  Top Queries:
+  Query                                    Clicks   Impr    CTR   Pos
+  rooted glow                                   4      4 100.0%   1.5
+  10 desayunos altos en proteína                0      1   0.0%  38.0
+  aceites de semillas                           0      2   0.0%  45.5
+  alimentación ancestral                        0      1   0.0%   5.0
+  alimentos ancestrales                         0      1   0.0%  50.0
+  ancestral diet                                0      1   0.0%  91.0
+  ancestral eating                              0      1   0.0%  96.0
+  anti inflammatory diet for weight loss        0      1   0.0%  92.0
+  anti inflammatory diet weight loss            0      1   0.0%  78.0
+  antientzündliche ernährung abnehmen           0      1   0.0%  32.0
+
+  Ahrefs — rooted-glow.com
+  ──────────────────────────────────────────────────
+  DR:          10.0 ▲ +1.0
+  Ahrefs Rank: 16736614
+  Backlinks:   308 ▲ +6
+  Ref Domains: 22 ▲ +3
+
+  Top Organic Keywords:
+
+  Bing — rooted-glow.com
+  ──────────────────────────────────────────────────
+  Crawled: 0  |  Indexed: 0
+  Daily quota left: 0  |  Monthly: 1000
+
+============================================================
+  BUILD-CODED.COM
+============================================================
+
+  GSC — build-coded.com
+  ──────────────────────────────────────────────────
+  Clicks:      20 ▲ +14
+  Impressions: 2636 ▲ +2008
+  CTR:         0.8% ▼ -0.2
+  Position:    26.7 ▼ -3.1
+
+  Top Queries:
+  Query                                    Clicks   Impr    CTR   Pos
+  best hot glue gun 2026                        1      1 100.0%   4.0
+  10 pasos para cambiar una llanta              0      1   0.0%  35.0
+  3 d printers for beginners                    0      1   0.0%  61.0
+  3d printen voor beginners                     0     12   0.0%  76.2
+  3d printer beginner                           0      1   0.0%  51.0
+  3d printer beginners                          0      1   0.0%  53.0
+  3d printer easy to use                        0      1   0.0%  50.0
+  3d printer for beginner                       0      2   0.0%  50.0
+  3d printer for beginners                      0      6   0.0%  50.7
+  3d printer for starters                       0      1   0.0%  51.0
+
+  Ahrefs — build-coded.com
+  ──────────────────────────────────────────────────
+  DR:          7.0
+  Ahrefs Rank: 21014492
+  Backlinks:   15
+  Ref Domains: 14
+
+  Top Organic Keywords:
+    brad nailer vs finish nailer                    vol: 6400
+    what is a brad nailer                           vol: 1900
+    brad nails vs finish nails                      vol: 900
+    heat gun for crafts                             vol: 350
+    3d printers for beginners                       vol: 300
+
+  Bing — build-coded.com
+  ──────────────────────────────────────────────────
+  Crawled: 90  |  Indexed: 7
+  Daily quota left: 100  |  Monthly: 1100
+
+============================================================
+  Report generated: 2026-04-20 07:19
+============================================================
