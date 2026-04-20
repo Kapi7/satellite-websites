@@ -226,9 +226,19 @@ def ahrefs_section(domain, prev_data):
     return "\n".join(lines), data
 
 def ga4_access_token():
-    """Mint a short-lived access token from a service account JSON.
-    Returns None if the service-account file or google-auth isn't available.
+    """Return a token for the GA4 Data API.
+
+    Prefers the existing GSC OAuth token (~/.config/gsc-token.json) because
+    it already has the analytics.readonly scope. Falls back to a service
+    account JSON if GSC_TOKEN_FILE is missing scope or not present.
     """
+    try:
+        td = json.load(open(GSC_TOKEN_FILE))
+    except (FileNotFoundError, json.JSONDecodeError):
+        td = None
+    if td and "analytics.readonly" in " ".join(td.get("scopes", [])):
+        return refresh_gsc_token(td)
+
     if not os.path.exists(GA4_SERVICE_ACCOUNT_FILE):
         return None
     try:
