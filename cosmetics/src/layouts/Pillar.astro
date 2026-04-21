@@ -48,7 +48,11 @@ const chips = [
 ];
 
 const sortedPosts = allLocalePosts
-  .filter((p) => category === 'routines' ? isRoutine(p.data) : p.data.category === category)
+  .filter((p) => {
+    if (category === 'all') return true;
+    if (category === 'routines') return isRoutine(p.data);
+    return p.data.category === category;
+  })
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
 const getSlug = (post: any) => {
@@ -92,13 +96,13 @@ const breadcrumbSchema = JSON.stringify({
         <span class="pill">LIBRARY</span>
         <span>{counts.all} articles</span>
       </div>
-      <h1>{title.toLowerCase() === 'skincare' || title.toLowerCase() === 'ingredients' || title.toLowerCase() === 'reviews' || title.toLowerCase() === 'how-tos' || title.toLowerCase() === 'routines'
+      <h1>{['skincare','ingredients','reviews','how-tos','routines','all','everything'].includes(title.toLowerCase())
         ? <>Everything we've <em>written</em>.</>
         : <>{title}.</>}</h1>
       <p class="desc">{description}</p>
 
       <div class="chips">
-        <a href={localePath('/category/skincare/', locale)} class={`chip ${category === 'all' ? 'active' : ''}`}>
+        <a href={localePath('/category/all/', locale)} class={`chip ${category === 'all' ? 'active' : ''}`}>
           All <small>{counts.all}</small>
         </a>
         {chips.map((c) => (
