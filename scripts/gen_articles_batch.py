@@ -108,6 +108,7 @@ def generate_one(spec: dict, pub_date: str):
         body = body[:-3].rstrip()
 
     # Build frontmatter
+    draft_flag = os.environ.get("BATCH_DRAFT", "false").lower() == "true"
     fm = ["---"]
     fm.append(f'title: "{spec["title"]}"')
     fm.append(f'description: "{spec["description"]}"')
@@ -117,7 +118,7 @@ def generate_one(spec: dict, pub_date: str):
     fm.append(f"tags: {json.dumps(spec['tags'])}")
     fm.append(f"image: /images/{slug}.jpg")
     fm.append(f'imageAlt: "{spec.get("imageAlt", spec["title"])}"')
-    fm.append("draft: false")
+    fm.append(f"draft: {'true' if draft_flag else 'false'}")
     fm.append("locale: en")
     fm.append(f'author: "{spec["author"]}"')
     if "difficulty" in spec:
@@ -140,8 +141,12 @@ def main():
     today = date.today()
     generated = 0
 
+    date_mode = os.environ.get("BATCH_DATE_MODE", "stagger")  # "stagger" | "today"
     for i, spec in enumerate(specs):
-        pub_date = (today + timedelta(days=i + 1)).isoformat()
+        if date_mode == "today":
+            pub_date = today.isoformat()
+        else:
+            pub_date = (today + timedelta(days=i + 1)).isoformat()
         if generate_one(spec, pub_date):
             generated += 1
         time.sleep(3)
