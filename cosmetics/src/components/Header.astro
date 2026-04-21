@@ -110,9 +110,9 @@ const dateStamp = `${monthNames[now.getMonth()]} ${now.getDate()} \u00b7 ${now.g
   .gcd-header { background: var(--color-paper); }
   .gcd-header-wrap { max-width: 1360px; margin: 0 auto; padding: 0 32px; }
 
-  /* Desktop / Mobile show toggles */
-  .desktop-only { display: block; }
-  .mobile-only { display: none; }
+  /* Desktop / Mobile show toggles — !important beats sibling display rules */
+  .desktop-only { display: block !important; }
+  .mobile-only  { display: none  !important; }
 
   /* ===== Desktop top bar ===== */
   .gcd-top {
@@ -224,8 +224,8 @@ const dateStamp = `${monthNames[now.getMonth()]} ${now.getDate()} \u00b7 ${now.g
   }
 
   @media (max-width: 900px) {
-    .desktop-only { display: none; }
-    .mobile-only { display: flex; }
+    .desktop-only { display: none !important; }
+    .mobile-only  { display: flex !important; }
   }
 </style>
 
