@@ -1,6 +1,6 @@
 {
-  "updated": "2026-04-20",
-  "period": "2026-03-21 to 2026-04-18",
+  "updated": "2026-04-21",
+  "period": "2026-03-22 to 2026-04-19",
   "trending": [
     {
       "slug": "snail-mucin-everything-you-need-to-know",
@@ -44,13 +44,13 @@
       "slug": "best-stainless-steel-cookware",
       "clicks": 0,
       "impressions": 21,
-      "days_old": 10
+      "days_old": 11
     },
     {
       "slug": "best-protein-powders-clean-natural",
       "clicks": 0,
       "impressions": 15,
-      "days_old": 7
+      "days_old": 8
     }
   ]
 }

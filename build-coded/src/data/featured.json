@@ -1,6 +1,6 @@
 {
-  "updated": "2026-04-20",
-  "period": "2026-03-21 to 2026-04-18",
+  "updated": "2026-04-21",
+  "period": "2026-03-22 to 2026-04-19",
   "trending": [
     {
       "slug": "arduino-projects-beginners",
@@ -44,19 +44,19 @@
       "slug": "beginner-woodworking-joints-guide",
       "clicks": 1,
       "impressions": 15,
-      "days_old": 13
+      "days_old": 14
     },
     {
       "slug": "how-to-fix-a-running-toilet",
       "clicks": 1,
       "impressions": 27,
-      "days_old": 11
+      "days_old": 12
     },
     {
       "slug": "best-beginner-woodworking-tools",
       "clicks": 0,
       "impressions": 40,
-      "days_old": 13
+      "days_old": 14
     }
   ]
 }
