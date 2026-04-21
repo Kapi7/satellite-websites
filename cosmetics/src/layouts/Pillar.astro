@@ -197,8 +197,11 @@ const breadcrumbSchema = JSON.stringify({
   }
   .gcd-cat .chip small { opacity: 0.6; font-size: 10px; }
 
-  .cat-grid {
+  /* Force grid display + columns locally — global.css rule is being purged */
+  .edit-grid.cat-grid {
+    display: grid !important;
     grid-template-columns: repeat(3, 1fr) !important;
+    gap: 24px;
     padding-top: 32px !important;
     padding-bottom: 40px;
   }
