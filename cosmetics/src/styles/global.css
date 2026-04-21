@@ -736,6 +736,87 @@ html.dark .prose tbody tr:hover {
 }
 
 /* ==========================================================================
+   Shared editorial card + grid — used on homepage editorial grid AND
+   /category/*/ pages. Lives here (not in per-page <style is:global>) so
+   every page that imports Base.astro gets them.
+   ========================================================================== */
+.edit-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 24px;
+  padding-bottom: 14px;
+}
+.edit-card {
+  background: var(--color-cream);
+  border: 1.5px solid var(--color-charcoal);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 4px 4px 0 var(--color-charcoal);
+  cursor: pointer;
+  transition: transform 0.18s, box-shadow 0.18s;
+  display: flex; flex-direction: column;
+  text-decoration: none; color: inherit;
+}
+.edit-card:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 7px 7px 0 var(--color-charcoal);
+}
+.edit-card.feat { grid-row: span 2; }
+.edit-card .img {
+  position: relative; border-bottom: 1.5px solid var(--color-charcoal);
+  overflow: hidden;
+  background: repeating-linear-gradient(45deg, #ff8a7a 0 10px, #ffb0a3 10px 20px);
+}
+.edit-card .img.small { height: 220px; }
+.edit-card.feat .img { height: 420px; }
+.edit-card .img img {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+}
+.edit-card .img .ph {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  font-family: 'Rozha One', serif; font-size: 100px; color: rgba(255,255,255,0.75);
+  text-shadow: 4px 4px 0 var(--color-charcoal);
+}
+.edit-card.feat .img .ph { font-size: 180px; text-shadow: 6px 6px 0 var(--color-charcoal); }
+.edit-card .cat {
+  position: absolute; top: 12px; left: 12px; z-index: 2;
+  background: var(--color-charcoal); color: var(--color-cream);
+  font-family: 'Cutive Mono', monospace; font-size: 10px;
+  padding: 4px 10px; letter-spacing: 0.14em;
+  text-transform: uppercase; border-radius: 999px;
+}
+.edit-card .body {
+  padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 8px; flex: 1;
+}
+.edit-card .body h3 {
+  font-family: 'Rozha One', serif; font-weight: 400; font-size: 24px;
+  line-height: 1.05; letter-spacing: -0.005em; margin: 0;
+  color: var(--color-charcoal);
+}
+.edit-card .body h3.xl { font-size: 42px; line-height: 0.98; }
+.edit-card .body p {
+  font-size: 13.5px; line-height: 1.55; color: var(--color-charcoal-light); margin: 0;
+}
+.edit-card .foot {
+  margin-top: auto; padding-top: 12px; border-top: 1px dashed rgba(26,21,19,0.22);
+  display: flex; justify-content: space-between;
+  font-family: 'Cutive Mono', monospace; font-size: 10px;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--color-charcoal-light);
+}
+
+/* Shared kicker (LIBRARY / MIRAI × / etc.) */
+.gcd-kicker {
+  display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
+  font-family: 'Cutive Mono', monospace; font-size: 11px;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--color-charcoal);
+}
+.gcd-kicker .pill {
+  padding: 4px 10px; border: 1.3px solid var(--color-charcoal); border-radius: 999px;
+}
+
+/* ==========================================================================
    Mobile prototype utilities (ported from glow-coded/styles.css)
    Used by the mobile homepage sections.
    ========================================================================== */
