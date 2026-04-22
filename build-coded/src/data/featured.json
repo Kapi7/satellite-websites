@@ -1,59 +1,59 @@
 {
-  "updated": "2026-04-21",
-  "period": "2026-03-22 to 2026-04-19",
+  "updated": "2026-04-22",
+  "period": "2026-03-23 to 2026-04-20",
   "trending": [
     {
       "slug": "arduino-projects-beginners",
       "clicks": 2,
-      "impressions": 83,
-      "position": 5.9
-    },
-    {
-      "slug": "best-soldering-irons-beginners",
-      "clicks": 0,
-      "impressions": 126,
-      "position": 18.5
-    },
-    {
-      "slug": "best-orbital-sanders",
-      "clicks": 0,
-      "impressions": 137,
-      "position": 51.7
+      "impressions": 102,
+      "position": 6.1
     },
     {
       "slug": "best-heat-guns-crafts-diy",
       "clicks": 0,
-      "impressions": 103,
-      "position": 12.6
+      "impressions": 157,
+      "position": 13.0
+    },
+    {
+      "slug": "best-soldering-irons-beginners",
+      "clicks": 0,
+      "impressions": 185,
+      "position": 22.1
+    },
+    {
+      "slug": "best-cordless-soldering-iron-electronics",
+      "clicks": 0,
+      "impressions": 79,
+      "position": 12.9
     },
     {
       "slug": "best-multimeters-home-use",
       "clicks": 1,
-      "impressions": 52,
-      "position": 31.2
+      "impressions": 63,
+      "position": 31.1
     },
     {
       "slug": "best-hot-glue-guns-crafters",
       "clicks": 1,
-      "impressions": 26,
-      "position": 16.2
+      "impressions": 34,
+      "position": 15.5
     }
   ],
   "rising": [
     {
-      "slug": "beginner-woodworking-joints-guide",
-      "clicks": 1,
-      "impressions": 15,
-      "days_old": 14
-    },
-    {
       "slug": "how-to-fix-a-running-toilet",
       "clicks": 1,
-      "impressions": 27,
-      "days_old": 12
+      "impressions": 43,
+      "days_old": 13
     },
     {
-      "slug": "best-beginner-woodworking-tools",
+      "slug": "kreg-pocket-hole-jig-guide",
+      "clicks": 1,
+      "impressions": 22,
+      "days_old": 7
+    },
+    {
+      "slug": "brad-nailer-vs-finish-nailer",
       "clicks": 0,
       "impressions": 40,
       "days_old": 14
