@@ -37,7 +37,11 @@ jobs:
 
       - name: Install dependencies
         working-directory: build-coded
-        run: npm ci --no-audit --no-fund
+        # npm install (not ci) to tolerate cross-platform optional-dep differences:
+        # the lock file is generated on macos-arm64 which has different @emnapi
+        # resolutions than linux-x64 CI runners. Lock still pins @tailwindcss/vite
+        # to the working 4.2.2 via package.json.
+        run: npm install --no-audit --no-fund --prefer-offline
 
       - name: Build site
         working-directory: build-coded
