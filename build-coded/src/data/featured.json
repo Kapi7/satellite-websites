@@ -1,6 +1,6 @@
 {
-  "updated": "2026-04-22",
-  "period": "2026-03-23 to 2026-04-20",
+  "updated": "2026-04-23",
+  "period": "2026-03-24 to 2026-04-21",
   "trending": [
     {
       "slug": "arduino-projects-beginners",
@@ -44,19 +44,19 @@
       "slug": "how-to-fix-a-running-toilet",
       "clicks": 1,
       "impressions": 43,
-      "days_old": 13
+      "days_old": 14
     },
     {
       "slug": "kreg-pocket-hole-jig-guide",
       "clicks": 1,
       "impressions": 22,
-      "days_old": 7
+      "days_old": 8
     },
     {
-      "slug": "brad-nailer-vs-finish-nailer",
+      "slug": "best-3d-printer-filament-starter-kit",
       "clicks": 0,
-      "impressions": 40,
-      "days_old": 14
+      "impressions": 25,
+      "days_old": 8
     }
   ]
 }
