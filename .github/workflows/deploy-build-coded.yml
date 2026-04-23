@@ -1,0 +1,57 @@
+name: Deploy build-coded
+
+# Deploys build-coded.com to Cloudflare Pages via wrangler on every push to main
+# that touches build-coded/. Exists because build-coded's Cloudflare Pages project
+# became a Direct Uploads project (source.type=None) and cannot be reconnected to
+# GitHub via API — the dashboard lock forces us to own the deploy pipeline here.
+#
+# glow-coded and rooted-glow still use Cloudflare's native git integration; if
+# those ever break the same way, duplicate this workflow swapping site + project.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'build-coded/**'
+      - '.github/workflows/deploy-build-coded.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-build-coded
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        working-directory: build-coded
+        run: npm install --no-audit --no-fund
+
+      - name: Build site
+        working-directory: build-coded
+        run: npm run build
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy build-coded/dist --project-name=build-coded --branch=main --commit-dirty=true
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "### build-coded deploy ${{ job.status }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- Commit: ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Branch: ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY
