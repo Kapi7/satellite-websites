@@ -575,7 +575,7 @@ const authorDisplay = author || t(locale, 'article.editorial');
     /* ===== Responsive: single column below 1100px ===== */
     @media (max-width: 1100px) {
       .article-wrap {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
       }
       .gc-aside {
         position: static;

@@ -142,7 +142,13 @@
 .bc-rule-solid { border: none; border-top: 1.5px solid var(--ink); margin: 0; }
 
 /* Hide scrollbar for chip rows and other horizontally scrolling containers */
-.bc-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+.bc-scroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  /* Fade right edge so users know the row is horizontally scrollable */
+  mask-image: linear-gradient(to right, black calc(100% - 24px), transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, black calc(100% - 24px), transparent 100%);
+}
 .bc-scroll::-webkit-scrollbar { width: 0; height: 0; }
 
 /* ===== Mobile / desktop homepage toggle (breakpoint aligned with Header: 960px) ===== */
