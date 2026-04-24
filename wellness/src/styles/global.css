@@ -240,7 +240,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ─── Desktop editorial layout (rgd-*) ─── */
-.rgd-page { max-width: 1360px; margin: 0 auto; padding: 0 36px; }
+.rgd-page { max-width: 1360px; margin: 0 auto; padding: 0 36px; width: 100%; box-sizing: border-box; }
 
 /* Masthead */
 .rgd-mast {
