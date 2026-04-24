@@ -133,7 +133,7 @@ const webSiteSchema = JSON.stringify({
         <a href={localePath(`/${getSlug(hero)}/`, locale)} class="gcd-hero-card">
           <div class="gcd-hero-ph">
             {hero.data.image ? (
-              <img src={hero.data.image} alt={hero.data.title} />
+              <img src={hero.data.image} alt={hero.data.title} loading="eager" fetchpriority="high" decoding="async" />
             ) : (
               <div class="big">{hero.data.title[0]}</div>
             )}
@@ -174,7 +174,7 @@ const webSiteSchema = JSON.stringify({
           <div class="img" style="height:420px;">
             <span class="cat">{categoryLabelOf(featured.data.category)}</span>
             {featured.data.image
-              ? <img src={featured.data.image} alt={featured.data.title} />
+              ? <img src={featured.data.image} alt={featured.data.title}  loading="lazy" decoding="async" />
               : <div class="ph">{featured.data.title[0]}</div>
             }
           </div>
@@ -191,7 +191,7 @@ const webSiteSchema = JSON.stringify({
           <div class="img small">
             <span class="cat">{categoryLabelOf(p.data.category)}</span>
             {p.data.image
-              ? <img src={p.data.image} alt={p.data.title} />
+              ? <img src={p.data.image} alt={p.data.title}  loading="lazy" decoding="async" />
               : <div class="ph">{p.data.title[0]}</div>
             }
           </div>
@@ -237,7 +237,7 @@ const webSiteSchema = JSON.stringify({
           <a href={localePath(`/shop/#${p.slug}`, locale)} class="prod">
             <div class="img">
               {p.tag && <span class="tag-pill">{p.tag}</span>}
-              <img src={p.image} alt={p.name} />
+              <img src={p.image} alt={p.name}  loading="lazy" decoding="async" />
             </div>
             <div class="body">
               <div class="brand">{p.brand}</div>
@@ -322,7 +322,7 @@ const webSiteSchema = JSON.stringify({
           THIS WEEK'S DEEP-DIVE
         </div>
         <a href={localePath(`/${getSlug(featured)}/`, locale)} class="feat-card z-card">
-          {featured.data.image && <img src={featured.data.image} alt={featured.data.title} />}
+          {featured.data.image && <img src={featured.data.image} alt={featured.data.title}  loading="lazy" decoding="async" />}
           <div class="body">
             <div class="meta">
               <span class="sticker sticker-coral">{categoryLabelOf(featured.data.category)}</span>
@@ -391,7 +391,7 @@ const webSiteSchema = JSON.stringify({
       </div>
       {rest.slice(0, 4).map((p) => (
         <a href={localePath(`/${getSlug(p)}/`, locale)} class="row">
-          {p.data.image && <img src={p.data.image} alt={p.data.title} />}
+          {p.data.image && <img src={p.data.image} alt={p.data.title}  loading="lazy" decoding="async" />}
           <div style="flex:1;min-width:0;">
             <div class="cat">{categoryLabelOf(p.data.category)}</div>
             <div class="tt">{p.data.title}</div>

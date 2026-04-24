@@ -184,7 +184,7 @@ if (type === 'listicle' && headings) {
           <div class="byline">
             <div class="av">
               {author ? (
-                <img src={`/images/team/${author.toLowerCase().replace(/\s+/g, '-')}.jpg`} alt={author} width="42" height="42" />
+                <img src={`/images/team/${author.toLowerCase().replace(/\s+/g, '-')}.jpg`} alt={author} width="42" height="42"  loading="lazy" decoding="async" />
               ) : (
                 <span>{(author || 'R')[0]}</span>
               )}

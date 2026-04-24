@@ -148,7 +148,7 @@ const tintByCategory: Record<string, string> = {
         <a href={localePath('/' + slugOf(heroPost) + '/', locale)} class="bc-card bc-mh-hero-card">
           <div class="bc-mh-hero-ph">
             {heroPost.data.image ? (
-              <img src={heroPost.data.image} alt={heroPost.data.title} />
+              <img src={heroPost.data.image} alt={heroPost.data.title}  loading="eager" fetchpriority="high" decoding="async" />
             ) : (
               <div class={`bc-ph bc-ph-${tintByCategory[heroPost.data.category] || 'wood'}`} style="position:absolute; inset:0;">
                 <svg viewBox="0 0 200 160" width="170" fill="none" stroke="#1b2027" stroke-width="1.3" stroke-linecap="round" style="position:relative; z-index:2;">
@@ -242,7 +242,7 @@ const tintByCategory: Record<string, string> = {
         {mobileGrid.map((post: any) => (
           <a href={localePath('/' + slugOf(post) + '/', locale)} class="bc-card bc-mh-grid-card">
             <div class={`bc-mh-grid-ph bc-ph bc-ph-${tintByCategory[post.data.category] || 'wood'}`}>
-              {post.data.image && (<img src={post.data.image} alt={post.data.title} />)}
+              {post.data.image && (<img src={post.data.image} alt={post.data.title}  loading="lazy" decoding="async" />)}
             </div>
             <div class="bc-mh-grid-body">
               <div class="mono bc-mh-grid-cat">{t(locale, `categories.${post.data.category === 'home-improvement' ? 'homeImprovement' : post.data.category}`).toUpperCase()}</div>
@@ -282,7 +282,7 @@ const tintByCategory: Record<string, string> = {
           <a href={localePath('/' + slugOf(post) + '/', locale)} class="bc-mh-side">
             <div class="bc-mh-side-ph">
               <div class={`bc-ph bc-ph-${tintByCategory[post.data.category] || 'wood'}`} style="position:absolute; inset:0;">
-                {post.data.image && (<img src={post.data.image} alt={post.data.title} />)}
+                {post.data.image && (<img src={post.data.image} alt={post.data.title}  loading="lazy" decoding="async" />)}
               </div>
               {post.data.difficulty && (
                 <span class="mono bc-mh-side-lvl">{post.data.difficulty.slice(0, 3).toUpperCase()}</span>
@@ -372,7 +372,7 @@ const tintByCategory: Record<string, string> = {
           <a href={localePath('/' + slugOf(heroPost) + '/', locale)} class="bcd-hero-card">
             <div class="bcd-hero-ph">
               {heroPost.data.image ? (
-                <img src={heroPost.data.image} alt={heroPost.data.title} style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;" />
+                <img src={heroPost.data.image} alt={heroPost.data.title} style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;"  loading="eager" fetchpriority="high" decoding="async" />
               ) : (
                 <div class={`bc-ph bc-ph-${tintByCategory[heroPost.data.category] || 'wood'}`} style="position: absolute; inset: 0;">
                   <span class="bcd-hero-big">{heroPost.data.title[0]}</span>

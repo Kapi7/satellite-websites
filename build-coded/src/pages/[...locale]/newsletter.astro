@@ -1,0 +1,272 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import BackToTop from '../../components/BackToTop.astro';
+import { getCollection } from 'astro:content';
+import { locales, defaultLocale, type Locale } from '../../i18n/locales';
+import { localePath } from '../../i18n/utils';
+
+export function getStaticPaths() {
+  return locales.map((l) => ({
+    params: { locale: l === defaultLocale ? undefined : l },
+    props: { locale: l },
+  }));
+}
+
+const { locale } = Astro.props as { locale: Locale };
+
+const now = new Date();
+const all = await getCollection('blog', ({ data }) => !data.draft && data.locale === locale && data.date <= now);
+const recent = all.sort((a, b) => b.data.date.getTime() - a.data.date.getTime()).slice(0, 4);
+
+const getSlug = (post: any) => {
+  const id = post.id as string;
+  const s = id.includes('/') ? id.split('/').slice(1).join('/') : id;
+  return s.replace(/\.mdx?$/, '');
+};
+const formatDate = (d: Date) =>
+  d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }).toUpperCase();
+
+const schema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'Shop Notes — Build Coded newsletter',
+  url: 'https://build-coded.com/newsletter/',
+  description: 'One Saturday email. Tools we bought, projects we finished, stuff that broke. No sponsored junk.',
+});
+---
+
+<Base
+  title="Shop Notes — Build Coded"
+  description="One Saturday email. Tools we bought, projects we finished, stuff that broke."
+  jsonLd={[schema]}
+  locale={locale}
+>
+  <Header locale={locale} />
+  <main class="bc-newsletter">
+    <div class="kicker">
+      <span class="pill">✦ SHOP NOTES</span>
+      <span>Saturdays · 3,280 builders</span>
+    </div>
+
+    <h1>Saturday <em>shop notes.</em><br />Real projects.</h1>
+
+    <p class="lede">
+      One email every Saturday. What we bought, what we built, what we regret, and the tools that actually earned their rack space. Honest, because we pay for our own gear.
+    </p>
+
+    <div class="signup">
+      <form class="form newsletter-form" data-locale={locale}>
+        <input type="email" placeholder="your@email.com" required />
+        <button type="submit">SUBSCRIBE →</button>
+      </form>
+      <p class="fine">No spam. Unsubscribe any time. Free forever.</p>
+    </div>
+
+    {recent.length > 0 && (
+      <section class="recent">
+        <h2>Recent issues</h2>
+        <div class="list">
+          {recent.map((p, i) => (
+            <a href={localePath(`/${getSlug(p)}/`, locale)} class="row">
+              <div class="num">#{String(i + 1).padStart(2, '0')}</div>
+              <div class="body">
+                <h3>{p.data.title}</h3>
+                <p>{p.data.description}</p>
+              </div>
+              <div class="date">{formatDate(p.data.date)}</div>
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
+  </main>
+  <Footer locale={locale} />
+  <BackToTop />
+</Base>
+
+<style is:global>
+  .bc-newsletter {
+    max-width: 820px;
+    margin: 60px auto;
+    padding: 0 32px 80px;
+    color: var(--ink);
+  }
+  .bc-newsletter .kicker {
+    display: flex; gap: 10px; align-items: center;
+    margin-bottom: 18px;
+    font-family: var(--font-mono, 'JetBrains Mono', monospace);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  .bc-newsletter .kicker .pill {
+    padding: 4px 10px;
+    border: 1.3px solid var(--ink);
+    border-radius: 999px;
+  }
+
+  .bc-newsletter h1 {
+    font-family: var(--font-heading, 'Bitter', serif);
+    font-weight: 700;
+    font-size: clamp(52px, 8vw, 88px);
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+    margin: 18px 0 24px;
+    color: var(--ink);
+    text-transform: uppercase;
+  }
+  .bc-newsletter h1 em {
+    font-style: italic;
+    color: var(--amber, #c78a2a);
+    text-transform: none;
+  }
+
+  .bc-newsletter .lede {
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 19px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    max-width: 680px;
+    margin: 0 0 34px;
+  }
+
+  .bc-newsletter .signup {
+    background: var(--safety, #f5a623);
+    border: 2px solid var(--ink);
+    border-radius: 2px;
+    padding: 30px;
+    box-shadow: 6px 6px 0 var(--ink);
+  }
+  .bc-newsletter .signup .form {
+    display: flex; gap: 10px;
+  }
+  .bc-newsletter .signup input {
+    flex: 1;
+    padding: 14px 18px;
+    border: 2px solid var(--ink);
+    border-radius: 2px;
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 16px;
+    outline: none;
+    background: #fff;
+    color: var(--ink);
+  }
+  .bc-newsletter .signup input::placeholder {
+    color: rgba(17, 17, 17, 0.4);
+  }
+  .bc-newsletter .signup button {
+    background: var(--ink);
+    color: var(--paper-light, #f3ede1);
+    border: 2px solid var(--ink);
+    padding: 14px 24px;
+    border-radius: 2px;
+    font-family: var(--font-mono, 'JetBrains Mono', monospace);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    cursor: pointer;
+    min-height: 44px;
+  }
+  .bc-newsletter .signup .fine {
+    color: rgba(17, 17, 17, 0.7);
+    font-size: 12px;
+    margin: 14px 0 0;
+    font-family: var(--font-mono, 'JetBrains Mono', monospace);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .bc-newsletter .recent { margin-top: 56px; }
+  .bc-newsletter .recent h2 {
+    font-family: var(--font-heading, 'Bitter', serif);
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: -0.005em;
+    margin: 0 0 20px;
+    color: var(--ink);
+    text-transform: uppercase;
+  }
+  .bc-newsletter .list { display: grid; gap: 0; }
+  .bc-newsletter .row {
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    gap: 20px;
+    align-items: center;
+    padding: 18px 0;
+    border-top: 1.5px dashed var(--rule, rgba(17, 17, 17, 0.2));
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.15s;
+  }
+  .bc-newsletter .row:hover { background: rgba(17, 17, 17, 0.02); }
+  .bc-newsletter .row .num {
+    font-family: var(--font-heading, 'Bitter', serif);
+    font-weight: 700;
+    font-size: 40px;
+    color: var(--amber, #c78a2a);
+  }
+  .bc-newsletter .row h3 {
+    font-family: var(--font-heading, 'Bitter', serif);
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 1.15;
+    margin: 0 0 4px;
+    color: var(--ink);
+    text-transform: uppercase;
+  }
+  .bc-newsletter .row p {
+    font-size: 14px;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .bc-newsletter .row .date {
+    font-family: var(--font-mono, 'JetBrains Mono', monospace);
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    white-space: nowrap;
+  }
+
+  @media (max-width: 768px) {
+    .bc-newsletter { margin: 24px auto; padding: 0 20px 80px; }
+    .bc-newsletter h1 { font-size: 40px; }
+    .bc-newsletter .signup { padding: 22px; }
+    .bc-newsletter .signup .form { flex-direction: column; }
+    .bc-newsletter .recent h2 { font-size: 28px; }
+    .bc-newsletter .row { grid-template-columns: 60px 1fr; gap: 14px; }
+    .bc-newsletter .row .num { font-size: 30px; }
+    .bc-newsletter .row h3 { font-size: 18px; }
+    .bc-newsletter .row .date { display: none; }
+  }
+</style>
+
+<script>
+  document.querySelectorAll('.newsletter-form').forEach((form) => {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const f = e.currentTarget as HTMLFormElement;
+      const input = f.querySelector('input[type="email"]') as HTMLInputElement;
+      const btn = f.querySelector('button') as HTMLButtonElement;
+      const email = input.value.trim();
+      if (!email) return;
+      btn.disabled = true;
+      try {
+        await fetch('/api/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, locale: (f as HTMLElement).dataset.locale || 'en' }),
+        });
+        btn.textContent = 'DONE';
+      } catch {
+        btn.textContent = 'RETRY';
+      } finally {
+        btn.disabled = false;
+      }
+    });
+  });
+</script>
+</content>
