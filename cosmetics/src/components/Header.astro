@@ -152,8 +152,10 @@ const dateStamp = `${monthNames[now.getMonth()]} ${now.getDate()} \u00b7 ${now.g
   }
   .gcm-menu-trigger {
     background: transparent; border: none; cursor: pointer;
-    padding: 4px; color: var(--color-charcoal);
+    padding: 10px; color: var(--color-charcoal);
     display: flex; align-items: center; justify-content: center;
+    min-width: 44px; min-height: 44px;
+    margin: -10px -10px -10px -10px; /* compensate padding so visual alignment is unchanged */
   }
   .gcm-title {
     display: flex; align-items: center; gap: 4px;
@@ -164,7 +166,11 @@ const dateStamp = `${monthNames[now.getMonth()]} ${now.getDate()} \u00b7 ${now.g
   .gcm-title .gcm-spark { transform: rotate(20deg); }
   .gcm-right { display: flex; align-items: center; gap: 12px; color: var(--color-charcoal); }
   .gcm-search {
-    color: var(--color-charcoal); display: flex; align-items: center;
+    color: var(--color-charcoal);
+    display: flex; align-items: center; justify-content: center;
+    min-width: 44px; min-height: 44px;
+    padding: 13px;
+    margin: -13px;
   }
 
   /* ===== Mobile drawer ===== */

@@ -98,6 +98,10 @@ const houseLinks = [
     .rg-footer-grid { grid-template-columns: 1fr 1fr !important; gap: 28px !important; padding: 36px 0 20px !important; }
     .rg-footer-grid > div:first-child { grid-column: 1 / -1; }
   }
+  /* Sub-640px: collapse to single column for comfortable mobile reading */
+  @media (max-width: 640px) {
+    .rg-footer-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+  }
 </style>
 
 <script>

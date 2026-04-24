@@ -9,12 +9,12 @@ const filteredHeadings = headings.filter((h) => h.depth <= 3);
 {filteredHeadings.length > 2 && (
   <nav class="border border-rose-200/60 rounded-2xl p-6 mb-10 bg-cream-dark/30">
     <h2 class="text-[11px] font-semibold uppercase tracking-wide text-charcoal-light/50 mb-4">In This Article</h2>
-    <ul class="space-y-2">
+    <ul class="gc-toc-list space-y-1">
       {filteredHeadings.map((heading) => (
         <li class={heading.depth === 3 ? 'ml-5' : ''}>
           <a
             href={`#${heading.slug}`}
-            class={`text-sm transition-colors duration-200 hover:text-plum-800 ${
+            class={`gc-toc-link block py-3 text-sm leading-snug transition-colors duration-200 hover:text-plum-800 ${
               heading.depth === 2 ? 'text-plum-600 font-medium' : 'text-charcoal-light/60'
             }`}
           >
@@ -25,3 +25,10 @@ const filteredHeadings = headings.filter((h) => h.depth <= 3);
     </ul>
   </nav>
 )}
+
+<style>
+  /* Ensure TOC links meet iOS 44px tap-target minimum on touch devices */
+  @media (pointer: coarse) {
+    .gc-toc-link { min-height: 44px; display: flex; align-items: center; }
+  }
+</style>

@@ -599,7 +599,17 @@ const authorDisplay = author || t(locale, 'article.editorial');
         font-size: 40px;
         line-height: 1.0;
         letter-spacing: -0.02em;
+        word-break: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
       }
+    }
+    @media (max-width: 480px) {
+      .gc-title {
+        font-size: 34px;
+      }
+    }
+    @media (max-width: 768px) {
       .gc-lede {
         font-size: 17px;
       }
