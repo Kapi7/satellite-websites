@@ -52,11 +52,12 @@ const tabs = [
     z-index: 100;
   }
   .gcm-tab-bar .tab {
-    display: flex; flex-direction: column; align-items: center; gap: 2px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
     font-family: 'Cutive Mono', monospace; font-size: 9.5px;
     text-transform: uppercase; letter-spacing: 0.08em;
     color: var(--color-charcoal-light);
-    text-decoration: none; padding: 4px 8px; border-radius: 8px;
+    text-decoration: none; padding: 6px 10px; border-radius: 8px;
+    min-width: 44px; min-height: 44px;
   }
   .gcm-tab-bar .tab.active { color: var(--color-rose-500); }
   .gcm-tab-bar .tab .icon { display: flex; }

@@ -1067,3 +1067,6 @@ html.dark ::selection { background-color: var(--sage-pale); color: var(--forest)
 html.dark ::-webkit-scrollbar-track { background: var(--linen); }
 html.dark ::-webkit-scrollbar-thumb { background: rgba(216,221,208,0.3); }
 html.dark ::-webkit-scrollbar-thumb:hover { background: rgba(216,221,208,0.5); }
+
+/* Mobile: prevent iOS zoom on input focus — inputs below 16px trigger auto-zoom */
+input, textarea, select { font-size: 16px; }

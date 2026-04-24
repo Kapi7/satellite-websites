@@ -310,8 +310,16 @@ const tintByCategory: Record<string, string> = {
       <div class="mono bc-mh-newsletter-kicker">{t(locale, 'home.saturdayKicker')}</div>
       <h3 class="bc-mh-newsletter-head">{t(locale, 'home.saturdayHeadline')}</h3>
       <p class="bc-mh-newsletter-body">{t(locale, 'home.saturdayBody')}</p>
-      <form class="newsletter-form bc-mh-newsletter-form" data-locale={locale}>
-        <input type="email" placeholder={t(locale, 'footer.emailPlaceholder')} required />
+      <form
+        class="newsletter-form bc-mh-newsletter-form"
+        action="/api/subscribe"
+        method="post"
+        data-locale={locale}
+        data-msg-success={t(locale, 'newsletter.msgSuccess')}
+        data-msg-dup={t(locale, 'newsletter.msgAlreadySubscribed')}
+        data-msg-error={t(locale, 'newsletter.msgError')}
+        data-msg-network={t(locale, 'newsletter.msgNetwork')}>
+        <input type="email" name="email" placeholder={t(locale, 'footer.emailPlaceholder')} required />
         <button type="submit">{t(locale, 'home.saturdaySub')}</button>
       </form>
       <p class="newsletter-msg hidden" style="margin-top: 8px; font-size: 12px;"></p>
@@ -519,8 +527,16 @@ const tintByCategory: Record<string, string> = {
             <p>{t(locale, 'home.newsletterPromoDesc') || 'One project plan, one tool review, one weekend brief — in your inbox every Thursday. No filler, unsubscribe any time.'}</p>
           </div>
           <div>
-            <form class="newsletter-form form" data-locale={locale}>
-              <input type="email" placeholder={t(locale, 'footer.emailPlaceholder')} required />
+            <form
+              class="newsletter-form form"
+              action="/api/subscribe"
+              method="post"
+              data-locale={locale}
+              data-msg-success={t(locale, 'newsletter.msgSuccess')}
+              data-msg-dup={t(locale, 'newsletter.msgAlreadySubscribed')}
+              data-msg-error={t(locale, 'newsletter.msgError')}
+              data-msg-network={t(locale, 'newsletter.msgNetwork')}>
+              <input type="email" name="email" placeholder={t(locale, 'footer.emailPlaceholder')} required />
               <button type="submit">{t(locale, 'common.subscribe')} &rarr;</button>
             </form>
             <p class="newsletter-msg hidden" style="margin-top: 8px; font-size: 12px;"></p>
@@ -1079,7 +1095,7 @@ const tintByCategory: Record<string, string> = {
     color: var(--ink);
     padding: 12px 14px;
     font-family: var(--font-body);
-    font-size: 14px;
+    font-size: 16px;
     border-radius: 2px;
     outline: none;
   }
@@ -1611,13 +1627,19 @@ const tintByCategory: Record<string, string> = {
 </style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
+  function wireNewsletterForms() {
     document.querySelectorAll('.newsletter-form').forEach((form) => {
+      if ((form as HTMLElement).dataset.bound === '1') return;
+      (form as HTMLElement).dataset.bound = '1';
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
         const f = e.currentTarget as HTMLFormElement;
         const btn = f.querySelector('button[type="submit"]') as HTMLButtonElement;
-        const msg = f.parentElement?.querySelector('.newsletter-msg') as HTMLElement;
+        // Message element: prefer sibling after the form (matches both desktop + mobile markup)
+        let msg = f.nextElementSibling as HTMLElement | null;
+        if (!msg || !msg.classList.contains('newsletter-msg')) {
+          msg = f.parentElement?.querySelector('.newsletter-msg') as HTMLElement;
+        }
         const input = f.querySelector('input[type="email"]') as HTMLInputElement;
         const email = input.value.trim();
         if (!email) return;
@@ -1634,22 +1656,33 @@ const tintByCategory: Record<string, string> = {
           msg?.classList.remove('hidden');
           if (msg) {
             if (data.status === 'subscribed') {
-              msg.textContent = 'Welcome! You are now subscribed.';
+              msg.textContent = f.dataset.msgSuccess || 'Welcome! You are now subscribed.';
+              msg.style.color = 'var(--ink)';
               input.value = '';
             } else if (data.status === 'already_subscribed') {
-              msg.textContent = 'You are already subscribed!';
+              msg.textContent = f.dataset.msgDup || 'You are already subscribed!';
+              msg.style.color = 'var(--ink)';
             } else {
-              msg.textContent = 'Something went wrong. Please try again.';
+              msg.textContent = f.dataset.msgError || 'Something went wrong. Please try again.';
+              msg.style.color = 'var(--safety-dark)';
             }
           }
         } catch {
-          msg?.classList.remove('hidden');
-          if (msg) msg.textContent = 'Network error. Please try again.';
+          if (msg) {
+            msg.classList.remove('hidden');
+            msg.textContent = f.dataset.msgNetwork || 'Network error. Please try again.';
+            msg.style.color = 'var(--safety-dark)';
+          }
         } finally {
           btn.disabled = false;
           btn.style.opacity = '1';
         }
       });
     });
-  });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', wireNewsletterForms);
+  } else {
+    wireNewsletterForms();
+  }
 </script>

@@ -1415,3 +1415,6 @@ html.dark .prose tbody tr:hover {
   .gcd-shop-head h1 { font-size: 48px; }
   .gcd-shop-grid { grid-template-columns: 1fr; }
 }
+
+/* Mobile: prevent iOS zoom on input focus — inputs below 16px trigger auto-zoom */
+input, textarea, select { font-size: 16px; }

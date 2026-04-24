@@ -627,6 +627,33 @@ const authorDisplay = author || t(locale, 'article.editorial');
         font-size: 26px;
       }
     }
+
+    /* ===== Table wrapper: contain horizontal overflow + signal scroll ===== */
+    .body-text :global(.table-expand-wrapper) {
+      max-width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: 24px 0;
+      position: relative;
+    }
+    /* Preserve expanded-fullscreen behavior (mask would fight the overlay) */
+    .body-text :global(.table-expand-wrapper.expanded) {
+      position: fixed; inset: 0; z-index: 1000;
+      background: var(--color-cream);
+      padding: 20px; overflow: auto;
+      max-width: none; margin: 0;
+    }
+    /* Tables keep their natural width inside the scroll container */
+    .body-text :global(.table-expand-wrapper table) {
+      min-width: max-content;
+    }
+    /* Fade right edge on mobile to hint scrollability */
+    @media (max-width: 768px) {
+      .body-text :global(.table-expand-wrapper:not(.expanded)) {
+        mask-image: linear-gradient(to right, black calc(100% - 24px), transparent 100%);
+        -webkit-mask-image: linear-gradient(to right, black calc(100% - 24px), transparent 100%);
+      }
+    }
   </style>
 
   <script>
