@@ -1,62 +1,62 @@
 {
-  "updated": "2026-04-23",
-  "period": "2026-03-24 to 2026-04-21",
+  "updated": "2026-04-24",
+  "period": "2026-03-25 to 2026-04-22",
   "trending": [
     {
       "slug": "arduino-projects-beginners",
-      "clicks": 2,
-      "impressions": 102,
-      "position": 6.1
+      "clicks": 3,
+      "impressions": 112,
+      "position": 6.6
     },
     {
       "slug": "best-heat-guns-crafts-diy",
       "clicks": 0,
-      "impressions": 157,
-      "position": 13.0
+      "impressions": 167,
+      "position": 12.6
     },
     {
       "slug": "best-soldering-irons-beginners",
       "clicks": 0,
-      "impressions": 185,
-      "position": 22.1
+      "impressions": 193,
+      "position": 22.0
     },
     {
       "slug": "best-cordless-soldering-iron-electronics",
       "clicks": 0,
-      "impressions": 79,
-      "position": 12.9
+      "impressions": 111,
+      "position": 12.4
     },
     {
       "slug": "best-multimeters-home-use",
       "clicks": 1,
-      "impressions": 63,
-      "position": 31.1
+      "impressions": 64,
+      "position": 30.8
     },
     {
-      "slug": "best-hot-glue-guns-crafters",
-      "clicks": 1,
-      "impressions": 34,
-      "position": 15.5
+      "slug": "kreg-pocket-hole-jig-guide",
+      "clicks": 2,
+      "impressions": 26,
+      "position": 19.0
     }
   ],
   "rising": [
     {
-      "slug": "how-to-fix-a-running-toilet",
+      "slug": "best-hot-glue-guns-crafters",
       "clicks": 1,
-      "impressions": 43,
-      "days_old": 14
-    },
-    {
-      "slug": "kreg-pocket-hole-jig-guide",
-      "clicks": 1,
-      "impressions": 22,
-      "days_old": 8
+      "impressions": 37,
+      "days_old": 13
     },
     {
       "slug": "best-3d-printer-filament-starter-kit",
       "clicks": 0,
-      "impressions": 25,
-      "days_old": 8
+      "impressions": 32,
+      "days_old": 9
+    },
+    {
+      "slug": "best-tool-boxes-organizers-workshop",
+      "clicks": 0,
+      "impressions": 16,
+      "days_old": 11
     }
   ]
 }
