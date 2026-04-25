@@ -1,62 +1,62 @@
 {
-  "updated": "2026-04-24",
-  "period": "2026-03-25 to 2026-04-22",
+  "updated": "2026-04-25",
+  "period": "2026-03-26 to 2026-04-23",
   "trending": [
     {
       "slug": "arduino-projects-beginners",
-      "clicks": 3,
-      "impressions": 112,
+      "clicks": 4,
+      "impressions": 122,
       "position": 6.6
     },
     {
       "slug": "best-heat-guns-crafts-diy",
       "clicks": 0,
-      "impressions": 167,
-      "position": 12.6
+      "impressions": 175,
+      "position": 12.5
     },
     {
       "slug": "best-soldering-irons-beginners",
       "clicks": 0,
-      "impressions": 193,
-      "position": 22.0
+      "impressions": 203,
+      "position": 21.4
     },
     {
       "slug": "best-cordless-soldering-iron-electronics",
       "clicks": 0,
-      "impressions": 111,
-      "position": 12.4
+      "impressions": 130,
+      "position": 13.0
     },
     {
       "slug": "best-multimeters-home-use",
       "clicks": 1,
-      "impressions": 64,
-      "position": 30.8
+      "impressions": 67,
+      "position": 29.8
     },
     {
       "slug": "kreg-pocket-hole-jig-guide",
       "clicks": 2,
-      "impressions": 26,
-      "position": 19.0
+      "impressions": 31,
+      "position": 19.2
     }
   ],
   "rising": [
     {
       "slug": "best-hot-glue-guns-crafters",
       "clicks": 1,
-      "impressions": 37,
-      "days_old": 13
-    },
-    {
-      "slug": "best-3d-printer-filament-starter-kit",
-      "clicks": 0,
-      "impressions": 32,
-      "days_old": 9
+      "impressions": 38,
+      "days_old": 14
     },
     {
       "slug": "best-tool-boxes-organizers-workshop",
       "clicks": 0,
-      "impressions": 16,
-      "days_old": 11
+      "impressions": 32,
+      "days_old": 12
+    },
+    {
+      "slug": "best-3d-printer-filament-starter-kit",
+      "clicks": 0,
+      "impressions": 35,
+      "days_old": 10
     }
   ]
 }

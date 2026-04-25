@@ -1,42 +1,42 @@
 {
-  "updated": "2026-04-24",
-  "period": "2026-03-25 to 2026-04-22",
+  "updated": "2026-04-25",
+  "period": "2026-03-26 to 2026-04-23",
   "trending": [
     {
       "slug": "snail-mucin-everything-you-need-to-know",
       "clicks": 1,
-      "impressions": 376,
-      "position": 39.5
+      "impressions": 381,
+      "position": 39.9
     },
     {
       "slug": "best-protein-powders-clean-natural",
       "clicks": 0,
-      "impressions": 137,
+      "impressions": 170,
       "position": 69.9
     },
     {
       "slug": "best-double-cleansing-products",
       "clicks": 0,
-      "impressions": 83,
-      "position": 46.6
+      "impressions": 91,
+      "position": 48.7
     },
     {
       "slug": "couch-to-5k-8-week-running-plan",
       "clicks": 0,
-      "impressions": 40,
-      "position": 9.8
+      "impressions": 41,
+      "position": 9.6
     },
     {
       "slug": "complete-guide-ancestral-eating",
       "clicks": 0,
-      "impressions": 57,
-      "position": 42.7
+      "impressions": 59,
+      "position": 43.0
     },
     {
-      "slug": "high-protein-breakfasts-without-grains",
+      "slug": "how-to-make-natural-fruit-soda",
       "clicks": 1,
-      "impressions": 16,
-      "position": 35.6
+      "impressions": 10,
+      "position": 18.5
     }
   ],
   "rising": []
