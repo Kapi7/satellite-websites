@@ -1,6 +1,6 @@
 {
-  "updated": "2026-04-25",
-  "period": "2026-03-26 to 2026-04-23",
+  "updated": "2026-04-26",
+  "period": "2026-03-27 to 2026-04-24",
   "trending": [
     {
       "slug": "arduino-projects-beginners",
@@ -41,22 +41,16 @@
   ],
   "rising": [
     {
-      "slug": "best-hot-glue-guns-crafters",
-      "clicks": 1,
-      "impressions": 38,
-      "days_old": 14
-    },
-    {
       "slug": "best-tool-boxes-organizers-workshop",
       "clicks": 0,
       "impressions": 32,
-      "days_old": 12
+      "days_old": 13
     },
     {
       "slug": "best-3d-printer-filament-starter-kit",
       "clicks": 0,
       "impressions": 35,
-      "days_old": 10
+      "days_old": 11
     }
   ]
 }
