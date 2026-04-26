@@ -2290,7 +2290,8 @@
       "under cabinet"
     ],
     "scheduled_date": "2026-04-16",
-    "status": "pending"
+    "status": "posted",
+    "posted_at": "2026-04-16T10:01:01.103012"
   },
   {
     "id": 110,
@@ -2304,7 +2305,8 @@
     "category": "woodworking",
     "tags": [],
     "scheduled_date": "2026-04-16",
-    "status": "pending"
+    "status": "posted",
+    "posted_at": "2026-04-16T10:02:58.353414"
   },
   {
     "id": 111,
@@ -2318,7 +2320,8 @@
     "category": "home-improvement",
     "tags": [],
     "scheduled_date": "2026-04-16",
-    "status": "pending"
+    "status": "posted",
+    "posted_at": "2026-04-16T10:04:50.881688"
   },
   {
     "id": 112,
@@ -2332,7 +2335,8 @@
     "category": "home-improvement",
     "tags": [],
     "scheduled_date": "2026-04-16",
-    "status": "pending"
+    "status": "posted",
+    "posted_at": "2026-04-16T10:06:56.460692"
   },
   {
     "id": 113,
@@ -2346,7 +2350,8 @@
     "category": "home-improvement",
     "tags": [],
     "scheduled_date": "2026-04-16",
-    "status": "pending"
+    "status": "posted",
+    "posted_at": "2026-04-16T10:08:13.724049"
   },
   {
     "id": 114,
@@ -2360,7 +2365,8 @@
     "category": "crafts",
     "tags": [],
     "scheduled_date": "2026-04-17",
-    "status": "pending"
+    "status": "posted",
+    "posted_at": "2026-04-17T10:01:03.912445"
   },
   {
     "id": 115,
@@ -2374,7 +2380,8 @@
     "category": "home-improvement",
     "tags": [],
     "scheduled_date": "2026-04-17",
-    "status": "pending"
+    "status": "posted",
+    "posted_at": "2026-04-17T10:02:36.059628"
   },
   {
     "id": 116,
@@ -2388,7 +2395,8 @@
     "category": "home-improvement",
     "tags": [],
     "scheduled_date": "2026-04-17",
-    "status": "pending"
+    "status": "posted",
+    "posted_at": "2026-04-17T10:04:08.746117"
   },
   {
     "id": 117,
@@ -2402,7 +2410,8 @@
     "category": "home-improvement",
     "tags": [],
     "scheduled_date": "2026-04-17",
-    "status": "pending"
+    "status": "posted",
+    "posted_at": "2026-04-17T10:06:21.499782"
   },
   {
     "id": 118,
@@ -2416,7 +2425,8 @@
     "category": "home-improvement",
     "tags": [],
     "scheduled_date": "2026-04-17",
-    "status": "pending"
+    "status": "posted",
+    "posted_at": "2026-04-17T10:08:18.768689"
   },
   {
     "id": 119,
@@ -2437,7 +2447,8 @@
       "beginner crafts"
     ],
     "scheduled_date": "2026-04-18",
-    "status": "pending"
+    "status": "posted",
+    "posted_at": "2026-04-18T15:01:01.802926"
   },
   {
     "id": 120,
@@ -2451,7 +2462,8 @@
     "category": "home-improvement",
     "tags": [],
     "scheduled_date": "2026-04-18",
-    "status": "pending"
+    "status": "posted",
+    "posted_at": "2026-04-18T15:02:40.778438"
   },
   {
     "id": 121,
@@ -2465,7 +2477,8 @@
     "category": "electronics",
     "tags": [],
     "scheduled_date": "2026-04-18",
-    "status": "pending"
+    "status": "posted",
+    "posted_at": "2026-04-18T15:04:54.315997"
   },
   {
     "id": 122,
@@ -2479,7 +2492,8 @@
     "category": "home-improvement",
     "tags": [],
     "scheduled_date": "2026-04-18",
-    "status": "pending"
+    "status": "posted",
+    "posted_at": "2026-04-18T15:06:59.344562"
   },
   {
     "id": 123,
@@ -2493,7 +2507,8 @@
     "category": "woodworking",
     "tags": [],
     "scheduled_date": "2026-04-18",
-    "status": "pending"
+    "status": "posted",
+    "posted_at": "2026-04-18T15:08:33.886824"
   },
   {
     "id": 124,
@@ -2515,7 +2530,8 @@
       "linux"
     ],
     "scheduled_date": "2026-04-19",
-    "status": "pending"
+    "status": "posted",
+    "posted_at": "2026-04-19T10:01:03.756559"
   },
   {
     "id": 125,
@@ -2537,7 +2553,8 @@
       "PCB"
     ],
     "scheduled_date": "2026-04-19",
-    "status": "pending"
+    "status": "posted",
+    "posted_at": "2026-04-19T10:02:42.413383"
   },
   {
     "id": 126,
@@ -2551,7 +2568,8 @@
     "category": "woodworking",
     "tags": [],
     "scheduled_date": "2026-04-19",
-    "status": "pending"
+    "status": "posted",
+    "posted_at": "2026-04-19T10:04:27.669439"
   },
   {
     "id": 127,
@@ -2573,7 +2591,8 @@
       "furniture restoration"
     ],
     "scheduled_date": "2026-04-19",
-    "status": "pending"
+    "status": "posted",
+    "posted_at": "2026-04-19T10:06:17.693669"
   },
   {
     "id": 128,
@@ -2587,6 +2606,73 @@
     "category": "home-improvement",
     "tags": [],
     "scheduled_date": "2026-04-19",
-    "status": "pending"
+    "status": "posted",
+    "posted_at": "2026-04-19T10:08:14.621380"
+  },
+  {
+    "id": "f900e457",
+    "title": "innisfree Vita C Tone Up Sunscreen SPF50+: Korean SPF you'll actually want to wear",
+    "description": "Looking for a Korean sunscreen that actually feels good on the skin? innisfree Vita C Tone Up Sunscreen SPF50+ PA++++ 50ml delivers SPF protection without the white cast or greasy finish Western sunscreens are known for. Tested + recommended at Mirai. Tap to shop.\n\n#kbeauty #koreanskincare #koreansunscreen #spf #skincareroutine #koreanbeauty",
+    "url": "https://mirai-skin.com/products/innisfree-vita-c-tone-up-sunscreen-spf50-pa-50ml/?utm_source=pinterest&utm_medium=pin&utm_campaign=organic&utm_content=pin-000",
+    "image_path": "/Users/kapi7/satellite-websites/scripts/social/pin-images/mirai/pin-000-innisfree-vita-c-tone-up-sunscreen-spf50.jpg",
+    "board": "Best Korean Sunscreens",
+    "site": "mirai",
+    "domain": "mirai-skin.com",
+    "category": "sunscreen",
+    "tags": [
+      "Sun Cream"
+    ],
+    "scheduled_date": "2026-04-26",
+    "status": "posted",
+    "posted_at": "2026-04-26T15:59:05.848793",
+    "_meta": {
+      "vendor": "innisfree",
+      "product_handle": "innisfree-vita-c-tone-up-sunscreen-spf50-pa-50ml",
+      "price": "36.00"
+    }
+  },
+  {
+    "id": "b718426d",
+    "title": "innisfree Vitamin C Green Tea Enzyme Brightening \u2014 Korean barrier-repair moisturizer",
+    "description": "Real Korean barrier-repair moisturizer, not hype. innisfree Vitamin C Green Tea Enzyme Brightening Cream 80ml works for sensitive, dehydrated, and reactive skin types. Ceramides, panthenol, and madecassoside that calm the skin instead of irritating it. Shop at Mirai.\n\n#kbeauty #koreanskincare #moisturizer #skincare #barrierrepair #sensitiveskin",
+    "url": "https://mirai-skin.com/products/innisfree-vitamin-c-green-tea-enzyme-brightening-cream-80ml/?utm_source=pinterest&utm_medium=pin&utm_campaign=organic&utm_content=pin-001",
+    "image_path": "/Users/kapi7/satellite-websites/scripts/social/pin-images/mirai/pin-001-innisfree-vitamin-c-green-tea-enzyme-bri.jpg",
+    "board": "Moisturizers & Barrier Repair",
+    "site": "mirai",
+    "domain": "mirai-skin.com",
+    "category": "moisturizer",
+    "tags": [
+      "Cream"
+    ],
+    "scheduled_date": "2026-04-26",
+    "status": "posted",
+    "posted_at": "2026-04-26T16:00:55.529376",
+    "_meta": {
+      "vendor": "innisfree",
+      "product_handle": "innisfree-vitamin-c-green-tea-enzyme-brightening-cream-80ml",
+      "price": "55.00"
+    }
+  },
+  {
+    "id": "63921ec1",
+    "title": "Torriden Balanceful Control Pack Cleanser: a gentle K-beauty cleanser worth keeping",
+    "description": "Torriden Balanceful Control Pack Cleanser 120g \u2014 a Korean cleanser worth keeping in the routine. Gentle enough for daily use, effective enough that your skin feels clean without that tight post-wash feeling. The first step in a real Korean routine.\n\n#kbeauty #koreanskincare #cleanser #doublecleansing #skincareroutine",
+    "url": "https://mirai-skin.com/products/torriden-balanceful-control-pack-cleanser-120g/?utm_source=pinterest&utm_medium=pin&utm_campaign=organic&utm_content=pin-002",
+    "image_path": "/Users/kapi7/satellite-websites/scripts/social/pin-images/mirai/pin-002-torriden-balanceful-control-pack-cleanse.jpg",
+    "board": "Cleansing & Double Cleanse",
+    "site": "mirai",
+    "domain": "mirai-skin.com",
+    "category": "cleanser",
+    "tags": [
+      "Cleanser"
+    ],
+    "scheduled_date": "2026-04-26",
+    "status": "posted",
+    "posted_at": "2026-04-26T16:02:14.345055",
+    "_meta": {
+      "vendor": "Torriden",
+      "product_handle": "torriden-balanceful-control-pack-cleanser-120g",
+      "price": "49.00"
+    }
   }
 ]
