@@ -233,6 +233,27 @@ def has_meaningful_alpha(im: Image.Image, threshold: float = 0.05) -> bool:
     return total > 0 and (transparent / total) >= threshold
 
 
+_REMBG_SESSION = None
+def remove_bg_ml(im: Image.Image) -> Image.Image | None:
+    """ML-based background removal via rembg (handles colored bgs, gradients,
+    lifestyle shots — anything `remove_white_bg_simple` fails on). Returns None
+    if rembg isn't installed."""
+    global _REMBG_SESSION
+    try:
+        from rembg import remove, new_session
+        if _REMBG_SESSION is None:
+            # u2netp = lighter/faster; u2net = better quality. Default to u2net for product cutouts.
+            _REMBG_SESSION = new_session("u2net")
+    except ImportError:
+        return None
+    try:
+        # rembg accepts PIL Image and returns PIL Image
+        return remove(im, session=_REMBG_SESSION)
+    except Exception as e:
+        print(f"    rembg failed: {e}")
+        return None
+
+
 def remove_white_bg_simple(im: Image.Image, white_threshold: int = 240) -> Image.Image:
     """Cheap white-background removal for product photos. Pixels brighter than
     threshold across all RGB → set alpha 0. Edge feathering via Gaussian blur on
