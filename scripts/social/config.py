@@ -126,15 +126,15 @@ PINTEREST_BOARD_MAP = {
 # ── Rate limits ──────────────────────────────────────────────
 
 REDDIT_MAX_PER_DAY = 50
-# Per-site daily pin cap. Total = 10 (5 glow-coded + 5 rooted-glow + 0
-# build-coded + 3 mirai). build-coded is set to 0 until it gets its own
-# Pinterest account — DO NOT route DIY content to the rooted-glow account.
-PINTEREST_MAX_PER_DAY = 5
+# Per-site daily pin cap. Total = 3/day across active accounts:
+# 1 glow-coded + 1 rooted-glow + 1 mirai. build-coded paused (0) until it
+# gets its own dedicated Pinterest account.
+PINTEREST_MAX_PER_DAY = 1
 PINTEREST_DAILY_LIMITS = {
-    "cosmetics": 5,
-    "wellness": 5,
+    "cosmetics": 1,
+    "wellness": 1,
     "build-coded": 0,  # paused — no dedicated Pinterest account yet
-    "mirai": 3,  # commerce account: start conservative, raise after 2-week perf data
+    "mirai": 1,
 }
 
 # Pinterest UTM parameters for mirai pins (so GA4 attributes Pinterest traffic)

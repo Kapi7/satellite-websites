@@ -306,7 +306,6 @@ def generate_pinterest_schedule():
         except Exception:
             pass
     start_date = latest_date + timedelta(days=1)
-    daily_per_site = 5
 
     # Build per-site queues of NEW articles only (those not already in the schedule)
     def filter_new(articles):
@@ -321,14 +320,25 @@ def generate_pinterest_schedule():
         "build-coded": filter_new(buildcoded),
     }
 
-    max_days = max((math.ceil(len(q) / daily_per_site) for q in queues.values() if q), default=0)
+    # Per-site cadence comes from config so changing PINTEREST_DAILY_LIMITS
+    # is the single source of truth.
+    site_caps = {site: PINTEREST_DAILY_LIMITS.get(site, 1) for site in queues}
+
+    def days_for(site, queue):
+        cap = site_caps.get(site, 1)
+        return math.ceil(len(queue) / cap) if (cap > 0 and queue) else 0
+
+    max_days = max((days_for(s, q) for s, q in queues.items()), default=0)
 
     new_pins = []
     for day_offset in range(max_days):
         pin_date = start_date + timedelta(days=day_offset)
         for site_key, queue in queues.items():
-            start = day_offset * daily_per_site
-            day_batch = queue[start : start + daily_per_site]
+            cap = site_caps.get(site_key, 1)
+            if cap <= 0:
+                continue
+            start = day_offset * cap
+            day_batch = queue[start : start + cap]
             for article in day_batch:
                 category = article["category"]
                 site_boards = PINTEREST_BOARD_MAP.get(article["site"], {})
