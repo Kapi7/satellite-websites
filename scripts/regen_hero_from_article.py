@@ -60,12 +60,17 @@ session.headers.update({
 PRODUCT_LINK_RE = re.compile(r"mirai-skin\.com/products/([a-z0-9-]+)", re.I)
 
 GLOW_PROMPT = (
-    "Create a flat-lay product photograph in landscape 16:9 ratio. "
-    "Place these Korean skincare products on a soft cream-colored marble surface "
-    "with diffuse natural lighting and small green botanical accents. "
-    "The products MUST look exactly like these reference photos — same bottles, "
-    "same labels, same colors, same proportions. Do not invent products. "
-    "Premium beauty editorial photography. No text overlays. No watermarks."
+    "Compose a 16:9 landscape flat-lay editorial photograph using the attached product photos.\n\n"
+    "STRICT REQUIREMENTS — read carefully:\n"
+    "1. Use EACH attached product photo verbatim. Do NOT redraw, modify, replace, or invent any product.\n"
+    "2. Preserve every label, logo, brand name, ingredient list, and printed text exactly as it appears in the input photos. "
+    "If you cannot preserve text accurately, DO NOT add or modify text — keep the original pixels.\n"
+    "3. Each input product must appear in the output. None may be removed.\n"
+    "4. You may ONLY enhance the background, lighting, shadow, and add decorative botanical accents around the products.\n"
+    "5. Background: soft cream marble or warm sandstone. Diffuse natural light. Subtle drop shadows.\n"
+    "6. Decorative additions allowed: a few green leaves, sprigs of dried flowers, water droplets — placed AROUND the products, never overlapping their labels.\n"
+    "7. Output must be premium editorial K-beauty magazine quality. No text overlays. No watermarks. No additional products.\n"
+    "Treat this as a photo-compositing task, not an illustration task."
 )
 
 
