@@ -1,0 +1,139 @@
+============================================================
+  WEEKLY SEO REPORT
+  Week of 2026-04-27
+============================================================
+
+============================================================
+  GLOW-CODED.COM
+============================================================
+
+  GSC — glow-coded.com
+  ──────────────────────────────────────────────────
+  Clicks:      0 ▼ -10
+  Impressions: 90 ▼ -1131
+  CTR:         0.0% ▼ -0.8
+  Position:    64.4 ▲ +37.6
+
+  Top Queries:
+  Query                                    Clicks   Impr    CTR   Pos
+  acido hialuronico                             0      1   0.0%  92.0
+  aha bha                                       0      1   0.0%  94.0
+  aha bha pha                                   0      1   0.0%  90.0
+  analisis ingredientes cosmeticos              0      1   0.0%  85.0
+  can i use 2 serums at the same time           0      1   0.0%  79.0
+  can i use two different serum for day         0      1   0.0%  94.0
+  cuidado de la piel coreano                    0      1   0.0%  96.0
+  essence and toner                             0      1   0.0%  75.0
+  find my tirtir shade                          0      1   0.0%  51.0
+  foundation droge huid schilfers               0      1   0.0%  85.0
+
+  Ahrefs — glow-coded.com
+  ──────────────────────────────────────────────────
+  DR:          10.0 ─ 0
+  Ahrefs Rank: 16742339
+  Backlinks:   307 ▲ +14
+  Ref Domains: 26 ▲ +4
+
+  Top Organic Keywords:
+
+  GA4 — glow-coded.com
+  ──────────────────────────────────────────────────
+  (no GA4_PROPERTY_* env var set for this site)
+
+  Bing — glow-coded.com
+  ──────────────────────────────────────────────────
+  Crawled: 0  |  Indexed: 0
+  Daily quota left: 0  |  Monthly: 300
+
+============================================================
+  ROOTED-GLOW.COM
+============================================================
+
+  GSC — rooted-glow.com
+  ──────────────────────────────────────────────────
+  Clicks:      0 ▼ -7
+  Impressions: 679 ▼ -468
+  CTR:         0.0% ▼ -0.6
+  Position:    41.8 ▲ +6.2
+
+  Top Queries:
+  Query                                    Clicks   Impr    CTR   Pos
+  5k en 20 minutos                              0      1   0.0%  57.0
+  aceites de semillas                           0      1   0.0%  71.0
+  aceites refinados de semillas                 0      1   0.0%  90.0
+  ancestral diet                                0      5   0.0%  92.0
+  andar es mejor que correr                     0      1   0.0%  92.0
+  are probiotics better than prebiotics         0      1   0.0%  93.0
+  ashwagandha o rhodiola                        0      1   0.0%  77.0
+  ashwagandha rodiola                           0      1   0.0%  80.0
+  ashwagandha y rhodiola                        0      1   0.0%  86.0
+  ashwagandha y rhodiola se pueden tomar        0      1   0.0%  85.0
+
+  Ahrefs — rooted-glow.com
+  ──────────────────────────────────────────────────
+  DR:          10.0 ─ 0
+  Ahrefs Rank: 16742338
+  Backlinks:   333 ▲ +25
+  Ref Domains: 30 ▲ +8
+
+  Top Organic Keywords:
+
+  GA4 — rooted-glow.com
+  ──────────────────────────────────────────────────
+  (no GA4_PROPERTY_* env var set for this site)
+
+  Bing — rooted-glow.com
+  ──────────────────────────────────────────────────
+  Crawled: 0  |  Indexed: 0
+  Daily quota left: 0  |  Monthly: 300
+
+============================================================
+  BUILD-CODED.COM
+============================================================
+
+  GSC — build-coded.com
+  ──────────────────────────────────────────────────
+  Clicks:      10 ▼ -17
+  Impressions: 2072 ▼ -1625
+  CTR:         0.5% ▼ -0.2
+  Position:    24.5 ▼ -1.7
+
+  Top Queries:
+  Query                                    Clicks   Impr    CTR   Pos
+  projetos com arduino para iniciantes          1      1 100.0%   2.0
+  "soldering basics" "kester"                   0      3   0.0%   5.0
+  18 gauge brad nail vs 16 gauge finish         0      2   0.0%  30.5
+  18 gauge brad nailer vs finish nailer         0      1   0.0%  21.0
+  3d printen voor beginners                     0      8   0.0%  68.9
+  3d printer beginner                           0      1   0.0%  61.0
+  3d printer for beginners                      0      7   0.0%  60.7
+  3d printer for starters                       0      1   0.0%  43.0
+  3d printer goedkoopste                        0     14   0.0%  64.9
+  3d printer under $450                         0      1   0.0%  96.0
+
+  Ahrefs — build-coded.com
+  ──────────────────────────────────────────────────
+  DR:          7.0 ─ 0
+  Ahrefs Rank: 21014492
+  Backlinks:   24 ▲ +9
+  Ref Domains: 23 ▲ +9
+
+  Top Organic Keywords:
+    circuit breaker replacement                     vol: 7100
+    brad nailer vs finish nailer                    vol: 6400
+    3d printer for beginners                        vol: 6000
+    beginner 3d printer                             vol: 2800
+    what is a brad nailer                           vol: 1900
+
+  GA4 — build-coded.com
+  ──────────────────────────────────────────────────
+  (no GA4_PROPERTY_* env var set for this site)
+
+  Bing — build-coded.com
+  ──────────────────────────────────────────────────
+  Crawled: 90  |  Indexed: 7
+  Daily quota left: 100  |  Monthly: 400
+
+============================================================
+  Report generated: 2026-04-27 07:36
+============================================================

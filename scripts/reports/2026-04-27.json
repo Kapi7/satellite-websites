@@ -1,0 +1,47 @@
+{
+  "glow-coded.com": {
+    "gsc": {
+      "clicks": 0,
+      "impressions": 90,
+      "ctr": 0,
+      "position": 64.44444444444444
+    },
+    "ahrefs": {
+      "dr": 10.0,
+      "backlinks": 307,
+      "refdomains": 26,
+      "organic_kw_count": 0
+    },
+    "ga4": {}
+  },
+  "rooted-glow.com": {
+    "gsc": {
+      "clicks": 0,
+      "impressions": 679,
+      "ctr": 0,
+      "position": 41.759941089837994
+    },
+    "ahrefs": {
+      "dr": 10.0,
+      "backlinks": 333,
+      "refdomains": 30,
+      "organic_kw_count": 0
+    },
+    "ga4": {}
+  },
+  "build-coded.com": {
+    "gsc": {
+      "clicks": 10,
+      "impressions": 2072,
+      "ctr": 0.4826254826254826,
+      "position": 24.534749034749034
+    },
+    "ahrefs": {
+      "dr": 7.0,
+      "backlinks": 24,
+      "refdomains": 23,
+      "organic_kw_count": 5
+    },
+    "ga4": {}
+  }
+}
