@@ -41,7 +41,11 @@ if not API_KEY:
     print("ERROR: GEMINI_API_KEY not set"); sys.exit(1)
 
 ROOT = Path(__file__).resolve().parent.parent
-DRAFTS_DIR = ROOT / "cosmetics" / "src" / "content" / "blog" / "en"
+SITES = {
+    "cosmetics":   ROOT / "cosmetics"   / "src" / "content" / "blog" / "en",
+    "wellness":    ROOT / "wellness"    / "src" / "content" / "blog" / "en",
+    "build-coded": ROOT / "build-coded" / "src" / "content" / "blog" / "en",
+}
 CATALOG_PATH = Path("/Users/kapi7/mirai-meta-campaign/satellite-websites/.image-cache/products_catalog.json")
 TEXT_MODEL = "gemini-2.5-flash"
 
@@ -223,9 +227,9 @@ def insert_product_links(body: str, picks: list, valid_handles: set):
     return "\n".join(lines), inserted, skipped
 
 
-def find_drafts():
+def find_drafts(drafts_dir: Path):
     drafts = []
-    for f in sorted(DRAFTS_DIR.glob("*.mdx")):
+    for f in sorted(drafts_dir.glob("*.mdx")):
         parsed = parse_mdx(f)
         if not parsed:
             continue
@@ -241,6 +245,8 @@ def find_drafts():
 
 def main():
     ap = argparse.ArgumentParser()
+    ap.add_argument("--site", default="cosmetics", choices=list(SITES.keys()),
+                    help="Which site's drafts to process (default: cosmetics)")
     ap.add_argument("--slug", help="Run for one slug only")
     ap.add_argument("--dry-run", action="store_true", help="Print plan, don't write")
     ap.add_argument("--limit", type=int, default=None, help="Process at most N drafts")
@@ -248,8 +254,10 @@ def main():
 
     valid_handles = {p["handle"] for p in CATALOG}
     print(f"[catalog] {len(CATALOG)} products loaded")
+    drafts_dir = SITES[args.site]
+    print(f"[site] {args.site} → {drafts_dir.relative_to(ROOT)}")
 
-    drafts = find_drafts()
+    drafts = find_drafts(drafts_dir)
     if args.slug:
         drafts = [d for d in drafts if d[0].stem == args.slug]
     if args.limit:
