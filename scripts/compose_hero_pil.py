@@ -30,13 +30,23 @@ from pathlib import Path
 from urllib.parse import urljoin
 
 import requests
-from PIL import Image, ImageFilter, ImageDraw
+from PIL import Image, ImageFilter, ImageDraw, ImageEnhance
 
 try:
     from dotenv import load_dotenv
     load_dotenv(Path(__file__).resolve().parent.parent / ".env")
 except ImportError:
     pass
+
+# Optional, much better background removal (U2Net-based)
+try:
+    from rembg import remove as rembg_remove, new_session as rembg_new_session
+    _REMBG_SESSION = rembg_new_session("u2net")  # general purpose; "u2netp" is faster
+    HAS_REMBG = True
+except Exception as e:
+    HAS_REMBG = False
+    _REMBG_SESSION = None
+    print(f"[warn] rembg not available, falling back to white-threshold: {e}", file=sys.stderr)
 
 ROOT = Path(__file__).resolve().parent.parent
 PRODUCTS_CACHE = Path("/tmp/hero-gen-from-article/products")
@@ -131,8 +141,25 @@ def trim_to_content(img: Image.Image, threshold=240) -> Image.Image:
 
 
 def make_alpha_from_white(img: Image.Image, white_threshold=245) -> Image.Image:
-    """Make near-white pixels transparent so the product sits on the background.
-    Simple heuristic — works for clean Shopify product shots on white BG."""
+    """Cut out background. Uses rembg (U2Net) if available — produces clean edges
+    that handle white halos, soft shadows, glass bottles, and translucent caps far
+    better than threshold-based masking. Falls back to white-threshold."""
+    if HAS_REMBG:
+        try:
+            img_rgba = img.convert("RGBA") if img.mode != "RGBA" else img
+            buf = io.BytesIO()
+            img_rgba.save(buf, format="PNG")
+            output = rembg_remove(buf.getvalue(), session=_REMBG_SESSION,
+                                  alpha_matting=True,
+                                  alpha_matting_foreground_threshold=240,
+                                  alpha_matting_background_threshold=10,
+                                  alpha_matting_erode_size=2)
+            cut = Image.open(io.BytesIO(output)).convert("RGBA")
+            return cut
+        except Exception as e:
+            print(f"      rembg failed for one image: {e}; falling back to white-threshold")
+
+    # Fallback
     img = img.convert("RGBA")
     pixels = img.getdata()
     new = []
@@ -140,7 +167,6 @@ def make_alpha_from_white(img: Image.Image, white_threshold=245) -> Image.Image:
         if r >= white_threshold and g >= white_threshold and b >= white_threshold:
             new.append((r, g, b, 0))
         elif r >= 230 and g >= 230 and b >= 230:
-            # Soft edge — partial transparency for anti-aliasing
             alpha = max(0, 255 - (min(r, g, b) - 230) * 25)
             new.append((r, g, b, alpha))
         else:
@@ -149,23 +175,43 @@ def make_alpha_from_white(img: Image.Image, white_threshold=245) -> Image.Image:
     return img
 
 
-def add_shadow(img: Image.Image, offset=(8, 12), blur=14, opacity=70) -> Image.Image:
-    """Add a soft drop shadow under a product (RGBA)."""
-    shadow_layer = Image.new("RGBA", (img.width + offset[0]*2 + blur*2,
-                                       img.height + offset[1]*2 + blur*2), (0, 0, 0, 0))
-    # Shadow is a blurred copy of the product silhouette, dark
+def add_shadow(img: Image.Image, offset=(14, 22), blur=22, opacity=95) -> Image.Image:
+    """Add a soft, longer drop shadow that grounds the product on the surface.
+    Larger offset + bigger blur = more natural sense of depth on a flat-lay."""
+    pad = blur * 3
+    shadow_w = img.width + offset[0] + pad * 2
+    shadow_h = img.height + offset[1] + pad * 2
+
     silhouette = Image.new("RGBA", img.size, (0, 0, 0, 0))
-    sil_pixels = []
-    for r, g, b, a in img.getdata():
-        sil_pixels.append((40, 40, 40, int(a * opacity / 255)))
+    sil_pixels = [(20, 20, 20, int(a * opacity / 255)) for r, g, b, a in img.getdata()]
     silhouette.putdata(sil_pixels)
-    shadow_layer.paste(silhouette, (offset[0] + blur, offset[1] + blur), silhouette)
+
+    shadow_layer = Image.new("RGBA", (shadow_w, shadow_h), (0, 0, 0, 0))
+    shadow_layer.paste(silhouette, (offset[0] + pad, offset[1] + pad), silhouette)
     shadow_layer = shadow_layer.filter(ImageFilter.GaussianBlur(blur))
-    # Now paste original on top
+
     final = Image.new("RGBA", shadow_layer.size, (0, 0, 0, 0))
     final.paste(shadow_layer, (0, 0), shadow_layer)
-    final.paste(img, (blur, blur), img)
+    final.paste(img, (pad, pad), img)
     return final
+
+
+def color_match_to_background(img: Image.Image, bg_sample: tuple) -> Image.Image:
+    """Subtle warm-tone matching so cutout products don't look color-disconnected
+    from a warm sandstone or pink terrazzo background. RGBA in, RGBA out."""
+    if img.mode != "RGBA":
+        img = img.convert("RGBA")
+    # Apply ~5% warmth to RGB channels based on bg sample
+    bg_r, bg_g, bg_b = bg_sample
+    # Calculate small tint
+    pixels = img.load()
+    w, h = img.size
+    # Soft brightness/contrast normalization for matching outdoor light
+    enh = ImageEnhance.Color(img)
+    img = enh.enhance(0.97)  # very slight desaturation to match natural light
+    enh = ImageEnhance.Brightness(img)
+    img = enh.enhance(1.02)
+    return img
 
 
 def fit_product(img: Image.Image, max_h: int) -> Image.Image:
@@ -180,40 +226,54 @@ def compose_2_up(products: list[Path], out_path: Path, use_gemini_bg: bool = Tru
     """Side-by-side comparison layout."""
     bg = make_background_from_gemini_or_fallback(slug) if use_gemini_bg else make_background()
     bg = bg.copy()
-    target_h = int(H * 0.72)
+    bg_sample = bg.getpixel((W // 2, H // 2))[:3]
+    target_h = int(H * 0.62)
     items = []
     for p in products[:2]:
         img = Image.open(p)
-        img = trim_to_content(img)
-        img = make_alpha_from_white(img)
+        img = make_alpha_from_white(img)         # rembg cutout (handles its own trimming)
+        img = trim_alpha(img)                     # tight crop to non-transparent area
+        img = color_match_to_background(img, bg_sample)
         img = fit_product(img, target_h)
         img = add_shadow(img)
         items.append(img)
     if len(items) < 2:
         return False
-    # Center two products with gap
-    gap = 80
+    gap = 100
     total_w = items[0].width + items[1].width + gap
     x = (W - total_w) // 2
-    y = (H - max(items[0].height, items[1].height)) // 2
+    y_baseline = int(H * 0.78)  # ground line — products sit on this
     for img in items:
-        bg.paste(img, (x, y + (H - img.height) // 2 - y), img)
+        # Bottom-align so the shadows look like products sitting on a surface
+        bg.paste(img, (x, y_baseline - img.height + 50), img)
         x += img.width + gap
     bg.save(out_path, "JPEG", quality=92)
     return True
+
+
+def trim_alpha(img: Image.Image) -> Image.Image:
+    """Crop to the bounding box of non-transparent pixels."""
+    if img.mode != "RGBA":
+        return img
+    bbox = img.getchannel("A").getbbox()
+    if bbox:
+        return img.crop(bbox)
+    return img
 
 
 def compose_grid(products: list[Path], out_path: Path, use_gemini_bg: bool = True, slug: str = "default", _slug=None):
     """3-4 product flat-lay grid."""
     bg = make_background_from_gemini_or_fallback(slug) if use_gemini_bg else make_background()
     bg = bg.copy()
+    bg_sample = bg.getpixel((W // 2, H // 2))[:3]
     n = len(products[:4])
-    target_h = int(H * 0.55) if n <= 3 else int(H * 0.45)
+    target_h = int(H * 0.50) if n <= 3 else int(H * 0.42)
     items = []
     for p in products[:4]:
         img = Image.open(p)
-        img = trim_to_content(img)
         img = make_alpha_from_white(img)
+        img = trim_alpha(img)
+        img = color_match_to_background(img, bg_sample)
         img = fit_product(img, target_h)
         img = add_shadow(img)
         items.append(img)
@@ -223,29 +283,28 @@ def compose_grid(products: list[Path], out_path: Path, use_gemini_bg: bool = Tru
     if n == 2:
         return compose_2_up(products, out_path, use_gemini_bg=use_gemini_bg, slug=slug)
     if n == 3:
-        # Triangle: 2 on top, 1 centered below
-        gap_x = 60
+        gap_x = 80
         top_total = items[0].width + items[1].width + gap_x
         x = (W - top_total) // 2
-        y = int(H * 0.05)
-        bg.paste(items[0], (x, y), items[0])
-        bg.paste(items[1], (x + items[0].width + gap_x, y), items[1])
+        y_top = int(H * 0.10)
+        bg.paste(items[0], (x, y_top), items[0])
+        bg.paste(items[1], (x + items[0].width + gap_x, y_top), items[1])
         x3 = (W - items[2].width) // 2
-        y3 = H - items[2].height - int(H * 0.05)
+        y3 = H - items[2].height - int(H * 0.04)
         bg.paste(items[2], (x3, y3), items[2])
     else:
-        # 4 = single row spread across width with slight stagger for editorial feel
-        gap = 30
+        # 4-up: single row, bottom-aligned for grounded shadow look
+        gap = 50
         total_w = sum(it.width for it in items[:4]) + gap * 3
-        if total_w > W - 60:
-            scale = (W - 60) / total_w
+        if total_w > W - 80:
+            scale = (W - 80) / total_w
             items = [fit_product(it, int(it.height * scale)) for it in items[:4]]
+            items = [add_shadow(trim_alpha(it.convert("RGBA"))) if False else it for it in items]
             total_w = sum(it.width for it in items[:4]) + gap * 3
         x = (W - total_w) // 2
-        y_center = H // 2
+        y_baseline = int(H * 0.82)
         for i, img in enumerate(items[:4]):
-            stagger = -10 if i % 2 == 0 else 10
-            bg.paste(img, (x, y_center - img.height // 2 + stagger), img)
+            bg.paste(img, (x, y_baseline - img.height + 40), img)
             x += img.width + gap
 
     bg.save(out_path, "JPEG", quality=92)
