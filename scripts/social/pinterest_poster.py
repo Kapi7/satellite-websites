@@ -376,12 +376,20 @@ def run_poster(args):
     if args.site:
         pins_to_post = [p for p in pins_to_post if p["site"] == args.site]
 
-    # Group pins by ACCOUNT (not site) so wellness + build-coded share one session.
-    # PINTEREST_ACCOUNT_MAP routes each site to its posting account.
+    # Group pins by ACCOUNT. Sites with account_key=None (e.g. build-coded
+    # before its dedicated account exists) are skipped entirely so we never
+    # accidentally post DIY pins through the rooted-glow account.
     accounts = {}
+    skipped_no_account = []
     for pin in pins_to_post:
         account_key = PINTEREST_ACCOUNT_MAP.get(pin["site"], pin["site"])
+        if account_key is None:
+            skipped_no_account.append(pin)
+            continue
         accounts.setdefault(account_key, []).append(pin)
+    if skipped_no_account:
+        skipped_sites = sorted({p["site"] for p in skipped_no_account})
+        log(f"Skipping {len(skipped_no_account)} pin(s) from {skipped_sites} — no Pinterest account configured (PINTEREST_ACCOUNT_MAP is None)")
 
     log(f"Posting {len(pins_to_post)} pin(s) across {len(accounts)} account(s)...")
 

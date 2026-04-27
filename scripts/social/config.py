@@ -35,13 +35,15 @@ PINTEREST_ACCOUNTS = {
 }
 
 # Pin routing: which Pinterest account posts pins for each site.
-# build-coded has no dedicated Pinterest account — its pins are posted
-# from the rooted-glow account. mirai uses its own dedicated account
-# because pins go to mirai-skin.com product pages (commerce) not blog content.
+# Each site posts ONLY to its own dedicated account so accounts stay topical
+# (rooted-glow Pinterest = wellness/K-beauty crossover only, no DIY).
+# build-coded has no Pinterest account yet — value is None so the schedule
+# generator skips creating build-coded pins until a dedicated account exists.
+# mirai uses its own dedicated commerce account.
 PINTEREST_ACCOUNT_MAP = {
     "cosmetics": "cosmetics",
     "wellness": "wellness",
-    "build-coded": "wellness",
+    "build-coded": None,  # no dedicated account yet; do NOT route to wellness
     "mirai": "mirai",
 }
 
@@ -124,14 +126,14 @@ PINTEREST_BOARD_MAP = {
 # ── Rate limits ──────────────────────────────────────────────
 
 REDDIT_MAX_PER_DAY = 50
-# Per-site daily pin cap. Total = 15 (5 glow-coded + 5 rooted-glow + 5
-# build-coded). The rooted-glow Pinterest account handles wellness AND
-# build-coded (= 10/day/account), glow-coded account handles 5/day.
+# Per-site daily pin cap. Total = 10 (5 glow-coded + 5 rooted-glow + 0
+# build-coded + 3 mirai). build-coded is set to 0 until it gets its own
+# Pinterest account — DO NOT route DIY content to the rooted-glow account.
 PINTEREST_MAX_PER_DAY = 5
 PINTEREST_DAILY_LIMITS = {
     "cosmetics": 5,
     "wellness": 5,
-    "build-coded": 5,
+    "build-coded": 0,  # paused — no dedicated Pinterest account yet
     "mirai": 3,  # commerce account: start conservative, raise after 2-week perf data
 }
 

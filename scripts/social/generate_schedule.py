@@ -256,9 +256,11 @@ def generate_reddit_schedule():
 def generate_pinterest_schedule():
     """Generate Pinterest pinning schedule, merging with existing schedule.
 
-    Per-site cadence: 5 glow-coded + 5 rooted-glow + 5 build-coded per day,
-    regardless of account. The poster routes build-coded pins through the
-    rooted-glow account (see config.PINTEREST_ACCOUNT_MAP).
+    Per-site cadence is driven by config.PINTEREST_DAILY_LIMITS and the
+    routing in config.PINTEREST_ACCOUNT_MAP. Sites whose account-map value
+    is None OR whose daily limit is 0 are skipped entirely (no pins
+    generated). Currently: glow-coded 5/day, rooted-glow 5/day, build-coded
+    paused (no dedicated account), mirai handled by a separate flow.
 
     Merge behaviour: existing pins (matched by URL) are preserved exactly,
     keeping their status/posted_at/scheduled_date. Only new articles not
@@ -266,11 +268,16 @@ def generate_pinterest_schedule():
     the day after the latest existing scheduled_date.
     """
     import math
+    from config import PINTEREST_ACCOUNT_MAP, PINTEREST_DAILY_LIMITS
 
-    cosmetics = get_articles(COSMETICS_BLOG / "en", COSMETICS_IMAGES, "cosmetics")
-    wellness = get_articles(WELLNESS_BLOG / "en", WELLNESS_IMAGES, "wellness")
+    def site_active(site_key):
+        return (PINTEREST_ACCOUNT_MAP.get(site_key) is not None
+                and PINTEREST_DAILY_LIMITS.get(site_key, 0) > 0)
+
+    cosmetics = get_articles(COSMETICS_BLOG / "en", COSMETICS_IMAGES, "cosmetics") if site_active("cosmetics") else []
+    wellness = get_articles(WELLNESS_BLOG / "en", WELLNESS_IMAGES, "wellness") if site_active("wellness") else []
     buildcoded = []
-    if BUILDCODED_BLOG.exists():
+    if site_active("build-coded") and BUILDCODED_BLOG.exists():
         buildcoded = get_articles(BUILDCODED_BLOG / "en", BUILDCODED_IMAGES, "build-coded")
 
     # Load existing schedule (if any) and index by URL
@@ -283,7 +290,10 @@ def generate_pinterest_schedule():
             existing = []
 
     existing_by_url = {p["url"].rstrip("/"): p for p in existing}
-    next_id = max((p.get("id", 0) for p in existing), default=0) + 1
+    def _id_as_int(x):
+        try: return int(x)
+        except (TypeError, ValueError): return 0
+    next_id = max((_id_as_int(p.get("id", 0)) for p in existing), default=0) + 1
 
     # Determine start date for NEW pins: day after the latest scheduled date
     today = datetime.now().date()
