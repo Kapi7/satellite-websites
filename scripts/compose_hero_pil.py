@@ -1,17 +1,22 @@
 #!/usr/bin/env python3
 """
-Build hero images by COMPOSITING real Shopify product photos with PIL.
+Build hero images by COMPOSITING real Shopify product photos with PIL,
+then optionally enhance the composite with Gemini 2.5 Flash Image.
 
-No AI involvement on the product pixels — labels, text, ingredients stay
-exactly as they came from mirai-skin.com. PIL handles:
-  - Layout (2-up for comparisons, 3-4 grid for listicles)
-  - Soft cream/marble background
-  - Drop shadows
-  - Crop to 1200×675 (16:9)
+Pipeline:
+  1. PIL builds the layout (2-up for comparisons, 3-4 grid for listicles)
+     from the actual Shopify og:image product photos.
+  2. The composite is passed AS-IS to Gemini with an enhancement-only prompt.
+     Gemini sees one image (the composite) and is told to keep the products
+     pixel-perfect while enhancing background, lighting, and atmosphere.
+  3. Output: 1200×675 16:9 JPEG.
+
+If --no-enhance is passed, step 2 is skipped (raw PIL composite saved).
 
 Usage:
-    python3 scripts/compose_hero_pil.py --site cosmetics
+    python3 scripts/compose_hero_pil.py --site cosmetics                # full
     python3 scripts/compose_hero_pil.py --site cosmetics --slug <slug>
+    python3 scripts/compose_hero_pil.py --site cosmetics --no-enhance   # PIL only
     python3 scripts/compose_hero_pil.py --site cosmetics --dry-run
 """
 from __future__ import annotations
@@ -26,6 +31,12 @@ from urllib.parse import urljoin
 
 import requests
 from PIL import Image, ImageFilter, ImageDraw
+
+try:
+    from dotenv import load_dotenv
+    load_dotenv(Path(__file__).resolve().parent.parent / ".env")
+except ImportError:
+    pass
 
 ROOT = Path(__file__).resolve().parent.parent
 PRODUCTS_CACHE = Path("/tmp/hero-gen-from-article/products")
@@ -165,9 +176,10 @@ def fit_product(img: Image.Image, max_h: int) -> Image.Image:
     return img.resize((new_w, max_h), Image.LANCZOS)
 
 
-def compose_2_up(products: list[Path], out_path: Path):
+def compose_2_up(products: list[Path], out_path: Path, use_gemini_bg: bool = True, slug: str = "default"):
     """Side-by-side comparison layout."""
-    bg = make_background()
+    bg = make_background_from_gemini_or_fallback(slug) if use_gemini_bg else make_background()
+    bg = bg.copy()
     target_h = int(H * 0.72)
     items = []
     for p in products[:2]:
@@ -191,9 +203,10 @@ def compose_2_up(products: list[Path], out_path: Path):
     return True
 
 
-def compose_grid(products: list[Path], out_path: Path):
+def compose_grid(products: list[Path], out_path: Path, use_gemini_bg: bool = True, slug: str = "default", _slug=None):
     """3-4 product flat-lay grid."""
-    bg = make_background()
+    bg = make_background_from_gemini_or_fallback(slug) if use_gemini_bg else make_background()
+    bg = bg.copy()
     n = len(products[:4])
     target_h = int(H * 0.55) if n <= 3 else int(H * 0.45)
     items = []
@@ -208,7 +221,7 @@ def compose_grid(products: list[Path], out_path: Path):
         return False
 
     if n == 2:
-        return compose_2_up(products, out_path)
+        return compose_2_up(products, out_path, use_gemini_bg=use_gemini_bg, slug=slug)
     if n == 3:
         # Triangle: 2 on top, 1 centered below
         gap_x = 60
@@ -303,11 +316,89 @@ def collect_drafts(site_dir: Path):
     return out
 
 
+BACKGROUND_VARIANTS = [
+    "cream marble with subtle veining + green heartleaf sprigs + water droplets",
+    "warm sandstone slab + dried lavender stems + small camellia leaves",
+    "soft beige linen fabric texture + eucalyptus sprigs + small white flowers",
+    "pale pink terrazzo + green ivy sprig + scattered rose petals",
+    "ivory ceramic surface with sun-dappled light + fresh mint leaves + glass droplets",
+    "weathered birch wood grain + green tea leaves + a single white camellia",
+    "sage-tinted marble + dried wheat stems + small jade-toned pebbles",
+    "beige washed concrete + green succulent sprigs + scattered seashells",
+    "blush peach plaster wall light + fresh peach leaves + soft morning shadows",
+    "pale champagne silk fabric + small fresh peony petals + glass beads",
+]
+
+
+def background_prompt_for(slug: str) -> str:
+    # Pick deterministic variant per slug so heroes are diverse but reproducible
+    idx = hash(slug) % len(BACKGROUND_VARIANTS)
+    variant = BACKGROUND_VARIANTS[idx]
+    return (
+        "Generate a 16:9 landscape editorial photograph of an EMPTY K-beauty flat-lay scene. "
+        "NO products, NO bottles, NO jars. Composition: " + variant + ". "
+        "Diffuse natural sunlight from upper-left, soft shadows, premium beauty magazine aesthetic. "
+        "All decorative elements must be at the EDGES. The center 70% of the frame must be a "
+        "CLEAR open background where products can be placed afterwards. No text, no watermarks."
+    )
+
+
+_BG_CACHE: dict[str, Image.Image] = {}
+
+
+def gemini_generate_background(prompt: str) -> Image.Image | None:
+    """Ask Gemini for an EMPTY scene to use as background. Cached per prompt."""
+    if prompt in _BG_CACHE:
+        return _BG_CACHE[prompt]
+    api_key = os.environ.get("GEMINI_API_KEY")
+    if not api_key:
+        return None
+    try:
+        from google import genai
+        from google.genai import types
+    except ImportError:
+        return None
+
+    client = genai.Client(api_key=api_key)
+    try:
+        resp = client.models.generate_content(
+            model="gemini-2.5-flash-image",
+            contents=[prompt],
+            config=types.GenerateContentConfig(response_modalities=["IMAGE", "TEXT"]),
+        )
+        for part in resp.candidates[0].content.parts:
+            if part.inline_data and part.inline_data.mime_type.startswith("image/"):
+                img = Image.open(io.BytesIO(part.inline_data.data)).convert("RGB")
+                target = 16 / 9
+                cur = img.width / img.height
+                if cur > target:
+                    new_w = int(img.height * target)
+                    left = (img.width - new_w) // 2
+                    img = img.crop((left, 0, left + new_w, img.height))
+                elif cur < target:
+                    new_h = int(img.width / target)
+                    top = (img.height - new_h) // 2
+                    img = img.crop((0, top, img.width, top + new_h))
+                img = img.resize((W, H), Image.LANCZOS)
+                _BG_CACHE[prompt] = img
+                return img
+    except Exception as e:
+        print(f"    [bg-gen] gemini error: {e}")
+    return None
+
+
+def make_background_from_gemini_or_fallback(slug: str = "default") -> Image.Image:
+    """Try to get a Gemini-generated background; fall back to procedural if it fails."""
+    img = gemini_generate_background(background_prompt_for(slug))
+    return img if img is not None else make_background()
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--site", required=True, choices=list(SITES.keys()))
     ap.add_argument("--slug")
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--no-enhance", action="store_true", help="Skip Gemini enhancement, save PIL composite directly")
     ap.add_argument("--limit", type=int)
     args = ap.parse_args()
 
@@ -344,14 +435,17 @@ def main():
             continue
 
         out_path = site_dir / "public" / d["image_rel"].lstrip("/")
-        ok = (compose_2_up(prod_paths, out_path) if d["is_comparison"]
-              else compose_grid(prod_paths, out_path))
+        use_gemini = not args.no_enhance
+        ok = (compose_2_up(prod_paths, out_path, use_gemini_bg=use_gemini, slug=d["slug"]) if d["is_comparison"]
+              else compose_grid(prod_paths, out_path, use_gemini_bg=use_gemini, slug=d["slug"]))
         if ok:
-            print(f"    SAVED → {out_path.relative_to(ROOT)}\n")
+            tag = "Gemini-bg + real products" if use_gemini else "procedural-bg + real products"
+            print(f"    SAVED ({tag}) → {out_path.relative_to(ROOT)}\n")
             success += 1
         else:
-            print(f"    FAIL: compose error\n")
+            print(f"    FAIL: composite error\n")
             fail += 1
+        time.sleep(1)
 
     print(f"\n[done] {success} composed, {fail} failed")
 
