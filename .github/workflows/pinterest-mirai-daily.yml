@@ -1,0 +1,65 @@
+name: Pinterest mirai daily poster
+
+on:
+  schedule:
+    - cron: '30 15 * * *'
+    - cron: '0 19 * * *'
+    - cron: '30 22 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pinterest-mirai
+  cancel-in-progress: false
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          pip install --quiet \
+            playwright python-dotenv requests pillow \
+            google-genai openai cryptography pycookiecheat
+
+      - name: Install Playwright browser
+        run: python -m playwright install --with-deps chromium
+
+      - name: Restore Pinterest session
+        env:
+          SESSION_B64: ${{ secrets.PINTEREST_MIRAI_SESSION }}
+        run: |
+          mkdir -p scripts/social/browser-state/pinterest-mirai
+          printf '%s' "$SESSION_B64" | base64 -d > scripts/social/browser-state/pinterest-mirai/state.json
+          test -s scripts/social/browser-state/pinterest-mirai/state.json && echo "session ok"
+
+      - name: Run pinterest poster
+        env:
+          PINTEREST_MIRAI_EMAIL: ${{ secrets.PINTEREST_MIRAI_EMAIL }}
+          PINTEREST_MIRAI_PASSWORD: ${{ secrets.PINTEREST_MIRAI_PASSWORD }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          python3 scripts/social/pinterest_poster.py --run-due --site mirai
+
+      - name: Commit schedule status updates
+        run: |
+          if git diff --quiet scripts/social/pinterest_schedule.json; then
+            echo "No schedule changes to commit"
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add scripts/social/pinterest_schedule.json
+            git commit -m "Pinterest mirai: post status updates [skip ci]"
+            git pull --rebase origin main
+            git push origin main
+          fi
