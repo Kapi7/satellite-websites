@@ -2949,5 +2949,74 @@
       ],
       "kind": "gemini-v4"
     }
+  },
+  {
+    "id": "97dafa28",
+    "title": "Korean Sunscreens \u2014 that don't leave a white cast",
+    "description": "Korean sunscreens that actually feel good \u2014 no white cast, no greasy finish. Tested on oily and reactive skin. Tap to shop the edit at Mirai.\n\n#kbeauty #koreansunscreen #spf #koreanskincare #koreanbeauty",
+    "url": "https://mirai-skin.com/collections/sun-protection?utm_source=pinterest&utm_medium=pin&utm_campaign=gemini_v4b&utm_content=v4b-000",
+    "image_path": "/Users/kapi7/satellite-websites/scripts/social/pin-images/mirai/gemini-composed/gemini-korean-sunscreens.jpg",
+    "board": "Best Korean Sunscreens",
+    "site": "mirai",
+    "domain": "mirai-skin.com",
+    "category": "korean-sunscreens",
+    "tags": [
+      "kbeauty",
+      "koreanbeauty",
+      "skincare"
+    ],
+    "scheduled_date": "2026-04-27",
+    "status": "posted",
+    "posted_at": "2026-04-27T12:10:57.065905",
+    "_meta": {
+      "theme": "korean-sunscreens",
+      "kind": "gemini-v4b-bold-fonts"
+    }
+  },
+  {
+    "id": "04d74cc4",
+    "title": "Korean Moisturizers \u2014 for sensitive, reactive skin",
+    "description": "Korean moisturizers built for sensitive, reactive skin. Ceramide, panthenol, centella \u2014 barrier-repair formulas that calm. Tap to shop at Mirai.\n\n#kbeauty #koreanskincare #moisturizer #sensitiveskin",
+    "url": "https://mirai-skin.com/collections/moisturizers?utm_source=pinterest&utm_medium=pin&utm_campaign=gemini_v4b&utm_content=v4b-001",
+    "image_path": "/Users/kapi7/satellite-websites/scripts/social/pin-images/mirai/gemini-composed/gemini-korean-moisturizers.jpg",
+    "board": "Moisturizers & Barrier Repair",
+    "site": "mirai",
+    "domain": "mirai-skin.com",
+    "category": "korean-moisturizers",
+    "tags": [
+      "kbeauty",
+      "koreanbeauty",
+      "skincare"
+    ],
+    "scheduled_date": "2026-04-27",
+    "status": "posted",
+    "posted_at": "2026-04-27T12:13:03.961200",
+    "_meta": {
+      "theme": "korean-moisturizers",
+      "kind": "gemini-v4b-bold-fonts"
+    }
+  },
+  {
+    "id": "3a7c9c61",
+    "title": "The Double Cleanse \u2014 four Korean cleansers worth keeping",
+    "description": "The Korean double cleanse, made simple. Four cleansers that strip the day off without stripping your barrier. Tap to shop at Mirai.\n\n#kbeauty #doublecleanse #koreanskincare",
+    "url": "https://mirai-skin.com/collections/cleansers?utm_source=pinterest&utm_medium=pin&utm_campaign=gemini_v4b&utm_content=v4b-002",
+    "image_path": "/Users/kapi7/satellite-websites/scripts/social/pin-images/mirai/gemini-composed/gemini-korean-cleansers.jpg",
+    "board": "Cleansing & Double Cleanse",
+    "site": "mirai",
+    "domain": "mirai-skin.com",
+    "category": "korean-cleansers",
+    "tags": [
+      "kbeauty",
+      "koreanbeauty",
+      "skincare"
+    ],
+    "scheduled_date": "2026-04-27",
+    "status": "posted",
+    "posted_at": "2026-04-27T12:15:17.105727",
+    "_meta": {
+      "theme": "korean-cleansers",
+      "kind": "gemini-v4b-bold-fonts"
+    }
   }
 ]

@@ -201,8 +201,30 @@ def crop_to_2_3(img: Image.Image) -> Image.Image:
     return img.resize((W, H), Image.LANCZOS)
 
 
+def _dm_sans(size: int, weight: int = 400, opsz: int | None = None) -> ImageFont.FreeTypeFont:
+    """Load DM Sans variable font at the requested weight + optical size.
+
+    mirai-skin.com loads DM Sans 400/500/600/700; we match those weights.
+    Optical size axis: 9 (text) → 40 (display); auto-pick by font size."""
+    f = ImageFont.truetype(FONT_DM_SANS, size)
+    if opsz is None:
+        opsz = 40 if size >= 36 else 14
+    try:
+        f.set_variation_by_axes([opsz, weight])
+    except Exception:
+        pass
+    return f
+
+
 def overlay_text(canvas: Image.Image, theme: Theme) -> Image.Image:
-    """Add headline + CTA overlay matching mirai-skin.com vibe."""
+    """Add headline + CTA overlay matching mirai-skin.com typography.
+
+    Mirai uses DM Sans across the site:
+      - Heading: weight 700 (Bold)
+      - Subhead/Body: weight 500 (Medium) or 400 (Regular)
+      - Buttons / CTAs: weight 600 (Semibold)
+      - Letter-spacing: ~0 for body, slightly tightened for big display
+    """
     canvas = canvas.convert("RGB")
     # Soft cream wash on top 28% for legibility
     overlay = Image.new("RGBA", canvas.size, (0, 0, 0, 0))
@@ -216,15 +238,15 @@ def overlay_text(canvas: Image.Image, theme: Theme) -> Image.Image:
     canvas = rgba.convert("RGB")
     draw = ImageDraw.Draw(canvas)
 
-    kicker = ImageFont.truetype(FONT_DM_SANS, 22)
-    head = ImageFont.truetype(FONT_DM_SANS, 78)
-    sub = ImageFont.truetype(FONT_DM_SANS, 30)
-    cta_font = ImageFont.truetype(FONT_DM_SANS, 26)
+    kicker = _dm_sans(22, weight=600)        # uppercase semibold (matches mirai nav)
+    head = _dm_sans(82, weight=700)          # big bold display headline
+    sub = _dm_sans(30, weight=500)           # medium subhead
+    cta_font = _dm_sans(26, weight=600)      # semibold CTA (matches mirai buttons)
     PAD = 60
 
     draw.text((PAD, 50), "MIRAI · K-BEAUTY EDIT", fill=MIRAI_INK, font=kicker, spacing=2)
     draw.text((PAD, 100), theme.headline, fill=MIRAI_INK, font=head)
-    draw.text((PAD, 192), theme.subhead, fill=MIRAI_INK, font=sub)
+    draw.text((PAD, 200), theme.subhead, fill=MIRAI_INK, font=sub)
 
     cta_text = f"{theme.cta}  »"
     bbox = draw.textbbox((0, 0), cta_text, font=cta_font)
