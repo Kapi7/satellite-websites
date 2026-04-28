@@ -82,3 +82,31 @@ Adjust the path if the repo lives elsewhere. Env vars for Telegram are loaded fr
 - **Phase 2**: add `seo-indexer` (IndexNow + Bing + GSC sitemap resubmit) and `seo-ahrefs-researcher` (KW volume / backlink checks).
 - **Phase 3**: writer subagents per persona (ava-chen, mina-park, nadia-okafor, james-reeves, …) orchestrated from `cluster-architect` briefs.
 - **Phase 4**: PR-gate workflow — writers open a draft PR, `seo-auditor` reviews, only passing articles auto-merge.
+
+## Mac Mini auto-sync (installed 2026-04-28)
+
+Mac Mini at `david@davids-mac-mini.local` (user `agentdavid`) holds the repo
+at `/Users/agentdavid/mirai-seo/satellite-websites` and auto-pulls from
+`origin/main` every 30 minutes via launchd.
+
+**What's installed:**
+- `/Users/agentdavid/mirai-seo/sync-satellite.sh` — pulls + resets platform-
+  specific package-lock drift
+- `~/Library/LaunchAgents/com.satellite-websites.sync.plist` — runs the
+  sync every 1800 s, logs to `~/mirai/logs/satellite-sync.log`
+
+**To verify it's running:**
+```bash
+ssh david@davids-mac-mini.local "launchctl list | grep satellite"
+ssh david@davids-mac-mini.local "tail -20 ~/mirai/logs/satellite-sync.log"
+```
+
+**To manually sync now:**
+```bash
+ssh david@davids-mac-mini.local "bash /Users/agentdavid/mirai-seo/sync-satellite.sh"
+```
+
+**Note:** The Mac Mini does NOT run satellite-websites cron jobs. All daily
+article publishing happens via GitHub Actions (`daily-publish.yml`). The
+Mac Mini just keeps a fresh checkout for ad-hoc local work.
+
