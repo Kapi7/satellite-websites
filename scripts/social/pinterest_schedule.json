@@ -3036,8 +3036,8 @@
       "pdrn"
     ],
     "scheduled_date": "2026-04-27T10:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "failed",
+    "posted_at": "2026-04-28T17:21:02.874426",
     "_meta": {
       "theme": "pdrn-serums",
       "variant": 1,
