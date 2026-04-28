@@ -3085,7 +3085,8 @@
       "k-beauty comparison"
     ],
     "scheduled_date": "2026-04-28",
-    "status": "pending"
+    "status": "posted",
+    "posted_at": "2026-04-28T17:37:58.738902"
   },
   {
     "id": 130,
@@ -3106,7 +3107,8 @@
       "healthy snacking"
     ],
     "scheduled_date": "2026-04-28",
-    "status": "pending"
+    "status": "posted",
+    "posted_at": "2026-04-28T17:38:54.559947"
   },
   {
     "id": "01c54c49",
