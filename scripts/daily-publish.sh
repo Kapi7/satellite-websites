@@ -182,16 +182,41 @@ for article in \
     break
   fi
 done
-# Fallback: alphabetical for any remaining drafts
-if [ $PUBLISHED -lt 3 ] && [ -d build-coded/src/content/blog/en ]; then
-  for article in build-coded/src/content/blog/en/*.mdx; do
+# Fallback: alphabetical for any remaining drafts (when curated lists exhausted).
+# Each site falls back independently so cosmetics, wellness, and build-coded each
+# get one published per day even after their priority lists are drained.
+fallback_publish() {
+  local site_dir="$1"
+  local site_label="$2"
+  local site_glob="$site_dir/src/content/blog/en/*.mdx"
+  for article in $site_glob; do
     [ -f "$article" ] || continue
     if grep -q "^draft: true" "$article"; then
-      publish_article "$article" "Build Coded"
+      publish_article "$article" "$site_label"
       PUBLISHED=$((PUBLISHED + 1))
-      break
+      return 0
     fi
   done
+  return 1
+}
+
+# Track which sites already published in the priority phase
+published_today() {
+  local site_dir="$1"
+  for f in $PUBLISHED_FILES; do
+    [[ "$f" == "$site_dir"/* ]] && return 0
+  done
+  return 1
+}
+
+if ! published_today cosmetics; then
+  fallback_publish cosmetics "Glow Coded" || echo "[cosmetics] no drafts available"
+fi
+if ! published_today wellness; then
+  fallback_publish wellness "Rooted Glow" || echo "[wellness] no drafts available"
+fi
+if ! published_today build-coded && [ -d build-coded/src/content/blog/en ]; then
+  fallback_publish build-coded "Build Coded" || echo "[build-coded] no drafts available"
 fi
 
 if [ $PUBLISHED -gt 0 ]; then
@@ -211,10 +236,15 @@ if [ $PUBLISHED -gt 0 ]; then
     if echo "$f" | grep -q "^build-coded/"; then BUILD_CODED_TOUCHED=1; break; fi
   done
   if [ "$BUILD_CODED_TOUCHED" = "1" ] && [ -d build-coded ]; then
-    echo "[build-coded] rebuilding and deploying via wrangler..."
-    (cd build-coded && npm run build 2>&1 | tail -5 && \
-      npx wrangler pages deploy dist --project-name=build-coded --commit-dirty=true 2>&1 | tail -5) \
-      || echo "[build-coded] deploy failed (see logs)"
+    if [ -z "${CLOUDFLARE_API_TOKEN:-}" ]; then
+      echo "[build-coded] CLOUDFLARE_API_TOKEN not set — skipping wrangler deploy (run locally or add repo secret)"
+    else
+      echo "[build-coded] installing deps, building, deploying via wrangler..."
+      (cd build-coded && npm ci --silent 2>&1 | tail -3 && \
+        npm run build 2>&1 | tail -5 && \
+        npx wrangler pages deploy dist --project-name=build-coded --commit-dirty=true 2>&1 | tail -5) \
+        || echo "[build-coded] deploy failed (see logs)"
+    fi
   fi
 
   if [ -f scripts/submit-indexnow.sh ]; then
