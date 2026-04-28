@@ -3127,8 +3127,8 @@
       "sleeping"
     ],
     "scheduled_date": "2026-04-28T10:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "posted",
+    "posted_at": "2026-04-29T01:30:58.736921",
     "_meta": {
       "theme": "sleeping-masks",
       "variant": 2,
@@ -3176,7 +3176,8 @@
       "korean skincare"
     ],
     "scheduled_date": "2026-04-29",
-    "status": "pending"
+    "status": "posted",
+    "posted_at": "2026-04-29T01:32:00.031431"
   },
   {
     "id": 132,
@@ -3197,7 +3198,8 @@
       "high protein"
     ],
     "scheduled_date": "2026-04-29",
-    "status": "pending"
+    "status": "posted",
+    "posted_at": "2026-04-29T01:32:58.138917"
   },
   {
     "id": "037cd7f3",
