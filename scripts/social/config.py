@@ -131,10 +131,10 @@ REDDIT_MAX_PER_DAY = 50
 # gets its own dedicated Pinterest account.
 PINTEREST_MAX_PER_DAY = 3
 PINTEREST_DAILY_LIMITS = {
-    "cosmetics": 1,
-    "wellness": 1,
+    "cosmetics": 3,
+    "wellness": 3,
     "build-coded": 0,  # paused — no dedicated Pinterest account yet
-    "mirai": 1,
+    "mirai": 3,
 }
 
 # Pinterest UTM parameters for mirai pins (so GA4 attributes Pinterest traffic)
