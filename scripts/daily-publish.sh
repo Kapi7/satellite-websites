@@ -35,13 +35,21 @@ PUBLISHED=0
 PUBLISHED_FILES=""
 ENGLISH_TO_PUBLISH=""
 
-# Helper: remove draft: true from a file (cross-platform sed)
+# Helper: remove draft: true from a file AND set date to today.
+# We rewrite the date because gen_articles_batch.py stagger-dates drafts into
+# the future (date: today+i for entry i) — Astro's content filter excludes
+# `data.date > now` so future-dated articles never render. Forcing date=today
+# at undraft time means a freshly-published article shows up immediately.
 undraft() {
   local f="$1"
+  local today
+  today=$(date +%Y-%m-%d)
   if [[ "$OSTYPE" == darwin* ]]; then
     sed -i '' '/^draft: true$/d' "$f"
+    sed -i '' "s/^date: .*/date: ${today}/" "$f"
   else
     sed -i '/^draft: true$/d' "$f"
+    sed -i "s/^date: .*/date: ${today}/" "$f"
   fi
 }
 
