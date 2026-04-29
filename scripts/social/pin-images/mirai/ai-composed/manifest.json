@@ -1,0 +1,32 @@
+[
+  {
+    "theme": "korean-sunscreens-oily-skin",
+    "image_path": "/Users/kapi7/satellite-websites/scripts/social/pin-images/mirai/ai-composed/ai-korean-sunscreens-oily-skin.jpg",
+    "headline": "Korean Sunscreens",
+    "subhead": "that don't leave a white cast",
+    "url": "https://mirai-skin.com/collections/sun-protection",
+    "cta": "Shop the edit at Mirai",
+    "products": [
+      {
+        "handle": "innisfree-vita-c-tone-up-sunscreen-spf50-pa-50ml",
+        "title": "innisfree Vita C Tone Up Sunscreen SPF50+ PA++++ 50ml",
+        "vendor": "innisfree"
+      },
+      {
+        "handle": "beauty-of-joseon-matte-sun-stick-mugwort-camelia-18g-spf50-pa-x-2ea-double-set",
+        "title": "[Beauty of Joseon] Matte sun stick : Mugwort + Camelia 18g (SPF50+ PA++++) X 2EA [DOUBLE SET]",
+        "vendor": "Beauty of Joseon"
+      },
+      {
+        "handle": "k-secret-seoul-1988-sun-collagen-complex-7-plum-50ml",
+        "title": "K-SECRET SEOUL 1988 SUN : COLLAGEN COMPLEX 7 + PLUM 50ml",
+        "vendor": "K-SECRET"
+      },
+      {
+        "handle": "tocobo-cica-cooling-sun-stick-spf50-pa-18g",
+        "title": "TOCOBO Cica Cooling Sun Stick SPF50+ PA++++ 18g",
+        "vendor": "TOCOBO"
+      }
+    ]
+  }
+]

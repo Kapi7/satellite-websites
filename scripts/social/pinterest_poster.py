@@ -57,7 +57,22 @@ def log(msg):
 
 def get_due_pins(schedule):
     today = datetime.now().date().isoformat()
-    return [p for p in schedule if p["status"] == "pending" and p["scheduled_date"] <= today]
+    # Dedup guard: skip pending pins whose (site, title, image basename) already appears as posted
+    import os
+    posted_keys = {
+        (x.get("site",""), x.get("title",""), os.path.basename(x.get("image_path","")))
+        for x in schedule if x.get("status") == "posted"
+    }
+    out = []
+    for p in schedule:
+        if p.get("status") != "pending": continue
+        if p.get("scheduled_date","") > today: continue
+        key = (p.get("site",""), p.get("title",""), os.path.basename(p.get("image_path","")))
+        if key in posted_keys:
+            # silent skip — schedule cleanup happens in caller
+            continue
+        out.append(p)
+    return out
 
 
 def get_due_pins_capped(schedule):
