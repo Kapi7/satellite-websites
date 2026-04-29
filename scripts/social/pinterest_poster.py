@@ -210,9 +210,23 @@ def login_pinterest(page, email, password, site_key):
         return False
 
 
+SITE_EXPECTED_DOMAIN = {
+    "mirai": "mirai-skin.com",
+    "cosmetics": "glow-coded.com",
+    "wellness": "rooted-glow.com",
+    "build-coded": "build-coded.com",
+}
+
+
 def post_pin(page, pin, dry_run=False):
     """Create a single pin on Pinterest."""
     log(f"Posting pin #{pin['id']}: {pin['title'][:50]}...")
+
+    # ── URL/site validation guard ──
+    expected = SITE_EXPECTED_DOMAIN.get(pin.get("site", ""), "")
+    if expected and expected not in pin.get("url", ""):
+        log(f"  ABORT: pin.site={pin.get('site')} but URL '{pin.get('url','')[:80]}' does not contain expected domain '{expected}'. Refusing to post.")
+        return False
 
     if dry_run:
         log(f"  [DRY RUN] Board '{pin['board']}' | {Path(pin['image_path']).name}")
