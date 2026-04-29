@@ -193,10 +193,11 @@ def print_ahrefs(domain):
     # Backlinks
     bl = ahrefs_get("site-explorer/backlinks-stats", {"target": domain, "date": TODAY_STR})
     if bl:
-        stats = bl.get("metrics", bl)
-        live = stats.get("live", "?")
-        ref = stats.get("live_refdomains", stats.get("refdomains", "?"))
-        print(f"  Backlinks: {fmt_num(live) if isinstance(live, (int,float)) else live} live  |  Ref domains: {fmt_num(ref) if isinstance(ref, (int,float)) else ref}")
+        stats = bl.get("metrics") or bl
+        if isinstance(stats, dict):
+            live = stats.get("live", "?")
+            ref = stats.get("live_refdomains", stats.get("refdomains", "?"))
+            print(f"  Backlinks: {fmt_num(live) if isinstance(live, (int,float)) else live} live  |  Ref domains: {fmt_num(ref) if isinstance(ref, (int,float)) else ref}")
 
     # Top organic keywords
     ok = ahrefs_get("site-explorer/organic-keywords", {

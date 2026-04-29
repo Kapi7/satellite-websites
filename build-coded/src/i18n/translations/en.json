@@ -163,7 +163,11 @@
   "newsletter": {
     "preTitle": "The Weekly Build",
     "title": "Get the Blueprint",
-    "description": "New project guides, tool reviews, and workshop tips every week. No fluff."
+    "description": "New project guides, tool reviews, and workshop tips every week. No fluff.",
+    "msgSuccess": "Welcome! You are now subscribed.",
+    "msgAlreadySubscribed": "You are already subscribed!",
+    "msgError": "Something went wrong. Please try again.",
+    "msgNetwork": "Network error. Please try again."
   },
   "article": {
     "editorial": "Build Coded Editorial",
@@ -200,7 +204,34 @@
     "label": "About",
     "title": "About Us",
     "heading": "Built in our workshop, not on press releases.",
-    "description": "DIY enthusiasts writing about what we actually build, test, and believe in."
+    "description": "DIY enthusiasts writing about what we actually build, test, and believe in.",
+    "mastKicker": "MASTHEAD",
+    "titleLine1": "Three people,",
+    "titleLine2": "one shop,",
+    "titleLine3": "no sponsors.",
+    "intro": "Build Coded started in a garage in Portland in 2024. We write project plans we'd want to follow \u2014 the kind that tell you when to stop, not just start.",
+    "whatWePromise": "WHAT WE PROMISE",
+    "promise1": "We buy every tool we review. No loaners, no freebies.",
+    "promise2": "We build every project ourselves, at least twice.",
+    "promise3": "Amazon links earn us a commission. Prices are the same.",
+    "promise4": "No AI-generated articles. A person wrote this \u2014 by hand.",
+    "theTeam": "THE TEAM",
+    "roleEditor": "Editor \u00b7 Woodworking",
+    "roleHome": "Staff writer \u00b7 Home improvement",
+    "roleElectronics": "Staff writer \u00b7 Electronics",
+    "bioRafe": "12 years carpentry. Lost the tip of one finger so you don't have to.",
+    "bioMae": "Flipped three houses. Speaks fluent permit office.",
+    "bioJun": "EE degree, garage full of soldering irons. Blows up capacitors on purpose."
+  },
+  "departments": {
+    "description": "Browse every plan, review, and guide by department \u2014 woodworking, home improvement, electronics, and crafts.",
+    "lede": "Every article on Build Coded belongs to one of four workbenches. Pick yours, or dig into all of them.",
+    "benches": "BENCHES",
+    "viewAll": "VIEW ALL",
+    "descWoodworking": "saw \u00b7 joinery \u00b7 finish",
+    "descHome": "repair \u00b7 paint \u00b7 tile",
+    "descElectronics": "arduino \u00b7 solder \u00b7 pcb",
+    "descCrafts": "cast \u00b7 sew \u00b7 print"
   },
   "privacy": {
     "label": "Legal",

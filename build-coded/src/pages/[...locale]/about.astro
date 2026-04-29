@@ -2,54 +2,232 @@
 import Base from '../../layouts/Base.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
-import { getCollection, render } from 'astro:content';
 import { locales, defaultLocale, type Locale } from '../../i18n/locales';
 import { t } from '../../i18n/utils';
 
 export async function getStaticPaths() {
-  const paths: { params: { locale?: string }; props: { locale: Locale } }[] = [];
-
-  for (const l of locales) {
-    paths.push({
-      params: { locale: l === defaultLocale ? undefined : l },
-      props: { locale: l },
-    });
-  }
-
-  return paths;
+  return locales.map(l => ({
+    params: { locale: l === defaultLocale ? undefined : l },
+    props: { locale: l },
+  }));
 }
 
 const { locale } = Astro.props as { locale: Locale };
 
-const allPages = await getCollection('pages');
-const aboutPage = allPages.find(p => p.id.includes('about') && p.data.locale === locale)
-  || allPages.find(p => p.id.includes('about') && p.data.locale === 'en');
+const pageTitle = t(locale, 'about.title');
+const pageDesc = t(locale, 'about.description');
 
-let Content: any = null;
-let pageTitle = t(locale, 'about.title');
-let pageDesc = t(locale, 'about.description');
+const promises = [
+  t(locale, 'about.promise1'),
+  t(locale, 'about.promise2'),
+  t(locale, 'about.promise3'),
+  t(locale, 'about.promise4'),
+];
 
-if (aboutPage) {
-  const rendered = await render(aboutPage);
-  Content = rendered.Content;
-  pageTitle = aboutPage.data.title;
-  pageDesc = aboutPage.data.description;
-}
+const team = [
+  { n: 'Rafe Connors', r: t(locale, 'about.roleEditor'), bio: t(locale, 'about.bioRafe') },
+  { n: 'Mae Delgado', r: t(locale, 'about.roleHome'), bio: t(locale, 'about.bioMae') },
+  { n: 'Jun Ishida', r: t(locale, 'about.roleElectronics'), bio: t(locale, 'about.bioJun') },
+];
+
+const personSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'AboutPage',
+  name: pageTitle,
+  description: pageDesc,
+  url: 'https://build-coded.com/about/',
+  publisher: {
+    '@type': 'Organization',
+    name: 'Build Coded',
+    url: 'https://build-coded.com',
+  },
+});
 ---
 
-<Base title={pageTitle} description={pageDesc} locale={locale}>
+<Base title={pageTitle} description={pageDesc} locale={locale} jsonLd={[personSchema]}>
   <Header locale={locale} />
   <main class="flex-1">
-    <article class="bcd-tool-wrap">
-      <div class="bcd-kicker">&sect; {t(locale, 'about.label').toUpperCase()} &middot; EST. 2024</div>
-      <h1 class="bcd-tool-title">DIY, <em>honestly.</em></h1>
-      <p class="bcd-tool-lede">{t(locale, 'about.description')}</p>
-      <div class="prose" style="max-width: 760px; padding-top: 20px; border-top: 1.5px solid var(--ink); margin-top: 24px;">
-        {Content ? <Content /> : (
-          <p>{pageDesc}</p>
-        )}
+    <!-- Masthead band -->
+    <section class="bca-mast">
+      <div class="bca-mast-inner">
+        <div class="mono bca-mast-kicker">— {t(locale, 'about.mastKicker')}</div>
+        <h1 class="bca-mast-title">
+          {t(locale, 'about.titleLine1')}<br/>
+          <em>{t(locale, 'about.titleLine2')}</em><br/>
+          {t(locale, 'about.titleLine3')}
+        </h1>
       </div>
-    </article>
+    </section>
+
+    <div class="bca-body">
+      <p class="bca-intro">{t(locale, 'about.intro')}</p>
+
+      <div class="mono bca-section-kicker">&#9670; {t(locale, 'about.whatWePromise')}</div>
+      <div class="bca-promises">
+        {promises.map((txt, i) => (
+          <div class="bca-promise">
+            <span class="mono bca-promise-n">0{i + 1}</span>
+            <span class="bca-promise-txt">{txt}</span>
+          </div>
+        ))}
+      </div>
+
+      <div class="mono bca-section-kicker">&#9670; {t(locale, 'about.theTeam')}</div>
+      <div class="bca-team">
+        {team.map((p) => (
+          <div class="bca-person">
+            <div class="bca-avatar">{p.n.split(' ').map(n => n[0]).join('')}</div>
+            <div class="bca-person-body">
+              <div class="bca-person-name">{p.n}</div>
+              <div class="mono bca-person-role">{p.r}</div>
+              <div class="bca-person-bio">{p.bio}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
   </main>
-  <Footer locale={locale} />
+  <div class="bc-desktop-home">
+    <Footer locale={locale} />
+  </div>
 </Base>
+
+<style>
+  main { background: var(--paper-light); }
+  .bca-mast {
+    background: var(--paper-warm);
+    border-bottom: 1.5px solid var(--ink);
+    padding: 44px 0 36px;
+  }
+  .bca-mast-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+  .bca-mast-kicker {
+    color: var(--pencil);
+    margin-bottom: 12px;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .bca-mast-title {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: clamp(44px, 6.5vw, 72px);
+    line-height: 0.95;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin: 0;
+    text-transform: none;
+  }
+  .bca-mast-title em {
+    font-style: italic;
+    font-weight: 500;
+    color: var(--safety);
+  }
+
+  .bca-body {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 36px 32px 80px;
+  }
+  .bca-intro {
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--ink);
+    margin: 0 0 36px;
+  }
+  .bca-section-kicker {
+    color: var(--safety);
+    margin: 32px 0 14px;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .bca-promises {
+    display: grid;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .bca-promise {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 14px 16px;
+    border: 1.5px solid var(--ink);
+    border-radius: 2px;
+    background: var(--paper-light);
+  }
+  .bca-promise-n {
+    color: var(--safety);
+    flex-shrink: 0;
+    font-size: 11px;
+    font-weight: 600;
+    padding-top: 2px;
+  }
+  .bca-promise-txt {
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--ink);
+  }
+
+  .bca-team {
+    display: grid;
+    gap: 12px;
+  }
+  .bca-person {
+    display: flex;
+    gap: 14px;
+    padding: 16px;
+    background: var(--paper-light);
+    border: 1.5px solid var(--ink);
+    border-radius: 4px;
+  }
+  .bca-avatar {
+    width: 56px;
+    height: 56px;
+    background: var(--amber);
+    border: 1.5px solid var(--ink);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-heading);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--ink);
+    flex-shrink: 0;
+  }
+  .bca-person-body { flex: 1; min-width: 0; }
+  .bca-person-name {
+    font-family: var(--font-heading);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.1;
+  }
+  .bca-person-role {
+    color: var(--safety);
+    margin: 4px 0 8px;
+    font-size: 9.5px;
+    font-family: var(--font-mono);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .bca-person-bio {
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+
+  @media (max-width: 960px) {
+    .bca-mast { padding: 24px 0 20px; }
+    .bca-mast-inner { padding: 0 18px; }
+    .bca-body { padding: 24px 18px 40px; }
+    .bca-intro { font-size: 15px; }
+  }
+</style>
