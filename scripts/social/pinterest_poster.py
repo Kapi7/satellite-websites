@@ -307,29 +307,12 @@ def post_pin(page, pin, dry_run=False):
                 pass
 
             if not board_found:
-                # Click "Create board" at bottom of dropdown
-                try:
-                    create_el = page.locator(
-                        'button:has-text("Create board"), '
-                        'div:has-text("Create board"):visible'
-                    ).last
-                    create_el.click(force=True)
-                    human_delay(DELAY_MEDIUM)
-
-                    # Fill board name in the creation dialog
-                    name_input = page.locator('input[id="boardEditName"], input[placeholder*="Places"]').first
-                    name_input.wait_for(state="visible", timeout=5000)
-                    name_input.fill(pin["board"])
-                    human_delay(DELAY_SHORT)
-
-                    page.locator('button:has-text("Create")').first.click(force=True)
-                    human_delay(DELAY_MEDIUM)
-                    board_found = True
-                    log(f"  Created board: {pin['board']}")
-                except Exception as e:
-                    log(f"  Board creation failed: {e}")
-                    page.keyboard.press("Escape")
-                    human_delay(DELAY_SHORT)
+                # Board does NOT exist on Pinterest. Refuse to publish to wrong board.
+                log(f"  ABORT: board '{pin['board']}' not found on Pinterest. Create it manually first.")
+                page.keyboard.press("Escape")
+                human_delay(DELAY_SHORT)
+                page.screenshot(path=str(DATA_DIR / f"pin-noboard-{pin['id']}.png"))
+                return False
 
             human_delay(DELAY_SHORT)
         except Exception as e:
