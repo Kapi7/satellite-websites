@@ -3,10 +3,32 @@ import { t, type Locale } from '../i18n/utils';
 
 interface Props {
   locale?: Locale;
+  compact?: boolean;
 }
 
-const { locale = 'en' } = Astro.props;
+const { locale = 'en', compact = false } = Astro.props;
 ---
+{compact ? (
+  <div class="newsletter-compact">
+    <p class="newsletter-compact-tagline">{t(locale, 'newsletter.tagline') || "Thursdays. One honest email. One routine we'd actually use."}</p>
+    <form class="newsletter-form newsletter-compact-form" data-locale={locale}>
+      <input type="email" placeholder={t(locale, 'footer.emailPlaceholder')} required class="newsletter-compact-input" />
+      <button type="submit" class="newsletter-compact-button">{t(locale, 'common.subscribe')}</button>
+      <p class="newsletter-msg newsletter-compact-msg"></p>
+    </form>
+    <style>
+      .newsletter-compact { width: 100%; box-sizing: border-box; }
+      .newsletter-compact-tagline { font-size: 12.5px; line-height: 1.5; margin: 0 0 14px; color: rgba(255,255,255,0.92); }
+      .newsletter-compact-form { display: flex; flex-direction: column; gap: 10px; }
+      .newsletter-compact-input { width: 100%; box-sizing: border-box; background: rgba(255,255,255,0.95); border: 1.5px solid var(--color-charcoal, #1a1513); border-radius: 999px; padding: 9px 14px; font-size: 12.5px; color: var(--color-charcoal, #1a1513); outline: none; }
+      .newsletter-compact-input::placeholder { color: rgba(26,21,19,0.5); }
+      .newsletter-compact-button { width: 100%; background: var(--color-charcoal, #1a1513); color: #fff; border: 1.5px solid var(--color-charcoal, #1a1513); border-radius: 999px; padding: 9px 14px; font-family: 'Cutive Mono', ui-monospace, monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; cursor: pointer; }
+      .newsletter-compact-button:hover { opacity: 0.85; }
+      .newsletter-compact-msg { font-size: 11px; margin: 4px 0 0; }
+      .newsletter-compact-msg:empty { display: none; }
+    </style>
+  </div>
+) : (
 <section class="relative my-16 overflow-hidden">
   <div class="bg-rose-50/60 rounded-2xl sm:rounded-[3rem] p-6 sm:p-8 md:p-14 border border-rose-200/30 relative overflow-hidden">
     <!-- Decorative circles -->
@@ -46,3 +68,4 @@ const { locale = 'en' } = Astro.props;
     </div>
   </div>
 </section>
+)}
