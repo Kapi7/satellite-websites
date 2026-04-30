@@ -1983,7 +1983,8 @@
       "recipe"
     ],
     "scheduled_date": "2026-04-14",
-    "status": "pending"
+    "status": "failed",
+    "posted_at": "2026-04-30T22:00:44.658553"
   },
   {
     "id": 94,
@@ -3288,7 +3289,8 @@
       "stress relief"
     ],
     "scheduled_date": "2026-04-30",
-    "status": "pending"
+    "status": "failed",
+    "posted_at": "2026-04-30T22:02:07.834031"
   },
   {
     "id": "04638ebf",
