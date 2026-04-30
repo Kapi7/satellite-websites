@@ -1,42 +1,42 @@
 {
-  "updated": "2026-04-29",
-  "period": "2026-03-30 to 2026-04-27",
+  "updated": "2026-04-30",
+  "period": "2026-03-31 to 2026-04-28",
   "trending": [
     {
       "slug": "snail-mucin-everything-you-need-to-know",
       "clicks": 1,
-      "impressions": 384,
-      "position": 40.3
+      "impressions": 380,
+      "position": 39.8
     },
     {
       "slug": "best-protein-powders-clean-natural",
       "clicks": 0,
-      "impressions": 279,
-      "position": 70.2
+      "impressions": 322,
+      "position": 68.1
     },
     {
       "slug": "best-double-cleansing-products",
       "clicks": 0,
-      "impressions": 122,
-      "position": 53.4
-    },
-    {
-      "slug": "couch-to-5k-8-week-running-plan",
-      "clicks": 0,
-      "impressions": 45,
-      "position": 9.5
-    },
-    {
-      "slug": "complete-guide-ancestral-eating",
-      "clicks": 0,
-      "impressions": 51,
-      "position": 55.0
+      "impressions": 125,
+      "position": 53.5
     },
     {
       "slug": "nike-vomero-plus-review",
       "clicks": 1,
-      "impressions": 18,
-      "position": 10
+      "impressions": 25,
+      "position": 8.7
+    },
+    {
+      "slug": "couch-to-5k-8-week-running-plan",
+      "clicks": 0,
+      "impressions": 50,
+      "position": 11.2
+    },
+    {
+      "slug": "complete-guide-ancestral-eating",
+      "clicks": 0,
+      "impressions": 52,
+      "position": 56.1
     }
   ],
   "rising": []
