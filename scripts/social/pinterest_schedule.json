@@ -840,7 +840,8 @@
       "getting started"
     ],
     "scheduled_date": "2026-04-04",
-    "status": "pending"
+    "status": "failed",
+    "posted_at": "2026-04-30T18:31:22.251719"
   },
   {
     "id": 35,
@@ -861,7 +862,8 @@
       "evening skincare"
     ],
     "scheduled_date": "2026-04-04",
-    "status": "pending"
+    "status": "failed",
+    "posted_at": "2026-04-30T18:33:06.849693"
   },
   {
     "id": 36,
@@ -904,7 +906,8 @@
       "morning ritual"
     ],
     "scheduled_date": "2026-04-04",
-    "status": "pending"
+    "status": "failed",
+    "posted_at": "2026-04-30T18:34:58.424912"
   },
   {
     "id": 38,
@@ -3263,7 +3266,8 @@
       "no white cast"
     ],
     "scheduled_date": "2026-04-30",
-    "status": "pending"
+    "status": "failed",
+    "posted_at": "2026-04-30T18:30:44.170267"
   },
   {
     "id": 134,
