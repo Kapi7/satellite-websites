@@ -3218,8 +3218,8 @@
       "snail"
     ],
     "scheduled_date": "2026-04-30T10:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "failed",
+    "posted_at": "2026-05-01T01:30:40.089605",
     "_meta": {
       "theme": "snail-moisturizers",
       "variant": 1,
@@ -3309,8 +3309,8 @@
       "retinol"
     ],
     "scheduled_date": "2026-04-30T16:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "failed",
+    "posted_at": "2026-05-01T01:32:05.085252",
     "_meta": {
       "theme": "retinol-bakuchiol",
       "variant": 2,
@@ -3359,7 +3359,8 @@
       "k-beauty"
     ],
     "scheduled_date": "2026-05-01",
-    "status": "pending"
+    "status": "failed",
+    "posted_at": "2026-05-01T01:34:14.501610"
   },
   {
     "id": 136,
@@ -3380,7 +3381,8 @@
       "warming recipes"
     ],
     "scheduled_date": "2026-05-01",
-    "status": "pending"
+    "status": "failed",
+    "posted_at": "2026-05-01T01:34:55.315099"
   },
   {
     "id": "0bde4a53",
@@ -3399,8 +3401,8 @@
       "sleeping"
     ],
     "scheduled_date": "2026-04-30T22:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "failed",
+    "posted_at": "2026-05-01T01:33:35.365705",
     "_meta": {
       "theme": "sleeping-masks",
       "variant": 1,
