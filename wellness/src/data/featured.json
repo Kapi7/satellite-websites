@@ -1,42 +1,42 @@
 {
-  "updated": "2026-04-30",
-  "period": "2026-03-31 to 2026-04-28",
+  "updated": "2026-05-01",
+  "period": "2026-04-01 to 2026-04-29",
   "trending": [
-    {
-      "slug": "snail-mucin-everything-you-need-to-know",
-      "clicks": 1,
-      "impressions": 380,
-      "position": 39.8
-    },
     {
       "slug": "best-protein-powders-clean-natural",
       "clicks": 0,
-      "impressions": 322,
-      "position": 68.1
+      "impressions": 377,
+      "position": 67.0
     },
     {
       "slug": "best-double-cleansing-products",
       "clicks": 0,
-      "impressions": 125,
-      "position": 53.5
+      "impressions": 129,
+      "position": 54.3
     },
     {
       "slug": "nike-vomero-plus-review",
       "clicks": 1,
-      "impressions": 25,
-      "position": 8.7
+      "impressions": 29,
+      "position": 8.6
     },
     {
       "slug": "couch-to-5k-8-week-running-plan",
       "clicks": 0,
-      "impressions": 50,
-      "position": 11.2
+      "impressions": 55,
+      "position": 15.7
     },
     {
       "slug": "complete-guide-ancestral-eating",
       "clicks": 0,
-      "impressions": 52,
-      "position": 56.1
+      "impressions": 48,
+      "position": 54.8
+    },
+    {
+      "slug": "why-we-quit-seed-oils",
+      "clicks": 0,
+      "impressions": 28,
+      "position": 9.1
     }
   ],
   "rising": []
