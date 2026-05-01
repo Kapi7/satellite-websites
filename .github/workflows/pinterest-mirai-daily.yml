@@ -43,6 +43,15 @@ jobs:
           printf '%s' "$SESSION_B64" | base64 -d > scripts/social/browser-state/pinterest-mirai/state.json
           test -s scripts/social/browser-state/pinterest-mirai/state.json && echo "session ok"
 
+      - name: Map Mac-mini image paths into runner workspace
+        env:
+          WS: ${{ github.workspace }}
+        run: |
+          sudo mkdir -p /Users/agentdavid/mirai-seo /Users/kapi7
+          sudo ln -snf "$WS" /Users/agentdavid/mirai-seo/satellite-websites
+          sudo ln -snf "$WS" /Users/kapi7/satellite-websites
+          ls -la /Users/agentdavid/mirai-seo/satellite-websites/scripts/social/pin-images/mirai/pipeline-30day/ | head -5
+
       - name: Run pinterest poster
         env:
           PINTEREST_MIRAI_EMAIL: ${{ secrets.PINTEREST_MIRAI_EMAIL }}
