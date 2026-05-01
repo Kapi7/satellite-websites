@@ -3457,7 +3457,8 @@
       "niacinamide"
     ],
     "scheduled_date": "2026-05-02",
-    "status": "pending"
+    "status": "posted",
+    "posted_at": "2026-05-02T01:34:57.619397"
   },
   {
     "id": 138,
@@ -3765,8 +3766,8 @@
       "centella"
     ],
     "scheduled_date": "2026-05-02T10:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "posted",
+    "posted_at": "2026-05-02T01:30:43.433458",
     "_meta": {
       "theme": "centella-moisturizers",
       "variant": 1,
@@ -3853,8 +3854,8 @@
       "toners"
     ],
     "scheduled_date": "2026-05-02T16:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "failed",
+    "posted_at": "2026-05-02T01:32:19.406639",
     "_meta": {
       "theme": "toners-glass-skin",
       "variant": 1,
@@ -3942,8 +3943,8 @@
       "cleansers"
     ],
     "scheduled_date": "2026-05-02T22:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "posted",
+    "posted_at": "2026-05-02T01:34:15.031094",
     "_meta": {
       "theme": "cleansers-sensitive",
       "variant": 0,
