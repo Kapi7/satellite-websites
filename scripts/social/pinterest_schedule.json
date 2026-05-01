@@ -3497,8 +3497,8 @@
       "sunscreens"
     ],
     "scheduled_date": "2026-05-01T10:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "failed",
+    "posted_at": "2026-05-01T11:58:57.393503",
     "_meta": {
       "theme": "sunscreens-oily-acne",
       "variant": 1,
@@ -3587,8 +3587,8 @@
       "sunscreens"
     ],
     "scheduled_date": "2026-05-01T16:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "failed",
+    "posted_at": "2026-05-01T12:00:21.089454",
     "_meta": {
       "theme": "sunscreens-sensitive",
       "variant": 0,
@@ -3676,8 +3676,8 @@
       "centella"
     ],
     "scheduled_date": "2026-05-01T22:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "failed",
+    "posted_at": "2026-05-01T12:01:21.156205",
     "_meta": {
       "theme": "centella-moisturizers",
       "variant": 2,
