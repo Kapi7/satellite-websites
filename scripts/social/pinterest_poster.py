@@ -325,22 +325,33 @@ def post_pin(page, pin, dry_run=False):
             human_delay(DELAY_MEDIUM)
             time.sleep(2)
 
-            # Type to search for board
-            search_input = page.locator('[data-test-id="board-dropdown"] input, input[placeholder="Search"]')
+            # Type to search for board (helpful when many boards exist)
+            search_input = page.locator('[data-test-id="search-boards-field-container"] input, [data-test-id="board-dropdown"] input, input[placeholder*="Search"]')
             if search_input.count() > 0:
-                search_input.first.fill(pin["board"])
-                human_delay(DELAY_MEDIUM)
+                try:
+                    search_input.first.fill(pin["board"])
+                    human_delay(DELAY_MEDIUM)
+                except Exception:
+                    pass
 
-            # Try to find existing board
+            # Try to find existing board. Pinterest test-ids include the
+            # board name as a suffix: data-test-id="board-row-<Board Name>".
             board_found = False
-            try:
-                board_row = page.locator(f'[data-test-id="board-row"]:has-text("{pin["board"]}")').first
-                board_row.wait_for(state="visible", timeout=3000)
-                board_row.click(force=True)
-                board_found = True
-                log(f"  Board selected: {pin['board']}")
-            except Exception:
-                pass
+            board_row_selectors = [
+                f'[data-test-id="board-row-{pin["board"]}"]',
+                f'[data-test-id^="board-row-"]:has-text("{pin["board"]}")',
+                f'[data-test-id="board-row"]:has-text("{pin["board"]}")',  # legacy fallback
+            ]
+            for sel in board_row_selectors:
+                try:
+                    board_row = page.locator(sel).first
+                    board_row.wait_for(state="visible", timeout=3000)
+                    board_row.click(force=True)
+                    board_found = True
+                    log(f"  Board selected: {pin['board']}")
+                    break
+                except Exception:
+                    continue
 
             if not board_found:
                 # Board does NOT exist on Pinterest. Refuse to publish to wrong board.
