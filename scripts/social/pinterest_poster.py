@@ -133,18 +133,40 @@ def dismiss_cookie_banner(page):
 
 
 def is_logged_in(page):
-    try:
-        page.wait_for_selector(
-            '[data-test-id="header-avatar"], '
-            '[data-test-id="storyboard-create-header-heading"]',
-            timeout=5000,
-        )
+    """Multi-signal logged-in check — Pinterest's UI changes; try several
+    indicators and short-circuit on the first match. Mirrors
+    pinterest_relogin_telegram.is_logged_in for consistency."""
+    url = page.url or ""
+    if "/business/hub" in url or "/pin-creation-tool" in url:
         return True
-    except Exception:
-        url = page.url
-        if "/business/hub" in url or "/pin-creation-tool" in url:
-            return True
+    if "/login" in url:
         return False
+    indicators = [
+        '[data-test-id="header-avatar"]',
+        '[data-test-id="storyboard-create-header-heading"]',
+        'div[aria-label="Your Profile menu"]',
+        'div[data-test-id="header-profile"]',
+        'a[href*="/pin-creation-tool"]',
+        'a[href="/business/hub/"]',
+        '[aria-label="Search"]',
+    ]
+    for sel in indicators:
+        try:
+            if page.locator(sel).first.is_visible(timeout=1000):
+                return True
+        except Exception:
+            continue
+    try:
+        login_form_visible = (
+            page.locator('#email').first.is_visible(timeout=800)
+            and page.locator('#password').first.is_visible(timeout=800)
+        )
+        if not login_form_visible and "pinterest.com" in url:
+            return True
+    except Exception:
+        if "pinterest.com" in url and "/login" not in url:
+            return True
+    return False
 
 
 def login_pinterest(page, email, password, site_key):
