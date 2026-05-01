@@ -60,6 +60,15 @@ jobs:
         run: |
           python3 scripts/social/pinterest_poster.py --run-due --site mirai
 
+      - name: Upload debug screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pinterest-mirai-debug-${{ github.run_id }}
+          path: scripts/social/data/*.png
+          if-no-files-found: ignore
+          retention-days: 7
+
       - name: Commit schedule status updates
         run: |
           if git diff --quiet scripts/social/pinterest_schedule.json; then
