@@ -3497,8 +3497,7 @@
       "sunscreens"
     ],
     "scheduled_date": "2026-05-01T10:00:00",
-    "status": "failed",
-    "posted_at": "2026-05-01T11:58:57.393503",
+    "status": "pending",
     "_meta": {
       "theme": "sunscreens-oily-acne",
       "variant": 1,
@@ -3525,7 +3524,8 @@
           "vendor": "Beauty of Joseon"
         }
       ]
-    }
+    },
+    "last_error": "RESET 2026-05-01: 'board not found' in poster UI \u2014 boards exist (4+ prior posts) but selector/session detection failed on GHA. Needs investigation: relogin or selector fix."
   },
   {
     "id": 139,
@@ -3587,8 +3587,7 @@
       "sunscreens"
     ],
     "scheduled_date": "2026-05-01T16:00:00",
-    "status": "failed",
-    "posted_at": "2026-05-01T12:00:21.089454",
+    "status": "pending",
     "_meta": {
       "theme": "sunscreens-sensitive",
       "variant": 0,
@@ -3615,7 +3614,8 @@
           "vendor": "Dr.Ceuracle"
         }
       ]
-    }
+    },
+    "last_error": "RESET 2026-05-01: 'board not found' in poster UI \u2014 boards exist (4+ prior posts) but selector/session detection failed on GHA. Needs investigation: relogin or selector fix."
   },
   {
     "id": 141,
@@ -3676,8 +3676,7 @@
       "centella"
     ],
     "scheduled_date": "2026-05-01T22:00:00",
-    "status": "failed",
-    "posted_at": "2026-05-01T12:01:21.156205",
+    "status": "pending",
     "_meta": {
       "theme": "centella-moisturizers",
       "variant": 2,
@@ -3704,7 +3703,8 @@
           "vendor": "Anua"
         }
       ]
-    }
+    },
+    "last_error": "RESET 2026-05-01: 'board not found' in poster UI \u2014 boards exist (4+ prior posts) but selector/session detection failed on GHA. Needs investigation: relogin or selector fix."
   },
   {
     "id": 143,
