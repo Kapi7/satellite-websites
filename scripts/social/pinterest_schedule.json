@@ -3218,8 +3218,8 @@
       "snail"
     ],
     "scheduled_date": "2026-04-30T10:00:00",
-    "status": "pending",
-    "posted_at": "2026-05-01T01:30:40.089605",
+    "status": "failed",
+    "posted_at": "2026-05-01T11:50:56.557425",
     "_meta": {
       "theme": "snail-moisturizers",
       "variant": 1,
@@ -3310,8 +3310,8 @@
       "retinol"
     ],
     "scheduled_date": "2026-04-30T16:00:00",
-    "status": "pending",
-    "posted_at": "2026-05-01T01:32:05.085252",
+    "status": "failed",
+    "posted_at": "2026-05-01T11:52:41.538409",
     "_meta": {
       "theme": "retinol-bakuchiol",
       "variant": 2,
@@ -3339,7 +3339,7 @@
         }
       ]
     },
-    "last_error": "RESET 2026-05-01: previous attempt failed (likely Pinterest session expired)."
+    "last_error": "post-pin-exception: TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.pinterest.com/pin-creation-tool/\", waiting until \"load\"\n"
   },
   {
     "id": 135,
@@ -3405,8 +3405,8 @@
       "sleeping"
     ],
     "scheduled_date": "2026-04-30T22:00:00",
-    "status": "pending",
-    "posted_at": "2026-05-01T01:33:35.365705",
+    "status": "failed",
+    "posted_at": "2026-05-01T11:53:43.197556",
     "_meta": {
       "theme": "sleeping-masks",
       "variant": 1,
