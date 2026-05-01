@@ -82,8 +82,6 @@ ping piserver.local
 
 ```bash
 ssh youruser@piserver.local
-```
-
 ### Ενημέρωσε τα Πάντα
 
 ```bash
@@ -147,8 +145,6 @@ UUID=your-uuid-here /mnt/storage ext4 defaults,nofail 0 2
 ```bash
 sudo mkdir -p /mnt/storage/{shared,media,backups}
 sudo chown -R youruser:youruser /mnt/storage
-```
-
 ## Βήμα 4: Ρύθμιση Samba για File Sharing
 
 Το Samba σου επιτρέπει να έχεις πρόσβαση σε αρχεία από υπολογιστές Windows, Mac και Linux στο δίκτυό σου.
@@ -191,8 +187,6 @@ sudo smbpasswd -a youruser
 
 ```bash
 sudo systemctl restart smbd
-```
-
 ### Πρόσβαση από Άλλες Συσκευές
 
 - **Windows:** Άνοιξε το File Explorer, πληκτρολόγησε `\\piserver.local` στη γραμμή διευθύνσεων.
@@ -211,8 +205,6 @@ echo "deb [signed-by=/usr/share/keyrings/plex-archive-keyring.gpg] https://downl
 # Install
 sudo apt update
 sudo apt install plexmediaserver -y
-```
-
 ### Ρύθμιση Plex
 
 1. Άνοιξε το `http://piserver.local:32400/web` σε ένα browser.
@@ -226,8 +218,6 @@ sudo apt install plexmediaserver -y
 ```
 /mnt/storage/media/movies/Movie Name (Year)/Movie Name (Year).mkv
 /mnt/storage/media/tv/Show Name/Season 01/Show Name - S01E01.mkv
-```
-
 ## Βήμα 6: Εγκατάσταση Pi-hole για Ad Blocking σε Όλο το Δίκτυο
 
 Το Pi-hole λειτουργεί ως DNS server για ολόκληρο το δίκτυό σου, μπλοκάροντας διαφημίσεις και trackers πριν καν φορτώσουν. Κάθε συσκευή στο δίκτυό σου ωφελείται — συμπεριλαμβανομένων τηλεφώνων, smart TV και συσκευών IoT στις οποίες δεν μπορείς να εγκαταστήσεις ad blocker.
@@ -246,8 +236,6 @@ curl -sSL https://install.pi-hole.net | bash
 
 ```bash
 pihole -a -p
-```
-
 ### Κατεύθυνε το Δίκτυό σου στο Pi-hole
 
 Η πιο εύκολη μέθοδος: συνδέσου στον router σου και όρισε τον primary DNS server στην IP address του Pi σου. Κάθε συσκευή στο δίκτυο θα χρησιμοποιεί αυτόματα το Pi-hole.
@@ -266,15 +254,11 @@ sudo ufw allow 32400/tcp    # Plex
 sudo ufw allow 53           # Pi-hole DNS
 sudo ufw allow 80/tcp       # Pi-hole web interface
 sudo ufw enable
-```
-
 ### Ενεργοποίησε Αυτόματες Ενημερώσεις Ασφαλείας
 
 ```bash
 sudo apt install unattended-upgrades -y
 sudo dpkg-reconfigure -plow unattended-upgrades
-```
-
 ### Ρύθμισε SSH Key Authentication (Προτείνεται)
 
 Από τον κύριο υπολογιστή σου:

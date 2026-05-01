@@ -82,8 +82,6 @@ Si ça ne fonctionne pas, vérifie la page d'administration de ton routeur pour 
 
 ```bash
 ssh tonutilisateur@piserver.local
-```
-
 ### Mets tout à jour
 
 ```bash
@@ -147,8 +145,6 @@ L'option `nofail` est importante — elle empêche le Pi de ne pas démarrer si 
 ```bash
 sudo mkdir -p /mnt/storage/{shared,media,backups}
 sudo chown -R tonutilisateur:tonutilisateur /mnt/storage
-```
-
 ## Étape 4 : Installation de Samba pour le partage de fichiers
 
 Samba te permet d'accéder à tes fichiers depuis des ordinateurs Windows, Mac et Linux sur ton réseau.
@@ -191,8 +187,6 @@ Redémarre Samba :
 
 ```bash
 sudo systemctl restart smbd
-```
-
 ### Accès depuis d'autres appareils
 
 - **Windows :** Ouvre l'Explorateur de fichiers, tape `\\piserver.local` dans la barre d'adresse.
@@ -211,8 +205,6 @@ echo "deb [signed-by=/usr/share/keyrings/plex-archive-keyring.gpg] https://downl
 # Installation
 sudo apt update
 sudo apt install plexmediaserver -y
-```
-
 ### Configuration de Plex
 
 1. Ouvre `http://piserver.local:32400/web` dans un navigateur.
@@ -226,8 +218,6 @@ sudo apt install plexmediaserver -y
 ```
 /mnt/storage/media/movies/Nom du film (Année)/Nom du film (Année).mkv
 /mnt/storage/media/tv/Nom de la série/Saison 01/Nom de la série - S01E01.mkv
-```
-
 ## Étape 6 : Installation de Pi-hole pour bloquer les pubs sur tout le réseau
 
 Pi-hole agit comme un serveur DNS pour tout ton réseau, bloquant les pubs et les traqueurs avant même qu'ils ne se chargent. Chaque appareil de ton réseau en bénéficie — y compris les téléphones, les smart TVs, et les appareils IoT sur lesquels tu ne peux pas installer de bloqueur de pub.
@@ -246,8 +236,6 @@ Après l'installation, note le mot de passe d'administration affiché à l'écra
 
 ```bash
 pihole -a -p
-```
-
 ### Indique à ton réseau de passer par Pi-hole
 
 La méthode la plus simple : connecte-toi à ton routeur et définis le serveur DNS principal à l'adresse IP de ton Pi. Chaque appareil du réseau utilisera automatiquement Pi-hole.
@@ -266,15 +254,11 @@ sudo ufw allow 32400/tcp    # Plex
 sudo ufw allow 53           # DNS Pi-hole
 sudo ufw allow 80/tcp       # Interface web Pi-hole
 sudo ufw enable
-```
-
 ### Active les mises à jour de sécurité automatiques
 
 ```bash
 sudo apt install unattended-upgrades -y
 sudo dpkg-reconfigure -plow unattended-upgrades
-```
-
 ### Configure l'authentification par clé SSH (recommandé)
 
 Depuis ton ordinateur principal :

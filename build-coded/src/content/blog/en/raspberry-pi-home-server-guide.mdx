@@ -83,8 +83,6 @@ If that does not resolve, check your router's admin page for the Pi's IP address
 
 ```bash
 ssh youruser@piserver.local
-```
-
 ### Update Everything
 
 ```bash
@@ -148,8 +146,6 @@ The `nofail` option is important — it prevents the Pi from failing to boot if 
 ```bash
 sudo mkdir -p /mnt/storage/{shared,media,backups}
 sudo chown -R youruser:youruser /mnt/storage
-```
-
 ## Step 4: Set Up Samba File Sharing
 
 Samba lets you access files from Windows, Mac, and Linux computers on your network.
@@ -192,8 +188,6 @@ Restart Samba:
 
 ```bash
 sudo systemctl restart smbd
-```
-
 ### Access from Other Devices
 
 - **Windows:** Open File Explorer, type `\\piserver.local` in the address bar.
@@ -212,8 +206,6 @@ echo "deb [signed-by=/usr/share/keyrings/plex-archive-keyring.gpg] https://downl
 # Install
 sudo apt update
 sudo apt install plexmediaserver -y
-```
-
 ### Configure Plex
 
 1. Open `http://piserver.local:32400/web` in a browser.
@@ -227,8 +219,6 @@ sudo apt install plexmediaserver -y
 ```
 /mnt/storage/media/movies/Movie Name (Year)/Movie Name (Year).mkv
 /mnt/storage/media/tv/Show Name/Season 01/Show Name - S01E01.mkv
-```
-
 ## Step 6: Install Pi-hole for Network-Wide Ad Blocking
 
 Pi-hole acts as a DNS server for your entire network, blocking ads and trackers before they even load. Every device on your network benefits — including phones, smart TVs, and IoT devices that you cannot install an ad blocker on.
@@ -247,8 +237,6 @@ After installation, note the admin password shown on screen, or set a new one:
 
 ```bash
 pihole -a -p
-```
-
 ### Point Your Network to Pi-hole
 
 The easiest method: log into your router and set the primary DNS server to your Pi's IP address. Every device on the network will automatically use Pi-hole.
@@ -267,15 +255,11 @@ sudo ufw allow 32400/tcp    # Plex
 sudo ufw allow 53           # Pi-hole DNS
 sudo ufw allow 80/tcp       # Pi-hole web interface
 sudo ufw enable
-```
-
 ### Enable Automatic Security Updates
 
 ```bash
 sudo apt install unattended-upgrades -y
 sudo dpkg-reconfigure -plow unattended-upgrades
-```
-
 ### Set Up SSH Key Authentication (Recommended)
 
 From your main computer:

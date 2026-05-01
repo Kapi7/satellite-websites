@@ -82,8 +82,6 @@ Als dat niet werkt, controleer dan de adminpagina van je router voor het IP-adre
 
 ```bash
 ssh youruser@piserver.local
-```
-
 ### Alles updaten
 
 ```bash
@@ -147,8 +145,6 @@ De `nofail` optie is belangrijk — het voorkomt dat de Pi niet opstart als de s
 ```bash
 sudo mkdir -p /mnt/storage/{shared,media,backups}
 sudo chown -R youruser:youruser /mnt/storage
-```
-
 ## Stap 4: Samba bestand delen instellen
 
 Samba laat je bestanden benaderen vanaf Windows-, Mac- en Linux-computers op je netwerk.
@@ -191,8 +187,6 @@ Herstart Samba:
 
 ```bash
 sudo systemctl restart smbd
-```
-
 ### Toegang vanaf andere apparaten
 
 - **Windows:** Open Verkenner, typ `\\piserver.local` in de adresbalk.
@@ -211,8 +205,6 @@ echo "deb [signed-by=/usr/share/keyrings/plex-archive-keyring.gpg] https://downl
 # Installeren
 sudo apt update
 sudo apt install plexmediaserver -y
-```
-
 ### Plex configureren
 
 1. Open `http://piserver.local:32400/web` in een browser.
@@ -226,8 +218,6 @@ sudo apt install plexmediaserver -y
 ```
 /mnt/storage/media/movies/Movie Name (Year)/Movie Name (Year).mkv
 /mnt/storage/media/tv/Show Name/Season 01/Show Name - S01E01.mkv
-```
-
 ## Stap 6: Pi-hole installeren voor netwerkbrede advertentieblokkering
 
 Pi-hole fungeert als een DNS-server voor je hele netwerk en blokkeert advertenties en trackers voordat ze geladen worden. Elk apparaat op je netwerk profiteert – inclusief telefoons, smart TV's en IoT-apparaten waarop je geen ad blocker kunt installeren.
@@ -246,8 +236,6 @@ Na de installatie, noteer het admin wachtwoord dat op het scherm wordt getoond, 
 
 ```bash
 pihole -a -p
-```
-
 ### Wijs je netwerk naar Pi-hole
 
 De makkelijkste methode: log in op je router en stel de primaire DNS-server in op het IP-adres van je Pi. Elk apparaat op het netwerk zal automatisch Pi-hole gebruiken.
@@ -266,15 +254,11 @@ sudo ufw allow 32400/tcp    # Plex
 sudo ufw allow 53           # Pi-hole DNS
 sudo ufw allow 80/tcp       # Pi-hole web interface
 sudo ufw enable
-```
-
 ### Automatische beveiligingsupdates inschakelen
 
 ```bash
 sudo apt install unattended-upgrades -y
 sudo dpkg-reconfigure -plow unattended-upgrades
-```
-
 ### SSH sleutelauthenticatie instellen (Aanbevolen)
 
 Vanaf je hoofdcomputer:

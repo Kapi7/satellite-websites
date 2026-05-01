@@ -15,8 +15,6 @@ estimatedTime: "3-5 hours"
 estimatedCost: "$60-120"
 hub: "diy-smart-home-on-a-budget"
 ---
----
-
 ## Зачем вообще нужен домашний сервер на Raspberry Pi?
 
 Знаете, Raspberry Pi потребляет всего около 5 ватт энергии. Это примерно доллар в месяц за электричество! А что вы получаете за эти копейки? Файловый сервер, медиастример, блокировщик рекламы для всей сети и вообще всё, что душе угодно. И всё это на крошечном компьютере размером с кредитку, который тихонько стоит где-нибудь в уголке.
@@ -84,8 +82,6 @@ ping piserver.local
 
 ```bash
 ssh ваше_имя_пользователя@piserver.local
-```
-
 ### Обновляем всё
 
 ```bash
@@ -149,8 +145,6 @@ UUID=ваш-uuid-здесь /mnt/storage ext4 defaults,nofail 0 2
 ```bash
 sudo mkdir -p /mnt/storage/{shared,media,backups}
 sudo chown -R ваше_имя_пользователя:ваше_имя_пользователя /mnt/storage
-```
-
 ## Шаг 4: Настраиваем Samba для обмена файлами
 
 Samba позволит вам получать доступ к файлам с компьютеров Windows, Mac и Linux в вашей сети.
@@ -193,8 +187,6 @@ sudo smbpasswd -a ваше_имя_пользователя
 
 ```bash
 sudo systemctl restart smbd
-```
-
 ### Доступ с других устройств
 
 - **Windows:** Откройте "Проводник", в адресной строке введите `\\piserver.local`.
@@ -213,8 +205,6 @@ echo "deb [signed-by=/usr/share/keyrings/plex-archive-keyring.gpg] https://downl
 # Устанавливаем
 sudo apt update
 sudo apt install plexmediaserver -y
-```
-
 ### Настраиваем Plex
 
 1. Откройте `http://piserver.local:32400/web` в браузере.
@@ -228,8 +218,6 @@ sudo apt install plexmediaserver -y
 ```
 /mnt/storage/media/movies/Название Фильма (Год)/Название Фильма (Год).mkv
 /mnt/storage/media/tv/Название Сериала/Сезон 01/Название Сериала - S01E01.mkv
-```
-
 ## Шаг 6: Устанавливаем Pi-hole для блокировки рекламы по всей сети
 
 Pi-hole работает как DNS-сервер для всей вашей сети, блокируя рекламу и трекеры еще до того, как они успеют загрузиться. Это выгодно всем устройствам в вашей сети — даже телефонам, смарт-телевизорам и IoT-гаджетам, на которые нельзя установить блокировщик.
@@ -248,8 +236,6 @@ curl -sSL https://install.pi-hole.net | bash
 
 ```bash
 pihole -a -p
-```
-
 ### Направляем вашу сеть на Pi-hole
 
 Самый простой способ: зайдите в настройки вашего роутера и установите основной DNS-сервер на IP-адрес вашего Pi. Тогда все устройства в сети автоматически начнут использовать Pi-hole.
@@ -268,15 +254,11 @@ sudo ufw allow 32400/tcp    # Plex
 sudo ufw allow 53           # Pi-hole DNS
 sudo ufw allow 80/tcp       # Pi-hole web interface
 sudo ufw enable
-```
-
 ### Включаем автоматические обновления безопасности
 
 ```bash
 sudo apt install unattended-upgrades -y
 sudo dpkg-reconfigure -plow unattended-upgrades
-```
-
 ### Настраиваем аутентификацию по SSH-ключам (рекомендуется)
 
 С вашего основного компьютера:

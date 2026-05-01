@@ -82,8 +82,6 @@ ping piserver.local
 
 ```bash
 ssh youruser@piserver.local
-```
-
 ### تحديث كل شيء
 
 ```bash
@@ -147,8 +145,6 @@ UUID=your-uuid-here /mnt/storage ext4 defaults,nofail 0 2
 ```bash
 sudo mkdir -p /mnt/storage/{shared,media,backups}
 sudo chown -R youruser:youruser /mnt/storage
-```
-
 ## الخطوة 4: إعداد مشاركة الملفات باستخدام Samba
 
 يتيح لك Samba الوصول إلى الملفات من أجهزة Windows و Mac و Linux على شبكتك.
@@ -191,8 +187,6 @@ sudo smbpasswd -a youruser
 
 ```bash
 sudo systemctl restart smbd
-```
-
 ### الوصول من الأجهزة الأخرى
 
 - **Windows:** افتح File Explorer، اكتب `\\piserver.local` في شريط العنوان.
@@ -211,8 +205,6 @@ echo "deb [signed-by=/usr/share/keyrings/plex-archive-keyring.gpg] https://downl
 # التثبيت
 sudo apt update
 sudo apt install plexmediaserver -y
-```
-
 ### تهيئة Plex
 
 1. افتح `http://piserver.local:32400/web` في متصفح.
@@ -226,8 +218,6 @@ sudo apt install plexmediaserver -y
 ```
 /mnt/storage/media/movies/Movie Name (Year)/Movie Name (Year).mkv
 /mnt/storage/media/tv/Show Name/Season 01/Show Name - S01E01.mkv
-```
-
 ## الخطوة 6: تثبيت Pi-hole لحظر الإعلانات على مستوى الشبكة
 
 يعمل Pi-hole كخادم DNS لشبكتك بأكملها، مما يحظر الإعلانات والمتتبعات قبل تحميلها. كل جهاز على شبكتك يستفيد — بما في ذلك الهواتف، وأجهزة التلفزيون الذكية، وأجهزة إنترنت الأشياء التي لا يمكنك تثبيت حظر إعلانات عليها.
@@ -246,8 +236,6 @@ curl -sSL https://install.pi-hole.net | bash
 
 ```bash
 pihole -a -p
-```
-
 ### توجيه شبكتك إلى Pi-hole
 
 الطريقة الأسهل: سجل الدخول إلى جهاز التوجيه الخاص بك وقم بتعيين خادم DNS الأساسي إلى عنوان IP الخاص بجهاز Pi. سيستخدم كل جهاز على الشبكة Pi-hole تلقائيًا.
@@ -266,15 +254,11 @@ sudo ufw allow 32400/tcp    # Plex
 sudo ufw allow 53           # Pi-hole DNS
 sudo ufw allow 80/tcp       # Pi-hole web interface
 sudo ufw enable
-```
-
 ### تمكين تحديثات الأمان التلقائية
 
 ```bash
 sudo apt install unattended-upgrades -y
 sudo dpkg-reconfigure -plow unattended-upgrades
-```
-
 ### إعداد مصادقة مفتاح SSH (موصى به)
 
 من جهاز الكمبيوتر الرئيسي الخاص بك:

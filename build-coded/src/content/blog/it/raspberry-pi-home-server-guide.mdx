@@ -82,8 +82,6 @@ Se non funziona, controlla la pagina di amministrazione del tuo router per trova
 
 ```bash
 ssh tuo_utente@piserver.local
-```
-
 ### Aggiorna tutto
 
 ```bash
@@ -147,8 +145,6 @@ L'opzione `nofail` è importante — evita che il Pi non riesca ad avviarsi se i
 ```bash
 sudo mkdir -p /mnt/storage/{shared,media,backups}
 sudo chown -R tuo_utente:tuo_utente /mnt/storage
-```
-
 ## Step 4: Configura la condivisione file con Samba
 
 Samba ti permette di accedere ai file da computer Windows, Mac e Linux sulla tua rete.
@@ -191,8 +187,6 @@ Riavvia Samba:
 
 ```bash
 sudo systemctl restart smbd
-```
-
 ### Accedi da altri dispositivi
 
 - **Windows:** Apri Esplora file, digita `\\piserver.local` nella barra degli indirizzi.
@@ -211,8 +205,6 @@ echo "deb [signed-by=/usr/share/keyrings/plex-archive-keyring.gpg] https://downl
 # Installa
 sudo apt update
 sudo apt install plexmediaserver -y
-```
-
 ### Configura Plex
 
 1. Apri `http://piserver.local:32400/web` in un browser.
@@ -226,8 +218,6 @@ sudo apt install plexmediaserver -y
 ```
 /mnt/storage/media/movies/Nome Film (Anno)/Nome Film (Anno).mkv
 /mnt/storage/media/tv/Nome Serie TV/Stagione 01/Nome Serie TV - S01E01.mkv
-```
-
 ## Step 6: Installa Pi-hole per il blocco degli annunci a livello di rete
 
 Pi-hole agisce come un server DNS per tutta la tua rete, bloccando annunci e tracker prima ancora che vengano caricati. Ogni dispositivo sulla tua rete ne beneficia — inclusi telefoni, smart TV e dispositivi IoT su cui non puoi installare un ad blocker.
@@ -246,8 +236,6 @@ Dopo l'installazione, prendi nota della password dell'admin mostrata sullo scher
 
 ```bash
 pihole -a -p
-```
-
 ### Punta la tua rete verso Pi-hole
 
 Il metodo più semplice: accedi al tuo router e imposta il server DNS primario sull'indirizzo IP del tuo Pi. Ogni dispositivo sulla rete userà automaticamente Pi-hole.
@@ -266,15 +254,11 @@ sudo ufw allow 32400/tcp    # Plex
 sudo ufw allow 53           # Pi-hole DNS
 sudo ufw allow 80/tcp       # Interfaccia web Pi-hole
 sudo ufw enable
-```
-
 ### Abilita aggiornamenti di sicurezza automatici
 
 ```bash
 sudo apt install unattended-upgrades -y
 sudo dpkg-reconfigure -plow unattended-upgrades
-```
-
 ### Imposta l'autenticazione con chiavi SSH (Consigliato)
 
 Dal tuo computer principale:

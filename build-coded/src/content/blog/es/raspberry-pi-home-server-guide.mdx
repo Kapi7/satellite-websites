@@ -15,7 +15,6 @@ estimatedTime: "3-5 hours"
 estimatedCost: "$60-120"
 hub: "diy-smart-home-on-a-budget"
 ---
-```mdx
 ## ¿Por qué montar un servidor doméstico en una Raspberry Pi?
 
 Una Raspberry Pi consume unos 5 vatios de energía. Eso es como un dólar al mes de luz. Por ese costo, te llevas un servidor de archivos, un centro de streaming multimedia, un bloqueador de anuncios para toda tu red y lo que se te ocurra correr — todo en una computadora del tamaño de una tarjeta de crédito que estará tranquilita en un rincón.
@@ -83,8 +82,6 @@ Si eso no funciona, revisa la página de administración de tu router para la di
 
 ```bash
 ssh youruser@piserver.local
-```
-
 ### Actualiza todo
 
 ```bash
@@ -148,8 +145,6 @@ La opción `nofail` es importante — evita que la Pi no arranque si el disco es
 ```bash
 sudo mkdir -p /mnt/storage/{shared,media,backups}
 sudo chown -R youruser:youruser /mnt/storage
-```
-
 ## Paso 4: Configura Samba para compartir archivos
 
 Samba te permite acceder a archivos desde computadoras Windows, Mac y Linux en tu red.
@@ -192,8 +187,6 @@ Reinicia Samba:
 
 ```bash
 sudo systemctl restart smbd
-```
-
 ### Accede desde otros dispositivos
 
 - **Windows:** Abre el Explorador de Archivos, escribe `\\piserver.local` en la barra de direcciones.
@@ -212,8 +205,6 @@ echo "deb [signed-by=/usr/share/keyrings/plex-archive-keyring.gpg] https://downl
 # Instala
 sudo apt update
 sudo apt install plexmediaserver -y
-```
-
 ### Configura Plex
 
 1. Abre `http://piserver.local:32400/web` en un navegador.
@@ -227,8 +218,6 @@ sudo apt install plexmediaserver -y
 ```
 /mnt/storage/media/movies/Nombre de la Película (Año)/Nombre de la Película (Año).mkv
 /mnt/storage/media/tv/Nombre del Show/Season 01/Nombre del Show - S01E01.mkv
-```
-
 ## Paso 6: Instala Pi-hole para bloquear anuncios en toda tu red
 
 Pi-hole funciona como un servidor DNS para toda tu red, bloqueando anuncios y rastreadores antes de que carguen. Todos los dispositivos de tu red se benefician — incluyendo teléfonos, Smart TVs y dispositivos IoT en los que no puedes instalar un bloqueador de anuncios.
@@ -247,8 +236,6 @@ Después de la instalación, anota la contraseña de administrador que aparece e
 
 ```bash
 pihole -a -p
-```
-
 ### Dirige tu red a Pi-hole
 
 El método más fácil: entra a la configuración de tu router y establece el servidor DNS principal a la dirección IP de tu Pi. Todos los dispositivos en la red usarán Pi-hole automáticamente.
@@ -267,15 +254,11 @@ sudo ufw allow 32400/tcp    # Plex
 sudo ufw allow 53           # DNS de Pi-hole
 sudo ufw allow 80/tcp       # Interfaz web de Pi-hole
 sudo ufw enable
-```
-
 ### Activa las actualizaciones de seguridad automáticas
 
 ```bash
 sudo apt install unattended-upgrades -y
 sudo dpkg-reconfigure -plow unattended-upgrades
-```
-
 ### Configura la autenticación por clave SSH (Recomendado)
 
 Desde tu computadora principal:
@@ -340,4 +323,3 @@ Una vez que la base esté lista, puedes añadir más servicios:
 - **Grafana + InfluxDB** — paneles de monitoreo para todos los datos de tu casa
 
 Una computadora de cinco vatios funcionando 24/7, sirviendo tus archivos, transmitiendo tus medios y bloqueando anuncios en toda tu red. Eso sí que es una tarde productiva.
-```

@@ -82,8 +82,6 @@ Falls das nicht funktioniert, überprüfe die Admin-Seite deines Routers auf die
 
 ```bash
 ssh youruser@piserver.local
-```
-
 ### Alles aktualisieren
 
 ```bash
@@ -147,8 +145,6 @@ Die Option `nofail` ist wichtig – sie verhindert, dass der Pi nicht booten kan
 ```bash
 sudo mkdir -p /mnt/storage/{shared,media,backups}
 sudo chown -R youruser:youruser /mnt/storage
-```
-
 ## Schritt 4: Samba-Dateifreigabe einrichten
 
 Mit Samba kannst du von Windows-, Mac- und Linux-Computern in deinem Netzwerk auf Dateien zugreifen.
@@ -191,8 +187,6 @@ Samba neu starten:
 
 ```bash
 sudo systemctl restart smbd
-```
-
 ### Zugriff von anderen Geräten
 
 -   **Windows:** Öffne den Datei-Explorer, gib `\\piserver.local` in die Adressleiste ein.
@@ -211,8 +205,6 @@ echo "deb [signed-by=/usr/share/keyrings/plex-archive-keyring.gpg] https://downl
 # Installieren
 sudo apt update
 sudo apt install plexmediaserver -y
-```
-
 ### Plex konfigurieren
 
 1.  Öffne `http://piserver.local:32400/web` in einem Browser.
@@ -226,8 +218,6 @@ sudo apt install plexmediaserver -y
 ```
 /mnt/storage/media/movies/Movie Name (Year)/Movie Name (Year).mkv
 /mnt/storage/media/tv/Show Name/Season 01/Show Name - S01E01.mkv
-```
-
 ## Schritt 6: Pi-hole für netzwerkweites Ad Blocking installieren
 
 Pi-hole fungiert als DNS-Server für dein gesamtes Netzwerk und blockiert Werbung und Tracker, noch bevor sie geladen werden. Jedes Gerät in deinem Netzwerk profitiert davon – einschließlich Smartphones, Smart-TVs und IoT-Geräte, auf denen du keinen Ad Blocker installieren kannst.
@@ -246,8 +236,6 @@ Notiere dir nach der Installation das auf dem Bildschirm angezeigte Admin-Passwo
 
 ```bash
 pihole -a -p
-```
-
 ### Dein Netzwerk auf Pi-hole umleiten
 
 Die einfachste Methode: Melde dich in deinem Router an und stelle den primären DNS-Server auf die IP-Adresse deines Pi ein. Jedes Gerät im Netzwerk wird Pi-hole automatisch nutzen.
@@ -266,15 +254,11 @@ sudo ufw allow 32400/tcp    # Plex
 sudo ufw allow 53           # Pi-hole DNS
 sudo ufw allow 80/tcp       # Pi-hole Webinterface
 sudo ufw enable
-```
-
 ### Automatische Sicherheitsupdates aktivieren
 
 ```bash
 sudo apt install unattended-upgrades -y
 sudo dpkg-reconfigure -plow unattended-upgrades
-```
-
 ### SSH-Schlüssel-Authentifizierung einrichten (Empfohlen)
 
 Von deinem Hauptcomputer aus:
