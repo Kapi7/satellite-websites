@@ -139,16 +139,65 @@ def find_code_field(page):
 
 
 def is_logged_in(page) -> bool:
-    try:
-        page.wait_for_selector(
-            '[data-test-id="header-avatar"], '
-            '[data-test-id="storyboard-create-header-heading"]',
-            timeout=4000,
-        )
+    """Multi-signal check — Pinterest UI changes a lot, so try several
+    indicators and short-circuit on the first that says "yes"."""
+    # 1. URL hints
+    url = page.url or ""
+    if "/business/hub" in url or "/pin-creation-tool" in url:
         return True
+    if "/login" in url:
+        return False
+
+    # 2. Specific logged-in elements (multiple selectors, any match)
+    indicators = [
+        '[data-test-id="header-avatar"]',
+        '[data-test-id="storyboard-create-header-heading"]',
+        'div[aria-label="Your Profile menu"]',
+        'div[data-test-id="header-profile"]',
+        'a[href*="/pin-creation-tool"]',
+        'a[href="/business/hub/"]',
+        '[aria-label="Search"]',
+        'svg[aria-label="Pinterest"][role="img"]',  # logo on logged-in home shell
+    ]
+    for sel in indicators:
+        try:
+            if page.locator(sel).first.is_visible(timeout=1000):
+                return True
+        except Exception:
+            continue
+
+    # 3. Negative check — login form absent means we're past it
+    try:
+        login_form_visible = page.locator('#email').first.is_visible(timeout=800) and \
+                             page.locator('#password').first.is_visible(timeout=800)
+        if not login_form_visible and "pinterest.com" in url:
+            return True
     except Exception:
-        url = page.url or ""
-        return "/business/hub" in url or "/pin-creation-tool" in url
+        # email/password locators throw when not on login page → likely logged in
+        if "pinterest.com" in url and "/login" not in url:
+            return True
+    return False
+
+
+def is_security_challenge(page) -> bool:
+    """Detect Pinterest's 'verify it's you' / email-code / captcha screens
+    that aren't the standard 2FA OTP."""
+    indicators = [
+        'text=/verify.*it.*you/i',
+        'text=/security check/i',
+        'text=/unusual activity/i',
+        'text=/we sent.*code.*email/i',
+        'text=/check your email/i',
+        'iframe[src*="captcha"]',
+        'iframe[title*="captcha" i]',
+    ]
+    for sel in indicators:
+        try:
+            if page.locator(sel).first.is_visible(timeout=500):
+                return True
+        except Exception:
+            continue
+    return False
 
 
 def login_one(account_key: str, headed: bool) -> bool:
@@ -191,7 +240,32 @@ def login_one(account_key: str, headed: bool) -> bool:
             time.sleep(0.5)
             page.locator('button[type="submit"]').first.click()
             print(f"[{account_key}] credentials submitted")
-            time.sleep(5)
+            # Wait longer — Pinterest can take 10-15s to redirect after submit
+            time.sleep(12)
+            try:
+                page.wait_for_load_state("networkidle", timeout=15000)
+            except Exception:
+                pass
+
+            # Always save a debug screenshot post-submit so we can see what
+            # Pinterest is actually showing if anything goes wrong.
+            screenshots_dir = Path("scripts/social/data") / "relogin-debug"
+            screenshots_dir.mkdir(parents=True, exist_ok=True)
+            try:
+                page.screenshot(path=str(screenshots_dir / f"{account_key}-postsubmit.png"))
+            except Exception:
+                pass
+
+            # Detect security-challenge screens BEFORE the OTP check —
+            # these need email codes or Telegram-bridged input
+            if is_security_challenge(page):
+                print(f"[{account_key}] security challenge detected (not standard OTP)")
+                tg_send(f"⚠️ Pinterest *{account_key}* served a security challenge "
+                        f"(verify-it's-you / email code). Need manual login.")
+                try:
+                    page.screenshot(path=str(screenshots_dir / f"{account_key}-challenge.png"))
+                except Exception:
+                    pass
 
             # Check whether we hit a 2FA / code challenge
             code_field = find_code_field(page)
@@ -222,15 +296,33 @@ def login_one(account_key: str, headed: bool) -> bool:
 
             # Verify success
             page.goto("https://www.pinterest.com/")
-            time.sleep(3)
+            try:
+                page.wait_for_load_state("networkidle", timeout=10000)
+            except Exception:
+                pass
+            time.sleep(4)
+            try:
+                page.screenshot(path=str(screenshots_dir / f"{account_key}-final.png"))
+            except Exception:
+                pass
+
             if not is_logged_in(page):
-                # Sometimes Pinterest lands on /business/hub or onboarding
                 cur = page.url or ""
-                if "/business/hub" in cur or "/pin-creation-tool" in cur:
-                    pass  # treat as logged in
-                else:
-                    print(f"[{account_key}] login verification failed (url={cur})")
-                    tg_send(f"❌ Pinterest *{account_key}* re-login failed (login not verified).")
+                # Final fallback — try business hub URL directly; if it loads
+                # without redirecting to /login, we're authenticated
+                try:
+                    page.goto("https://www.pinterest.com/business/hub/", timeout=15000)
+                    time.sleep(3)
+                    if "/login" not in (page.url or ""):
+                        print(f"[{account_key}] verified via business hub")
+                    else:
+                        print(f"[{account_key}] login verification failed (url={cur} → {page.url})")
+                        tg_send(f"❌ Pinterest *{account_key}* re-login failed — Pinterest didn't accept the login. "
+                                f"Check screenshots in workflow artifacts.")
+                        return False
+                except Exception as e:
+                    print(f"[{account_key}] hub probe error: {e}")
+                    tg_send(f"❌ Pinterest *{account_key}* re-login failed (verification timeout).")
                     return False
 
             ctx.storage_state(path=str(state_file))
