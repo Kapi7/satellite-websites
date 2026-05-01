@@ -3497,7 +3497,7 @@
       "sunscreens"
     ],
     "scheduled_date": "2026-05-01T10:00:00",
-    "status": "pending",
+    "status": "posted",
     "_meta": {
       "theme": "sunscreens-oily-acne",
       "variant": 1,
@@ -3525,7 +3525,7 @@
         }
       ]
     },
-    "last_error": "RESET 2026-05-01 18:50: retry with fixed board selector + fresh auth"
+    "posted_at": "2026-05-01T15:43:05.716550"
   },
   {
     "id": 139,
@@ -3587,7 +3587,7 @@
       "sunscreens"
     ],
     "scheduled_date": "2026-05-01T16:00:00",
-    "status": "pending",
+    "status": "posted",
     "_meta": {
       "theme": "sunscreens-sensitive",
       "variant": 0,
@@ -3615,7 +3615,7 @@
         }
       ]
     },
-    "last_error": "RESET 2026-05-01 18:50: retry with fixed board selector + fresh auth"
+    "posted_at": "2026-05-01T15:44:09.080105"
   },
   {
     "id": 141,
@@ -3676,7 +3676,7 @@
       "centella"
     ],
     "scheduled_date": "2026-05-01T22:00:00",
-    "status": "pending",
+    "status": "posted",
     "_meta": {
       "theme": "centella-moisturizers",
       "variant": 2,
@@ -3704,7 +3704,7 @@
         }
       ]
     },
-    "last_error": "RESET 2026-05-01 18:50: retry with fixed board selector + fresh auth"
+    "posted_at": "2026-05-01T15:46:14.290771"
   },
   {
     "id": 143,
