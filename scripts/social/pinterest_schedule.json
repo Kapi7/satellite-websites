@@ -3361,8 +3361,8 @@
       "k-beauty"
     ],
     "scheduled_date": "2026-05-01",
-    "status": "pending",
-    "posted_at": "2026-05-01T01:34:14.501610",
+    "status": "failed",
+    "posted_at": "2026-05-01T18:34:14.269765",
     "last_error": "RESET 2026-05-01: previous attempt failed (likely Pinterest session expired)."
   },
   {
@@ -3497,7 +3497,7 @@
       "sunscreens"
     ],
     "scheduled_date": "2026-05-01T10:00:00",
-    "status": "pending",
+    "status": "failed",
     "_meta": {
       "theme": "sunscreens-oily-acne",
       "variant": 1,
@@ -3525,7 +3525,8 @@
         }
       ]
     },
-    "last_error": "RESET 2026-05-01: 'board not found' in poster UI \u2014 boards exist (4+ prior posts) but selector/session detection failed on GHA. Needs investigation: relogin or selector fix."
+    "last_error": "RESET 2026-05-01: 'board not found' in poster UI \u2014 boards exist (4+ prior posts) but selector/session detection failed on GHA. Needs investigation: relogin or selector fix.",
+    "posted_at": "2026-05-01T18:30:32.574033"
   },
   {
     "id": 139,
@@ -3587,7 +3588,7 @@
       "sunscreens"
     ],
     "scheduled_date": "2026-05-01T16:00:00",
-    "status": "pending",
+    "status": "failed",
     "_meta": {
       "theme": "sunscreens-sensitive",
       "variant": 0,
@@ -3615,7 +3616,8 @@
         }
       ]
     },
-    "last_error": "RESET 2026-05-01: 'board not found' in poster UI \u2014 boards exist (4+ prior posts) but selector/session detection failed on GHA. Needs investigation: relogin or selector fix."
+    "last_error": "RESET 2026-05-01: 'board not found' in poster UI \u2014 boards exist (4+ prior posts) but selector/session detection failed on GHA. Needs investigation: relogin or selector fix.",
+    "posted_at": "2026-05-01T18:32:26.582632"
   },
   {
     "id": 141,
@@ -3676,7 +3678,7 @@
       "centella"
     ],
     "scheduled_date": "2026-05-01T22:00:00",
-    "status": "pending",
+    "status": "failed",
     "_meta": {
       "theme": "centella-moisturizers",
       "variant": 2,
@@ -3704,7 +3706,8 @@
         }
       ]
     },
-    "last_error": "RESET 2026-05-01: 'board not found' in poster UI \u2014 boards exist (4+ prior posts) but selector/session detection failed on GHA. Needs investigation: relogin or selector fix."
+    "last_error": "RESET 2026-05-01: 'board not found' in poster UI \u2014 boards exist (4+ prior posts) but selector/session detection failed on GHA. Needs investigation: relogin or selector fix.",
+    "posted_at": "2026-05-01T18:33:41.757086"
   },
   {
     "id": 143,
