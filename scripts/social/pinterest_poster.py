@@ -66,7 +66,7 @@ def get_due_pins(schedule):
     out = []
     for p in schedule:
         if p.get("status") != "pending": continue
-        if p.get("scheduled_date","") > today: continue
+        if p.get("scheduled_date","")[:10] > today: continue
         key = (p.get("site",""), p.get("title",""), os.path.basename(p.get("image_path","")))
         if key in posted_keys:
             # silent skip — schedule cleanup happens in caller
