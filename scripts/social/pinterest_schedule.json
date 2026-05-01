@@ -3218,7 +3218,7 @@
       "snail"
     ],
     "scheduled_date": "2026-04-30T10:00:00",
-    "status": "failed",
+    "status": "pending",
     "posted_at": "2026-05-01T01:30:40.089605",
     "_meta": {
       "theme": "snail-moisturizers",
@@ -3246,7 +3246,8 @@
           "vendor": "COSRX"
         }
       ]
-    }
+    },
+    "last_error": "RESET 2026-05-01: previous attempt failed (likely Pinterest session expired)."
   },
   {
     "id": 133,
@@ -3309,7 +3310,7 @@
       "retinol"
     ],
     "scheduled_date": "2026-04-30T16:00:00",
-    "status": "failed",
+    "status": "pending",
     "posted_at": "2026-05-01T01:32:05.085252",
     "_meta": {
       "theme": "retinol-bakuchiol",
@@ -3337,7 +3338,8 @@
           "vendor": "SOME BY MI"
         }
       ]
-    }
+    },
+    "last_error": "RESET 2026-05-01: previous attempt failed (likely Pinterest session expired)."
   },
   {
     "id": 135,
@@ -3359,8 +3361,9 @@
       "k-beauty"
     ],
     "scheduled_date": "2026-05-01",
-    "status": "failed",
-    "posted_at": "2026-05-01T01:34:14.501610"
+    "status": "pending",
+    "posted_at": "2026-05-01T01:34:14.501610",
+    "last_error": "RESET 2026-05-01: previous attempt failed (likely Pinterest session expired)."
   },
   {
     "id": 136,
@@ -3381,8 +3384,9 @@
       "warming recipes"
     ],
     "scheduled_date": "2026-05-01",
-    "status": "failed",
-    "posted_at": "2026-05-01T01:34:55.315099"
+    "status": "pending",
+    "posted_at": "2026-05-01T01:34:55.315099",
+    "last_error": "RESET 2026-05-01: previous attempt failed (likely Pinterest session expired)."
   },
   {
     "id": "0bde4a53",
@@ -3401,7 +3405,7 @@
       "sleeping"
     ],
     "scheduled_date": "2026-04-30T22:00:00",
-    "status": "failed",
+    "status": "pending",
     "posted_at": "2026-05-01T01:33:35.365705",
     "_meta": {
       "theme": "sleeping-masks",
@@ -3429,7 +3433,8 @@
           "vendor": "SKIN1004"
         }
       ]
-    }
+    },
+    "last_error": "RESET 2026-05-01: previous attempt failed (likely Pinterest session expired)."
   },
   {
     "id": 137,

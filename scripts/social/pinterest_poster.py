@@ -345,19 +345,21 @@ def post_pin(page, pin, dry_run=False):
 
             log(f"  Pin #{pin['id']} published")
             page.screenshot(path=str(DATA_DIR / f"pin-ok-{pin['id']}.png"))
-            return True
+            return True, None
         except Exception as e:
-            log(f"  Publish button not found: {e}")
+            err = f"publish-button-not-found: {type(e).__name__}: {str(e)[:200]}"
+            log(f"  {err}")
             page.screenshot(path=str(DATA_DIR / f"pin-fail-{pin['id']}.png"))
-            return False
+            return False, err
 
     except Exception as e:
-        log(f"  Pin #{pin['id']} failed: {e}")
+        err = f"post-pin-exception: {type(e).__name__}: {str(e)[:200]}"
+        log(f"  Pin #{pin['id']} failed: {err}")
         try:
             page.screenshot(path=str(DATA_DIR / f"pin-fail-{pin['id']}.png"))
         except Exception:
             pass
-        return False
+        return False, err
 
 
 def run_poster(args):
@@ -458,7 +460,12 @@ def run_poster(args):
 
             posted_count = 0
             for pin in account_pins:
-                success = post_pin(page, pin, dry_run=args.dry_run)
+                result = post_pin(page, pin, dry_run=args.dry_run)
+                # Backwards compatible — accept tuple (success, err) or bool
+                if isinstance(result, tuple):
+                    success, err_msg = result
+                else:
+                    success, err_msg = bool(result), None
 
                 for entry in schedule:
                     if entry["id"] == pin["id"]:
@@ -466,6 +473,10 @@ def run_poster(args):
                             break
                         entry["status"] = "posted" if success else "failed"
                         entry["posted_at"] = datetime.now().isoformat()
+                        if not success and err_msg:
+                            entry["last_error"] = err_msg
+                        elif success:
+                            entry.pop("last_error", None)
                         break
 
                 if not args.dry_run:
