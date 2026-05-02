@@ -1,6 +1,6 @@
 {
-  "updated": "2026-05-01",
-  "period": "2026-04-01 to 2026-04-29",
+  "updated": "2026-05-02",
+  "period": "2026-04-02 to 2026-04-30",
   "trending": [
     {
       "slug": "arduino-projects-beginners",
@@ -44,19 +44,19 @@
       "slug": "best-multimeters-home-use",
       "clicks": 1,
       "impressions": 83,
-      "days_old": 2
+      "days_old": 3
     },
     {
       "slug": "best-3d-printer-filament-starter-kit",
       "clicks": 0,
       "impressions": 86,
-      "days_old": 2
+      "days_old": 3
     },
     {
       "slug": "brad-nailer-vs-finish-nailer",
       "clicks": 0,
       "impressions": 77,
-      "days_old": 2
+      "days_old": 3
     }
   ]
 }

@@ -1,42 +1,42 @@
 {
-  "updated": "2026-05-01",
-  "period": "2026-04-01 to 2026-04-29",
+  "updated": "2026-05-02",
+  "period": "2026-04-02 to 2026-04-30",
   "trending": [
     {
       "slug": "best-protein-powders-clean-natural",
       "clicks": 0,
-      "impressions": 377,
-      "position": 67.0
+      "impressions": 422,
+      "position": 66.2
     },
     {
       "slug": "best-double-cleansing-products",
       "clicks": 0,
-      "impressions": 129,
-      "position": 54.3
+      "impressions": 134,
+      "position": 54.6
     },
     {
       "slug": "nike-vomero-plus-review",
       "clicks": 1,
-      "impressions": 29,
-      "position": 8.6
+      "impressions": 31,
+      "position": 8.7
     },
     {
       "slug": "couch-to-5k-8-week-running-plan",
       "clicks": 0,
-      "impressions": 55,
-      "position": 15.7
-    },
-    {
-      "slug": "complete-guide-ancestral-eating",
-      "clicks": 0,
-      "impressions": 48,
-      "position": 54.8
+      "impressions": 56,
+      "position": 17
     },
     {
       "slug": "why-we-quit-seed-oils",
       "clicks": 0,
-      "impressions": 28,
-      "position": 9.1
+      "impressions": 32,
+      "position": 9
+    },
+    {
+      "slug": "complete-guide-ancestral-eating",
+      "clicks": 0,
+      "impressions": 42,
+      "position": 55.1
     }
   ],
   "rising": []
