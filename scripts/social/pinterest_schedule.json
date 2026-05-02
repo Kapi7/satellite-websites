@@ -3548,7 +3548,8 @@
       "fine lines"
     ],
     "scheduled_date": "2026-05-03",
-    "status": "pending"
+    "status": "failed",
+    "posted_at": "2026-05-03T01:34:08.197851"
   },
   {
     "id": 140,
@@ -4031,8 +4032,8 @@
       "kbeauty"
     ],
     "scheduled_date": "2026-05-03T10:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "failed",
+    "posted_at": "2026-05-03T01:31:07.217400",
     "_meta": {
       "theme": "kbeauty-under-25",
       "variant": 1,
@@ -4064,7 +4065,8 @@
           "vendor": "VT"
         }
       ]
-    }
+    },
+    "last_error": "post-pin-exception: TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.pinterest.com/pin-creation-tool/\", waiting until \"load\"\n"
   },
   {
     "id": 151,
@@ -4125,8 +4127,8 @@
       "foam"
     ],
     "scheduled_date": "2026-05-03T16:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "posted",
+    "posted_at": "2026-05-03T01:32:16.877757",
     "_meta": {
       "theme": "foam-cleansers",
       "variant": 2,
@@ -4213,8 +4215,8 @@
       "vitamin"
     ],
     "scheduled_date": "2026-05-03T22:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "failed",
+    "posted_at": "2026-05-03T01:33:25.101197",
     "_meta": {
       "theme": "vitamin-c-serums",
       "variant": 0,
