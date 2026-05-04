@@ -3729,7 +3729,9 @@
       "soothing"
     ],
     "scheduled_date": "2026-05-05",
-    "status": "pending"
+    "status": "failed",
+    "posted_at": "2026-05-05T01:34:23.081104",
+    "last_error": "post-pin-exception: TimeoutError: Page.wait_for_selector: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-test-id=\\\"storyboard-upload-input\\\"]\") to be visible\n"
   },
   {
     "id": 144,
@@ -4570,8 +4572,8 @@
       "ceramide"
     ],
     "scheduled_date": "2026-05-05T10:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "posted",
+    "posted_at": "2026-05-05T01:30:45.138034",
     "_meta": {
       "theme": "ceramide-moisturizers",
       "variant": 0,
@@ -4658,8 +4660,8 @@
       "sheet"
     ],
     "scheduled_date": "2026-05-05T16:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "failed",
+    "posted_at": "2026-05-05T01:32:30.962644",
     "_meta": {
       "theme": "sheet-masks",
       "variant": 0,
@@ -4686,7 +4688,8 @@
           "vendor": "COSRX"
         }
       ]
-    }
+    },
+    "last_error": "post-pin-exception: TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.pinterest.com/pin-creation-tool/\", waiting until \"load\"\n"
   },
   {
     "id": 165,
@@ -4747,8 +4750,8 @@
       "double"
     ],
     "scheduled_date": "2026-05-05T22:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "posted",
+    "posted_at": "2026-05-05T01:33:51.660353",
     "_meta": {
       "theme": "double-cleanse",
       "variant": 1,
