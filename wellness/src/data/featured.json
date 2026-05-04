@@ -1,42 +1,42 @@
 {
-  "updated": "2026-05-03",
-  "period": "2026-04-03 to 2026-05-01",
+  "updated": "2026-05-04",
+  "period": "2026-04-04 to 2026-05-02",
   "trending": [
     {
       "slug": "best-protein-powders-clean-natural",
       "clicks": 0,
-      "impressions": 483,
-      "position": 65.2
-    },
-    {
-      "slug": "best-double-cleansing-products",
-      "clicks": 0,
-      "impressions": 147,
-      "position": 56.3
+      "impressions": 511,
+      "position": 64.8
     },
     {
       "slug": "nike-vomero-plus-review",
       "clicks": 1,
-      "impressions": 37,
-      "position": 8.2
+      "impressions": 41,
+      "position": 8.1
     },
     {
       "slug": "couch-to-5k-8-week-running-plan",
       "clicks": 0,
-      "impressions": 59,
-      "position": 18.6
+      "impressions": 54,
+      "position": 19.5
     },
     {
       "slug": "why-we-quit-seed-oils",
       "clicks": 0,
-      "impressions": 32,
-      "position": 9
+      "impressions": 33,
+      "position": 9.0
     },
     {
       "slug": "best-probiotics-for-women-gut-health",
       "clicks": 0,
-      "impressions": 42,
-      "position": 77.4
+      "impressions": 44,
+      "position": 77.8
+    },
+    {
+      "slug": "high-protein-breakfasts-without-grains",
+      "clicks": 1,
+      "impressions": 20,
+      "position": 31.4
     }
   ],
   "rising": []
