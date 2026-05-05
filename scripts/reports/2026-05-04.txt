@@ -1,0 +1,164 @@
+============================================================
+  WEEKLY SEO REPORT
+  Week of 2026-05-04
+============================================================
+
+============================================================
+  GLOW-CODED.COM
+============================================================
+
+  GSC — glow-coded.com
+  ──────────────────────────────────────────────────
+  Clicks:      1 ▲ +1
+  Impressions: 132 ▼ -80
+  CTR:         0.8% ▲ +0.8
+  Position:    54.5 ▼ -6.0
+
+  Top Queries:
+  Query                                    Clicks   Impr    CTR   Pos
+  τα καλυτερα κορεατικα σερουμ                  1      1 100.0%  94.0
+  "illiyoon"                                    0      1   0.0% 147.0
+  acido hialurônico                             0      1   0.0%  87.0
+  aha bha pha                                   0      1   0.0%  86.0
+  bha τι ειναι                                  0      2   0.0%  84.5
+  bloqueador coreano para piel grasa            0      1   0.0%  78.0
+  bloqueadores coreanos para piel grasa         0      1   0.0%  89.0
+  centella or beauty of joseon sunscreen        0      2   0.0%  80.5
+  cuidado de la piel coreano                    0      1   0.0%  99.0
+  diferencia entre tonico y esencia             0      1   0.0%  96.0
+
+  Ahrefs — glow-coded.com
+  ──────────────────────────────────────────────────
+  DR:          12.0 ▲ +2.0
+  Ahrefs Rank: 14016328
+  Backlinks:   316 ▲ +9
+  Ref Domains: 26 ─ 0
+
+  Top Organic Keywords:
+
+  GA4 — glow-coded.com
+  ──────────────────────────────────────────────────
+  Sessions:   451   Users: 436   Engaged: 34
+  Channels:
+    Direct                              351
+    Unassigned                           75
+    Organic Search                       15
+    Referral                             14
+    Organic Social                        7
+  AI referrals: 68 sessions
+    ChatGPT (chatgpt.com)  sessions: 68  engaged: 17
+
+  Bing — glow-coded.com
+  ──────────────────────────────────────────────────
+  Crawled: 0  |  Indexed: 0
+  Daily quota left: 0  |  Monthly: 2700
+
+============================================================
+  ROOTED-GLOW.COM
+============================================================
+
+  GSC — rooted-glow.com
+  ──────────────────────────────────────────────────
+  Clicks:      6 ─ 0
+  Impressions: 1439 ▲ +92
+  CTR:         0.4% ▼ -0.0
+  Position:    34.2 ▼ -7.3
+
+  Top Queries:
+  Query                                    Clicks   Impr    CTR   Pos
+  8 week couch to 5k                            0      1   0.0%  48.0
+  advanced running shoes                        0      2   0.0%  73.0
+  alimentation ancestrale menu                  0      1   0.0%  34.0
+  alongamento de flexores de quadril            0      1   0.0%  73.0
+  alongamento flexores de quadril               0      1   0.0%  72.0
+  alongamento flexores do quadril               0      2   0.0%  65.0
+  ancestral diet                                0      3   0.0%  89.0
+  ancestral diet food list                      0      1   0.0%  94.0
+  ancestral diet meal plan                      0      1   0.0%  76.0
+  ancestral foods                               0      1   0.0%  99.0
+
+  Ahrefs — rooted-glow.com
+  ──────────────────────────────────────────────────
+  DR:          12.0 ▲ +2.0
+  Ahrefs Rank: 14016329
+  Backlinks:   446 ▲ +113
+  Ref Domains: 44 ▲ +14
+
+  Top Organic Keywords:
+    clean whey protein                              vol: 700
+    cleanest whey protein                           vol: 500
+
+  GA4 — rooted-glow.com
+  ──────────────────────────────────────────────────
+  Sessions:   53   Users: 44   Engaged: 16
+  Channels:
+    Direct                               26
+    Organic Search                       14
+    Referral                              6
+    Organic Social                        5
+    Unassigned                            3
+  AI referrals: 5 sessions
+    ChatGPT (chatgpt.com)  sessions: 4  engaged: 0
+    Perplexity (perplexity.ai)  sessions: 1  engaged: 1
+
+  Bing — rooted-glow.com
+  ──────────────────────────────────────────────────
+  Crawled: 0  |  Indexed: 0
+  Daily quota left: 66  |  Monthly: 2766
+
+============================================================
+  BUILD-CODED.COM
+============================================================
+
+  GSC — build-coded.com
+  ──────────────────────────────────────────────────
+  Clicks:      4 ▼ -19
+  Impressions: 782 ▼ -3782
+  CTR:         0.5% ▲ +0.0
+  Position:    25.0 ▲ +1.6
+
+  Top Queries:
+  Query                                    Clicks   Impr    CTR   Pos
+  3d printen voor beginners                     0      4   0.0%  68.5
+  3d printer beginner                           0      1   0.0%  48.0
+  3d printer for beginner                       0      1   0.0%  58.0
+  3d printer for beginners                      0      5   0.0%  58.4
+  3d printer goedkoop                           0      1   0.0%  50.0
+  3d printer starter                            0      1   0.0%  74.0
+  3d printer vergelijk                          0      1   0.0%  81.0
+  3d printer voor beginners                     0      2   0.0%  64.5
+  3d printer voor modelbouw                     0      1   0.0%  67.0
+  3d printers beginners                         0      1   0.0%  56.0
+
+  Ahrefs — build-coded.com
+  ──────────────────────────────────────────────────
+  DR:          7.0 ─ 0
+  Ahrefs Rank: 21014492
+  Backlinks:   32 ▲ +8
+  Ref Domains: 31 ▲ +8
+
+  Top Organic Keywords:
+    beginner 3d printer                             vol: 2800
+    difference between brad nailer and finish nai   vol: 800
+    what are brad nails used for                    vol: 700
+
+  GA4 — build-coded.com
+  ──────────────────────────────────────────────────
+  Sessions:   51   Users: 46   Engaged: 13
+  Channels:
+    Direct                               32
+    Unassigned                            8
+    Referral                              6
+    Organic Search                        5
+  AI referrals: 13 sessions
+    ChatGPT (chatgpt.com)  sessions: 12  engaged: 2
+    Perplexity (perplexity.ai)  sessions: 1  engaged: 1
+
+  Bing — build-coded.com
+  ──────────────────────────────────────────────────
+  Crawled: 90  |  Indexed: 7
+  Daily quota left: 100  |  Monthly: 2800
+
+============================================================
+  Report generated: 2026-05-04 08:00
+============================================================

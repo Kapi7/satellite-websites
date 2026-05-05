@@ -1,0 +1,98 @@
+{
+  "glow-coded.com": {
+    "gsc": {
+      "clicks": 1,
+      "impressions": 132,
+      "ctr": 0.7575757575757576,
+      "position": 54.53030303030303
+    },
+    "ahrefs": {
+      "dr": 12.0,
+      "backlinks": 316,
+      "refdomains": 26,
+      "organic_kw_count": 0
+    },
+    "ga4": {
+      "sessions": 451,
+      "users": 436,
+      "engaged": 34,
+      "ai_sessions": 68,
+      "ai_sources": [
+        {
+          "label": "ChatGPT",
+          "source": "chatgpt.com",
+          "sessions": 68,
+          "engaged": 17
+        }
+      ]
+    }
+  },
+  "rooted-glow.com": {
+    "gsc": {
+      "clicks": 6,
+      "impressions": 1439,
+      "ctr": 0.4169562195969423,
+      "position": 34.220291869353716
+    },
+    "ahrefs": {
+      "dr": 12.0,
+      "backlinks": 446,
+      "refdomains": 44,
+      "organic_kw_count": 2
+    },
+    "ga4": {
+      "sessions": 53,
+      "users": 44,
+      "engaged": 16,
+      "ai_sessions": 5,
+      "ai_sources": [
+        {
+          "label": "ChatGPT",
+          "source": "chatgpt.com",
+          "sessions": 4,
+          "engaged": 0
+        },
+        {
+          "label": "Perplexity",
+          "source": "perplexity.ai",
+          "sessions": 1,
+          "engaged": 1
+        }
+      ]
+    }
+  },
+  "build-coded.com": {
+    "gsc": {
+      "clicks": 4,
+      "impressions": 782,
+      "ctr": 0.5115089514066496,
+      "position": 24.968030690537084
+    },
+    "ahrefs": {
+      "dr": 7.0,
+      "backlinks": 32,
+      "refdomains": 31,
+      "organic_kw_count": 3
+    },
+    "ga4": {
+      "sessions": 51,
+      "users": 46,
+      "engaged": 13,
+      "ai_sessions": 13,
+      "ai_sources": [
+        {
+          "label": "ChatGPT",
+          "source": "chatgpt.com",
+          "sessions": 12,
+          "engaged": 2
+        },
+        {
+          "label": "Perplexity",
+          "source": "perplexity.ai",
+          "sessions": 1,
+          "engaged": 1
+        }
+      ]
+    }
+  }
+}
