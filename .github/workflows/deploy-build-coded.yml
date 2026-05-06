@@ -23,6 +23,7 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 8
     permissions:
       contents: read
       deployments: write
@@ -45,7 +46,16 @@ jobs:
 
       - name: Build site
         working-directory: build-coded
-        run: npm run build
+        timeout-minutes: 5
+        run: |
+          set -x
+          node --version
+          echo "Astro build start: $(date -u +%H:%M:%S)"
+          timeout 240 npx astro build || { echo "::error::astro build timed out or failed"; exit 1; }
+          echo "Astro build done: $(date -u +%H:%M:%S)"
+          ls -la dist | head -20
+          timeout 90 npx pagefind --site dist || echo "::warning::pagefind step failed (non-fatal)"
+          echo "Build complete: $(date -u +%H:%M:%S)"
 
       - name: Deploy to Cloudflare Pages
         working-directory: build-coded
