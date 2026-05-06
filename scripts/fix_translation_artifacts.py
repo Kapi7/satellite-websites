@@ -4,6 +4,9 @@ Repair translation-script artifacts in */src/content/blog/<locale>/*.mdx:
   1. "BODY TO TRANSLATE:" / similar prompt boilerplate leaked into body.
   2. Duplicate `---` separator immediately after closing frontmatter.
   3. Unescaped double-quotes inside YAML double-quoted strings.
+  4. Pathologically long lines (>5000 chars) — typically a malformed table
+     row that hangs Astro/MDX's GFM table parser. Splits runs of >=50
+     spaces into paragraph breaks so the build progresses.
 """
 from __future__ import annotations
 import argparse
@@ -49,6 +52,22 @@ def fix_prompt_leak(text):
     return fixed, total
 
 
+def fix_long_lines(text):
+    # Lines longer than 5000 chars are usually a malformed table row whose
+    # trailing whitespace swallowed the next paragraph. Splitting on long
+    # runs of spaces is a no-op for normal markdown (no legitimate line has
+    # 50 consecutive spaces) but rescues the build.
+    fixes = 0
+    new_lines = []
+    for line in text.splitlines(keepends=True):
+        if len(line) > 5000 and re.search(r" {50,}", line):
+            new_lines.append(re.sub(r" {50,}", "\n\n", line))
+            fixes += 1
+        else:
+            new_lines.append(line)
+    return ("".join(new_lines), fixes) if fixes else (text, 0)
+
+
 def fix_unescaped_quotes(text):
     m = FRONTMATTER_RE.match(text)
     if not m:
@@ -76,13 +95,14 @@ def process_file(path, dry_run):
     text = original = path.read_text()
     text, sep_n = fix_double_separator(text)
     text, leak_n = fix_prompt_leak(text)
+    text, long_n = fix_long_lines(text)
     text, quote_n = fix_unescaped_quotes(text)
-    total = sep_n + leak_n + quote_n
+    total = sep_n + leak_n + quote_n + long_n
     if total == 0:
         return None
     if not dry_run:
         path.write_text(text)
-    return {"path": path, "leaks": leak_n, "seps": sep_n, "quotes": quote_n}
+    return {"path": path, "leaks": leak_n, "seps": sep_n, "quotes": quote_n, "longs": long_n}
 
 
 def main():
@@ -90,7 +110,7 @@ def main():
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()
     fixed = 0
-    totals = {"leaks": 0, "seps": 0, "quotes": 0}
+    totals = {"leaks": 0, "seps": 0, "quotes": 0, "longs": 0}
     for site in SITE_DIRS:
         if not site.exists():
             continue
@@ -99,11 +119,11 @@ def main():
             if not r:
                 continue
             fixed += 1
-            totals["leaks"] += r["leaks"]
-            totals["seps"] += r["seps"]
-            totals["quotes"] += r["quotes"]
+            for k in totals:
+                totals[k] += r[k]
     print(f"\n[done] {fixed} files {'would be ' if args.dry_run else ''}fixed")
-    print(f"  prompt-leaks: {totals['leaks']}, duplicate ---: {totals['seps']}, unescaped quotes: {totals['quotes']}")
+    print(f"  prompt-leaks: {totals['leaks']}, duplicate ---: {totals['seps']}, "
+          f"unescaped quotes: {totals['quotes']}, long lines: {totals['longs']}")
 
 
 if __name__ == "__main__":
