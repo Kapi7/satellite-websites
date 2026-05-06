@@ -23,6 +23,16 @@ if [ -f scripts/queue_health.py ]; then
 fi
 
 # ─────────────────────────────────────────────────────────────
+# Pre-flight: clean translator artifacts (prompt leaks, double ---,
+# unescaped quotes) that the translator script keeps emitting and
+# that would otherwise break Astro content sync → CF Pages 404.
+# ─────────────────────────────────────────────────────────────
+if [ -f scripts/fix_translation_artifacts.py ]; then
+  echo "[pre-flight] running fix_translation_artifacts.py"
+  python3 scripts/fix_translation_artifacts.py || echo "[pre-flight] artifact fix returned non-zero"
+fi
+
+# ─────────────────────────────────────────────────────────────
 # Update featured articles from GSC (feeds homepage "Trending" section)
 # ─────────────────────────────────────────────────────────────
 if [ -f scripts/update-featured.py ]; then

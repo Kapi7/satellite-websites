@@ -3384,9 +3384,9 @@
       "warming recipes"
     ],
     "scheduled_date": "2026-05-01",
-    "status": "pending",
-    "posted_at": "2026-05-01T01:34:55.315099",
-    "last_error": "RESET 2026-05-01: previous attempt failed (likely Pinterest session expired)."
+    "status": "failed",
+    "posted_at": "2026-05-03T15:00:28.031665",
+    "last_error": "post-pin-exception: TimeoutError: Page.wait_for_selector: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-test-id=\\\"storyboard-upload-input\\\"]\") to be visible\n"
   },
   {
     "id": "0bde4a53",
@@ -3457,8 +3457,13 @@
       "niacinamide"
     ],
     "scheduled_date": "2026-05-02",
+<<<<<<< Updated upstream
     "status": "posted",
     "posted_at": "2026-05-02T01:34:57.619397"
+=======
+    "status": "failed",
+    "posted_at": "2026-05-02T10:15:08.909334"
+>>>>>>> Stashed changes
   },
   {
     "id": 138,
@@ -3479,7 +3484,9 @@
       "breathwork"
     ],
     "scheduled_date": "2026-05-02",
-    "status": "pending"
+    "status": "failed",
+    "posted_at": "2026-05-03T15:02:17.100226",
+    "last_error": "post-pin-exception: TimeoutError: Page.wait_for_selector: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-test-id=\\\"storyboard-upload-input\\\"]\") to be visible\n"
   },
   {
     "id": "0cc53312",
@@ -3498,7 +3505,11 @@
       "sunscreens"
     ],
     "scheduled_date": "2026-05-01T10:00:00",
+<<<<<<< Updated upstream
     "status": "posted",
+=======
+    "status": "failed",
+>>>>>>> Stashed changes
     "_meta": {
       "theme": "sunscreens-oily-acne",
       "variant": 1,
@@ -3526,7 +3537,12 @@
         }
       ]
     },
+<<<<<<< Updated upstream
     "posted_at": "2026-05-01T15:43:05.716550"
+=======
+    "last_error": "post-pin-exception: TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.pinterest.com/pin-creation-tool/\", waiting until \"load\"\n",
+    "posted_at": "2026-05-02T10:16:02.291625"
+>>>>>>> Stashed changes
   },
   {
     "id": 139,
@@ -3549,7 +3565,11 @@
     ],
     "scheduled_date": "2026-05-03",
     "status": "failed",
+<<<<<<< Updated upstream
     "posted_at": "2026-05-03T01:34:08.197851"
+=======
+    "posted_at": "2026-05-03T15:03:37.489058"
+>>>>>>> Stashed changes
   },
   {
     "id": 140,
@@ -3570,7 +3590,9 @@
       "relaxation"
     ],
     "scheduled_date": "2026-05-03",
-    "status": "pending"
+    "status": "failed",
+    "posted_at": "2026-05-03T15:03:21.086912",
+    "last_error": "post-pin-exception: TimeoutError: Page.wait_for_selector: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-test-id=\\\"storyboard-upload-input\\\"]\") to be visible\n"
   },
   {
     "id": "0cd36180",
@@ -3589,7 +3611,11 @@
       "sunscreens"
     ],
     "scheduled_date": "2026-05-01T16:00:00",
+<<<<<<< Updated upstream
     "status": "posted",
+=======
+    "status": "failed",
+>>>>>>> Stashed changes
     "_meta": {
       "theme": "sunscreens-sensitive",
       "variant": 0,
@@ -3617,7 +3643,12 @@
         }
       ]
     },
+<<<<<<< Updated upstream
     "posted_at": "2026-05-01T15:44:09.080105"
+=======
+    "last_error": "RESET 2026-05-01 18:50: retry with fixed board selector + fresh auth",
+    "posted_at": "2026-05-02T10:23:55.567807"
+>>>>>>> Stashed changes
   },
   {
     "id": 141,
@@ -3639,7 +3670,12 @@
     ],
     "scheduled_date": "2026-05-04",
     "status": "failed",
+<<<<<<< Updated upstream
     "posted_at": "2026-05-04T01:34:28.718742"
+=======
+    "posted_at": "2026-05-04T15:01:10.327010",
+    "last_error": "post-pin-exception: TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.pinterest.com/pin-creation-tool/\", waiting until \"load\"\n"
+>>>>>>> Stashed changes
   },
   {
     "id": 142,
@@ -3660,7 +3696,9 @@
       "natural remedies"
     ],
     "scheduled_date": "2026-05-04",
-    "status": "pending"
+    "status": "failed",
+    "posted_at": "2026-05-04T15:01:39.694938",
+    "last_error": "post-pin-exception: TimeoutError: Page.wait_for_selector: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-test-id=\\\"storyboard-upload-input\\\"]\") to be visible\n"
   },
   {
     "id": "1000251f",
@@ -3679,7 +3717,11 @@
       "centella"
     ],
     "scheduled_date": "2026-05-01T22:00:00",
+<<<<<<< Updated upstream
     "status": "posted",
+=======
+    "status": "failed",
+>>>>>>> Stashed changes
     "_meta": {
       "theme": "centella-moisturizers",
       "variant": 2,
@@ -3707,7 +3749,12 @@
         }
       ]
     },
+<<<<<<< Updated upstream
     "posted_at": "2026-05-01T15:46:14.290771"
+=======
+    "last_error": "RESET 2026-05-01 18:50: retry with fixed board selector + fresh auth",
+    "posted_at": "2026-05-02T10:24:46.066836"
+>>>>>>> Stashed changes
   },
   {
     "id": 143,
@@ -3730,8 +3777,12 @@
     ],
     "scheduled_date": "2026-05-05",
     "status": "failed",
+<<<<<<< Updated upstream
     "posted_at": "2026-05-05T01:34:23.081104",
     "last_error": "post-pin-exception: TimeoutError: Page.wait_for_selector: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-test-id=\\\"storyboard-upload-input\\\"]\") to be visible\n"
+=======
+    "posted_at": "2026-05-05T15:00:28.468428"
+>>>>>>> Stashed changes
   },
   {
     "id": 144,
@@ -3751,7 +3802,9 @@
       "supplements"
     ],
     "scheduled_date": "2026-05-05",
-    "status": "pending"
+    "status": "failed",
+    "posted_at": "2026-05-05T15:00:35.305748",
+    "last_error": "post-pin-exception: Error: Page.goto: net::ERR_NETWORK_CHANGED at https://www.pinterest.com/pin-creation-tool/\nCall log:\n  - navigating to \"https://www.pinterest.com/pin-creation-tool/\", waiting until \"load\"\n"
   },
   {
     "id": "11ae9325",
@@ -3770,8 +3823,13 @@
       "centella"
     ],
     "scheduled_date": "2026-05-02T10:00:00",
+<<<<<<< Updated upstream
     "status": "posted",
     "posted_at": "2026-05-02T01:30:43.433458",
+=======
+    "status": "failed",
+    "posted_at": "2026-05-03T15:03:51.954749",
+>>>>>>> Stashed changes
     "_meta": {
       "theme": "centella-moisturizers",
       "variant": 1,
@@ -3820,7 +3878,11 @@
     ],
     "scheduled_date": "2026-05-06",
     "status": "failed",
+<<<<<<< Updated upstream
     "posted_at": "2026-05-06T01:34:49.748737"
+=======
+    "posted_at": "2026-05-06T10:00:16.321662"
+>>>>>>> Stashed changes
   },
   {
     "id": 146,
@@ -3860,7 +3922,11 @@
     ],
     "scheduled_date": "2026-05-02T16:00:00",
     "status": "failed",
+<<<<<<< Updated upstream
     "posted_at": "2026-05-02T01:32:19.406639",
+=======
+    "posted_at": "2026-05-03T15:04:34.033654",
+>>>>>>> Stashed changes
     "_meta": {
       "theme": "toners-glass-skin",
       "variant": 1,
@@ -3948,8 +4014,13 @@
       "cleansers"
     ],
     "scheduled_date": "2026-05-02T22:00:00",
+<<<<<<< Updated upstream
     "status": "posted",
     "posted_at": "2026-05-02T01:34:15.031094",
+=======
+    "status": "failed",
+    "posted_at": "2026-05-03T15:05:51.952624",
+>>>>>>> Stashed changes
     "_meta": {
       "theme": "cleansers-sensitive",
       "variant": 0,
@@ -4037,7 +4108,11 @@
     ],
     "scheduled_date": "2026-05-03T10:00:00",
     "status": "failed",
+<<<<<<< Updated upstream
     "posted_at": "2026-05-03T01:31:07.217400",
+=======
+    "posted_at": "2026-05-04T15:01:53.586825",
+>>>>>>> Stashed changes
     "_meta": {
       "theme": "kbeauty-under-25",
       "variant": 1,
@@ -4131,8 +4206,13 @@
       "foam"
     ],
     "scheduled_date": "2026-05-03T16:00:00",
+<<<<<<< Updated upstream
     "status": "posted",
     "posted_at": "2026-05-03T01:32:16.877757",
+=======
+    "status": "failed",
+    "posted_at": "2026-05-04T15:02:53.244237",
+>>>>>>> Stashed changes
     "_meta": {
       "theme": "foam-cleansers",
       "variant": 2,
@@ -4220,7 +4300,11 @@
     ],
     "scheduled_date": "2026-05-03T22:00:00",
     "status": "failed",
+<<<<<<< Updated upstream
     "posted_at": "2026-05-03T01:33:25.101197",
+=======
+    "posted_at": "2026-05-04T15:04:08.373622",
+>>>>>>> Stashed changes
     "_meta": {
       "theme": "vitamin-c-serums",
       "variant": 0,
@@ -4309,7 +4393,11 @@
     ],
     "scheduled_date": "2026-05-04T10:00:00",
     "status": "failed",
+<<<<<<< Updated upstream
     "posted_at": "2026-05-04T01:30:41.160564",
+=======
+    "posted_at": "2026-05-06T10:01:09.221025",
+>>>>>>> Stashed changes
     "_meta": {
       "theme": "toners-pads",
       "variant": 0,
@@ -4397,8 +4485,13 @@
       "sunscreens"
     ],
     "scheduled_date": "2026-05-04T16:00:00",
+<<<<<<< Updated upstream
     "status": "posted",
     "posted_at": "2026-05-04T01:32:11.754702",
+=======
+    "status": "failed",
+    "posted_at": "2026-05-06T10:03:10.858474",
+>>>>>>> Stashed changes
     "_meta": {
       "theme": "sunscreens-no-white-cast",
       "variant": 0,
@@ -4425,7 +4518,8 @@
           "vendor": "Sulwhasoo"
         }
       ]
-    }
+    },
+    "last_error": "post-pin-exception: TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.pinterest.com/pin-creation-tool/\", waiting until \"load\"\n"
   },
   {
     "id": 159,
@@ -4485,8 +4579,13 @@
       "moisturizers"
     ],
     "scheduled_date": "2026-05-04T22:00:00",
+<<<<<<< Updated upstream
     "status": "posted",
     "posted_at": "2026-05-04T01:33:48.254802",
+=======
+    "status": "failed",
+    "posted_at": "2026-05-06T10:03:47.678666",
+>>>>>>> Stashed changes
     "_meta": {
       "theme": "moisturizers-sensitive",
       "variant": 1,
