@@ -28,6 +28,11 @@ PROMPT_LEAK_RES = [
     re.compile(r"^```(?:markdown|md|mdx)?\s*\n(?=#)", re.M),
 ]
 
+# LLM tokenizer tokens that occasionally leak into translator output. MDX
+# treats them as JSX tags and demands closing tags, breaking the build.
+# Replace with a single space (they always appear mid-sentence).
+LLM_TOKEN_TAG_RE = re.compile(r"</?(?:bos|eos|pad|unk|sep|cls|mask|s)>", re.I)
+
 FRONTMATTER_RE = re.compile(r"^(---\s*\n.*?\n---\s*\n)", re.S)
 
 
@@ -50,6 +55,11 @@ def fix_prompt_leak(text):
     fixed, n = re.subn(r"\n```\s*$", "\n", fixed)
     total += n
     return fixed, total
+
+
+def fix_llm_token_tags(text):
+    new, n = LLM_TOKEN_TAG_RE.subn(" ", text)
+    return (new, n) if n else (text, 0)
 
 
 def fix_long_lines(text):
@@ -96,13 +106,15 @@ def process_file(path, dry_run):
     text, sep_n = fix_double_separator(text)
     text, leak_n = fix_prompt_leak(text)
     text, long_n = fix_long_lines(text)
+    text, tok_n = fix_llm_token_tags(text)
     text, quote_n = fix_unescaped_quotes(text)
-    total = sep_n + leak_n + quote_n + long_n
+    total = sep_n + leak_n + quote_n + long_n + tok_n
     if total == 0:
         return None
     if not dry_run:
         path.write_text(text)
-    return {"path": path, "leaks": leak_n, "seps": sep_n, "quotes": quote_n, "longs": long_n}
+    return {"path": path, "leaks": leak_n, "seps": sep_n, "quotes": quote_n,
+            "longs": long_n, "tokens": tok_n}
 
 
 def main():
@@ -110,7 +122,7 @@ def main():
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()
     fixed = 0
-    totals = {"leaks": 0, "seps": 0, "quotes": 0, "longs": 0}
+    totals = {"leaks": 0, "seps": 0, "quotes": 0, "longs": 0, "tokens": 0}
     for site in SITE_DIRS:
         if not site.exists():
             continue
@@ -123,7 +135,8 @@ def main():
                 totals[k] += r[k]
     print(f"\n[done] {fixed} files {'would be ' if args.dry_run else ''}fixed")
     print(f"  prompt-leaks: {totals['leaks']}, duplicate ---: {totals['seps']}, "
-          f"unescaped quotes: {totals['quotes']}, long lines: {totals['longs']}")
+          f"unescaped quotes: {totals['quotes']}, long lines: {totals['longs']}, "
+          f"llm-token tags: {totals['tokens']}")
 
 
 if __name__ == "__main__":
