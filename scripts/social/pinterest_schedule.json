@@ -3919,7 +3919,9 @@
       "korean makeup"
     ],
     "scheduled_date": "2026-05-07",
-    "status": "pending"
+    "status": "failed",
+    "posted_at": "2026-05-07T18:35:26.154759",
+    "last_error": "post-pin-exception: TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.pinterest.com/pin-creation-tool/\", waiting until \"load\"\n"
   },
   {
     "id": 148,
@@ -5126,8 +5128,8 @@
       "propolis"
     ],
     "scheduled_date": "2026-05-07T10:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "failed",
+    "posted_at": "2026-05-07T18:30:39.181302",
     "_meta": {
       "theme": "propolis-essences",
       "variant": 2,
@@ -5215,8 +5217,8 @@
       "pdrn"
     ],
     "scheduled_date": "2026-05-07T16:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "failed",
+    "posted_at": "2026-05-07T18:32:45.372500",
     "_meta": {
       "theme": "pdrn-serums",
       "variant": 0,
@@ -5243,7 +5245,8 @@
           "vendor": "VT"
         }
       ]
-    }
+    },
+    "last_error": "post-pin-exception: TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.pinterest.com/pin-creation-tool/\", waiting until \"load\"\n"
   },
   {
     "id": 177,
@@ -5303,8 +5306,8 @@
       "kbeauty"
     ],
     "scheduled_date": "2026-05-07T22:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "failed",
+    "posted_at": "2026-05-07T18:34:18.719242",
     "_meta": {
       "theme": "kbeauty-under-25",
       "variant": 2,
