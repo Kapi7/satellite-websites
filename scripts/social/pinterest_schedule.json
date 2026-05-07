@@ -4009,7 +4009,8 @@
       "hydration"
     ],
     "scheduled_date": "2026-05-08",
-    "status": "pending"
+    "status": "posted",
+    "posted_at": "2026-05-08T01:34:49.494482"
   },
   {
     "id": 150,
@@ -5399,8 +5400,8 @@
       "double"
     ],
     "scheduled_date": "2026-05-08T10:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "posted",
+    "posted_at": "2026-05-08T01:30:43.457441",
     "_meta": {
       "theme": "double-cleanse",
       "variant": 2,
@@ -5486,8 +5487,8 @@
       "snail"
     ],
     "scheduled_date": "2026-05-08T16:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "posted",
+    "posted_at": "2026-05-08T01:32:37.845776",
     "_meta": {
       "theme": "snail-moisturizers",
       "variant": 2,
@@ -5574,8 +5575,8 @@
       "niacinamide"
     ],
     "scheduled_date": "2026-05-08T22:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "failed",
+    "posted_at": "2026-05-08T01:34:02.439526",
     "_meta": {
       "theme": "niacinamide-serums",
       "variant": 2,
