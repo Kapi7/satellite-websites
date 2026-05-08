@@ -1,0 +1,162 @@
+---
+title: "8 Progetti di Home Server con Raspberry Pi che Vale la Pena Realizzare nel 2026"
+description: "Gli 8 progetti di home server con Raspberry Pi che valgono il tuo weekend — Pi-hole, Home Assistant, Plex, Nextcloud, Octoprint, AdGuard, RetroPie e un NAS — con specifiche hardware e file Docker compose."
+date: 2026-05-08
+category: electronics
+type: listicle
+tags: ["raspberry pi", "home server", "self hosted", "pi-hole", "home assistant", "elettronica"]
+image: /images/raspberry-pi-home-server-projects.jpg
+imageAlt: "Un Raspberry Pi 5 in una custodia metallica collegato a Ethernet e a un piccolo SSD"
+locale: it
+author: "Dev Patel"
+---
+---
+
+**CORPO DA TRADURRE:**
+
+Il Raspberry Pi è da tempo il beniamino della community DIY tech, un computer minuscolo e accessibile che sa fare molto più di quanto ci si aspetti. Guardando al 2026, il panorama per gli appassionati di home server non è mai stato così luminoso, e questo in gran parte grazie all'arrivo del Raspberry Pi 5. Con le sue prestazioni significativamente migliorate, un I/O più veloce e una gestione termica ottimizzata, il Pi 5 trasforma quello che una volta era un esperimento divertente in una piattaforma davvero robusta per i servizi essenziali della casa.
+
+Per ognuno dei progetti che andremo a vedere, ti consiglio vivamente il **Raspberry Pi 5 con 8GB di RAM**. Questo modello ti offre memoria a sufficienza per applicazioni esigenti, multitasking e per rendere il tuo setup "a prova di futuro". Il suo potente processore quad-core ARM Cortex-A76 offre prestazioni da desktop, mentre l'interfaccia PCI-E 2.0 dedicata sblocca il potenziale per un archiviazione NVMe SSD fulminea – un vero game-changer per le applicazioni server. Aggiungi a questo Gigabit Ethernet, doppio output video 4K e Wi-Fi 6, e avrai una base incredibilmente capace.
+
+Configurare un home server non significa solo risparmiare soldi; si tratta di riprendere il controllo dei tuoi dati, migliorare la privacy e personalizzare il tuo ambiente digitale esattamente come vuoi tu. Che tu sia stanca di pubblicità invadenti, voglia centralizzare i tuoi contenuti multimediali o costruire la casa intelligente definitiva, il Raspberry Pi 5 rende queste ambizioni non solo possibili, ma anche pratiche e divertenti.
+
+Prima di tuffarti, un consiglio fondamentale: anche se il Raspberry Pi 5 è potente, **non provare a far girare tutti e otto questi progetti su un singolo Pi**. La contesa delle risorse, soprattutto per I/O e CPU, porterà a un'esperienza frustrante. Scegli invece uno o due progetti principali che si allineano alle tue esigenze immediate, o considera di dedicare dei Pi separati a compiti particolarmente intensivi come un media server o un NAS.
+
+Ecco otto progetti di home server con Raspberry Pi che valgono assolutamente la pena di essere realizzati nel 2026, sfruttando appieno il potenziale del Raspberry Pi 5.
+
+---
+
+### 1. Pi-hole: Blocco Pubblicità a Livello di Rete
+
+**Cosa fa:** Pi-hole funziona come un "DNS sinkhole", bloccando pubblicità e domini malevoli per ogni dispositivo sulla tua rete, senza bisogno di estensioni individuali per il browser. Quando un dispositivo richiede un dominio, Pi-hole controlla se è presente in una lista di blocco. Se lo è, Pi-hole restituisce un indirizzo "inesistente", impedendo il caricamento della pubblicità o del tracker. Funziona a livello di rete, il che significa che le pubblicità vengono bloccate nelle app, nelle smart TV e nei dispositivi IoT, non solo nei browser web.
+
+**Perché vale la pena realizzarlo:** Nel 2026, la pubblicità online continua ad essere pervasiva e sempre più aggressiva. Pi-hole offre una soluzione potente e a livello di sistema per combatterla. Migliora significativamente le prestazioni della rete impedendo persino il download di contenuti pubblicitari, aumenta la privacy bloccando i domini di tracciamento e offre un'esperienza di navigazione più pulita e veloce per tutti in casa. È incredibilmente soddisfacente vedere le statistiche in tempo reale di quante pubblicità e tracker sono stati bloccati. La generosa RAM del Pi 5 e la rete veloce assicurano che Pi-hole funzioni senza latenza percepibile.
+
+**Hardware necessario oltre al Pi:**
+*   Scheda microSD ad alta resistenza (consigliati 16GB+ per il sistema operativo) OPPURE SSD NVMe (con un apposito M.2 HAT per il Pi 5) per il sistema operativo. L'NVMe è altamente raccomandato per longevità e velocità.
+*   Alimentatore ufficiale Raspberry Pi 5 (27W USB-C).
+*   Cavo Ethernet (per una stabilità di rete ottimale, anche se il Wi-Fi 6 funziona).
+
+**Metodo di installazione (Docker Compose):**
+Docker è un ottimo modo per eseguire Pi-hole, isolandolo dal tuo sistema operativo principale e rendendo gli aggiornamenti semplici.
+
+```yaml
+version: "3"
+
+services:
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:latest
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "67:67/udp" # Richiesto solo se stai usando Pi-hole come server DHCP
+      - "80:80/tcp"
+    environment:
+      TZ: 'America/New_Creek' # Sostituisci con il tuo fuso orario
+      WEBPASSWORD: 'la_tua_password_admin_sicura' # Cambiala!
+      FTLCONF_REPLY_ADDR4: '192.168.1.10' # Sostituisci con l'indirizzo IP statico del tuo Pi
+    volumes:
+      - './etc-pihole:/etc/pihole'
+      - './etc-dnsmasq.d:/etc/dnsmasq.d'
+    # Consigliato per Pi-hole, altrimenti non si riavvierà dopo un reboot
+    cap_add:
+      - NET_ADMIN
+    restart: unless-stopped
+```
+Dopo aver salvato questo come `docker-compose.yml`, naviga nella directory nel tuo terminale ed esegui `docker compose up -d`. Quindi configura il tuo router o i tuoi dispositivi per utilizzare l'indirizzo IP del tuo Pi come server DNS.
+
+**Carico di manutenzione:** Basso. Una volta configurato, Pi-hole si gestisce quasi da solo. Aggiornamenti occasionali (tramite `docker compose pull` e `docker compose up -d`) e l'aggiunta/rimozione di liste di blocco sono i compiti principali.
+
+**Chi dovrebbe evitarlo:** Individui che si affidano pesantemente a siti web o servizi specifici che si interrompono senza pubblicità (anche se Pi-hole offre un facile whitelisting), o coloro che preferiscono blocker lato client per funzionalità specifiche del browser. Se le pubblicità non ti danno alcun fastidio, questo progetto non offrirà molti vantaggi.
+
+---
+
+### 2. Home Assistant: Il Cervello Definitivo per la Casa Intelligente
+
+**Cosa fa:** Home Assistant (HA) è una piattaforma open-source di automazione domestica che dà priorità al controllo locale e alla privacy. Si integra con migliaia di dispositivi smart, servizi e piattaforme, permettendoti di creare automazioni complesse, dashboard e script che riuniscono tutta la tua tecnologia smart home sotto un unico tetto, spesso senza dipendere dai servizi cloud. Dalle luci ai termostati, dai sensori ai lettori multimediali, HA può controllare quasi tutto.
+
+**Perché vale la pena realizzarlo:** Con la crescente diffusione delle case intelligenti nel 2026, aumenta la necessità di un sistema di controllo centralizzato, privato e flessibile. Home Assistant ti libera dal lock-in dei produttori, dalle app frammentate e dalle preoccupazioni sulla privacy associate ai sistemi dipendenti dal cloud. La potenza di elaborazione del Pi 5 e gli 8GB di RAM sono perfetti per gestire un gran numero di integrazioni, elaborare automazioni complesse e servire un'interfaccia web reattiva. Permette una personalizzazione senza precedenti, dandoti il controllo completo sull'intelligenza della tua casa.
+
+**Hardware necessario oltre al Pi:**
+*   SSD NVMe (con M.2 HAT) è altamente raccomandato per il sistema operativo e il database di HA, poiché le schede SD possono usurarsi rapidamente con scritture frequenti.
+*   Alimentatore ufficiale Raspberry Pi 5.
+*   Dongle USB Zigbee/Z-Wave (es. Sonoff Zigbee 3.0 USB Dongle Plus, Aeotec Z-Stick) se prevedi di integrare dispositivi Zigbee o Z-Wave.
+*   Cavo Ethernet (raccomandato per la stabilità).
+*   Opzionale: UPS (Gruppo di continuità) per protezione in caso di interruzione di corrente.
+
+**Metodo di installazione (Docker Compose - Container Home Assistant):**
+Questo metodo esegue Home Assistant come container Docker su un'installazione standard di Raspberry Pi OS.
+
+```yaml
+version: '3'
+services:
+  homeassistant:
+    container_name: homeassistant
+    image: ghcr.io/home-assistant/home-assistant:stable
+    volumes:
+      - ./config:/config
+      - /etc/localtime:/etc/localtime:ro
+    restart: unless-stopped
+    privileged: true # Richiesto per alcuni dispositivi USB come i dongle Zigbee/Z-Wave
+    network_mode: host # Semplifica la configurazione di rete per la scoperta dei dispositivi
+    environment:
+      TZ: 'America/New_Creek' # Sostituisci con il tuo fuso orario
+```
+Salva questo come `docker-compose.yml`, crea una directory `config` nello stesso percorso (`mkdir config`), quindi esegui `docker compose up -d`. Home Assistant sarà accessibile all'indirizzo `http://tuo_ip_pi:8123`.
+
+**Carico di manutenzione:** Alto. Sebbene il sistema principale sia stabile, Home Assistant si evolve rapidamente con aggiornamenti mensili, nuove funzionalità e modifiche che possono rompere la compatibilità. Mantenere funzionanti le integrazioni, risolvere problemi e perfezionare continuamente le automazioni richiede dedizione e volontà di imparare. È un hobby continuo, non una soluzione "imposta e dimentica".
+
+**Chi dovrebbe evitarlo:** Utenti che preferiscono dispositivi smart home semplici "plug-and-play" con una configurazione minima, o coloro che non si sentono a proprio agio con la risoluzione dei problemi, la lettura della documentazione e l'investimento di tempo nella personalizzazione. Se vuoi solo accendere una luce con la voce e non ti interessa il controllo locale o le automazioni avanzate, un hub commerciale potrebbe essere una scelta migliore.
+
+---
+
+### 3. Plex / Jellyfin Media Server: La Tua Netflix Personale
+
+**Cosa fa:** Un media server ti permette di centralizzare la tua collezione personale di film, serie TV, musica e foto, rendendola accessibile da qualsiasi dispositivo in casa (e potenzialmente da remoto). Plex è un'opzione popolare e facile da usare, con un'interfaccia curata e un'ampia compatibilità client, anche se alcune funzionalità avanzate sono a pagamento. Jellyfin è un'alternativa completamente gratuita e open-source che offre funzionalità simili senza alcuna restrizione proprietaria.
+
+**Perché vale la pena realizzarlo:** Con la frammentazione dei servizi di streaming e la difficoltà crescente nel trovare contenuti su diverse piattaforme, un media server personale diventa inestimabile. Offre un'esperienza dedicata e senza pubblicità per i tuoi contenuti, garantisce che tu abbia sempre accesso alla tua libreria indipendentemente dalla connessione internet e ti permette di condividere media con familiari e amici. Il Pi 5, con la sua CPU migliorata e lo storage PCIe, può gestire comodamente più stream transcodificati contemporaneamente, specialmente per contenuti 1080p, rendendolo un'alternativa valida a hardware dedicato più costoso. Jellyfin, essendo open source, ti offre controllo completo e privacy.
+
+**Hardware necessario oltre al Pi:**
+*   Grandi hard disk esterni USB 3.0 (HDD o SSD) per l'archiviazione dei media. Considera un enclosure per più dischi se la tua collezione è estesa.
+*   SSD NVMe (con M.2 HAT) per il sistema operativo e l'applicazione, garantendo prestazioni reattive dell'interfaccia utente e del database.
+*   Alimentatore ufficiale Raspberry Pi 5.
+*   Cavo Ethernet (assolutamente essenziale per uno streaming multimediale affidabile).
+
+**Metodo di installazione (Docker Compose per Jellyfin):**
+Ci concentreremo su Jellyfin per la sua natura open-source e le eccellenti prestazioni sul Pi.
+
+```yaml
+version: "3.8"
+services:
+  jellyfin:
+    image: jellyfin/jellyfin:latest
+    container_name: jellyfin
+    user: 1000:1000 # Sostituisci con il tuo ID utente e ID gruppo (es. `id -u` e `id -g` nel terminale)
+    network_mode: host # Semplifica la configurazione di rete per la scoperta
+    volumes:
+      - ./config:/config # File di configurazione
+      - ./cache:/cache   # Directory della cache
+      - /percorso/dei/tuoi/media:/media:ro # Monta la tua libreria multimediale, sostituisci con il percorso effettivo
+      # - /percorso/dei/tuoi/tvshows:/tvshows:ro # Opzionale: mount separati per l'organizzazione
+      # - /percorso/dei/tuoi/movies:/movies:ro # Opzionale: mount separati per l'organizzazione
+    restart: unless-stopped
+    environment:
+      TZ: 'America/New_Creek' # Sostituisci con il tuo fuso orario
+      PUID: 1000 # ID utente - corrisponde a 'user' sopra
+      PGID: 1000 # ID gruppo - corrisponde a 'user' sopra
+    # Per la transcodifica hardware su Raspberry Pi 5 (richiede configurazione specifica nell'interfaccia Jellyfin)
+    # devices:
+    #   - /dev/dri/renderD128:/dev/dri/renderD128
+```
+Salva come `docker-compose.yml`, crea le directory `config` e `cache`, assicurati che la tua directory multimediale sia accessibile, quindi esegui `docker compose up -d`. Jellyfin sarà accessibile all'indirizzo `http://tuo_ip_pi:8096`. Nota: il supporto per la transcodifica hardware della VPU del Pi 5 in Docker potrebbe richiedere configurazioni aggiuntive e moduli del kernel, ma la transcodifica software è robusta sulla CPU del Pi 5 per la maggior parte dei contenuti 1080p.
+
+**Carico di manutenzione:** Medio. La configurazione iniziale richiede l'organizzazione dei tuoi media e la configurazione delle librerie. I compiti continuativi includono l'aggiunta di nuovi media, l'aggiornamento di Jellyfin (tramite `docker compose pull` e `docker compose up -d`) e la verifica della salute dei tuoi dischi esterni.
+
+**Chi dovrebbe evitarlo:** Individui che utilizzano esclusivamente servizi di streaming commerciali e non hanno interesse a curare la propria libreria multimediale. Se sei soddisfatta di Netflix, Disney+, ecc. e non possiedi copie digitali di media, questo progetto non fa per te.
+
+---
+
+### 4. Nextcloud: Il Tuo Google Drive Auto-Ospitato
+
+**Cosa fa:** Nextcloud è una suite open-source di software client-server per la creazione e l'utilizzo di servizi di hosting di file. Funziona come un'alternativa auto-ospitata a servizi cloud come Google Drive, Dropbox o OneDrive. Offre

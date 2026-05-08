@@ -1,0 +1,162 @@
+---
+title: "8 Raspberry Pi Home Server Projecten die het Waard zijn om in 2026 te Bouwen"
+description: "De 8 Raspberry Pi home-server projecten die je weekend de moeite waard maken — Pi-hole, Home Assistant, Plex, Nextcloud, Octoprint, AdGuard, RetroPie, en een NAS — met hardware specificaties en Docker compose bestanden."
+date: 2026-05-08
+category: electronics
+type: listicle
+tags: ["raspberry pi", "home server", "self hosted", "pi-hole", "home assistant", "elektronica"]
+image: /images/raspberry-pi-home-server-projects.jpg
+imageAlt: "Een Raspberry Pi 5 in een metalen behuizing aangesloten op ethernet en een kleine SSD"
+locale: nl
+author: "Dev Patel"
+---
+---
+
+**BODY VERTALING:**
+
+De Raspberry Pi is al tijden een favoriet in de DIY tech community, een klein, betaalbaar computertje dat veel meer kan dan je zou denken. Als we vooruitkijken naar 2026, is het landschap voor home server liefhebbers helderder dan ooit, mede dankzij de komst van de Raspberry Pi 5. Met zijn flink verbeterde prestaties, snellere I/O en beter thermisch management, transformeert de Pi 5 wat ooit een leuk experiment was in een serieus robuust platform voor essentiële thuisdiensten.
+
+Voor al de projecten die we hier bespreken, raden we de **Raspberry Pi 5 met 8GB RAM** ten zeerste aan. Dit model biedt voldoende geheugen voor veeleisende applicaties, multitasking en om je setup toekomstbestendig te maken. De krachtige quad-core ARM Cortex-A76 processor levert prestaties op desktop-niveau, terwijl de speciale PCI-E 2.0 interface het potentieel ontsluit voor razendsnelle NVMe SSD opslag – een gamechanger voor server applicaties. Combineer dit met Gigabit Ethernet, dubbele 4K display output en Wi-Fi 6, en je hebt een ongelooflijk capabele basis.
+
+Het opzetten van een home server gaat niet alleen om geld besparen; het gaat erom de controle over je data terug te pakken, je privacy te verbeteren en je digitale omgeving precies zo in te richten als jij wilt. Of je nu klaar bent met opdringerige advertenties, je media wilt centraliseren, of de ultieme smart home wilt bouwen, de Raspberry Pi 5 maakt deze ambities niet alleen mogelijk, maar ook praktisch en leuk.
+
+Voordat je begint, een cruciaal advies: hoewel de Raspberry Pi 5 krachtig is, **probeer niet alle acht van deze projecten op één enkele Pi te draaien**. Resource conflicten, met name voor I/O en CPU, zullen leiden tot een frustrerende ervaring. Kies in plaats daarvan één of twee kernprojecten die passen bij je directe behoeften, of overweeg aparte Pi's toe te wijden aan bijzonder resource-intensieve taken zoals een mediaserver of NAS.
+
+Hier zijn acht Raspberry Pi home server projecten die absoluut de moeite waard zijn om in 2026 te bouwen, waarbij je optimaal gebruikmaakt van de Raspberry Pi 5.
+
+---
+
+### 1. Pi-hole: Netwerk-Brede Ad Blocking
+
+**Wat het doet:** Pi-hole fungeert als een DNS sinkhole, het blokkeert advertenties en kwaadaardige domeinen voor elk apparaat in je netwerk, zonder dat je individuele browser extensies nodig hebt. Wanneer een apparaat een domein opvraagt, controleert Pi-hole of het op een blokkeerlijst staat. Zo ja, dan geeft Pi-hole een "niet-bestaand" adres terug, waardoor de advertentie of tracker niet geladen wordt. Het werkt op netwerkniveau, wat betekent dat advertenties worden geblokkeerd in apps, smart TV's en IoT-apparaten, niet alleen in webbrowsers.
+
+**Waarom het de moeite waard is:** In 2026 blijft online adverteren alomtegenwoordig en steeds agressiever. Pi-hole biedt een krachtige, systeembrede oplossing om dit tegen te gaan. Het verbetert de netwerkprestaties aanzienlijk door advertentie-inhoud niet eens te laten downloaden, verhoogt de privacy door tracking-domeinen te blokkeren en zorgt voor een schonere, snellere browse-ervaring voor iedereen in je huis. Het is ongelooflijk bevredigend om de realtime statistieken te zien van hoeveel advertenties en trackers er zijn geblokkeerd. De ruime RAM van de Pi 5 en de snelle netwerkverbinding zorgen ervoor dat Pi-hole zonder merkbare vertraging draait.
+
+**Hardware nodig naast de Pi:**
+*   MicroSD-kaart met hoge duurzaamheid (16GB+ aanbevolen voor het OS) OF NVMe SSD (met een geschikte M.2 HAT voor de Pi 5) voor het OS. NVMe is sterk aanbevolen voor levensduur en snelheid.
+*   Officiële Raspberry Pi 5 voeding (27W USB-C).
+*   Ethernetkabel (voor optimale netwerkstabiliteit, hoewel Wi-Fi 6 ook werkt).
+
+**Installatiemethode (Docker Compose):**
+Docker is een uitstekende manier om Pi-hole te draaien, het isoleert het van je hoofd-OS en maakt updates eenvoudig.
+
+```yaml
+version: "3"
+
+services:
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:latest
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "67:67/udp" # Alleen nodig als je Pi-hole als je DHCP-server gebruikt
+      - "80:80/tcp"
+    environment:
+      TZ: 'America/New_Creek' # Vervang dit met jouw tijdzone
+      WEBPASSWORD: 'jouw_veilige_admin_wachtwoord' # Verander dit!
+      FTLCONF_REPLY_ADDR4: '192.168.1.10' # Vervang dit met het statische IP-adres van je Pi
+    volumes:
+      - './etc-pihole:/etc/pihole'
+      - './etc-dnsmasq.d:/etc/dnsmasq.d'
+    # Aanbevolen voor Pi-hole, anders start het niet opnieuw na een herstart
+    cap_add:
+      - NET_ADMIN
+    restart: unless-stopped
+```
+Nadat je dit als `docker-compose.yml` hebt opgeslagen, navigeer je naar de map in je terminal en voer je `docker compose up -d` uit. Configureer vervolgens je router of apparaten om het IP-adres van je Pi als hun DNS-server te gebruiken.
+
+**Onderhoudslast:** Laag. Eenmaal ingesteld, draait Pi-hole grotendeels vanzelf. Af en toe updates (via `docker compose pull` en `docker compose up -d`) en het toevoegen/verwijderen van blokkeerlijsten zijn de belangrijkste taken.
+
+**Wie kan dit overslaan:** Mensen die sterk afhankelijk zijn van specifieke websites of diensten die kapotgaan zonder advertenties (hoewel Pi-hole eenvoudig whitelisting biedt), of degenen die de voorkeur geven aan client-side ad blockers voor specifieke browserfuncties. Als je helemaal geen probleem hebt met advertenties, zal dit project weinig voordelen bieden.
+
+---
+
+### 2. Home Assistant: Het Ultieme Smart Home Brein
+
+**Wat het doet:** Home Assistant (HA) is een open-source home automation platform dat prioriteit geeft aan lokale controle en privacy. Het integreert met duizenden slimme apparaten, diensten en platforms, waardoor je complexe automatiseringen, dashboards en scripts kunt maken die al je smart home tech onder één dak brengen, vaak zonder afhankelijk te zijn van cloudservices. Van lampen en thermostaten tot sensoren en mediaspelers, HA kan bijna alles aansturen.
+
+**Waarom het de moeite waard is:** Nu smart homes in 2026 steeds meer gemeengoed worden, groeit de behoefte aan een centraal, privé en flexibel controlesysteem. Home Assistant bevrijdt je van vendor lock-in, gefragmenteerde apps en privacyzorgen die gepaard gaan met cloud-afhankelijke systemen. De rekenkracht van de Pi 5 en de 8GB RAM zijn perfect geschikt om een groot aantal integraties te verwerken, complexe automatiseringen uit te voeren en een responsieve webinterface te serveren. Het biedt ongekende aanpassingsmogelijkheden, waardoor je volledige controle hebt over de intelligentie van je huis.
+
+**Hardware nodig naast de Pi:**
+*   NVMe SSD (met M.2 HAT) wordt sterk aanbevolen voor het OS en de HA-database, omdat SD-kaarten snel kunnen slijten bij frequente schrijfacties.
+*   Officiële Raspberry Pi 5 voeding.
+*   Zigbee/Z-Wave USB dongle (bijv. Sonoff Zigbee 3.0 USB Dongle Plus, Aeotec Z-Stick) als je Zigbee of Z-Wave apparaten wilt integreren.
+*   Ethernetkabel (aanbevolen voor stabiliteit).
+*   Optioneel: UPS (Noodstroomvoorziening) ter bescherming bij stroomuitval.
+
+**Installatiemethode (Docker Compose - Home Assistant Container):**
+Deze methode draait Home Assistant als een Docker container op een standaard Raspberry Pi OS installatie.
+
+```yaml
+version: '3'
+services:
+  homeassistant:
+    container_name: homeassistant
+    image: ghcr.io/home-assistant/home-assistant:stable
+    volumes:
+      - ./config:/config
+      - /etc/localtime:/etc/localtime:ro
+    restart: unless-stopped
+    privileged: true # Vereist voor sommige USB-apparaten zoals Zigbee/Z-Wave dongles
+    network_mode: host # Maakt het ontdekken van apparaten in je netwerk eenvoudiger
+    environment:
+      TZ: 'America/New_Creek' # Vervang dit met jouw tijdzone
+```
+Sla dit op als `docker-compose.yml`, maak een `config` map aan op dezelfde locatie (`mkdir config`), voer dan `docker compose up -d` uit. Home Assistant is dan toegankelijk op `http://jouw_pi_ip:8123`.
+
+**Onderhoudslast:** Hoog. Hoewel het basissysteem stabiel is, evolueert Home Assistant snel met maandelijkse updates, nieuwe functies en breaking changes. Integraties werkend houden, problemen oplossen en automatiseringen constant verfijnen vereist toewijding en de bereidheid om te leren. Het is een doorlopende hobby, geen "set and forget" oplossing.
+
+**Wie kan dit overslaan:** Gebruikers die de voorkeur geven aan eenvoudige, plug-and-play smart home apparaten met minimale installatie, of degenen die zich niet comfortabel voelen bij het oplossen van problemen, het lezen van documentatie en het investeren van tijd in maatwerk. Als je alleen een lamp met je stem wilt aandoen en geen waarde hecht aan lokale controle of geavanceerde automatiseringen, is een commerciële hub misschien een betere keuze.
+
+---
+
+### 3. Plex / Jellyfin Mediaserver: Jouw Persoonlijke Netflix
+
+**Wat het doet:** Een mediaserver stelt je in staat om je persoonlijke collectie films, tv-shows, muziek en foto's te centraliseren, waardoor deze toegankelijk wordt vanaf elk apparaat in je huis (en potentieel op afstand). Plex is een populaire, gebruiksvriendelijke optie met een gepolijste interface en brede clientondersteuning, hoewel sommige geavanceerde functies betaald zijn. Jellyfin is een volledig gratis en open-source alternatief dat vergelijkbare functionaliteit biedt zonder propriëtaire beperkingen.
+
+**Waarom het de moeite waard is:** Nu streamingdiensten versnipperen en content moeilijker te vinden is op verschillende platforms, wordt een persoonlijke mediaserver van onschatbare waarde. Het biedt een speciale, advertentievrije ervaring voor je eigen content, zorgt ervoor dat je altijd toegang hebt tot je bibliotheek, ongeacht de internetverbinding, en stelt je in staat media te delen met familie en vrienden. De Pi 5, met zijn verbeterde CPU en PCIe opslag, kan comfortabel meerdere gelijktijdige getranscodeerde streams aan, vooral voor 1080p content, wat het een levensvatbaar alternatief maakt voor duurdere dedicated hardware. Jellyfin, als open source, geeft je volledige controle en privacy.
+
+**Hardware nodig naast de Pi:**
+*   Grote externe USB 3.0 harde schijf(ven) (HDD of SSD) voor opslag van media. Overweeg een behuizing voor meerdere schijven als je collectie uitgebreid is.
+*   NVMe SSD (met M.2 HAT) voor het OS en de applicatie, wat zorgt voor een responsieve UI en database prestaties.
+*   Officiële Raspberry Pi 5 voeding.
+*   Ethernetkabel (absoluut essentieel voor betrouwbare mediastreaming).
+
+**Installatiemethode (Docker Compose voor Jellyfin):**
+We richten ons op Jellyfin vanwege zijn open-source karakter en uitstekende prestaties op de Pi.
+
+```yaml
+version: "3.8"
+services:
+  jellyfin:
+    image: jellyfin/jellyfin:latest
+    container_name: jellyfin
+    user: 1000:1000 # Vervang dit met jouw user ID en group ID (bijv. `id -u` en `id -g` in terminal)
+    network_mode: host # Vereenvoudigt netwerkinstellingen voor ontdekking
+    volumes:
+      - ./config:/config # Configuratiebestanden
+      - ./cache:/cache   # Cache map
+      - /pad/naar/jouw/media:/media:ro # Mount je mediabibliotheek, vervang door het echte pad
+      # - /pad/naar/jouw/tvshows:/tvshows:ro # Optioneel: aparte mounts voor organisatie
+      # - /pad/naar/jouw/movies:/movies:ro # Optioneel: aparte mounts voor organisatie
+    restart: unless-stopped
+    environment:
+      TZ: 'America/New_Creek' # Vervang dit met jouw tijdzone
+      PUID: 1000 # User ID - komt overeen met 'user' hierboven
+      PGID: 1000 # Group ID - komt overeen met 'user' hierboven
+    # Voor hardware transcoding op Raspberry Pi 5 (vereist specifieke setup in Jellyfin UI)
+    # devices:
+    #   - /dev/dri/renderD128:/dev/dri/renderD128
+```
+Sla op als `docker-compose.yml`, maak `config` en `cache` mappen aan, zorg ervoor dat je media map toegankelijk is, voer dan `docker compose up -d` uit. Jellyfin is dan te vinden op `http://jouw_pi_ip:8096`. Let op: hardware transcoding ondersteuning voor de VPU van de Pi 5 in Docker kan extra configuratie en kernelmodules vereisen, maar software transcoding is robuust op de CPU van de Pi 5 voor de meeste 1080p content.
+
+**Onderhoudslast:** Medium. De initiële installatie vereist het organiseren van je media en het configureren van bibliotheken. Doorlopende taken zijn onder andere het toevoegen van nieuwe media, het updaten van Jellyfin (via `docker compose pull` en `docker compose up -d`), en zorgen dat je externe schijven in orde zijn.
+
+**Wie kan dit overslaan:** Mensen die uitsluitend commerciële streamingdiensten gebruiken en geen interesse hebben in het samenstellen van hun eigen mediabibliotheek. Als je tevreden bent met Netflix, Disney+, etc., en geen digitale kopieën van media bezit, is dit project niets voor jou.
+
+---
+
+### 4. Nextcloud: Jouw Self-Hosted Google Drive
+
+**Wat het doet:** Nextcloud is een open-source suite van client-server software voor het maken en gebruiken van bestandsopslagdiensten. Het functioneert als een self-hosted alternatief voor clouddiensten zoals Google Drive, Dropbox, of OneDrive. Het biedt
