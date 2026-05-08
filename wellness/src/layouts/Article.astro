@@ -200,7 +200,7 @@ if (type === 'listicle' && headings) {
         {image && (
           <div class="animate-fade-in-up stagger-2" style="margin:38px 0 34px;">
             <div class="rg-tint-sage" style="aspect-ratio:5/2;border-radius:12px;overflow:hidden;">
-              <img src={image} alt={imageAlt || title} style="width:100%;height:100%;object-fit:cover;" loading="eager" width="1200" height="480" />
+              <img src={image} alt={imageAlt || title} style="width:100%;height:100%;object-fit:cover;" loading="eager" fetchpriority="high" decoding="async" width="1200" height="480" />
             </div>
           </div>
         )}

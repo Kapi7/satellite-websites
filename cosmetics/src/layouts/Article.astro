@@ -200,7 +200,7 @@ const authorDisplay = author || t(locale, 'article.editorial');
           {/* Hero image */}
           {image && (
             <div class="gc-hero animate-fade-in-up stagger-2">
-              <img src={image} alt={imageAlt || title} loading="eager" width="1200" height="675" />
+              <img src={image} alt={imageAlt || title} loading="eager" fetchpriority="high" decoding="async" width="1200" height="675" />
             </div>
           )}
 
