@@ -1,12 +1,18 @@
 {
-  "updated": "2026-05-07",
-  "period": "2026-04-07 to 2026-05-05",
+  "updated": "2026-05-08",
+  "period": "2026-04-08 to 2026-05-06",
   "trending": [
     {
       "slug": "best-protein-powders-clean-natural",
       "clicks": 0,
-      "impressions": 663,
-      "position": 60.8
+      "impressions": 708,
+      "position": 60.7
+    },
+    {
+      "slug": "nike-vomero-plus-review",
+      "clicks": 1,
+      "impressions": 60,
+      "position": 7.8
     },
     {
       "slug": "zone-2-training-slow-running-burns-fat",
@@ -15,22 +21,16 @@
       "position": 15.6
     },
     {
-      "slug": "nike-vomero-plus-review",
-      "clicks": 1,
-      "impressions": 52,
-      "position": 7.8
-    },
-    {
       "slug": "best-probiotics-for-women-gut-health",
       "clicks": 0,
-      "impressions": 53,
-      "position": 77.5
+      "impressions": 54,
+      "position": 77.6
     },
     {
       "slug": "high-protein-breakfasts-without-grains",
       "clicks": 1,
-      "impressions": 22,
-      "position": 29.4
+      "impressions": 23,
+      "position": 28.4
     },
     {
       "slug": "meditation-for-beginners-start-5-minutes",

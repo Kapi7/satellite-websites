@@ -1,23 +1,23 @@
 {
-  "updated": "2026-05-07",
-  "period": "2026-04-07 to 2026-05-05",
+  "updated": "2026-05-08",
+  "period": "2026-04-08 to 2026-05-06",
   "trending": [
     {
       "slug": "arduino-projects-beginners",
       "clicks": 4,
-      "impressions": 154,
-      "position": 8.4
+      "impressions": 155,
+      "position": 8.8
     },
     {
       "slug": "best-heat-guns-crafts-diy",
       "clicks": 0,
-      "impressions": 254,
-      "position": 11.8
+      "impressions": 255,
+      "position": 12.0
     },
     {
       "slug": "best-tool-boxes-organizers-workshop",
       "clicks": 1,
-      "impressions": 96,
+      "impressions": 97,
       "position": 17.9
     },
     {
@@ -44,19 +44,19 @@
       "slug": "best-multimeters-home-use",
       "clicks": 1,
       "impressions": 84,
-      "days_old": 8
+      "days_old": 9
     },
     {
       "slug": "best-3d-printer-filament-starter-kit",
       "clicks": 0,
-      "impressions": 92,
-      "days_old": 8
+      "impressions": 94,
+      "days_old": 9
     },
     {
       "slug": "brad-nailer-vs-finish-nailer",
       "clicks": 0,
       "impressions": 78,
-      "days_old": 8
+      "days_old": 9
     }
   ]
 }
