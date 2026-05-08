@@ -3920,8 +3920,12 @@
     ],
     "scheduled_date": "2026-05-07",
     "status": "failed",
+<<<<<<< Updated upstream
     "posted_at": "2026-05-07T18:35:26.154759",
     "last_error": "post-pin-exception: TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.pinterest.com/pin-creation-tool/\", waiting until \"load\"\n"
+=======
+    "posted_at": "2026-05-07T15:00:52.870438"
+>>>>>>> Stashed changes
   },
   {
     "id": 148,
@@ -4009,8 +4013,14 @@
       "hydration"
     ],
     "scheduled_date": "2026-05-08",
+<<<<<<< Updated upstream
     "status": "posted",
     "posted_at": "2026-05-08T01:34:49.494482"
+=======
+    "status": "failed",
+    "posted_at": "2026-05-08T10:01:50.061386",
+    "last_error": "post-pin-exception: TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.pinterest.com/pin-creation-tool/\", waiting until \"load\"\n"
+>>>>>>> Stashed changes
   },
   {
     "id": 150,
@@ -5130,7 +5140,11 @@
     ],
     "scheduled_date": "2026-05-07T10:00:00",
     "status": "failed",
+<<<<<<< Updated upstream
     "posted_at": "2026-05-07T18:30:39.181302",
+=======
+    "posted_at": "2026-05-07T15:01:06.048509",
+>>>>>>> Stashed changes
     "_meta": {
       "theme": "propolis-essences",
       "variant": 2,
@@ -5219,7 +5233,11 @@
     ],
     "scheduled_date": "2026-05-07T16:00:00",
     "status": "failed",
+<<<<<<< Updated upstream
     "posted_at": "2026-05-07T18:32:45.372500",
+=======
+    "posted_at": "2026-05-07T15:02:08.696317",
+>>>>>>> Stashed changes
     "_meta": {
       "theme": "pdrn-serums",
       "variant": 0,
@@ -5308,7 +5326,11 @@
     ],
     "scheduled_date": "2026-05-07T22:00:00",
     "status": "failed",
+<<<<<<< Updated upstream
     "posted_at": "2026-05-07T18:34:18.719242",
+=======
+    "posted_at": "2026-05-07T15:03:24.813080",
+>>>>>>> Stashed changes
     "_meta": {
       "theme": "kbeauty-under-25",
       "variant": 2,
@@ -5400,8 +5422,13 @@
       "double"
     ],
     "scheduled_date": "2026-05-08T10:00:00",
+<<<<<<< Updated upstream
     "status": "posted",
     "posted_at": "2026-05-08T01:30:43.457441",
+=======
+    "status": "failed",
+    "posted_at": "2026-05-08T10:02:05.492638",
+>>>>>>> Stashed changes
     "_meta": {
       "theme": "double-cleanse",
       "variant": 2,
@@ -5487,8 +5514,13 @@
       "snail"
     ],
     "scheduled_date": "2026-05-08T16:00:00",
+<<<<<<< Updated upstream
     "status": "posted",
     "posted_at": "2026-05-08T01:32:37.845776",
+=======
+    "status": "failed",
+    "posted_at": "2026-05-08T10:03:19.080575",
+>>>>>>> Stashed changes
     "_meta": {
       "theme": "snail-moisturizers",
       "variant": 2,
@@ -5576,7 +5608,11 @@
     ],
     "scheduled_date": "2026-05-08T22:00:00",
     "status": "failed",
+<<<<<<< Updated upstream
     "posted_at": "2026-05-08T01:34:02.439526",
+=======
+    "posted_at": "2026-05-08T10:04:08.458115",
+>>>>>>> Stashed changes
     "_meta": {
       "theme": "niacinamide-serums",
       "variant": 2,
