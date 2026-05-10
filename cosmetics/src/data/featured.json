@@ -1,41 +1,41 @@
 {
-  "updated": "2026-05-09",
-  "period": "2026-04-09 to 2026-05-07",
+  "updated": "2026-05-10",
+  "period": "2026-04-10 to 2026-05-08",
   "trending": [
     {
       "slug": "best-korean-sunscreens-oily-skin-no-white-cast",
-      "clicks": 5,
-      "impressions": 436,
-      "position": 11.1
+      "clicks": 4,
+      "impressions": 327,
+      "position": 11.5
     },
     {
       "slug": "best-korean-moisturizers-sensitive-skin",
       "clicks": 3,
-      "impressions": 271,
-      "position": 8.4
+      "impressions": 223,
+      "position": 8.1
     },
     {
       "slug": "cosrx-snail-mucin-vs-torriden-dive-in-serum",
       "clicks": 2,
-      "impressions": 175,
+      "impressions": 165,
       "position": 5.4
+    },
+    {
+      "slug": "tirtir-cushion-foundation-shade-guide",
+      "clicks": 3,
+      "impressions": 86,
+      "position": 5.0
     },
     {
       "slug": "skincare-ingredient-compatibility-guide",
       "clicks": 1,
-      "impressions": 215,
-      "position": 12.3
-    },
-    {
-      "slug": "tirtir-cushion-foundation-shade-guide",
-      "clicks": 4,
-      "impressions": 105,
-      "position": 5.0
+      "impressions": 149,
+      "position": 13.0
     },
     {
       "slug": "best-snail-mucin-products-2026",
       "clicks": 0,
-      "impressions": 159,
+      "impressions": 133,
       "position": 8.0
     }
   ],
