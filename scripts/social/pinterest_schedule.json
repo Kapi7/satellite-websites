@@ -5663,8 +5663,8 @@
       "foam"
     ],
     "scheduled_date": "2026-05-09T10:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "posted",
+    "posted_at": "2026-05-11T13:18:05.775053",
     "_meta": {
       "theme": "foam-cleansers",
       "variant": 1,
@@ -5731,8 +5731,8 @@
       "anti"
     ],
     "scheduled_date": "2026-05-09T16:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "failed",
+    "posted_at": "2026-05-11T13:20:22.772603",
     "_meta": {
       "theme": "anti-aging-30s",
       "variant": 0,
@@ -5764,7 +5764,8 @@
           "vendor": "COSRX"
         }
       ]
-    }
+    },
+    "last_error": "post-pin-exception: TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.pinterest.com/pin-creation-tool/\", waiting until \"load\"\n"
   },
   {
     "id": 188,
@@ -5803,8 +5804,8 @@
       "vitamin"
     ],
     "scheduled_date": "2026-05-09T22:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "failed",
+    "posted_at": "2026-05-11T13:21:32.637231",
     "_meta": {
       "theme": "vitamin-c-serums",
       "variant": 1,
