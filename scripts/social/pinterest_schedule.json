@@ -4376,7 +4376,8 @@
       "retinol cream"
     ],
     "scheduled_date": "2026-05-12",
-    "status": "pending"
+    "status": "posted",
+    "posted_at": "2026-05-12T01:35:09.347242"
   },
   {
     "id": 158,
@@ -6138,8 +6139,8 @@
       "cleansers"
     ],
     "scheduled_date": "2026-05-12T10:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "posted",
+    "posted_at": "2026-05-12T01:30:49.568022",
     "_meta": {
       "theme": "cleansers-sensitive",
       "variant": 2,
@@ -6185,8 +6186,8 @@
       "sunscreens"
     ],
     "scheduled_date": "2026-05-12T16:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "posted",
+    "posted_at": "2026-05-12T01:32:15.256929",
     "_meta": {
       "theme": "sunscreens-oily-acne",
       "variant": 2,
@@ -6232,8 +6233,8 @@
       "cleansing"
     ],
     "scheduled_date": "2026-05-12T22:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "posted",
+    "posted_at": "2026-05-12T01:33:54.865771",
     "_meta": {
       "theme": "cleansing-oils",
       "variant": 2,
