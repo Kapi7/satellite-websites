@@ -4105,7 +4105,9 @@
       "uneven skin tone"
     ],
     "scheduled_date": "2026-05-09",
-    "status": "pending"
+    "status": "failed",
+    "posted_at": "2026-05-11T18:34:58.956332",
+    "last_error": "post-pin-exception: TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.pinterest.com/pin-creation-tool/\", waiting until \"load\"\n"
   },
   {
     "id": 152,
@@ -4194,7 +4196,8 @@
       "mens moisturizer"
     ],
     "scheduled_date": "2026-05-10",
-    "status": "pending"
+    "status": "failed",
+    "posted_at": "2026-05-11T18:37:33.354368"
   },
   {
     "id": 154,
@@ -4283,7 +4286,8 @@
       "brightening"
     ],
     "scheduled_date": "2026-05-11",
-    "status": "pending"
+    "status": "posted",
+    "posted_at": "2026-05-11T18:39:21.573243"
   },
   {
     "id": 156,
@@ -5851,8 +5855,8 @@
       "eye"
     ],
     "scheduled_date": "2026-05-10T10:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "failed",
+    "posted_at": "2026-05-11T18:30:40.642062",
     "_meta": {
       "theme": "eye-patches",
       "variant": 2,
@@ -5898,8 +5902,8 @@
       "lip"
     ],
     "scheduled_date": "2026-05-10T16:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "failed",
+    "posted_at": "2026-05-11T18:32:37.586445",
     "_meta": {
       "theme": "lip-products",
       "variant": 2,
@@ -5945,8 +5949,8 @@
       "foam"
     ],
     "scheduled_date": "2026-05-10T22:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "posted",
+    "posted_at": "2026-05-11T18:33:52.391107",
     "_meta": {
       "theme": "foam-cleansers",
       "variant": 0,
