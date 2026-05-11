@@ -265,10 +265,7 @@ if [ $PUBLISHED -gt 0 ]; then
     fi
   fi
 
-  if [ -f scripts/submit-indexnow.sh ]; then
-    bash scripts/submit-indexnow.sh
-  fi
-
+  # IndexNow + GSC sitemap ping now run unconditionally below (after this if/else)
   echo "Done! Published $PUBLISHED article(s) and deployed."
 
   # Fire-and-forget Telegram ping with the list of newly-published slugs
@@ -286,6 +283,21 @@ if [ $PUBLISHED -gt 0 ]; then
   fi
 else
   echo "Nothing to publish today."
+fi
+
+# ---------------------------------------------------------------------------
+# Daily crawler signals — run REGARDLESS of whether we published.
+# Google needs to see fresh sitemap pings every day, otherwise the site
+# falls out of the priority queue and impressions cliff-drop (we saw -88%
+# in 7 days on build-coded in May 2026 when these stopped firing).
+# ---------------------------------------------------------------------------
+if [ -f scripts/submit-gsc-sitemap.py ]; then
+  echo "[gsc] re-submitting sitemaps to Google Search Console"
+  python3 scripts/submit-gsc-sitemap.py || echo "[gsc] non-zero exit"
+fi
+if [ -f scripts/submit-indexnow.sh ]; then
+  echo "[indexnow] pinging Bing/Yandex"
+  bash scripts/submit-indexnow.sh 2>&1 | tail -10
 fi
 
 # ---------------------------------------------------------------------------
