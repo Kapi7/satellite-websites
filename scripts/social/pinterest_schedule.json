@@ -5996,8 +5996,8 @@
       "retinol"
     ],
     "scheduled_date": "2026-05-11T10:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "failed",
+    "posted_at": "2026-05-11T17:36:14.804471",
     "_meta": {
       "theme": "retinol-bakuchiol",
       "variant": 0,
@@ -6043,8 +6043,8 @@
       "snail"
     ],
     "scheduled_date": "2026-05-11T16:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "failed",
+    "posted_at": "2026-05-11T17:38:43.457823",
     "_meta": {
       "theme": "snail-essences",
       "variant": 0,
@@ -6071,7 +6071,8 @@
           "vendor": "SOME BY MI"
         }
       ]
-    }
+    },
+    "last_error": "post-pin-exception: TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.pinterest.com/pin-creation-tool/\", waiting until \"load\"\n"
   },
   {
     "id": "5be937cb",
@@ -6090,8 +6091,8 @@
       "propolis"
     ],
     "scheduled_date": "2026-05-11T22:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "failed",
+    "posted_at": "2026-05-11T17:39:53.895378",
     "_meta": {
       "theme": "propolis-essences",
       "variant": 0,
