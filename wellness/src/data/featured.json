@@ -1,42 +1,42 @@
 {
-  "updated": "2026-05-11",
-  "period": "2026-04-11 to 2026-05-09",
+  "updated": "2026-05-12",
+  "period": "2026-04-12 to 2026-05-10",
   "trending": [
     {
       "slug": "best-protein-powders-clean-natural",
       "clicks": 0,
-      "impressions": 893,
-      "position": 58.3
+      "impressions": 947,
+      "position": 57.9
+    },
+    {
+      "slug": "best-double-cleansing-products",
+      "clicks": 1,
+      "impressions": 222,
+      "position": 55.6
     },
     {
       "slug": "nike-vomero-plus-review",
       "clicks": 1,
-      "impressions": 80,
-      "position": 7.8
+      "impressions": 91,
+      "position": 7.6
     },
     {
       "slug": "zone-2-training-slow-running-burns-fat",
       "clicks": 1,
-      "impressions": 81,
-      "position": 15.6
+      "impressions": 70,
+      "position": 15.3
     },
     {
       "slug": "best-probiotics-for-women-gut-health",
       "clicks": 0,
-      "impressions": 67,
-      "position": 74.2
+      "impressions": 69,
+      "position": 74.4
     },
     {
       "slug": "asics-novablast-5-review",
       "clicks": 0,
-      "impressions": 47,
-      "position": 51.8
-    },
-    {
-      "slug": "high-protein-breakfasts-without-grains",
-      "clicks": 1,
-      "impressions": 25,
-      "position": 26.8
+      "impressions": 50,
+      "position": 50.7
     }
   ],
   "rising": []

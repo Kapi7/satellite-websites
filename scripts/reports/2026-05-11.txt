@@ -1,0 +1,161 @@
+============================================================
+  WEEKLY SEO REPORT
+  Week of 2026-05-11
+============================================================
+
+============================================================
+  GLOW-CODED.COM
+============================================================
+
+  GSC — glow-coded.com
+  ──────────────────────────────────────────────────
+  Clicks:      0 ▼ -2
+  Impressions: 108 ▼ -73
+  CTR:         0.0% ▼ -1.1
+  Position:    43.0 ▼ -9.7
+
+  Top Queries:
+  Query                                    Clicks   Impr    CTR   Pos
+  aha bha pha                                   0      1   0.0%  90.0
+  anua rice toner                               0      1   0.0%  96.0
+  cica korean skincare                          0      1   0.0%  87.0
+  cushion foundation                            0      1   0.0%  85.0
+  espinha fungica                               0      1   0.0%  85.0
+  korean foundation shades                      0      1   0.0%  78.0
+  korean skin care routine                      0      1   0.0% 100.0
+  korean skin care routine steps                0      1   0.0%  93.0
+  korean skincare routine                       0      1   0.0%  42.0
+  korean skincare routine steps                 0      1   0.0%  96.0
+
+  Ahrefs — glow-coded.com
+  ──────────────────────────────────────────────────
+  DR:          12.0 ─ 0
+  Ahrefs Rank: 14068184
+  Backlinks:   400 ▲ +84
+  Ref Domains: 36 ▲ +10
+
+  Top Organic Keywords:
+
+  GA4 — glow-coded.com
+  ──────────────────────────────────────────────────
+  Sessions:   758   Users: 752   Engaged: 32
+  Channels:
+    Direct                              670
+    Unassigned                           78
+    Referral                             18
+    Organic Search                        7
+    Organic Social                        1
+  AI referrals: 76 sessions
+    ChatGPT (chatgpt.com)  sessions: 76  engaged: 23
+
+  Bing — glow-coded.com
+  ──────────────────────────────────────────────────
+  Crawled: 0  |  Indexed: 0
+  Daily quota left: 100  |  Monthly: 2100
+
+============================================================
+  ROOTED-GLOW.COM
+============================================================
+
+  GSC — rooted-glow.com
+  ──────────────────────────────────────────────────
+  Clicks:      9 ▲ +1
+  Impressions: 1627 ▼ -271
+  CTR:         0.6% ▲ +0.1
+  Position:    29.2 ▼ -3.9
+
+  Top Queries:
+  Query                                    Clicks   Impr    CTR   Pos
+  heupflexor stretch                            1      1 100.0%  12.0
+  "carbon-plated super shoes" "super rac        0      1   0.0%   7.0
+  "super racers" running shoes                  0      1   0.0%  10.0
+  abendroutine gesicht                          0      1   0.0%  78.0
+  alimentation ancestrale                       0      1   0.0%  26.0
+  alimentação ancestral                         0      1   0.0%  62.0
+  allantoin in snail mucin                      0      1   0.0%  10.0
+  alongamento do flexor do quadril              0      1   0.0%  42.0
+  ancestral eating                              0      1   0.0%  85.0
+  ancestral foods                               0      1   0.0%  73.0
+
+  Ahrefs — rooted-glow.com
+  ──────────────────────────────────────────────────
+  DR:          12.0 ─ 0
+  Ahrefs Rank: 14068183
+  Backlinks:   522 ▲ +76
+  Ref Domains: 64 ▲ +20
+
+  Top Organic Keywords:
+    best clean protein powder                       vol: 3100
+    clean whey protein                              vol: 700
+    cleanest whey protein                           vol: 500
+
+  GA4 — rooted-glow.com
+  ──────────────────────────────────────────────────
+  Sessions:   46   Users: 43   Engaged: 12
+  Channels:
+    Direct                               23
+    Organic Search                       18
+    Unassigned                            8
+    Organic Social                        1
+    Referral                              1
+  AI referrals: 3 sessions
+    ChatGPT (chatgpt.com)  sessions: 3  engaged: 1
+
+  Bing — rooted-glow.com
+  ──────────────────────────────────────────────────
+  Crawled: 0  |  Indexed: 0
+  Daily quota left: 100  |  Monthly: 2100
+
+============================================================
+  BUILD-CODED.COM
+============================================================
+
+  GSC — build-coded.com
+  ──────────────────────────────────────────────────
+  Clicks:      0 ▼ -4
+  Impressions: 100 ▼ -725
+  CTR:         0.0% ▼ -0.5
+  Position:    49.8 ▲ +23.7
+
+  Top Queries:
+  Query                                    Clicks   Impr    CTR   Pos
+  3d printer goedkoopste                        0      1   0.0%  70.0
+  3d printer voor beginners                     0      1   0.0%  70.0
+  arduino circuiti                              0      1   0.0%  73.0
+  arduino progetti semplici                     0      1   0.0%  85.0
+  arduino projeto                               0      1   0.0%  66.0
+  arduino projetos                              0      1   0.0%  68.0
+  arduino projetos simples                      0      1   0.0%  66.0
+  arduino uno projetos                          0      1   0.0%  65.0
+  cordless soldering                            0      1   0.0%  97.0
+  cordless soldering iron                       0      1   0.0%  65.0
+
+  Ahrefs — build-coded.com
+  ──────────────────────────────────────────────────
+  DR:          7.0 ─ 0
+  Ahrefs Rank: 21014492
+  Backlinks:   59 ▲ +27
+  Ref Domains: 55 ▲ +24
+
+  Top Organic Keywords:
+    what are brad nails used for                    vol: 700
+
+  GA4 — build-coded.com
+  ──────────────────────────────────────────────────
+  Sessions:   32   Users: 29   Engaged: 6
+  Channels:
+    Direct                               21
+    Organic Search                        5
+    Unassigned                            4
+    Referral                              2
+  AI referrals: 6 sessions
+    ChatGPT (chatgpt.com)  sessions: 6  engaged: 2
+
+  Bing — build-coded.com
+  ──────────────────────────────────────────────────
+  Crawled: 90  |  Indexed: 7
+  Daily quota left: 100  |  Monthly: 2100
+
+============================================================
+  Report generated: 2026-05-11 08:00
+============================================================
