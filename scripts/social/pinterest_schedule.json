@@ -4466,7 +4466,8 @@
       "k-beauty comparison"
     ],
     "scheduled_date": "2026-05-13",
-    "status": "pending"
+    "status": "posted",
+    "posted_at": "2026-05-13T01:35:58.398407"
   },
   {
     "id": 160,
@@ -6280,8 +6281,8 @@
       "glass"
     ],
     "scheduled_date": "2026-05-13T10:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "failed",
+    "posted_at": "2026-05-13T01:30:44.661823",
     "_meta": {
       "theme": "glass-skin-routine",
       "variant": 0,
@@ -6332,8 +6333,8 @@
       "toners"
     ],
     "scheduled_date": "2026-05-13T16:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "failed",
+    "posted_at": "2026-05-13T01:32:41.205179",
     "_meta": {
       "theme": "toners-pads",
       "variant": 2,
@@ -6379,8 +6380,8 @@
       "sunscreens"
     ],
     "scheduled_date": "2026-05-13T22:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "posted",
+    "posted_at": "2026-05-13T01:34:40.565972",
     "_meta": {
       "theme": "sunscreens-sensitive",
       "variant": 1,
