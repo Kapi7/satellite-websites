@@ -78,6 +78,26 @@ def fix_long_lines(text):
     return ("".join(new_lines), fixes) if fixes else (text, 0)
 
 
+def fix_unquoted_yaml_colons(text):
+    """Quote frontmatter values that contain an unquoted colon (e.g.
+    `imageAlt: Foo: bar` breaks YAML parsing). Common translator artifact."""
+    m = FRONTMATTER_RE.match(text)
+    if not m: return text, 0
+    fm = text[m.start():m.end()]
+    body = text[m.end():]
+    fixes = 0
+    new_lines = []
+    for line in fm.splitlines():
+        mm = re.match(r"^([a-zA-Z][\w-]*:\s+)([^\"'\[\{].*)$", line)
+        if mm and ":" in mm.group(2) and not mm.group(2).startswith(("|", ">")):
+            safe = mm.group(2).replace('"', "'")
+            new_lines.append(f'{mm.group(1)}"{safe}"')
+            fixes += 1
+        else:
+            new_lines.append(line)
+    return ("\n".join(new_lines) + "\n" + body, fixes) if fixes else (text, 0)
+
+
 def fix_unescaped_quotes(text):
     m = FRONTMATTER_RE.match(text)
     if not m:
@@ -107,14 +127,15 @@ def process_file(path, dry_run):
     text, leak_n = fix_prompt_leak(text)
     text, long_n = fix_long_lines(text)
     text, tok_n = fix_llm_token_tags(text)
+    text, yamlc_n = fix_unquoted_yaml_colons(text)
     text, quote_n = fix_unescaped_quotes(text)
-    total = sep_n + leak_n + quote_n + long_n + tok_n
+    total = sep_n + leak_n + quote_n + long_n + tok_n + yamlc_n
     if total == 0:
         return None
     if not dry_run:
         path.write_text(text)
     return {"path": path, "leaks": leak_n, "seps": sep_n, "quotes": quote_n,
-            "longs": long_n, "tokens": tok_n}
+            "longs": long_n, "tokens": tok_n, "yaml_colons": yamlc_n}
 
 
 def main():
@@ -122,7 +143,7 @@ def main():
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()
     fixed = 0
-    totals = {"leaks": 0, "seps": 0, "quotes": 0, "longs": 0, "tokens": 0}
+    totals = {"leaks": 0, "seps": 0, "quotes": 0, "longs": 0, "tokens": 0, "yaml_colons": 0}
     for site in SITE_DIRS:
         if not site.exists():
             continue
@@ -136,7 +157,7 @@ def main():
     print(f"\n[done] {fixed} files {'would be ' if args.dry_run else ''}fixed")
     print(f"  prompt-leaks: {totals['leaks']}, duplicate ---: {totals['seps']}, "
           f"unescaped quotes: {totals['quotes']}, long lines: {totals['longs']}, "
-          f"llm-token tags: {totals['tokens']}")
+          f"llm-token tags: {totals['tokens']}, yaml-colons: {totals['yaml_colons']}")
 
 
 if __name__ == "__main__":
