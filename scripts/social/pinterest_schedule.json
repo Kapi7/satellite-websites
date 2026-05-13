@@ -5322,7 +5322,7 @@
       "kbeauty"
     ],
     "scheduled_date": "2026-05-07T22:00:00",
-    "status": "pending",
+    "status": "posted",
     "_meta": {
       "theme": "kbeauty-under-25",
       "variant": 2,
@@ -5356,7 +5356,7 @@
       ]
     },
     "board_original": "Korean Skincare Essentials",
-    "last_error": "RESET 2026-05-13: 'Korean Skincare Essentials' doesn't exist on Pinterest, remapped to 'Korean Skincare'"
+    "posted_at": "2026-05-13T20:27:57.433556"
   },
   {
     "id": 179,
@@ -5591,7 +5591,7 @@
       "niacinamide"
     ],
     "scheduled_date": "2026-05-08T22:00:00",
-    "status": "pending",
+    "status": "failed",
     "_meta": {
       "theme": "niacinamide-serums",
       "variant": 2,
@@ -5620,7 +5620,8 @@
       ]
     },
     "board_original": "Serums & Essences",
-    "last_error": "RESET 2026-05-13: 'Serums & Essences' doesn't exist on Pinterest, remapped to 'Korean Skincare'"
+    "last_error": "post-pin-exception: TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.pinterest.com/pin-creation-tool/\", waiting until \"load\"\n",
+    "posted_at": "2026-05-13T20:30:27.300904"
   },
   {
     "id": 185,
@@ -5748,7 +5749,7 @@
       "anti"
     ],
     "scheduled_date": "2026-05-09T16:00:00",
-    "status": "pending",
+    "status": "posted",
     "_meta": {
       "theme": "anti-aging-30s",
       "variant": 0,
@@ -5781,8 +5782,8 @@
         }
       ]
     },
-    "last_error": "RESET 2026-05-13: 'Korean Skincare Essentials' doesn't exist on Pinterest, remapped to 'Korean Skincare'",
-    "board_original": "Korean Skincare Essentials"
+    "board_original": "Korean Skincare Essentials",
+    "posted_at": "2026-05-13T20:31:57.573314"
   },
   {
     "id": 188,
