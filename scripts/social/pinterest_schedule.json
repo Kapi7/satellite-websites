@@ -3310,7 +3310,7 @@
       "retinol"
     ],
     "scheduled_date": "2026-04-30T16:00:00",
-    "status": "pending",
+    "status": "posted",
     "_meta": {
       "theme": "retinol-bakuchiol",
       "variant": 2,
@@ -3338,8 +3338,8 @@
         }
       ]
     },
-    "last_error": "RESET 2026-05-13: 'Serums & Essences' doesn't exist on Pinterest, remapped to 'Korean Skincare'",
-    "board_original": "Serums & Essences"
+    "board_original": "Serums & Essences",
+    "posted_at": "2026-05-13T10:25:49.541382"
   },
   {
     "id": 135,
@@ -3405,7 +3405,7 @@
       "sleeping"
     ],
     "scheduled_date": "2026-04-30T22:00:00",
-    "status": "pending",
+    "status": "failed",
     "_meta": {
       "theme": "sleeping-masks",
       "variant": 1,
@@ -3433,8 +3433,9 @@
         }
       ]
     },
-    "last_error": "RESET 2026-05-13: 'Masks & Treatments' doesn't exist on Pinterest, remapped to 'Korean Skincare'",
-    "board_original": "Masks & Treatments"
+    "last_error": "post-pin-exception: TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.pinterest.com/pin-creation-tool/\", waiting until \"load\"\n",
+    "board_original": "Masks & Treatments",
+    "posted_at": "2026-05-13T10:28:14.118388"
   },
   {
     "id": 137,
@@ -3870,7 +3871,7 @@
       "toners"
     ],
     "scheduled_date": "2026-05-02T16:00:00",
-    "status": "pending",
+    "status": "posted",
     "_meta": {
       "theme": "toners-glass-skin",
       "variant": 1,
@@ -3899,7 +3900,7 @@
       ]
     },
     "board_original": "Toners & Glass Skin",
-    "last_error": "RESET 2026-05-13: 'Toners & Glass Skin' doesn't exist on Pinterest, remapped to 'Korean Skincare'"
+    "posted_at": "2026-05-13T10:29:19.648517"
   },
   {
     "id": 147,
