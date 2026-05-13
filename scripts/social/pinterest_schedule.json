@@ -4052,7 +4052,7 @@
       "kbeauty"
     ],
     "scheduled_date": "2026-05-03T10:00:00",
-    "status": "pending",
+    "status": "posted",
     "_meta": {
       "theme": "kbeauty-under-25",
       "variant": 1,
@@ -4085,8 +4085,8 @@
         }
       ]
     },
-    "last_error": "RESET 2026-05-13: 'Korean Skincare Essentials' doesn't exist on Pinterest, remapped to 'Korean Skincare'",
-    "board_original": "Korean Skincare Essentials"
+    "board_original": "Korean Skincare Essentials",
+    "posted_at": "2026-05-13T18:30:39.612595"
   },
   {
     "id": 151,
@@ -4238,7 +4238,7 @@
       "vitamin"
     ],
     "scheduled_date": "2026-05-03T22:00:00",
-    "status": "pending",
+    "status": "failed",
     "_meta": {
       "theme": "vitamin-c-serums",
       "variant": 0,
@@ -4267,7 +4267,8 @@
       ]
     },
     "board_original": "Serums & Essences",
-    "last_error": "RESET 2026-05-13: 'Serums & Essences' doesn't exist on Pinterest, remapped to 'Korean Skincare'"
+    "last_error": "post-pin-exception: TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.pinterest.com/pin-creation-tool/\", waiting until \"load\"\n",
+    "posted_at": "2026-05-13T18:32:13.262278"
   },
   {
     "id": 155,
@@ -4329,7 +4330,7 @@
       "toners"
     ],
     "scheduled_date": "2026-05-04T10:00:00",
-    "status": "pending",
+    "status": "posted",
     "_meta": {
       "theme": "toners-pads",
       "variant": 0,
@@ -4358,7 +4359,7 @@
       ]
     },
     "board_original": "Toners & Glass Skin",
-    "last_error": "RESET 2026-05-13: 'Toners & Glass Skin' doesn't exist on Pinterest, remapped to 'Korean Skincare'"
+    "posted_at": "2026-05-13T18:34:03.604161"
   },
   {
     "id": 157,
