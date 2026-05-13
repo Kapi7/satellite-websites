@@ -4559,7 +4559,8 @@
       "face wash"
     ],
     "scheduled_date": "2026-05-14",
-    "status": "pending"
+    "status": "failed",
+    "posted_at": "2026-05-14T01:34:59.088969"
   },
   {
     "id": 162,
@@ -5822,7 +5823,7 @@
       "vitamin"
     ],
     "scheduled_date": "2026-05-09T22:00:00",
-    "status": "pending",
+    "status": "posted",
     "_meta": {
       "theme": "vitamin-c-serums",
       "variant": 1,
@@ -5851,7 +5852,7 @@
       ]
     },
     "board_original": "Serums & Essences",
-    "last_error": "RESET 2026-05-13: 'Serums & Essences' doesn't exist on Pinterest, remapped to 'Korean Skincare'"
+    "posted_at": "2026-05-14T01:30:43.962266"
   },
   {
     "id": "544d2b0f",
@@ -5870,7 +5871,7 @@
       "eye"
     ],
     "scheduled_date": "2026-05-10T10:00:00",
-    "status": "pending",
+    "status": "posted",
     "_meta": {
       "theme": "eye-patches",
       "variant": 2,
@@ -5899,7 +5900,7 @@
       ]
     },
     "board_original": "Masks & Treatments",
-    "last_error": "RESET 2026-05-13: 'Masks & Treatments' doesn't exist on Pinterest, remapped to 'Korean Skincare'"
+    "posted_at": "2026-05-14T01:32:04.663170"
   },
   {
     "id": "54fdd373",
@@ -5918,7 +5919,7 @@
       "lip"
     ],
     "scheduled_date": "2026-05-10T16:00:00",
-    "status": "pending",
+    "status": "posted",
     "_meta": {
       "theme": "lip-products",
       "variant": 2,
@@ -5947,7 +5948,7 @@
       ]
     },
     "board_original": "K-Beauty Makeup",
-    "last_error": "RESET 2026-05-13: 'K-Beauty Makeup' doesn't exist on Pinterest, remapped to 'Mirai Make Up & Tools'"
+    "posted_at": "2026-05-14T01:33:45.332497"
   },
   {
     "id": "56cfbecb",
