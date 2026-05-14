@@ -6299,7 +6299,7 @@
       "glass"
     ],
     "scheduled_date": "2026-05-13T10:00:00",
-    "status": "pending",
+    "status": "posted",
     "_meta": {
       "theme": "glass-skin-routine",
       "variant": 0,
@@ -6333,7 +6333,7 @@
       ]
     },
     "board_original": "Korean Skincare Essentials",
-    "last_error": "RESET 2026-05-13: 'Korean Skincare Essentials' doesn't exist on Pinterest, remapped to 'Korean Skincare'"
+    "posted_at": "2026-05-14T18:30:48.030992"
   },
   {
     "id": "6fb8da4e",
@@ -6352,7 +6352,7 @@
       "toners"
     ],
     "scheduled_date": "2026-05-13T16:00:00",
-    "status": "pending",
+    "status": "failed",
     "_meta": {
       "theme": "toners-pads",
       "variant": 2,
@@ -6381,7 +6381,8 @@
       ]
     },
     "board_original": "Toners & Glass Skin",
-    "last_error": "RESET 2026-05-13: 'Toners & Glass Skin' doesn't exist on Pinterest, remapped to 'Korean Skincare'"
+    "last_error": "post-pin-exception: TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.pinterest.com/pin-creation-tool/\", waiting until \"load\"\n",
+    "posted_at": "2026-05-14T18:32:45.585723"
   },
   {
     "id": "7781280b",
@@ -6447,8 +6448,8 @@
       "eye"
     ],
     "scheduled_date": "2026-05-14T10:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "posted",
+    "posted_at": "2026-05-14T18:34:27.459780",
     "_meta": {
       "theme": "eye-patches",
       "variant": 1,
