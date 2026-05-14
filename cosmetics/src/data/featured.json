@@ -1,42 +1,42 @@
 {
-  "updated": "2026-05-13",
-  "period": "2026-04-13 to 2026-05-11",
+  "updated": "2026-05-14",
+  "period": "2026-04-14 to 2026-05-12",
   "trending": [
     {
       "slug": "cosrx-snail-mucin-vs-torriden-dive-in-serum",
       "clicks": 0,
-      "impressions": 128,
-      "position": 6.3
+      "impressions": 106,
+      "position": 6.4
     },
     {
       "slug": "best-korean-moisturizers-sensitive-skin",
       "clicks": 1,
-      "impressions": 96,
-      "position": 7.6
+      "impressions": 79,
+      "position": 6.6
     },
     {
       "slug": "korean-spf-vs-western-spf",
       "clicks": 1,
-      "impressions": 42,
-      "position": 6.6
+      "impressions": 36,
+      "position": 6.2
     },
     {
       "slug": "korean-toners-ranked-best-every-skin-type",
       "clicks": 1,
-      "impressions": 58,
-      "position": 45.3
+      "impressions": 48,
+      "position": 53.5
     },
     {
-      "slug": "tirtir-cushion-foundation-shade-guide",
-      "clicks": 1,
-      "impressions": 30,
-      "position": 6.2
+      "slug": "best-korean-sunscreens-oily-skin-no-white-cast",
+      "clicks": 0,
+      "impressions": 38,
+      "position": 15.4
     },
     {
-      "slug": "skincare-ingredient-compatibility-guide",
-      "clicks": 1,
-      "impressions": 41,
-      "position": 15.0
+      "slug": "affordable-k-beauty-dupes-luxury-products",
+      "clicks": 0,
+      "impressions": 37,
+      "position": 20.5
     }
   ],
   "rising": []
