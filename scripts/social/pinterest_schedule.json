@@ -4649,7 +4649,8 @@
       "makeup prep"
     ],
     "scheduled_date": "2026-05-15",
-    "status": "pending"
+    "status": "failed",
+    "posted_at": "2026-05-15T01:35:39.339060"
   },
   {
     "id": 164,
@@ -6592,8 +6593,8 @@
       "centella"
     ],
     "scheduled_date": "2026-05-15T10:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "posted",
+    "posted_at": "2026-05-15T01:30:51.706878",
     "_meta": {
       "theme": "centella-moisturizers",
       "variant": 0,
@@ -6639,8 +6640,8 @@
       "cushions"
     ],
     "scheduled_date": "2026-05-15T16:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "posted",
+    "posted_at": "2026-05-15T01:32:53.951887",
     "_meta": {
       "theme": "cushions",
       "variant": 1,
@@ -6687,8 +6688,8 @@
       "moisturizers"
     ],
     "scheduled_date": "2026-05-15T22:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "posted",
+    "posted_at": "2026-05-15T01:34:21.056585",
     "_meta": {
       "theme": "moisturizers-sensitive",
       "variant": 0,
