@@ -6502,8 +6502,8 @@
       "sheet"
     ],
     "scheduled_date": "2026-05-14T16:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "posted",
+    "posted_at": "2026-05-15T23:30:33.222475",
     "_meta": {
       "theme": "sheet-masks",
       "variant": 2,
@@ -6550,8 +6550,8 @@
       "eye"
     ],
     "scheduled_date": "2026-05-14T22:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "posted",
+    "posted_at": "2026-05-15T23:31:48.411032",
     "_meta": {
       "theme": "eye-patches",
       "variant": 0,
@@ -6598,8 +6598,8 @@
       "centella"
     ],
     "scheduled_date": "2026-05-15T10:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "posted",
+    "posted_at": "2026-05-15T23:33:19.810409",
     "_meta": {
       "theme": "centella-moisturizers",
       "variant": 0,
