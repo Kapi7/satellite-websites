@@ -6019,7 +6019,7 @@
       "retinol"
     ],
     "scheduled_date": "2026-05-11T10:00:00",
-    "status": "pending",
+    "status": "posted",
     "_meta": {
       "theme": "retinol-bakuchiol",
       "variant": 0,
@@ -6048,7 +6048,7 @@
       ]
     },
     "board_original": "Serums & Essences",
-    "last_error": "RESET 2026-05-13: 'Serums & Essences' doesn't exist on Pinterest, remapped to 'Korean Skincare'"
+    "posted_at": "2026-05-15T20:11:06.629445"
   },
   {
     "id": "5b18615a",
@@ -6067,7 +6067,7 @@
       "snail"
     ],
     "scheduled_date": "2026-05-11T16:00:00",
-    "status": "pending",
+    "status": "failed",
     "_meta": {
       "theme": "snail-essences",
       "variant": 0,
@@ -6095,8 +6095,9 @@
         }
       ]
     },
-    "last_error": "RESET 2026-05-13: 'Serums & Essences' doesn't exist on Pinterest, remapped to 'Korean Skincare'",
-    "board_original": "Serums & Essences"
+    "last_error": "post-pin-exception: TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.pinterest.com/pin-creation-tool/\", waiting until \"load\"\n",
+    "board_original": "Serums & Essences",
+    "posted_at": "2026-05-15T20:13:14.265373"
   },
   {
     "id": "5be937cb",
@@ -6115,7 +6116,7 @@
       "propolis"
     ],
     "scheduled_date": "2026-05-11T22:00:00",
-    "status": "pending",
+    "status": "posted",
     "_meta": {
       "theme": "propolis-essences",
       "variant": 0,
@@ -6144,7 +6145,7 @@
       ]
     },
     "board_original": "Serums & Essences",
-    "last_error": "RESET 2026-05-13: 'Serums & Essences' doesn't exist on Pinterest, remapped to 'Korean Skincare'"
+    "posted_at": "2026-05-15T20:15:03.268843"
   },
   {
     "id": "5c312516",
