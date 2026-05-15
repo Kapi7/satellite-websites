@@ -1,23 +1,23 @@
 {
-  "updated": "2026-05-14",
-  "period": "2026-04-14 to 2026-05-12",
+  "updated": "2026-05-15",
+  "period": "2026-04-15 to 2026-05-13",
   "trending": [
     {
       "slug": "best-protein-powders-clean-natural",
       "clicks": 0,
-      "impressions": 1123,
-      "position": 54.7
+      "impressions": 1215,
+      "position": 53.5
     },
     {
       "slug": "best-double-cleansing-products",
       "clicks": 1,
-      "impressions": 253,
-      "position": 51.0
+      "impressions": 275,
+      "position": 47.5
     },
     {
       "slug": "nike-vomero-plus-review",
       "clicks": 2,
-      "impressions": 110,
+      "impressions": 115,
       "position": 7.6
     },
     {
@@ -29,8 +29,8 @@
     {
       "slug": "best-probiotics-for-women-gut-health",
       "clicks": 0,
-      "impressions": 73,
-      "position": 73.5
+      "impressions": 74,
+      "position": 72.7
     },
     {
       "slug": "asics-novablast-5-review",
@@ -39,5 +39,12 @@
       "position": 50.2
     }
   ],
-  "rising": []
+  "rising": [
+    {
+      "slug": "centella-asiatica-cica-acne-redness",
+      "clicks": 0,
+      "impressions": 11,
+      "days_old": 14
+    }
+  ]
 }

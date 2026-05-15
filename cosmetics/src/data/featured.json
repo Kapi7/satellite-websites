@@ -1,42 +1,42 @@
 {
-  "updated": "2026-05-14",
-  "period": "2026-04-14 to 2026-05-12",
+  "updated": "2026-05-15",
+  "period": "2026-04-15 to 2026-05-13",
   "trending": [
     {
       "slug": "cosrx-snail-mucin-vs-torriden-dive-in-serum",
       "clicks": 0,
-      "impressions": 106,
-      "position": 6.4
+      "impressions": 88,
+      "position": 6.8
     },
     {
-      "slug": "best-korean-moisturizers-sensitive-skin",
-      "clicks": 1,
-      "impressions": 79,
-      "position": 6.6
-    },
-    {
-      "slug": "korean-spf-vs-western-spf",
-      "clicks": 1,
-      "impressions": 36,
-      "position": 6.2
-    },
-    {
-      "slug": "korean-toners-ranked-best-every-skin-type",
-      "clicks": 1,
-      "impressions": 48,
-      "position": 53.5
-    },
-    {
-      "slug": "best-korean-sunscreens-oily-skin-no-white-cast",
+      "slug": "10-sunscreens-no-white-cast",
       "clicks": 0,
-      "impressions": 38,
-      "position": 15.4
+      "impressions": 23,
+      "position": 5.2
     },
     {
       "slug": "affordable-k-beauty-dupes-luxury-products",
       "clicks": 0,
-      "impressions": 37,
-      "position": 20.5
+      "impressions": 27,
+      "position": 19
+    },
+    {
+      "slug": "best-korean-moisturizers-sensitive-skin",
+      "clicks": 0,
+      "impressions": 21,
+      "position": 2.7
+    },
+    {
+      "slug": "beauty-of-joseon-best-products-complete-guide",
+      "clicks": 0,
+      "impressions": 20,
+      "position": 7.9
+    },
+    {
+      "slug": "best-korean-sunscreens-oily-skin-no-white-cast",
+      "clicks": 0,
+      "impressions": 20,
+      "position": 7.0
     }
   ],
   "rising": []
