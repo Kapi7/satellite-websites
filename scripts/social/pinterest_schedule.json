@@ -4052,7 +4052,7 @@
       "kbeauty"
     ],
     "scheduled_date": "2026-05-03T10:00:00",
-    "status": "posted",
+    "status": "failed",
     "_meta": {
       "theme": "kbeauty-under-25",
       "variant": 1,
@@ -4085,8 +4085,9 @@
         }
       ]
     },
+    "last_error": "RESET 2026-05-13: 'Korean Skincare Essentials' doesn't exist on Pinterest, remapped to 'Korean Skincare'",
     "board_original": "Korean Skincare Essentials",
-    "posted_at": "2026-05-13T18:30:39.612595"
+    "posted_at": "2026-05-13T15:01:02.509344"
   },
   {
     "id": 151,
@@ -4268,7 +4269,7 @@
     },
     "board_original": "Serums & Essences",
     "last_error": "post-pin-exception: TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.pinterest.com/pin-creation-tool/\", waiting until \"load\"\n",
-    "posted_at": "2026-05-13T18:32:13.262278"
+    "posted_at": "2026-05-13T15:03:20.402906"
   },
   {
     "id": 155,
@@ -4330,7 +4331,7 @@
       "toners"
     ],
     "scheduled_date": "2026-05-04T10:00:00",
-    "status": "posted",
+    "status": "failed",
     "_meta": {
       "theme": "toners-pads",
       "variant": 0,
@@ -4359,7 +4360,8 @@
       ]
     },
     "board_original": "Toners & Glass Skin",
-    "posted_at": "2026-05-13T18:34:03.604161"
+    "last_error": "RESET 2026-05-13: 'Toners & Glass Skin' doesn't exist on Pinterest, remapped to 'Korean Skincare'",
+    "posted_at": "2026-05-13T15:04:21.249647"
   },
   {
     "id": 157,
@@ -4560,7 +4562,7 @@
     ],
     "scheduled_date": "2026-05-14",
     "status": "failed",
-    "posted_at": "2026-05-14T01:34:59.088969"
+    "posted_at": "2026-05-14T15:00:57.773618"
   },
   {
     "id": 162,
@@ -4649,8 +4651,7 @@
       "makeup prep"
     ],
     "scheduled_date": "2026-05-15",
-    "status": "failed",
-    "posted_at": "2026-05-15T01:35:39.339060"
+    "status": "pending"
   },
   {
     "id": 164,
@@ -4689,7 +4690,7 @@
       "sheet"
     ],
     "scheduled_date": "2026-05-05T16:00:00",
-    "status": "posted",
+    "status": "failed",
     "_meta": {
       "theme": "sheet-masks",
       "variant": 0,
@@ -4717,8 +4718,9 @@
         }
       ]
     },
+    "last_error": "RESET 2026-05-13: 'Masks & Treatments' doesn't exist on Pinterest, remapped to 'Korean Skincare'",
     "board_original": "Masks & Treatments",
-    "posted_at": "2026-05-13T17:37:41.849261"
+    "posted_at": "2026-05-14T15:01:13.199169"
   },
   {
     "id": 165,
@@ -4868,7 +4870,7 @@
       "pdrn"
     ],
     "scheduled_date": "2026-05-06T10:00:00",
-    "status": "posted",
+    "status": "failed",
     "_meta": {
       "theme": "pdrn-serums",
       "variant": 2,
@@ -4897,7 +4899,8 @@
       ]
     },
     "board_original": "Serums & Essences",
-    "posted_at": "2026-05-13T17:39:32.893229"
+    "last_error": "RESET 2026-05-13: 'Serums & Essences' doesn't exist on Pinterest, remapped to 'Korean Skincare'",
+    "posted_at": "2026-05-14T15:02:19.052426"
   },
   {
     "id": 169,
@@ -4958,7 +4961,7 @@
       "anti"
     ],
     "scheduled_date": "2026-05-06T16:00:00",
-    "status": "posted",
+    "status": "failed",
     "_meta": {
       "theme": "anti-aging-30s",
       "variant": 2,
@@ -4991,8 +4994,9 @@
         }
       ]
     },
+    "last_error": "RESET 2026-05-13: 'Korean Skincare Essentials' doesn't exist on Pinterest, remapped to 'Korean Skincare'",
     "board_original": "Korean Skincare Essentials",
-    "posted_at": "2026-05-13T17:41:16.623719"
+    "posted_at": "2026-05-14T15:03:35.782248"
   },
   {
     "id": 171,
@@ -5053,7 +5057,7 @@
       "cushions"
     ],
     "scheduled_date": "2026-05-06T22:00:00",
-    "status": "posted",
+    "status": "pending",
     "_meta": {
       "theme": "cushions",
       "variant": 2,
@@ -5082,7 +5086,7 @@
       ]
     },
     "board_original": "K-Beauty Makeup",
-    "posted_at": "2026-05-13T22:00:50.383988"
+    "last_error": "RESET 2026-05-13: 'K-Beauty Makeup' doesn't exist on Pinterest, remapped to 'Mirai Make Up & Tools'"
   },
   {
     "id": 173,
@@ -5144,7 +5148,7 @@
       "propolis"
     ],
     "scheduled_date": "2026-05-07T10:00:00",
-    "status": "posted",
+    "status": "pending",
     "_meta": {
       "theme": "propolis-essences",
       "variant": 2,
@@ -5173,7 +5177,7 @@
       ]
     },
     "board_original": "Serums & Essences",
-    "posted_at": "2026-05-13T22:02:08.168961"
+    "last_error": "RESET 2026-05-13: 'Serums & Essences' doesn't exist on Pinterest, remapped to 'Korean Skincare'"
   },
   {
     "id": 175,
@@ -5234,7 +5238,7 @@
       "pdrn"
     ],
     "scheduled_date": "2026-05-07T16:00:00",
-    "status": "failed",
+    "status": "pending",
     "_meta": {
       "theme": "pdrn-serums",
       "variant": 0,
@@ -5263,8 +5267,7 @@
       ]
     },
     "last_error": "RESET 2026-05-13: 'Serums & Essences' doesn't exist on Pinterest, remapped to 'Korean Skincare'",
-    "board_original": "Serums & Essences",
-    "posted_at": "2026-05-13T22:03:34.843124"
+    "board_original": "Serums & Essences"
   },
   {
     "id": 177,
@@ -5324,7 +5327,7 @@
       "kbeauty"
     ],
     "scheduled_date": "2026-05-07T22:00:00",
-    "status": "posted",
+    "status": "pending",
     "_meta": {
       "theme": "kbeauty-under-25",
       "variant": 2,
@@ -5358,7 +5361,7 @@
       ]
     },
     "board_original": "Korean Skincare Essentials",
-    "posted_at": "2026-05-13T20:27:57.433556"
+    "last_error": "RESET 2026-05-13: 'Korean Skincare Essentials' doesn't exist on Pinterest, remapped to 'Korean Skincare'"
   },
   {
     "id": 179,
@@ -5593,7 +5596,7 @@
       "niacinamide"
     ],
     "scheduled_date": "2026-05-08T22:00:00",
-    "status": "failed",
+    "status": "pending",
     "_meta": {
       "theme": "niacinamide-serums",
       "variant": 2,
@@ -5622,8 +5625,7 @@
       ]
     },
     "board_original": "Serums & Essences",
-    "last_error": "post-pin-exception: TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.pinterest.com/pin-creation-tool/\", waiting until \"load\"\n",
-    "posted_at": "2026-05-13T20:30:27.300904"
+    "last_error": "RESET 2026-05-13: 'Serums & Essences' doesn't exist on Pinterest, remapped to 'Korean Skincare'"
   },
   {
     "id": 185,
@@ -5751,7 +5753,7 @@
       "anti"
     ],
     "scheduled_date": "2026-05-09T16:00:00",
-    "status": "posted",
+    "status": "pending",
     "_meta": {
       "theme": "anti-aging-30s",
       "variant": 0,
@@ -5784,8 +5786,8 @@
         }
       ]
     },
-    "board_original": "Korean Skincare Essentials",
-    "posted_at": "2026-05-13T20:31:57.573314"
+    "last_error": "RESET 2026-05-13: 'Korean Skincare Essentials' doesn't exist on Pinterest, remapped to 'Korean Skincare'",
+    "board_original": "Korean Skincare Essentials"
   },
   {
     "id": 188,
@@ -5824,7 +5826,7 @@
       "vitamin"
     ],
     "scheduled_date": "2026-05-09T22:00:00",
-    "status": "posted",
+    "status": "pending",
     "_meta": {
       "theme": "vitamin-c-serums",
       "variant": 1,
@@ -5853,7 +5855,7 @@
       ]
     },
     "board_original": "Serums & Essences",
-    "posted_at": "2026-05-14T01:30:43.962266"
+    "last_error": "RESET 2026-05-13: 'Serums & Essences' doesn't exist on Pinterest, remapped to 'Korean Skincare'"
   },
   {
     "id": "544d2b0f",
@@ -5872,7 +5874,7 @@
       "eye"
     ],
     "scheduled_date": "2026-05-10T10:00:00",
-    "status": "posted",
+    "status": "pending",
     "_meta": {
       "theme": "eye-patches",
       "variant": 2,
@@ -5901,7 +5903,7 @@
       ]
     },
     "board_original": "Masks & Treatments",
-    "posted_at": "2026-05-14T01:32:04.663170"
+    "last_error": "RESET 2026-05-13: 'Masks & Treatments' doesn't exist on Pinterest, remapped to 'Korean Skincare'"
   },
   {
     "id": "54fdd373",
@@ -5920,7 +5922,7 @@
       "lip"
     ],
     "scheduled_date": "2026-05-10T16:00:00",
-    "status": "posted",
+    "status": "pending",
     "_meta": {
       "theme": "lip-products",
       "variant": 2,
@@ -5949,7 +5951,7 @@
       ]
     },
     "board_original": "K-Beauty Makeup",
-    "posted_at": "2026-05-14T01:33:45.332497"
+    "last_error": "RESET 2026-05-13: 'K-Beauty Makeup' doesn't exist on Pinterest, remapped to 'Mirai Make Up & Tools'"
   },
   {
     "id": "56cfbecb",
@@ -6015,7 +6017,7 @@
       "retinol"
     ],
     "scheduled_date": "2026-05-11T10:00:00",
-    "status": "posted",
+    "status": "pending",
     "_meta": {
       "theme": "retinol-bakuchiol",
       "variant": 0,
@@ -6044,7 +6046,7 @@
       ]
     },
     "board_original": "Serums & Essences",
-    "posted_at": "2026-05-13T23:39:07.558951"
+    "last_error": "RESET 2026-05-13: 'Serums & Essences' doesn't exist on Pinterest, remapped to 'Korean Skincare'"
   },
   {
     "id": "5b18615a",
@@ -6063,7 +6065,7 @@
       "snail"
     ],
     "scheduled_date": "2026-05-11T16:00:00",
-    "status": "posted",
+    "status": "pending",
     "_meta": {
       "theme": "snail-essences",
       "variant": 0,
@@ -6091,8 +6093,8 @@
         }
       ]
     },
-    "board_original": "Serums & Essences",
-    "posted_at": "2026-05-13T23:40:50.637560"
+    "last_error": "RESET 2026-05-13: 'Serums & Essences' doesn't exist on Pinterest, remapped to 'Korean Skincare'",
+    "board_original": "Serums & Essences"
   },
   {
     "id": "5be937cb",
@@ -6111,7 +6113,7 @@
       "propolis"
     ],
     "scheduled_date": "2026-05-11T22:00:00",
-    "status": "posted",
+    "status": "pending",
     "_meta": {
       "theme": "propolis-essences",
       "variant": 0,
@@ -6140,7 +6142,7 @@
       ]
     },
     "board_original": "Serums & Essences",
-    "posted_at": "2026-05-13T23:42:32.550756"
+    "last_error": "RESET 2026-05-13: 'Serums & Essences' doesn't exist on Pinterest, remapped to 'Korean Skincare'"
   },
   {
     "id": "5c312516",
@@ -6300,7 +6302,7 @@
       "glass"
     ],
     "scheduled_date": "2026-05-13T10:00:00",
-    "status": "posted",
+    "status": "pending",
     "_meta": {
       "theme": "glass-skin-routine",
       "variant": 0,
@@ -6334,7 +6336,7 @@
       ]
     },
     "board_original": "Korean Skincare Essentials",
-    "posted_at": "2026-05-14T18:30:48.030992"
+    "last_error": "RESET 2026-05-13: 'Korean Skincare Essentials' doesn't exist on Pinterest, remapped to 'Korean Skincare'"
   },
   {
     "id": "6fb8da4e",
@@ -6353,7 +6355,7 @@
       "toners"
     ],
     "scheduled_date": "2026-05-13T16:00:00",
-    "status": "failed",
+    "status": "pending",
     "_meta": {
       "theme": "toners-pads",
       "variant": 2,
@@ -6382,8 +6384,7 @@
       ]
     },
     "board_original": "Toners & Glass Skin",
-    "last_error": "post-pin-exception: TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.pinterest.com/pin-creation-tool/\", waiting until \"load\"\n",
-    "posted_at": "2026-05-14T18:32:45.585723"
+    "last_error": "RESET 2026-05-13: 'Toners & Glass Skin' doesn't exist on Pinterest, remapped to 'Korean Skincare'"
   },
   {
     "id": "7781280b",
@@ -6449,8 +6450,8 @@
       "eye"
     ],
     "scheduled_date": "2026-05-14T10:00:00",
-    "status": "posted",
-    "posted_at": "2026-05-14T18:34:27.459780",
+    "status": "pending",
+    "posted_at": null,
     "_meta": {
       "theme": "eye-patches",
       "variant": 1,
@@ -6497,8 +6498,8 @@
       "sheet"
     ],
     "scheduled_date": "2026-05-14T16:00:00",
-    "status": "posted",
-    "posted_at": "2026-05-14T17:22:51.993036",
+    "status": "pending",
+    "posted_at": null,
     "_meta": {
       "theme": "sheet-masks",
       "variant": 2,
@@ -6545,8 +6546,8 @@
       "eye"
     ],
     "scheduled_date": "2026-05-14T22:00:00",
-    "status": "posted",
-    "posted_at": "2026-05-14T17:24:44.238601",
+    "status": "pending",
+    "posted_at": null,
     "_meta": {
       "theme": "eye-patches",
       "variant": 0,
@@ -6593,8 +6594,8 @@
       "centella"
     ],
     "scheduled_date": "2026-05-15T10:00:00",
-    "status": "posted",
-    "posted_at": "2026-05-15T01:30:51.706878",
+    "status": "pending",
+    "posted_at": null,
     "_meta": {
       "theme": "centella-moisturizers",
       "variant": 0,
@@ -6640,8 +6641,8 @@
       "cushions"
     ],
     "scheduled_date": "2026-05-15T16:00:00",
-    "status": "posted",
-    "posted_at": "2026-05-15T01:32:53.951887",
+    "status": "pending",
+    "posted_at": null,
     "_meta": {
       "theme": "cushions",
       "variant": 1,
@@ -6688,8 +6689,8 @@
       "moisturizers"
     ],
     "scheduled_date": "2026-05-15T22:00:00",
-    "status": "posted",
-    "posted_at": "2026-05-15T01:34:21.056585",
+    "status": "pending",
+    "posted_at": null,
     "_meta": {
       "theme": "moisturizers-sensitive",
       "variant": 0,

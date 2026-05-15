@@ -58,10 +58,20 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
 
-      - name: Push changes if any
+      - name: Push changes if any (retry-resilient against Mac Mini race)
         run: |
           git add -A
           git diff --cached --quiet && echo "No changes to commit" && exit 0
           git commit -m "Auto-publish daily articles [skip ci]"
-          git pull --rebase origin main 2>/dev/null || true
-          git push
+          # Retry up to 5 times — Mac Mini may push concurrently every ~10s
+          for i in 1 2 3 4 5; do
+            git pull --rebase origin main || true
+            if git push; then
+              echo "push succeeded on attempt $i"
+              exit 0
+            fi
+            echo "push attempt $i failed; sleeping then retrying"
+            sleep $((i * 5))
+          done
+          echo "::warning::push retries exhausted; another runner likely committed concurrently"
+          exit 0  # Don't fail the workflow — Google still got the IndexNow ping
