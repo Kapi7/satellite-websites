@@ -4651,7 +4651,8 @@
       "makeup prep"
     ],
     "scheduled_date": "2026-05-15",
-    "status": "pending"
+    "status": "failed",
+    "posted_at": "2026-05-15T18:34:40.693595"
   },
   {
     "id": 164,
@@ -5057,7 +5058,7 @@
       "cushions"
     ],
     "scheduled_date": "2026-05-06T22:00:00",
-    "status": "pending",
+    "status": "posted",
     "_meta": {
       "theme": "cushions",
       "variant": 2,
@@ -5086,7 +5087,7 @@
       ]
     },
     "board_original": "K-Beauty Makeup",
-    "last_error": "RESET 2026-05-13: 'K-Beauty Makeup' doesn't exist on Pinterest, remapped to 'Mirai Make Up & Tools'"
+    "posted_at": "2026-05-15T18:30:48.936299"
   },
   {
     "id": 173,
@@ -5148,7 +5149,7 @@
       "propolis"
     ],
     "scheduled_date": "2026-05-07T10:00:00",
-    "status": "pending",
+    "status": "posted",
     "_meta": {
       "theme": "propolis-essences",
       "variant": 2,
@@ -5177,7 +5178,7 @@
       ]
     },
     "board_original": "Serums & Essences",
-    "last_error": "RESET 2026-05-13: 'Serums & Essences' doesn't exist on Pinterest, remapped to 'Korean Skincare'"
+    "posted_at": "2026-05-15T18:32:17.738901"
   },
   {
     "id": 175,
@@ -5238,7 +5239,7 @@
       "pdrn"
     ],
     "scheduled_date": "2026-05-07T16:00:00",
-    "status": "pending",
+    "status": "posted",
     "_meta": {
       "theme": "pdrn-serums",
       "variant": 0,
@@ -5266,8 +5267,8 @@
         }
       ]
     },
-    "last_error": "RESET 2026-05-13: 'Serums & Essences' doesn't exist on Pinterest, remapped to 'Korean Skincare'",
-    "board_original": "Serums & Essences"
+    "board_original": "Serums & Essences",
+    "posted_at": "2026-05-15T18:34:01.135931"
   },
   {
     "id": 177,
