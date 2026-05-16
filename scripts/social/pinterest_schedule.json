@@ -6645,8 +6645,8 @@
       "cushions"
     ],
     "scheduled_date": "2026-05-15T16:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "posted",
+    "posted_at": "2026-05-16T18:30:45.323053",
     "_meta": {
       "theme": "cushions",
       "variant": 1,
@@ -6693,8 +6693,8 @@
       "moisturizers"
     ],
     "scheduled_date": "2026-05-15T22:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "posted",
+    "posted_at": "2026-05-16T18:31:54.453979",
     "_meta": {
       "theme": "moisturizers-sensitive",
       "variant": 0,
@@ -6740,8 +6740,8 @@
       "sheet"
     ],
     "scheduled_date": "2026-05-16T10:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "posted",
+    "posted_at": "2026-05-16T18:33:08.506691",
     "_meta": {
       "theme": "sheet-masks",
       "variant": 1,
