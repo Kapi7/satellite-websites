@@ -1,12 +1,12 @@
 {
-  "updated": "2026-05-15",
-  "period": "2026-04-15 to 2026-05-13",
+  "updated": "2026-05-16",
+  "period": "2026-04-16 to 2026-05-14",
   "trending": [
     {
       "slug": "cosrx-snail-mucin-vs-torriden-dive-in-serum",
       "clicks": 0,
       "impressions": 88,
-      "position": 6.8
+      "position": 6.6
     },
     {
       "slug": "10-sunscreens-no-white-cast",
@@ -15,28 +15,28 @@
       "position": 5.2
     },
     {
-      "slug": "affordable-k-beauty-dupes-luxury-products",
-      "clicks": 0,
-      "impressions": 27,
-      "position": 19
-    },
-    {
-      "slug": "best-korean-moisturizers-sensitive-skin",
-      "clicks": 0,
-      "impressions": 21,
-      "position": 2.7
-    },
-    {
       "slug": "beauty-of-joseon-best-products-complete-guide",
       "clicks": 0,
-      "impressions": 20,
-      "position": 7.9
+      "impressions": 21,
+      "position": 8.2
+    },
+    {
+      "slug": "beauty-of-joseon-relief-sun-vs-skin1004-centella-sun",
+      "clicks": 0,
+      "impressions": 24,
+      "position": 10.2
     },
     {
       "slug": "best-korean-sunscreens-oily-skin-no-white-cast",
       "clicks": 0,
-      "impressions": 20,
-      "position": 7.0
+      "impressions": 19,
+      "position": 6.9
+    },
+    {
+      "slug": "affordable-k-beauty-dupes-luxury-products",
+      "clicks": 0,
+      "impressions": 28,
+      "position": 21.1
     }
   ],
   "rising": []
