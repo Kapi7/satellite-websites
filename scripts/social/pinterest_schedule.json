@@ -6788,8 +6788,8 @@
       "ceramide"
     ],
     "scheduled_date": "2026-05-16T16:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "posted",
+    "posted_at": "2026-05-16T16:30:51.883243",
     "_meta": {
       "theme": "ceramide-moisturizers",
       "variant": 1,
@@ -6835,8 +6835,8 @@
       "bb"
     ],
     "scheduled_date": "2026-05-16T22:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "posted",
+    "posted_at": "2026-05-16T16:32:05.197396",
     "_meta": {
       "theme": "bb-cc-creams",
       "variant": 2,
