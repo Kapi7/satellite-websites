@@ -1,50 +1,56 @@
 {
-  "updated": "2026-05-16",
-  "period": "2026-04-16 to 2026-05-14",
+  "updated": "2026-05-17",
+  "period": "2026-04-17 to 2026-05-15",
   "trending": [
     {
       "slug": "best-protein-powders-clean-natural",
       "clicks": 0,
-      "impressions": 1300,
-      "position": 52.2
+      "impressions": 1394,
+      "position": 51.4
     },
     {
       "slug": "best-double-cleansing-products",
       "clicks": 2,
-      "impressions": 289,
-      "position": 44.6
+      "impressions": 312,
+      "position": 42.9
     },
     {
       "slug": "nike-vomero-plus-review",
       "clicks": 2,
-      "impressions": 120,
-      "position": 7.6
+      "impressions": 125,
+      "position": 7.7
     },
     {
       "slug": "zone-2-training-slow-running-burns-fat",
       "clicks": 1,
-      "impressions": 69,
-      "position": 15.4
+      "impressions": 70,
+      "position": 15.2
     },
     {
       "slug": "best-probiotics-for-women-gut-health",
       "clicks": 0,
-      "impressions": 79,
-      "position": 70.6
+      "impressions": 82,
+      "position": 70.0
     },
     {
-      "slug": "asics-novablast-5-review",
-      "clicks": 0,
-      "impressions": 58,
-      "position": 51.6
+      "slug": "best-running-shoes-intermediate",
+      "clicks": 1,
+      "impressions": 36,
+      "position": 11.1
     }
   ],
   "rising": [
     {
+      "slug": "rice-water-hair-skin-korean-tradition",
+      "clicks": 0,
+      "impressions": 16,
+      "days_old": 10
+    },
+    {
       "slug": "magnesium-glycinate-vs-citrate-sleep",
       "clicks": 0,
-      "impressions": 10,
-      "days_old": 10
+      "impressions": 12,
+      "days_old": 11
     }
   ]
 }
