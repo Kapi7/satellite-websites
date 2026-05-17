@@ -4924,7 +4924,9 @@
       "damaged hair"
     ],
     "scheduled_date": "2026-05-18",
-    "status": "pending"
+    "status": "failed",
+    "posted_at": "2026-05-18T01:34:49.143403",
+    "last_error": "post-pin-exception: TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.pinterest.com/pin-creation-tool/\", waiting until \"load\"\n"
   },
   {
     "id": 170,
@@ -7033,8 +7035,8 @@
       "snail"
     ],
     "scheduled_date": "2026-05-18T10:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "posted",
+    "posted_at": "2026-05-18T01:30:38.323028",
     "_meta": {
       "theme": "snail-essences",
       "variant": 1,
@@ -7081,8 +7083,8 @@
       "kbeauty"
     ],
     "scheduled_date": "2026-05-18T16:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "posted",
+    "posted_at": "2026-05-18T01:32:03.611190",
     "_meta": {
       "theme": "kbeauty-under-25",
       "variant": 0,
@@ -7134,8 +7136,8 @@
       "sunscreens"
     ],
     "scheduled_date": "2026-05-18T22:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "posted",
+    "posted_at": "2026-05-18T01:33:41.206434",
     "_meta": {
       "theme": "sunscreens-oily-acne",
       "variant": 0,
