@@ -1,6 +1,6 @@
 {
-  "updated": "2026-05-17",
-  "period": "2026-04-17 to 2026-05-15",
+  "updated": "2026-05-18",
+  "period": "2026-04-18 to 2026-05-16",
   "trending": [
     {
       "slug": "best-protein-powders-clean-natural",
@@ -11,8 +11,8 @@
     {
       "slug": "best-double-cleansing-products",
       "clicks": 2,
-      "impressions": 355,
-      "position": 42.7
+      "impressions": 345,
+      "position": 42.5
     },
     {
       "slug": "nike-vomero-plus-review",
@@ -44,7 +44,7 @@
       "slug": "magnesium-glycinate-vs-citrate-sleep",
       "clicks": 0,
       "impressions": 15,
-      "days_old": 11
+      "days_old": 12
     }
   ]
 }

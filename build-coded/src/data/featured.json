@@ -1,18 +1,12 @@
 {
-  "updated": "2026-05-17",
-  "period": "2026-04-17 to 2026-05-15",
+  "updated": "2026-05-18",
+  "period": "2026-04-18 to 2026-05-16",
   "trending": [
     {
       "slug": "best-heat-guns-crafts-diy",
       "clicks": 0,
-      "impressions": 198,
+      "impressions": 166,
       "position": 11.6
-    },
-    {
-      "slug": "best-orbital-sanders",
-      "clicks": 0,
-      "impressions": 149,
-      "position": 43.8
     },
     {
       "slug": "best-tool-boxes-organizers-workshop",
@@ -27,16 +21,22 @@
       "position": 9.3
     },
     {
-      "slug": "arduino-projects-beginners",
-      "clicks": 2,
-      "impressions": 49,
-      "position": 15.4
+      "slug": "best-orbital-sanders",
+      "clicks": 0,
+      "impressions": 127,
+      "position": 42.4
     },
     {
-      "slug": "kreg-pocket-hole-jig-guide",
+      "slug": "best-3d-printers-beginners",
       "clicks": 2,
-      "impressions": 64,
-      "position": 29.9
+      "impressions": 49,
+      "position": 19.8
+    },
+    {
+      "slug": "best-soldering-irons-beginners",
+      "clicks": 2,
+      "impressions": 29,
+      "position": 5.9
     }
   ],
   "rising": []
