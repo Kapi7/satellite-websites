@@ -5,20 +5,20 @@
     {
       "slug": "best-protein-powders-clean-natural",
       "clicks": 0,
-      "impressions": 1477,
-      "position": 50.5
+      "impressions": 1596,
+      "position": 49.0
     },
     {
       "slug": "best-double-cleansing-products",
-      "clicks": 2,
-      "impressions": 345,
-      "position": 42.5
+      "clicks": 3,
+      "impressions": 376,
+      "position": 42.7
     },
     {
       "slug": "nike-vomero-plus-review",
       "clicks": 2,
-      "impressions": 131,
-      "position": 7.7
+      "impressions": 137,
+      "position": 7.9
     },
     {
       "slug": "zone-2-training-slow-running-burns-fat",
@@ -29,22 +29,15 @@
     {
       "slug": "best-probiotics-for-women-gut-health",
       "clicks": 0,
-      "impressions": 85,
-      "position": 70.4
+      "impressions": 87,
+      "position": 70.2
     },
     {
       "slug": "best-running-shoes-intermediate",
       "clicks": 1,
-      "impressions": 37,
-      "position": 11.1
+      "impressions": 38,
+      "position": 10.9
     }
   ],
-  "rising": [
-    {
-      "slug": "magnesium-glycinate-vs-citrate-sleep",
-      "clicks": 0,
-      "impressions": 15,
-      "days_old": 12
-    }
-  ]
+  "rising": []
 }
