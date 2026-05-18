@@ -5022,7 +5022,8 @@
       "lip sleeping mask"
     ],
     "scheduled_date": "2026-05-19",
-    "status": "pending"
+    "status": "posted",
+    "posted_at": "2026-05-19T01:35:24.454834"
   },
   {
     "id": 172,
@@ -7183,8 +7184,8 @@
       "clay"
     ],
     "scheduled_date": "2026-05-19T10:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "posted",
+    "posted_at": "2026-05-19T01:30:42.201318",
     "_meta": {
       "theme": "clay-masks",
       "variant": 2,
@@ -7231,8 +7232,8 @@
       "sun"
     ],
     "scheduled_date": "2026-05-19T16:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "failed",
+    "posted_at": "2026-05-19T01:33:02.732345",
     "_meta": {
       "theme": "sun-sticks",
       "variant": 2,
@@ -7259,7 +7260,8 @@
           "vendor": "Abib"
         }
       ]
-    }
+    },
+    "last_error": "post-pin-exception: TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.pinterest.com/pin-creation-tool/\", waiting until \"load\"\n"
   },
   {
     "id": "b115ff01",
@@ -7278,8 +7280,8 @@
       "snail"
     ],
     "scheduled_date": "2026-05-19T22:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "posted",
+    "posted_at": "2026-05-19T01:34:10.402125",
     "_meta": {
       "theme": "snail-essences",
       "variant": 2,
