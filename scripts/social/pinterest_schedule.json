@@ -5113,7 +5113,8 @@
       "skincare device"
     ],
     "scheduled_date": "2026-05-20",
-    "status": "pending"
+    "status": "posted",
+    "posted_at": "2026-05-20T01:35:39.377146"
   },
   {
     "id": 174,
@@ -7328,8 +7329,8 @@
       "toners"
     ],
     "scheduled_date": "2026-05-20T10:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "posted",
+    "posted_at": "2026-05-20T01:30:51.344160",
     "_meta": {
       "theme": "toners-pads",
       "variant": 1,
@@ -7376,8 +7377,8 @@
       "bb"
     ],
     "scheduled_date": "2026-05-20T16:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "posted",
+    "posted_at": "2026-05-20T01:32:30.810051",
     "_meta": {
       "theme": "bb-cc-creams",
       "variant": 1,
@@ -7424,8 +7425,8 @@
       "toners"
     ],
     "scheduled_date": "2026-05-20T22:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "posted",
+    "posted_at": "2026-05-20T01:34:24.048085",
     "_meta": {
       "theme": "toners-glass-skin",
       "variant": 2,
