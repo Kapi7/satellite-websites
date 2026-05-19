@@ -1,12 +1,12 @@
 {
-  "updated": "2026-05-18",
-  "period": "2026-04-18 to 2026-05-16",
+  "updated": "2026-05-19",
+  "period": "2026-04-19 to 2026-05-17",
   "trending": [
     {
       "slug": "best-heat-guns-crafts-diy",
       "clicks": 0,
-      "impressions": 166,
-      "position": 11.6
+      "impressions": 152,
+      "position": 11.5
     },
     {
       "slug": "best-tool-boxes-organizers-workshop",
@@ -23,20 +23,20 @@
     {
       "slug": "best-orbital-sanders",
       "clicks": 0,
-      "impressions": 127,
-      "position": 42.4
+      "impressions": 107,
+      "position": 41.0
     },
     {
-      "slug": "best-3d-printers-beginners",
-      "clicks": 2,
-      "impressions": 49,
-      "position": 19.8
+      "slug": "best-3d-printer-filament-starter-kit",
+      "clicks": 0,
+      "impressions": 87,
+      "position": 19.1
     },
     {
-      "slug": "arduino-projects-beginners",
+      "slug": "best-soldering-irons-beginners",
       "clicks": 2,
-      "impressions": 48,
-      "position": 18.5
+      "impressions": 29,
+      "position": 5.9
     }
   ],
   "rising": []

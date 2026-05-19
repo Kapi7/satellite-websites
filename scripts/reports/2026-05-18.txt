@@ -1,0 +1,156 @@
+============================================================
+  WEEKLY SEO REPORT
+  Week of 2026-05-18
+============================================================
+
+============================================================
+  GLOW-CODED.COM
+============================================================
+
+  GSC — glow-coded.com
+  ──────────────────────────────────────────────────
+  Clicks:      0 ─ 0
+  Impressions: 112 ▼ -43
+  CTR:         0.0% ─ 0
+  Position:    48.3 ▲ +3.5
+
+  Top Queries:
+  Query                                    Clicks   Impr    CTR   Pos
+  acide azélaïque et niacinamide                0      5   0.0%  62.6
+  acido azelaico e niacinamide insieme          0      2   0.0%  70.0
+  acne fungica                                  0      2   0.0%  95.5
+  analisi pelle online                          0      1   0.0%  64.0
+  best korean sunscreen for oily skin no        0      1   0.0%  89.0
+  best korean tinted sunscreen for oily         0      1   0.0%  91.0
+  beste nachtmasker gezicht                     0      3   0.0%  73.0
+  blemish spot treatment                        0      1   0.0%  99.0
+  can i use two different serum for day         0      2   0.0%  94.5
+  como escolher a cor da base tirtir            0      1   0.0%   2.0
+
+  Ahrefs — glow-coded.com
+  ──────────────────────────────────────────────────
+  DR:          13.0 ▲ +1.0
+  Ahrefs Rank: 13128699
+  Backlinks:   412 ▲ +12
+  Ref Domains: 37 ▲ +1
+
+  Top Organic Keywords:
+
+  GA4 — glow-coded.com
+  ──────────────────────────────────────────────────
+  Sessions:   1017   Users: 1012   Engaged: 34
+  Channels:
+    Direct                              935
+    Unassigned                           87
+    Organic Search                       11
+    Referral                              8
+  AI referrals: 66 sessions
+    ChatGPT (chatgpt.com)  sessions: 66  engaged: 20
+
+  Bing — glow-coded.com
+  ──────────────────────────────────────────────────
+  Crawled: 0  |  Indexed: 0
+  Daily quota left: 100  |  Monthly: 1400
+
+============================================================
+  ROOTED-GLOW.COM
+============================================================
+
+  GSC — rooted-glow.com
+  ──────────────────────────────────────────────────
+  Clicks:      7 ▼ -5
+  Impressions: 1898 ▼ -400
+  CTR:         0.4% ▼ -0.2
+  Position:    29.6 ▲ +1.1
+
+  Top Queries:
+  Query                                    Clicks   Impr    CTR   Pos
+  best double cleansing products                1     17   5.9%  35.5
+  8 week couch to 5k                            0      1   0.0%  54.0
+  a cosa serve il magnesio glicinato            0      1   0.0%  73.0
+  alimentation ancestrale                       0      2   0.0%  29.0
+  alimentation ancestrale liste aliments        0      2   0.0%  11.0
+  alimentazione ancestrale                      0      2   0.0%  17.0
+  alimentazione ancestrale cos'è                0      1   0.0%  12.0
+  alimentação ancestral                         0      1   0.0%  62.0
+  allantoin in snail mucin soothing heal        0      1   0.0%   9.0
+  ancestral diet                                0      2   0.0%  87.0
+
+  Ahrefs — rooted-glow.com
+  ──────────────────────────────────────────────────
+  DR:          16.0 ▲ +4.0
+  Ahrefs Rank: 10780496
+  Backlinks:   552 ▲ +30
+  Ref Domains: 69 ▲ +5
+
+  Top Organic Keywords:
+    best clean protein powder                       vol: 3100
+    best natural protein powder                     vol: 1000
+
+  GA4 — rooted-glow.com
+  ──────────────────────────────────────────────────
+  Sessions:   31   Users: 30   Engaged: 12
+  Channels:
+    Direct                               13
+    Organic Search                       12
+    Unassigned                            6
+    Referral                              1
+  AI referrals: 6 sessions
+    ChatGPT (chatgpt.com)  sessions: 6  engaged: 1
+
+  Bing — rooted-glow.com
+  ──────────────────────────────────────────────────
+  Crawled: 0  |  Indexed: 0
+  Daily quota left: 100  |  Monthly: 1400
+
+============================================================
+  BUILD-CODED.COM
+============================================================
+
+  GSC — build-coded.com
+  ──────────────────────────────────────────────────
+  Clicks:      0 ─ 0
+  Impressions: 83 ▼ -57
+  CTR:         0.0% ─ 0
+  Position:    54.9 ▲ +4.6
+
+  Top Queries:
+  Query                                    Clicks   Impr    CTR   Pos
+  arduino projekt                               0      1   0.0%  83.0
+  arduino projekte                              0      2   0.0%  75.0
+  arduino projekte deutsch                      0      1   0.0%  86.0
+  arduino projekte ideen                        0      1   0.0%  63.0
+  arduino projekte zum nachbauen                0      2   0.0%  69.0
+  arduino projektideen                          0      1   0.0%  72.0
+  arduino uno projekte                          0      2   0.0%  77.0
+  arduino uno projetos                          0      1   0.0%  74.0
+  best portable toolboxes 2025 2026             0      1   0.0%  20.0
+  circuiti arduino                              0      2   0.0%  61.0
+
+  Ahrefs — build-coded.com
+  ──────────────────────────────────────────────────
+  DR:          7.0 ─ 0
+  Ahrefs Rank: 21014492
+  Backlinks:   71 ▲ +12
+  Ref Domains: 67 ▲ +12
+
+  Top Organic Keywords:
+
+  GA4 — build-coded.com
+  ──────────────────────────────────────────────────
+  Sessions:   30   Users: 26   Engaged: 2
+  Channels:
+    Unassigned                           14
+    Direct                               11
+    Referral                              5
+  AI referrals: 18 sessions
+    ChatGPT (chatgpt.com)  sessions: 18  engaged: 1
+
+  Bing — build-coded.com
+  ──────────────────────────────────────────────────
+  Crawled: 90  |  Indexed: 7
+  Daily quota left: 100  |  Monthly: 1400
+
+============================================================
+  Report generated: 2026-05-18 08:00
+============================================================
