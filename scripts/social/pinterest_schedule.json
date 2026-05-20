@@ -5205,7 +5205,8 @@
       "gentle retinoid"
     ],
     "scheduled_date": "2026-05-21",
-    "status": "pending"
+    "status": "posted",
+    "posted_at": "2026-05-21T01:35:24.053840"
   },
   {
     "id": 176,
@@ -7473,8 +7474,8 @@
       "moisturizers"
     ],
     "scheduled_date": "2026-05-21T10:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "posted",
+    "posted_at": "2026-05-21T01:30:41.031098",
     "_meta": {
       "theme": "moisturizers-sensitive",
       "variant": 2,
@@ -7520,8 +7521,8 @@
       "propolis"
     ],
     "scheduled_date": "2026-05-21T16:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "posted",
+    "posted_at": "2026-05-21T01:32:15.194605",
     "_meta": {
       "theme": "propolis-essences",
       "variant": 1,
@@ -7568,8 +7569,8 @@
       "glass"
     ],
     "scheduled_date": "2026-05-21T22:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "posted",
+    "posted_at": "2026-05-21T01:34:09.765106",
     "_meta": {
       "theme": "glass-skin-routine",
       "variant": 2,
