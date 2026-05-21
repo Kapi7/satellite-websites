@@ -5296,7 +5296,8 @@
       "brightening"
     ],
     "scheduled_date": "2026-05-22",
-    "status": "pending"
+    "status": "failed",
+    "posted_at": "2026-05-22T01:35:38.473994"
   },
   {
     "id": 178,
@@ -7622,8 +7623,8 @@
       "sunscreens"
     ],
     "scheduled_date": "2026-05-22T10:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "posted",
+    "posted_at": "2026-05-22T01:30:48.945811",
     "_meta": {
       "theme": "sunscreens-no-white-cast",
       "variant": 2,
@@ -7669,8 +7670,8 @@
       "clay"
     ],
     "scheduled_date": "2026-05-22T16:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "posted",
+    "posted_at": "2026-05-22T01:32:15.843156",
     "_meta": {
       "theme": "clay-masks",
       "variant": 0,
@@ -7717,8 +7718,8 @@
       "sunscreens"
     ],
     "scheduled_date": "2026-05-22T22:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "posted",
+    "posted_at": "2026-05-22T01:34:18.883932",
     "_meta": {
       "theme": "sunscreens-sensitive",
       "variant": 2,
