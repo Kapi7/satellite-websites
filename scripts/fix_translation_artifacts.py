@@ -7,6 +7,8 @@ Repair translation-script artifacts in */src/content/blog/<locale>/*.mdx:
   4. Pathologically long lines (>5000 chars) — typically a malformed table
      row that hangs Astro/MDX's GFM table parser. Splits runs of >=50
      spaces into paragraph breaks so the build progresses.
+  5. '<' before a digit (e.g. '<2%') which MDX reads as a JSX tag.
+  6. Unquoted YAML frontmatter values containing a colon.
 """
 from __future__ import annotations
 import argparse
@@ -78,6 +80,28 @@ def fix_long_lines(text):
     return ("".join(new_lines), fixes) if fixes else (text, 0)
 
 
+def fix_lt_digit(text):
+    """Escape `<` immediately preceding a digit (e.g. '<2%', '< 5 mg').
+    MDX parses '<' as the start of a JSX tag, so '<2%' is a hard build
+    error ('Unexpected character `2` before name'). Replaces with the
+    HTML entity, which renders identically. Skips fenced + inline code."""
+    m = FRONTMATTER_RE.match(text)
+    if not m:
+        fm, body = "", text
+    else:
+        fm, body = text[m.start():m.end()], text[m.end():]
+    blocks = []
+    def stash(mm):
+        blocks.append(mm.group(0))
+        return f"\x00{len(blocks)-1}\x00"
+    tmp = re.sub(r"```.*?```", stash, body, flags=re.S)
+    tmp = re.sub(r"`[^`]*`", stash, tmp)
+    tmp, n = re.subn(r"<(?=\s*\d)", "&lt;", tmp)
+    for i, b in enumerate(blocks):
+        tmp = tmp.replace(f"\x00{i}\x00", b)
+    return (fm + tmp, n) if n else (text, 0)
+
+
 def fix_unquoted_yaml_colons(text):
     """Quote frontmatter values that contain an unquoted colon (e.g.
     `imageAlt: Foo: bar` breaks YAML parsing). Common translator artifact."""
@@ -128,14 +152,15 @@ def process_file(path, dry_run):
     text, long_n = fix_long_lines(text)
     text, tok_n = fix_llm_token_tags(text)
     text, yamlc_n = fix_unquoted_yaml_colons(text)
+    text, ltd_n = fix_lt_digit(text)
     text, quote_n = fix_unescaped_quotes(text)
-    total = sep_n + leak_n + quote_n + long_n + tok_n + yamlc_n
+    total = sep_n + leak_n + quote_n + long_n + tok_n + yamlc_n + ltd_n
     if total == 0:
         return None
     if not dry_run:
         path.write_text(text)
     return {"path": path, "leaks": leak_n, "seps": sep_n, "quotes": quote_n,
-            "longs": long_n, "tokens": tok_n, "yaml_colons": yamlc_n}
+            "longs": long_n, "tokens": tok_n, "yaml_colons": yamlc_n, "lt_digit": ltd_n}
 
 
 def main():
@@ -143,7 +168,7 @@ def main():
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()
     fixed = 0
-    totals = {"leaks": 0, "seps": 0, "quotes": 0, "longs": 0, "tokens": 0, "yaml_colons": 0}
+    totals = {"leaks": 0, "seps": 0, "quotes": 0, "longs": 0, "tokens": 0, "yaml_colons": 0, "lt_digit": 0}
     for site in SITE_DIRS:
         if not site.exists():
             continue
@@ -157,7 +182,8 @@ def main():
     print(f"\n[done] {fixed} files {'would be ' if args.dry_run else ''}fixed")
     print(f"  prompt-leaks: {totals['leaks']}, duplicate ---: {totals['seps']}, "
           f"unescaped quotes: {totals['quotes']}, long lines: {totals['longs']}, "
-          f"llm-token tags: {totals['tokens']}, yaml-colons: {totals['yaml_colons']}")
+          f"llm-token tags: {totals['tokens']}, yaml-colons: {totals['yaml_colons']}, "
+          f"lt-digit: {totals['lt_digit']}")
 
 
 if __name__ == "__main__":
