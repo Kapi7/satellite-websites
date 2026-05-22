@@ -3854,9 +3854,9 @@
       "ASICS"
     ],
     "scheduled_date": "2026-05-06",
-    "status": "pending",
-    "last_error": "RESET 2026-05-13: 'Fitness & Movement' missing, remapped to 'Running'",
-    "board_original": "Fitness & Movement"
+    "status": "posted",
+    "board_original": "Fitness & Movement",
+    "posted_at": "2026-05-22T10:14:02.385609"
   },
   {
     "id": "14533b4c",
@@ -3948,9 +3948,9 @@
       "electrolytes"
     ],
     "scheduled_date": "2026-05-07",
-    "status": "pending",
-    "last_error": "RESET 2026-05-13: 'Fitness & Movement' missing, remapped to 'Running'",
-    "board_original": "Fitness & Movement"
+    "status": "posted",
+    "board_original": "Fitness & Movement",
+    "posted_at": "2026-05-22T10:16:11.448003"
   },
   {
     "id": "182ffc5a",
@@ -4139,9 +4139,9 @@
       "nutrition"
     ],
     "scheduled_date": "2026-05-09",
-    "status": "pending",
-    "last_error": "RESET 2026-05-13: 'Nutrition & Recipes' missing, remapped to 'Natural Wellness'",
-    "board_original": "Nutrition & Recipes"
+    "status": "posted",
+    "board_original": "Nutrition & Recipes",
+    "posted_at": "2026-05-22T10:18:43.591158"
   },
   {
     "id": "2436467b",
