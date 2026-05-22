@@ -5,20 +5,26 @@
     {
       "slug": "best-protein-powders-clean-natural",
       "clicks": 1,
-      "impressions": 1766,
-      "position": 44.8
+      "impressions": 1850,
+      "position": 44.2
     },
     {
       "slug": "best-double-cleansing-products",
       "clicks": 3,
-      "impressions": 397,
-      "position": 42.5
+      "impressions": 411,
+      "position": 42.2
     },
     {
       "slug": "nike-vomero-plus-review",
       "clicks": 2,
-      "impressions": 142,
+      "impressions": 148,
       "position": 7.8
+    },
+    {
+      "slug": "best-probiotics-for-women-gut-health",
+      "clicks": 0,
+      "impressions": 110,
+      "position": 65.7
     },
     {
       "slug": "zone-2-training-slow-running-burns-fat",
@@ -27,16 +33,10 @@
       "position": 15.9
     },
     {
-      "slug": "best-probiotics-for-women-gut-health",
-      "clicks": 0,
-      "impressions": 104,
-      "position": 65.7
-    },
-    {
-      "slug": "asics-novablast-5-review",
-      "clicks": 0,
-      "impressions": 77,
-      "position": 49.2
+      "slug": "best-running-shoes-intermediate",
+      "clicks": 1,
+      "impressions": 45,
+      "position": 10.7
     }
   ],
   "rising": []
