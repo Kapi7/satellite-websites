@@ -5430,7 +5430,8 @@
       "sensitive skin"
     ],
     "scheduled_date": "2026-05-23",
-    "status": "pending"
+    "status": "failed",
+    "posted_at": "2026-05-23T01:35:49.649444"
   },
   {
     "id": 180,
@@ -7823,8 +7824,8 @@
       "toners"
     ],
     "scheduled_date": "2026-05-23T10:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "failed",
+    "posted_at": "2026-05-23T01:30:43.323694",
     "_meta": {
       "theme": "toners-glass-skin",
       "variant": 0,
@@ -7852,7 +7853,8 @@
         }
       ]
     },
-    "board_original": "Toners & Glass Skin"
+    "board_original": "Toners & Glass Skin",
+    "last_error": "publish-unverified: draft not cleared (drafts -1->-1); likely stuck as draft"
   },
   {
     "id": "d1acbe53",
@@ -7871,8 +7873,8 @@
       "bb"
     ],
     "scheduled_date": "2026-05-23T16:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "failed",
+    "posted_at": "2026-05-23T01:32:37.605657",
     "_meta": {
       "theme": "bb-cc-creams",
       "variant": 0,
@@ -7900,7 +7902,8 @@
         }
       ]
     },
-    "board_original": "K-Beauty Makeup"
+    "board_original": "K-Beauty Makeup",
+    "last_error": "publish-unverified: draft not cleared (drafts -1->-1); likely stuck as draft"
   },
   {
     "id": "d2e7da79",
@@ -7919,8 +7922,8 @@
       "cleansing"
     ],
     "scheduled_date": "2026-05-23T22:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "failed",
+    "posted_at": "2026-05-23T01:34:39.445539",
     "_meta": {
       "theme": "cleansing-oils",
       "variant": 1,
@@ -7947,7 +7950,8 @@
           "vendor": "belif"
         }
       ]
-    }
+    },
+    "last_error": "publish-unverified: draft not cleared (drafts -1->-1); likely stuck as draft"
   },
   {
     "id": "d75c615e",
