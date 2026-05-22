@@ -4230,9 +4230,9 @@
       "racing flats"
     ],
     "scheduled_date": "2026-05-10",
-    "status": "pending",
-    "last_error": "RESET 2026-05-13: 'Fitness & Movement' missing, remapped to 'Running'",
-    "board_original": "Fitness & Movement"
+    "status": "posted",
+    "board_original": "Fitness & Movement",
+    "posted_at": "2026-05-22T17:30:11.810301"
   },
   {
     "id": "2bad2e9a",
@@ -4324,9 +4324,9 @@
       "walking to running"
     ],
     "scheduled_date": "2026-05-11",
-    "status": "pending",
-    "last_error": "RESET 2026-05-13: 'Fitness & Movement' missing, remapped to 'Running'",
-    "board_original": "Fitness & Movement"
+    "status": "posted",
+    "board_original": "Fitness & Movement",
+    "posted_at": "2026-05-22T17:31:58.907190"
   },
   {
     "id": "30694f58",
@@ -4418,9 +4418,9 @@
       "shoe rotation"
     ],
     "scheduled_date": "2026-05-12",
-    "status": "pending",
-    "last_error": "RESET 2026-05-13: 'Fitness & Movement' missing, remapped to 'Running'",
-    "board_original": "Fitness & Movement"
+    "status": "posted",
+    "board_original": "Fitness & Movement",
+    "posted_at": "2026-05-22T17:34:06.668486"
   },
   {
     "id": "314b1283",
