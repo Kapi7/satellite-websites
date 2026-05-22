@@ -3852,7 +3852,9 @@
       "ASICS"
     ],
     "scheduled_date": "2026-05-06",
-    "status": "pending"
+    "status": "failed",
+    "posted_at": "2026-05-15T15:00:36.000511",
+    "last_error": "post-pin-exception: TimeoutError: Page.wait_for_selector: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-test-id=\\\"storyboard-upload-input\\\"]\") to be visible\n"
   },
   {
     "id": "14533b4c",
@@ -3944,7 +3946,9 @@
       "electrolytes"
     ],
     "scheduled_date": "2026-05-07",
-    "status": "pending"
+    "status": "failed",
+    "posted_at": "2026-05-15T15:01:30.896116",
+    "last_error": "post-pin-exception: TimeoutError: Page.wait_for_selector: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-test-id=\\\"storyboard-upload-input\\\"]\") to be visible\n"
   },
   {
     "id": "182ffc5a",
@@ -4033,7 +4037,9 @@
       "supplements"
     ],
     "scheduled_date": "2026-05-08",
-    "status": "pending"
+    "status": "failed",
+    "posted_at": "2026-05-15T15:03:07.108653",
+    "last_error": "post-pin-exception: TimeoutError: Page.wait_for_selector: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-test-id=\\\"storyboard-upload-input\\\"]\") to be visible\n"
   },
   {
     "id": "216ad546",
@@ -4131,7 +4137,9 @@
       "nutrition"
     ],
     "scheduled_date": "2026-05-09",
-    "status": "pending"
+    "status": "failed",
+    "posted_at": "2026-05-16T10:00:37.243927",
+    "last_error": "post-pin-exception: TimeoutError: Page.wait_for_selector: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-test-id=\\\"storyboard-upload-input\\\"]\") to be visible\n"
   },
   {
     "id": "2436467b",
@@ -4220,7 +4228,9 @@
       "racing flats"
     ],
     "scheduled_date": "2026-05-10",
-    "status": "pending"
+    "status": "failed",
+    "posted_at": "2026-05-16T10:01:30.578965",
+    "last_error": "post-pin-exception: TimeoutError: Page.wait_for_selector: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-test-id=\\\"storyboard-upload-input\\\"]\") to be visible\n"
   },
   {
     "id": "2bad2e9a",
@@ -4312,7 +4322,9 @@
       "walking to running"
     ],
     "scheduled_date": "2026-05-11",
-    "status": "pending"
+    "status": "failed",
+    "posted_at": "2026-05-16T10:02:31.810679",
+    "last_error": "post-pin-exception: TimeoutError: Page.wait_for_selector: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-test-id=\\\"storyboard-upload-input\\\"]\") to be visible\n"
   },
   {
     "id": "30694f58",
@@ -4404,7 +4416,9 @@
       "shoe rotation"
     ],
     "scheduled_date": "2026-05-12",
-    "status": "pending"
+    "status": "failed",
+    "posted_at": "2026-05-16T15:14:17.756788",
+    "last_error": "post-pin-exception: TimeoutError: Page.wait_for_selector: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-test-id=\\\"storyboard-upload-input\\\"]\") to be visible\n"
   },
   {
     "id": "314b1283",
@@ -4494,7 +4508,9 @@
       "non-toxic kitchen"
     ],
     "scheduled_date": "2026-05-13",
-    "status": "pending"
+    "status": "failed",
+    "posted_at": "2026-05-16T15:15:21.762106",
+    "last_error": "post-pin-exception: TimeoutError: Page.wait_for_selector: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-test-id=\\\"storyboard-upload-input\\\"]\") to be visible\n"
   },
   {
     "id": "31606269",
@@ -4583,7 +4599,9 @@
       "recovery"
     ],
     "scheduled_date": "2026-05-14",
-    "status": "pending"
+    "status": "failed",
+    "posted_at": "2026-05-16T15:16:29.733675",
+    "last_error": "post-pin-exception: TimeoutError: Page.wait_for_selector: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-test-id=\\\"storyboard-upload-input\\\"]\") to be visible\n"
   },
   {
     "id": "322dbec0",
@@ -4652,7 +4670,7 @@
     ],
     "scheduled_date": "2026-05-15",
     "status": "failed",
-    "posted_at": "2026-05-15T18:34:40.693595"
+    "posted_at": "2026-05-15T15:03:21.711437"
   },
   {
     "id": 164,
@@ -4672,7 +4690,9 @@
       "skin health"
     ],
     "scheduled_date": "2026-05-15",
-    "status": "pending"
+    "status": "failed",
+    "posted_at": "2026-05-17T10:00:35.191320",
+    "last_error": "post-pin-exception: TimeoutError: Page.wait_for_selector: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-test-id=\\\"storyboard-upload-input\\\"]\") to be visible\n"
   },
   {
     "id": "34703b3d",
@@ -4743,7 +4763,7 @@
     ],
     "scheduled_date": "2026-05-16",
     "status": "failed",
-    "posted_at": "2026-05-16T01:35:12.269538"
+    "posted_at": "2026-05-16T10:02:48.102094"
   },
   {
     "id": 166,
@@ -4764,7 +4784,9 @@
       "natural remedies"
     ],
     "scheduled_date": "2026-05-16",
-    "status": "pending"
+    "status": "failed",
+    "posted_at": "2026-05-17T10:01:53.941991",
+    "last_error": "post-pin-exception: TimeoutError: Page.wait_for_selector: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-test-id=\\\"storyboard-upload-input\\\"]\") to be visible\n"
   },
   {
     "id": "3547e10a",
@@ -4832,7 +4854,7 @@
     ],
     "scheduled_date": "2026-05-17",
     "status": "failed",
-    "posted_at": "2026-05-17T01:35:19.330213"
+    "posted_at": "2026-05-17T10:03:22.209306"
   },
   {
     "id": 168,
@@ -4854,7 +4876,9 @@
       "exercises"
     ],
     "scheduled_date": "2026-05-17",
-    "status": "pending"
+    "status": "failed",
+    "posted_at": "2026-05-17T10:03:07.327712",
+    "last_error": "post-pin-exception: TimeoutError: Page.wait_for_selector: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-test-id=\\\"storyboard-upload-input\\\"]\") to be visible\n"
   },
   {
     "id": "38141a26",
@@ -4925,8 +4949,7 @@
     ],
     "scheduled_date": "2026-05-18",
     "status": "failed",
-    "posted_at": "2026-05-18T01:34:49.143403",
-    "last_error": "post-pin-exception: TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.pinterest.com/pin-creation-tool/\", waiting until \"load\"\n"
+    "posted_at": "2026-05-18T11:17:55.611338"
   },
   {
     "id": 170,
@@ -4947,7 +4970,9 @@
       "fermentation"
     ],
     "scheduled_date": "2026-05-18",
-    "status": "pending"
+    "status": "failed",
+    "posted_at": "2026-05-18T11:18:31.331439",
+    "last_error": "post-pin-exception: TimeoutError: Page.wait_for_selector: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-test-id=\\\"storyboard-upload-input\\\"]\") to be visible\n"
   },
   {
     "id": "3933b25c",
@@ -5022,8 +5047,8 @@
       "lip sleeping mask"
     ],
     "scheduled_date": "2026-05-19",
-    "status": "posted",
-    "posted_at": "2026-05-19T01:35:24.454834"
+    "status": "failed",
+    "posted_at": "2026-05-19T15:00:29.305719"
   },
   {
     "id": 172,
@@ -5044,7 +5069,9 @@
       "eating window"
     ],
     "scheduled_date": "2026-05-19",
-    "status": "pending"
+    "status": "failed",
+    "posted_at": "2026-05-19T15:00:56.532981",
+    "last_error": "post-pin-exception: TimeoutError: Page.wait_for_selector: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-test-id=\\\"storyboard-upload-input\\\"]\") to be visible\n"
   },
   {
     "id": "3e8c3dbe",
@@ -5063,7 +5090,7 @@
       "cushions"
     ],
     "scheduled_date": "2026-05-06T22:00:00",
-    "status": "posted",
+    "status": "failed",
     "_meta": {
       "theme": "cushions",
       "variant": 2,
@@ -5092,7 +5119,8 @@
       ]
     },
     "board_original": "K-Beauty Makeup",
-    "posted_at": "2026-05-15T18:30:48.936299"
+    "last_error": "RESET 2026-05-13: 'K-Beauty Makeup' doesn't exist on Pinterest, remapped to 'Mirai Make Up & Tools'",
+    "posted_at": "2026-05-15T15:03:35.034240"
   },
   {
     "id": 173,
@@ -5113,8 +5141,8 @@
       "skincare device"
     ],
     "scheduled_date": "2026-05-20",
-    "status": "posted",
-    "posted_at": "2026-05-20T01:35:39.377146"
+    "status": "failed",
+    "posted_at": "2026-05-20T15:00:20.449545"
   },
   {
     "id": 174,
@@ -5136,7 +5164,9 @@
       "heart health"
     ],
     "scheduled_date": "2026-05-20",
-    "status": "pending"
+    "status": "failed",
+    "posted_at": "2026-05-20T15:00:48.356990",
+    "last_error": "post-pin-exception: TimeoutError: Page.wait_for_selector: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-test-id=\\\"storyboard-upload-input\\\"]\") to be visible\n"
   },
   {
     "id": "4127c46c",
@@ -5155,7 +5185,7 @@
       "propolis"
     ],
     "scheduled_date": "2026-05-07T10:00:00",
-    "status": "posted",
+    "status": "failed",
     "_meta": {
       "theme": "propolis-essences",
       "variant": 2,
@@ -5184,7 +5214,8 @@
       ]
     },
     "board_original": "Serums & Essences",
-    "posted_at": "2026-05-15T18:32:17.738901"
+    "last_error": "post-pin-exception: TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.pinterest.com/pin-creation-tool/\", waiting until \"load\"\n",
+    "posted_at": "2026-05-15T15:05:58.931883"
   },
   {
     "id": 175,
@@ -5205,8 +5236,8 @@
       "gentle retinoid"
     ],
     "scheduled_date": "2026-05-21",
-    "status": "posted",
-    "posted_at": "2026-05-21T01:35:24.053840"
+    "status": "failed",
+    "posted_at": "2026-05-21T15:00:20.548093"
   },
   {
     "id": 176,
@@ -5227,7 +5258,9 @@
       "ZoomX"
     ],
     "scheduled_date": "2026-05-21",
-    "status": "pending"
+    "status": "failed",
+    "posted_at": "2026-05-21T15:00:47.787204",
+    "last_error": "post-pin-exception: TimeoutError: Page.wait_for_selector: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-test-id=\\\"storyboard-upload-input\\\"]\") to be visible\n"
   },
   {
     "id": "4932d032",
@@ -5246,7 +5279,7 @@
       "pdrn"
     ],
     "scheduled_date": "2026-05-07T16:00:00",
-    "status": "posted",
+    "status": "failed",
     "_meta": {
       "theme": "pdrn-serums",
       "variant": 0,
@@ -5274,8 +5307,9 @@
         }
       ]
     },
+    "last_error": "RESET 2026-05-13: 'Serums & Essences' doesn't exist on Pinterest, remapped to 'Korean Skincare'",
     "board_original": "Serums & Essences",
-    "posted_at": "2026-05-15T18:34:01.135931"
+    "posted_at": "2026-05-15T15:07:11.507058"
   },
   {
     "id": 177,
@@ -5297,7 +5331,7 @@
     ],
     "scheduled_date": "2026-05-22",
     "status": "failed",
-    "posted_at": "2026-05-22T01:35:38.473994"
+    "posted_at": "2026-05-22T10:00:20.708208"
   },
   {
     "id": 178,
@@ -5317,7 +5351,9 @@
       "microbiome"
     ],
     "scheduled_date": "2026-05-22",
-    "status": "pending"
+    "status": "failed",
+    "posted_at": "2026-05-22T10:00:50.587788",
+    "last_error": "post-pin-exception: TimeoutError: Page.wait_for_selector: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-test-id=\\\"storyboard-upload-input\\\"]\") to be visible\n"
   },
   {
     "id": "49e84d33",
@@ -5336,7 +5372,7 @@
       "kbeauty"
     ],
     "scheduled_date": "2026-05-07T22:00:00",
-    "status": "posted",
+    "status": "failed",
     "_meta": {
       "theme": "kbeauty-under-25",
       "variant": 2,
@@ -5370,7 +5406,8 @@
       ]
     },
     "board_original": "Korean Skincare Essentials",
-    "posted_at": "2026-05-15T17:12:19.704651"
+    "last_error": "RESET 2026-05-13: 'Korean Skincare Essentials' doesn't exist on Pinterest, remapped to 'Korean Skincare'",
+    "posted_at": "2026-05-16T10:03:05.112293"
   },
   {
     "id": 179,
@@ -5605,7 +5642,7 @@
       "niacinamide"
     ],
     "scheduled_date": "2026-05-08T22:00:00",
-    "status": "posted",
+    "status": "failed",
     "_meta": {
       "theme": "niacinamide-serums",
       "variant": 2,
@@ -5634,7 +5671,8 @@
       ]
     },
     "board_original": "Serums & Essences",
-    "posted_at": "2026-05-15T17:13:51.496874"
+    "last_error": "RESET 2026-05-13: 'Serums & Essences' doesn't exist on Pinterest, remapped to 'Korean Skincare'",
+    "posted_at": "2026-05-16T10:04:23.005915"
   },
   {
     "id": 185,
@@ -5762,7 +5800,7 @@
       "anti"
     ],
     "scheduled_date": "2026-05-09T16:00:00",
-    "status": "posted",
+    "status": "failed",
     "_meta": {
       "theme": "anti-aging-30s",
       "variant": 0,
@@ -5795,8 +5833,9 @@
         }
       ]
     },
+    "last_error": "RESET 2026-05-13: 'Korean Skincare Essentials' doesn't exist on Pinterest, remapped to 'Korean Skincare'",
     "board_original": "Korean Skincare Essentials",
-    "posted_at": "2026-05-15T17:15:08.112472"
+    "posted_at": "2026-05-16T10:05:33.521896"
   },
   {
     "id": 188,
@@ -5835,7 +5874,7 @@
       "vitamin"
     ],
     "scheduled_date": "2026-05-09T22:00:00",
-    "status": "posted",
+    "status": "failed",
     "_meta": {
       "theme": "vitamin-c-serums",
       "variant": 1,
@@ -5864,7 +5903,8 @@
       ]
     },
     "board_original": "Serums & Essences",
-    "posted_at": "2026-05-15T22:00:44.659976"
+    "last_error": "RESET 2026-05-13: 'Serums & Essences' doesn't exist on Pinterest, remapped to 'Korean Skincare'",
+    "posted_at": "2026-05-16T15:16:44.775050"
   },
   {
     "id": "544d2b0f",
@@ -5913,7 +5953,7 @@
     },
     "board_original": "Masks & Treatments",
     "last_error": "post-pin-exception: TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.pinterest.com/pin-creation-tool/\", waiting until \"load\"\n",
-    "posted_at": "2026-05-15T22:02:39.856508"
+    "posted_at": "2026-05-16T15:18:40.504535"
   },
   {
     "id": "54fdd373",
@@ -5932,7 +5972,7 @@
       "lip"
     ],
     "scheduled_date": "2026-05-10T16:00:00",
-    "status": "posted",
+    "status": "failed",
     "_meta": {
       "theme": "lip-products",
       "variant": 2,
@@ -5961,7 +6001,8 @@
       ]
     },
     "board_original": "K-Beauty Makeup",
-    "posted_at": "2026-05-15T22:04:22.712147"
+    "last_error": "RESET 2026-05-13: 'K-Beauty Makeup' doesn't exist on Pinterest, remapped to 'Mirai Make Up & Tools'",
+    "posted_at": "2026-05-16T15:19:54.833307"
   },
   {
     "id": "56cfbecb",
@@ -6027,7 +6068,7 @@
       "retinol"
     ],
     "scheduled_date": "2026-05-11T10:00:00",
-    "status": "posted",
+    "status": "failed",
     "_meta": {
       "theme": "retinol-bakuchiol",
       "variant": 0,
@@ -6056,7 +6097,8 @@
       ]
     },
     "board_original": "Serums & Essences",
-    "posted_at": "2026-05-15T20:11:06.629445"
+    "last_error": "RESET 2026-05-13: 'Serums & Essences' doesn't exist on Pinterest, remapped to 'Korean Skincare'",
+    "posted_at": "2026-05-17T10:03:38.423548"
   },
   {
     "id": "5b18615a",
@@ -6105,7 +6147,7 @@
     },
     "last_error": "post-pin-exception: TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.pinterest.com/pin-creation-tool/\", waiting until \"load\"\n",
     "board_original": "Serums & Essences",
-    "posted_at": "2026-05-15T20:13:14.265373"
+    "posted_at": "2026-05-17T10:05:40.435996"
   },
   {
     "id": "5be937cb",
@@ -6124,7 +6166,7 @@
       "propolis"
     ],
     "scheduled_date": "2026-05-11T22:00:00",
-    "status": "posted",
+    "status": "failed",
     "_meta": {
       "theme": "propolis-essences",
       "variant": 0,
@@ -6153,7 +6195,8 @@
       ]
     },
     "board_original": "Serums & Essences",
-    "posted_at": "2026-05-15T20:15:03.268843"
+    "last_error": "RESET 2026-05-13: 'Serums & Essences' doesn't exist on Pinterest, remapped to 'Korean Skincare'",
+    "posted_at": "2026-05-17T10:06:44.929490"
   },
   {
     "id": "5c312516",
@@ -6313,7 +6356,7 @@
       "glass"
     ],
     "scheduled_date": "2026-05-13T10:00:00",
-    "status": "posted",
+    "status": "failed",
     "_meta": {
       "theme": "glass-skin-routine",
       "variant": 0,
@@ -6347,7 +6390,8 @@
       ]
     },
     "board_original": "Korean Skincare Essentials",
-    "posted_at": "2026-05-16T01:30:51.412172"
+    "last_error": "RESET 2026-05-13: 'Korean Skincare Essentials' doesn't exist on Pinterest, remapped to 'Korean Skincare'",
+    "posted_at": "2026-05-17T15:00:21.269140"
   },
   {
     "id": "6fb8da4e",
@@ -6366,7 +6410,7 @@
       "toners"
     ],
     "scheduled_date": "2026-05-13T16:00:00",
-    "status": "posted",
+    "status": "failed",
     "_meta": {
       "theme": "toners-pads",
       "variant": 2,
@@ -6395,7 +6439,8 @@
       ]
     },
     "board_original": "Toners & Glass Skin",
-    "posted_at": "2026-05-16T01:32:35.195763"
+    "last_error": "post-pin-exception: TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.pinterest.com/pin-creation-tool/\", waiting until \"load\"\n",
+    "posted_at": "2026-05-17T15:02:33.064281"
   },
   {
     "id": "7781280b",
@@ -6461,8 +6506,8 @@
       "eye"
     ],
     "scheduled_date": "2026-05-14T10:00:00",
-    "status": "posted",
-    "posted_at": "2026-05-16T01:34:00.432837",
+    "status": "failed",
+    "posted_at": "2026-05-17T15:03:53.527867",
     "_meta": {
       "theme": "eye-patches",
       "variant": 1,
@@ -6509,8 +6554,8 @@
       "sheet"
     ],
     "scheduled_date": "2026-05-14T16:00:00",
-    "status": "posted",
-    "posted_at": "2026-05-15T23:30:33.222475",
+    "status": "failed",
+    "posted_at": "2026-05-18T11:18:44.988873",
     "_meta": {
       "theme": "sheet-masks",
       "variant": 2,
@@ -6557,8 +6602,8 @@
       "eye"
     ],
     "scheduled_date": "2026-05-14T22:00:00",
-    "status": "posted",
-    "posted_at": "2026-05-15T23:31:48.411032",
+    "status": "failed",
+    "posted_at": "2026-05-18T11:20:16.895127",
     "_meta": {
       "theme": "eye-patches",
       "variant": 0,
@@ -6605,8 +6650,8 @@
       "centella"
     ],
     "scheduled_date": "2026-05-15T10:00:00",
-    "status": "posted",
-    "posted_at": "2026-05-15T23:33:19.810409",
+    "status": "failed",
+    "posted_at": "2026-05-18T11:21:20.669684",
     "_meta": {
       "theme": "centella-moisturizers",
       "variant": 0,
@@ -6652,8 +6697,8 @@
       "cushions"
     ],
     "scheduled_date": "2026-05-15T16:00:00",
-    "status": "posted",
-    "posted_at": "2026-05-16T18:30:45.323053",
+    "status": "failed",
+    "posted_at": "2026-05-18T15:00:21.952523",
     "_meta": {
       "theme": "cushions",
       "variant": 1,
@@ -6700,8 +6745,8 @@
       "moisturizers"
     ],
     "scheduled_date": "2026-05-15T22:00:00",
-    "status": "posted",
-    "posted_at": "2026-05-16T18:31:54.453979",
+    "status": "failed",
+    "posted_at": "2026-05-18T15:01:35.170690",
     "_meta": {
       "theme": "moisturizers-sensitive",
       "variant": 0,
@@ -6747,8 +6792,8 @@
       "sheet"
     ],
     "scheduled_date": "2026-05-16T10:00:00",
-    "status": "posted",
-    "posted_at": "2026-05-16T18:33:08.506691",
+    "status": "failed",
+    "posted_at": "2026-05-18T15:02:41.339421",
     "_meta": {
       "theme": "sheet-masks",
       "variant": 1,
@@ -6795,8 +6840,8 @@
       "ceramide"
     ],
     "scheduled_date": "2026-05-16T16:00:00",
-    "status": "posted",
-    "posted_at": "2026-05-16T16:30:51.883243",
+    "status": "failed",
+    "posted_at": "2026-05-19T15:01:11.153532",
     "_meta": {
       "theme": "ceramide-moisturizers",
       "variant": 1,
@@ -6842,8 +6887,8 @@
       "bb"
     ],
     "scheduled_date": "2026-05-16T22:00:00",
-    "status": "posted",
-    "posted_at": "2026-05-16T16:32:05.197396",
+    "status": "failed",
+    "posted_at": "2026-05-19T15:02:48.045429",
     "_meta": {
       "theme": "bb-cc-creams",
       "variant": 2,
@@ -6871,7 +6916,8 @@
         }
       ]
     },
-    "board_original": "K-Beauty Makeup"
+    "board_original": "K-Beauty Makeup",
+    "last_error": "post-pin-exception: TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.pinterest.com/pin-creation-tool/\", waiting until \"load\"\n"
   },
   {
     "id": "97babcea",
@@ -6890,8 +6936,8 @@
       "lip"
     ],
     "scheduled_date": "2026-05-17T10:00:00",
-    "status": "posted",
-    "posted_at": "2026-05-17T01:30:46.051623",
+    "status": "failed",
+    "posted_at": "2026-05-19T15:03:41.257597",
     "_meta": {
       "theme": "lip-products",
       "variant": 0,
@@ -6939,7 +6985,7 @@
     ],
     "scheduled_date": "2026-05-17T16:00:00",
     "status": "failed",
-    "posted_at": "2026-05-17T01:32:37.615117",
+    "posted_at": "2026-05-20T15:01:01.675329",
     "_meta": {
       "theme": "sun-sticks",
       "variant": 0,
@@ -6966,8 +7012,7 @@
           "vendor": "Beauty of Joseon"
         }
       ]
-    },
-    "last_error": "post-pin-exception: TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.pinterest.com/pin-creation-tool/\", waiting until \"load\"\n"
+    }
   },
   {
     "id": "a225237c",
@@ -6986,8 +7031,8 @@
       "glass"
     ],
     "scheduled_date": "2026-05-17T22:00:00",
-    "status": "posted",
-    "posted_at": "2026-05-17T01:34:05.768931",
+    "status": "failed",
+    "posted_at": "2026-05-20T15:01:54.880433",
     "_meta": {
       "theme": "glass-skin-routine",
       "variant": 1,
@@ -7039,8 +7084,8 @@
       "snail"
     ],
     "scheduled_date": "2026-05-18T10:00:00",
-    "status": "posted",
-    "posted_at": "2026-05-18T01:30:38.323028",
+    "status": "failed",
+    "posted_at": "2026-05-20T15:03:22.275854",
     "_meta": {
       "theme": "snail-essences",
       "variant": 1,
@@ -7087,8 +7132,8 @@
       "kbeauty"
     ],
     "scheduled_date": "2026-05-18T16:00:00",
-    "status": "posted",
-    "posted_at": "2026-05-18T01:32:03.611190",
+    "status": "failed",
+    "posted_at": "2026-05-21T15:01:04.464485",
     "_meta": {
       "theme": "kbeauty-under-25",
       "variant": 0,
@@ -7140,8 +7185,8 @@
       "sunscreens"
     ],
     "scheduled_date": "2026-05-18T22:00:00",
-    "status": "posted",
-    "posted_at": "2026-05-18T01:33:41.206434",
+    "status": "failed",
+    "posted_at": "2026-05-21T15:02:19.966954",
     "_meta": {
       "theme": "sunscreens-oily-acne",
       "variant": 0,
@@ -7187,8 +7232,8 @@
       "clay"
     ],
     "scheduled_date": "2026-05-19T10:00:00",
-    "status": "posted",
-    "posted_at": "2026-05-19T01:30:42.201318",
+    "status": "failed",
+    "posted_at": "2026-05-21T15:03:41.208077",
     "_meta": {
       "theme": "clay-masks",
       "variant": 2,
@@ -7236,7 +7281,7 @@
     ],
     "scheduled_date": "2026-05-19T16:00:00",
     "status": "failed",
-    "posted_at": "2026-05-19T01:33:02.732345",
+    "posted_at": "2026-05-22T10:01:03.741197",
     "_meta": {
       "theme": "sun-sticks",
       "variant": 2,
@@ -7263,8 +7308,7 @@
           "vendor": "Abib"
         }
       ]
-    },
-    "last_error": "post-pin-exception: TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.pinterest.com/pin-creation-tool/\", waiting until \"load\"\n"
+    }
   },
   {
     "id": "b115ff01",
@@ -7283,8 +7327,8 @@
       "snail"
     ],
     "scheduled_date": "2026-05-19T22:00:00",
-    "status": "posted",
-    "posted_at": "2026-05-19T01:34:10.402125",
+    "status": "failed",
+    "posted_at": "2026-05-22T10:02:38.140300",
     "_meta": {
       "theme": "snail-essences",
       "variant": 2,
@@ -7331,8 +7375,8 @@
       "toners"
     ],
     "scheduled_date": "2026-05-20T10:00:00",
-    "status": "posted",
-    "posted_at": "2026-05-20T01:30:51.344160",
+    "status": "failed",
+    "posted_at": "2026-05-22T10:03:25.723257",
     "_meta": {
       "theme": "toners-pads",
       "variant": 1,
@@ -7379,8 +7423,8 @@
       "bb"
     ],
     "scheduled_date": "2026-05-20T16:00:00",
-    "status": "posted",
-    "posted_at": "2026-05-20T01:32:30.810051",
+    "status": "pending",
+    "posted_at": null,
     "_meta": {
       "theme": "bb-cc-creams",
       "variant": 1,
@@ -7427,8 +7471,8 @@
       "toners"
     ],
     "scheduled_date": "2026-05-20T22:00:00",
-    "status": "posted",
-    "posted_at": "2026-05-20T01:34:24.048085",
+    "status": "pending",
+    "posted_at": null,
     "_meta": {
       "theme": "toners-glass-skin",
       "variant": 2,
@@ -7475,8 +7519,8 @@
       "moisturizers"
     ],
     "scheduled_date": "2026-05-21T10:00:00",
-    "status": "posted",
-    "posted_at": "2026-05-21T01:30:41.031098",
+    "status": "pending",
+    "posted_at": null,
     "_meta": {
       "theme": "moisturizers-sensitive",
       "variant": 2,
@@ -7522,8 +7566,8 @@
       "propolis"
     ],
     "scheduled_date": "2026-05-21T16:00:00",
-    "status": "posted",
-    "posted_at": "2026-05-21T01:32:15.194605",
+    "status": "pending",
+    "posted_at": null,
     "_meta": {
       "theme": "propolis-essences",
       "variant": 1,
@@ -7570,8 +7614,8 @@
       "glass"
     ],
     "scheduled_date": "2026-05-21T22:00:00",
-    "status": "posted",
-    "posted_at": "2026-05-21T01:34:09.765106",
+    "status": "pending",
+    "posted_at": null,
     "_meta": {
       "theme": "glass-skin-routine",
       "variant": 2,
@@ -7623,8 +7667,8 @@
       "sunscreens"
     ],
     "scheduled_date": "2026-05-22T10:00:00",
-    "status": "posted",
-    "posted_at": "2026-05-22T01:30:48.945811",
+    "status": "pending",
+    "posted_at": null,
     "_meta": {
       "theme": "sunscreens-no-white-cast",
       "variant": 2,
@@ -7670,8 +7714,8 @@
       "clay"
     ],
     "scheduled_date": "2026-05-22T16:00:00",
-    "status": "posted",
-    "posted_at": "2026-05-22T01:32:15.843156",
+    "status": "pending",
+    "posted_at": null,
     "_meta": {
       "theme": "clay-masks",
       "variant": 0,
@@ -7718,8 +7762,8 @@
       "sunscreens"
     ],
     "scheduled_date": "2026-05-22T22:00:00",
-    "status": "posted",
-    "posted_at": "2026-05-22T01:34:18.883932",
+    "status": "pending",
+    "posted_at": null,
     "_meta": {
       "theme": "sunscreens-sensitive",
       "variant": 2,
