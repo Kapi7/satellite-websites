@@ -840,9 +840,9 @@
       "getting started"
     ],
     "scheduled_date": "2026-04-04",
-    "status": "pending",
+    "status": "posted",
     "board_original": "Fitness & Movement",
-    "last_error": "RESET 2026-05-13: 'Fitness & Movement' missing, remapped to 'Running'"
+    "posted_at": "2026-05-22T09:43:20.138002"
   },
   {
     "id": 35,
@@ -1984,9 +1984,9 @@
       "recipe"
     ],
     "scheduled_date": "2026-04-14",
-    "status": "pending",
+    "status": "posted",
     "board_original": "Nutrition & Recipes",
-    "last_error": "RESET 2026-05-13: 'Nutrition & Recipes' missing, remapped to 'Natural Wellness'"
+    "posted_at": "2026-05-22T09:45:36.315088"
   },
   {
     "id": 94,
@@ -3670,9 +3670,9 @@
       "natural remedies"
     ],
     "scheduled_date": "2026-05-04",
-    "status": "pending",
-    "last_error": "RESET 2026-05-13: 'Nutrition & Recipes' missing, remapped to 'Natural Wellness'",
-    "board_original": "Nutrition & Recipes"
+    "status": "posted",
+    "board_original": "Nutrition & Recipes",
+    "posted_at": "2026-05-22T09:48:02.293732"
   },
   {
     "id": "1000251f",
