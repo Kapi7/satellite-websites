@@ -827,7 +827,7 @@
     "description": "A no-nonsense guide to starting a running practice from zero. Gear, technique, programming, and how to avoid the mistakes that make most beginners quit.",
     "url": "https://rooted-glow.com/how-to-start-running-beginners-guide/",
     "image_path": "/Users/agentdavid/mirai-seo/satellite-websites/wellness/public/images/start-running-guide.jpg",
-    "board": "Fitness & Movement",
+    "board": "Running",
     "site": "wellness",
     "domain": "rooted-glow.com",
     "category": "movement",
@@ -840,8 +840,9 @@
       "getting started"
     ],
     "scheduled_date": "2026-04-04",
-    "status": "failed",
-    "posted_at": "2026-04-30T18:31:22.251719"
+    "status": "pending",
+    "board_original": "Fitness & Movement",
+    "last_error": "RESET 2026-05-13: 'Fitness & Movement' missing, remapped to 'Running'"
   },
   {
     "id": 35,
@@ -1970,7 +1971,7 @@
     "description": "A simple guide to making your own probiotic-rich sauerkraut. Just cabbage, salt, and time. No special equipment required.",
     "url": "https://rooted-glow.com/how-to-make-sauerkraut-at-home/",
     "image_path": "/Users/agentdavid/mirai-seo/satellite-websites/wellness/public/images/homemade-sauerkraut.jpg",
-    "board": "Nutrition & Recipes",
+    "board": "Natural Wellness",
     "site": "wellness",
     "domain": "rooted-glow.com",
     "category": "nutrition",
@@ -1983,8 +1984,9 @@
       "recipe"
     ],
     "scheduled_date": "2026-04-14",
-    "status": "failed",
-    "posted_at": "2026-04-30T22:00:44.658553"
+    "status": "pending",
+    "board_original": "Nutrition & Recipes",
+    "last_error": "RESET 2026-05-13: 'Nutrition & Recipes' missing, remapped to 'Natural Wellness'"
   },
   {
     "id": 94,
@@ -3655,7 +3657,7 @@
     "description": "Turn your spice rack into a pharmacy. These 5 DIY spice blends deliver clinically relevant doses of anti-inflammatory compounds in every meal.",
     "url": "https://rooted-glow.com/anti-inflammatory-spice-blends-make-today/",
     "image_path": "/Users/agentdavid/mirai-seo/satellite-websites/wellness/public/images/anti-inflammatory-spice-blends.jpg",
-    "board": "Nutrition & Recipes",
+    "board": "Natural Wellness",
     "site": "wellness",
     "domain": "rooted-glow.com",
     "category": "nutrition",
@@ -3668,9 +3670,9 @@
       "natural remedies"
     ],
     "scheduled_date": "2026-05-04",
-    "status": "failed",
-    "posted_at": "2026-05-04T15:01:39.694938",
-    "last_error": "post-pin-exception: TimeoutError: Page.wait_for_selector: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-test-id=\\\"storyboard-upload-input\\\"]\") to be visible\n"
+    "status": "pending",
+    "last_error": "RESET 2026-05-13: 'Nutrition & Recipes' missing, remapped to 'Natural Wellness'",
+    "board_original": "Nutrition & Recipes"
   },
   {
     "id": "1000251f",
@@ -3840,7 +3842,7 @@
     "description": "Full review of the ASICS Novablast 5. FF BLAST+ TURBO foam, 40mm stack, updated upper. How it rides, who it's for, and how it compares to the Novablast 4 and Superblast 3.",
     "url": "https://rooted-glow.com/asics-novablast-5-review/",
     "image_path": "/Users/agentdavid/mirai-seo/satellite-websites/wellness/public/images/asics-novablast-5-review.jpg",
-    "board": "Fitness & Movement",
+    "board": "Running",
     "site": "wellness",
     "domain": "rooted-glow.com",
     "category": "movement",
@@ -3852,9 +3854,9 @@
       "ASICS"
     ],
     "scheduled_date": "2026-05-06",
-    "status": "failed",
-    "posted_at": "2026-05-15T15:00:36.000511",
-    "last_error": "post-pin-exception: TimeoutError: Page.wait_for_selector: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-test-id=\\\"storyboard-upload-input\\\"]\") to be visible\n"
+    "status": "pending",
+    "last_error": "RESET 2026-05-13: 'Fitness & Movement' missing, remapped to 'Running'",
+    "board_original": "Fitness & Movement"
   },
   {
     "id": "14533b4c",
@@ -3933,7 +3935,7 @@
     "description": "The best electrolyte drinks ranked for runners, cyclists, and athletes. Sugar-free and fueling options compared, plus a homemade recipe and when to actually use them.",
     "url": "https://rooted-glow.com/best-electrolyte-drinks-runners/",
     "image_path": "/Users/agentdavid/mirai-seo/satellite-websites/wellness/public/images/best-electrolyte-drinks-runners.jpg",
-    "board": "Fitness & Movement",
+    "board": "Running",
     "site": "wellness",
     "domain": "rooted-glow.com",
     "category": "movement",
@@ -3946,9 +3948,9 @@
       "electrolytes"
     ],
     "scheduled_date": "2026-05-07",
-    "status": "failed",
-    "posted_at": "2026-05-15T15:01:30.896116",
-    "last_error": "post-pin-exception: TimeoutError: Page.wait_for_selector: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-test-id=\\\"storyboard-upload-input\\\"]\") to be visible\n"
+    "status": "pending",
+    "last_error": "RESET 2026-05-13: 'Fitness & Movement' missing, remapped to 'Running'",
+    "board_original": "Fitness & Movement"
   },
   {
     "id": "182ffc5a",
@@ -4124,7 +4126,7 @@
     "description": "The best clean protein powders ranked by category. Grass-fed whey, organic plant protein, and casein picks with real specs, real prices, and zero fillers.",
     "url": "https://rooted-glow.com/best-protein-powders-clean-natural/",
     "image_path": "/Users/agentdavid/mirai-seo/satellite-websites/wellness/public/images/best-protein-powders-clean-natural.jpg",
-    "board": "Nutrition & Recipes",
+    "board": "Natural Wellness",
     "site": "wellness",
     "domain": "rooted-glow.com",
     "category": "nutrition",
@@ -4137,9 +4139,9 @@
       "nutrition"
     ],
     "scheduled_date": "2026-05-09",
-    "status": "failed",
-    "posted_at": "2026-05-16T10:00:37.243927",
-    "last_error": "post-pin-exception: TimeoutError: Page.wait_for_selector: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-test-id=\\\"storyboard-upload-input\\\"]\") to be visible\n"
+    "status": "pending",
+    "last_error": "RESET 2026-05-13: 'Nutrition & Recipes' missing, remapped to 'Natural Wellness'",
+    "board_original": "Nutrition & Recipes"
   },
   {
     "id": "2436467b",
@@ -4216,7 +4218,7 @@
     "description": "Elite-level running shoe guide for experienced runners. Carbon-plated racers, super trainers, and the best shoes for marathon training and PRs in 2026.",
     "url": "https://rooted-glow.com/best-running-shoes-advanced/",
     "image_path": "/Users/agentdavid/mirai-seo/satellite-websites/wellness/public/images/best-running-shoes-advanced.jpg",
-    "board": "Fitness & Movement",
+    "board": "Running",
     "site": "wellness",
     "domain": "rooted-glow.com",
     "category": "movement",
@@ -4228,9 +4230,9 @@
       "racing flats"
     ],
     "scheduled_date": "2026-05-10",
-    "status": "failed",
-    "posted_at": "2026-05-16T10:01:30.578965",
-    "last_error": "post-pin-exception: TimeoutError: Page.wait_for_selector: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-test-id=\\\"storyboard-upload-input\\\"]\") to be visible\n"
+    "status": "pending",
+    "last_error": "RESET 2026-05-13: 'Fitness & Movement' missing, remapped to 'Running'",
+    "board_original": "Fitness & Movement"
   },
   {
     "id": "2bad2e9a",
@@ -4310,7 +4312,7 @@
     "description": "A beginner-friendly guide to choosing your first running shoes. Covers cushioning, stability, fit, and our top picks for new runners in 2026.",
     "url": "https://rooted-glow.com/best-running-shoes-beginners/",
     "image_path": "/Users/agentdavid/mirai-seo/satellite-websites/wellness/public/images/best-running-shoes-beginners.jpg",
-    "board": "Fitness & Movement",
+    "board": "Running",
     "site": "wellness",
     "domain": "rooted-glow.com",
     "category": "movement",
@@ -4322,9 +4324,9 @@
       "walking to running"
     ],
     "scheduled_date": "2026-05-11",
-    "status": "failed",
-    "posted_at": "2026-05-16T10:02:31.810679",
-    "last_error": "post-pin-exception: TimeoutError: Page.wait_for_selector: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-test-id=\\\"storyboard-upload-input\\\"]\") to be visible\n"
+    "status": "pending",
+    "last_error": "RESET 2026-05-13: 'Fitness & Movement' missing, remapped to 'Running'",
+    "board_original": "Fitness & Movement"
   },
   {
     "id": "30694f58",
@@ -4404,7 +4406,7 @@
     "description": "Running 20-40km per week? Here are the best running shoes for intermediate runners who want more speed, better support, and smarter shoe rotation in 2026.",
     "url": "https://rooted-glow.com/best-running-shoes-intermediate/",
     "image_path": "/Users/agentdavid/mirai-seo/satellite-websites/wellness/public/images/best-running-shoes-intermediate.jpg",
-    "board": "Fitness & Movement",
+    "board": "Running",
     "site": "wellness",
     "domain": "rooted-glow.com",
     "category": "movement",
@@ -4416,9 +4418,9 @@
       "shoe rotation"
     ],
     "scheduled_date": "2026-05-12",
-    "status": "failed",
-    "posted_at": "2026-05-16T15:14:17.756788",
-    "last_error": "post-pin-exception: TimeoutError: Page.wait_for_selector: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-test-id=\\\"storyboard-upload-input\\\"]\") to be visible\n"
+    "status": "pending",
+    "last_error": "RESET 2026-05-13: 'Fitness & Movement' missing, remapped to 'Running'",
+    "board_original": "Fitness & Movement"
   },
   {
     "id": "314b1283",
@@ -4496,7 +4498,7 @@
     "description": "The best stainless steel cookware brands for healthy cooking. Compare All-Clad, Demeyere, Le Creuset, Made In, and more \u2014 with tips on what to look for.",
     "url": "https://rooted-glow.com/best-stainless-steel-cookware/",
     "image_path": "/Users/agentdavid/mirai-seo/satellite-websites/wellness/public/images/best-stainless-steel-cookware.jpg",
-    "board": "Nutrition & Recipes",
+    "board": "Natural Wellness",
     "site": "wellness",
     "domain": "rooted-glow.com",
     "category": "nutrition",
@@ -4508,9 +4510,9 @@
       "non-toxic kitchen"
     ],
     "scheduled_date": "2026-05-13",
-    "status": "failed",
-    "posted_at": "2026-05-16T15:15:21.762106",
-    "last_error": "post-pin-exception: TimeoutError: Page.wait_for_selector: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-test-id=\\\"storyboard-upload-input\\\"]\") to be visible\n"
+    "status": "pending",
+    "last_error": "RESET 2026-05-13: 'Nutrition & Recipes' missing, remapped to 'Natural Wellness'",
+    "board_original": "Nutrition & Recipes"
   },
   {
     "id": "31606269",
@@ -4678,7 +4680,7 @@
     "description": "A detailed comparison of Collagen Peptides and Bone Broth. Learn the key differences, pros and cons, and which one is right for you.",
     "url": "https://rooted-glow.com/collagen-peptides-vs-bone-broth/",
     "image_path": "/Users/agentdavid/mirai-seo/satellite-websites/wellness/public/images/collagen-peptides-vs-bone-broth.jpg",
-    "board": "Nutrition & Recipes",
+    "board": "Natural Wellness",
     "site": "wellness",
     "domain": "rooted-glow.com",
     "category": "nutrition",
@@ -4690,9 +4692,9 @@
       "skin health"
     ],
     "scheduled_date": "2026-05-15",
-    "status": "failed",
-    "posted_at": "2026-05-17T10:00:35.191320",
-    "last_error": "post-pin-exception: TimeoutError: Page.wait_for_selector: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-test-id=\\\"storyboard-upload-input\\\"]\") to be visible\n"
+    "status": "pending",
+    "last_error": "RESET 2026-05-13: 'Nutrition & Recipes' missing, remapped to 'Natural Wellness'",
+    "board_original": "Nutrition & Recipes"
   },
   {
     "id": "34703b3d",
@@ -4771,7 +4773,7 @@
     "description": "Learn how to make natural gels at home \u2014 flaxseed hair gel, aloe vera skin gel, herbal gel for muscles, and more. Simple ingredients, zero chemicals.",
     "url": "https://rooted-glow.com/diy-natural-gel-recipes/",
     "image_path": "/Users/agentdavid/mirai-seo/satellite-websites/wellness/public/images/diy-natural-gel-recipes.jpg",
-    "board": "Nutrition & Recipes",
+    "board": "Natural Wellness",
     "site": "wellness",
     "domain": "rooted-glow.com",
     "category": "natural-health",
@@ -4784,9 +4786,9 @@
       "natural remedies"
     ],
     "scheduled_date": "2026-05-16",
-    "status": "failed",
-    "posted_at": "2026-05-17T10:01:53.941991",
-    "last_error": "post-pin-exception: TimeoutError: Page.wait_for_selector: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-test-id=\\\"storyboard-upload-input\\\"]\") to be visible\n"
+    "status": "pending",
+    "last_error": "RESET 2026-05-13: 'Nutrition & Recipes' missing, remapped to 'Natural Wellness'",
+    "board_original": "Nutrition & Recipes"
   },
   {
     "id": "3547e10a",
@@ -4862,7 +4864,7 @@
     "description": "10 best hip flexor stretches and strengthening exercises for runners and desk workers. Includes a 5-minute and 15-minute daily routine with clear instructions.",
     "url": "https://rooted-glow.com/hip-flexor-stretches-exercises-tight-hips/",
     "image_path": "/Users/agentdavid/mirai-seo/satellite-websites/wellness/public/images/hip-flexor-stretches-exercises-tight-hips.jpg",
-    "board": "Fitness & Movement",
+    "board": "Running",
     "site": "wellness",
     "domain": "rooted-glow.com",
     "category": "movement",
@@ -4876,9 +4878,9 @@
       "exercises"
     ],
     "scheduled_date": "2026-05-17",
-    "status": "failed",
-    "posted_at": "2026-05-17T10:03:07.327712",
-    "last_error": "post-pin-exception: TimeoutError: Page.wait_for_selector: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-test-id=\\\"storyboard-upload-input\\\"]\") to be visible\n"
+    "status": "pending",
+    "last_error": "RESET 2026-05-13: 'Fitness & Movement' missing, remapped to 'Running'",
+    "board_original": "Fitness & Movement"
   },
   {
     "id": "38141a26",
@@ -4957,7 +4959,7 @@
     "description": "A traditional napa cabbage kimchi recipe that ferments in 3-5 days. Rich in probiotics, packed with flavor, and cheaper than store-bought. Step-by-step with troubleshooting.",
     "url": "https://rooted-glow.com/how-to-make-fermented-kimchi-at-home/",
     "image_path": "/Users/agentdavid/mirai-seo/satellite-websites/wellness/public/images/homemade-kimchi.jpg",
-    "board": "Nutrition & Recipes",
+    "board": "Natural Wellness",
     "site": "wellness",
     "domain": "rooted-glow.com",
     "category": "nutrition",
@@ -4970,9 +4972,9 @@
       "fermentation"
     ],
     "scheduled_date": "2026-05-18",
-    "status": "failed",
-    "posted_at": "2026-05-18T11:18:31.331439",
-    "last_error": "post-pin-exception: TimeoutError: Page.wait_for_selector: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-test-id=\\\"storyboard-upload-input\\\"]\") to be visible\n"
+    "status": "pending",
+    "last_error": "RESET 2026-05-13: 'Nutrition & Recipes' missing, remapped to 'Natural Wellness'",
+    "board_original": "Nutrition & Recipes"
   },
   {
     "id": "3933b25c",
@@ -5056,7 +5058,7 @@
     "description": "Intermittent fasting works, but starting wrong causes misery. This guide covers the safest way to begin, which protocol to choose, what to expect, and when to stop.",
     "url": "https://rooted-glow.com/intermittent-fasting-beginners-guide/",
     "image_path": "/Users/agentdavid/mirai-seo/satellite-websites/wellness/public/images/intermittent-fasting-guide.jpg",
-    "board": "Nutrition & Recipes",
+    "board": "Natural Wellness",
     "site": "wellness",
     "domain": "rooted-glow.com",
     "category": "nutrition",
@@ -5069,9 +5071,9 @@
       "eating window"
     ],
     "scheduled_date": "2026-05-19",
-    "status": "failed",
-    "posted_at": "2026-05-19T15:00:56.532981",
-    "last_error": "post-pin-exception: TimeoutError: Page.wait_for_selector: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-test-id=\\\"storyboard-upload-input\\\"]\") to be visible\n"
+    "status": "pending",
+    "last_error": "RESET 2026-05-13: 'Nutrition & Recipes' missing, remapped to 'Natural Wellness'",
+    "board_original": "Nutrition & Recipes"
   },
   {
     "id": "3e8c3dbe",
@@ -5150,7 +5152,7 @@
     "description": "Science-backed guide to magnesium glycinate. Benefits for sleep, anxiety, muscle cramps, and heart health. Dosage by goal, best time to take it, and top supplement picks.",
     "url": "https://rooted-glow.com/magnesium-glycinate-benefits-dosage-guide/",
     "image_path": "/Users/agentdavid/mirai-seo/satellite-websites/wellness/public/images/magnesium-glycinate-benefits-dosage-guide.jpg",
-    "board": "Nutrition & Recipes",
+    "board": "Natural Wellness",
     "site": "wellness",
     "domain": "rooted-glow.com",
     "category": "nutrition",
@@ -5164,9 +5166,9 @@
       "heart health"
     ],
     "scheduled_date": "2026-05-20",
-    "status": "failed",
-    "posted_at": "2026-05-20T15:00:48.356990",
-    "last_error": "post-pin-exception: TimeoutError: Page.wait_for_selector: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-test-id=\\\"storyboard-upload-input\\\"]\") to be visible\n"
+    "status": "pending",
+    "last_error": "RESET 2026-05-13: 'Nutrition & Recipes' missing, remapped to 'Natural Wellness'",
+    "board_original": "Nutrition & Recipes"
   },
   {
     "id": "4127c46c",
@@ -5245,7 +5247,7 @@
     "description": "Full review of the Nike Vomero Plus. ZoomX foam, 40mm stack, and a plush ride tested over 300 km. How it compares to the Invincible 3 and Pegasus 42.",
     "url": "https://rooted-glow.com/nike-vomero-plus-review/",
     "image_path": "/Users/agentdavid/mirai-seo/satellite-websites/wellness/public/images/nike-vomero-plus-review.jpg",
-    "board": "Fitness & Movement",
+    "board": "Running",
     "site": "wellness",
     "domain": "rooted-glow.com",
     "category": "movement",
@@ -5258,9 +5260,9 @@
       "ZoomX"
     ],
     "scheduled_date": "2026-05-21",
-    "status": "failed",
-    "posted_at": "2026-05-21T15:00:47.787204",
-    "last_error": "post-pin-exception: TimeoutError: Page.wait_for_selector: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-test-id=\\\"storyboard-upload-input\\\"]\") to be visible\n"
+    "status": "pending",
+    "last_error": "RESET 2026-05-13: 'Fitness & Movement' missing, remapped to 'Running'",
+    "board_original": "Fitness & Movement"
   },
   {
     "id": "4932d032",
@@ -5339,7 +5341,7 @@
     "description": "A detailed comparison of Probiotics and Prebiotics. Learn the key differences, pros and cons, and which one is right for you.",
     "url": "https://rooted-glow.com/probiotics-vs-prebiotics/",
     "image_path": "/Users/agentdavid/mirai-seo/satellite-websites/wellness/public/images/probiotics-vs-prebiotics.jpg",
-    "board": "Nutrition & Recipes",
+    "board": "Natural Wellness",
     "site": "wellness",
     "domain": "rooted-glow.com",
     "category": "nutrition",
@@ -5351,9 +5353,9 @@
       "microbiome"
     ],
     "scheduled_date": "2026-05-22",
-    "status": "failed",
-    "posted_at": "2026-05-22T10:00:50.587788",
-    "last_error": "post-pin-exception: TimeoutError: Page.wait_for_selector: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-test-id=\\\"storyboard-upload-input\\\"]\") to be visible\n"
+    "status": "pending",
+    "last_error": "RESET 2026-05-13: 'Nutrition & Recipes' missing, remapped to 'Natural Wellness'",
+    "board_original": "Nutrition & Recipes"
   },
   {
     "id": "49e84d33",
@@ -5436,7 +5438,7 @@
     "description": "Learn how rotating between 2-4 pairs of running shoes reduces injury risk, improves performance, and extends shoe life. Complete rotation guide for every level.",
     "url": "https://rooted-glow.com/running-shoe-rotation-guide/",
     "image_path": "/Users/agentdavid/mirai-seo/satellite-websites/wellness/public/images/running-shoe-rotation-guide.jpg",
-    "board": "Fitness & Movement",
+    "board": "Running",
     "site": "wellness",
     "domain": "rooted-glow.com",
     "category": "movement",
@@ -5448,7 +5450,8 @@
       "training plan"
     ],
     "scheduled_date": "2026-05-23",
-    "status": "pending"
+    "status": "pending",
+    "board_original": "Fitness & Movement"
   },
   {
     "id": "4b5a1a21",
@@ -5523,7 +5526,7 @@
     "description": "A detailed comparison of Walking and Running. Learn the key differences, pros and cons, and which one is right for you.",
     "url": "https://rooted-glow.com/walking-vs-running/",
     "image_path": "/Users/agentdavid/mirai-seo/satellite-websites/wellness/public/images/walking-vs-running.jpg",
-    "board": "Fitness & Movement",
+    "board": "Running",
     "site": "wellness",
     "domain": "rooted-glow.com",
     "category": "movement",
@@ -5535,7 +5538,8 @@
       "fitness"
     ],
     "scheduled_date": "2026-05-24",
-    "status": "pending"
+    "status": "pending",
+    "board_original": "Fitness & Movement"
   },
   {
     "id": "4f17f03f",
@@ -5610,7 +5614,7 @@
     "description": "A practical meal prep system that takes 2 hours on Sunday and feeds you healthy, portion-controlled meals all week. No complicated recipes, no expensive ingredients.",
     "url": "https://rooted-glow.com/weekly-meal-prep-weight-loss/",
     "image_path": "/Users/agentdavid/mirai-seo/satellite-websites/wellness/public/images/weekly-meal-prep.jpg",
-    "board": "Nutrition & Recipes",
+    "board": "Natural Wellness",
     "site": "wellness",
     "domain": "rooted-glow.com",
     "category": "nutrition",
@@ -5623,7 +5627,8 @@
       "batch cooking"
     ],
     "scheduled_date": "2026-05-25",
-    "status": "pending"
+    "status": "pending",
+    "board_original": "Nutrition & Recipes"
   },
   {
     "id": "50707828",
@@ -5701,7 +5706,7 @@
     "description": "A detailed comparison of Yoga and Pilates. Learn the key differences, pros and cons, and which one is right for you.",
     "url": "https://rooted-glow.com/yoga-vs-pilates/",
     "image_path": "/Users/agentdavid/mirai-seo/satellite-websites/wellness/public/images/yoga-vs-pilates.jpg",
-    "board": "Fitness & Movement",
+    "board": "Running",
     "site": "wellness",
     "domain": "rooted-glow.com",
     "category": "movement",
@@ -5713,7 +5718,8 @@
       "strength training"
     ],
     "scheduled_date": "2026-05-26",
-    "status": "pending"
+    "status": "pending",
+    "board_original": "Fitness & Movement"
   },
   {
     "id": "51a1aa51",
