@@ -365,20 +365,48 @@ def post_pin(page, pin, dry_run=False):
         except Exception as e:
             log(f"  Board error: {e}")
 
-        # ── 6. Publish ──
+        # ── 6. Publish (with verification — don't trust the click alone) ──
+        import re as _re
+        def _draft_count():
+            try:
+                h = page.evaluate('''() => {const e=document.querySelector('[data-test-id="storyboard-drafts-sidebar-header-title"]');return e?e.innerText:"";}''')
+                m = _re.search(r"\((\d+)\)", h or "")
+                return int(m.group(1)) if m else -1
+            except Exception:
+                return -1
         try:
+            drafts_before = _draft_count()
             publish_btn = page.locator(
-                'button:has-text("Publish"), '
-                '[data-test-id="storyboard-creation-nav-done-button"]'
+                '[data-test-id="storyboard-creation-nav-done"], '
+                'button:has-text("Publish")'
             ).first
             publish_btn.wait_for(state="visible", timeout=10000)
             publish_btn.click(force=True)
             human_delay(DELAY_LONG)
-            time.sleep(5)
+            time.sleep(6)
 
-            log(f"  Pin #{pin['id']} published")
+            # VERIFY: a real publish removes the draft from the sidebar
+            # (count drops) and/or shows a success toast. If the draft count
+            # did NOT drop, the pin is stuck as a draft — treat as failure
+            # so the schedule retries instead of lying "posted".
+            drafts_after = _draft_count()
+            success_toast = False
+            try:
+                success_toast = page.locator('text=/your pin.*(published|posted)/i, text=/published/i').first.is_visible(timeout=2000)
+            except Exception:
+                success_toast = False
+
+            published_ok = success_toast or (
+                drafts_before > 0 and drafts_after >= 0 and drafts_after < drafts_before
+            )
             page.screenshot(path=str(DATA_DIR / f"pin-ok-{pin['id']}.png"))
-            return True, None
+            if published_ok:
+                log(f"  Pin #{pin['id']} published (drafts {drafts_before}->{drafts_after})")
+                return True, None
+            else:
+                err = f"publish-unverified: draft not cleared (drafts {drafts_before}->{drafts_after}); likely stuck as draft"
+                log(f"  {err}")
+                return False, err
         except Exception as e:
             err = f"publish-button-not-found: {type(e).__name__}: {str(e)[:200]}"
             log(f"  {err}")
