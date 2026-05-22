@@ -7726,8 +7726,8 @@
       "clay"
     ],
     "scheduled_date": "2026-05-22T16:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "failed",
+    "posted_at": "2026-05-22T22:00:51.266154",
     "_meta": {
       "theme": "clay-masks",
       "variant": 0,
@@ -7755,7 +7755,8 @@
         }
       ]
     },
-    "board_original": "Masks & Treatments"
+    "board_original": "Masks & Treatments",
+    "last_error": "publish-unverified: draft not cleared (drafts -1->-1); likely stuck as draft"
   },
   {
     "id": "cd464eec",
@@ -7774,8 +7775,8 @@
       "sunscreens"
     ],
     "scheduled_date": "2026-05-22T22:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "failed",
+    "posted_at": "2026-05-22T22:02:17.170273",
     "_meta": {
       "theme": "sunscreens-sensitive",
       "variant": 2,
@@ -7802,7 +7803,8 @@
           "vendor": "SOME BY MI"
         }
       ]
-    }
+    },
+    "last_error": "publish-unverified: draft not cleared (drafts -1->-1); likely stuck as draft"
   },
   {
     "id": "d06e8e30",
