@@ -7429,8 +7429,8 @@
       "bb"
     ],
     "scheduled_date": "2026-05-20T16:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "failed",
+    "posted_at": "2026-05-22T18:30:49.984002",
     "_meta": {
       "theme": "bb-cc-creams",
       "variant": 1,
@@ -7458,7 +7458,8 @@
         }
       ]
     },
-    "board_original": "K-Beauty Makeup"
+    "board_original": "K-Beauty Makeup",
+    "last_error": "publish-unverified: draft not cleared (drafts -1->-1); likely stuck as draft"
   },
   {
     "id": "b7fdb814",
@@ -7477,8 +7478,8 @@
       "toners"
     ],
     "scheduled_date": "2026-05-20T22:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "failed",
+    "posted_at": "2026-05-22T18:32:10.587505",
     "_meta": {
       "theme": "toners-glass-skin",
       "variant": 2,
@@ -7506,7 +7507,8 @@
         }
       ]
     },
-    "board_original": "Toners & Glass Skin"
+    "board_original": "Toners & Glass Skin",
+    "last_error": "publish-unverified: draft not cleared (drafts -1->-1); likely stuck as draft"
   },
   {
     "id": "bce48eb1",
@@ -7525,8 +7527,8 @@
       "moisturizers"
     ],
     "scheduled_date": "2026-05-21T10:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "failed",
+    "posted_at": "2026-05-22T18:33:54.686524",
     "_meta": {
       "theme": "moisturizers-sensitive",
       "variant": 2,
@@ -7553,7 +7555,8 @@
           "vendor": "ILLIYOON"
         }
       ]
-    }
+    },
+    "last_error": "publish-unverified: draft not cleared (drafts -1->-1); likely stuck as draft"
   },
   {
     "id": "bf995448",
