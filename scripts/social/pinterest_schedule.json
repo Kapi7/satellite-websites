@@ -7575,8 +7575,8 @@
       "propolis"
     ],
     "scheduled_date": "2026-05-21T16:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "failed",
+    "posted_at": "2026-05-22T17:26:12.011722",
     "_meta": {
       "theme": "propolis-essences",
       "variant": 1,
@@ -7604,7 +7604,8 @@
         }
       ]
     },
-    "board_original": "Serums & Essences"
+    "board_original": "Serums & Essences",
+    "last_error": "publish-unverified: draft not cleared (drafts -1->-1); likely stuck as draft"
   },
   {
     "id": "c3a40de1",
@@ -7623,8 +7624,8 @@
       "glass"
     ],
     "scheduled_date": "2026-05-21T22:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "failed",
+    "posted_at": "2026-05-22T17:27:38.443533",
     "_meta": {
       "theme": "glass-skin-routine",
       "variant": 2,
@@ -7657,7 +7658,8 @@
         }
       ]
     },
-    "board_original": "Korean Skincare Essentials"
+    "board_original": "Korean Skincare Essentials",
+    "last_error": "publish-unverified: draft not cleared (drafts -1->-1); likely stuck as draft"
   },
   {
     "id": "c8af79df",
@@ -7676,8 +7678,8 @@
       "sunscreens"
     ],
     "scheduled_date": "2026-05-22T10:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "failed",
+    "posted_at": "2026-05-22T17:29:02.053993",
     "_meta": {
       "theme": "sunscreens-no-white-cast",
       "variant": 2,
@@ -7704,7 +7706,8 @@
           "vendor": "innisfree"
         }
       ]
-    }
+    },
+    "last_error": "publish-unverified: draft not cleared (drafts -1->-1); likely stuck as draft"
   },
   {
     "id": "c964894f",
