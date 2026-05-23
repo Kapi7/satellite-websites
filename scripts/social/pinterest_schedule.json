@@ -5451,8 +5451,9 @@
       "training plan"
     ],
     "scheduled_date": "2026-05-23",
-    "status": "pending",
-    "board_original": "Fitness & Movement"
+    "status": "posted",
+    "board_original": "Fitness & Movement",
+    "posted_at": "2026-05-23T20:14:12.005489"
   },
   {
     "id": "4b5a1a21",
