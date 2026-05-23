@@ -5166,9 +5166,9 @@
       "heart health"
     ],
     "scheduled_date": "2026-05-20",
-    "status": "pending",
-    "last_error": "RESET 2026-05-13: 'Nutrition & Recipes' missing, remapped to 'Natural Wellness'",
-    "board_original": "Nutrition & Recipes"
+    "status": "posted",
+    "board_original": "Nutrition & Recipes",
+    "posted_at": "2026-05-23T16:41:48.786408"
   },
   {
     "id": "4127c46c",
@@ -5260,9 +5260,9 @@
       "ZoomX"
     ],
     "scheduled_date": "2026-05-21",
-    "status": "pending",
-    "last_error": "RESET 2026-05-13: 'Fitness & Movement' missing, remapped to 'Running'",
-    "board_original": "Fitness & Movement"
+    "status": "posted",
+    "board_original": "Fitness & Movement",
+    "posted_at": "2026-05-23T16:43:56.464486"
   },
   {
     "id": "4932d032",
@@ -5353,9 +5353,9 @@
       "microbiome"
     ],
     "scheduled_date": "2026-05-22",
-    "status": "pending",
-    "last_error": "RESET 2026-05-13: 'Nutrition & Recipes' missing, remapped to 'Natural Wellness'",
-    "board_original": "Nutrition & Recipes"
+    "status": "posted",
+    "board_original": "Nutrition & Recipes",
+    "posted_at": "2026-05-23T16:45:59.458880"
   },
   {
     "id": "49e84d33",
