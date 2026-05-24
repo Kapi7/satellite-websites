@@ -5541,8 +5541,9 @@
       "fitness"
     ],
     "scheduled_date": "2026-05-24",
-    "status": "pending",
-    "board_original": "Fitness & Movement"
+    "status": "posted",
+    "board_original": "Fitness & Movement",
+    "posted_at": "2026-05-24T16:44:03.911176"
   },
   {
     "id": "4f17f03f",
