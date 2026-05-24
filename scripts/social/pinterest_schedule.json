@@ -5610,7 +5610,8 @@
       "skincare ingredients"
     ],
     "scheduled_date": "2026-05-25",
-    "status": "pending"
+    "status": "failed",
+    "posted_at": "2026-05-25T01:34:56.626764"
   },
   {
     "id": 184,
@@ -8119,8 +8120,8 @@
       "ceramide"
     ],
     "scheduled_date": "2026-05-25T10:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "failed",
+    "posted_at": "2026-05-25T01:30:48.628024",
     "_meta": {
       "theme": "ceramide-moisturizers",
       "variant": 2,
@@ -8147,7 +8148,8 @@
           "vendor": "innisfree"
         }
       ]
-    }
+    },
+    "last_error": "publish-unverified: draft not cleared (drafts -1->-1); likely stuck as draft"
   },
   {
     "id": "e86206a9",
@@ -8166,8 +8168,8 @@
       "sun"
     ],
     "scheduled_date": "2026-05-25T16:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "failed",
+    "posted_at": "2026-05-25T01:32:26.994433",
     "_meta": {
       "theme": "sun-sticks",
       "variant": 1,
@@ -8194,7 +8196,8 @@
           "vendor": "MEDIPEEL"
         }
       ]
-    }
+    },
+    "last_error": "post-pin-exception: TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.pinterest.com/pin-creation-tool/\", waiting until \"load\"\n"
   },
   {
     "id": "eb3cc45d",
@@ -8213,8 +8216,8 @@
       "retinol"
     ],
     "scheduled_date": "2026-05-25T22:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "failed",
+    "posted_at": "2026-05-25T01:33:43.224564",
     "_meta": {
       "theme": "retinol-bakuchiol",
       "variant": 1,
@@ -8242,7 +8245,8 @@
         }
       ]
     },
-    "board_original": "Serums & Essences"
+    "board_original": "Serums & Essences",
+    "last_error": "publish-unverified: draft not cleared (drafts -1->-1); likely stuck as draft"
   },
   {
     "id": "ebed1cbe",
