@@ -5632,8 +5632,9 @@
       "batch cooking"
     ],
     "scheduled_date": "2026-05-25",
-    "status": "pending",
-    "board_original": "Nutrition & Recipes"
+    "status": "posted",
+    "board_original": "Nutrition & Recipes",
+    "posted_at": "2026-05-25T17:24:46.069691"
   },
   {
     "id": "50707828",
