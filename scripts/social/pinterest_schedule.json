@@ -5704,7 +5704,8 @@
       "k-beauty routine"
     ],
     "scheduled_date": "2026-05-26",
-    "status": "pending"
+    "status": "failed",
+    "posted_at": "2026-05-26T01:34:55.452346"
   },
   {
     "id": 186,
@@ -8266,8 +8267,8 @@
       "niacinamide"
     ],
     "scheduled_date": "2026-05-26T10:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "failed",
+    "posted_at": "2026-05-26T01:30:46.486526",
     "_meta": {
       "theme": "niacinamide-serums",
       "variant": 0,
@@ -8295,7 +8296,8 @@
         }
       ]
     },
-    "board_original": "Serums & Essences"
+    "board_original": "Serums & Essences",
+    "last_error": "publish-unverified: draft not cleared (drafts -1->-1); likely stuck as draft"
   },
   {
     "id": "eca53b6d",
@@ -8314,8 +8316,8 @@
       "cleansers"
     ],
     "scheduled_date": "2026-05-26T16:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "failed",
+    "posted_at": "2026-05-26T01:32:33.821628",
     "_meta": {
       "theme": "cleansers-sensitive",
       "variant": 1,
@@ -8342,7 +8344,8 @@
           "vendor": "MEDIPEEL"
         }
       ]
-    }
+    },
+    "last_error": "post-pin-exception: TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.pinterest.com/pin-creation-tool/\", waiting until \"load\"\n"
   },
   {
     "id": "ef6a1201",
@@ -8361,8 +8364,8 @@
       "lip"
     ],
     "scheduled_date": "2026-05-26T22:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "failed",
+    "posted_at": "2026-05-26T01:33:44.833507",
     "_meta": {
       "theme": "lip-products",
       "variant": 1,
@@ -8390,7 +8393,8 @@
         }
       ]
     },
-    "board_original": "K-Beauty Makeup"
+    "board_original": "K-Beauty Makeup",
+    "last_error": "publish-unverified: draft not cleared (drafts -1->-1); likely stuck as draft"
   },
   {
     "id": "f37af224",
