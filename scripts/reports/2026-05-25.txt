@@ -1,0 +1,160 @@
+============================================================
+  WEEKLY SEO REPORT
+  Week of 2026-05-25
+============================================================
+
+============================================================
+  GLOW-CODED.COM
+============================================================
+
+  GSC — glow-coded.com
+  ──────────────────────────────────────────────────
+  Clicks:      0 ─ 0
+  Impressions: 122 ▼ -52
+  CTR:         0.0% ─ 0
+  Position:    64.0 ▲ +11.2
+
+  Top Queries:
+  Query                                    Clicks   Impr    CTR   Pos
+  2 serums                                      0      1   0.0%  97.0
+  acide azélaïque et niacinamide                0      5   0.0%  54.2
+  acido azelaico e niacinamide                  0      1   0.0%  88.0
+  aha bha pha                                   0      3   0.0%  92.7
+  ai skincare quiz                              0      5   0.0%  92.8
+  best products of cosrc                        0      1   0.0%  30.0
+  bestes niacinamide serum                      0      2   0.0%  77.0
+  can i use more than one face serum            0      1   0.0%  93.0
+  can i use two different serum for day         0      1   0.0%  86.0
+  cica skin care products                       0      1   0.0%  85.0
+
+  Ahrefs — glow-coded.com
+  ──────────────────────────────────────────────────
+  DR:          13.0 ─ 0
+  Ahrefs Rank: 13163402
+  Backlinks:   410 ▼ -2
+  Ref Domains: 36 ▼ -1
+
+  Top Organic Keywords:
+
+  GA4 — glow-coded.com
+  ──────────────────────────────────────────────────
+  Sessions:   310   Users: 304   Engaged: 32
+  Channels:
+    Direct                              260
+    Unassigned                           37
+    Organic Search                       14
+    Referral                              7
+    Organic Social                        1
+  AI referrals: 34 sessions
+    ChatGPT (chatgpt.com)  sessions: 32  engaged: 10
+    Bing (incl. Copilot chat) (cn.bing.com)  sessions: 2  engaged: 1
+
+  Bing — glow-coded.com
+  ──────────────────────────────────────────────────
+  Crawled: 0  |  Indexed: 0
+  Daily quota left: 100  |  Monthly: 700
+
+============================================================
+  ROOTED-GLOW.COM
+============================================================
+
+  GSC — rooted-glow.com
+  ──────────────────────────────────────────────────
+  Clicks:      11 ▼ -1
+  Impressions: 1650 ▼ -1492
+  CTR:         0.7% ▲ +0.3
+  Position:    36.1 ▲ +4.4
+
+  Top Queries:
+  Query                                    Clicks   Impr    CTR   Pos
+  rooted glow                                   1      2  50.0%   3.0
+  "all natural protein powder"                  0      2   0.0%  12.0
+  "bestes whey protein" -site:reddit.com        0      1   0.0%   6.0
+  "natural protein powder"                      0      1   0.0%  27.0
+  "whey protein test" -site:reddit.com -        0      1   0.0%   1.0
+  6 week couch to 5k                            0      1   0.0%  67.0
+  8 week couch to 5k                            0      2   0.0%  43.0
+  advanced running shoes                        0      5   0.0%  26.2
+  alimentation ancestrale menu                  0      1   0.0%  16.0
+  alimentazione ancestrale                      0      2   0.0%  17.5
+
+  Ahrefs — rooted-glow.com
+  ──────────────────────────────────────────────────
+  DR:          16.0 ─ 0
+  Ahrefs Rank: 10809170
+  Backlinks:   622 ▲ +70
+  Ref Domains: 139 ▲ +70
+
+  Top Organic Keywords:
+    cleanest protein powder                         vol: 5700
+    best natural protein powder                     vol: 1000
+    cleanest protein powders                        vol: 500
+
+  GA4 — rooted-glow.com
+  ──────────────────────────────────────────────────
+  Sessions:   50   Users: 47   Engaged: 14
+  Channels:
+    Direct                               29
+    Organic Search                       16
+    Unassigned                            7
+    Referral                              1
+  AI referrals: 1 sessions
+    ChatGPT (chatgpt.com)  sessions: 1  engaged: 0
+
+  Bing — rooted-glow.com
+  ──────────────────────────────────────────────────
+  Crawled: 0  |  Indexed: 0
+  Daily quota left: 100  |  Monthly: 700
+
+============================================================
+  BUILD-CODED.COM
+============================================================
+
+  GSC — build-coded.com
+  ──────────────────────────────────────────────────
+  Clicks:      1 ▲ +1
+  Impressions: 149 ▼ -64
+  CTR:         0.7% ▲ +0.7
+  Position:    61.1 ▼ -0.7
+
+  Top Queries:
+  Query                                    Clicks   Impr    CTR   Pos
+  arduino uno projetos                          1      4  25.0%  76.0
+  arduino anfänger projekte                     0      1   0.0%  62.0
+  arduino leren                                 0      1   0.0%  75.0
+  arduino projekte deutsch                      0      1   0.0%  84.0
+  arduino projetos                              0      1   0.0%  59.0
+  arduino projetos simples                      0      2   0.0%  72.5
+  cordless soldering iron                       0      2   0.0%  57.5
+  diy candle                                    0      2   0.0%  71.5
+  diy candle making                             0      1   0.0%  77.0
+  easy diy candle making at home                0      1   0.0%  82.0
+
+  Ahrefs — build-coded.com
+  ──────────────────────────────────────────────────
+  DR:          7.0 ─ 0
+  Ahrefs Rank: 21014492
+  Backlinks:   113 ▲ +42
+  Ref Domains: 109 ▲ +42
+
+  Top Organic Keywords:
+
+  GA4 — build-coded.com
+  ──────────────────────────────────────────────────
+  Sessions:   33   Users: 31   Engaged: 5
+  Channels:
+    Unassigned                           15
+    Direct                               13
+    Referral                              3
+    Organic Search                        2
+  AI referrals: 18 sessions
+    ChatGPT (chatgpt.com)  sessions: 18  engaged: 3
+
+  Bing — build-coded.com
+  ──────────────────────────────────────────────────
+  Crawled: 90  |  Indexed: 7
+  Daily quota left: 100  |  Monthly: 700
+
+============================================================
+  Report generated: 2026-05-25 08:00
+============================================================
