@@ -5725,8 +5725,9 @@
       "strength training"
     ],
     "scheduled_date": "2026-05-26",
-    "status": "pending",
-    "board_original": "Fitness & Movement"
+    "status": "posted",
+    "board_original": "Fitness & Movement",
+    "posted_at": "2026-05-26T18:14:26.042106"
   },
   {
     "id": "51a1aa51",
