@@ -5795,7 +5795,8 @@
       "shade range"
     ],
     "scheduled_date": "2026-05-27",
-    "status": "pending"
+    "status": "posted",
+    "posted_at": "2026-05-27T01:35:13.232929"
   },
   {
     "id": "51c12e0b",
@@ -8414,8 +8415,8 @@
       "sleeping"
     ],
     "scheduled_date": "2026-05-27T10:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "failed",
+    "posted_at": "2026-05-27T01:30:50.018570",
     "_meta": {
       "theme": "sleeping-masks",
       "variant": 0,
@@ -8443,7 +8444,8 @@
         }
       ]
     },
-    "board_original": "Masks & Treatments"
+    "board_original": "Masks & Treatments",
+    "last_error": "publish-unverified: draft not cleared (drafts -1->-1); likely stuck as draft"
   },
   {
     "id": "f49da85e",
@@ -8462,8 +8464,8 @@
       "double"
     ],
     "scheduled_date": "2026-05-27T16:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "failed",
+    "posted_at": "2026-05-27T01:32:25.840962",
     "_meta": {
       "theme": "double-cleanse",
       "variant": 0,
@@ -8490,7 +8492,8 @@
           "vendor": "Round Lab"
         }
       ]
-    }
+    },
+    "last_error": "publish-unverified: draft not cleared (drafts -1->-1); likely stuck as draft"
   },
   {
     "id": "f4d342ae",
@@ -8509,8 +8512,8 @@
       "snail"
     ],
     "scheduled_date": "2026-05-27T22:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "failed",
+    "posted_at": "2026-05-27T01:33:54.948803",
     "_meta": {
       "theme": "snail-moisturizers",
       "variant": 0,
@@ -8537,7 +8540,8 @@
           "vendor": "COSRX"
         }
       ]
-    }
+    },
+    "last_error": "publish-unverified: draft not cleared (drafts -1->-1); likely stuck as draft"
   },
   {
     "id": "f6c088af",
