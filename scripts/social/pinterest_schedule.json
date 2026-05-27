@@ -3854,9 +3854,10 @@
       "ASICS"
     ],
     "scheduled_date": "2026-05-06",
-    "status": "posted",
+    "status": "failed",
+    "last_error": "RESET 2026-05-13: 'Fitness & Movement' missing, remapped to 'Running'",
     "board_original": "Fitness & Movement",
-    "posted_at": "2026-05-22T10:14:02.385609"
+    "posted_at": "2026-05-23T11:13:46.475088"
   },
   {
     "id": "14533b4c",
@@ -3948,9 +3949,10 @@
       "electrolytes"
     ],
     "scheduled_date": "2026-05-07",
-    "status": "posted",
+    "status": "failed",
+    "last_error": "RESET 2026-05-13: 'Fitness & Movement' missing, remapped to 'Running'",
     "board_original": "Fitness & Movement",
-    "posted_at": "2026-05-22T10:16:11.448003"
+    "posted_at": "2026-05-23T11:14:34.196246"
   },
   {
     "id": "182ffc5a",
@@ -4139,9 +4141,10 @@
       "nutrition"
     ],
     "scheduled_date": "2026-05-09",
-    "status": "posted",
+    "status": "failed",
+    "last_error": "RESET 2026-05-13: 'Nutrition & Recipes' missing, remapped to 'Natural Wellness'",
     "board_original": "Nutrition & Recipes",
-    "posted_at": "2026-05-22T10:18:43.591158"
+    "posted_at": "2026-05-23T11:15:47.546077"
   },
   {
     "id": "2436467b",
@@ -4230,9 +4233,10 @@
       "racing flats"
     ],
     "scheduled_date": "2026-05-10",
-    "status": "posted",
+    "status": "failed",
+    "last_error": "RESET 2026-05-13: 'Fitness & Movement' missing, remapped to 'Running'",
     "board_original": "Fitness & Movement",
-    "posted_at": "2026-05-22T17:30:11.810301"
+    "posted_at": "2026-05-23T15:00:19.941598"
   },
   {
     "id": "2bad2e9a",
@@ -4324,9 +4328,10 @@
       "walking to running"
     ],
     "scheduled_date": "2026-05-11",
-    "status": "posted",
+    "status": "failed",
+    "last_error": "RESET 2026-05-13: 'Fitness & Movement' missing, remapped to 'Running'",
     "board_original": "Fitness & Movement",
-    "posted_at": "2026-05-22T17:31:58.907190"
+    "posted_at": "2026-05-23T15:01:46.036283"
   },
   {
     "id": "30694f58",
@@ -4418,9 +4423,10 @@
       "shoe rotation"
     ],
     "scheduled_date": "2026-05-12",
-    "status": "posted",
+    "status": "failed",
+    "last_error": "RESET 2026-05-13: 'Fitness & Movement' missing, remapped to 'Running'",
     "board_original": "Fitness & Movement",
-    "posted_at": "2026-05-22T17:34:06.668486"
+    "posted_at": "2026-05-23T15:02:42.262074"
   },
   {
     "id": "314b1283",
@@ -4510,9 +4516,10 @@
       "non-toxic kitchen"
     ],
     "scheduled_date": "2026-05-13",
-    "status": "posted",
+    "status": "failed",
+    "last_error": "RESET 2026-05-13: 'Nutrition & Recipes' missing, remapped to 'Natural Wellness'",
     "board_original": "Nutrition & Recipes",
-    "posted_at": "2026-05-22T20:51:18.934492"
+    "posted_at": "2026-05-24T10:15:07.195714"
   },
   {
     "id": "31606269",
@@ -4692,9 +4699,10 @@
       "skin health"
     ],
     "scheduled_date": "2026-05-15",
-    "status": "posted",
+    "status": "failed",
+    "last_error": "RESET 2026-05-13: 'Nutrition & Recipes' missing, remapped to 'Natural Wellness'",
     "board_original": "Nutrition & Recipes",
-    "posted_at": "2026-05-22T20:53:05.980323"
+    "posted_at": "2026-05-24T10:15:44.217741"
   },
   {
     "id": "34703b3d",
@@ -4786,9 +4794,10 @@
       "natural remedies"
     ],
     "scheduled_date": "2026-05-16",
-    "status": "posted",
+    "status": "failed",
+    "last_error": "RESET 2026-05-13: 'Nutrition & Recipes' missing, remapped to 'Natural Wellness'",
     "board_original": "Nutrition & Recipes",
-    "posted_at": "2026-05-22T20:54:54.893565"
+    "posted_at": "2026-05-24T10:16:34.882771"
   },
   {
     "id": "3547e10a",
@@ -4878,9 +4887,10 @@
       "exercises"
     ],
     "scheduled_date": "2026-05-17",
-    "status": "posted",
+    "status": "failed",
+    "last_error": "RESET 2026-05-13: 'Fitness & Movement' missing, remapped to 'Running'",
     "board_original": "Fitness & Movement",
-    "posted_at": "2026-05-22T23:45:44.487768"
+    "posted_at": "2026-05-24T15:00:21.747130"
   },
   {
     "id": "38141a26",
@@ -4972,9 +4982,10 @@
       "fermentation"
     ],
     "scheduled_date": "2026-05-18",
-    "status": "posted",
+    "status": "failed",
+    "last_error": "RESET 2026-05-13: 'Nutrition & Recipes' missing, remapped to 'Natural Wellness'",
     "board_original": "Nutrition & Recipes",
-    "posted_at": "2026-05-22T23:47:55.931726"
+    "posted_at": "2026-05-24T15:01:48.875649"
   },
   {
     "id": "3933b25c",
@@ -5071,9 +5082,10 @@
       "eating window"
     ],
     "scheduled_date": "2026-05-19",
-    "status": "posted",
+    "status": "failed",
+    "last_error": "RESET 2026-05-13: 'Nutrition & Recipes' missing, remapped to 'Natural Wellness'",
     "board_original": "Nutrition & Recipes",
-    "posted_at": "2026-05-22T23:49:42.344673"
+    "posted_at": "2026-05-24T15:02:54.220819"
   },
   {
     "id": "3e8c3dbe",
@@ -5166,9 +5178,10 @@
       "heart health"
     ],
     "scheduled_date": "2026-05-20",
-    "status": "posted",
+    "status": "failed",
+    "last_error": "RESET 2026-05-13: 'Nutrition & Recipes' missing, remapped to 'Natural Wellness'",
     "board_original": "Nutrition & Recipes",
-    "posted_at": "2026-05-23T16:41:48.786408"
+    "posted_at": "2026-05-25T10:01:26.906850"
   },
   {
     "id": "4127c46c",
@@ -5260,9 +5273,10 @@
       "ZoomX"
     ],
     "scheduled_date": "2026-05-21",
-    "status": "posted",
+    "status": "failed",
+    "last_error": "RESET 2026-05-13: 'Fitness & Movement' missing, remapped to 'Running'",
     "board_original": "Fitness & Movement",
-    "posted_at": "2026-05-23T16:43:56.464486"
+    "posted_at": "2026-05-25T10:36:25.235506"
   },
   {
     "id": "4932d032",
@@ -5353,9 +5367,10 @@
       "microbiome"
     ],
     "scheduled_date": "2026-05-22",
-    "status": "posted",
+    "status": "failed",
+    "last_error": "RESET 2026-05-13: 'Nutrition & Recipes' missing, remapped to 'Natural Wellness'",
     "board_original": "Nutrition & Recipes",
-    "posted_at": "2026-05-23T16:45:59.458880"
+    "posted_at": "2026-05-25T11:12:13.463456"
   },
   {
     "id": "49e84d33",
@@ -5431,7 +5446,7 @@
     ],
     "scheduled_date": "2026-05-23",
     "status": "failed",
-    "posted_at": "2026-05-23T01:35:49.649444"
+    "posted_at": "2026-05-23T11:16:04.980484"
   },
   {
     "id": 180,
@@ -5451,9 +5466,9 @@
       "training plan"
     ],
     "scheduled_date": "2026-05-23",
-    "status": "posted",
+    "status": "failed",
     "board_original": "Fitness & Movement",
-    "posted_at": "2026-05-23T20:14:12.005489"
+    "posted_at": "2026-05-25T15:00:20.861876"
   },
   {
     "id": "4b5a1a21",
@@ -5521,7 +5536,7 @@
     ],
     "scheduled_date": "2026-05-24",
     "status": "failed",
-    "posted_at": "2026-05-24T01:34:56.012470"
+    "posted_at": "2026-05-24T10:16:50.637792"
   },
   {
     "id": 182,
@@ -5541,9 +5556,9 @@
       "fitness"
     ],
     "scheduled_date": "2026-05-24",
-    "status": "posted",
+    "status": "failed",
     "board_original": "Fitness & Movement",
-    "posted_at": "2026-05-24T16:44:03.911176"
+    "posted_at": "2026-05-25T15:01:53.169146"
   },
   {
     "id": "4f17f03f",
@@ -5611,7 +5626,7 @@
     ],
     "scheduled_date": "2026-05-25",
     "status": "failed",
-    "posted_at": "2026-05-25T01:34:56.626764"
+    "posted_at": "2026-05-25T11:12:26.519428"
   },
   {
     "id": 184,
@@ -5632,9 +5647,9 @@
       "batch cooking"
     ],
     "scheduled_date": "2026-05-25",
-    "status": "posted",
+    "status": "failed",
     "board_original": "Nutrition & Recipes",
-    "posted_at": "2026-05-25T17:24:46.069691"
+    "posted_at": "2026-05-25T15:02:34.669652"
   },
   {
     "id": "50707828",
@@ -5705,7 +5720,8 @@
     ],
     "scheduled_date": "2026-05-26",
     "status": "failed",
-    "posted_at": "2026-05-26T01:34:55.452346"
+    "posted_at": "2026-05-26T10:33:58.082463",
+    "last_error": "post-pin-exception: TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.pinterest.com/pin-creation-tool/\", waiting until \"load\"\n"
   },
   {
     "id": 186,
@@ -5725,9 +5741,9 @@
       "strength training"
     ],
     "scheduled_date": "2026-05-26",
-    "status": "posted",
+    "status": "failed",
     "board_original": "Fitness & Movement",
-    "posted_at": "2026-05-26T18:14:26.042106"
+    "posted_at": "2026-05-26T10:34:14.261101"
   },
   {
     "id": "51a1aa51",
@@ -5795,8 +5811,9 @@
       "shade range"
     ],
     "scheduled_date": "2026-05-27",
-    "status": "posted",
-    "posted_at": "2026-05-27T01:35:13.232929"
+    "status": "failed",
+    "posted_at": "2026-05-27T10:01:12.877157",
+    "last_error": "post-pin-exception: TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.pinterest.com/pin-creation-tool/\", waiting until \"load\"\n"
   },
   {
     "id": "51c12e0b",
@@ -7439,7 +7456,7 @@
     ],
     "scheduled_date": "2026-05-20T16:00:00",
     "status": "failed",
-    "posted_at": "2026-05-22T18:30:49.984002",
+    "posted_at": "2026-05-23T11:16:17.521118",
     "_meta": {
       "theme": "bb-cc-creams",
       "variant": 1,
@@ -7467,8 +7484,7 @@
         }
       ]
     },
-    "board_original": "K-Beauty Makeup",
-    "last_error": "publish-unverified: draft not cleared (drafts -1->-1); likely stuck as draft"
+    "board_original": "K-Beauty Makeup"
   },
   {
     "id": "b7fdb814",
@@ -7488,7 +7504,7 @@
     ],
     "scheduled_date": "2026-05-20T22:00:00",
     "status": "failed",
-    "posted_at": "2026-05-22T18:32:10.587505",
+    "posted_at": "2026-05-23T11:17:07.171181",
     "_meta": {
       "theme": "toners-glass-skin",
       "variant": 2,
@@ -7516,8 +7532,7 @@
         }
       ]
     },
-    "board_original": "Toners & Glass Skin",
-    "last_error": "publish-unverified: draft not cleared (drafts -1->-1); likely stuck as draft"
+    "board_original": "Toners & Glass Skin"
   },
   {
     "id": "bce48eb1",
@@ -7537,7 +7552,7 @@
     ],
     "scheduled_date": "2026-05-21T10:00:00",
     "status": "failed",
-    "posted_at": "2026-05-22T18:33:54.686524",
+    "posted_at": "2026-05-23T11:18:08.465643",
     "_meta": {
       "theme": "moisturizers-sensitive",
       "variant": 2,
@@ -7564,8 +7579,7 @@
           "vendor": "ILLIYOON"
         }
       ]
-    },
-    "last_error": "publish-unverified: draft not cleared (drafts -1->-1); likely stuck as draft"
+    }
   },
   {
     "id": "bf995448",
@@ -7585,7 +7599,7 @@
     ],
     "scheduled_date": "2026-05-21T16:00:00",
     "status": "failed",
-    "posted_at": "2026-05-22T17:26:12.011722",
+    "posted_at": "2026-05-23T15:02:57.834314",
     "_meta": {
       "theme": "propolis-essences",
       "variant": 1,
@@ -7613,8 +7627,7 @@
         }
       ]
     },
-    "board_original": "Serums & Essences",
-    "last_error": "publish-unverified: draft not cleared (drafts -1->-1); likely stuck as draft"
+    "board_original": "Serums & Essences"
   },
   {
     "id": "c3a40de1",
@@ -7634,7 +7647,7 @@
     ],
     "scheduled_date": "2026-05-21T22:00:00",
     "status": "failed",
-    "posted_at": "2026-05-22T17:27:38.443533",
+    "posted_at": "2026-05-23T15:04:29.736508",
     "_meta": {
       "theme": "glass-skin-routine",
       "variant": 2,
@@ -7667,8 +7680,7 @@
         }
       ]
     },
-    "board_original": "Korean Skincare Essentials",
-    "last_error": "publish-unverified: draft not cleared (drafts -1->-1); likely stuck as draft"
+    "board_original": "Korean Skincare Essentials"
   },
   {
     "id": "c8af79df",
@@ -7688,7 +7700,7 @@
     ],
     "scheduled_date": "2026-05-22T10:00:00",
     "status": "failed",
-    "posted_at": "2026-05-22T17:29:02.053993",
+    "posted_at": "2026-05-23T15:05:11.899619",
     "_meta": {
       "theme": "sunscreens-no-white-cast",
       "variant": 2,
@@ -7715,8 +7727,7 @@
           "vendor": "innisfree"
         }
       ]
-    },
-    "last_error": "publish-unverified: draft not cleared (drafts -1->-1); likely stuck as draft"
+    }
   },
   {
     "id": "c964894f",
@@ -7736,7 +7747,7 @@
     ],
     "scheduled_date": "2026-05-22T16:00:00",
     "status": "failed",
-    "posted_at": "2026-05-22T22:00:51.266154",
+    "posted_at": "2026-05-24T10:17:15.609828",
     "_meta": {
       "theme": "clay-masks",
       "variant": 0,
@@ -7764,8 +7775,7 @@
         }
       ]
     },
-    "board_original": "Masks & Treatments",
-    "last_error": "publish-unverified: draft not cleared (drafts -1->-1); likely stuck as draft"
+    "board_original": "Masks & Treatments"
   },
   {
     "id": "cd464eec",
@@ -7785,7 +7795,7 @@
     ],
     "scheduled_date": "2026-05-22T22:00:00",
     "status": "failed",
-    "posted_at": "2026-05-22T22:02:17.170273",
+    "posted_at": "2026-05-24T10:28:52.329877",
     "_meta": {
       "theme": "sunscreens-sensitive",
       "variant": 2,
@@ -7812,8 +7822,7 @@
           "vendor": "SOME BY MI"
         }
       ]
-    },
-    "last_error": "publish-unverified: draft not cleared (drafts -1->-1); likely stuck as draft"
+    }
   },
   {
     "id": "d06e8e30",
@@ -7833,7 +7842,7 @@
     ],
     "scheduled_date": "2026-05-23T10:00:00",
     "status": "failed",
-    "posted_at": "2026-05-23T01:30:43.323694",
+    "posted_at": "2026-05-24T10:43:35.750882",
     "_meta": {
       "theme": "toners-glass-skin",
       "variant": 0,
@@ -7861,8 +7870,7 @@
         }
       ]
     },
-    "board_original": "Toners & Glass Skin",
-    "last_error": "publish-unverified: draft not cleared (drafts -1->-1); likely stuck as draft"
+    "board_original": "Toners & Glass Skin"
   },
   {
     "id": "d1acbe53",
@@ -7882,7 +7890,7 @@
     ],
     "scheduled_date": "2026-05-23T16:00:00",
     "status": "failed",
-    "posted_at": "2026-05-23T01:32:37.605657",
+    "posted_at": "2026-05-24T15:03:06.892758",
     "_meta": {
       "theme": "bb-cc-creams",
       "variant": 0,
@@ -7910,8 +7918,7 @@
         }
       ]
     },
-    "board_original": "K-Beauty Makeup",
-    "last_error": "publish-unverified: draft not cleared (drafts -1->-1); likely stuck as draft"
+    "board_original": "K-Beauty Makeup"
   },
   {
     "id": "d2e7da79",
@@ -7931,7 +7938,7 @@
     ],
     "scheduled_date": "2026-05-23T22:00:00",
     "status": "failed",
-    "posted_at": "2026-05-23T01:34:39.445539",
+    "posted_at": "2026-05-24T15:04:23.177680",
     "_meta": {
       "theme": "cleansing-oils",
       "variant": 1,
@@ -7958,8 +7965,7 @@
           "vendor": "belif"
         }
       ]
-    },
-    "last_error": "publish-unverified: draft not cleared (drafts -1->-1); likely stuck as draft"
+    }
   },
   {
     "id": "d75c615e",
@@ -7979,7 +7985,7 @@
     ],
     "scheduled_date": "2026-05-24T10:00:00",
     "status": "failed",
-    "posted_at": "2026-05-24T01:30:44.212523",
+    "posted_at": "2026-05-24T15:05:47.516646",
     "_meta": {
       "theme": "clay-masks",
       "variant": 1,
@@ -8007,8 +8013,7 @@
         }
       ]
     },
-    "board_original": "Masks & Treatments",
-    "last_error": "publish-unverified: draft not cleared (drafts -1->-1); likely stuck as draft"
+    "board_original": "Masks & Treatments"
   },
   {
     "id": "dd6492a8",
@@ -8028,7 +8033,7 @@
     ],
     "scheduled_date": "2026-05-24T16:00:00",
     "status": "failed",
-    "posted_at": "2026-05-24T01:31:56.420386",
+    "posted_at": "2026-05-25T11:12:48.845813",
     "_meta": {
       "theme": "cushions",
       "variant": 0,
@@ -8056,8 +8061,7 @@
         }
       ]
     },
-    "board_original": "K-Beauty Makeup",
-    "last_error": "publish-unverified: draft not cleared (drafts -1->-1); likely stuck as draft"
+    "board_original": "K-Beauty Makeup"
   },
   {
     "id": "dd9ab1b6",
@@ -8077,7 +8081,7 @@
     ],
     "scheduled_date": "2026-05-24T22:00:00",
     "status": "failed",
-    "posted_at": "2026-05-24T01:33:42.662898",
+    "posted_at": "2026-05-25T11:15:23.209675",
     "_meta": {
       "theme": "sunscreens-no-white-cast",
       "variant": 1,
@@ -8105,7 +8109,7 @@
         }
       ]
     },
-    "last_error": "publish-unverified: draft not cleared (drafts -1->-1); likely stuck as draft"
+    "last_error": "post-pin-exception: TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.pinterest.com/pin-creation-tool/\", waiting until \"load\"\n"
   },
   {
     "id": "e523fc7f",
@@ -8125,7 +8129,7 @@
     ],
     "scheduled_date": "2026-05-25T10:00:00",
     "status": "failed",
-    "posted_at": "2026-05-25T01:30:48.628024",
+    "posted_at": "2026-05-25T11:16:48.213981",
     "_meta": {
       "theme": "ceramide-moisturizers",
       "variant": 2,
@@ -8152,8 +8156,7 @@
           "vendor": "innisfree"
         }
       ]
-    },
-    "last_error": "publish-unverified: draft not cleared (drafts -1->-1); likely stuck as draft"
+    }
   },
   {
     "id": "e86206a9",
@@ -8173,7 +8176,7 @@
     ],
     "scheduled_date": "2026-05-25T16:00:00",
     "status": "failed",
-    "posted_at": "2026-05-25T01:32:26.994433",
+    "posted_at": "2026-05-25T15:02:49.489539",
     "_meta": {
       "theme": "sun-sticks",
       "variant": 1,
@@ -8200,8 +8203,7 @@
           "vendor": "MEDIPEEL"
         }
       ]
-    },
-    "last_error": "post-pin-exception: TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.pinterest.com/pin-creation-tool/\", waiting until \"load\"\n"
+    }
   },
   {
     "id": "eb3cc45d",
@@ -8221,7 +8223,7 @@
     ],
     "scheduled_date": "2026-05-25T22:00:00",
     "status": "failed",
-    "posted_at": "2026-05-25T01:33:43.224564",
+    "posted_at": "2026-05-25T15:03:54.552860",
     "_meta": {
       "theme": "retinol-bakuchiol",
       "variant": 1,
@@ -8249,8 +8251,7 @@
         }
       ]
     },
-    "board_original": "Serums & Essences",
-    "last_error": "publish-unverified: draft not cleared (drafts -1->-1); likely stuck as draft"
+    "board_original": "Serums & Essences"
   },
   {
     "id": "ebed1cbe",
@@ -8270,7 +8271,7 @@
     ],
     "scheduled_date": "2026-05-26T10:00:00",
     "status": "failed",
-    "posted_at": "2026-05-26T01:30:46.486526",
+    "posted_at": "2026-05-26T10:34:28.611242",
     "_meta": {
       "theme": "niacinamide-serums",
       "variant": 0,
@@ -8298,8 +8299,7 @@
         }
       ]
     },
-    "board_original": "Serums & Essences",
-    "last_error": "publish-unverified: draft not cleared (drafts -1->-1); likely stuck as draft"
+    "board_original": "Serums & Essences"
   },
   {
     "id": "eca53b6d",
@@ -8319,7 +8319,7 @@
     ],
     "scheduled_date": "2026-05-26T16:00:00",
     "status": "failed",
-    "posted_at": "2026-05-26T01:32:33.821628",
+    "posted_at": "2026-05-26T10:35:40.698674",
     "_meta": {
       "theme": "cleansers-sensitive",
       "variant": 1,
@@ -8346,8 +8346,7 @@
           "vendor": "MEDIPEEL"
         }
       ]
-    },
-    "last_error": "post-pin-exception: TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.pinterest.com/pin-creation-tool/\", waiting until \"load\"\n"
+    }
   },
   {
     "id": "ef6a1201",
@@ -8367,7 +8366,7 @@
     ],
     "scheduled_date": "2026-05-26T22:00:00",
     "status": "failed",
-    "posted_at": "2026-05-26T01:33:44.833507",
+    "posted_at": "2026-05-26T10:40:22.567986",
     "_meta": {
       "theme": "lip-products",
       "variant": 1,
@@ -8396,7 +8395,7 @@
       ]
     },
     "board_original": "K-Beauty Makeup",
-    "last_error": "publish-unverified: draft not cleared (drafts -1->-1); likely stuck as draft"
+    "last_error": "post-pin-exception: TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.pinterest.com/pin-creation-tool/\", waiting until \"load\"\n"
   },
   {
     "id": "f37af224",
@@ -8416,7 +8415,7 @@
     ],
     "scheduled_date": "2026-05-27T10:00:00",
     "status": "failed",
-    "posted_at": "2026-05-27T01:30:50.018570",
+    "posted_at": "2026-05-27T10:01:29.942010",
     "_meta": {
       "theme": "sleeping-masks",
       "variant": 0,
@@ -8444,8 +8443,7 @@
         }
       ]
     },
-    "board_original": "Masks & Treatments",
-    "last_error": "publish-unverified: draft not cleared (drafts -1->-1); likely stuck as draft"
+    "board_original": "Masks & Treatments"
   },
   {
     "id": "f49da85e",
@@ -8465,7 +8463,7 @@
     ],
     "scheduled_date": "2026-05-27T16:00:00",
     "status": "failed",
-    "posted_at": "2026-05-27T01:32:25.840962",
+    "posted_at": "2026-05-27T10:02:43.842477",
     "_meta": {
       "theme": "double-cleanse",
       "variant": 0,
@@ -8492,8 +8490,7 @@
           "vendor": "Round Lab"
         }
       ]
-    },
-    "last_error": "publish-unverified: draft not cleared (drafts -1->-1); likely stuck as draft"
+    }
   },
   {
     "id": "f4d342ae",
@@ -8513,7 +8510,7 @@
     ],
     "scheduled_date": "2026-05-27T22:00:00",
     "status": "failed",
-    "posted_at": "2026-05-27T01:33:54.948803",
+    "posted_at": "2026-05-27T10:03:38.819432",
     "_meta": {
       "theme": "snail-moisturizers",
       "variant": 0,
@@ -8540,8 +8537,7 @@
           "vendor": "COSRX"
         }
       ]
-    },
-    "last_error": "publish-unverified: draft not cleared (drafts -1->-1); likely stuck as draft"
+    }
   },
   {
     "id": "f6c088af",
