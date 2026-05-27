@@ -1,42 +1,42 @@
 {
-  "updated": "2026-05-26",
-  "period": "2026-04-26 to 2026-05-24",
+  "updated": "2026-05-27",
+  "period": "2026-04-27 to 2026-05-25",
   "trending": [
     {
       "slug": "best-cordless-soldering-iron-electronics",
       "clicks": 0,
-      "impressions": 159,
-      "position": 13.1
+      "impressions": 99,
+      "position": 14.4
     },
     {
       "slug": "arduino-projects-beginners",
       "clicks": 1,
-      "impressions": 67,
-      "position": 62.9
-    },
-    {
-      "slug": "best-soldering-irons-beginners",
-      "clicks": 2,
-      "impressions": 11,
-      "position": 5.1
-    },
-    {
-      "slug": "best-3d-printers-beginners",
-      "clicks": 0,
       "impressions": 63,
-      "position": 44.0
-    },
-    {
-      "slug": "best-heat-guns-crafts-diy",
-      "clicks": 0,
-      "impressions": 50,
-      "position": 10.7
+      "position": 66.2
     },
     {
       "slug": "diy-candle-making-complete-guide",
       "clicks": 0,
       "impressions": 60,
       "position": 75.8
+    },
+    {
+      "slug": "best-hot-glue-guns-crafters",
+      "clicks": 1,
+      "impressions": 11,
+      "position": 7.6
+    },
+    {
+      "slug": "best-3d-printers-beginners",
+      "clicks": 0,
+      "impressions": 44,
+      "position": 46.2
+    },
+    {
+      "slug": "best-soldering-irons-beginners",
+      "clicks": 0,
+      "impressions": 36,
+      "position": 11.2
     }
   ],
   "rising": []
