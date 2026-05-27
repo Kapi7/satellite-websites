@@ -4,39 +4,39 @@
   "trending": [
     {
       "slug": "best-protein-powders-clean-natural",
-      "clicks": 5,
-      "impressions": 2246,
-      "position": 39.1
+      "clicks": 6,
+      "impressions": 2497,
+      "position": 37.5
     },
     {
       "slug": "best-double-cleansing-products",
       "clicks": 3,
-      "impressions": 429,
-      "position": 40.5
+      "impressions": 440,
+      "position": 40.4
     },
     {
       "slug": "best-probiotics-for-women-gut-health",
       "clicks": 0,
-      "impressions": 119,
-      "position": 64.1
+      "impressions": 122,
+      "position": 64.4
     },
     {
       "slug": "best-electrolyte-drinks-runners",
       "clicks": 2,
-      "impressions": 58,
-      "position": 13.0
+      "impressions": 61,
+      "position": 12.8
+    },
+    {
+      "slug": "best-running-shoes-intermediate",
+      "clicks": 2,
+      "impressions": 60,
+      "position": 11.8
     },
     {
       "slug": "best-running-shoes-advanced",
       "clicks": 1,
-      "impressions": 72,
-      "position": 17.8
-    },
-    {
-      "slug": "asics-novablast-5-review",
-      "clicks": 0,
-      "impressions": 94,
-      "position": 46.8
+      "impressions": 76,
+      "position": 18.4
     }
   ],
   "rising": []
