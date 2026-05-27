@@ -5887,7 +5887,8 @@
       "k-beauty basics"
     ],
     "scheduled_date": "2026-05-28",
-    "status": "pending"
+    "status": "failed",
+    "posted_at": "2026-05-28T01:35:00.242588"
   },
   {
     "id": "53f28e9d",
@@ -8556,8 +8557,8 @@
       "anti"
     ],
     "scheduled_date": "2026-05-28T10:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "failed",
+    "posted_at": "2026-05-28T01:30:44.680974",
     "_meta": {
       "theme": "anti-aging-30s",
       "variant": 1,
@@ -8590,7 +8591,8 @@
         }
       ]
     },
-    "board_original": "Korean Skincare Essentials"
+    "board_original": "Korean Skincare Essentials",
+    "last_error": "publish-unverified: draft not cleared (drafts -1->-1); likely stuck as draft"
   },
   {
     "id": "fdfe9d9f",
@@ -8609,8 +8611,8 @@
       "vitamin"
     ],
     "scheduled_date": "2026-05-28T16:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "failed",
+    "posted_at": "2026-05-28T01:32:35.038035",
     "_meta": {
       "theme": "vitamin-c-serums",
       "variant": 2,
@@ -8638,7 +8640,8 @@
         }
       ]
     },
-    "board_original": "Serums & Essences"
+    "board_original": "Serums & Essences",
+    "last_error": "publish-unverified: draft not cleared (drafts -1->-1); likely stuck as draft"
   },
   {
     "id": "fe808b6d",
@@ -8657,8 +8660,8 @@
       "cleansing"
     ],
     "scheduled_date": "2026-05-28T22:00:00",
-    "status": "pending",
-    "posted_at": null,
+    "status": "failed",
+    "posted_at": "2026-05-28T01:33:51.267609",
     "_meta": {
       "theme": "cleansing-oils",
       "variant": 0,
@@ -8685,6 +8688,7 @@
           "vendor": "I'm from"
         }
       ]
-    }
+    },
+    "last_error": "publish-unverified: draft not cleared (drafts -1->-1); likely stuck as draft"
   }
 ]
