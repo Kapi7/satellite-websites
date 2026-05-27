@@ -68,8 +68,17 @@ affiliateProduct: string (optional)
 
 ## Image Sources
 - **Product images**: downloaded from Shopify CDN via product catalog at `/Users/kapi7/mirai-meta-campaign/satellite-websites/.image-cache/products_catalog.json` (JSON list of 2746 products)
-- **Hero images**: generate with AI or source editorially, save to `public/images/`
 - Product images go in `public/images/products/` on BOTH sites
+- **Hero images**: save to `public/images/{slug}.jpg`, 1200×675 JPEG
+
+### Hero image rules (HARD)
+- **If the article features REAL products** (any listicle, comparison, or review where named mirai-skin SKUs appear inline) → the hero MUST use the AI-enhancement pipeline so the actual product is visible, not an AI-styled fake with gibberish labels:
+  - `scripts/compose_hero_pil.py` — PIL grid of real Shopify photos → Gemini 2.5 Flash Image enhancement (recommended for multi-product listicles)
+  - `scripts/gemini_enhance_hero.py` — single real product photo → Gemini enhancement (for review/comparison articles)
+  - `scripts/gen_cosmetics_heroes_real.py` / `regen_hero_real_products.py` — bulk
+- **If the article is abstract or topic-only** (ingredient explainer, how-to without specific products, hub pages) → pure Imagen 4.0 is fine
+- **NEVER** ship a product-listicle hero made with raw Imagen — the labels come out as gibberish ("NIACINANE", "CLEANSING IAM", etc.) which looks AI and undermines trust
+- **ALWAYS** visually verify generated heroes via Read tool before commit; Imagen has a ~14% silent-failure rate where it returns a thematically-adjacent stock photo instead of the requested subject
 
 ## Deploy
 ```bash
