@@ -1,13 +1,7 @@
 {
-  "updated": "2026-05-27",
-  "period": "2026-04-27 to 2026-05-25",
+  "updated": "2026-05-28",
+  "period": "2026-04-28 to 2026-05-26",
   "trending": [
-    {
-      "slug": "best-cordless-soldering-iron-electronics",
-      "clicks": 0,
-      "impressions": 100,
-      "position": 14.9
-    },
     {
       "slug": "arduino-projects-beginners",
       "clicks": 1,
@@ -21,22 +15,28 @@
       "position": 75.8
     },
     {
-      "slug": "best-hot-glue-guns-crafters",
-      "clicks": 1,
-      "impressions": 11,
-      "position": 7.6
-    },
-    {
-      "slug": "best-3d-printers-beginners",
-      "clicks": 0,
-      "impressions": 44,
-      "position": 46.2
-    },
-    {
       "slug": "best-soldering-irons-beginners",
       "clicks": 0,
-      "impressions": 36,
-      "position": 11.2
+      "impressions": 21,
+      "position": 7.9
+    },
+    {
+      "slug": "floating-shelves-install-guide-best-picks",
+      "clicks": 0,
+      "impressions": 25,
+      "position": 68.8
+    },
+    {
+      "slug": "best-cordless-soldering-iron-electronics",
+      "clicks": 0,
+      "impressions": 21,
+      "position": 32.9
+    },
+    {
+      "slug": "how-to-install-gutter-guards",
+      "clicks": 0,
+      "impressions": 20,
+      "position": 46.7
     }
   ],
   "rising": []
