@@ -1,12 +1,12 @@
 {
-  "updated": "2026-05-29",
-  "period": "2026-04-29 to 2026-05-27",
+  "updated": "2026-05-30",
+  "period": "2026-04-30 to 2026-05-28",
   "trending": [
     {
       "slug": "cosrx-snail-mucin-vs-torriden-dive-in-serum",
       "clicks": 0,
-      "impressions": 47,
-      "position": 8.0
+      "impressions": 42,
+      "position": 8.1
     },
     {
       "slug": "beauty-of-joseon-relief-sun-vs-skin1004-centella-sun",
@@ -35,8 +35,8 @@
     {
       "slug": "affordable-k-beauty-dupes-luxury-products",
       "clicks": 0,
-      "impressions": 24,
-      "position": 19.8
+      "impressions": 23,
+      "position": 17.2
     }
   ],
   "rising": []
