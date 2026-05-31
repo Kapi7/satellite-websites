@@ -1,11 +1,11 @@
 {
-  "updated": "2026-05-30",
-  "period": "2026-04-30 to 2026-05-28",
+  "updated": "2026-05-31",
+  "period": "2026-05-01 to 2026-05-29",
   "trending": [
     {
       "slug": "arduino-projects-beginners",
       "clicks": 1,
-      "impressions": 78,
+      "impressions": 79,
       "position": 66.5
     },
     {
@@ -15,28 +15,28 @@
       "position": 75.8
     },
     {
+      "slug": "floating-shelves-install-guide-best-picks",
+      "clicks": 0,
+      "impressions": 34,
+      "position": 68.1
+    },
+    {
       "slug": "best-soldering-irons-beginners",
       "clicks": 0,
       "impressions": 20,
       "position": 6.7
     },
     {
-      "slug": "floating-shelves-install-guide-best-picks",
-      "clicks": 0,
-      "impressions": 30,
-      "position": 68.1
-    },
-    {
       "slug": "how-to-install-gutter-guards",
       "clicks": 0,
-      "impressions": 22,
-      "position": 47.9
+      "impressions": 23,
+      "position": 47.6
     },
     {
-      "slug": "best-3d-printers-beginners",
+      "slug": "best-cordless-soldering-iron-electronics",
       "clicks": 0,
-      "impressions": 21,
-      "position": 71.5
+      "impressions": 18,
+      "position": 43.4
     }
   ],
   "rising": []
