@@ -1,11 +1,11 @@
 {
-  "updated": "2026-05-31",
-  "period": "2026-05-01 to 2026-05-29",
+  "updated": "2026-06-01",
+  "period": "2026-05-02 to 2026-05-30",
   "trending": [
     {
       "slug": "arduino-projects-beginners",
       "clicks": 1,
-      "impressions": 79,
+      "impressions": 77,
       "position": 66.5
     },
     {
@@ -23,8 +23,8 @@
     {
       "slug": "best-soldering-irons-beginners",
       "clicks": 0,
-      "impressions": 21,
-      "position": 9.2
+      "impressions": 19,
+      "position": 6.5
     },
     {
       "slug": "how-to-install-gutter-guards",
@@ -39,5 +39,12 @@
       "position": 44.1
     }
   ],
-  "rising": []
+  "rising": [
+    {
+      "slug": "best-3d-printers-beginners",
+      "clicks": 0,
+      "impressions": 16,
+      "days_old": 10
+    }
+  ]
 }
