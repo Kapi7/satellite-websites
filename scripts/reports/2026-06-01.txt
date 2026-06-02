@@ -1,0 +1,159 @@
+============================================================
+  WEEKLY SEO REPORT
+  Week of 2026-06-01
+============================================================
+
+============================================================
+  GLOW-CODED.COM
+============================================================
+
+  GSC — glow-coded.com
+  ──────────────────────────────────────────────────
+  Clicks:      0 ▼ -1
+  Impressions: 121 ▼ -79
+  CTR:         0.0% ▼ -0.5
+  Position:    64.9 ▲ +0.8
+
+  Top Queries:
+  Query                                    Clicks   Impr    CTR   Pos
+  acide azélaïque et niacinamide                0      6   0.0%  53.3
+  ai skincare quiz                              0      5   0.0%  89.8
+  analisis de ingredientes                      0      1   0.0%  91.0
+  beauty decoded                                0      1   0.0%  36.0
+  bestes niacinamide serum                      0      2   0.0%  76.5
+  blemish spot treatment                        0      1   0.0%  76.0
+  can i use multiple serums                     0      1   0.0%  92.0
+  can i use two different serum for day         0      2   0.0%  88.5
+  ceramide barrier repair skincare              0      1   0.0%  75.0
+  face mask daily                               0      1   0.0%  86.0
+
+  Ahrefs — glow-coded.com
+  ──────────────────────────────────────────────────
+  DR:          13.0 ─ 0
+  Ahrefs Rank: 13223629
+  Backlinks:   404 ▼ -6
+  Ref Domains: 31 ▼ -5
+
+  Top Organic Keywords:
+
+  GA4 — glow-coded.com
+  ──────────────────────────────────────────────────
+  Sessions:   214   Users: 202   Engaged: 33
+  Channels:
+    Direct                              158
+    Organic Search                       29
+    Unassigned                           28
+    Referral                              5
+    Organic Social                        2
+  AI referrals: 22 sessions
+    ChatGPT (chatgpt.com)  sessions: 22  engaged: 5
+
+  Bing — glow-coded.com
+  ──────────────────────────────────────────────────
+  Crawled: 0  |  Indexed: 0
+  Daily quota left: 100  |  Monthly: 3000
+
+============================================================
+  ROOTED-GLOW.COM
+============================================================
+
+  GSC — rooted-glow.com
+  ──────────────────────────────────────────────────
+  Clicks:      3 ▼ -16
+  Impressions: 557 ▼ -1914
+  CTR:         0.5% ▼ -0.2
+  Position:    33.5 ▼ -0.1
+
+  Top Queries:
+  Query                                    Clicks   Impr    CTR   Pos
+  best running shoes for intermediate ru        1      1 100.0%   8.0
+  "all natural protein powder"                  0      2   0.0%  12.5
+  "natural protein powder"                      0      2   0.0%  22.0
+  activate vagus nerve stimulation              0      1   0.0%  81.0
+  advanced running shoes                        0      2   0.0%  29.5
+  asics novablast 5 review                      0      1   0.0%  66.0
+  asics novablast 5 weight                      0      1   0.0%  87.0
+  asics novablast 5 отзывы                      0      1   0.0%  27.0
+  asics novablast review                        0      1   0.0%  62.0
+  aspartame free protein market                 0      1   0.0%  25.0
+
+  Ahrefs — rooted-glow.com
+  ──────────────────────────────────────────────────
+  DR:          16.0 ─ 0
+  Ahrefs Rank: 10844454
+  Backlinks:   624 ▲ +2
+  Ref Domains: 144 ▲ +5
+
+  Top Organic Keywords:
+    best natural protein powder                     vol: 1000
+    cleanest protein powders                        vol: 500
+
+  GA4 — rooted-glow.com
+  ──────────────────────────────────────────────────
+  Sessions:   31   Users: 27   Engaged: 10
+  Channels:
+    Organic Search                       13
+    Direct                                9
+    Unassigned                            7
+    Organic Social                        2
+  AI referrals: 6 sessions
+    ChatGPT (chatgpt.com)  sessions: 6  engaged: 2
+
+  Bing — rooted-glow.com
+  ──────────────────────────────────────────────────
+  Crawled: 0  |  Indexed: 0
+  Daily quota left: 100  |  Monthly: 3000
+
+============================================================
+  BUILD-CODED.COM
+============================================================
+
+  GSC — build-coded.com
+  ──────────────────────────────────────────────────
+  Clicks:      0 ▼ -1
+  Impressions: 210 ▼ -13
+  CTR:         0.0% ▼ -0.4
+  Position:    60.4 ▼ -2.4
+
+  Top Queries:
+  Query                                    Clicks   Impr    CTR   Pos
+  arduino basic projects                        0      1   0.0%  72.0
+  arduino beginner projects                     0      1   0.0%  81.0
+  arduino beginners projects                    0      1   0.0%  73.0
+  arduino duemilanove projects                  0      1   0.0%  69.0
+  arduino easy project                          0      1   0.0%  73.0
+  arduino leren                                 0      2   0.0%  79.5
+  arduino mega projekte                         0      1   0.0%  59.0
+  arduino project for beginners                 0      2   0.0%  82.0
+  arduino project ideas for beginners           0      1   0.0%  88.0
+  arduino projects beginner                     0     14   0.0%  76.5
+
+  Ahrefs — build-coded.com
+  ──────────────────────────────────────────────────
+  DR:          7.0 ─ 0
+  Ahrefs Rank: 21014492
+  Backlinks:   131 ▲ +18
+  Ref Domains: 128 ▲ +19
+
+  Top Organic Keywords:
+
+  GA4 — build-coded.com
+  ──────────────────────────────────────────────────
+  Sessions:   165   Users: 162   Engaged: 8
+  Channels:
+    Direct                              148
+    Unassigned                           14
+    Referral                              5
+    Organic Search                        1
+  AI referrals: 14 sessions
+    ChatGPT (chatgpt.com)  sessions: 13  engaged: 3
+    Perplexity (perplexity.ai)  sessions: 1  engaged: 0
+
+  Bing — build-coded.com
+  ──────────────────────────────────────────────────
+  Crawled: 90  |  Indexed: 7
+  Daily quota left: 100  |  Monthly: 3000
+
+============================================================
+  Report generated: 2026-06-01 08:00
+============================================================
