@@ -17,34 +17,27 @@
     {
       "slug": "floating-shelves-install-guide-best-picks",
       "clicks": 0,
-      "impressions": 40,
-      "position": 66.9
+      "impressions": 41,
+      "position": 67.1
     },
     {
       "slug": "best-soldering-irons-beginners",
       "clicks": 0,
-      "impressions": 17,
-      "position": 7.1
+      "impressions": 18,
+      "position": 6.8
     },
     {
       "slug": "how-to-install-gutter-guards",
       "clicks": 0,
-      "impressions": 25,
-      "position": 47
+      "impressions": 26,
+      "position": 46.7
     },
     {
       "slug": "best-cordless-soldering-iron-electronics",
       "clicks": 0,
-      "impressions": 20,
-      "position": 49.7
+      "impressions": 24,
+      "position": 47.8
     }
   ],
-  "rising": [
-    {
-      "slug": "best-3d-printers-beginners",
-      "clicks": 0,
-      "impressions": 16,
-      "days_old": 11
-    }
-  ]
+  "rising": []
 }
