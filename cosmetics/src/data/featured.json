@@ -1,6 +1,6 @@
 {
-  "updated": "2026-06-02",
-  "period": "2026-05-03 to 2026-05-31",
+  "updated": "2026-06-03",
+  "period": "2026-05-04 to 2026-06-01",
   "trending": [
     {
       "slug": "cosrx-snail-mucin-vs-torriden-dive-in-serum",
@@ -9,34 +9,34 @@
       "position": 8.4
     },
     {
-      "slug": "10-sunscreens-no-white-cast",
-      "clicks": 0,
-      "impressions": 21,
-      "position": 8.9
-    },
-    {
-      "slug": "beauty-of-joseon-relief-sun-vs-skin1004-centella-sun",
-      "clicks": 0,
-      "impressions": 21,
-      "position": 4.9
-    },
-    {
-      "slug": "beauty-of-joseon-best-products-complete-guide",
-      "clicks": 0,
-      "impressions": 20,
-      "position": 8.1
-    },
-    {
       "slug": "acne-spot-treatments-that-work",
       "clicks": 0,
       "impressions": 25,
       "position": 75.5
     },
     {
-      "slug": "best-korean-sunscreens-oily-skin-no-white-cast",
+      "slug": "beauty-of-joseon-best-products-complete-guide",
+      "clicks": 0,
+      "impressions": 14,
+      "position": 9.6
+    },
+    {
+      "slug": "best-niacinamide-serums-every-skin-type",
       "clicks": 0,
       "impressions": 20,
-      "position": 11.2
+      "position": 67.7
+    },
+    {
+      "slug": "10-sunscreens-no-white-cast",
+      "clicks": 0,
+      "impressions": 15,
+      "position": 10.1
+    },
+    {
+      "slug": "beauty-of-joseon-relief-sun-vs-skin1004-centella-sun",
+      "clicks": 0,
+      "impressions": 12,
+      "position": 5.7
     }
   ],
   "rising": []

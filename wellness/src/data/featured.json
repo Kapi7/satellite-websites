@@ -1,18 +1,18 @@
 {
-  "updated": "2026-06-02",
-  "period": "2026-05-03 to 2026-05-31",
+  "updated": "2026-06-03",
+  "period": "2026-05-04 to 2026-06-01",
   "trending": [
     {
       "slug": "best-protein-powders-clean-natural",
       "clicks": 6,
-      "impressions": 2263,
-      "position": 34.7
+      "impressions": 2209,
+      "position": 34.5
     },
     {
       "slug": "best-double-cleansing-products",
       "clicks": 3,
-      "impressions": 415,
-      "position": 38.6
+      "impressions": 409,
+      "position": 38.2
     },
     {
       "slug": "best-running-shoes-intermediate",
@@ -29,14 +29,14 @@
     {
       "slug": "best-electrolyte-drinks-runners",
       "clicks": 2,
-      "impressions": 43,
-      "position": 11.6
+      "impressions": 42,
+      "position": 11.7
     },
     {
       "slug": "asics-novablast-5-review",
       "clicks": 0,
-      "impressions": 99,
-      "position": 46.1
+      "impressions": 97,
+      "position": 45.5
     }
   ],
   "rising": []
