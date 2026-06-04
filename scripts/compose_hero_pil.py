@@ -319,7 +319,7 @@ def slug_from_handle_pair(slug: str) -> tuple[str, str] | None:
     return None
 
 
-def collect_drafts(site_dir: Path):
+def collect_drafts(site_dir: Path, include_published: bool = False):
     en = site_dir / "src" / "content" / "blog" / "en"
     out = []
     for f in sorted(en.glob("*.mdx")):
@@ -327,7 +327,7 @@ def collect_drafts(site_dir: Path):
         if not fm or body is None:
             continue
         is_draft = bool(re.search(r"^draft:\s*true\s*$", fm, re.M))
-        if not is_draft:
+        if not is_draft and not include_published:
             continue
         title_m = re.search(r'title:\s*"([^"]+)"', fm)
         image_m = re.search(r"^image:\s*([^\n]+)", fm, re.M)
@@ -459,10 +459,12 @@ def main():
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--no-enhance", action="store_true", help="Skip Gemini enhancement, save PIL composite directly")
     ap.add_argument("--limit", type=int)
+    ap.add_argument("--include-published", action="store_true",
+                    help="Process published articles too (default: drafts only)")
     args = ap.parse_args()
 
     site_dir = SITES[args.site]
-    drafts = collect_drafts(site_dir)
+    drafts = collect_drafts(site_dir, include_published=args.include_published)
     if args.slug:
         drafts = [d for d in drafts if d["slug"] == args.slug]
     if args.limit:
