@@ -1,12 +1,12 @@
 {
-  "updated": "2026-06-03",
-  "period": "2026-05-04 to 2026-06-01",
+  "updated": "2026-06-04",
+  "period": "2026-05-05 to 2026-06-02",
   "trending": [
     {
       "slug": "arduino-projects-beginners",
       "clicks": 1,
-      "impressions": 79,
-      "position": 66.5
+      "impressions": 78,
+      "position": 66.3
     },
     {
       "slug": "diy-candle-making-complete-guide",
@@ -21,30 +21,30 @@
       "position": 67.1
     },
     {
-      "slug": "best-soldering-irons-beginners",
-      "clicks": 0,
-      "impressions": 18,
-      "position": 6.8
-    },
-    {
       "slug": "best-cordless-soldering-iron-electronics",
       "clicks": 0,
-      "impressions": 25,
-      "position": 47.6
+      "impressions": 24,
+      "position": 49.4
     },
     {
       "slug": "how-to-install-gutter-guards",
       "clicks": 0,
-      "impressions": 25,
-      "position": 47
+      "impressions": 24,
+      "position": 48.2
+    },
+    {
+      "slug": "best-soldering-irons-beginners",
+      "clicks": 0,
+      "impressions": 12,
+      "position": 9.2
     }
   ],
   "rising": [
     {
       "slug": "best-3d-printers-beginners",
       "clicks": 0,
-      "impressions": 13,
-      "days_old": 12
+      "impressions": 12,
+      "days_old": 13
     }
   ]
 }
