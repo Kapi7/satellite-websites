@@ -73,9 +73,9 @@ affiliateProduct: string (optional)
 
 ### Hero image rules (HARD)
 - **If the article features REAL products** (any listicle, comparison, or review where named mirai-skin SKUs appear inline) → the hero MUST use the AI-enhancement pipeline so the actual product is visible, not an AI-styled fake with gibberish labels:
-  - `scripts/compose_hero_pil.py` — PIL grid of real Shopify photos → Gemini 2.5 Flash Image enhancement (recommended for multi-product listicles)
-  - `scripts/gemini_enhance_hero.py` — single real product photo → Gemini enhancement (for review/comparison articles)
-  - `scripts/gen_cosmetics_heroes_real.py` / `regen_hero_real_products.py` — bulk
+  - **`scripts/gemini_enhance_hero.py`** is THE canonical tool. Picks the first mirai-linked product from the article body, downloads its real Shopify photo, sends that ONE photo to Gemini 2.5 Flash Image which preserves the bottle + label pixel-perfect while building a luxurious editorial scene around it (marble surface, soft light, droplets, herbal sprigs). Works for ALL product articles — listicles, reviews, comparisons. Has `--include-published` flag for non-draft work.
+  - **NEVER use `compose_hero_pil.py`** — it pre-composites multiple products via PIL which makes the bottles smaller and flatter than the single-product Gemini-enhance result the user prefers. (Quoting the user: "we said no pil just gemini enhance we send him the photo and he will enhance".)
+  - The pipeline is dead-simple: one real product photo → Gemini → enhanced editorial scene. No compositing, no grids, no PIL.
 - **If the article is abstract or topic-only** (ingredient explainer, how-to without specific products, hub pages) → pure Imagen 4.0 is fine
 - **NEVER** ship a product-listicle hero made with raw Imagen — the labels come out as gibberish ("NIACINANE", "CLEANSING IAM", etc.) which looks AI and undermines trust
 - **ALWAYS** visually verify generated heroes via Read tool before commit; Imagen has a ~14% silent-failure rate where it returns a thematically-adjacent stock photo instead of the requested subject

@@ -144,14 +144,15 @@ def gemini_enhance(input_path: Path, output_path: Path) -> bool:
     return False
 
 
-def collect_drafts(site_dir: Path):
+def collect_drafts(site_dir: Path, include_published: bool = False):
     en = site_dir / "src" / "content" / "blog" / "en"
     out = []
     for f in sorted(en.glob("*.mdx")):
         fm, body = parse_mdx(f)
         if not fm or body is None:
             continue
-        if not re.search(r"^draft:\s*true\s*$", fm, re.M):
+        is_draft = bool(re.search(r"^draft:\s*true\s*$", fm, re.M))
+        if not is_draft and not include_published:
             continue
         title_m = re.search(r'title:\s*"([^"]+)"', fm)
         image_m = re.search(r"^image:\s*([^\n]+)", fm, re.M)
@@ -173,10 +174,12 @@ def main():
     ap.add_argument("--site", required=True, choices=list(SITES.keys()))
     ap.add_argument("--slug")
     ap.add_argument("--limit", type=int)
+    ap.add_argument("--include-published", action="store_true",
+                    help="Process published articles too (default: drafts only)")
     args = ap.parse_args()
 
     site_dir = SITES[args.site]
-    drafts = collect_drafts(site_dir)
+    drafts = collect_drafts(site_dir, include_published=args.include_published)
     if args.slug:
         drafts = [d for d in drafts if d["slug"] == args.slug]
     if args.limit:
