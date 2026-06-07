@@ -1,11 +1,11 @@
 {
-  "updated": "2026-06-06",
-  "period": "2026-05-07 to 2026-06-04",
+  "updated": "2026-06-07",
+  "period": "2026-05-08 to 2026-06-05",
   "trending": [
     {
       "slug": "arduino-projects-beginners",
       "clicks": 1,
-      "impressions": 76,
+      "impressions": 75,
       "position": 66.3
     },
     {
@@ -29,8 +29,8 @@
     {
       "slug": "best-cordless-soldering-iron-electronics",
       "clicks": 0,
-      "impressions": 22,
-      "position": 49
+      "impressions": 23,
+      "position": 47.7
     },
     {
       "slug": "kreg-pocket-hole-jig-guide",
