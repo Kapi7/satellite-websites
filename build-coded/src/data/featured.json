@@ -1,11 +1,11 @@
 {
-  "updated": "2026-06-08",
-  "period": "2026-05-09 to 2026-06-06",
+  "updated": "2026-06-09",
+  "period": "2026-05-10 to 2026-06-07",
   "trending": [
     {
       "slug": "arduino-projects-beginners",
       "clicks": 1,
-      "impressions": 72,
+      "impressions": 70,
       "position": 66.0
     },
     {
@@ -23,14 +23,14 @@
     {
       "slug": "best-cordless-soldering-iron-electronics",
       "clicks": 0,
-      "impressions": 23,
-      "position": 47.7
+      "impressions": 22,
+      "position": 48.6
     },
     {
       "slug": "how-to-install-gutter-guards",
       "clicks": 0,
-      "impressions": 22,
-      "position": 47.7
+      "impressions": 21,
+      "position": 48
     },
     {
       "slug": "how-to-hang-heavy-mirror-drywall-without-studs",

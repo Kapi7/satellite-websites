@@ -1,0 +1,139 @@
+============================================================
+  WEEKLY SEO REPORT
+  Week of 2026-06-08
+============================================================
+
+============================================================
+  GLOW-CODED.COM
+============================================================
+
+  GSC — glow-coded.com
+  ──────────────────────────────────────────────────
+  Clicks:      0 ─ 0
+  Impressions: 98 ▼ -86
+  CTR:         0.0% ─ 0
+  Position:    64.5 ▲ +3.4
+
+  Top Queries:
+  Query                                    Clicks   Impr    CTR   Pos
+  acide azélaïque et niacinamide                0      3   0.0%  53.0
+  aha bha pha                                   0      1   0.0%  84.0
+  ahabhapha                                     0      1   0.0%  87.0
+  ai skincare quiz                              0      4   0.0%  89.8
+  bee propolis skin care                        0      1   0.0%  85.0
+  bestes niacinamide serum                      0      1   0.0%  79.0
+  ceramide barrier repair skincare              0      1   0.0%  76.0
+  collagen ceramides korean hair care           0      1   0.0%  88.0
+  cosrx good                                    0      1   0.0%  78.0
+  ectoin serum                                  0      1   0.0%  22.0
+
+  Ahrefs — glow-coded.com
+  ──────────────────────────────────────────────────
+
+  GA4 — glow-coded.com
+  ──────────────────────────────────────────────────
+  Sessions:   219   Users: 218   Engaged: 28
+  Channels:
+    Direct                              159
+    Unassigned                           48
+    Organic Search                       14
+    Referral                              9
+    Organic Social                        1
+  AI referrals: 39 sessions
+    ChatGPT (chatgpt.com)  sessions: 39  engaged: 16
+
+  Bing — glow-coded.com
+  ──────────────────────────────────────────────────
+  Crawled: 0  |  Indexed: 0
+  Daily quota left: 100  |  Monthly: 2300
+
+============================================================
+  ROOTED-GLOW.COM
+============================================================
+
+  GSC — rooted-glow.com
+  ──────────────────────────────────────────────────
+  Clicks:      0 ▼ -3
+  Impressions: 111 ▼ -491
+  CTR:         0.0% ▼ -0.5
+  Position:    38.0 ▲ +3.5
+
+  Top Queries:
+  Query                                    Clicks   Impr    CTR   Pos
+  brain axis capsule                            0      1   0.0%  62.0
+  clean protein powder brands                   0      1   0.0%  35.0
+  comparación entre ejercicios de yoga y        0      1   0.0%  91.0
+  compry recovery bij spierherstel              0      1   0.0%  69.0
+  correre in zona 2                             0      1   0.0%  86.0
+  double cleansing products                     0      1   0.0%  61.0
+  glicinato de magnesio                         0      1   0.0%  60.0
+  glicinato de magnésio                         0      1   0.0%  61.0
+  magnesio glicina bula                         0      1   0.0%  72.0
+  magnesio glicinato                            0      1   0.0%  59.0
+
+  Ahrefs — rooted-glow.com
+  ──────────────────────────────────────────────────
+
+  GA4 — rooted-glow.com
+  ──────────────────────────────────────────────────
+  Sessions:   57   Users: 56   Engaged: 8
+  Channels:
+    Direct                               45
+    Unassigned                            9
+    Organic Search                        4
+    Referral                              3
+  AI referrals: 9 sessions
+    ChatGPT (chatgpt.com)  sessions: 8  engaged: 2
+    Bing (incl. Copilot chat) (cn.bing.com)  sessions: 1  engaged: 1
+
+  Bing — rooted-glow.com
+  ──────────────────────────────────────────────────
+  Crawled: 0  |  Indexed: 0
+  Daily quota left: 100  |  Monthly: 2300
+
+============================================================
+  BUILD-CODED.COM
+============================================================
+
+  GSC — build-coded.com
+  ──────────────────────────────────────────────────
+  Clicks:      0 ─ 0
+  Impressions: 90 ▼ -185
+  CTR:         0.0% ─ 0
+  Position:    61.9 ▲ +1.5
+
+  Top Queries:
+  Query                                    Clicks   Impr    CTR   Pos
+  arduino beginner projects                     0      1   0.0%  67.0
+  arduino esempi                                0      1   0.0%  80.0
+  arduino progetti semplici                     0      1   0.0%  82.0
+  arduino project beginner                      0      1   0.0%  70.0
+  arduino project for beginners                 0      1   0.0%  72.0
+  arduino projects beginner                     0      6   0.0%  77.0
+  arduino projects for beginner                 0      1   0.0%  68.0
+  arduino projects for beginners                0      2   0.0%  83.0
+  arduino projects for beginners with co        0      1   0.0%  73.0
+  arduino projekt                               0      1   0.0%  80.0
+
+  Ahrefs — build-coded.com
+  ──────────────────────────────────────────────────
+
+  GA4 — build-coded.com
+  ──────────────────────────────────────────────────
+  Sessions:   915   Users: 915   Engaged: 6
+  Channels:
+    Direct                              902
+    Unassigned                           10
+    Referral                              3
+    AI Assistant                          1
+  AI referrals: 12 sessions
+    ChatGPT (chatgpt.com)  sessions: 12  engaged: 2
+
+  Bing — build-coded.com
+  ──────────────────────────────────────────────────
+  Crawled: 90  |  Indexed: 7
+  Daily quota left: 10  |  Monthly: 230
+
+============================================================
+  Report generated: 2026-06-08 08:00
+============================================================
