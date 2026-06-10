@@ -1,11 +1,11 @@
 {
-  "updated": "2026-06-09",
-  "period": "2026-05-10 to 2026-06-07",
+  "updated": "2026-06-10",
+  "period": "2026-05-11 to 2026-06-08",
   "trending": [
     {
       "slug": "arduino-projects-beginners",
       "clicks": 1,
-      "impressions": 70,
+      "impressions": 68,
       "position": 66.0
     },
     {
@@ -29,8 +29,8 @@
     {
       "slug": "how-to-install-gutter-guards",
       "clicks": 0,
-      "impressions": 21,
-      "position": 48
+      "impressions": 20,
+      "position": 48.2
     },
     {
       "slug": "how-to-hang-heavy-mirror-drywall-without-studs",
