@@ -14,6 +14,18 @@ git pull --rebase --quiet origin main 2>/dev/null || true
 echo "=== Daily Publish $(date) ==="
 
 # ─────────────────────────────────────────────────────────────
+# Pre-flight: auto-refill the draft queue when runway is low.
+# Root cause of the June 2026 stall: the queue drained to zero and nothing
+# regenerated it. refill_queue.py generates drafts from topic-backlog/<site>.json
+# when a site's runway drops below REFILL_THRESHOLD days. Conservative by design —
+# the publisher below still ships only one article per site per day.
+# Non-blocking — always exits 0 even on failure.
+# ─────────────────────────────────────────────────────────────
+if [ -f scripts/refill_queue.py ]; then
+  echo "[pre-flight] running refill_queue.py (threshold=${REFILL_THRESHOLD:-7})"
+  python3 scripts/refill_queue.py || echo "[pre-flight] refill_queue returned non-zero"
+fi
+
 # Pre-flight: queue health check (author rotation + hero auto-gen)
 # Non-blocking — always exits 0 even on failure.
 # ─────────────────────────────────────────────────────────────

@@ -1,0 +1,80 @@
+[
+  {
+    "site": "wellness",
+    "slug": "red-light-therapy-benefits",
+    "title": "Red Light Therapy Benefits: What the Science Actually Shows",
+    "description": "Red light therapy explained without the hype — what the research supports for skin, recovery, and sleep, what it can't do, realistic at-home device expectations, and how to use it safely.",
+    "category": "natural-health",
+    "type": "guide",
+    "tags": ["red light therapy", "photobiomodulation", "recovery", "skin", "wellness"],
+    "author": "Rooted Glow Editorial",
+    "imageAlt": "Warm red light glowing across a calm minimal room with a soft towel and plant in soft focus",
+    "image_prompt": "editorial wellness photography, warm red light glow filling a calm minimal room with a folded towel and a plant in soft focus, serene spa-like atmosphere, soft natural composition, no people's faces, no readable text, 16:9 aspect ratio",
+    "prompt": "You are a wellness expert writing for Rooted Glow (rooted-glow.com), an evidence-minded natural-health and movement site.\n\nWrite a detailed article: \"Red Light Therapy Benefits: What the Science Actually Shows\"\n\nTopic: what red light therapy / photobiomodulation is, the mechanisms (mitochondrial / wavelength basics in plain language), what the evidence genuinely supports (skin collagen, wound healing, muscle recovery, some hair and pain data), what is overhyped (fat loss, broad claims), at-home panels vs masks vs in-clinic, dosing/safety, and how to fit it into a recovery routine.\n\nStructure:\n- Intro paragraph (no H1)\n- ## What red light therapy actually is\n- ## The benefits with real evidence behind them\n- ## What it's been oversold for\n- ## At-home devices vs professional treatment\n- ## How to use it safely (dose, distance, frequency)\n- ## Frequently Asked Questions (3-4 ### questions with answers)\n- ## Verdict\n\nInternal links (use 2-3 of these naturally, as markdown links with trailing slashes, NEVER invent URLs):\n- [recovery tools that speed muscle healing](/5-recovery-tools-speed-muscle-healing/)\n- [the sleep-stress-skin wellness triangle](/sleep-stress-skin-wellness-triangle/)\n- [the gut-skin connection](/gut-skin-connection-explained/)\n\nStyle rules:\n- 1800-2400 words\n- Conversational expert tone, evidence-first, clear about uncertainty and weak claims\n- Cite the type of evidence (RCT, small study, animal) in plain language without fake citations\n- Include one summary table where appropriate\n- NO external links, NO affiliate footer, NO frontmatter, do NOT start with the title or an H1"
+  },
+  {
+    "site": "wellness",
+    "slug": "oil-pulling-benefits",
+    "title": "Oil Pulling Benefits: Does It Actually Work? An Evidence Review",
+    "description": "Oil pulling examined honestly — what coconut-oil swishing can and can't do for oral health and breath, what the studies show versus the wellness myths, and how to do it without wasting your time.",
+    "category": "natural-health",
+    "type": "guide",
+    "tags": ["oil pulling", "oral health", "coconut oil", "detox myths", "wellness"],
+    "author": "Rooted Glow Editorial",
+    "imageAlt": "A small bowl of coconut oil and a wooden spoon on a linen cloth in soft morning light",
+    "image_prompt": "editorial wellness photography, a small bowl of coconut oil with a wooden spoon on a natural linen cloth, soft morning light, calm minimal composition, warm neutral tones, no people, no readable text, 16:9 aspect ratio",
+    "prompt": "You are a wellness expert writing for Rooted Glow (rooted-glow.com), an evidence-minded natural-health site.\n\nWrite a detailed article: \"Oil Pulling Benefits: Does It Actually Work? An Evidence Review\"\n\nTopic: what oil pulling is, its Ayurvedic origins, what the evidence shows for plaque/gingivitis/bad breath (some modest data vs chlorhexidine comparisons), why the systemic 'detox' claims are not supported, how to do it (oil choice, 10-20 min, spit in trash not sink), and who should/shouldn't bother. Be honest that it is an adjunct, not a replacement for brushing/flossing.\n\nStructure:\n- Intro paragraph (no H1)\n- ## What oil pulling is and where it comes from\n- ## What the evidence actually supports\n- ## The 'detox' claims that don't hold up\n- ## How to do it properly\n- ## Is it worth your time?\n- ## Frequently Asked Questions (3-4 ### questions with answers)\n- ## Verdict\n\nInternal links (use 2-3 of these naturally, as markdown links with trailing slashes, NEVER invent URLs):\n- [the gut-skin connection](/gut-skin-connection-explained/)\n- [best probiotics for women's gut health](/best-probiotics-for-women-gut-health/)\n\nStyle rules:\n- 1500-2100 words\n- Conversational expert tone, evidence-first, debunk myths fairly\n- Include one summary table where appropriate\n- NO external links, NO affiliate footer, NO frontmatter, do NOT start with the title or an H1"
+  },
+  {
+    "site": "wellness",
+    "slug": "dry-brushing-benefits",
+    "title": "Dry Brushing Benefits: Lymphatic Hype vs Skin Reality",
+    "description": "Dry brushing examined — what it realistically does for skin texture and circulation, why the lymphatic-detox and cellulite claims are overblown, and how to do it without irritating your skin.",
+    "category": "natural-health",
+    "type": "guide",
+    "tags": ["dry brushing", "skin", "lymphatic", "circulation", "wellness"],
+    "author": "Rooted Glow Editorial",
+    "imageAlt": "A natural-bristle body brush on a folded towel beside a plant in soft bathroom light",
+    "image_prompt": "editorial wellness photography, a natural-bristle wooden body brush resting on a folded white towel beside a small plant, soft diffuse bathroom light, calm minimal spa composition, warm neutral tones, no people, no readable text, 16:9 aspect ratio",
+    "prompt": "You are a wellness expert writing for Rooted Glow (rooted-glow.com), an evidence-minded natural-health site.\n\nWrite a detailed article: \"Dry Brushing Benefits: Lymphatic Hype vs Skin Reality\"\n\nTopic: what dry brushing is, the realistic benefits (exfoliation, temporary circulation boost, a pleasant ritual), why lymphatic 'detox' and cellulite-removal claims are not supported, how to do it correctly (dry skin, toward the heart, gentle pressure, frequency), who should avoid it (eczema, sensitive/broken skin), and how to pair with moisturizing.\n\nStructure:\n- Intro paragraph (no H1)\n- ## What dry brushing is\n- ## The benefits that are actually real\n- ## The lymphatic and cellulite claims, examined\n- ## How to dry brush correctly\n- ## Who should skip it\n- ## Frequently Asked Questions (3-4 ### questions with answers)\n- ## Verdict\n\nInternal links (use 2-3 of these naturally, as markdown links with trailing slashes, NEVER invent URLs):\n- [recovery tools that speed muscle healing](/5-recovery-tools-speed-muscle-healing/)\n- [the gut-skin connection](/gut-skin-connection-explained/)\n\nStyle rules:\n- 1500-2100 words\n- Conversational expert tone, evidence-first, debunk fairly without being dismissive of the ritual value\n- Include one summary table where appropriate\n- NO external links, NO affiliate footer, NO frontmatter, do NOT start with the title or an H1"
+  },
+  {
+    "site": "wellness",
+    "slug": "castor-oil-packs-benefits",
+    "title": "Castor Oil Packs: Benefits, How-To, and What the Evidence Says",
+    "description": "Castor oil packs explained — the traditional uses, what limited research suggests for digestion and relaxation, why the liver-detox claims are unproven, and a clean step-by-step method.",
+    "category": "natural-health",
+    "type": "guide",
+    "tags": ["castor oil packs", "digestion", "natural remedies", "relaxation", "wellness"],
+    "author": "Rooted Glow Editorial",
+    "imageAlt": "A bottle of castor oil with a folded flannel cloth on a wooden surface in warm light",
+    "image_prompt": "editorial wellness photography, a glass bottle of castor oil beside a folded natural flannel cloth on a warm wooden surface, soft diffuse light, calm minimal composition, warm neutral tones, no people, no readable text, 16:9 aspect ratio",
+    "prompt": "You are a wellness expert writing for Rooted Glow (rooted-glow.com), an evidence-minded natural-health site.\n\nWrite a detailed article: \"Castor Oil Packs: Benefits, How-To, and What the Evidence Says\"\n\nTopic: what castor oil packs are, traditional uses, the limited evidence (a small constipation study, relaxation/parasympathetic plausibility, anti-inflammatory ricinoleic acid basics), why 'liver detox' and hormone-balancing claims are unproven, a clean how-to (flannel, oil, warmth, abdomen, 30-60 min), safety and who should avoid (pregnancy, broken skin), and realistic expectations.\n\nStructure:\n- Intro paragraph (no H1)\n- ## What castor oil packs are\n- ## What the evidence does and doesn't support\n- ## The detox claims, examined honestly\n- ## How to make and use one\n- ## Safety and who should avoid them\n- ## Frequently Asked Questions (3-4 ### questions with answers)\n- ## Verdict\n\nInternal links (use 2-3 of these naturally, as markdown links with trailing slashes, NEVER invent URLs):\n- [the gut-skin connection](/gut-skin-connection-explained/)\n- [the sleep-stress-skin wellness triangle](/sleep-stress-skin-wellness-triangle/)\n\nStyle rules:\n- 1500-2100 words\n- Conversational expert tone, evidence-first, clearly separate tradition from proof\n- Include one summary table where appropriate\n- NO external links, NO affiliate footer, NO frontmatter, do NOT start with the title or an H1"
+  },
+  {
+    "site": "wellness",
+    "slug": "tongue-scraping-benefits",
+    "title": "Tongue Scraping Benefits: Breath, Oral Health, and the Gut Link",
+    "description": "Tongue scraping examined — what the evidence shows for bad breath and oral bacteria, the realistic limits, how it fits an oral-health routine, and how to do it without gagging.",
+    "category": "natural-health",
+    "type": "guide",
+    "tags": ["tongue scraping", "oral health", "bad breath", "oral microbiome", "wellness"],
+    "author": "Rooted Glow Editorial",
+    "imageAlt": "A copper tongue scraper on a folded towel beside a glass of water in soft morning light",
+    "image_prompt": "editorial wellness photography, a copper tongue scraper resting on a folded white towel beside a glass of water, soft morning bathroom light, calm minimal composition, warm neutral tones, no people, no readable text, 16:9 aspect ratio",
+    "prompt": "You are a wellness expert writing for Rooted Glow (rooted-glow.com), an evidence-minded natural-health site.\n\nWrite a detailed article: \"Tongue Scraping Benefits: Breath, Oral Health, and the Gut Link\"\n\nTopic: what tongue scraping is, what the evidence supports (reduces volatile sulfur compounds / bad breath, removes tongue coating/bacteria, modest data vs toothbrush), realistic limits, the oral-microbiome and gut connection in plain language, copper vs plastic scrapers, how to do it without gagging, and frequency.\n\nStructure:\n- Intro paragraph (no H1)\n- ## What tongue scraping is\n- ## What the evidence supports\n- ## The oral microbiome and gut link\n- ## How to do it (and avoid gagging)\n- ## Scraper types and care\n- ## Frequently Asked Questions (3-4 ### questions with answers)\n- ## Verdict\n\nInternal links (use 2-3 of these naturally, as markdown links with trailing slashes, NEVER invent URLs):\n- [the gut-skin connection](/gut-skin-connection-explained/)\n- [best probiotics for women's gut health](/best-probiotics-for-women-gut-health/)\n\nStyle rules:\n- 1400-2000 words\n- Conversational expert tone, evidence-first\n- Include one summary table where appropriate\n- NO external links, NO affiliate footer, NO frontmatter, do NOT start with the title or an H1"
+  },
+  {
+    "site": "wellness",
+    "slug": "seed-cycling-hormone-balance",
+    "title": "Seed Cycling for Hormone Balance: Does It Actually Work?",
+    "description": "Seed cycling examined honestly — the theory behind rotating flax, pumpkin, sesame, and sunflower seeds by cycle phase, what the evidence does and doesn't show, and the real nutritional upside.",
+    "category": "nutrition",
+    "type": "guide",
+    "tags": ["seed cycling", "hormone balance", "nutrition", "menstrual cycle", "women's health"],
+    "author": "Rooted Glow Editorial",
+    "imageAlt": "Small bowls of flax, pumpkin, sesame, and sunflower seeds arranged on a linen surface in soft light",
+    "image_prompt": "editorial nutrition photography, small bowls of flax, pumpkin, sesame, and sunflower seeds arranged on a natural linen surface, soft natural light, clean minimal overhead composition, warm neutral tones, no people, no readable text, 16:9 aspect ratio",
+    "prompt": "You are a nutrition-minded wellness writer for Rooted Glow (rooted-glow.com), an evidence-minded natural-health site.\n\nWrite a detailed article: \"Seed Cycling for Hormone Balance: Does It Actually Work?\"\n\nTopic: what seed cycling is (flax + pumpkin in the follicular phase, sesame + sunflower in the luteal phase), the proposed mechanism (lignans, phytoestrogens, zinc, vitamin E), what the evidence actually shows (essentially no direct trials; explain honestly), the genuine nutritional benefits of these seeds regardless, who might find it a useful habit, and realistic expectations. Do not overpromise; be clear it's low-risk but unproven for hormone balance.\n\nStructure:\n- Intro paragraph (no H1)\n- ## What seed cycling is\n- ## The theory behind it\n- ## What the evidence actually shows\n- ## The real nutritional upside of the seeds\n- ## How to try it (if you want to)\n- ## Frequently Asked Questions (3-4 ### questions with answers)\n- ## Verdict\n\nInternal links (use 2-3 of these naturally, as markdown links with trailing slashes, NEVER invent URLs):\n- [adaptogens that actually work](/8-adaptogens-that-actually-work/)\n- [the sleep-stress-skin wellness triangle](/sleep-stress-skin-wellness-triangle/)\n\nStyle rules:\n- 1500-2100 words\n- Conversational expert tone, evidence-first, honest that hormone-balance claims are unproven\n- Include one summary table (phase | seeds | proposed nutrients)\n- NO external links, NO affiliate footer, NO frontmatter, do NOT start with the title or an H1"
+  }
+]
