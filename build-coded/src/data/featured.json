@@ -1,12 +1,12 @@
 {
-  "updated": "2026-06-10",
-  "period": "2026-05-11 to 2026-06-08",
+  "updated": "2026-06-11",
+  "period": "2026-05-12 to 2026-06-09",
   "trending": [
     {
       "slug": "arduino-projects-beginners",
       "clicks": 1,
-      "impressions": 68,
-      "position": 66.0
+      "impressions": 65,
+      "position": 65.6
     },
     {
       "slug": "diy-candle-making-complete-guide",
@@ -17,14 +17,14 @@
     {
       "slug": "floating-shelves-install-guide-best-picks",
       "clicks": 0,
-      "impressions": 41,
-      "position": 67.1
+      "impressions": 39,
+      "position": 66.9
     },
     {
       "slug": "best-cordless-soldering-iron-electronics",
       "clicks": 0,
-      "impressions": 22,
-      "position": 48.6
+      "impressions": 21,
+      "position": 48
     },
     {
       "slug": "how-to-install-gutter-guards",
