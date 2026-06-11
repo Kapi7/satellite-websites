@@ -25,11 +25,40 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from config import (
     PINTEREST_ACCOUNTS, PINTEREST_ACCOUNT_MAP, PINTEREST_DAILY_LIMITS,
     PINTEREST_SCHEDULE, PINTEREST_MAX_PER_DAY,
-    SITES,
+    SITES, PROJECT_ROOT,
     BROWSER_STATE_DIR, DATA_DIR,
     BROWSER_ARGS, DELAY_SHORT, DELAY_MEDIUM, DELAY_LONG, DELAY_PAGE_LOAD,
 )
 from tg import notify as tg_notify
+
+
+def resolve_image_path(raw: str):
+    """Return an existing local Path for a pin image, or None.
+
+    Pins are sometimes scheduled on a different machine (e.g. the old Mac Mini
+    under /Users/agentdavid/mirai-seo/satellite-websites/...). The image files
+    live inside THIS repo, so an absolute path baked on another machine won't
+    resolve here. Strategy:
+      1. Use the path as-is if it exists.
+      2. If it contains a '/satellite-websites/' segment, rebase everything
+         after it onto this repo root (PROJECT_ROOT).
+      3. Treat it as repo-relative.
+    """
+    if not raw:
+        return None
+    p = Path(raw)
+    if p.exists():
+        return p
+    marker = "/satellite-websites/"
+    s = str(raw)
+    if marker in s:
+        rebased = PROJECT_ROOT / s.split(marker, 1)[1]
+        if rebased.exists():
+            return rebased
+    rel = PROJECT_ROOT / s.lstrip("/")
+    if rel.exists():
+        return rel
+    return None
 
 
 def human_delay(delay_range):
@@ -250,20 +279,35 @@ def post_pin(page, pin, dry_run=False):
         log(f"  ABORT: pin.site={pin.get('site')} but URL '{pin.get('url','')[:80]}' does not contain expected domain '{expected}'. Refusing to post.")
         return False
 
+    # Resolve the pin image up front (handles paths baked on another machine).
+    resolved_image = resolve_image_path(pin.get("image_path", ""))
+
     if dry_run:
-        log(f"  [DRY RUN] Board '{pin['board']}' | {Path(pin['image_path']).name}")
-        return True
+        status = resolved_image.name if resolved_image else f"MISSING:{pin.get('image_path')}"
+        log(f"  [DRY RUN] Board '{pin['board']}' | {status}")
+        return resolved_image is not None
+
+    if resolved_image is None:
+        log(f"  Image not found (unresolvable): {pin.get('image_path')}")
+        return False
 
     try:
-        page.goto("https://www.pinterest.com/pin-creation-tool/")
+        # Pinterest's pin-creation tool can be slow under headless CI; give it a
+        # generous timeout and one retry instead of failing on a 30s goto.
+        for attempt in range(2):
+            try:
+                page.goto("https://www.pinterest.com/pin-creation-tool/", timeout=60000)
+                break
+            except Exception as nav_err:
+                if attempt == 1:
+                    raise
+                log(f"  nav retry after: {type(nav_err).__name__}")
+                time.sleep(5)
         time.sleep(5)
         page.wait_for_selector('[data-test-id="storyboard-upload-input"]', timeout=15000)
 
         # ── 1. Upload image ──
-        image_path = pin["image_path"]
-        if not Path(image_path).exists():
-            log(f"  Image not found: {image_path}")
-            return False
+        image_path = str(resolved_image)
 
         file_input = page.locator('#storyboard-upload-input')
         file_input.set_input_files(image_path)
