@@ -58,18 +58,37 @@ session.headers.update({
 
 PRODUCT_LINK_RE = re.compile(r"mirai-skin\.com/products/([a-z0-9-]+)", re.I)
 
-PROMPT = (
+PROMPT_CORE = (
     "Take this attached product photo and use it as the centerpiece of a 16:9 landscape "
-    "editorial hero image for a premium K-beauty blog. Keep the product EXACTLY as it appears "
-    "in the photo — same bottle shape, same label text, same brand name, same Korean characters, "
-    "same ingredient list, same SPF rating. DO NOT redraw or alter the product in any way. "
-    "Around the product, build a luxurious editorial scene: a soft cream marble or warm "
-    "sandstone surface, diffuse natural sunlight from the upper left casting soft shadows, "
-    "a few sprigs of green heartleaf or eucalyptus and small water droplets at the corners "
-    "of the frame — never overlapping the product. Premium beauty magazine aesthetic. "
+    "editorial hero image. Keep the product EXACTLY as it appears "
+    "in the photo — same shape, same label text, same brand name, same Korean characters, "
+    "same ingredient list, same ratings. DO NOT redraw or alter the product in any way. "
+    "The full product must be inside the frame — never cropped by the edges. "
     "No text overlays. No watermarks. The product must remain instantly recognizable with "
-    "every label detail intact."
+    "every label detail intact. "
 )
+
+SCENE_PROMPTS = {
+    "cosmetics": (
+        "Around the product, build a luxurious K-beauty editorial scene: a soft cream marble "
+        "or warm sandstone surface, diffuse natural sunlight from the upper left casting soft "
+        "shadows, a few sprigs of green heartleaf or eucalyptus and small water droplets at "
+        "the corners of the frame — never overlapping the product. Premium beauty magazine "
+        "aesthetic."
+    ),
+    "wellness": (
+        "Around the product, build a warm natural-wellness editorial scene: a light oak or "
+        "linen surface, soft morning sunlight, a few organic props that fit the product "
+        "(fresh herbs, citrus, a ceramic bowl, a folded towel) at the corners of the frame — "
+        "never overlapping the product. Calm premium wellness magazine aesthetic."
+    ),
+    "build-coded": (
+        "Around the product, build a clean workshop editorial scene: a light birch plywood "
+        "workbench, soft window light, subtle sawdust or a folded canvas cloth and one or two "
+        "fitting props (a pencil, a steel ruler) at the corners of the frame — never "
+        "overlapping the product. Premium maker-magazine aesthetic."
+    ),
+}
 
 
 def parse_mdx(path: Path):
@@ -106,13 +125,14 @@ def download_product_image(handle: str) -> Path | None:
         return None
 
 
-def gemini_enhance(input_path: Path, output_path: Path) -> bool:
+def gemini_enhance(input_path: Path, output_path: Path, site: str = "cosmetics") -> bool:
     img_bytes = input_path.read_bytes()
+    prompt = PROMPT_CORE + SCENE_PROMPTS[site]
     try:
         resp = client.models.generate_content(
             model=MODEL,
             contents=[
-                PROMPT,
+                prompt,
                 types.Part.from_bytes(data=img_bytes, mime_type="image/jpeg"),
             ],
             config=types.GenerateContentConfig(response_modalities=["IMAGE", "TEXT"]),
@@ -173,6 +193,10 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--site", required=True, choices=list(SITES.keys()))
     ap.add_argument("--slug")
+    ap.add_argument("--handle",
+                    help="Force this product handle instead of the article's first product "
+                         "(use with --slug to avoid identical heroes when several articles "
+                         "lead with the same product)")
     ap.add_argument("--limit", type=int)
     ap.add_argument("--include-published", action="store_true",
                     help="Process published articles too (default: drafts only)")
@@ -193,7 +217,8 @@ def main():
         # Pick first product whose photo we can download
         product_path = None
         chosen_handle = None
-        for h in d["handles"]:
+        handles = [args.handle] if args.handle else d["handles"]
+        for h in handles:
             p = download_product_image(h)
             if p:
                 product_path = p
@@ -206,7 +231,7 @@ def main():
 
         print(f"    using: {chosen_handle}  ({product_path.stat().st_size//1024}KB)")
         out_path = site_dir / "public" / d["image_rel"].lstrip("/")
-        ok = gemini_enhance(product_path, out_path)
+        ok = gemini_enhance(product_path, out_path, site=args.site)
         if ok:
             print(f"    SAVED → {out_path.relative_to(ROOT)}\n")
             success += 1
