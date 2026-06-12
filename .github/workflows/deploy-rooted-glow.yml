@@ -1,0 +1,67 @@
+name: Deploy rooted-glow
+
+# Deploys rooted-glow.com to Cloudflare Pages via wrangler on every push to main
+# that touches wellness/. Created June 2026 when rooted-glow's CF Pages git
+# integration stopped deploying (same failure mode build-coded hit in May —
+# see deploy-build-coded.yml, which this mirrors).
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'wellness/**'
+      - '.github/workflows/deploy-rooted-glow.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-rooted-glow
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    permissions:
+      contents: read
+      deployments: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: wellness/package-lock.json
+
+      - name: Install dependencies
+        working-directory: wellness
+        run: npm install --no-audit --no-fund --prefer-offline
+
+      - name: Build site
+        working-directory: wellness
+        timeout-minutes: 5
+        run: |
+          set -x
+          echo "Astro build start: $(date -u +%H:%M:%S)"
+          timeout 240 npx astro build || { echo "::error::astro build timed out or failed"; exit 1; }
+          timeout 90 npx pagefind --site dist || echo "::warning::pagefind step failed (non-fatal)"
+          echo "Build complete: $(date -u +%H:%M:%S)"
+
+      - name: List CF Pages projects (diagnostic)
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: npx -y wrangler@latest pages project list || true
+
+      - name: Deploy to Cloudflare Pages
+        working-directory: wellness
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: npx -y wrangler@latest pages deploy dist --project-name=rooted-glow --branch=main --commit-dirty=true
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "### rooted-glow deploy ${{ job.status }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Commit: ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
