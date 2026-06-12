@@ -21,7 +21,7 @@ difficulty: beginner
 
 De Raspberry Pi Pico is goedkoop, snel en vergevingsgezind. Voor ongeveer €4 krijg je een dual-core ARM Cortex-M0+ die draait op 133 MHz, 264 KB SRAM, 2 MB flash, 26 GPIO-pinnen en een USB-C-poort. Dat is absurd veel waarde. De Pico W voegt Wi-Fi en Bluetooth toe voor ongeveer €6. In tegenstelling tot een Arduino Uno, kun je hem programmeren in Python (MicroPython) en C/C++, wat het voor beginners aanzienlijk minder pijnlijk maakt.
 
-Alle tien projecten hieronder gebruiken MicroPython. Ze werken op zowel de Pico als de Pico W (de laatste heeft specifiek een Pico W nodig). Om te beginnen, pak een [Raspberry Pi Pico W Starter Kit](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) of bouw je eigen met een [originele Raspberry Pi Pico W](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) en een fatsoenlijke [breadboard en jumper wire set](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20).
+Alle tien projecten hieronder gebruiken MicroPython. Ze werken op zowel de Pico als de Pico W (de laatste heeft specifiek een Pico W nodig). Om te beginnen, pak een **Raspberry Pi Pico W Starter Kit** of bouw je eigen met een **originele Raspberry Pi Pico W** en een fatsoenlijke **breadboard en jumper wire set**.
 
 Voordat je begint, flasht MicroPython op je Pico. Houd BOOTSEL ingedrukt terwijl je hem aansluit, sleep het `.uf2`-bestand naar het station dat verschijnt, en gebruik de Thonny IDE om code uit te voeren. Thonny is gratis en hiervoor gemaakt. Je hebt niets geavanceerders nodig.
 
@@ -50,7 +50,7 @@ Als je een knipperende LED ziet, schrijf je officieel embedded software. Zo niet
 
 **Moeilijkheidsgraad:** Makkelijk
 **Tijd:** 30 minuten
-**Onderdelen:** Pico, niets anders (de onboard sensor is goed genoeg), of een [DS18B20 waterdichte probe](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) als je buitentemperatuur wilt loggen.
+**Onderdelen:** Pico, niets anders (de onboard sensor is goed genoeg), of een **DS18B20 waterdichte probe** als je buitentemperatuur wilt loggen.
 
 De Pico heeft een ingebouwde temperatuursensor die is aangesloten op de interne ADC op kanaal 4. Hij is niet laboratorium-accuraat, maar perfect om te leren. Dit project leest de temperatuur elke 10 seconden uit en schrijft deze naar een CSV-bestand in de flashopslag van de Pico.
 
@@ -112,7 +112,7 @@ while True:
 
 **Moeilijkheidsgraad:** Makkelijk
 **Tijd:** 20 minuten
-**Onderdelen:** Pico, [HC-SR501 PIR sensor](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20), passieve buzzer, jumper wires
+**Onderdelen:** Pico, **HC-SR501 PIR sensor**, passieve buzzer, jumper wires
 
 Een klein kameralarm. De PIR-sensor geeft een hoog signaal als hij beweging detecteert, en je activeert de buzzer bij de flank.
 
@@ -140,7 +140,7 @@ while True:
 
 **Moeilijkheidsgraad:** Makkelijk tot gemiddeld
 **Tijd:** 30 minuten
-**Onderdelen:** Pico, [HC-SR04 ultrasone sensor](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20), een 10k en 20k weerstand (de sensor is 5 V, Pico is 3.3 V)
+**Onderdelen:** Pico, **HC-SR04 ultrasone sensor**, een 10k en 20k weerstand (de sensor is 5 V, Pico is 3.3 V)
 
 Belangrijk: de echo-pin van de HC-SR04 geeft 5 V uit. Sluit deze niet direct aan op een Pico GPIO. Gebruik een spanningsdeler (10k van echo naar je Pico-pin, 20k van je Pico-pin naar aarde) of een correcte level shifter.
 
@@ -174,7 +174,7 @@ while True:
 
 **Moeilijkheidsgraad:** Gemiddeld
 **Tijd:** 45 minuten
-**Onderdelen:** Pico, [KY-040 roterende encoder](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20), een paar pull-up weerstanden (vaak inbegrepen op de module)
+**Onderdelen:** Pico, **KY-040 roterende encoder**, een paar pull-up weerstanden (vaak inbegrepen op de module)
 
 Roterende encoders zijn de favoriete invoermethode voor elk project met opties. Dit voorbeeld telt op of af wanneer je aan de as draait en reset naar nul wanneer je klikt.
 
@@ -211,7 +211,7 @@ while True:
 
 **Moeilijkheidsgraad:** Gemiddeld
 **Tijd:** 45 minuten
-**Onderdelen:** Pico, [0.96 inch 128x64 SSD1306 OLED (I2C)](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20), jumper wires
+**Onderdelen:** Pico, **0.96 inch 128x64 SSD1306 OLED (I2C)**, jumper wires
 
 Kleine I2C OLED's zijn de makkelijkste manier om een echt display op je project te zetten. Installeer de `ssd1306` MicroPython library vanuit Thonny's package manager. Sluit SDA aan op GPIO 4, SCL op GPIO 5, VCC op 3.3 V, GND op GND.
 
@@ -240,7 +240,7 @@ while True:
 
 **Moeilijkheidsgraad:** Makkelijk
 **Tijd:** 30 minuten
-**Onderdelen:** Pico, [SG90 micro servo](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20), drukknop, 220 ohm weerstand, externe 5 V voeding aanbevolen
+**Onderdelen:** Pico, **SG90 micro servo**, drukknop, 220 ohm weerstand, externe 5 V voeding aanbevolen
 
 Druk op een knop, de servo zwaait naar 180 graden. Druk nogmaals, hij gaat terug naar 0. De SG90 draait graag vanaf de VBUS-pin van de Pico voor eenmalige tests, maar voor elk echt project voed je de servo apart en deel je de ground.
 
@@ -273,7 +273,7 @@ while True:
 
 **Moeilijkheidsgraad:** Gemiddeld
 **Tijd:** 1 uur
-**Onderdelen:** Pico, [TM1637 4-cijferige 7-segment display](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20), optionele RTC module
+**Onderdelen:** Pico, **TM1637 4-cijferige 7-segment display**, optionele RTC module
 
 De TM1637 is een 4-cijferig LED-display met een ongelooflijk eenvoudige 2-draads interface en een kant-en-klare MicroPython library. Installeer `micropython-tm1637` vanuit Thonny. De Pico heeft geen eigen RTC, dus deze simpele versie telt seconden sinds boot. Voeg een DS3231 RTC module toe als je een klok wilt die na stroomuitval doorgaat.
 
@@ -299,7 +299,7 @@ while True:
 
 **Moeilijkheidsgraad:** Gemiddeld
 **Tijd:** 1 tot 2 uur
-**Onderdelen:** [Raspberry Pi Pico W](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20), BME280 sensor optioneel voor lokale data
+**Onderdelen:** **Raspberry Pi Pico W**, BME280 sensor optioneel voor lokale data
 
 Deze vereist de Pico W omdat deze Wi-Fi gebruikt. Hij maakt verbinding met je netwerk, belt een publieke weer-API (OpenWeatherMap, gratis tier) en print de huidige omstandigheden. Maak een gratis API-sleutel aan op openweathermap.org voordat je begint.
 
@@ -341,11 +341,11 @@ while True:
 
 Als je liever een bundel koopt dan losse onderdelen, dekt een kit bijna alles op deze lijst voor €30 tot €50:
 
-- [Freenove Ultimate Starter Kit for Raspberry Pi Pico W](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) — dekt alle 10 projecten hier, inclusief de Pico W
-- [Elegoo Complete Pico Kit](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) — alternatief, iets goedkoper, Pico niet altijd inbegrepen
-- [Assortiment van sensoren en modules](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) — als je al een Pico hebt
+- **Freenove Ultimate Starter Kit for Raspberry Pi Pico W** — dekt alle 10 projecten hier, inclusief de Pico W
+- **Elegoo Complete Pico Kit** — alternatief, iets goedkoper, Pico niet altijd inbegrepen
+- **Assortiment van sensoren en modules** — als je al een Pico hebt
 
-Voor individuele upgrades die ik blijf aanbevelen naast starterkits: een fatsoenlijke set [DuPont jumper wires](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) en een [kwaliteits 830-punts breadboard](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) gaan langer mee dan de slappe exemplaren die bij kits worden geleverd.
+Voor individuele upgrades die ik blijf aanbevelen naast starterkits: een fatsoenlijke set **DuPont jumper wires** en een **kwaliteits 830-punts breadboard** gaan langer mee dan de slappe exemplaren die bij kits worden geleverd.
 
 ## Een Paar Tips Die Je Uren Zullen Besparen
 

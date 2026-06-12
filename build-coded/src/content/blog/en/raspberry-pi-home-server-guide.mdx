@@ -30,15 +30,15 @@ This guide walks you through a complete setup from unboxing to a working server 
 
 | Item | Purpose | Estimated Cost |
 |------|---------|---------------|
-| [Raspberry Pi 4 (4GB or 8GB)](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) | The server itself | $55-75 |
-| [MicroSD card (32GB+)](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) | Boot drive | $8-12 |
+| **Raspberry Pi 4 (4GB or 8GB)** | The server itself | $55-75 |
+| **MicroSD card (32GB+)** | Boot drive | $8-12 |
 | USB-C power supply (5V/3A) | Power | $8-10 |
 | Ethernet cable | Reliable network connection | $5 |
-| [External USB hard drive](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) | Storage for files and media | $40-80 |
+| **External USB hard drive** | Storage for files and media | $40-80 |
 
 ### Optional but Recommended
 
-- [Aluminum passive cooling case](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) — keeps the Pi cool without a fan (silent operation)
+- **Aluminum passive cooling case** — keeps the Pi cool without a fan (silent operation)
 - USB SSD instead of HDD — faster, more reliable, but costs more
 - UPS battery backup — protects against power outages corrupting your data
 
@@ -291,7 +291,7 @@ This runs every Sunday at 3 AM and keeps your configurations backed up.
 
 - **Always use Ethernet** — WiFi adds latency and reduces throughput for file transfers.
 - **Use a USB 3.0 drive** — The Pi 4 has USB 3.0 ports (the blue ones). Make sure your drive is connected there.
-- **Consider an SSD** — A [USB 3.0 SSD enclosure](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) with a spare SATA SSD dramatically improves file access speeds.
+- **Consider an SSD** — A **USB 3.0 SSD enclosure** with a spare SATA SSD dramatically improves file access speeds.
 - **Monitor temperature** — Run `vcgencmd measure_temp` periodically. If it consistently exceeds 70C, improve your cooling.
 - **Keep the SD card healthy** — SD cards wear out with excessive writes. Use `log2ram` to keep logs in RAM: `sudo apt install log2ram`.
 

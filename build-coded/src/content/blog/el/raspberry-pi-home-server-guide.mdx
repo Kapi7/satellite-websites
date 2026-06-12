@@ -29,15 +29,15 @@ hub: "diy-smart-home-on-a-budget"
 
 | Αντικείμενο | Σκοπός | Εκτιμώμενο Κόστος |
 |------|---------|---------------|
-| [Raspberry Pi 4 (4GB or 8GB)](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) | Ο ίδιος ο server | $55-75 |
-| [MicroSD card (32GB+)](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) | Boot drive | $8-12 |
+| **Raspberry Pi 4 (4GB or 8GB)** | Ο ίδιος ο server | $55-75 |
+| **MicroSD card (32GB+)** | Boot drive | $8-12 |
 | USB-C power supply (5V/3A) | Τροφοδοσία | $8-10 |
 | Ethernet cable | Αξιόπιστη σύνδεση δικτύου | $5 |
-| [External USB hard drive](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) | Αποθήκευση για αρχεία και media | $40-80 |
+| **External USB hard drive** | Αποθήκευση για αρχεία και media | $40-80 |
 
 ### Προαιρετικά, αλλά Προτεινόμενα
 
-- [Αλουμινένια θήκη παθητικής ψύξης](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) — κρατάει το Pi δροσερό χωρίς ανεμιστήρα (αθόρυβη λειτουργία)
+- **Αλουμινένια θήκη παθητικής ψύξης** — κρατάει το Pi δροσερό χωρίς ανεμιστήρα (αθόρυβη λειτουργία)
 - USB SSD αντί για HDD — πιο γρήγορο, πιο αξιόπιστο, αλλά κοστίζει περισσότερο
 - UPS battery backup — προστατεύει από διακοπές ρεύματος που μπορεί να καταστρέψουν τα δεδομένα σου
 
@@ -290,7 +290,7 @@ crontab -e
 
 - **Πάντα να χρησιμοποιείς Ethernet** — το WiFi προσθέτει latency και μειώνει το throughput για τις μεταφορές αρχείων.
 - **Χρησιμοποίησε έναν USB 3.0 δίσκο** — Το Pi 4 έχει θύρες USB 3.0 (τις μπλε). Βεβαιώσου ότι ο δίσκος σου είναι συνδεδεμένος εκεί.
-- **Σκέψου ένα SSD** — Ένα [USB 3.0 SSD enclosure](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) με ένα εφεδρικό SATA SSD βελτιώνει δραματικά τις ταχύτητες πρόσβασης αρχείων.
+- **Σκέψου ένα SSD** — Ένα **USB 3.0 SSD enclosure** με ένα εφεδρικό SATA SSD βελτιώνει δραματικά τις ταχύτητες πρόσβασης αρχείων.
 - **Παρακολούθησε τη θερμοκρασία** — Εκτέλεσε το `vcgencmd measure_temp` περιοδικά. Αν ξεπερνάει σταθερά τους 70C, βελτίωσε την ψύξη σου.
 - **Διατήρησε την SD κάρτα υγιή** — Οι SD κάρτες φθείρονται με υπερβολικές εγγραφές. Χρησιμοποίησε το `log2ram` για να κρατάς τα logs στη RAM: `sudo apt install log2ram`.
 

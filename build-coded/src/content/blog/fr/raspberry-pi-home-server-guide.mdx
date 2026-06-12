@@ -29,15 +29,15 @@ Ce guide te mène de l'ouverture de la boîte à un serveur fonctionnel avec par
 
 | Article | Utilité | Coût estimé |
 |------|---------|---------------|
-| [Raspberry Pi 4 (4Go ou 8Go)](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) | Le serveur lui-même | 55-75 € |
-| [Carte MicroSD (32Go+)](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) | Disque de démarrage | 8-12 € |
+| **Raspberry Pi 4 (4Go ou 8Go)** | Le serveur lui-même | 55-75 € |
+| **Carte MicroSD (32Go+)** | Disque de démarrage | 8-12 € |
 | Alimentation USB-C (5V/3A) | Alimentation | 8-10 € |
 | Câble Ethernet | Connexion réseau fiable | 5 € |
-| [Disque dur externe USB](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) | Stockage pour fichiers et médias | 40-80 € |
+| **Disque dur externe USB** | Stockage pour fichiers et médias | 40-80 € |
 
 ### Optionnel mais recommandé
 
-- [Boîtier passif en aluminium](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) — garde le Pi au frais sans ventilateur (silencieux)
+- **Boîtier passif en aluminium** — garde le Pi au frais sans ventilateur (silencieux)
 - SSD USB à la place du HDD — plus rapide, plus fiable, mais plus cher
 - Batterie de secours UPS — protège contre les coupures de courant qui pourraient corrompre tes données
 
@@ -290,7 +290,7 @@ Ceci s'exécute chaque dimanche à 3h du matin et garde tes configurations sauve
 
 - **Utilise toujours Ethernet** — le WiFi ajoute de la latence et réduit le débit pour les transferts de fichiers.
 - **Utilise un disque USB 3.0** — Le Pi 4 a des ports USB 3.0 (les bleus). Assure-toi que ton disque y est connecté.
-- **Pense à un SSD** — Un [boîtier SSD USB 3.0](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) avec un SSD SATA de rechange améliore considérablement la vitesse d'accès aux fichiers.
+- **Pense à un SSD** — Un **boîtier SSD USB 3.0** avec un SSD SATA de rechange améliore considérablement la vitesse d'accès aux fichiers.
 - **Surveille la température** — Exécute `vcgencmd measure_temp` périodiquement. Si ça dépasse constamment 70°C, améliore ton refroidissement.
 - **Garde la carte SD en bonne santé** — Les cartes SD s'usent avec les écritures excessives. Utilise `log2ram` pour garder les logs en RAM : `sudo apt install log2ram`.
 

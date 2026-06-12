@@ -21,7 +21,7 @@ difficulty: beginner
 
 Il Raspberry Pi Pico è economico, veloce e ti perdona gli errori. Per circa 4€ hai un dual-core ARM Cortex-M0+ che gira a 133 MHz, 264 KB di SRAM, 2 MB di flash, 26 pin GPIO e una porta USB-C. Un valore pazzesco, davvero. Il Pico W aggiunge Wi-Fi e Bluetooth per circa 6€. A differenza di un Arduino Uno, puoi programmarlo in Python (MicroPython) così come in C/C++, il che lo rende drasticamente meno "spaventoso" per chi è alle prime armi.
 
-Tutti e dieci i progetti qui sotto usano MicroPython. Funzionano sia sul Pico che sul Pico W (l'ultimo progetto richiede specificamente un Pico W). Per iniziare, procurati un [Raspberry Pi Pico W Starter Kit](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) o costruisci il tuo con un [Raspberry Pi Pico W originale](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) e un buon [set di breadboard e cavi jumper](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20).
+Tutti e dieci i progetti qui sotto usano MicroPython. Funzionano sia sul Pico che sul Pico W (l'ultimo progetto richiede specificamente un Pico W). Per iniziare, procurati un **Raspberry Pi Pico W Starter Kit** o costruisci il tuo con un **Raspberry Pi Pico W originale** e un buon **set di breadboard e cavi jumper**.
 
 Prima di iniziare, carica MicroPython sul tuo Pico. Tieni premuto BOOTSEL mentre lo colleghi, trascina il file `.uf2` sul drive che appare e usa l'IDE Thonny per eseguire il codice. Thonny è gratuito ed è fatto apposta. Non ti serve niente di più complicato.
 
@@ -50,7 +50,7 @@ Se vedi un LED che lampeggia, stai ufficialmente scrivendo software embedded. Se
 
 **Difficoltà:** Facile
 **Tempo:** 30 minuti
-**Componenti:** Pico, nient'altro (il sensore integrato è abbastanza buono), oppure una [sonda impermeabile DS18B20](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) se vuoi registrare la temperatura esterna.
+**Componenti:** Pico, nient'altro (il sensore integrato è abbastanza buono), oppure una **sonda impermeabile DS18B20** se vuoi registrare la temperatura esterna.
 
 Il Pico ha un sensore di temperatura integrato collegato all'ADC interno sul canale 4. Non è preciso come uno da laboratorio, ma è perfetto per imparare. Questo progetto legge la temperatura ogni 10 secondi e la scrive su un file CSV nella memoria flash del Pico.
 
@@ -112,7 +112,7 @@ while True:
 
 **Difficoltà:** Facile
 **Tempo:** 20 minuti
-**Componenti:** Pico, [sensore PIR HC-SR501](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20), buzzer passivo, cavi jumper
+**Componenti:** Pico, **sensore PIR HC-SR501**, buzzer passivo, cavi jumper
 
 Un piccolo allarme per la stanza. Il sensore PIR emette un segnale alto quando rileva movimento, e tu fai suonare il buzzer al cambio di stato.
 
@@ -140,7 +140,7 @@ while True:
 
 **Difficoltà:** Da facile a moderata
 **Tempo:** 30 minuti
-**Componenti:** Pico, [sensore ultrasonico HC-SR04](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20), resistenze da 10k e 20k (il sensore è a 5 V, il Pico a 3.3 V)
+**Componenti:** Pico, **sensore ultrasonico HC-SR04**, resistenze da 10k e 20k (il sensore è a 5 V, il Pico a 3.3 V)
 
 Importante: l'eco pin dell'HC-SR04 emette 5 V. Non collegarlo direttamente a un GPIO del Pico. Usa un partitore di tensione (10k dall'eco al tuo pin Pico, 20k dal tuo pin Pico a massa) o un level shifter adeguato.
 
@@ -174,7 +174,7 @@ while True:
 
 **Difficoltà:** Moderata
 **Tempo:** 45 minuti
-**Componenti:** Pico, [encoder rotativo KY-040](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20), alcune resistenze di pull-up (spesso incluse sul modulo)
+**Componenti:** Pico, **encoder rotativo KY-040**, alcune resistenze di pull-up (spesso incluse sul modulo)
 
 Gli encoder rotativi sono il metodo di input preferito per qualsiasi progetto con delle opzioni. Questo esempio conta su o giù quando giri la manopola e si resetta a zero quando premi.
 
@@ -211,7 +211,7 @@ while True:
 
 **Difficoltà:** Moderata
 **Tempo:** 45 minuti
-**Componenti:** Pico, [OLED SSD1306 da 0.96 pollici 128x64 (I2C)](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20), cavi jumper
+**Componenti:** Pico, **OLED SSD1306 da 0.96 pollici 128x64 (I2C)**, cavi jumper
 
 I piccoli display OLED I2C sono il modo più semplice per aggiungere un vero display al tuo progetto. Installa la libreria MicroPython `ssd1306` dal package manager di Thonny. Collega SDA al GPIO 4, SCL al GPIO 5, VCC a 3.3 V, GND a GND.
 
@@ -240,7 +240,7 @@ while True:
 
 **Difficoltà:** Facile
 **Tempo:** 30 minuti
-**Componenti:** Pico, [micro servo SG90](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20), pulsante, resistenza da 220 ohm, alimentatore esterno da 5 V consigliato
+**Componenti:** Pico, **micro servo SG90**, pulsante, resistenza da 220 ohm, alimentatore esterno da 5 V consigliato
 
 Premi un pulsante, il servo si muove a 180 gradi. Premi di nuovo, torna a 0. L'SG90 funziona volentieri dalla porta VBUS del Pico per test veloci, ma per qualsiasi progetto serio alimenta il servo separatamente e condividi la massa.
 
@@ -273,7 +273,7 @@ while True:
 
 **Difficoltà:** Moderata
 **Tempo:** 1 ora
-**Componenti:** Pico, [display a 4 cifre a 7 segmenti TM1637](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20), modulo RTC opzionale
+**Componenti:** Pico, **display a 4 cifre a 7 segmenti TM1637**, modulo RTC opzionale
 
 Il TM1637 è un display a 4 cifre con un'interfaccia a 2 fili incredibilmente semplice e una libreria MicroPython già pronta. Installa `micropython-tm1637` da Thonny. Il Pico non ha un RTC integrato, quindi questa versione semplice conta i secondi dall'avvio. Aggiungi un modulo RTC DS3231 se vuoi un orologio che sopravviva allo spegnimento.
 
@@ -299,7 +299,7 @@ while True:
 
 **Difficoltà:** Moderata
 **Tempo:** 1-2 ore
-**Componenti:** [Raspberry Pi Pico W](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20), sensore BME280 opzionale per dati locali
+**Componenti:** **Raspberry Pi Pico W**, sensore BME280 opzionale per dati locali
 
 Questo progetto richiede il Pico W perché usa il Wi-Fi. Si connette alla tua rete, interroga una API meteo pubblica (OpenWeatherMap, versione gratuita) e stampa le condizioni attuali. Crea una chiave API gratuita su openweathermap.org prima di iniziare.
 
@@ -341,11 +341,11 @@ while True:
 
 Se preferisci comprare un pacchetto invece dei singoli componenti, un kit coprirà quasi tutto quello che c'è in questa lista per 30-50€:
 
-- [Freenove Ultimate Starter Kit per Raspberry Pi Pico W](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) — copre tutti i 10 progetti qui, include il Pico W
-- [Elegoo Complete Pico Kit](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) — alternativa, leggermente più economica, il Pico non è sempre incluso
-- [Assortimento di sensori e moduli](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) — se possiedi già un Pico
+- **Freenove Ultimate Starter Kit per Raspberry Pi Pico W** — copre tutti i 10 progetti qui, include il Pico W
+- **Elegoo Complete Pico Kit** — alternativa, leggermente più economica, il Pico non è sempre incluso
+- **Assortimento di sensori e moduli** — se possiedi già un Pico
 
-Per aggiornamenti singoli che consiglio sempre al di là dei kit base: un buon set di [cavi jumper DuPont](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) e una [breadboard di qualità da 830 punti](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) durano molto di più di quelle fragili che di solito si trovano nei kit.
+Per aggiornamenti singoli che consiglio sempre al di là dei kit base: un buon set di **cavi jumper DuPont** e una **breadboard di qualità da 830 punti** durano molto di più di quelle fragili che di solito si trovano nei kit.
 
 ## Qualche Consiglio Che Ti Farà Risparmiare Ore
 

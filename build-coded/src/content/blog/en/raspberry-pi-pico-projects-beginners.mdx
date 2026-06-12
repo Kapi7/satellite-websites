@@ -23,7 +23,7 @@ difficulty: beginner
 
 The Raspberry Pi Pico is cheap, fast, and forgiving. For about $4 you get a dual-core ARM Cortex-M0+ running at 133 MHz, 264 KB of SRAM, 2 MB of flash, 26 GPIO pins, and a USB-C port. That is absurd value. The Pico W adds Wi-Fi and Bluetooth for roughly $6. Unlike an Arduino Uno, you can program it in Python (MicroPython) as well as C/C++, which makes it dramatically less painful for beginners.
 
-All ten projects below use MicroPython. They work on both the Pico and Pico W (the last one needs a Pico W specifically). To get started, grab a [Raspberry Pi Pico W Starter Kit](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) or build your own with an [original Raspberry Pi Pico W](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) and a decent [breadboard and jumper wire set](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20).
+All ten projects below use MicroPython. They work on both the Pico and Pico W (the last one needs a Pico W specifically). To get started, grab a **Raspberry Pi Pico W Starter Kit** or build your own with an **original Raspberry Pi Pico W** and a decent **breadboard and jumper wire set**.
 
 Before you start, flash MicroPython onto your Pico. Hold BOOTSEL while plugging it in, drag the `.uf2` file onto the drive that appears, and use the Thonny IDE to run code. Thonny is free and built for this. You do not need anything fancier.
 
@@ -52,7 +52,7 @@ If you see a blinking LED, you are officially writing embedded software. If not,
 
 **Difficulty:** Easy
 **Time:** 30 minutes
-**Parts:** Pico, nothing else (the onboard sensor is good enough), or a [DS18B20 waterproof probe](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) if you want to log outdoor temperature.
+**Parts:** Pico, nothing else (the onboard sensor is good enough), or a **DS18B20 waterproof probe** if you want to log outdoor temperature.
 
 The Pico has a built-in temperature sensor connected to the internal ADC on channel 4. It is not laboratory-accurate, but it is perfect for learning. This project reads the temperature every 10 seconds and writes it to a CSV file in the Pico's flash storage.
 
@@ -114,7 +114,7 @@ while True:
 
 **Difficulty:** Easy
 **Time:** 20 minutes
-**Parts:** Pico, [HC-SR501 PIR sensor](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20), passive buzzer, jumper wires
+**Parts:** Pico, **HC-SR501 PIR sensor**, passive buzzer, jumper wires
 
 A tiny room alarm. The PIR sensor outputs high when it sees movement, and you fire the buzzer on the edge.
 
@@ -142,7 +142,7 @@ while True:
 
 **Difficulty:** Easy to moderate
 **Time:** 30 minutes
-**Parts:** Pico, [HC-SR04 ultrasonic sensor](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20), a 10k and 20k resistor (the sensor is 5 V, Pico is 3.3 V)
+**Parts:** Pico, **HC-SR04 ultrasonic sensor**, a 10k and 20k resistor (the sensor is 5 V, Pico is 3.3 V)
 
 Important: the HC-SR04's echo pin outputs 5 V. Do not connect it directly to a Pico GPIO. Use a voltage divider (10k from echo to your Pico pin, 20k from your Pico pin to ground) or a proper level shifter.
 
@@ -176,7 +176,7 @@ while True:
 
 **Difficulty:** Moderate
 **Time:** 45 minutes
-**Parts:** Pico, [KY-040 rotary encoder](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20), a few pull-up resistors (often included on the module)
+**Parts:** Pico, **KY-040 rotary encoder**, a few pull-up resistors (often included on the module)
 
 Rotary encoders are the input method of choice for any project with options. This example counts up or down when you turn the shaft and resets to zero when you click.
 
@@ -213,7 +213,7 @@ while True:
 
 **Difficulty:** Moderate
 **Time:** 45 minutes
-**Parts:** Pico, [0.96 inch 128x64 SSD1306 OLED (I2C)](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20), jumper wires
+**Parts:** Pico, **0.96 inch 128x64 SSD1306 OLED (I2C)**, jumper wires
 
 Small I2C OLEDs are the easiest way to put a real display on your project. Install the `ssd1306` MicroPython library from Thonny's package manager. Wire SDA to GPIO 4, SCL to GPIO 5, VCC to 3.3 V, GND to GND.
 
@@ -242,7 +242,7 @@ while True:
 
 **Difficulty:** Easy
 **Time:** 30 minutes
-**Parts:** Pico, [SG90 micro servo](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20), push button, 220 ohm resistor, external 5 V supply recommended
+**Parts:** Pico, **SG90 micro servo**, push button, 220 ohm resistor, external 5 V supply recommended
 
 Press a button, the servo sweeps to 180. Press again, it comes back to 0. The SG90 is happy to run from the Pico's VBUS pin for one-off testing, but for any real project power the servo separately and share ground.
 
@@ -275,7 +275,7 @@ while True:
 
 **Difficulty:** Moderate
 **Time:** 1 hour
-**Parts:** Pico, [TM1637 4-digit 7-segment display](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20), optional RTC module
+**Parts:** Pico, **TM1637 4-digit 7-segment display**, optional RTC module
 
 The TM1637 is a 4-digit LED display with an incredibly simple 2-wire interface and a ready-made MicroPython library. Install `micropython-tm1637` from Thonny. The Pico does not have an RTC of its own, so this simple version counts seconds since boot. Add a DS3231 RTC module if you want a clock that survives power off.
 
@@ -301,7 +301,7 @@ while True:
 
 **Difficulty:** Moderate
 **Time:** 1 to 2 hours
-**Parts:** [Raspberry Pi Pico W](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20), BME280 sensor optional for local data
+**Parts:** **Raspberry Pi Pico W**, BME280 sensor optional for local data
 
 This one needs the Pico W because it uses Wi-Fi. It connects to your network, hits a public weather API (OpenWeatherMap, free tier), and prints the current conditions. Create a free API key on openweathermap.org before you start.
 
@@ -343,11 +343,11 @@ while True:
 
 If you would rather buy a bundle than individual parts, a kit will cover almost everything in this list for $30 to $50:
 
-- [Freenove Ultimate Starter Kit for Raspberry Pi Pico W](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) — covers all 10 projects here, includes the Pico W
-- [Elegoo Complete Pico Kit](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) — alternate, slightly cheaper, Pico not always included
-- [Assortment of sensors and modules](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) — if you already own a Pico
+- **Freenove Ultimate Starter Kit for Raspberry Pi Pico W** — covers all 10 projects here, includes the Pico W
+- **Elegoo Complete Pico Kit** — alternate, slightly cheaper, Pico not always included
+- **Assortment of sensors and modules** — if you already own a Pico
 
-For individual upgrades that I keep recommending beyond starter kits: a proper set of [DuPont jumper wires](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) and a [quality 830-point breadboard](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) outlast the flimsy ones that ship with kits.
+For individual upgrades that I keep recommending beyond starter kits: a proper set of **DuPont jumper wires** and a **quality 830-point breadboard** outlast the flimsy ones that ship with kits.
 
 ## A Few Tips That Will Save You Hours
 

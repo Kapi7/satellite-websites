@@ -29,15 +29,15 @@ Esta guía te lleva paso a paso por una configuración completa, desde que la sa
 
 | Artículo | Propósito | Costo estimado |
 |------|---------|---------------|
-| [Raspberry Pi 4 (4GB o 8GB)](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) | El servidor en sí | $55-75 |
-| [Tarjeta MicroSD (32GB+)](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) | Unidad de arranque | $8-12 |
+| **Raspberry Pi 4 (4GB o 8GB)** | El servidor en sí | $55-75 |
+| **Tarjeta MicroSD (32GB+)** | Unidad de arranque | $8-12 |
 | Fuente de alimentación USB-C (5V/3A) | Alimentación | $8-10 |
 | Cable Ethernet | Conexión de red confiable | $5 |
-| [Disco duro externo USB](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) | Almacenamiento para archivos y medios | $40-80 |
+| **Disco duro externo USB** | Almacenamiento para archivos y medios | $40-80 |
 
 ### Opcional, pero recomendado
 
-- [Carcasa de aluminio con enfriamiento pasivo](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) — mantiene la Pi fresca sin ventilador (operación silenciosa)
+- **Carcasa de aluminio con enfriamiento pasivo** — mantiene la Pi fresca sin ventilador (operación silenciosa)
 - SSD USB en lugar de HDD — más rápido, más confiable, pero cuesta más
 - Batería de respaldo UPS — protege tus datos de corrupción por cortes de energía
 
@@ -290,7 +290,7 @@ Esto se ejecuta cada domingo a las 3 AM y mantiene tus configuraciones respaldad
 
 - **Usa siempre Ethernet** — el WiFi añade latencia y reduce el rendimiento para las transferencias de archivos.
 - **Usa un disco USB 3.0** — La Pi 4 tiene puertos USB 3.0 (los azules). Asegúrate de que tu disco esté conectado ahí.
-- **Considera usar un SSD** — Una [carcasa USB 3.0 para SSD](https://www.amazon.com/dp/PLACEHOLDER?tag=buildcoded-20) con un SSD SATA de repuesto mejora muchísimo las velocidades de acceso a archivos.
+- **Considera usar un SSD** — Una **carcasa USB 3.0 para SSD** con un SSD SATA de repuesto mejora muchísimo las velocidades de acceso a archivos.
 - **Monitorea la temperatura** — Ejecuta `vcgencmd measure_temp` de vez en cuando. Si supera constantemente los 70C, mejora tu sistema de enfriamiento.
 - **Mantén la tarjeta SD en buen estado** — Las tarjetas SD se desgastan con demasiadas escrituras. Usa `log2ram` para mantener los logs en la RAM: `sudo apt install log2ram`.
 
