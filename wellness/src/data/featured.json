@@ -1,18 +1,18 @@
 {
-  "updated": "2026-06-11",
-  "period": "2026-05-12 to 2026-06-09",
+  "updated": "2026-06-12",
+  "period": "2026-05-13 to 2026-06-10",
   "trending": [
     {
       "slug": "best-protein-powders-clean-natural",
       "clicks": 6,
-      "impressions": 1736,
-      "position": 30.5
+      "impressions": 1645,
+      "position": 30.0
     },
     {
       "slug": "best-double-cleansing-products",
       "clicks": 2,
-      "impressions": 308,
-      "position": 37.2
+      "impressions": 278,
+      "position": 39.6
     },
     {
       "slug": "best-running-shoes-intermediate",
@@ -23,20 +23,20 @@
     {
       "slug": "best-running-shoes-advanced",
       "clicks": 1,
-      "impressions": 55,
-      "position": 17.8
+      "impressions": 54,
+      "position": 18.0
+    },
+    {
+      "slug": "asics-novablast-5-review",
+      "clicks": 0,
+      "impressions": 74,
+      "position": 45.5
     },
     {
       "slug": "best-probiotics-for-women-gut-health",
       "clicks": 0,
-      "impressions": 75,
-      "position": 42.2
-    },
-    {
-      "slug": "complete-guide-ancestral-eating",
-      "clicks": 1,
-      "impressions": 42,
-      "position": 12.6
+      "impressions": 74,
+      "position": 42.6
     }
   ],
   "rising": []
