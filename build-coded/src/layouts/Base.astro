@@ -118,6 +118,27 @@ const pathWithoutLocale = pagePath.replace(new RegExp(`^/${locale}(?=/|$)`), '')
       <script type="application/ld+json" set:html={schema} />
     ))}
 
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+      '@id': 'https://build-coded.com/#organization',
+      name: 'Build Coded',
+      url: 'https://build-coded.com/',
+      logo: { '@type': 'ImageObject', url: 'https://build-coded.com/images/og-default.jpg' },
+      description: 'Independent DIY and maker publication: woodworking, home improvement, electronics, and crafts. Reader-supported through affiliate partnerships.',
+      foundingDate: '2024',
+      publishingPrinciples: 'https://build-coded.com/disclosure/',
+    })} />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      '@id': 'https://build-coded.com/#website',
+      name: 'Build Coded',
+      url: 'https://build-coded.com/',
+      publisher: { '@id': 'https://build-coded.com/#organization' },
+      inLanguage: locale,
+    })} />
+
     {/* RTL / Arabic font styles */}
     {locale === 'ar' && (
       <style is:inline>

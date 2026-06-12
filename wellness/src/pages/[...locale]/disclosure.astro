@@ -1,0 +1,54 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { locales, defaultLocale, type Locale } from '../../i18n/locales';
+
+export function getStaticPaths() {
+  return locales.map(l => ({
+    params: { locale: l === defaultLocale ? undefined : l },
+    props: { locale: l },
+  }));
+}
+
+const { locale } = Astro.props as { locale: Locale };
+---
+
+<Base
+  title="Affiliate Disclosure"
+  description="How Rooted Glow makes money: our affiliate relationships, how we choose products, and what we promise about editorial independence."
+  locale={locale}
+>
+  <Header locale={locale} />
+
+  <main class="flex-1">
+    <article class="max-w-6xl mx-auto px-5 sm:px-8 py-16">
+      <div class="max-w-3xl">
+        <span class="inline-block text-[11px] font-semibold uppercase tracking-[0.2em] text-sage-400 mb-5">Transparency</span>
+        <h1 class="font-heading text-4xl text-charcoal tracking-tight leading-[1.1] mb-8">Affiliate Disclosure</h1>
+      </div>
+
+      <div class="max-w-3xl prose">
+        <p><em>Last updated: June 2026</em></p>
+
+        <h2>How We Make Money</h2>
+        <p>Rooted Glow is a reader-supported publication. Some links on this site are affiliate links: if you click one and make a purchase, we may earn a commission from the retailer at no extra cost to you. This is how we fund our research, testing, and writing.</p>
+
+        <h2>Our Retail Partners</h2>
+        <p>We currently earn commissions from retailers including Mirai Skin (K-beauty and skincare products) and other specialty retailers relevant to the products we cover. If a link earns us a commission, it points to a retailer we have an active partnership with.</p>
+
+        <h2>What We Promise</h2>
+        <ul>
+          <li><strong>Recommendations come first.</strong> We decide what to recommend before we check whether an affiliate program exists for it. Plenty of products we recommend earn us nothing.</li>
+          <li><strong>Commissions never change a verdict.</strong> A higher commission rate has never moved a product up a ranking, and it never will.</li>
+          <li><strong>We disclose, always.</strong> This page exists so you never have to wonder.</li>
+        </ul>
+
+        <h2>Questions</h2>
+        <p>If anything about our affiliate relationships is unclear, reach out via the contact details on our <a href="/about/">About page</a>.</p>
+      </div>
+    </article>
+  </main>
+
+  <Footer locale={locale} />
+</Base>

@@ -1,0 +1,54 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { locales, defaultLocale, type Locale } from '../../i18n/locales';
+
+export function getStaticPaths() {
+  return locales.map(l => ({
+    params: { locale: l === defaultLocale ? undefined : l },
+    props: { locale: l },
+  }));
+}
+
+const { locale } = Astro.props as { locale: Locale };
+---
+
+<Base
+  title="Affiliate Disclosure"
+  description="How Build Coded makes money: our affiliate relationships, how we choose tools and products to recommend, and our editorial independence promise."
+  locale={locale}
+>
+  <Header locale={locale} />
+
+  <main class="flex-1">
+    <article class="max-w-6xl mx-auto px-5 sm:px-8 py-16">
+      <div class="max-w-3xl">
+        <span class="inline-block text-[11px] font-semibold uppercase tracking-[0.2em] text-steel-300 mb-5">Transparency</span>
+        <h1 class="font-heading text-4xl tracking-tight leading-[1.1] mb-8">Affiliate Disclosure</h1>
+      </div>
+
+      <div class="max-w-3xl prose">
+        <p><em>Last updated: June 2026</em></p>
+
+        <h2>How We Make Money</h2>
+        <p>Build Coded is a reader-supported publication. Some links on this site are affiliate links: if you click one and buy something, we may earn a commission from the retailer at no extra cost to you. That commission funds our tool testing, project builds, and writing.</p>
+
+        <h2>Our Retail Partners</h2>
+        <p>We participate in affiliate programs with retailers relevant to DIY, tools, and electronics. When we link to a product at a retailer we partner with, that link may earn us a commission.</p>
+
+        <h2>What We Promise</h2>
+        <ul>
+          <li><strong>The pick comes before the program.</strong> We choose what to recommend first, then check whether an affiliate program exists. Many of our recommendations earn us nothing.</li>
+          <li><strong>Commission rates never move a ranking.</strong> The best tool wins, not the best payout.</li>
+          <li><strong>Safety first, always.</strong> On electrical and structural projects, we will always tell you when to hire a professional instead of buying anything.</li>
+        </ul>
+
+        <h2>Questions</h2>
+        <p>If anything about our affiliate relationships is unclear, reach out via our <a href="/about/">About page</a>.</p>
+      </div>
+    </article>
+  </main>
+
+  <Footer locale={locale} />
+</Base>

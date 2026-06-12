@@ -138,6 +138,27 @@ const rtl = isRtl(locale);
     {jsonLd.map((schema) => (
       <script type="application/ld+json" set:html={schema} />
     ))}
+
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+      '@id': 'https://rooted-glow.com/#organization',
+      name: 'Rooted Glow',
+      url: 'https://rooted-glow.com/',
+      logo: { '@type': 'ImageObject', url: 'https://rooted-glow.com/images/og-default.jpg' },
+      description: 'Independent wellness publication covering research-first nutrition, movement, and natural health. Reader-supported through affiliate partnerships.',
+      foundingDate: '2024',
+      publishingPrinciples: 'https://rooted-glow.com/disclosure/',
+    })} />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      '@id': 'https://rooted-glow.com/#website',
+      name: 'Rooted Glow',
+      url: 'https://rooted-glow.com/',
+      publisher: { '@id': 'https://rooted-glow.com/#organization' },
+      inLanguage: locale,
+    })} />
   </head>
   <body class="min-h-screen flex flex-col linen">
     <slot />

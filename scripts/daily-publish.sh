@@ -155,7 +155,22 @@ for article in \
   fi
 done
 
+# ─────────────────────────────────────────────────────────────
+# RECOVERY CADENCE (June 2026): rooted-glow + build-coded were hit by the
+# May core update (scaled-content suppression). Publishing daily AI content
+# into an active suppression deepens the footprint, so these two sites
+# publish every 3rd day only. Cosmetics (glow-coded) survived the update
+# and keeps its daily cadence. Remove this gate once impressions recover
+# (rooted-glow ~1,600/wk, build-coded ~200/wk).
+# ─────────────────────────────────────────────────────────────
+SUPPRESSED_SITE_PUBLISH_TODAY=false
+if [ $(( $(date +%j | sed 's/^0*//') % 3 )) -eq 0 ]; then
+  SUPPRESSED_SITE_PUBLISH_TODAY=true
+fi
+echo "[cadence] suppressed-site publishing today: $SUPPRESSED_SITE_PUBLISH_TODAY (day-of-year mod 3)"
+
 # Publish next draft from wellness (ordered by keyword value: vol desc, KD asc)
+if [ "$SUPPRESSED_SITE_PUBLISH_TODAY" = "true" ]; then
 for article in \
   "wellness/src/content/blog/en/magnesium-glycinate-benefits-dosage-guide.mdx" \
   "wellness/src/content/blog/en/nike-vomero-plus-review.mdx" \
@@ -197,8 +212,10 @@ for article in \
     break
   fi
 done
+fi  # SUPPRESSED_SITE_PUBLISH_TODAY (wellness)
 
 # Publish next draft from build-coded (ordered by keyword value: vol desc, KD asc)
+if [ "$SUPPRESSED_SITE_PUBLISH_TODAY" = "true" ]; then
 for article in \
   "build-coded/src/content/blog/en/diy-shelving-ideas-built-in-floating-wall.mdx" \
   "build-coded/src/content/blog/en/vinyl-plank-flooring-guide-lvp-vs-lvt.mdx" \
@@ -212,6 +229,7 @@ for article in \
     break
   fi
 done
+fi  # SUPPRESSED_SITE_PUBLISH_TODAY (build-coded)
 # Fallback: alphabetical for any remaining drafts (when curated lists exhausted).
 # Each site falls back independently so cosmetics, wellness, and build-coded each
 # get one published per day even after their priority lists are drained.
@@ -242,10 +260,10 @@ published_today() {
 if ! published_today cosmetics; then
   fallback_publish cosmetics "Glow Coded" || echo "[cosmetics] no drafts available"
 fi
-if ! published_today wellness; then
+if [ "$SUPPRESSED_SITE_PUBLISH_TODAY" = "true" ] && ! published_today wellness; then
   fallback_publish wellness "Rooted Glow" || echo "[wellness] no drafts available"
 fi
-if ! published_today build-coded && [ -d build-coded/src/content/blog/en ]; then
+if [ "$SUPPRESSED_SITE_PUBLISH_TODAY" = "true" ] && ! published_today build-coded && [ -d build-coded/src/content/blog/en ]; then
   fallback_publish build-coded "Build Coded" || echo "[build-coded] no drafts available"
 fi
 
