@@ -1,6 +1,6 @@
 {
-  "updated": "2026-06-15",
-  "period": "2026-05-16 to 2026-06-13",
+  "updated": "2026-06-16",
+  "period": "2026-05-17 to 2026-06-14",
   "trending": [
     {
       "slug": "acne-spot-treatments-that-work",
@@ -11,20 +11,8 @@
     {
       "slug": "best-niacinamide-serums-every-skin-type",
       "clicks": 0,
-      "impressions": 25,
-      "position": 73.9
-    },
-    {
-      "slug": "cosrx-snail-mucin-vs-torriden-dive-in-serum",
-      "clicks": 0,
-      "impressions": 11,
-      "position": 9.8
-    },
-    {
-      "slug": "best-korean-cica-products-redness-sensitive-skin",
-      "clicks": 0,
-      "impressions": 11,
-      "position": 72.5
+      "impressions": 24,
+      "position": 74
     }
   ],
   "rising": []

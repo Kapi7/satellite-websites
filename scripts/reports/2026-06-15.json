@@ -1,0 +1,71 @@
+{
+  "glow-coded.com": {
+    "gsc": {
+      "clicks": 0,
+      "impressions": 182,
+      "ctr": 0,
+      "position": 57.64835164835165
+    },
+    "ahrefs": {},
+    "ga4": {
+      "sessions": 193,
+      "users": 187,
+      "engaged": 30,
+      "ai_sessions": 30,
+      "ai_sources": [
+        {
+          "label": "ChatGPT",
+          "source": "chatgpt.com",
+          "sessions": 30,
+          "engaged": 5
+        }
+      ]
+    }
+  },
+  "rooted-glow.com": {
+    "gsc": {
+      "clicks": 0,
+      "impressions": 91,
+      "ctr": 0,
+      "position": 63.23076923076923
+    },
+    "ahrefs": {},
+    "ga4": {
+      "sessions": 49,
+      "users": 47,
+      "engaged": 10,
+      "ai_sessions": 6,
+      "ai_sources": [
+        {
+          "label": "ChatGPT",
+          "source": "chatgpt.com",
+          "sessions": 6,
+          "engaged": 3
+        }
+      ]
+    }
+  },
+  "build-coded.com": {
+    "gsc": {
+      "clicks": 0,
+      "impressions": 10,
+      "ctr": 0,
+      "position": 8.6
+    },
+    "ahrefs": {},
+    "ga4": {
+      "sessions": 260,
+      "users": 254,
+      "engaged": 7,
+      "ai_sessions": 12,
+      "ai_sources": [
+        {
+          "label": "ChatGPT",
+          "source": "chatgpt.com",
+          "sessions": 12,
+          "engaged": 2
+        }
+      ]
+    }
+  }
+}

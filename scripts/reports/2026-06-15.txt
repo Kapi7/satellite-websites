@@ -1,0 +1,130 @@
+============================================================
+  WEEKLY SEO REPORT
+  Week of 2026-06-15
+============================================================
+
+============================================================
+  GLOW-CODED.COM
+============================================================
+
+  GSC — glow-coded.com
+  ──────────────────────────────────────────────────
+  Clicks:      0 ─ 0
+  Impressions: 182 ▼ -5
+  CTR:         0.0% ─ 0
+  Position:    57.6 ▼ -1.1
+
+  Top Queries:
+  Query                                    Clicks   Impr    CTR   Pos
+  acide azélaïque et niacinamide                0      1   0.0%  50.0
+  acne spots                                    0      1   0.0%  49.0
+  ahabhapha                                     0      1   0.0%  86.0
+  ai skincare quiz                              0      3   0.0%  90.7
+  analisi della pelle online                    0      1   0.0%  86.0
+  analisi pelle viso online                     0      1   0.0%  86.0
+  bee propolis skin care                        0      1   0.0%  88.0
+  best cica cream korea                         0      1   0.0%  35.0
+  best toner korean                             0      1   0.0%  45.0
+  centella vs beauty of joseon                  0      1   0.0%  38.0
+
+  Ahrefs — glow-coded.com
+  ──────────────────────────────────────────────────
+
+  GA4 — glow-coded.com
+  ──────────────────────────────────────────────────
+  Sessions:   193   Users: 187   Engaged: 30
+  Channels:
+    Direct                              136
+    Organic Search                       26
+    Unassigned                           23
+    AI Assistant                         17
+    Referral                              1
+  AI referrals: 30 sessions
+    ChatGPT (chatgpt.com)  sessions: 30  engaged: 5
+
+  Bing — glow-coded.com
+  ──────────────────────────────────────────────────
+  Crawled: 0  |  Indexed: 0
+  Daily quota left: 100  |  Monthly: 1600
+
+============================================================
+  ROOTED-GLOW.COM
+============================================================
+
+  GSC — rooted-glow.com
+  ──────────────────────────────────────────────────
+  Clicks:      0 ─ 0
+  Impressions: 91 ▼ -50
+  CTR:         0.0% ─ 0
+  Position:    63.2 ▲ +21.0
+
+  Top Queries:
+  Query                                    Clicks   Impr    CTR   Pos
+  amino acids before bed                        0      1   0.0%  65.0
+  best protein powder clean                     0      1   0.0%  46.0
+  beste probiotica vrouw                        0      1   0.0%  79.0
+  can i use two different cleansers for         0      1   0.0%  97.0
+  casein before bed myth                        0      1   0.0%  72.0
+  casein before bed weight loss                 0      1   0.0%  70.0
+  casein protein before bed                     0      1   0.0%  82.0
+  casein protein before bed fat loss            0      1   0.0%  72.0
+  casein protein before bed weight loss         0      1   0.0%  80.0
+  casein protein sleep                          0      1   0.0%  92.0
+
+  Ahrefs — rooted-glow.com
+  ──────────────────────────────────────────────────
+
+  GA4 — rooted-glow.com
+  ──────────────────────────────────────────────────
+  Sessions:   49   Users: 47   Engaged: 10
+  Channels:
+    Direct                               30
+    Organic Search                       10
+    Unassigned                            8
+    AI Assistant                          4
+    Referral                              1
+  AI referrals: 6 sessions
+    ChatGPT (chatgpt.com)  sessions: 6  engaged: 3
+
+  Bing — rooted-glow.com
+  ──────────────────────────────────────────────────
+  Crawled: 0  |  Indexed: 0
+  Daily quota left: 100  |  Monthly: 1600
+
+============================================================
+  BUILD-CODED.COM
+============================================================
+
+  GSC — build-coded.com
+  ──────────────────────────────────────────────────
+  Clicks:      0 ─ 0
+  Impressions: 10 ▼ -87
+  CTR:         0.0% ─ 0
+  Position:    8.6 ▼ -48.9
+
+  Top Queries:
+  Query                                    Clicks   Impr    CTR   Pos
+  finishs im bereich holz                       0      1   0.0%  18.0
+
+  Ahrefs — build-coded.com
+  ──────────────────────────────────────────────────
+
+  GA4 — build-coded.com
+  ──────────────────────────────────────────────────
+  Sessions:   260   Users: 254   Engaged: 7
+  Channels:
+    Direct                              247
+    AI Assistant                         12
+    Organic Search                        1
+    Unassigned                            1
+  AI referrals: 12 sessions
+    ChatGPT (chatgpt.com)  sessions: 12  engaged: 2
+
+  Bing — build-coded.com
+  ──────────────────────────────────────────────────
+  Crawled: 90  |  Indexed: 7
+  Daily quota left: 100  |  Monthly: 1600
+
+============================================================
+  Report generated: 2026-06-15 08:00
+============================================================

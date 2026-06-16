@@ -1,30 +1,30 @@
 {
-  "updated": "2026-06-15",
-  "period": "2026-05-16 to 2026-06-13",
+  "updated": "2026-06-16",
+  "period": "2026-05-17 to 2026-06-14",
   "trending": [
     {
       "slug": "arduino-projects-beginners",
       "clicks": 1,
-      "impressions": 63,
-      "position": 67.2
+      "impressions": 59,
+      "position": 67.5
     },
     {
       "slug": "diy-candle-making-complete-guide",
       "clicks": 0,
-      "impressions": 59,
-      "position": 74.7
+      "impressions": 45,
+      "position": 73.7
     },
     {
       "slug": "floating-shelves-install-guide-best-picks",
       "clicks": 0,
-      "impressions": 35,
-      "position": 67.1
+      "impressions": 33,
+      "position": 66.4
     },
     {
       "slug": "best-cordless-soldering-iron-electronics",
       "clicks": 0,
-      "impressions": 20,
-      "position": 47.2
+      "impressions": 19,
+      "position": 47.1
     },
     {
       "slug": "how-to-hang-heavy-mirror-drywall-without-studs",
@@ -35,8 +35,8 @@
     {
       "slug": "how-to-install-gutter-guards",
       "clicks": 0,
-      "impressions": 17,
-      "position": 45.9
+      "impressions": 16,
+      "position": 46.2
     }
   ],
   "rising": []
