@@ -1,18 +1,24 @@
 {
-  "updated": "2026-06-23",
-  "period": "2026-05-24 to 2026-06-21",
+  "updated": "2026-06-24",
+  "period": "2026-05-25 to 2026-06-22",
   "trending": [
     {
       "slug": "acne-spot-treatments-that-work",
       "clicks": 0,
-      "impressions": 45,
-      "position": 81.4
+      "impressions": 44,
+      "position": 82.2
     },
     {
       "slug": "best-niacinamide-serums-every-skin-type",
       "clicks": 0,
-      "impressions": 26,
-      "position": 73.7
+      "impressions": 25,
+      "position": 74.0
+    },
+    {
+      "slug": "azelaic-acid-vs-niacinamide-korean",
+      "clicks": 0,
+      "impressions": 16,
+      "position": 51.5
     }
   ],
   "rising": []
