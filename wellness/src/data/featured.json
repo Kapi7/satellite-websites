@@ -1,18 +1,18 @@
 {
-  "updated": "2026-06-24",
-  "period": "2026-05-25 to 2026-06-22",
+  "updated": "2026-06-25",
+  "period": "2026-05-26 to 2026-06-23",
   "trending": [
     {
       "slug": "best-protein-powders-clean-natural",
-      "clicks": 1,
-      "impressions": 342,
-      "position": 21.0
+      "clicks": 0,
+      "impressions": 91,
+      "position": 14.1
     },
     {
       "slug": "best-plant-protein-powders-women",
       "clicks": 0,
-      "impressions": 41,
-      "position": 5.6
+      "impressions": 39,
+      "position": 3.0
     },
     {
       "slug": "best-stainless-steel-cookware",
@@ -27,16 +27,16 @@
       "position": 4.5
     },
     {
-      "slug": "best-double-cleansing-products",
+      "slug": "best-probiotics-for-women-gut-health",
       "clicks": 0,
-      "impressions": 25,
-      "position": 55.2
+      "impressions": 21,
+      "position": 18
     },
     {
-      "slug": "casein-protein-night-time-benefits",
+      "slug": "collagen-peptides-vs-bone-broth",
       "clicks": 0,
-      "impressions": 25,
-      "position": 70.1
+      "impressions": 21,
+      "position": 19
     }
   ],
   "rising": []
