@@ -1,24 +1,24 @@
 {
-  "updated": "2026-06-25",
-  "period": "2026-05-26 to 2026-06-23",
+  "updated": "2026-06-26",
+  "period": "2026-05-27 to 2026-06-24",
   "trending": [
     {
       "slug": "best-protein-powders-clean-natural",
       "clicks": 0,
-      "impressions": 91,
-      "position": 14.1
+      "impressions": 48,
+      "position": 7.9
     },
     {
       "slug": "best-plant-protein-powders-women",
       "clicks": 0,
-      "impressions": 39,
-      "position": 3.0
+      "impressions": 38,
+      "position": 2.3
     },
     {
       "slug": "best-stainless-steel-cookware",
       "clicks": 0,
-      "impressions": 19,
-      "position": 9.6
+      "impressions": 21,
+      "position": 9.2
     },
     {
       "slug": "10-high-protein-smoothie-recipes-recovery",
@@ -29,14 +29,14 @@
     {
       "slug": "best-probiotics-for-women-gut-health",
       "clicks": 0,
-      "impressions": 21,
-      "position": 18
+      "impressions": 18,
+      "position": 9.4
     },
     {
       "slug": "collagen-peptides-vs-bone-broth",
       "clicks": 0,
-      "impressions": 21,
-      "position": 19
+      "impressions": 18,
+      "position": 7.5
     }
   ],
   "rising": []

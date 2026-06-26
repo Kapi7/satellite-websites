@@ -1,12 +1,12 @@
 {
-  "updated": "2026-06-25",
-  "period": "2026-05-26 to 2026-06-23",
+  "updated": "2026-06-26",
+  "period": "2026-05-27 to 2026-06-24",
   "trending": [
     {
       "slug": "arduino-projects-beginners",
       "clicks": 0,
-      "impressions": 49,
-      "position": 77.2
+      "impressions": 44,
+      "position": 76.9
     },
     {
       "slug": "how-to-hang-heavy-mirror-drywall-without-studs",
@@ -15,16 +15,16 @@
       "position": 61.9
     },
     {
-      "slug": "floating-shelves-install-guide-best-picks",
-      "clicks": 0,
-      "impressions": 16,
-      "position": 64.5
-    },
-    {
       "slug": "best-cordless-soldering-iron-electronics",
       "clicks": 0,
       "impressions": 15,
       "position": 44.3
+    },
+    {
+      "slug": "floating-shelves-install-guide-best-picks",
+      "clicks": 0,
+      "impressions": 12,
+      "position": 64.8
     }
   ],
   "rising": []
