@@ -1,12 +1,12 @@
 {
-  "updated": "2026-06-26",
-  "period": "2026-05-27 to 2026-06-24",
+  "updated": "2026-06-27",
+  "period": "2026-05-28 to 2026-06-25",
   "trending": [
     {
       "slug": "arduino-projects-beginners",
       "clicks": 0,
-      "impressions": 44,
-      "position": 76.9
+      "impressions": 32,
+      "position": 76.6
     },
     {
       "slug": "how-to-hang-heavy-mirror-drywall-without-studs",
@@ -23,8 +23,8 @@
     {
       "slug": "floating-shelves-install-guide-best-picks",
       "clicks": 0,
-      "impressions": 12,
-      "position": 64.8
+      "impressions": 11,
+      "position": 64.5
     }
   ],
   "rising": []
