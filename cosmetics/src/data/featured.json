@@ -1,36 +1,36 @@
 {
-  "updated": "2026-06-27",
-  "period": "2026-05-28 to 2026-06-25",
+  "updated": "2026-06-28",
+  "period": "2026-05-29 to 2026-06-26",
   "trending": [
     {
       "slug": "korean-skincare-routine-complete-guide",
       "clicks": 0,
-      "impressions": 71,
-      "position": 85.3
+      "impressions": 94,
+      "position": 85.4
     },
     {
       "slug": "acne-spot-treatments-that-work",
       "clicks": 0,
-      "impressions": 43,
-      "position": 82.8
+      "impressions": 41,
+      "position": 83.6
     },
     {
       "slug": "best-niacinamide-serums-every-skin-type",
       "clicks": 0,
       "impressions": 26,
-      "position": 68.7
+      "position": 67.4
     },
     {
       "slug": "korean-eye-cream-guide",
       "clicks": 0,
-      "impressions": 16,
+      "impressions": 17,
       "position": 87.8
     },
     {
       "slug": "best-niacinamide-serums-korean",
       "clicks": 0,
-      "impressions": 12,
-      "position": 41.1
+      "impressions": 11,
+      "position": 48.2
     }
   ],
   "rising": []
