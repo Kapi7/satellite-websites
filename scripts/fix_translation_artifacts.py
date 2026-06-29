@@ -102,6 +102,32 @@ def fix_lt_digit(text):
     return (fm + tmp, n) if n else (text, 0)
 
 
+def fix_orphan_closing_tags(text):
+    """Strip orphan HTML closing tags (</div>, </span>, etc.) in the body that
+    have no matching opener — a truncated-translation artifact that breaks MDX
+    ('Unexpected closing slash'). Only removes a closing tag when the body has
+    strictly more closes than opens for that tag. Skips code fences/spans."""
+    m = FRONTMATTER_RE.match(text)
+    fm, body = (text[:m.end()], text[m.end():]) if m else ("", text)
+    blocks = []
+    def stash(mm): blocks.append(mm.group(0)); return f"\x00{len(blocks)-1}\x00"
+    scan = re.sub(r"```.*?```", stash, body, flags=re.S)
+    scan = re.sub(r"`[^`]*`", stash, scan)
+    fixes = 0
+    for tag in ("div","span","p","section","article","ul","ol","li","table","tr","td"):
+        opens = len(re.findall(rf"<{tag}[\s>]", scan))
+        closes = len(re.findall(rf"</{tag}>", scan))
+        while closes > opens:
+            scan, n = re.subn(rf"</{tag}>", "", scan, count=1)
+            if not n: break
+            closes -= 1; fixes += 1
+    if not fixes:
+        return text, 0
+    for i, b in enumerate(blocks):
+        scan = scan.replace(f"\x00{i}\x00", b)
+    return fm + scan, fixes
+
+
 def fix_unquoted_yaml_colons(text):
     """Quote frontmatter values that contain an unquoted colon (e.g.
     `imageAlt: Foo: bar` breaks YAML parsing). Common translator artifact."""
@@ -153,8 +179,9 @@ def process_file(path, dry_run):
     text, tok_n = fix_llm_token_tags(text)
     text, yamlc_n = fix_unquoted_yaml_colons(text)
     text, ltd_n = fix_lt_digit(text)
+    text, orphan_n = fix_orphan_closing_tags(text)
     text, quote_n = fix_unescaped_quotes(text)
-    total = sep_n + leak_n + quote_n + long_n + tok_n + yamlc_n + ltd_n
+    total = sep_n + leak_n + quote_n + long_n + tok_n + yamlc_n + ltd_n + orphan_n
     if total == 0:
         return None
     if not dry_run:
