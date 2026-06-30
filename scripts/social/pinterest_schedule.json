@@ -5888,11 +5888,7 @@
     ],
     "scheduled_date": "2026-05-28",
     "status": "failed",
-<<<<<<< Updated upstream
     "posted_at": "2026-05-28T01:35:00.242588"
-=======
-    "posted_at": "2026-05-28T15:00:18.960503"
->>>>>>> Stashed changes
   },
   {
     "id": "53f28e9d",
@@ -8562,11 +8558,7 @@
     ],
     "scheduled_date": "2026-05-28T10:00:00",
     "status": "failed",
-<<<<<<< Updated upstream
     "posted_at": "2026-05-28T01:30:44.680974",
-=======
-    "posted_at": "2026-05-28T15:00:33.711490",
->>>>>>> Stashed changes
     "_meta": {
       "theme": "anti-aging-30s",
       "variant": 1,
@@ -8620,11 +8612,7 @@
     ],
     "scheduled_date": "2026-05-28T16:00:00",
     "status": "failed",
-<<<<<<< Updated upstream
     "posted_at": "2026-05-28T01:32:35.038035",
-=======
-    "posted_at": "2026-05-28T15:02:04.162932",
->>>>>>> Stashed changes
     "_meta": {
       "theme": "vitamin-c-serums",
       "variant": 2,
@@ -8673,11 +8661,7 @@
     ],
     "scheduled_date": "2026-05-28T22:00:00",
     "status": "failed",
-<<<<<<< Updated upstream
     "posted_at": "2026-05-28T01:33:51.267609",
-=======
-    "posted_at": "2026-05-28T15:03:28.223432",
->>>>>>> Stashed changes
     "_meta": {
       "theme": "cleansing-oils",
       "variant": 0,
