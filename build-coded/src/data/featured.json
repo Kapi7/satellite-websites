@@ -1,24 +1,12 @@
 {
-  "updated": "2026-06-29",
-  "period": "2026-05-30 to 2026-06-27",
+  "updated": "2026-06-30",
+  "period": "2026-05-31 to 2026-06-28",
   "trending": [
     {
       "slug": "arduino-projects-beginners",
       "clicks": 0,
-      "impressions": 25,
-      "position": 77
-    },
-    {
-      "slug": "how-to-hang-heavy-mirror-drywall-without-studs",
-      "clicks": 0,
-      "impressions": 12,
-      "position": 62.9
-    },
-    {
-      "slug": "best-cordless-soldering-iron-electronics",
-      "clicks": 0,
-      "impressions": 10,
-      "position": 42.2
+      "impressions": 19,
+      "position": 76.3
     }
   ],
   "rising": []

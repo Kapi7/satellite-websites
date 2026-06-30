@@ -1,0 +1,129 @@
+============================================================
+  WEEKLY SEO REPORT
+  Week of 2026-06-29
+============================================================
+
+============================================================
+  GLOW-CODED.COM
+============================================================
+
+  GSC — glow-coded.com
+  ──────────────────────────────────────────────────
+  Clicks:      0 ─ 0
+  Impressions: 380 ▲ +78
+  CTR:         0.0% ─ 0
+  Position:    63.4 ▲ +1.8
+
+  Top Queries:
+  Query                                    Clicks   Impr    CTR   Pos
+  ai skincare quiz                              0      4   0.0%  97.0
+  beauty boost opiniones                        0      4   0.0%  66.2
+  bee propolis skin care                        0      3   0.0%  86.7
+  cosmetica coreana rosacea                     0      2   0.0%  96.5
+  get rid of spots                              0      1   0.0%  94.0
+  glowcode review                               0      1   0.0%  70.0
+  glycolsäure schwangerschaft                   0      2   0.0%  93.0
+  kbeauty travel kit                            0      1   0.0%  71.0
+  korean cosmetics dupe                         0      1   0.0%  78.0
+  korean niacinamide serum                      0      1   0.0%  94.0
+
+  Ahrefs — glow-coded.com
+  ──────────────────────────────────────────────────
+
+  GA4 — glow-coded.com
+  ──────────────────────────────────────────────────
+  Sessions:   209   Users: 195   Engaged: 55
+  Channels:
+    Direct                              115
+    Organic Search                       54
+    AI Assistant                         33
+    Unassigned                           15
+    Referral                              1
+  AI referrals: 28 sessions
+    ChatGPT (chatgpt.com)  sessions: 28  engaged: 10
+
+  Bing — glow-coded.com
+  ──────────────────────────────────────────────────
+  Crawled: 0  |  Indexed: 0
+  Daily quota left: 100  |  Monthly: 200
+
+============================================================
+  ROOTED-GLOW.COM
+============================================================
+
+  GSC — rooted-glow.com
+  ──────────────────────────────────────────────────
+  Clicks:      0 ─ 0
+  Impressions: 259 ▲ +163
+  CTR:         0.0% ─ 0
+  Position:    27.8 ▼ -34.4
+
+  Top Queries:
+  Query                                    Clicks   Impr    CTR   Pos
+  ancestral diet                                0      3   0.0%  91.7
+  ancestral diet meal plan                      0      1   0.0%  97.0
+  ancestral eating                              0      2   0.0%  88.0
+  casein protein at night                       0      1   0.0%  91.0
+  casein protein before bed benefits            0      1   0.0%  91.0
+  casein protein benefits before bed            0      1   0.0%  75.0
+  como comecar a correr                         0      1   0.0%  81.0
+  como correr principiantes                     0      1   0.0%  75.0
+  comparación entre ejercicios de yoga y        0      1   0.0%  91.0
+  correr para principiantes                     0      3   0.0%  92.0
+
+  Ahrefs — rooted-glow.com
+  ──────────────────────────────────────────────────
+
+  GA4 — rooted-glow.com
+  ──────────────────────────────────────────────────
+  Sessions:   43   Users: 43   Engaged: 7
+  Channels:
+    Direct                               36
+    Unassigned                            6
+    Organic Search                        2
+    AI Assistant                          1
+    Cross-network                         1
+  AI referrals: 1 sessions
+    ChatGPT (chatgpt.com)  sessions: 1  engaged: 1
+
+  Bing — rooted-glow.com
+  ──────────────────────────────────────────────────
+  Crawled: 0  |  Indexed: 0
+  Daily quota left: 100  |  Monthly: 200
+
+============================================================
+  BUILD-CODED.COM
+============================================================
+
+  GSC — build-coded.com
+  ──────────────────────────────────────────────────
+  Clicks:      0 ─ 0
+  Impressions: 5 ▼ -9
+  CTR:         0.0% ─ 0
+  Position:    17.2 ▼ -4.5
+
+  Top Queries:
+  Query                                    Clicks   Impr    CTR   Pos
+  hohlkehlleisten sägen                         0      1   0.0%  63.0
+
+  Ahrefs — build-coded.com
+  ──────────────────────────────────────────────────
+
+  GA4 — build-coded.com
+  ──────────────────────────────────────────────────
+  Sessions:   145   Users: 142   Engaged: 4
+  Channels:
+    Direct                              129
+    AI Assistant                         16
+    Referral                              1
+  AI referrals: 16 sessions
+    ChatGPT (chatgpt.com)  sessions: 16  engaged: 1
+
+  Bing — build-coded.com
+  ──────────────────────────────────────────────────
+  Crawled: 90  |  Indexed: 7
+  Daily quota left: 100  |  Monthly: 200
+
+============================================================
+  Report generated: 2026-06-29 08:00
+============================================================
