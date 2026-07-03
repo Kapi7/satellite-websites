@@ -1,19 +1,7 @@
 {
-  "updated": "2026-07-02",
-  "period": "2026-06-02 to 2026-06-30",
+  "updated": "2026-07-03",
+  "period": "2026-06-03 to 2026-07-01",
   "trending": [
-    {
-      "slug": "best-protein-powders-clean-natural",
-      "clicks": 0,
-      "impressions": 40,
-      "position": 11.7
-    },
-    {
-      "slug": "best-plant-protein-powders-women",
-      "clicks": 0,
-      "impressions": 28,
-      "position": 2.5
-    },
     {
       "slug": "casein-protein-night-time-benefits",
       "clicks": 0,
@@ -21,22 +9,34 @@
       "position": 71.3
     },
     {
-      "slug": "best-stainless-steel-cookware",
-      "clicks": 0,
-      "impressions": 15,
-      "position": 8.9
-    },
-    {
       "slug": "best-probiotics-for-women-gut-health",
       "clicks": 0,
-      "impressions": 14,
+      "impressions": 34,
+      "position": 70.4
+    },
+    {
+      "slug": "best-protein-powders-clean-natural",
+      "clicks": 0,
+      "impressions": 27,
+      "position": 15.6
+    },
+    {
+      "slug": "best-plant-protein-powders-women",
+      "clicks": 0,
+      "impressions": 16,
+      "position": 2.8
+    },
+    {
+      "slug": "best-stainless-steel-cookware",
+      "clicks": 0,
+      "impressions": 10,
       "position": 8.6
     },
     {
-      "slug": "10-high-protein-smoothie-recipes-recovery",
+      "slug": "complete-guide-ancestral-eating",
       "clicks": 0,
-      "impressions": 12,
-      "position": 4.5
+      "impressions": 15,
+      "position": 93.5
     }
   ],
   "rising": []
