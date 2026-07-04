@@ -1,6 +1,6 @@
 {
-  "updated": "2026-07-03",
-  "period": "2026-06-03 to 2026-07-01",
+  "updated": "2026-07-04",
+  "period": "2026-06-04 to 2026-07-02",
   "trending": [
     {
       "slug": "casein-protein-night-time-benefits",
@@ -11,32 +11,32 @@
     {
       "slug": "best-probiotics-for-women-gut-health",
       "clicks": 0,
-      "impressions": 34,
-      "position": 70.4
+      "impressions": 32,
+      "position": 69.2
+    },
+    {
+      "slug": "how-to-start-running-beginners-guide",
+      "clicks": 0,
+      "impressions": 19,
+      "position": 78
     },
     {
       "slug": "best-protein-powders-clean-natural",
       "clicks": 0,
-      "impressions": 27,
-      "position": 15.6
-    },
-    {
-      "slug": "best-plant-protein-powders-women",
-      "clicks": 0,
       "impressions": 16,
-      "position": 2.8
-    },
-    {
-      "slug": "best-stainless-steel-cookware",
-      "clicks": 0,
-      "impressions": 10,
-      "position": 8.6
+      "position": 30.9
     },
     {
       "slug": "complete-guide-ancestral-eating",
       "clicks": 0,
       "impressions": 15,
       "position": 93.5
+    },
+    {
+      "slug": "rice-water-hair-skin-korean-tradition",
+      "clicks": 0,
+      "impressions": 11,
+      "position": 84.9
     }
   ],
   "rising": []
