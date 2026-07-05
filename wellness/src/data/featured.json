@@ -1,18 +1,18 @@
 {
-  "updated": "2026-07-04",
-  "period": "2026-06-04 to 2026-07-02",
+  "updated": "2026-07-05",
+  "period": "2026-06-05 to 2026-07-03",
   "trending": [
+    {
+      "slug": "best-probiotics-for-women-gut-health",
+      "clicks": 0,
+      "impressions": 40,
+      "position": 70.2
+    },
     {
       "slug": "casein-protein-night-time-benefits",
       "clicks": 0,
       "impressions": 34,
       "position": 71.3
-    },
-    {
-      "slug": "best-probiotics-for-women-gut-health",
-      "clicks": 0,
-      "impressions": 32,
-      "position": 69.2
     },
     {
       "slug": "how-to-start-running-beginners-guide",

@@ -1,6 +1,6 @@
 {
-  "updated": "2026-07-04",
-  "period": "2026-06-04 to 2026-07-02",
+  "updated": "2026-07-05",
+  "period": "2026-06-05 to 2026-07-03",
   "trending": [
     {
       "slug": "korean-skincare-routine-complete-guide",
@@ -11,13 +11,13 @@
     {
       "slug": "acne-spot-treatments-that-work",
       "clicks": 0,
-      "impressions": 36,
-      "position": 83.7
+      "impressions": 35,
+      "position": 84.9
     },
     {
       "slug": "best-niacinamide-serums-every-skin-type",
       "clicks": 0,
-      "impressions": 27,
+      "impressions": 28,
       "position": 67.1
     },
     {
@@ -31,6 +31,12 @@
       "clicks": 0,
       "impressions": 12,
       "position": 46.6
+    },
+    {
+      "slug": "best-korean-lip-tints-long-wear",
+      "clicks": 0,
+      "impressions": 12,
+      "position": 68.9
     }
   ],
   "rising": []
