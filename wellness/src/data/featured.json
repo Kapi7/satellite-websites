@@ -1,18 +1,24 @@
 {
-  "updated": "2026-07-05",
-  "period": "2026-06-05 to 2026-07-03",
+  "updated": "2026-07-06",
+  "period": "2026-06-06 to 2026-07-04",
   "trending": [
     {
       "slug": "best-probiotics-for-women-gut-health",
       "clicks": 0,
-      "impressions": 40,
-      "position": 70.2
+      "impressions": 41,
+      "position": 70.5
     },
     {
       "slug": "casein-protein-night-time-benefits",
       "clicks": 0,
-      "impressions": 34,
-      "position": 71.3
+      "impressions": 35,
+      "position": 71.6
+    },
+    {
+      "slug": "castor-oil-packs-benefits",
+      "clicks": 0,
+      "impressions": 20,
+      "position": 55.8
     },
     {
       "slug": "how-to-start-running-beginners-guide",
@@ -31,12 +37,6 @@
       "clicks": 0,
       "impressions": 10,
       "position": 3.4
-    },
-    {
-      "slug": "complete-guide-ancestral-eating",
-      "clicks": 0,
-      "impressions": 15,
-      "position": 93.5
     }
   ],
   "rising": []
