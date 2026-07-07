@@ -1,0 +1,145 @@
+============================================================
+  WEEKLY SEO REPORT
+  Week of 2026-07-06
+============================================================
+
+============================================================
+  GLOW-CODED.COM
+============================================================
+
+  GSC — glow-coded.com
+  ──────────────────────────────────────────────────
+  Clicks:      0 ─ 0
+  Impressions: 150 ▼ -269
+  CTR:         0.0% ─ 0
+  Position:    63.2 ▲ +0.2
+
+  Top Queries:
+  Query                                    Clicks   Impr    CTR   Pos
+  ai skincare quiz                              0      2   0.0%  98.0
+  analisi della pelle online                    0      1   0.0%  86.0
+  analisi pelle viso online                     0      1   0.0%  86.0
+  bee propolis skin care                        0      6   0.0%  87.3
+  cosmetica coreana rosacea                     0      1   0.0%  93.0
+  cosmética coreana péptidos                    0      2   0.0%  67.5
+  creme coreane recensioni                      0      1   0.0% 100.0
+  cushion foundation                            0      1   0.0%  79.0
+  does it give glass skin effect?               0      3   0.0%  89.0
+  face mask daily                               0      1   0.0%  91.0
+
+  Ahrefs — glow-coded.com
+  ──────────────────────────────────────────────────
+  DR:          13.0
+  Ahrefs Rank: 13331369
+  Backlinks:   0
+  Ref Domains: 0
+
+  Top Organic Keywords:
+
+  GA4 — glow-coded.com
+  ──────────────────────────────────────────────────
+  Sessions:   172   Users: 164   Engaged: 34
+  Channels:
+    Direct                               99
+    AI Assistant                         34
+    Organic Search                       34
+    Unassigned                           12
+  AI referrals: 34 sessions
+    ChatGPT (chatgpt.com)  sessions: 34  engaged: 11
+
+  Bing — glow-coded.com
+  ──────────────────────────────────────────────────
+  Crawled: 0  |  Indexed: 0
+  Daily quota left: 100  |  Monthly: 2600
+
+============================================================
+  ROOTED-GLOW.COM
+============================================================
+
+  GSC — rooted-glow.com
+  ──────────────────────────────────────────────────
+  Clicks:      0 ─ 0
+  Impressions: 104 ▼ -191
+  CTR:         0.0% ─ 0
+  Position:    63.2 ▲ +31.3
+
+  Top Queries:
+  Query                                    Clicks   Impr    CTR   Pos
+  abnehmen mit rizinusöl                        0      1   0.0%  89.0
+  ancestral diet                                0      2   0.0%  91.0
+  ancestral diet food list                      0      1   0.0%  97.0
+  ancestral diet meal plan                      0      1   0.0%  95.0
+  can electrolytes keep you awake               0      1   0.0%  86.0
+  can i take electrolytes before bed            0      1   0.0%  81.0
+  casein before bed                             0      1   0.0%  94.0
+  casein protein and sleep                      0      2   0.0%  83.0
+  castor oil pack deutsch                       0      1   0.0%  29.0
+  castor oil packs                              0      1   0.0%  41.0
+
+  Ahrefs — rooted-glow.com
+  ──────────────────────────────────────────────────
+  DR:          16.0
+  Ahrefs Rank: 10938511
+  Backlinks:   1013
+  Ref Domains: 282
+
+  Top Organic Keywords:
+
+  GA4 — rooted-glow.com
+  ──────────────────────────────────────────────────
+  Sessions:   47   Users: 47   Engaged: 7
+  Channels:
+    Direct                               35
+    AI Assistant                          8
+    Unassigned                            5
+    Organic Search                        2
+  AI referrals: 8 sessions
+    ChatGPT (chatgpt.com)  sessions: 8  engaged: 3
+
+  Bing — rooted-glow.com
+  ──────────────────────────────────────────────────
+  Crawled: 0  |  Indexed: 0
+  Daily quota left: 100  |  Monthly: 2600
+
+============================================================
+  BUILD-CODED.COM
+============================================================
+
+  GSC — build-coded.com
+  ──────────────────────────────────────────────────
+  Clicks:      0 ─ 0
+  Impressions: 4 ▼ -1
+  CTR:         0.0% ─ 0
+  Position:    49.8 ▲ +32.5
+
+  Top Queries:
+  Query                                    Clicks   Impr    CTR   Pos
+  epoxy rivier tafel stap voor stap             0      2   0.0%  49.5
+
+  Ahrefs — build-coded.com
+  ──────────────────────────────────────────────────
+  DR:          1.7
+  Ahrefs Rank: 47009353
+  Backlinks:   549
+  Ref Domains: 287
+
+  Top Organic Keywords:
+
+  GA4 — build-coded.com
+  ──────────────────────────────────────────────────
+  Sessions:   153   Users: 153   Engaged: 7
+  Channels:
+    Direct                              135
+    AI Assistant                         17
+    Referral                              1
+  AI referrals: 17 sessions
+    ChatGPT (chatgpt.com)  sessions: 17  engaged: 4
+
+  Bing — build-coded.com
+  ──────────────────────────────────────────────────
+  Crawled: 90  |  Indexed: 7
+  Daily quota left: 100  |  Monthly: 2600
+
+============================================================
+  Report generated: 2026-07-06 08:00
+============================================================
