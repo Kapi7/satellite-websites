@@ -1,18 +1,18 @@
 {
-  "updated": "2026-07-09",
-  "period": "2026-06-09 to 2026-07-07",
+  "updated": "2026-07-10",
+  "period": "2026-06-10 to 2026-07-08",
   "trending": [
     {
       "slug": "best-probiotics-for-women-gut-health",
       "clicks": 0,
-      "impressions": 37,
-      "position": 69.7
+      "impressions": 36,
+      "position": 69.2
     },
     {
       "slug": "casein-protein-night-time-benefits",
       "clicks": 0,
-      "impressions": 33,
-      "position": 72.9
+      "impressions": 34,
+      "position": 73.7
     },
     {
       "slug": "castor-oil-packs-benefits",
@@ -30,13 +30,13 @@
       "slug": "best-protein-powders-clean-natural",
       "clicks": 0,
       "impressions": 18,
-      "position": 27.7
+      "position": 29.9
     },
     {
-      "slug": "10-korean-serums-worth-the-hype",
+      "slug": "electrolytes-before-bed-sleep-quality",
       "clicks": 0,
-      "impressions": 10,
-      "position": 3.4
+      "impressions": 18,
+      "position": 81.7
     }
   ],
   "rising": []
