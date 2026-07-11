@@ -1,0 +1,101 @@
+---
+title: "¿Soldadura Through-Hole o SMD? ¿Cuál aprender primero y cómo?"
+description: "El through-hole es más "chambista" y fácil para empezar; el SMD es diminuto y está en toda la electrónica moderna. Te explicamos cómo funciona cada uno, qué equipo necesitas y una ruta de aprendizaje que sí funciona."
+date: 2026-07-11
+category: electronics
+type: guide
+tags: ["soldadura", "through-hole", "SMD", "electrónica", "PCB"]
+image: /images/through-hole-vs-smd-soldering.jpg
+imageAlt: "Punta de cautín soldando un componente through-hole en una placa de circuito verde"
+locale: es
+author: "Build Coded Editorial"
+---
+**BODY:**
+
+# ¿Through-Hole o SMD? ¿Cuál aprender primero y cómo
+
+El mundo de la electrónica es un lugar fascinante, lleno de luces parpadeantes, circuitos intrincados y posibilidades infinitas. Ya sea que sueñes con armar tus propios gadgets personalizados, reparar tus aparatos electrónicos queridos o sumergirte de lleno en el mundo de los microcontroladores y la automatización, la soldadura es una habilidad indispensable que necesitarás dominar. Pero al iniciar este viaje, te encontrarás rápidamente con dos métodos principales para fijar componentes a una placa de circuito: la Tecnología Through-Hole (THT) y la Tecnología de Montaje Superficial (SMT).
+
+Estos dos enfoques representan épocas y filosofías distintas en la fabricación de electrónica, cada uno con su propio conjunto de desafíos, ventajas y técnicas requeridas. Para el aspirante a hobbyista o profesional, entender ambos, y más importante aún, saber por dónde empezar, es crucial. Esta guía te llevará a través de las diferencias fundamentales, te explicará por qué se recomienda un punto de partida en particular, detallará las técnicas paso a paso, describirá el equipo esencial, sugerirá un camino de aprendizaje práctico, destacará los errores comunes y responderá algunas preguntas frecuentes para encaminarte firmemente hacia la maestría en soldadura.
+
+## Los Dos Mundos: Through-Hole vs. Surface-Mount
+
+Antes de meternos de lleno en el "cómo hacerlo", vamos a establecer una comprensión clara de lo que define estos dos enfoques fundamentales para poblar una Placa de Circuito Impreso (PCB).
+
+### Tecnología Through-Hole (THT)
+
+Los componentes Through-Hole son los veteranos del mundo electrónico, el método que dominó el ensamblaje de placas de circuito durante décadas. Como su nombre lo indica, estos componentes tienen patitas (leads) que se insertan a través de agujeros perforados en la PCB. Una vez insertadas, las patitas se doblan ligeramente en la parte inferior de la placa para mantener el componente en su lugar, y luego se sueldan a las almohadillas de cobre que rodean los agujeros.
+
+**Características clave de los componentes y la soldadura Through-Hole:**
+
+*   **Tamaño Físico:** Generalmente más grandes que sus contrapartes de montaje superficial, lo que los hace más fáciles de manejar y de inspeccionar visualmente.
+*   **Resistencia Mecánica:** Las patitas que atraviesan la placa proporcionan una conexión mecánica muy fuerte, haciendo que los componentes through-hole sean muy resistentes al estrés físico, la vibración y los impactos. Por eso, a menudo los encuentras en aplicaciones donde la robustez es crítica, como fuentes de alimentación, conectores e interruptores de alta resistencia.
+*   **Facilidad de Soldadura:** Las almohadillas y patitas más grandes ofrecen un objetivo más "permisivo" para el cautín, haciendo el proceso menos preciso y más tolerante a pequeños errores de coordinación mano-ojo.
+*   **Desoldadura y Reparación:** Quitar y reemplazar componentes through-hole es generalmente sencillo con herramientas básicas como un desoldador (solder sucker) o malla desoldadora (wick), ya que las patitas y almohadillas más grandes son más resistentes a ciclos de calentamiento repetidos.
+*   **Disipación de Calor:** Los empaques más grandes a menudo tienen mejores capacidades inherentes de disipación de calor.
+*   **Dominancia:** Aunque todavía prevalente en ciertas aplicaciones, el through-hole ha sido en gran medida reemplazado por la tecnología de montaje superficial en electrónica de alto volumen y compacta.
+
+### Tecnología de Montaje Superficial (SMT)
+
+La Tecnología de Montaje Superficial, a menudo referida por sus componentes como Dispositivos de Montaje Superficial (SMD), representa el estándar moderno en la fabricación de electrónica. En lugar de que las patitas atraviesen agujeros, los componentes SMD están diseñados para montarse directamente sobre la superficie de la PCB. Tienen pequeños contactos metálicos (almohadillas o patitas) en su parte inferior o lateral que hacen contacto eléctrico con almohadillas correspondientes en la superficie de la PCB.
+
+**Características clave de los componentes y la soldadura de Montaje Superficial:**
+
+*   **Tamaño Físico:** Significativamente más pequeños, a veces microscópicos, lo que permite una densidad de componentes mucho mayor en una PCB. Esta miniaturización es crítica para dispositivos modernos y compactos como smartphones, smartwatches y sensores IoT altamente integrados.
+*   **Eficiencia de Espacio:** No se perforan agujeros en la placa, liberando valioso espacio en la PCB y permitiendo montar componentes en ambos lados de la placa.
+*   **Rendimiento Eléctrico:** Las patitas más cortas y las capacitancias/inductancias parásitas más pequeñas de los componentes SMD pueden llevar a un mejor rendimiento a altas frecuencias y menor ruido.
+*   **Eficiencia de Fabricación:** SMT es altamente automatizado, utilizando máquinas pick-and-place para un ensamblaje rápido y preciso, lo cual es increíblemente eficiente para la producción en masa.
+*   **Desafíos para la Soldadura Manual:** El tamaño pequeño y el paso estrecho de los pines de muchos componentes SMD hacen que la soldadura manual sea considerablemente más desafiante, requiriendo herramientas más finas, magnificación y técnicas más refinadas.
+*   **Sensibilidad al Calor:** Los componentes más pequeños pueden ser más susceptibles al sobrecalentamiento durante la soldadura manual si no se manejan con cuidado.
+*   **Dominancia:** SMT es el rey indiscutible de la fabricación electrónica moderna, presente en prácticamente todos los dispositivos electrónicos de consumo producidos hoy en día, desde los sensores más pequeños hasta complejas placas base de computadora.
+
+En resumen, el through-hole es robusto y fácil para principiantes, mientras que el surface-mount es compacto, de alto rendimiento y dominante en la electrónica contemporánea, aunque más exigente para trabajar manualmente.
+
+## Por qué los Principiantes Deberían Empezar con Through-Hole
+
+Dada la ubicuidad del SMD en la electrónica moderna, podrías sentirte tentado a saltar directo a aprender a soldar SMD. Sin embargo, para casi todos los principiantes, empezar con tecnología through-hole no solo es recomendable, es esencial para construir una base sólida. Aquí te explicamos por qué:
+
+1.  **Objetivos Más Grandes, Mayor Tolerancia:** Los componentes through-hole son significativamente más grandes. Sus patitas y las almohadillas de cobre en la PCB son más fáciles de ver, más fáciles de alinear y presentan un objetivo mucho más grande para la punta de tu cautín. Esto significa que tienes más margen de error mientras desarrollas tu coordinación mano-ojo y aprendes a controlar el cautín. Los errores son menos catastróficos y más fáciles de corregir.
+2.  **Principios Fundamentales Claros:** La soldadura through-hole proporciona una demostración más clara de los principios centrales de una buena soldadura:
+    *   **Transferencia de Calor:** Puedes observar visualmente el calor fluyendo desde la punta del cautín hacia la patita del componente y la almohadilla de la PCB, y luego hacia la soldadura.
+    *   **Mojado (Wetting):** Es más fácil ver la soldadura fluir suavemente y "mojar" tanto la patita como la almohadilla, formando una conexión fuerte y brillante en lugar de solo una gota opaca.
+    *   **Acción Capilar:** Puedes observar cómo la soldadura es atraída hacia la unión por acción capilar.
+    Esta retroalimentación visual es invaluable para entender *por qué* ciertas técnicas funcionan y *cómo* debe verse una buena unión de soldadura.
+3.  **Menos Equipo Especializado al Inicio:** Para empezar a soldar through-hole, principalmente necesitas un buen cautín con control de temperatura, algo de soldadura y herramientas manuales básicas. Aunque un extractor de humos y herramientas de desoldadura son muy recomendables, no necesitas inmediatamente magnificación, estaciones de aire caliente, pasta de soldar o pinzas de punta fina, que a menudo son necesarias para el trabajo con SMD. Esto reduce la barrera de entrada y te permite invertir primero en herramientas esenciales.
+4.  **Desarrolla Habilidades Centrales:** Las habilidades que perfeccionas con la soldadura through-hole (control del cautín, gestión del calor, aplicación de soldadura, colocación de componentes e inspección de uniones) son directamente transferibles al SMD. Una vez que domines estos fundamentos a mayor escala, reducir el tamaño para el SMD se convierte en un ejercicio de precisión y adaptación, en lugar de aprender todo desde cero.
+5.  **Reparación y Solución de Problemas Más Fáciles:** Cuando inevitablemente cometas un error (¡y lo harás, todos lo hacemos!), las uniones through-hole son mucho más fáciles de desoldar y reparar. Esto permite más práctica corrigiendo errores sin dañar componentes o PCBs costosos, fomentando un ambiente de aprendizaje menos frustrante. La solución de problemas de circuitos construidos con componentes through-hole también suele ser más sencilla debido a su mayor tamaño y puntos de prueba más accesibles.
+6.  **Construye Confianza y Paciencia:** Soldar con éxito componentes through-hole construye confianza y paciencia, dos atributos críticos para cualquier entusiasta de la electrónica. La gratificación inmediata de ver un circuito funcional que tú mismo has ensamblado es un poderoso motivador para seguir aprendiendo.
+
+Piensa en la soldadura through-hole como la "escuela de manejo" esencial antes de abordar la "pista de Fórmula 1" del SMD. Te enseña las reglas del camino, cómo girar, cómo frenar y cómo navegar, todo en un entorno indulgente. Una vez que domines eso, podrás empezar a aprender las maniobras avanzadas requeridas para la conducción de alto rendimiento.
+
+## Técnica Through-Hole Paso a Paso
+
+Dominar la soldadura through-hole implica una serie de pasos precisos diseñados para crear una conexión eléctrica y mecánica fuerte y confiable. Sigue estas pautas para tener éxito de manera consistente:
+
+### 1. La Preparación es Clave
+
+*   **Limpieza:** Asegúrate de que tu espacio de trabajo esté limpio, bien iluminado y bien ventilado (un extractor de humos es muy recomendable). Verifica que tu PCB y las patitas de los componentes estén limpias y libres de grasa u oxidación.
+*   **Cautín:** Usa un cautín con control de temperatura. Para la mayoría de la soldadura con plomo, una temperatura entre 320°C (600°F) y 370°C (700°F) es un buen punto de partida. La soldadura sin plomo a menudo requiere temperaturas más altas, alrededor de 370°C (700°F) a 400°C (750°F).
+*   **Limpia y Estaña la Punta:** La punta de tu cautín siempre debe estar limpia y brillante (estañada) con una fina capa de soldadura. Usa una esponja húmeda o un limpiador de lana de latón para limpiar la soldadura vieja y la oxidación. Inmediatamente, aplica una pequeña cantidad de soldadura fresca a la punta limpia. Una punta bien estañada transfiere calor eficientemente.
+*   **Selecciona la Soldadura:** Para principiantes, la soldadura con plomo con núcleo de resina (por ejemplo, 60/40 estaño/plomo o 63/37 estaño/plomo) es más fácil de usar debido a su punto de fusión más bajo y mejores características de flujo en comparación con la soldadura sin plomo. Un calibre delgado (0.6mm-1.0mm) es generalmente adecuado.
+
+### 2. Colocación del Componente
+
+*   **Inserta el Componente:** Inserta cuidadosamente las patitas del componente a través de los agujeros correctos en la PCB. Presta atención a la polaridad para componentes como diodos, LEDs, condensadores electrolíticos y circuitos integrados (ICs).
+*   **Asegura el Componente:** En la parte inferior de la placa, dobla suavemente las patitas hacia afuera (por ejemplo, en un ángulo de 45 grados) para mantener el componente firmemente contra la placa. Esto evita que se caiga mientras sueldas.
+
+### 3. Calienta la Unión, No la Soldadura
+
+Este es quizás el principio más crítico para una buena soldadura.
+
+*   **Posiciona el Cautín:** Acerca la punta limpia y estañada de tu cautín en contacto con *tanto* la patita del componente *como* la almohadilla de cobre simultáneamente. El objetivo es calentar ambas superficies a la temperatura de fusión de la soldadura al mismo ritmo. La punta del cautín debe hacer buen contacto con la mayor área de superficie posible de la patita y la almohadilla.
+
+### 4. El Toque de 1-2 Segundos: Aplica la Soldadura
+
+*   **Aplica el Hilo de Soldadura:** Después de unos 1-2 segundos de calentar la unión, toca el hilo de soldadura en el *lado opuesto de la unión desde la punta del cautín*. No toques el hilo de soldadura directamente con la punta del cautín. La soldadura fundida de la punta ayudará a conducir el calor, y el hilo de soldadura debería derretirse y fluir suavemente sobre la patita caliente y la almohadilla, no solo formar una gota sobre el cautín caliente.
+*   **Fluye y Rellena:** Permite que la soldadura fluya naturalmente alrededor de la patita y sobre la almohadilla, formando un filete liso y cóncavo. Usa solo la cantidad suficiente de soldadura para cubrir la almohadilla y formar una buena conexión, no te excedas. La soldadura debe ser atraída hacia la unión por acción capilar, lo que indica un buen mojado. Esto generalmente toma otros 1-3 segundos.
+
+### 5. Retira la Soldadura, Luego el Cautín
+
+*   **Retira el Hilo de Soldadura:** Una vez que haya fluido una cantidad suficiente de soldadura y la unión se vea bien, retira el hilo de soldadura de la unión.
+*   **Retira el Cautín:** Inmediatamente después de retirar el hilo de soldadura, retira el cautín. Evita mantener el cautín sobre la unión por mucho tiempo, ya que esto puede sobrecalentar el componente o levantar la almohadilla de cobre de la PCB.

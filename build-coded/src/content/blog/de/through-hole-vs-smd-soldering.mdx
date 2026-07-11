@@ -1,0 +1,99 @@
+---
+title: "Durchsteck- vs. SMD-Löten: Was zuerst lernen und wie"
+description: "Durchsteckbauteile sind fehlerverzeihend und anfängerfreundlich; SMD sind winzig und in moderner Elektronik allgegenwärtig. Hier erfährst du, wie beides funktioniert, welche Ausrüstung du brauchst und wie du am besten lernst, damit es auch wirklich klappt."
+date: 2026-07-11
+category: electronics
+type: guide
+tags: ["löten", "durchsteckbauteile", "SMD", "elektronik", "Leiterplatte"]
+image: /images/through-hole-vs-smd-soldering.jpg
+imageAlt: "Lötkolbenspitze lötet ein Durchsteckbauteil auf einer grünen Leiterplatte"
+locale: de
+author: "Build Coded Editorial"
+---
+# Durchsteck- vs. SMD-Löten: Was zuerst lernen und wie
+
+Die Welt der Elektronik ist ein faszinierendes Reich aus blinkenden Lichtern, komplexen Schaltungen und endlosen Möglichkeiten. Egal, ob du davon träumst, deine eigenen Gadgets zu bauen, geliebte Elektronik zu reparieren oder tief in die Welt der Mikrocontroller und Automatisierung einzutauchen – Löten ist eine unverzichtbare Fähigkeit, die du meistern musst. Aber auf dieser Reise wirst du schnell auf zwei Hauptmethoden stoßen, um Bauteile auf einer Leiterplatte zu befestigen: Through-Hole Technology (THT) und Surface-Mount Technology (SMT).
+
+Diese beiden Ansätze repräsentieren unterschiedliche Ären und Philosophien in der Elektronikfertigung, jede mit ihren eigenen Herausforderungen, Vorteilen und benötigten Techniken. Für angehende Hobbyisten oder Profis ist es entscheidend, beide zu verstehen und – was noch wichtiger ist – zu wissen, wo man anfängt. Dieser Guide führt dich durch die grundlegenden Unterschiede, erklärt, warum ein bestimmter Startpunkt empfohlen wird, beschreibt die Schritt-für-Schritt-Techniken, gibt einen Überblick über die notwendige Ausrüstung, schlägt einen praktischen Lernpfad vor, hebt häufige Stolpersteine hervor und beantwortet einige häufig gestellte Fragen, um dich fest auf dem Weg zur Lötmeisterung zu positionieren.
+
+## Die zwei Welten: Durchsteck- vs. Oberflächenmontage (SMD)
+
+Bevor wir uns ins „Wie“ stürzen, lass uns ein klares Verständnis dafür schaffen, was diese beiden fundamentalen Ansätze zur Bestückung einer Printed Circuit Board (PCB) ausmacht.
+
+### Through-Hole Technology (THT) – Durchstecktechnik
+
+Durchsteckbauteile sind die Veteranen der Elektronikwelt, die Methode, die jahrzehntelang die Leiterplattenbestückung dominierte. Wie der Name schon sagt, haben diese Bauteile Drahtanschlüsse, die durch gebohrte Löcher in der Leiterplatte gesteckt werden. Einmal eingeführt, werden die Anschlüsse typischerweise auf der Unterseite der Platine leicht gebogen, um das Bauteil an Ort und Stelle zu halten, und dann an die Kupferpads gelötet, die die Löcher umgeben.
+
+**Wichtige Merkmale von Durchsteckbauteilen und -löten:**
+
+*   **Physische Größe:** Generell größer als ihre SMD-Pendants, was sie leichter zu handhaben und visuell zu inspizieren macht.
+*   **Mechanische Festigkeit:** Die durch die Platine geführten Anschlüsse sorgen für eine sehr starke mechanische Verbindung, wodurch Durchsteckbauteile hochgradig widerstandsfähig gegen physische Belastung, Vibrationen und Stöße sind. Deshalb findest du sie oft in Anwendungen, bei denen Robustheit entscheidend ist, wie z. B. in Netzteilen, Steckverbindern und Hochleistungsschaltern.
+*   **Einfachheit beim Löten:** Die größeren Pads und Anschlüsse bieten ein fehlerverzeihenderes Ziel für einen Lötkolben, wodurch der Prozess weniger präzise und toleranter gegenüber kleineren Fehlern in der Hand-Auge-Koordination ist.
+*   **Entlöten und Nacharbeiten:** Das Entfernen und Ersetzen von Durchsteckbauteilen ist mit einfachen Werkzeugen wie einem Entlöt-Sauger oder Entlötlitze im Allgemeinen unkompliziert, da die größeren Anschlüsse und Pads widerstandsfähiger gegen wiederholte Heizzyklen sind.
+*   **Wärmeableitung:** Größere Gehäuse haben oft eine bessere inhärente Wärmeableitungsfähigkeit.
+*   **Dominanz:** Obwohl in bestimmten Anwendungen immer noch weit verbreitet, wurde die Durchstecktechnik in der Massenproduktion kompakter Elektronik weitgehend von der Oberflächenmontagetechnik abgelöst.
+
+### Surface-Mount Technology (SMT) – Oberflächenmontagetechnik
+
+Surface-Mount Technology, oft durch ihre Bauteile als Surface-Mount Devices (SMD) bezeichnet, stellt den modernen Standard in der Elektronikfertigung dar. Anstatt Anschlüsse durch Löcher zu führen, sind SMD-Bauteile so konzipiert, dass sie direkt auf der Oberfläche der Leiterplatte montiert werden. Sie haben kleine Metallkontakte (Pads oder Anschlüsse) auf ihrer Unterseite oder Seiten, die elektrische Verbindungen mit entsprechenden Pads auf der Leiterplattenoberfläche herstellen.
+
+**Wichtige Merkmale von SMD-Bauteilen und -löten:**
+
+*   **Physische Größe:** Deutlich kleiner, manchmal mikroskopisch klein, was eine viel höhere Bauteildichte auf einer Leiterplatte ermöglicht. Diese Miniaturisierung ist entscheidend für kompakte moderne Geräte wie Smartphones, Smartwatches und hochintegrierte IoT-Sensoren.
+*   **Platzersparnis:** Es werden keine Löcher durch die Platine gebohrt, wodurch wertvoller Platz auf der Leiterplatte frei wird und Bauteile auf beiden Seiten der Platine montiert werden können.
+*   **Elektrische Leistung:** Die kürzeren Anschlüsse und geringeren parasitären Kapazitäten/Induktivitäten von SMD-Bauteilen können zu einer verbesserten Hochfrequenzleistung und reduzierten Störungen führen.
+*   **Fertigungseffizienz:** SMT ist hochgradig automatisiert und nutzt Pick-and-Place-Maschinen für eine schnelle und präzise Montage, was für die Massenproduktion unglaublich effizient ist.
+*   **Herausforderungen beim manuellen Löten:** Die kleine Größe und die engen Pinabstände vieler SMD-Bauteile machen das manuelle Löten erheblich schwieriger und erfordern feinere Werkzeuge, Vergrößerung und ausgefeiltere Techniken.
+*   **Wärmeempfindlichkeit:** Kleinere Bauteile können bei manuellem Löten empfindlicher auf Überhitzung reagieren, wenn sie nicht sorgfältig gehandhabt werden.
+*   **Dominanz:** SMT ist der unangefochtene König der modernen Elektronikfertigung und findet sich heute in praktisch jedem konsumerelektronischen Gerät, von den kleinsten Sensoren bis hin zu komplexen Computer-Motherboards.
+
+Im Wesentlichen ist die Durchstecktechnik robust und anfängerfreundlich, während SMD kompakt, leistungsstark und in der heutigen Elektronik dominant ist, aber manuell anspruchsvoller zu handhaben ist.
+
+## Warum Anfänger mit Durchsteckbauteilen beginnen sollten
+
+Angesichts der Allgegenwärtigkeit von SMD in der modernen Elektronik könntest du versucht sein, direkt mit dem Erlernen von SMD-Löten zu beginnen. Für fast jeden Anfänger ist es jedoch nicht nur empfehlenswert, sondern unerlässlich, mit der Durchstecktechnik zu beginnen, um eine solide Grundlage zu schaffen. Hier ist warum:
+
+1.  **Größere Ziele, mehr Vergebung:** Durchsteckbauteile sind deutlich größer. Ihre Anschlüsse und die Kupferpads auf der Leiterplatte sind leichter zu sehen, leichter auszurichten und bieten ein viel größeres Ziel für deine Lötkolbenspitze. Das bedeutet, du hast mehr Spielraum für Fehler, während du deine Hand-Auge-Koordination entwickelst und lernst, den Kolben zu kontrollieren. Fehler sind weniger katastrophal und leichter zu korrigieren.
+2.  **Grundprinzipien klar gemacht:** Das Löten von Durchsteckbauteilen bietet eine klarere Demonstration der Kernprinzipien guten Lötens:
+    *   **Wärmeübertragung:** Du kannst visuell beobachten, wie die Wärme vom Kolben zu sowohl dem Bauteilanschluss als auch dem Leiterplatten-Pad fließt und dann zum Lot.
+    *   **Benetzung:** Es ist leichter zu sehen, wie das Lot glatt fließt und sowohl den Anschluss als auch das Pad „benetzt“, wodurch eine starke, glänzende Verbindung entsteht, anstatt nur als stumpfer Klumpen dazusitzen.
+    *   **Kapillarwirkung:** Du kannst beobachten, wie das Lot durch Kapillarwirkung in die Lötstelle gezogen wird.
+    Dieses visuelle Feedback ist unschätzbar wertvoll, um zu verstehen, *warum* bestimmte Techniken funktionieren und *wie* eine gute Lötstelle aussehen sollte.
+3.  **Weniger spezialisierte Ausrüstung am Anfang:** Um mit dem Löten von Durchsteckbauteilen zu beginnen, brauchst du hauptsächlich einen guten temperaturgeregelten Lötkolben, etwas Lot und grundlegende Handwerkzeuge. Obwohl ein Rauchabsauger und Entlötwerkzeuge sehr empfehlenswert sind, benötigst du nicht sofort Vergrößerung, Heißluftstationen, Lotpaste oder feine Pinzetten, die für SMD-Arbeiten oft notwendig sind. Das senkt die Einstiegshürde und ermöglicht es dir, zuerst in wesentliche Werkzeuge zu investieren.
+4.  **Kernkompetenzen entwickeln:** Die Fähigkeiten, die du beim Löten von Durchsteckbauteilen verfeinerst – Kolbenkontrolle, Wärmemanagement, Lotauftrag, Bauteilplatzierung und Lötstelleninspektion – sind direkt auf SMD übertragbar. Sobald du diese Grundlagen im größeren Maßstab gemeistert hast, wird das Herunterskalieren auf SMD eine Übung in Präzision und Anpassung sein, anstatt alles von Grund auf neu zu lernen.
+5.  **Einfachere Nacharbeit und Fehlerbehebung:** Wenn du unvermeidlich einen Fehler machst (und das wirst du, jeder macht Fehler!), sind Durchstecklötstellen viel einfacher zu entlöten und nachzuarbeiten. Das ermöglicht mehr Übung bei der Korrektur von Fehlern, ohne teure Bauteile oder Leiterplatten zu beschädigen, und fördert eine weniger frustrierende Lernumgebung. Die Fehlersuche in Schaltungen, die mit Durchsteckbauteilen aufgebaut sind, ist aufgrund ihrer größeren Größe und zugänglicheren Testpunkte oft ebenfalls einfacher.
+6.  **Selbstvertrauen und Geduld aufbauen:** Erfolgreiches Löten von Durchsteckbauteilen baut Selbstvertrauen und Geduld auf, zwei entscheidende Eigenschaften für jeden Elektronik-Hobbyisten. Die sofortige Befriedigung, eine funktionierende Schaltung zu sehen, die du selbst zusammengebaut hast, ist ein starker Motivator, weiter zu lernen.
+
+Betrachte das Löten von Durchsteckbauteilen als die wesentliche „Fahrschule“, bevor du dich an die „Formel-1-Strecke“ von SMD wagst. Es lehrt dich die Verkehrsregeln, wie man lenkt, bremst und navigiert – alles in einer fehlerverzeihenden Umgebung. Sobald du das drauf hast, kannst du anfangen, die fortgeschrittenen Manöver zu lernen, die für Hochleistungsfahrten erforderlich sind.
+
+## Schritt-für-Schritt-Anleitung für Durchstecktechnik
+
+Das Meistern des Lötens von Durchsteckbauteilen beinhaltet eine Reihe präziser Schritte, die darauf ausgelegt sind, eine starke, zuverlässige elektrische und mechanische Verbindung herzustellen. Befolge diese Richtlinien für konstanten Erfolg:
+
+### 1. Vorbereitung ist alles
+
+*   **Sauberkeit:** Stelle sicher, dass dein Arbeitsplatz sauber, gut beleuchtet und gut belüftet ist (ein Rauchabsauger ist sehr empfehlenswert). Achte darauf, dass deine Leiterplatte und die Bauteilanschlüsse sauber und frei von Fett oder Oxidation sind.
+*   **Lötkolben:** Verwende einen temperaturgeregelten Lötkolben. Für die meisten bleihaltigen Lote ist eine Temperatur zwischen 320°C (600°F) und 370°C (700°F) ein guter Ausgangspunkt. Bleifreies Lot erfordert oft höhere Temperaturen, etwa 370°C (700°F) bis 400°C (750°F).
+*   **Spitze reinigen und verzinnen:** Die Spitze deines Lötkolbens sollte immer sauber und glänzend (verzinnt) sein, mit einer dünnen Lotschicht. Verwende einen feuchten Schwamm oder Messingwolle, um altes Lot und Oxidation abzuwischen. Trage sofort eine kleine Menge frisches Lot auf die saubere Spitze auf. Eine gut verzinnte Spitze überträgt Wärme effizient.
+*   **Lot auswählen:** Für Anfänger ist bleihaltiges Lot mit Flussmittelkern (z. B. 60/40 Zinn/Blei oder 63/37 Zinn/Blei) aufgrund seines niedrigeren Schmelzpunkts und besseren Fließverhaltens im Vergleich zu bleifreiem Lot einfacher zu handhaben. Ein dünner Durchmesser (0,6 mm - 1,0 mm) ist im Allgemeinen geeignet.
+
+### 2. Bauteilplatzierung
+
+*   **Bauteil einführen:** Stecke die Anschlüsse des Bauteils vorsichtig durch die richtigen Löcher auf der Leiterplatte. Achte auf die Polarität bei Bauteilen wie Dioden, LEDs, Elektrolytkondensatoren und integrierten Schaltungen (ICs).
+*   **Bauteil sichern:** Auf der Unterseite der Platine biege die Anschlüsse sanft nach außen (z. B. in einem 45-Grad-Winkel), um das Bauteil fest an der Platine zu halten. Dies verhindert, dass es während des Lötens herausfällt.
+
+### 3. Die Lötstelle erwärmen, nicht das Lot
+
+Dies ist vielleicht das wichtigste Prinzip beim guten Löten.
+
+*   **Kolben positionieren:** Bringe die saubere, verzinnte Spitze deines Lötkolbens gleichzeitig in Kontakt mit *sowohl* dem Bauteilanschluss *als auch* dem Kupferpad. Das Ziel ist, beide Oberflächen auf die Schmelztemperatur des Lots zu erwärmen und das mit der gleichen Geschwindigkeit. Die Kolbenspitze sollte möglichst viel Kontaktfläche mit dem Anschluss und dem Pad haben.
+
+### 4. Der 1-2 Sekunden-Kontakt: Lot auftragen
+
+*   **Lotdraht auftragen:** Nach etwa 1-2 Sekunden Erwärmung der Lötstelle berühre den Lotdraht auf der *gegenüberliegenden Seite der Lötstelle vom Kolben*. Berühre den Lotdraht nicht direkt mit der Kolbenspitze. Das geschmolzene Lot von der Spitze hilft bei der Wärmeübertragung, und der Lotdraht sollte glatt auf den erwärmten Anschluss und das Pad fließen, anstatt nur als Klumpen auf dem heißen Kolben zu landen.
+*   **Fließen und Füllen:** Lasse das Lot natürlich um den Anschluss und auf das Pad fließen und eine glatte, konkave Kehle bilden. Verwende gerade genug Lot, um das Pad zu bedecken und eine gute Verbindung zu bilden – nicht zu viel. Das Lot sollte durch Kapillarwirkung in die Lötstelle gezogen werden, was eine gute Benetzung anzeigt. Dies dauert normalerweise weitere 1-3 Sekunden.
+
+### 5. Lot entfernen, dann Kolben
+
+*   **Lotdraht entfernen:** Sobald eine ausreichende Menge Lot geflossen ist und die Lötstelle gut aussieht, entferne den Lotdraht von der Lötstelle.
+*   **Lötkolben entfernen:** Entferne den Lötkolben unmittelbar nach dem Entfernen des Lotdrahtes. Vermeide es, den Kolben zu lange auf der Lötstelle zu lassen, da dies das Bauteil überhitzen oder das Kupferpad von der Leiterplatte lösen kann.

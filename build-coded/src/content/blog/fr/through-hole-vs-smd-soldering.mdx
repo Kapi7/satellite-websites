@@ -1,0 +1,101 @@
+---
+title: "Soudure Through-Hole vs SMD : Par où commencer et comment s'y prendre"
+description: "Le through-hole est tolérant et idéal pour les débutants ; le SMD est minuscule et partout dans l'électronique moderne. Voici comment chacun fonctionne, le matériel nécessaire, et un parcours d'apprentissage qui fonctionne vraiment."
+date: 2026-07-11
+category: electronics
+type: guide
+tags: ["soudure", "through-hole", "SMD", "électronique", "PCB"]
+image: /images/through-hole-vs-smd-soldering.jpg
+imageAlt: "Pointe de fer à souder en train de souder un composant through-hole sur une carte de circuit imprimé verte"
+locale: fr
+author: "Build Coded Editorial"
+---
+BODY TO TRANSLATE:
+
+# Soudure Through-Hole vs SMD : Par où commencer et comment s'y prendre
+
+Le monde de l'électronique, c'est un univers fascinant de lumières clignotantes, de circuits complexes et de possibilités infinies. Que tu rêves de construire tes propres gadgets custom, de réparer des appareils chéris, ou de plonger dans l'univers des microcontrôleurs et de l'automatisation, la soudure est une compétence indispensable à maîtriser. Mais en te lançant dans cette aventure, tu vas vite rencontrer deux méthodes principales pour fixer des composants sur une carte de circuit imprimé (PCB) : la technologie Through-Hole (THT) et la technologie Surface-Mount (SMT).
+
+Ces deux approches représentent des ères et des philosophies distinctes dans la fabrication électronique, chacune avec ses propres défis, avantages et techniques. Pour l'aspirant hobbyiste ou professionnel, comprendre les deux, et surtout, savoir par où commencer, est crucial. Ce guide va te guider à travers les différences fondamentales, t'expliquer pourquoi un point de départ particulier est recommandé, détailler les techniques étape par étape, dresser la liste du matériel essentiel, suggérer un parcours d'apprentissage pratique, mettre en lumière les pièges courants, et répondre à quelques questions fréquentes pour te mettre solidement sur la voie de la maîtrise de la soudure.
+
+## Les Deux Mondes : Through-Hole vs. Surface-Mount
+
+Avant de plonger dans le "comment faire", mettons-nous d'accord sur ce qui définit ces deux approches fondamentales pour peupler une carte de circuit imprimé (PCB).
+
+### Technologie Through-Hole (THT)
+
+Les composants Through-Hole sont les vétérans du monde de l'électronique, la méthode qui a dominé l'assemblage des cartes pendant des décennies. Comme leur nom l'indique, ces composants ont des pattes (leads) qui s'insèrent dans des trous percés dans le PCB. Une fois insérées, les pattes sont généralement légèrement pliées sous la carte pour maintenir le composant en place, puis soudées aux pastilles de cuivre qui entourent les trous.
+
+**Caractéristiques clés des composants et de la soudure Through-Hole :**
+
+*   **Taille Physique :** Généralement plus grands que leurs homologues de montage en surface, ce qui les rend plus faciles à manipuler et à inspecter visuellement.
+*   **Solidité Mécanique :** Les pattes qui traversent la carte offrent une connexion mécanique très solide, rendant les composants through-hole très résistants aux contraintes physiques, aux vibrations et aux chocs. C'est pourquoi on les trouve souvent dans des applications où la robustesse est essentielle, comme les alimentations, les connecteurs et les interrupteurs robustes.
+*   **Facilité de Soudure :** Les plus grandes pastilles et pattes offrent une cible plus indulgente pour le fer à souder, rendant le processus moins précis et plus tolérant aux petites erreurs de coordination œil-main.
+*   **Désoudure et Retravail :** Retirer et remplacer les composants through-hole est généralement simple avec des outils de base comme une pompe à dessouder ou une tresse, car les pattes et les pastilles plus grandes sont plus résistantes aux cycles de chauffe répétés.
+*   **Dissipation de Chaleur :** Les boîtiers plus grands ont souvent de meilleures capacités de dissipation de chaleur intrinsèques.
+*   **Domination :** Bien qu'encore prévalente dans certaines applications, la technologie through-hole a été largement supplantée par la technologie de montage en surface dans l'électronique compacte à haut volume.
+
+### Technologie Surface-Mount (SMT)
+
+La technologie Surface-Mount, souvent appelée par ses composants Surface-Mount Devices (SMD), représente la norme moderne dans la fabrication électronique. Au lieu de pattes traversant des trous, les composants SMD sont conçus pour être montés directement à la surface du PCB. Ils ont de petits contacts métalliques (pastilles ou pattes) sur leur face inférieure ou latérale qui établissent un contact électrique avec les pastilles correspondantes à la surface du PCB.
+
+**Caractéristiques clés des composants et de la soudure Surface-Mount :**
+
+*   **Taille Physique :** Significativement plus petits, parfois microscopiques, permettant une densité de composants beaucoup plus élevée sur un PCB. Cette miniaturisation est essentielle pour les appareils modernes compacts comme les smartphones, les smartwatches et les capteurs IoT très intégrés.
+*   **Efficacité d'Espace :** Aucun trou n'est percé dans la carte, libérant ainsi de l'espace précieux sur le PCB et permettant de monter des composants des deux côtés de la carte.
+*   **Performance Électrique :** Les pattes plus courtes et les capacités/inductances parasites plus faibles des composants SMD peuvent conduire à de meilleures performances à haute fréquence et à une réduction du bruit.
+*   **Efficacité de Fabrication :** Le SMT est hautement automatisé, utilisant des machines "pick-and-place" pour un assemblage rapide et précis, ce qui est incroyablement efficace pour la production de masse.
+*   **Défis pour la Soudure Manuelle :** La petite taille et les pas fins de nombreux composants SMD rendent la soudure manuelle considérablement plus difficile, nécessitant des outils plus fins, de la magnification et des techniques plus précises.
+*   **Sensibilité à la Chaleur :** Les composants plus petits peuvent être plus sensibles à la surchauffe pendant la soudure manuelle s'ils ne sont pas manipulés avec soin.
+*   **Domination :** Le SMT est le roi incontesté de la fabrication électronique moderne, présent dans pratiquement tous les appareils électroniques grand public produits aujourd'hui, des plus petits capteurs aux cartes mères d'ordinateurs complexes.
+
+En résumé, le through-hole est robuste et idéal pour les débutants, tandis que le surface-mount est compact, performant, et domine l'électronique contemporaine, bien que plus exigeant à travailler manuellement.
+
+## Pourquoi les Débutants Devraient Commencer par le Through-Hole
+
+Vu l'omniprésence du SMD dans l'électronique moderne, tu pourrais être tenté de te lancer directement dans l'apprentissage de la soudure SMT. Pourtant, pour presque tous les débutants, commencer par la technologie through-hole n'est pas seulement recommandé, c'est essentiel pour construire une base solide. Voici pourquoi :
+
+1.  **Cibles Plus Grandes, Plus de Tolérance :** Les composants Through-Hole sont nettement plus grands. Leurs pattes et les pastilles de cuivre sur le PCB sont plus faciles à voir, plus faciles à aligner, et représentent une cible beaucoup plus large pour la pointe de ton fer à souder. Cela signifie que tu as plus de marge d'erreur pendant que tu développes ta coordination œil-main et que tu apprends à contrôler le fer. Les erreurs sont moins catastrophiques et plus faciles à corriger.
+2.  **Principes Fondamentaux Clarifiés :** La soudure through-hole offre une démonstration plus claire des principes fondamentaux d'une bonne soudure :
+    *   **Transfert de Chaleur :** Tu peux observer visuellement la chaleur passer du fer à souder à la fois à la patte du composant et à la pastille du PCB, puis à la soudure.
+    *   **Mouillage :** Il est plus facile de voir la soudure couler en douceur et "mouiller" à la fois la patte et la pastille, formant une connexion solide et brillante, plutôt que de simplement faire une grosse goutte terne.
+    *   **Action Capillaire :** Tu peux observer la soudure être attirée dans la jointure par capillarité.
+    Ce retour visuel est inestimable pour comprendre *pourquoi* certaines techniques fonctionnent et *à quoi* doit ressembler une bonne soudure.
+3.  **Moins de Matériel Spécialisé au Début :** Pour commencer la soudure through-hole, tu as principalement besoin d'un bon fer à souder à température contrôlée, de soudure et d'outils à main de base. Bien qu'un extracteur de fumée et des outils de dessoudage soient fortement recommandés, tu n'as pas immédiatement besoin de loupe, de station à air chaud, de pâte à souder ou de pinces fines, qui sont souvent nécessaires pour le travail SMT. Cela abaisse la barrière à l'entrée et te permet d'investir d'abord dans les outils essentiels.
+4.  **Développement des Compétences de Base :** Les compétences que tu affines avec la soudure through-hole – contrôle du fer, gestion de la chaleur, application de la soudure, placement des composants et inspection des soudures – sont directement transférables au SMT. Une fois que tu maîtrises ces fondamentaux à plus grande échelle, passer au SMT devient un exercice de précision et d'adaptation, plutôt que d'apprendre tout à zéro.
+5.  **Retravail et Dépannage Facilités :** Quand tu feras inévitablement une erreur (et tu en feras, tout le monde en fait !), les soudures through-hole sont beaucoup plus faciles à dessouder et à retravailler. Cela permet plus de pratique pour corriger les erreurs sans endommager des composants ou des PCB coûteux, favorisant un environnement d'apprentissage moins frustrant. Le dépannge des circuits construits avec des composants through-hole est aussi souvent plus simple en raison de leur taille plus grande et de points de test plus accessibles.
+6.  **Confiance et Patience :** Réussir à souder des composants through-hole renforce la confiance et la patience, deux attributs cruciaux pour tout hobbyiste en électronique. La gratification immédiate de voir un circuit fonctionnel que tu as toi-même assemblé est un puissant moteur pour continuer à apprendre.
+
+Considère la soudure through-hole comme l'auto-école essentielle avant de t'attaquer à la "piste de Formule 1" du SMT. Elle t'apprend les règles de la route, comment diriger, comment freiner, et comment naviguer, le tout dans un environnement indulgent. Une fois que tu as ça en main, tu peux commencer à apprendre les manœuvres avancées nécessaires pour la conduite haute performance.
+
+## Technique Through-Hole Étape par Étape
+
+Maîtriser la soudure through-hole implique une série d'étapes précises conçues pour créer une connexion électrique et mécanique solide et fiable. Suis ces directives pour un succès constant :
+
+### 1. La Préparation est la Clé
+
+*   **Propreté :** Assure-toi que ton espace de travail est propre, bien éclairé et bien ventilé (un extracteur de fumée est fortement recommandé). Vérifie que ton PCB et les pattes des composants sont propres et exempts de graisse ou d'oxydation.
+*   **Fer à Souder :** Utilise un fer à souder à température contrôlée. Pour la plupart des soudures plombées, une température entre 320°C (600°F) et 370°C (700°F) est un bon point de départ. Les soudures sans plomb nécessitent souvent des températures plus élevées, autour de 370°C (700°F) à 400°C (750°F).
+*   **Nettoyer et Étamer la Pointe :** La pointe de ton fer à souder doit toujours être propre et brillante (étamée) avec une fine couche de soudure. Utilise une éponge humide ou un nettoyeur en laiton pour enlever l'ancienne soudure et l'oxydation. Applique immédiatement une petite quantité de soudure fraîche sur la pointe propre. Une pointe bien étamée transfère la chaleur efficacement.
+*   **Choisir la Soudure :** Pour les débutants, la soudure plombée à âme de flux (par exemple, 60/40 étain/plomb ou 63/37 étain/plomb) est plus facile à travailler en raison de son point de fusion plus bas et de ses meilleures caractéristiques de fluidité par rapport à la soudure sans plomb. Un diamètre fin (0.6mm-1.0mm) est généralement adapté.
+
+### 2. Placement du Composant
+
+*   **Insérer le Composant :** Insère délicatement les pattes du composant à travers les trous corrects sur le PCB. Fais attention à la polarité pour les composants comme les diodes, les LED, les condensateurs électrolytiques et les circuits intégrés (CI).
+*   **Sécuriser le Composant :** Sur le dessous de la carte, plie légèrement les pattes vers l'extérieur (par exemple, à un angle de 45 degrés) pour maintenir fermement le composant contre la carte. Cela l'empêche de tomber pendant que tu soudes.
+
+### 3. Chauffer la Jonction, Pas la Soudure
+
+C'est peut-être le principe le plus critique d'une bonne soudure.
+
+*   **Positionner le Fer :** Amène la pointe propre et étamée de ton fer à souder en contact avec *à la fois* la patte du composant et la pastille de cuivre simultanément. Le but est de chauffer les deux surfaces à la température de fusion de la soudure à la même vitesse. La pointe du fer doit faire un bon contact avec autant de surface de la patte et de la pastille que possible.
+
+### 4. Le Contact de 1-2 Secondes : Appliquer la Soudure
+
+*   **Appliquer le Fil de Soudure :** Après environ 1 à 2 secondes de chauffe de la jonction, touche le fil de soudure du *côté opposé de la jonction par rapport à la pointe du fer*. Ne touche pas le fil de soudure directement à la pointe du fer. La soudure fondue de la pointe aidera à conduire la chaleur, et le fil de soudure devrait fondre et couler en douceur sur la patte chauffée et la pastille, sans faire juste une grosse goutte sur le fer chaud.
+*   **Couler et Remplir :** Laisse la soudure couler naturellement autour de la patte et sur la pastille, formant un congé lisse et concave. Utilise juste assez de soudure pour couvrir la pastille et former une bonne connexion – n'en mets pas trop. La soudure doit être attirée dans la jonction par capillarité, signe d'un bon mouillage. Cela prend généralement encore 1 à 3 secondes.
+
+### 5. Retirer la Soudure, Puis le Fer
+
+*   **Retirer le Fil de Soudure :** Une fois qu'une quantité suffisante de soudure a coulé et que la jonction a l'air bien, retire le fil de soudure de la jonction.
+*   **Retirer le Fer à Souder :** Immédiatement après avoir retiré le fil de soudure, retire le fer à souder. Évite de laisser le fer trop longtemps sur la jonction, car cela pourrait surchauffer le composant ou décoller la pastille de cuivre du PCB.
