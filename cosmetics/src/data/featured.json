@@ -1,12 +1,12 @@
 {
-  "updated": "2026-07-11",
-  "period": "2026-06-11 to 2026-07-09",
+  "updated": "2026-07-12",
+  "period": "2026-06-12 to 2026-07-10",
   "trending": [
     {
       "slug": "best-retinol-creams-serums-beginner-advanced",
       "clicks": 0,
-      "impressions": 330,
-      "position": 42.5
+      "impressions": 326,
+      "position": 42.4
     },
     {
       "slug": "korean-skincare-routine-complete-guide",
@@ -18,25 +18,25 @@
       "slug": "acne-spot-treatments-that-work",
       "clicks": 0,
       "impressions": 33,
-      "position": 82.9
+      "position": 82.0
     },
     {
       "slug": "best-niacinamide-serums-every-skin-type",
       "clicks": 0,
-      "impressions": 31,
-      "position": 67.6
+      "impressions": 30,
+      "position": 67.7
     },
     {
       "slug": "korean-eye-cream-guide",
       "clicks": 0,
-      "impressions": 26,
-      "position": 87.5
+      "impressions": 24,
+      "position": 87
     },
     {
       "slug": "best-korean-lip-tints-long-wear",
       "clicks": 0,
-      "impressions": 21,
-      "position": 70.5
+      "impressions": 22,
+      "position": 70.3
     }
   ],
   "rising": []

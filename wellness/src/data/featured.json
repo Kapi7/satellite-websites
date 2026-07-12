@@ -1,6 +1,6 @@
 {
-  "updated": "2026-07-11",
-  "period": "2026-06-11 to 2026-07-09",
+  "updated": "2026-07-12",
+  "period": "2026-06-12 to 2026-07-10",
   "trending": [
     {
       "slug": "best-probiotics-for-women-gut-health",
@@ -17,14 +17,14 @@
     {
       "slug": "castor-oil-packs-benefits",
       "clicks": 0,
-      "impressions": 22,
-      "position": 56.0
+      "impressions": 23,
+      "position": 57.6
     },
     {
       "slug": "electrolytes-before-bed-sleep-quality",
       "clicks": 0,
-      "impressions": 20,
-      "position": 80.5
+      "impressions": 21,
+      "position": 80.0
     },
     {
       "slug": "how-to-start-running-beginners-guide",
@@ -35,8 +35,8 @@
     {
       "slug": "best-protein-powders-clean-natural",
       "clicks": 0,
-      "impressions": 18,
-      "position": 29.9
+      "impressions": 15,
+      "position": 34.3
     }
   ],
   "rising": []
