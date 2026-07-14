@@ -3,16 +3,16 @@
   "period": "2026-06-14 to 2026-07-12",
   "trending": [
     {
-      "slug": "best-probiotics-for-women-gut-health",
-      "clicks": 0,
-      "impressions": 31,
-      "position": 69.0
-    },
-    {
       "slug": "casein-protein-night-time-benefits",
       "clicks": 0,
-      "impressions": 29,
-      "position": 74.6
+      "impressions": 32,
+      "position": 73.8
+    },
+    {
+      "slug": "best-probiotics-for-women-gut-health",
+      "clicks": 0,
+      "impressions": 32,
+      "position": 69.1
     },
     {
       "slug": "castor-oil-packs-benefits",
@@ -35,8 +35,8 @@
     {
       "slug": "best-protein-powders-clean-natural",
       "clicks": 0,
-      "impressions": 15,
-      "position": 34.3
+      "impressions": 18,
+      "position": 35.7
     }
   ],
   "rising": []
