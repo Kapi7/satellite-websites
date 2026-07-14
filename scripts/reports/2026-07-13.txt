@@ -1,0 +1,148 @@
+============================================================
+  WEEKLY SEO REPORT
+  Week of 2026-07-13
+============================================================
+
+============================================================
+  GLOW-CODED.COM
+============================================================
+
+  GSC — glow-coded.com
+  ──────────────────────────────────────────────────
+  Clicks:      0 ─ 0
+  Impressions: 154 ▼ -71
+  CTR:         0.0% ─ 0
+  Position:    58.5 ▼ -2.1
+
+  Top Queries:
+  Query                                    Clicks   Impr    CTR   Pos
+  ai skincare quiz                              0      2   0.0%  99.0
+  beauty decoded                                0      1   0.0%  49.0
+  bee propolis skin care                        0      3   0.0%  83.7
+  best men's korean skincare products           0      1   0.0%  30.0
+  can i use both in the same routine            0      2   0.0%  59.0
+  centella mugwort                              0      1   0.0%  90.0
+  contorno occhi coreano                        0      1   0.0%  96.0
+  cosmetica coreana rosacea                     0      1   0.0% 100.0
+  does it give glass skin effect?               0      1   0.0%  92.0
+  does tcp help spots                           0      1   0.0%  83.0
+
+  Ahrefs — glow-coded.com
+  ──────────────────────────────────────────────────
+  DR:          11.0 ▼ -2.0
+  Ahrefs Rank: 15247670
+  Backlinks:   726 ▲ +726
+  Ref Domains: 335 ▲ +335
+
+  Top Organic Keywords:
+
+  GA4 — glow-coded.com
+  ──────────────────────────────────────────────────
+  Sessions:   475   Users: 466   Engaged: 245
+  Channels:
+    Direct                              382
+    Organic Search                       57
+    AI Assistant                         26
+    Unassigned                           21
+    Organic Social                        2
+  AI referrals: 26 sessions
+    ChatGPT (chatgpt.com)  sessions: 24  engaged: 4
+    Claude (claude.ai)  sessions: 1  engaged: 0
+    Bing (incl. Copilot chat) (cn.bing.com)  sessions: 1  engaged: 1
+
+  Bing — glow-coded.com
+  ──────────────────────────────────────────────────
+  Crawled: 0  |  Indexed: 0
+  Daily quota left: 100  |  Monthly: 1900
+
+============================================================
+  ROOTED-GLOW.COM
+============================================================
+
+  GSC — rooted-glow.com
+  ──────────────────────────────────────────────────
+  Clicks:      2 ▲ +2
+  Impressions: 86 ▼ -45
+  CTR:         2.3% ▲ +2.3
+  Position:    65.0 ▲ +2.1
+
+  Top Queries:
+  Query                                    Clicks   Impr    CTR   Pos
+  probiotiques femme                            1      1 100.0%  14.0
+  10.000 passi quanti minuti sono               0      1   0.0%  84.0
+  agua de arroz fermentada para la cara         0      1   0.0%  70.0
+  arroz fermentado para la piel                 0      1   0.0%  78.0
+  beginners running guide                       0      1   0.0% 100.0
+  can i drink electrolytes at night             0      1   0.0%  94.0
+  can i drink electrolytes before bed           0      1   0.0%  64.0
+  can you drink electrolytes before bed         0      1   0.0%  86.0
+  castor oil pack                               0      1   0.0%  83.0
+  do electrolytes help you sleep                0      1   0.0%  71.0
+
+  Ahrefs — rooted-glow.com
+  ──────────────────────────────────────────────────
+  DR:          16.0 ─ 0
+  Ahrefs Rank: 11078303
+  Backlinks:   1116 ▲ +103
+  Ref Domains: 344 ▲ +62
+
+  Top Organic Keywords:
+
+  GA4 — rooted-glow.com
+  ──────────────────────────────────────────────────
+  Sessions:   293   Users: 293   Engaged: 162
+  Channels:
+    Direct                              277
+    Unassigned                           13
+    AI Assistant                          9
+    Organic Search                        3
+    Referral                              1
+  AI referrals: 10 sessions
+    ChatGPT (chatgpt.com)  sessions: 9  engaged: 3
+    Perplexity (perplexity.ai)  sessions: 1  engaged: 1
+
+  Bing — rooted-glow.com
+  ──────────────────────────────────────────────────
+  Crawled: 0  |  Indexed: 0
+  Daily quota left: 100  |  Monthly: 1900
+
+============================================================
+  BUILD-CODED.COM
+============================================================
+
+  GSC — build-coded.com
+  ──────────────────────────────────────────────────
+  Clicks:      0 ─ 0
+  Impressions: 8 ▲ +4
+  CTR:         0.0% ─ 0
+  Position:    11.8 ▼ -38.0
+
+  Ahrefs — build-coded.com
+  ──────────────────────────────────────────────────
+  DR:          10.0 ▲ +8.3
+  Ahrefs Rank: 16672389
+  Backlinks:   660 ▲ +111
+  Ref Domains: 352 ▲ +65
+
+  Top Organic Keywords:
+
+  GA4 — build-coded.com
+  ──────────────────────────────────────────────────
+  Sessions:   259   Users: 259   Engaged: 89
+  Channels:
+    Direct                              246
+    Unassigned                           12
+    AI Assistant                          8
+    Organic Search                        1
+    Organic Social                        1
+  AI referrals: 8 sessions
+    ChatGPT (chatgpt.com)  sessions: 8  engaged: 1
+
+  Bing — build-coded.com
+  ──────────────────────────────────────────────────
+  Crawled: 90  |  Indexed: 7
+  Daily quota left: 100  |  Monthly: 1900
+
+============================================================
+  Report generated: 2026-07-13 08:00
+============================================================

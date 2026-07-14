@@ -1,0 +1,104 @@
+{
+  "glow-coded.com": {
+    "gsc": {
+      "clicks": 0,
+      "impressions": 154,
+      "ctr": 0,
+      "position": 58.53896103896104
+    },
+    "ahrefs": {
+      "dr": 11.0,
+      "backlinks": 726,
+      "refdomains": 335,
+      "organic_kw_count": 0
+    },
+    "ga4": {
+      "sessions": 475,
+      "users": 466,
+      "engaged": 245,
+      "ai_sessions": 26,
+      "ai_sources": [
+        {
+          "label": "ChatGPT",
+          "source": "chatgpt.com",
+          "sessions": 24,
+          "engaged": 4
+        },
+        {
+          "label": "Claude",
+          "source": "claude.ai",
+          "sessions": 1,
+          "engaged": 0
+        },
+        {
+          "label": "Bing (incl. Copilot chat)",
+          "source": "cn.bing.com",
+          "sessions": 1,
+          "engaged": 1
+        }
+      ]
+    }
+  },
+  "rooted-glow.com": {
+    "gsc": {
+      "clicks": 2,
+      "impressions": 86,
+      "ctr": 2.3255813953488373,
+      "position": 64.96511627906978
+    },
+    "ahrefs": {
+      "dr": 16.0,
+      "backlinks": 1116,
+      "refdomains": 344,
+      "organic_kw_count": 0
+    },
+    "ga4": {
+      "sessions": 293,
+      "users": 293,
+      "engaged": 162,
+      "ai_sessions": 10,
+      "ai_sources": [
+        {
+          "label": "ChatGPT",
+          "source": "chatgpt.com",
+          "sessions": 9,
+          "engaged": 3
+        },
+        {
+          "label": "Perplexity",
+          "source": "perplexity.ai",
+          "sessions": 1,
+          "engaged": 1
+        }
+      ]
+    }
+  },
+  "build-coded.com": {
+    "gsc": {
+      "clicks": 0,
+      "impressions": 8,
+      "ctr": 0,
+      "position": 11.75
+    },
+    "ahrefs": {
+      "dr": 10.0,
+      "backlinks": 660,
+      "refdomains": 352,
+      "organic_kw_count": 0
+    },
+    "ga4": {
+      "sessions": 259,
+      "users": 259,
+      "engaged": 89,
+      "ai_sessions": 8,
+      "ai_sources": [
+        {
+          "label": "ChatGPT",
+          "source": "chatgpt.com",
+          "sessions": 8,
+          "engaged": 1
+        }
+      ]
+    }
+  }
+}
