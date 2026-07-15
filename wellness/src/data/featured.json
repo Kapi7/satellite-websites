@@ -1,18 +1,18 @@
 {
-  "updated": "2026-07-14",
-  "period": "2026-06-14 to 2026-07-12",
+  "updated": "2026-07-15",
+  "period": "2026-06-15 to 2026-07-13",
   "trending": [
     {
       "slug": "casein-protein-night-time-benefits",
       "clicks": 0,
-      "impressions": 32,
-      "position": 73.8
+      "impressions": 29,
+      "position": 75.4
     },
     {
       "slug": "best-probiotics-for-women-gut-health",
       "clicks": 0,
-      "impressions": 32,
-      "position": 69.1
+      "impressions": 29,
+      "position": 68.4
     },
     {
       "slug": "castor-oil-packs-benefits",
@@ -27,16 +27,16 @@
       "position": 80.8
     },
     {
-      "slug": "how-to-start-running-beginners-guide",
-      "clicks": 0,
-      "impressions": 19,
-      "position": 78
-    },
-    {
       "slug": "best-protein-powders-clean-natural",
       "clicks": 0,
       "impressions": 18,
       "position": 35.7
+    },
+    {
+      "slug": "how-to-start-running-beginners-guide",
+      "clicks": 0,
+      "impressions": 18,
+      "position": 77.6
     }
   ],
   "rising": []
