@@ -1,0 +1,92 @@
+{
+  "glow-coded.com": {
+    "gsc": {
+      "clicks": 1,
+      "impressions": 143,
+      "ctr": 0.6993006993006993,
+      "position": 55.61538461538461
+    },
+    "ahrefs": {
+      "dr": 11.0,
+      "backlinks": 780,
+      "refdomains": 361,
+      "organic_kw_count": 0
+    },
+    "ga4": {
+      "sessions": 403,
+      "users": 388,
+      "engaged": 262,
+      "ai_sessions": 21,
+      "ai_sources": [
+        {
+          "label": "ChatGPT",
+          "source": "chatgpt.com",
+          "sessions": 20,
+          "engaged": 4
+        },
+        {
+          "label": "Bing (incl. Copilot chat)",
+          "source": "cn.bing.com",
+          "sessions": 1,
+          "engaged": 1
+        }
+      ]
+    }
+  },
+  "rooted-glow.com": {
+    "gsc": {
+      "clicks": 0,
+      "impressions": 157,
+      "ctr": 0,
+      "position": 55.89808917197452
+    },
+    "ahrefs": {
+      "dr": 16.0,
+      "backlinks": 1178,
+      "refdomains": 364,
+      "organic_kw_count": 1
+    },
+    "ga4": {
+      "sessions": 225,
+      "users": 224,
+      "engaged": 153,
+      "ai_sessions": 6,
+      "ai_sources": [
+        {
+          "label": "ChatGPT",
+          "source": "chatgpt.com",
+          "sessions": 6,
+          "engaged": 3
+        }
+      ]
+    }
+  },
+  "build-coded.com": {
+    "gsc": {
+      "clicks": 0,
+      "impressions": 9,
+      "ctr": 0,
+      "position": 15.666666666666666
+    },
+    "ahrefs": {
+      "dr": 10.0,
+      "backlinks": 712,
+      "refdomains": 370,
+      "organic_kw_count": 0
+    },
+    "ga4": {
+      "sessions": 224,
+      "users": 224,
+      "engaged": 37,
+      "ai_sessions": 10,
+      "ai_sources": [
+        {
+          "label": "ChatGPT",
+          "source": "chatgpt.com",
+          "sessions": 10,
+          "engaged": 0
+        }
+      ]
+    }
+  }
+}
