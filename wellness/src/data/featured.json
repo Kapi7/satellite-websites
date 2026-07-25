@@ -1,24 +1,24 @@
 {
-  "updated": "2026-07-24",
-  "period": "2026-06-24 to 2026-07-22",
+  "updated": "2026-07-25",
+  "period": "2026-06-25 to 2026-07-23",
   "trending": [
     {
       "slug": "best-protein-powders-clean-natural",
       "clicks": 0,
-      "impressions": 59,
-      "position": 24.1
+      "impressions": 64,
+      "position": 23.6
     },
     {
       "slug": "casein-protein-night-time-benefits",
       "clicks": 0,
-      "impressions": 57,
-      "position": 62.1
+      "impressions": 56,
+      "position": 60.4
     },
     {
       "slug": "best-probiotics-for-women-gut-health",
       "clicks": 0,
-      "impressions": 41,
-      "position": 67.0
+      "impressions": 46,
+      "position": 66.8
     },
     {
       "slug": "castor-oil-packs-benefits",
@@ -35,8 +35,8 @@
     {
       "slug": "complete-guide-ancestral-eating",
       "clicks": 0,
-      "impressions": 12,
-      "position": 93.6
+      "impressions": 10,
+      "position": 93.1
     }
   ],
   "rising": []
