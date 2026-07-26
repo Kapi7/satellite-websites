@@ -1,12 +1,12 @@
 {
-  "updated": "2026-07-25",
-  "period": "2026-06-25 to 2026-07-23",
+  "updated": "2026-07-26",
+  "period": "2026-06-26 to 2026-07-24",
   "trending": [
     {
       "slug": "best-retinol-creams-serums-beginner-advanced",
       "clicks": 0,
-      "impressions": 181,
-      "position": 41.2
+      "impressions": 161,
+      "position": 41.3
     },
     {
       "slug": "best-korean-lip-tints-long-wear",
@@ -15,28 +15,28 @@
       "position": 69.9
     },
     {
+      "slug": "propolis-in-korean-skincare",
+      "clicks": 0,
+      "impressions": 27,
+      "position": 82.9
+    },
+    {
       "slug": "best-niacinamide-serums-every-skin-type",
       "clicks": 0,
-      "impressions": 24,
-      "position": 68.0
-    },
-    {
-      "slug": "korean-skincare-routine-complete-guide",
-      "clicks": 0,
       "impressions": 23,
-      "position": 85.8
-    },
-    {
-      "slug": "korean-eye-cream-guide",
-      "clicks": 0,
-      "impressions": 20,
-      "position": 91.9
+      "position": 69
     },
     {
       "slug": "acne-spot-treatments-that-work",
       "clicks": 0,
-      "impressions": 17,
-      "position": 63.9
+      "impressions": 20,
+      "position": 61.1
+    },
+    {
+      "slug": "korean-eye-cream-guide",
+      "clicks": 0,
+      "impressions": 19,
+      "position": 92.1
     }
   ],
   "rising": []
