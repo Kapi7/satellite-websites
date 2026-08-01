@@ -1,18 +1,18 @@
 {
-  "updated": "2026-07-31",
-  "period": "2026-07-01 to 2026-07-29",
+  "updated": "2026-08-01",
+  "period": "2026-07-02 to 2026-07-30",
   "trending": [
     {
       "slug": "zone-2-training-slow-running-burns-fat",
       "clicks": 0,
-      "impressions": 123,
-      "position": 42.5
+      "impressions": 128,
+      "position": 44.2
     },
     {
       "slug": "best-protein-powders-clean-natural",
       "clicks": 0,
-      "impressions": 81,
-      "position": 22.2
+      "impressions": 80,
+      "position": 21.4
     },
     {
       "slug": "casein-protein-night-time-benefits",
@@ -23,8 +23,8 @@
     {
       "slug": "best-probiotics-for-women-gut-health",
       "clicks": 0,
-      "impressions": 50,
-      "position": 70.0
+      "impressions": 58,
+      "position": 70.8
     },
     {
       "slug": "how-to-start-running-beginners-guide",
@@ -35,7 +35,7 @@
     {
       "slug": "electrolytes-before-bed-sleep-quality",
       "clicks": 0,
-      "impressions": 22,
+      "impressions": 21,
       "position": 81.2
     }
   ],
