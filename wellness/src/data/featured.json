@@ -1,18 +1,18 @@
 {
-  "updated": "2026-08-01",
-  "period": "2026-07-02 to 2026-07-30",
+  "updated": "2026-08-02",
+  "period": "2026-07-03 to 2026-07-31",
   "trending": [
     {
       "slug": "zone-2-training-slow-running-burns-fat",
       "clicks": 0,
-      "impressions": 128,
-      "position": 44.2
+      "impressions": 131,
+      "position": 45.0
     },
     {
       "slug": "best-protein-powders-clean-natural",
       "clicks": 0,
-      "impressions": 80,
-      "position": 21.4
+      "impressions": 78,
+      "position": 21.9
     },
     {
       "slug": "casein-protein-night-time-benefits",
@@ -35,8 +35,8 @@
     {
       "slug": "electrolytes-before-bed-sleep-quality",
       "clicks": 0,
-      "impressions": 21,
-      "position": 81.2
+      "impressions": 20,
+      "position": 80.3
     }
   ],
   "rising": []
