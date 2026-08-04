@@ -1,0 +1,148 @@
+============================================================
+  WEEKLY SEO REPORT
+  Week of 2026-08-03
+============================================================
+
+============================================================
+  GLOW-CODED.COM
+============================================================
+
+  GSC — glow-coded.com
+  ──────────────────────────────────────────────────
+  Clicks:      1 ▼ -1
+  Impressions: 127 ▼ -92
+  CTR:         0.8% ▼ -0.1
+  Position:    64.6 ▲ +18.6
+
+  Top Queries:
+  Query                                    Clicks   Impr    CTR   Pos
+  acne spot                                     0      1   0.0%  97.0
+  ai skincare quiz                              0      1   0.0%  99.0
+  artemisia capillaris extract skin bene        0      1   0.0%  78.0
+  at home spot treatment                        0      2   0.0%  99.0
+  beauty of joseon best products                0      1   0.0%  15.0
+  beauty of joseon vs centella sunscreen        0      1   0.0%  43.0
+  bee propolis skin care                        0      8   0.0%  84.6
+  clearskin voor de jeugdige huid               0      1   0.0%  98.0
+  cosmética coreana opiniones                   0      1   0.0%  79.0
+  cremas coreanas opiniones                     0      1   0.0%  72.0
+
+  Ahrefs — glow-coded.com
+  ──────────────────────────────────────────────────
+  DR:          11.0
+  Ahrefs Rank: 15383392
+  Backlinks:   862
+  Ref Domains: 421
+
+  Top Organic Keywords:
+
+  GA4 — glow-coded.com
+  ──────────────────────────────────────────────────
+  Sessions:   539   Users: 529   Engaged: 315
+  Channels:
+    Direct                              442
+    Organic Search                       55
+    Unassigned                           42
+    AI Assistant                         23
+  AI referrals: 22 sessions
+    ChatGPT (chatgpt.com)  sessions: 22  engaged: 9
+
+  Bing — glow-coded.com
+  ──────────────────────────────────────────────────
+  Crawled: 0  |  Indexed: 0
+  Daily quota left: 100  |  Monthly: 2900
+
+============================================================
+  ROOTED-GLOW.COM
+============================================================
+
+  GSC — rooted-glow.com
+  ──────────────────────────────────────────────────
+  Clicks:      1 ▲ +1
+  Impressions: 134 ▼ -137
+  CTR:         0.7% ▲ +0.7
+  Position:    62.9 ▲ +21.1
+
+  Top Queries:
+  Query                                    Clicks   Impr    CTR   Pos
+  aceite de coco oil pulling                    0      1   0.0% 100.0
+  benefits of casein before bed                 0      1   0.0%  17.0
+  best protein powder clean                     0      1   0.0%  21.0
+  casein in the morning                         0      1   0.0%  18.0
+  casein protein for nighttime                  0      1   0.0%  19.0
+  castor oil for packs                          0      1   0.0%  62.0
+  castor oil packs                              0      1   0.0%  70.0
+  castor oil usage                              0      1   0.0%  83.0
+  clean protein powder                          0      1   0.0%  41.0
+  clean protein powder brands                   0      1   0.0%  22.0
+
+  Ahrefs — rooted-glow.com
+  ──────────────────────────────────────────────────
+  DR:          16.0
+  Ahrefs Rank: 11172909
+  Backlinks:   1265
+  Ref Domains: 417
+
+  Top Organic Keywords:
+    cleanest protein powder                         vol: 7000
+    clean protein powders                           vol: 700
+    casein protein before bed                       vol: 600
+
+  GA4 — rooted-glow.com
+  ──────────────────────────────────────────────────
+  Sessions:   300   Users: 300   Engaged: 191
+  Channels:
+    Direct                              264
+    AI Assistant                         14
+    Unassigned                           14
+    Organic Search                        7
+    Referral                              3
+    Organic Social                        2
+  AI referrals: 14 sessions
+    ChatGPT (chatgpt.com)  sessions: 14  engaged: 5
+
+  Bing — rooted-glow.com
+  ──────────────────────────────────────────────────
+  Crawled: 0  |  Indexed: 0
+  Daily quota left: 100  |  Monthly: 2900
+
+============================================================
+  BUILD-CODED.COM
+============================================================
+
+  GSC — build-coded.com
+  ──────────────────────────────────────────────────
+  Clicks:      0 ─ 0
+  Impressions: 3 ▼ -2
+  CTR:         0.0% ─ 0
+  Position:    2.0 ▼ -29.6
+
+  Ahrefs — build-coded.com
+  ──────────────────────────────────────────────────
+  DR:          10.0
+  Ahrefs Rank: 17310923
+  Backlinks:   809
+  Ref Domains: 430
+
+  Top Organic Keywords:
+
+  GA4 — build-coded.com
+  ──────────────────────────────────────────────────
+  Sessions:   309   Users: 306   Engaged: 85
+  Channels:
+    Direct                              279
+    AI Assistant                         18
+    Unassigned                           14
+    Organic Search                        5
+    Referral                              1
+  AI referrals: 18 sessions
+    ChatGPT (chatgpt.com)  sessions: 18  engaged: 10
+
+  Bing — build-coded.com
+  ──────────────────────────────────────────────────
+  Crawled: 90  |  Indexed: 7
+  Daily quota left: 10  |  Monthly: 290
+
+============================================================
+  Report generated: 2026-08-03 08:00
+============================================================

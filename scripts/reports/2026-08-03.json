@@ -1,0 +1,86 @@
+{
+  "glow-coded.com": {
+    "gsc": {
+      "clicks": 1,
+      "impressions": 127,
+      "ctr": 0.7874015748031495,
+      "position": 64.61417322834646
+    },
+    "ahrefs": {
+      "dr": 11.0,
+      "backlinks": 862,
+      "refdomains": 421,
+      "organic_kw_count": 0
+    },
+    "ga4": {
+      "sessions": 539,
+      "users": 529,
+      "engaged": 315,
+      "ai_sessions": 22,
+      "ai_sources": [
+        {
+          "label": "ChatGPT",
+          "source": "chatgpt.com",
+          "sessions": 22,
+          "engaged": 9
+        }
+      ]
+    }
+  },
+  "rooted-glow.com": {
+    "gsc": {
+      "clicks": 1,
+      "impressions": 134,
+      "ctr": 0.7462686567164178,
+      "position": 62.940298507462686
+    },
+    "ahrefs": {
+      "dr": 16.0,
+      "backlinks": 1265,
+      "refdomains": 417,
+      "organic_kw_count": 3
+    },
+    "ga4": {
+      "sessions": 300,
+      "users": 300,
+      "engaged": 191,
+      "ai_sessions": 14,
+      "ai_sources": [
+        {
+          "label": "ChatGPT",
+          "source": "chatgpt.com",
+          "sessions": 14,
+          "engaged": 5
+        }
+      ]
+    }
+  },
+  "build-coded.com": {
+    "gsc": {
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 2
+    },
+    "ahrefs": {
+      "dr": 10.0,
+      "backlinks": 809,
+      "refdomains": 430,
+      "organic_kw_count": 0
+    },
+    "ga4": {
+      "sessions": 309,
+      "users": 306,
+      "engaged": 85,
+      "ai_sessions": 18,
+      "ai_sources": [
+        {
+          "label": "ChatGPT",
+          "source": "chatgpt.com",
+          "sessions": 18,
+          "engaged": 10
+        }
+      ]
+    }
+  }
+}
