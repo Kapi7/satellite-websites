@@ -1,30 +1,30 @@
 {
-  "updated": "2026-08-05",
-  "period": "2026-07-06 to 2026-08-03",
+  "updated": "2026-08-06",
+  "period": "2026-07-07 to 2026-08-04",
   "trending": [
-    {
-      "slug": "best-retinol-creams-serums-beginner-advanced",
-      "clicks": 0,
-      "impressions": 69,
-      "position": 42.4
-    },
     {
       "slug": "acne-spot-treatments-that-work",
       "clicks": 0,
-      "impressions": 65,
-      "position": 71.1
+      "impressions": 71,
+      "position": 73.2
+    },
+    {
+      "slug": "best-retinol-creams-serums-beginner-advanced",
+      "clicks": 0,
+      "impressions": 53,
+      "position": 42.9
     },
     {
       "slug": "propolis-in-korean-skincare",
       "clicks": 0,
       "impressions": 32,
-      "position": 81.0
+      "position": 81.2
     },
     {
       "slug": "best-korean-lip-tints-long-wear",
       "clicks": 0,
-      "impressions": 28,
-      "position": 69.9
+      "impressions": 26,
+      "position": 69.3
     },
     {
       "slug": "korean-toners-ranked-best-every-skin-type",
@@ -33,10 +33,10 @@
       "position": 26.2
     },
     {
-      "slug": "beauty-of-joseon-relief-sun-vs-skin1004-centella-sun",
+      "slug": "best-korean-cushion-foundations-skin-type",
       "clicks": 0,
-      "impressions": 14,
-      "position": 30.8
+      "impressions": 15,
+      "position": 37.1
     }
   ],
   "rising": []
