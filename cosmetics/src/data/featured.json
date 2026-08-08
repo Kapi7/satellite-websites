@@ -1,30 +1,30 @@
 {
-  "updated": "2026-08-07",
-  "period": "2026-07-08 to 2026-08-05",
+  "updated": "2026-08-08",
+  "period": "2026-07-09 to 2026-08-06",
   "trending": [
     {
       "slug": "acne-spot-treatments-that-work",
       "clicks": 0,
-      "impressions": 71,
+      "impressions": 70,
       "position": 73.7
     },
     {
       "slug": "propolis-in-korean-skincare",
       "clicks": 0,
-      "impressions": 32,
+      "impressions": 31,
       "position": 81.2
-    },
-    {
-      "slug": "best-retinol-creams-serums-beginner-advanced",
-      "clicks": 0,
-      "impressions": 27,
-      "position": 42.6
     },
     {
       "slug": "best-korean-lip-tints-long-wear",
       "clicks": 0,
-      "impressions": 25,
-      "position": 69.3
+      "impressions": 24,
+      "position": 68.7
+    },
+    {
+      "slug": "best-retinol-creams-serums-beginner-advanced",
+      "clicks": 0,
+      "impressions": 19,
+      "position": 42.7
     },
     {
       "slug": "korean-toners-ranked-best-every-skin-type",
