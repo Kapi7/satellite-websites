@@ -1,42 +1,42 @@
 {
-  "updated": "2026-08-14",
-  "period": "2026-07-15 to 2026-08-12",
+  "updated": "2026-08-15",
+  "period": "2026-07-16 to 2026-08-13",
   "trending": [
     {
       "slug": "zone-2-training-slow-running-burns-fat",
       "clicks": 0,
-      "impressions": 131,
-      "position": 43.8
+      "impressions": 139,
+      "position": 46.7
     },
     {
       "slug": "best-protein-powders-clean-natural",
       "clicks": 0,
       "impressions": 85,
-      "position": 18.6
+      "position": 20.2
     },
     {
       "slug": "best-probiotics-for-women-gut-health",
       "clicks": 0,
-      "impressions": 51,
-      "position": 71.5
+      "impressions": 55,
+      "position": 72.9
     },
     {
       "slug": "casein-protein-night-time-benefits",
       "clicks": 0,
-      "impressions": 49,
-      "position": 44.9
+      "impressions": 47,
+      "position": 44.4
     },
     {
       "slug": "castor-oil-packs-benefits",
       "clicks": 0,
-      "impressions": 42,
-      "position": 82.3
+      "impressions": 43,
+      "position": 82.4
     },
     {
       "slug": "how-to-make-sauerkraut-at-home",
       "clicks": 0,
-      "impressions": 25,
-      "position": 76.6
+      "impressions": 29,
+      "position": 77.5
     }
   ],
   "rising": []
