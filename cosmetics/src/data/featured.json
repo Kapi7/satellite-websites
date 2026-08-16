@@ -1,12 +1,12 @@
 {
-  "updated": "2026-08-15",
-  "period": "2026-07-16 to 2026-08-13",
+  "updated": "2026-08-16",
+  "period": "2026-07-17 to 2026-08-14",
   "trending": [
     {
       "slug": "acne-spot-treatments-that-work",
       "clicks": 0,
-      "impressions": 94,
-      "position": 78.9
+      "impressions": 99,
+      "position": 79.4
     },
     {
       "slug": "propolis-in-korean-skincare",
@@ -23,8 +23,8 @@
     {
       "slug": "best-korean-lip-tints-long-wear",
       "clicks": 0,
-      "impressions": 16,
-      "position": 69.4
+      "impressions": 15,
+      "position": 69.5
     },
     {
       "slug": "korean-toners-ranked-best-every-skin-type",
@@ -33,10 +33,10 @@
       "position": 26.7
     },
     {
-      "slug": "best-korean-cushion-foundations-skin-type",
+      "slug": "mugwort-skincare-benefits",
       "clicks": 0,
-      "impressions": 14,
-      "position": 31.7
+      "impressions": 15,
+      "position": 64.9
     }
   ],
   "rising": []
