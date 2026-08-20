@@ -1,12 +1,12 @@
 {
-  "updated": "2026-08-19",
-  "period": "2026-07-20 to 2026-08-17",
+  "updated": "2026-08-20",
+  "period": "2026-07-21 to 2026-08-18",
   "trending": [
     {
       "slug": "acne-spot-treatments-that-work",
       "clicks": 0,
-      "impressions": 107,
-      "position": 81.3
+      "impressions": 113,
+      "position": 83.0
     },
     {
       "slug": "korean-skincare-routine-complete-guide",
@@ -17,26 +17,26 @@
     {
       "slug": "propolis-in-korean-skincare",
       "clicks": 0,
-      "impressions": 21,
-      "position": 83.2
+      "impressions": 20,
+      "position": 83
     },
     {
       "slug": "mugwort-skincare-benefits",
       "clicks": 0,
+      "impressions": 18,
+      "position": 69.1
+    },
+    {
+      "slug": "anua-peach-niacinamide-vs-ordinary",
+      "clicks": 0,
       "impressions": 17,
-      "position": 69.7
+      "position": 49.9
     },
     {
-      "slug": "best-korean-products-hyperpigmentation-dark-spots",
+      "slug": "beauty-of-joseon-relief-sun-vs-skin1004-centella-sun",
       "clicks": 0,
-      "impressions": 14,
-      "position": 76
-    },
-    {
-      "slug": "best-korean-lip-tints-long-wear",
-      "clicks": 0,
-      "impressions": 14,
-      "position": 70.1
+      "impressions": 15,
+      "position": 40.1
     }
   ],
   "rising": []
