@@ -1,18 +1,12 @@
 {
-  "updated": "2026-08-22",
-  "period": "2026-07-23 to 2026-08-20",
+  "updated": "2026-08-23",
+  "period": "2026-07-24 to 2026-08-21",
   "trending": [
     {
       "slug": "acne-spot-treatments-that-work",
       "clicks": 0,
-      "impressions": 119,
-      "position": 83.5
-    },
-    {
-      "slug": "red-irritated-skin-after-retinol-recovery",
-      "clicks": 0,
-      "impressions": 40,
-      "position": 78.5
+      "impressions": 121,
+      "position": 84.5
     },
     {
       "slug": "korean-skincare-routine-complete-guide",
@@ -23,20 +17,26 @@
     {
       "slug": "anua-peach-niacinamide-vs-ordinary",
       "clicks": 0,
-      "impressions": 20,
-      "position": 58
-    },
-    {
-      "slug": "beauty-of-joseon-relief-sun-vs-skin1004-centella-sun",
-      "clicks": 0,
-      "impressions": 18,
-      "position": 43.6
+      "impressions": 22,
+      "position": 59.8
     },
     {
       "slug": "mugwort-skincare-benefits",
       "clicks": 0,
       "impressions": 18,
       "position": 69.1
+    },
+    {
+      "slug": "beauty-of-joseon-relief-sun-vs-skin1004-centella-sun",
+      "clicks": 0,
+      "impressions": 16,
+      "position": 45.5
+    },
+    {
+      "slug": "propolis-in-korean-skincare",
+      "clicks": 0,
+      "impressions": 16,
+      "position": 82.1
     }
   ],
   "rising": []
