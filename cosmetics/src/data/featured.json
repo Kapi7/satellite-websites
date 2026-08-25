@@ -1,12 +1,12 @@
 {
-  "updated": "2026-08-24",
-  "period": "2026-07-25 to 2026-08-22",
+  "updated": "2026-08-25",
+  "period": "2026-07-26 to 2026-08-23",
   "trending": [
     {
       "slug": "acne-spot-treatments-that-work",
       "clicks": 0,
-      "impressions": 121,
-      "position": 86.4
+      "impressions": 118,
+      "position": 87.4
     },
     {
       "slug": "korean-skincare-routine-complete-guide",
@@ -17,8 +17,8 @@
     {
       "slug": "anua-peach-niacinamide-vs-ordinary",
       "clicks": 0,
-      "impressions": 23,
-      "position": 60.4
+      "impressions": 24,
+      "position": 60.7
     },
     {
       "slug": "mugwort-skincare-benefits",
@@ -29,14 +29,14 @@
     {
       "slug": "beauty-of-joseon-relief-sun-vs-skin1004-centella-sun",
       "clicks": 0,
-      "impressions": 14,
-      "position": 47.5
+      "impressions": 15,
+      "position": 47.9
     },
     {
-      "slug": "propolis-in-korean-skincare",
+      "slug": "best-korean-sunscreens-oily-skin-no-white-cast",
       "clicks": 0,
-      "impressions": 14,
-      "position": 81.2
+      "impressions": 13,
+      "position": 95.5
     }
   ],
   "rising": []
