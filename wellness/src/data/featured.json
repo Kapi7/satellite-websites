@@ -1,18 +1,18 @@
 {
-  "updated": "2026-08-26",
-  "period": "2026-07-27 to 2026-08-24",
+  "updated": "2026-08-27",
+  "period": "2026-07-28 to 2026-08-25",
   "trending": [
     {
       "slug": "zone-2-training-slow-running-burns-fat",
       "clicks": 0,
-      "impressions": 181,
-      "position": 73.9
+      "impressions": 185,
+      "position": 75.3
     },
     {
       "slug": "double-cleansing-why-and-how",
       "clicks": 0,
-      "impressions": 78,
-      "position": 92.9
+      "impressions": 81,
+      "position": 93.0
     },
     {
       "slug": "castor-oil-packs-benefits",
@@ -24,7 +24,7 @@
       "slug": "best-probiotics-for-women-gut-health",
       "clicks": 0,
       "impressions": 41,
-      "position": 83.0
+      "position": 83.6
     },
     {
       "slug": "how-to-make-sauerkraut-at-home",
@@ -35,8 +35,8 @@
     {
       "slug": "10-korean-serums-worth-the-hype",
       "clicks": 0,
-      "impressions": 31,
-      "position": 110.0
+      "impressions": 30,
+      "position": 109.8
     }
   ],
   "rising": []
