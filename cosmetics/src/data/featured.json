@@ -1,6 +1,6 @@
 {
-  "updated": "2026-08-29",
-  "period": "2026-07-30 to 2026-08-27",
+  "updated": "2026-08-30",
+  "period": "2026-07-31 to 2026-08-28",
   "trending": [
     {
       "slug": "acne-spot-treatments-that-work",
@@ -15,28 +15,28 @@
       "position": 92.1
     },
     {
+      "slug": "best-korean-sunscreens-oily-skin-no-white-cast",
+      "clicks": 0,
+      "impressions": 27,
+      "position": 95.1
+    },
+    {
       "slug": "anua-peach-niacinamide-vs-ordinary",
       "clicks": 0,
       "impressions": 24,
       "position": 63.6
     },
     {
-      "slug": "best-korean-sunscreens-oily-skin-no-white-cast",
-      "clicks": 0,
-      "impressions": 21,
-      "position": 95.4
-    },
-    {
       "slug": "best-korean-products-hyperpigmentation-dark-spots",
       "clicks": 0,
-      "impressions": 13,
-      "position": 74.9
+      "impressions": 14,
+      "position": 74.6
     },
     {
-      "slug": "best-korean-cushion-foundations-skin-type",
+      "slug": "beauty-of-joseon-relief-sun-vs-skin1004-centella-sun",
       "clicks": 0,
-      "impressions": 11,
-      "position": 59.5
+      "impressions": 10,
+      "position": 54.3
     }
   ],
   "rising": []
