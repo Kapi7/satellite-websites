@@ -1,42 +1,42 @@
 {
-  "updated": "2026-09-02",
-  "period": "2026-08-03 to 2026-08-31",
+  "updated": "2026-09-03",
+  "period": "2026-08-04 to 2026-09-01",
   "trending": [
     {
       "slug": "zone-2-training-slow-running-burns-fat",
       "clicks": 0,
-      "impressions": 245,
-      "position": 76.9
+      "impressions": 254,
+      "position": 77.2
     },
     {
       "slug": "double-cleansing-why-and-how",
       "clicks": 0,
-      "impressions": 123,
+      "impressions": 127,
       "position": 93.1
     },
     {
       "slug": "how-to-make-sauerkraut-at-home",
       "clicks": 0,
-      "impressions": 49,
-      "position": 79.8
+      "impressions": 51,
+      "position": 80.2
     },
     {
-      "slug": "castor-oil-packs-benefits",
+      "slug": "best-protein-powders-clean-natural",
       "clicks": 0,
-      "impressions": 39,
-      "position": 82.8
+      "impressions": 40,
+      "position": 86.0
+    },
+    {
+      "slug": "snail-mucin-everything-you-need-to-know",
+      "clicks": 0,
+      "impressions": 40,
+      "position": 88.0
     },
     {
       "slug": "best-probiotics-for-women-gut-health",
       "clicks": 0,
       "impressions": 39,
-      "position": 87
-    },
-    {
-      "slug": "snail-mucin-everything-you-need-to-know",
-      "clicks": 0,
-      "impressions": 39,
-      "position": 87.9
+      "position": 86.9
     }
   ],
   "rising": []
