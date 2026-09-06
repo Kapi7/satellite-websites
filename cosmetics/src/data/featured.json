@@ -1,6 +1,6 @@
 {
-  "updated": "2026-09-05",
-  "period": "2026-08-06 to 2026-09-03",
+  "updated": "2026-09-06",
+  "period": "2026-08-07 to 2026-09-04",
   "trending": [
     {
       "slug": "acne-spot-treatments-that-work",
@@ -11,8 +11,8 @@
     {
       "slug": "best-korean-sunscreens-oily-skin-no-white-cast",
       "clicks": 0,
-      "impressions": 43,
-      "position": 95.2
+      "impressions": 48,
+      "position": 95.1
     },
     {
       "slug": "korean-skincare-routine-complete-guide",
@@ -29,14 +29,14 @@
     {
       "slug": "best-korean-products-hyperpigmentation-dark-spots",
       "clicks": 0,
-      "impressions": 25,
-      "position": 72.0
+      "impressions": 28,
+      "position": 71.6
     },
     {
       "slug": "best-korean-lip-tints-long-wear",
       "clicks": 0,
-      "impressions": 20,
-      "position": 67
+      "impressions": 21,
+      "position": 65.4
     }
   ],
   "rising": []
