@@ -1,12 +1,12 @@
 {
-  "updated": "2026-09-06",
-  "period": "2026-08-07 to 2026-09-04",
+  "updated": "2026-09-07",
+  "period": "2026-08-08 to 2026-09-05",
   "trending": [
     {
       "slug": "acne-spot-treatments-that-work",
       "clicks": 0,
-      "impressions": 124,
-      "position": 90.3
+      "impressions": 130,
+      "position": 90.0
     },
     {
       "slug": "best-korean-sunscreens-oily-skin-no-white-cast",
@@ -21,16 +21,16 @@
       "position": 92.1
     },
     {
-      "slug": "anua-peach-niacinamide-vs-ordinary",
-      "clicks": 0,
-      "impressions": 29,
-      "position": 63.4
-    },
-    {
       "slug": "best-korean-products-hyperpigmentation-dark-spots",
       "clicks": 0,
-      "impressions": 28,
-      "position": 71.6
+      "impressions": 30,
+      "position": 71.7
+    },
+    {
+      "slug": "anua-peach-niacinamide-vs-ordinary",
+      "clicks": 0,
+      "impressions": 27,
+      "position": 65.9
     },
     {
       "slug": "best-korean-lip-tints-long-wear",
