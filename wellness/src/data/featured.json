@@ -1,11 +1,11 @@
 {
-  "updated": "2026-09-08",
-  "period": "2026-08-09 to 2026-09-06",
+  "updated": "2026-09-09",
+  "period": "2026-08-10 to 2026-09-07",
   "trending": [
     {
       "slug": "double-cleansing-why-and-how",
       "clicks": 0,
-      "impressions": 127,
+      "impressions": 128,
       "position": 93.0
     },
     {
@@ -17,8 +17,8 @@
     {
       "slug": "best-probiotics-for-women-gut-health",
       "clicks": 0,
-      "impressions": 53,
-      "position": 85.8
+      "impressions": 55,
+      "position": 85.9
     },
     {
       "slug": "snail-mucin-everything-you-need-to-know",
@@ -29,14 +29,14 @@
     {
       "slug": "how-to-make-sauerkraut-at-home",
       "clicks": 0,
-      "impressions": 39,
-      "position": 81.5
+      "impressions": 35,
+      "position": 81.9
     },
     {
-      "slug": "castor-oil-packs-benefits",
+      "slug": "casein-protein-night-time-benefits",
       "clicks": 0,
       "impressions": 28,
-      "position": 80.5
+      "position": 58.3
     }
   ],
   "rising": []
