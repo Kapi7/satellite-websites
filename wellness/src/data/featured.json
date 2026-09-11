@@ -1,6 +1,6 @@
 {
-  "updated": "2026-09-10",
-  "period": "2026-08-11 to 2026-09-08",
+  "updated": "2026-09-11",
+  "period": "2026-08-12 to 2026-09-09",
   "trending": [
     {
       "slug": "double-cleansing-why-and-how",
@@ -11,32 +11,32 @@
     {
       "slug": "best-protein-powders-clean-natural",
       "clicks": 0,
-      "impressions": 77,
+      "impressions": 79,
       "position": 71.8
     },
     {
       "slug": "best-probiotics-for-women-gut-health",
       "clicks": 0,
-      "impressions": 57,
+      "impressions": 58,
       "position": 86.0
     },
     {
       "slug": "snail-mucin-everything-you-need-to-know",
       "clicks": 0,
-      "impressions": 45,
-      "position": 88.4
+      "impressions": 43,
+      "position": 88.0
     },
     {
       "slug": "how-to-make-sauerkraut-at-home",
       "clicks": 0,
-      "impressions": 35,
-      "position": 81.8
+      "impressions": 32,
+      "position": 82.2
     },
     {
       "slug": "casein-protein-night-time-benefits",
       "clicks": 0,
-      "impressions": 28,
-      "position": 58.3
+      "impressions": 29,
+      "position": 56.4
     }
   ],
   "rising": []
