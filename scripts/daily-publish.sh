@@ -19,14 +19,14 @@ echo "=== Daily Publish $(date) ==="
 # regenerated it. refill_queue.py generates drafts from topic-backlog/<site>.json
 # when a site's runway drops below REFILL_THRESHOLD days. Conservative by design —
 # the publisher below still ships only one article per site per day.
-# Non-blocking — always exits 0 even on failure.
+# Failures are reported for investigation; existing drafts may still be processed.
 # ─────────────────────────────────────────────────────────────
 if [ -f scripts/refill_queue.py ]; then
   echo "[pre-flight] running refill_queue.py (threshold=${REFILL_THRESHOLD:-7})"
-  python3 scripts/refill_queue.py || echo "[pre-flight] refill_queue returned non-zero"
+  python3 scripts/refill_queue.py || { echo "::error::Content refill requires attention"; REFILL_FAILED=1; }
 fi
 
-# Pre-flight: queue health check (author rotation + hero auto-gen)
+# Pre-flight: editorial bylines and eligible illustration assets
 # Non-blocking — always exits 0 even on failure.
 # ─────────────────────────────────────────────────────────────
 if [ -f scripts/queue_health.py ]; then
@@ -53,6 +53,7 @@ if [ -f scripts/update-featured.py ]; then
 fi
 
 LOCALES="es de el ru it ar fr nl pt"
+PREFLIGHT_FAILED=${REFILL_FAILED:-0}
 PUBLISHED=0
 PUBLISHED_FILES=""
 ENGLISH_TO_PUBLISH=""
@@ -268,8 +269,14 @@ if [ "$SUPPRESSED_SITE_PUBLISH_TODAY" = "true" ] && ! published_today build-code
 fi
 
 if [ $PUBLISHED -gt 0 ]; then
-  # Stage all published + undrafted files
-  git add $PUBLISHED_FILES
+  # Refuse to publish content that cannot produce a complete site.
+  for site in cosmetics wellness build-coded; do
+    if git status --porcelain -- "$site/" | grep -q .; then
+      (cd "$site" && npm ci --silent && npm run build) || exit 1
+    fi
+  done
+  # Include new draft assets and translations in the same validated commit.
+  git add -- cosmetics/src/content cosmetics/public/images wellness/src/content wellness/public/images build-coded/src/content build-coded/public/images
   git commit -m "Publish daily articles ($(date +%Y-%m-%d))"
   git pull --rebase --quiet origin main 2>/dev/null || true
   git push origin main
@@ -285,18 +292,18 @@ if [ $PUBLISHED -gt 0 ]; then
   done
   if [ "$BUILD_CODED_TOUCHED" = "1" ] && [ -d build-coded ]; then
     if [ -z "${CLOUDFLARE_API_TOKEN:-}" ]; then
-      echo "[build-coded] CLOUDFLARE_API_TOKEN not set — skipping wrangler deploy (run locally or add repo secret)"
+      echo "::error::[build-coded] CLOUDFLARE_API_TOKEN is missing"; REFILL_FAILED=1
     else
       echo "[build-coded] installing deps, building, deploying via wrangler..."
       (cd build-coded && npm ci --silent 2>&1 | tail -3 && \
         npm run build 2>&1 | tail -5 && \
         npx wrangler pages deploy dist --project-name=build-coded --commit-dirty=true 2>&1 | tail -5) \
-        || echo "[build-coded] deploy failed (see logs)"
+        || { echo "::error::[build-coded] deploy failed (see logs)"; REFILL_FAILED=1; }
     fi
   fi
 
   # IndexNow + GSC sitemap ping now run unconditionally below (after this if/else)
-  echo "Done! Published $PUBLISHED article(s) and deployed."
+  echo "Committed $PUBLISHED article(s); check deployment status above."
 
   # Fire-and-forget Telegram ping with the list of newly-published slugs
   if [ -f scripts/notify.py ]; then
@@ -317,13 +324,11 @@ fi
 
 # ---------------------------------------------------------------------------
 # Daily crawler signals — run REGARDLESS of whether we published.
-# Google needs to see fresh sitemap pings every day, otherwise the site
-# falls out of the priority queue and impressions cliff-drop (we saw -88%
-# in 7 days on build-coded in May 2026 when these stopped firing).
+# Sitemap submission supports URL discovery; it does not guarantee rankings.
 # ---------------------------------------------------------------------------
 if [ -f scripts/submit-gsc-sitemap.py ]; then
   echo "[gsc] re-submitting sitemaps to Google Search Console"
-  python3 scripts/submit-gsc-sitemap.py || echo "[gsc] non-zero exit"
+  python3 scripts/submit-gsc-sitemap.py || { echo "::error::Google sitemap submission failed"; PREFLIGHT_FAILED=1; }
 fi
 if [ -f scripts/submit-indexnow.sh ]; then
   echo "[indexnow] pinging Bing/Yandex"
@@ -350,3 +355,6 @@ if [ -f scripts/seo/morning_brief.py ]; then
     echo "[seo] skipped — .venv-seo or claude CLI not ready"
   fi
 fi
+
+# Surface empty backlogs and sitemap failures to the workflow status.
+exit "$PREFLIGHT_FAILED"

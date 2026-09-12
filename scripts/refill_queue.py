@@ -14,9 +14,9 @@ This closes the loop. For each site:
      already exists — and generate them as drafts via gen_articles_batch.py
      (BATCH_DRAFT=true, stagger-dated into the future).
 
-Idempotent and non-fatal: a topic whose .mdx already exists is skipped by the
-generator, so re-running never duplicates. Exits 0 even on error so it never
-blocks the publisher.
+Existing article slugs are skipped. Empty backlogs and generation failures
+return a nonzero exit status so the scheduler can report the problem.
+Dry runs generate nothing and send no notifications.
 
 Usage:
     python3 scripts/refill_queue.py            # refill sites under threshold
@@ -79,6 +79,7 @@ def main() -> int:
     args = ap.parse_args()
 
     summary = []
+    failed = False
     for site in SITES:
         if not (ROOT / site / "src" / "content" / "blog" / "en").is_dir():
             continue
@@ -90,11 +91,12 @@ def main() -> int:
         backlog = load_backlog(site)
         have = existing_slugs(site)
         # next unused topics, in backlog order, that don't already exist
-        pending = [t for t in backlog if t.get("slug") and t["slug"] not in have]
+        pending = [t for t in backlog if t.get("slug") and t["slug"] not in have and t.get("status") != "needs-review"]
         take = pending[: args.batch]
 
         if not take:
             summary.append(f"{site}: {runway} drafts — LOW but backlog EMPTY (add topics to topic-backlog/{site}.json)")
+            failed = True
             continue
 
         slugs = ", ".join(t["slug"] for t in take)
@@ -109,20 +111,25 @@ def main() -> int:
         env = {**os.environ, "BATCH_DRAFT": "true", "BATCH_DATE_MODE": "stagger"}
         try:
             subprocess.run([sys.executable, str(SCRIPTS / "gen_articles_batch.py"), spec_path],
-                           env=env, check=False)
-            summary.append(f"{site}: {runway} drafts — generated {len(take)}: {slugs}")
+                           env=env, check=True)
+            created = [t for t in take if (ROOT / site / "src/content/blog/en" / (t["slug"] + ".mdx")).exists()]
+            if len(created) != len(take):
+                raise RuntimeError("Generator did not produce the expected files")
+            summary.append(f"{site}: {runway} existing drafts — generated {len(created)}: {slugs}")
         except Exception as e:
+            failed = True
             summary.append(f"{site}: refill FAILED — {type(e).__name__}: {e}")
         finally:
             os.unlink(spec_path)
 
     report = "Queue refill\n" + "\n".join(summary)
     print(report)
-    try:
-        tg_notify(report, level="info", title="Queue refill")
-    except Exception:
-        pass
-    return 0
+    if not args.dry_run:
+        try:
+            tg_notify(report, level="warn" if failed else "info", title="Queue refill")
+        except Exception:
+            pass
+    return 1 if failed else 0
 
 
 if __name__ == "__main__":

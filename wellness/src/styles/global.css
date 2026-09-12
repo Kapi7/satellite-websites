@@ -1070,3 +1070,42 @@ html.dark ::-webkit-scrollbar-thumb:hover { background: rgba(216,221,208,0.5); }
 
 /* Mobile: prevent iOS zoom on input focus — inputs below 16px trigger auto-zoom */
 input, textarea, select { font-size: 16px; }
+
+/* Readable articles and touch controls, including long translated words. */
+main, article, aside, .prose { min-width: 0; }
+.prose { overflow-wrap: anywhere; }
+.prose img { max-width: 100%; height: auto; }
+.prose :is(h2, h3, h4) { scroll-margin-top: 6rem; }
+.table-expand-wrapper { max-width: 100%; }
+.table-expand-wrapper th, .table-expand-wrapper td { white-space: normal; overflow-wrap: anywhere; }
+:focus-visible { outline: 3px solid currentColor; outline-offset: 4px; }
+@media (max-width: 960px) {
+  body { padding-bottom: calc(88px + env(safe-area-inset-bottom, 0px)); }
+  input, select, textarea { font-size: max(16px, 1em); }
+  .prose { font-size: 17px; line-height: 1.75; }
+  .prose :is(th,td) { font-size: 14px; line-height: 1.5; }
+  .table-expand-btn { min-height: 44px; }
+  .bc-tab, .rg-tab, .gcm-menu-trigger { min-height: 44px; min-width: 44px; }
+  .gc-kicker, .gc-byline { flex-wrap: wrap; }
+  .gc-title, .rg-title, .article-title { text-wrap: balance; overflow-wrap: anywhere; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+  .animate-fade-in-up { opacity: 1 !important; transform: none !important; }
+}
+
+@media (max-width: 600px) {
+  .rgd-mast { padding: 26px 0 24px; gap: 16px; }
+  .rgd-mast h1 { font-size: clamp(44px, 12vw, 64px); }
+  .rgd-mast .sub { font-size: 19px; line-height: 1.45; }
+  .rgd-mast-meta { font-size: 10px; letter-spacing: .08em; }
+  .rgd-feature { padding: 24px 0; gap: 24px; }
+  .rgd-feature-main .img { height: auto; aspect-ratio: 16 / 10; }
+  .rgd-feature-main h2 { font-size: 32px; line-height: 1.12; }
+  .rgd-cat-card h3 { font-size: 23px; overflow-wrap: anywhere; }
+}
+
+/* Catalog photography keeps the complete packaging visible. */
+img[src*="/images/verified/"] { object-fit: contain !important; background: #fff; }
+.product-image-credit { font-size: 12px; line-height: 1.5; margin: 8px 0 24px; }
+.product-image-credit a { text-decoration: underline; text-underline-offset: 3px; }

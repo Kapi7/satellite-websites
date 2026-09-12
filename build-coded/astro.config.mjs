@@ -1,3 +1,4 @@
+import rehypeAffiliate from '../shared/rehype-affiliate.mjs';
 // @ts-check
 import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';

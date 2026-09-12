@@ -1,4 +1,5 @@
 ---
+import { getCollection } from "astro:content";
 import LanguageSwitcher from './LanguageSwitcher.astro';
 import { t, localePath, getPathWithoutLocale, type Locale } from '../i18n/utils';
 import { locales, localeNativeNames } from '../i18n/locales';
@@ -43,6 +44,10 @@ const drawerTools = [
 
 const now = new Date();
 const issueStamp = now.toLocaleDateString('en-US', { month: 'short', year: 'numeric' }).toUpperCase();
+const routeSlug = Astro.url.pathname.replace(/^\/(?:es|de|el|ru|it|ar|fr|nl|pt)(?=\/|$)/, '').replace(/^\/|\/$/g, '');
+const versions = (await getCollection('blog')).filter(p => p.id.split('/').slice(1).join('/').replace(/\.mdx?$/, '') === routeSlug);
+const availableLocales = /^404(?:\.html)?$/.test(routeSlug) ? [] : versions.length ? locales.filter(l => versions.some(p => p.data.locale === l && !p.data.draft && p.data.date <= new Date())) : locales;
+
 ---
 
 <header class="rgd-page sticky top-0 z-50 backdrop-blur-md" id="site-header" style="background: rgba(245,241,234,0.92); border-bottom: 1px solid rgba(47,61,42,0.15);">
@@ -115,7 +120,7 @@ const issueStamp = now.toLocaleDateString('en-US', { month: 'short', year: 'nume
     <!-- Inline language picker (no dropdown — better UX inside drawer) -->
     <span class="rgd-drawer-label">{t(locale, 'common.language') || 'Language'}</span>
     <div class="rgd-drawer-langs" role="group" aria-label="Language">
-      {locales.map((l) => (
+      {availableLocales.map((l) => (
         <a
           href={l === 'en' ? (currentPath || '/') : `/${l}${currentPath || '/'}`}
           class={`rgd-drawer-lang ${l === locale ? 'is-active' : ''}`}

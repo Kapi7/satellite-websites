@@ -69,7 +69,7 @@ const tabs = [
 
   @media (max-width: 900px) {
     .gcm-tab-bar { display: flex; }
-    body { padding-bottom: 70px; }
+    :global(body) { padding-bottom: calc(88px + env(safe-area-inset-bottom, 0px)); }
   }
 </style>
 
@@ -83,6 +83,6 @@ const tabs = [
     else if (id === 'tools') active = /\/(?:tools|quiz|ingredient-checker|ingredient-matrix|ingredients|shade-matcher)\/?/.test(path);
     else if (id === 'shop') active = /\/shop\//.test(path);
     else if (id === 'about') active = /\/(?:about|privacy|newsletter)\//.test(path);
-    if (active) el.classList.add('active');
+    if (active) { el.classList.add('active'); el.setAttribute('aria-current', 'page'); }
   });
 </script>

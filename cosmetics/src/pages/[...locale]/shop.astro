@@ -47,22 +47,22 @@ const schema = JSON.stringify({
         <span>Curated monthly</span>
       </div>
       <h1>The <em>Edit</em>.</h1>
-      <p class="sub">Everything we've reviewed, in one place. Shop at Mirai Skin — we'll earn a small cut. Prices and stock refresh weekly.</p>
+      <p class="sub">Everything we've reviewed, in one place. Shop at Mirai Skin — we'll earn a small cut. Check current prices and availability at the retailer.</p>
     </div>
 
     <div class="gcd-shop-grid">
       {products.map((p) => (
-        <a href={p.url} target="_blank" rel="noopener" class="gcd-shop-card" id={p.slug}>
+        <a href={p.url} target="_blank" rel="sponsored noopener noreferrer" class="gcd-shop-card" id={p.slug}>
           <div class="img">
-            {p.tag && <span class="tag-pill">{p.tag}</span>}
+
             <img src={p.image} alt={p.name} loading="lazy" />
           </div>
           <div class="body">
             <div class="brand">{p.brand}</div>
             <h3>{p.name}</h3>
-            <p class="type">{p.type} &middot; &#9733; {p.rating} ({p.reviews.toLocaleString()})</p>
+            <p class="type">{p.type}</p>
             <div class="foot">
-              <span class="price">{p.price}</span>
+
               <span>Shop at Mirai &rarr;</span>
             </div>
           </div>

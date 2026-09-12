@@ -6,7 +6,13 @@
     "description": "Red light therapy explained without the hype — what the research supports for skin, recovery, and sleep, what it can't do, realistic at-home device expectations, and how to use it safely.",
     "category": "natural-health",
     "type": "guide",
-    "tags": ["red light therapy", "photobiomodulation", "recovery", "skin", "wellness"],
+    "tags": [
+      "red light therapy",
+      "photobiomodulation",
+      "recovery",
+      "skin",
+      "wellness"
+    ],
     "author": "Rooted Glow Editorial",
     "imageAlt": "Warm red light glowing across a calm minimal room with a soft towel and plant in soft focus",
     "image_prompt": "editorial wellness photography, warm red light glow filling a calm minimal room with a folded towel and a plant in soft focus, serene spa-like atmosphere, soft natural composition, no people's faces, no readable text, 16:9 aspect ratio",
@@ -19,7 +25,13 @@
     "description": "Oil pulling examined honestly — what coconut-oil swishing can and can't do for oral health and breath, what the studies show versus the wellness myths, and how to do it without wasting your time.",
     "category": "natural-health",
     "type": "guide",
-    "tags": ["oil pulling", "oral health", "coconut oil", "detox myths", "wellness"],
+    "tags": [
+      "oil pulling",
+      "oral health",
+      "coconut oil",
+      "detox myths",
+      "wellness"
+    ],
     "author": "Rooted Glow Editorial",
     "imageAlt": "A small bowl of coconut oil and a wooden spoon on a linen cloth in soft morning light",
     "image_prompt": "editorial wellness photography, a small bowl of coconut oil with a wooden spoon on a natural linen cloth, soft morning light, calm minimal composition, warm neutral tones, no people, no readable text, 16:9 aspect ratio",
@@ -32,7 +44,13 @@
     "description": "Dry brushing examined — what it realistically does for skin texture and circulation, why the lymphatic-detox and cellulite claims are overblown, and how to do it without irritating your skin.",
     "category": "natural-health",
     "type": "guide",
-    "tags": ["dry brushing", "skin", "lymphatic", "circulation", "wellness"],
+    "tags": [
+      "dry brushing",
+      "skin",
+      "lymphatic",
+      "circulation",
+      "wellness"
+    ],
     "author": "Rooted Glow Editorial",
     "imageAlt": "A natural-bristle body brush on a folded towel beside a plant in soft bathroom light",
     "image_prompt": "editorial wellness photography, a natural-bristle wooden body brush resting on a folded white towel beside a small plant, soft diffuse bathroom light, calm minimal spa composition, warm neutral tones, no people, no readable text, 16:9 aspect ratio",
@@ -45,7 +63,13 @@
     "description": "Castor oil packs explained — the traditional uses, what limited research suggests for digestion and relaxation, why the liver-detox claims are unproven, and a clean step-by-step method.",
     "category": "natural-health",
     "type": "guide",
-    "tags": ["castor oil packs", "digestion", "natural remedies", "relaxation", "wellness"],
+    "tags": [
+      "castor oil packs",
+      "digestion",
+      "natural remedies",
+      "relaxation",
+      "wellness"
+    ],
     "author": "Rooted Glow Editorial",
     "imageAlt": "A bottle of castor oil with a folded flannel cloth on a wooden surface in warm light",
     "image_prompt": "editorial wellness photography, a glass bottle of castor oil beside a folded natural flannel cloth on a warm wooden surface, soft diffuse light, calm minimal composition, warm neutral tones, no people, no readable text, 16:9 aspect ratio",
@@ -58,7 +82,13 @@
     "description": "Tongue scraping examined — what the evidence shows for bad breath and oral bacteria, the realistic limits, how it fits an oral-health routine, and how to do it without gagging.",
     "category": "natural-health",
     "type": "guide",
-    "tags": ["tongue scraping", "oral health", "bad breath", "oral microbiome", "wellness"],
+    "tags": [
+      "tongue scraping",
+      "oral health",
+      "bad breath",
+      "oral microbiome",
+      "wellness"
+    ],
     "author": "Rooted Glow Editorial",
     "imageAlt": "A copper tongue scraper on a folded towel beside a glass of water in soft morning light",
     "image_prompt": "editorial wellness photography, a copper tongue scraper resting on a folded white towel beside a glass of water, soft morning bathroom light, calm minimal composition, warm neutral tones, no people, no readable text, 16:9 aspect ratio",
@@ -71,10 +101,136 @@
     "description": "Seed cycling examined honestly — the theory behind rotating flax, pumpkin, sesame, and sunflower seeds by cycle phase, what the evidence does and doesn't show, and the real nutritional upside.",
     "category": "nutrition",
     "type": "guide",
-    "tags": ["seed cycling", "hormone balance", "nutrition", "menstrual cycle", "women's health"],
+    "tags": [
+      "seed cycling",
+      "hormone balance",
+      "nutrition",
+      "menstrual cycle",
+      "women's health"
+    ],
     "author": "Rooted Glow Editorial",
     "imageAlt": "Small bowls of flax, pumpkin, sesame, and sunflower seeds arranged on a linen surface in soft light",
     "image_prompt": "editorial nutrition photography, small bowls of flax, pumpkin, sesame, and sunflower seeds arranged on a natural linen surface, soft natural light, clean minimal overhead composition, warm neutral tones, no people, no readable text, 16:9 aspect ratio",
     "prompt": "You are a nutrition-minded wellness writer for Rooted Glow (rooted-glow.com), an evidence-minded natural-health site.\n\nWrite a detailed article: \"Seed Cycling for Hormone Balance: Does It Actually Work?\"\n\nTopic: what seed cycling is (flax + pumpkin in the follicular phase, sesame + sunflower in the luteal phase), the proposed mechanism (lignans, phytoestrogens, zinc, vitamin E), what the evidence actually shows (essentially no direct trials; explain honestly), the genuine nutritional benefits of these seeds regardless, who might find it a useful habit, and realistic expectations. Do not overpromise; be clear it's low-risk but unproven for hormone balance.\n\nStructure:\n- Intro paragraph (no H1)\n- ## What seed cycling is\n- ## The theory behind it\n- ## What the evidence actually shows\n- ## The real nutritional upside of the seeds\n- ## How to try it (if you want to)\n- ## Frequently Asked Questions (3-4 ### questions with answers)\n- ## Verdict\n\nInternal links (use 2-3 of these naturally, as markdown links with trailing slashes, NEVER invent URLs):\n- [adaptogens that actually work](/8-adaptogens-that-actually-work/)\n- [the sleep-stress-skin wellness triangle](/sleep-stress-skin-wellness-triangle/)\n\nStyle rules:\n- 1500-2100 words\n- Conversational expert tone, evidence-first, honest that hormone-balance claims are unproven\n- Include one summary table (phase | seeds | proposed nutrients)\n- NO external links, NO affiliate footer, NO frontmatter, do NOT start with the title or an H1"
+  },
+  {
+    "site": "wellness",
+    "slug": "weekly-movement-planning-worksheet",
+    "title": "A Weekly Movement Planning Worksheet That Fits Your Calendar",
+    "description": "A Weekly Movement Planning Worksheet That Fits Your Calendar. A practical checklist with worked examples and clear limits.",
+    "category": "movement",
+    "type": "guide",
+    "tags": [
+      "movement"
+    ],
+    "author": "Rooted Glow Editorial",
+    "image_prompt": "skip",
+    "imageAlt": "",
+    "prompt": "Write an original, concise practical guide titled A Weekly Movement Planning Worksheet That Fits Your Calendar. Audience: readers of wellness. 500-800 words, Markdown, no H1 or frontmatter. Include a reusable checklist or worksheet and one clearly hypothetical worked example where useful. Do not invent product names, product links, personal testing, prices, experts, citations, health claims, electrical instructions, or safety certifications. Focus on organization and planning, not medical advice or technical installation instructions. Explain limitations. Do not pad to reach the word count. Link to the existing category route /category/movement/. End with a transparent note that AI assisted drafting and this is a planning guide, not hands-on testing. If skincare is mentioned, use only the basic cleanser/moisturizer/sun-protection framework and cite https://www.aad.org/public/everyday-care/skin-care-basics/care/skin-care-budget . Do not add new medical claims. No fictional imagery or research claims."
+  },
+  {
+    "site": "wellness",
+    "slug": "gym-bag-reset-checklist",
+    "title": "A Five-Minute Gym Bag Reset Checklist",
+    "description": "A Five-Minute Gym Bag Reset Checklist. A practical checklist with worked examples and clear limits.",
+    "category": "movement",
+    "type": "guide",
+    "tags": [
+      "movement"
+    ],
+    "author": "Rooted Glow Editorial",
+    "image_prompt": "skip",
+    "imageAlt": "",
+    "prompt": "Write an original, concise practical guide titled A Five-Minute Gym Bag Reset Checklist. Audience: readers of wellness. 500-800 words, Markdown, no H1 or frontmatter. Include a reusable checklist or worksheet and one clearly hypothetical worked example where useful. Do not invent product names, product links, personal testing, prices, experts, citations, health claims, electrical instructions, or safety certifications. Focus on organization and planning, not medical advice or technical installation instructions. Explain limitations. Do not pad to reach the word count. Link to the existing category route /category/movement/. End with a transparent note that AI assisted drafting and this is a planning guide, not hands-on testing. If skincare is mentioned, use only the basic cleanser/moisturizer/sun-protection framework and cite https://www.aad.org/public/everyday-care/skin-care-basics/care/skin-care-budget . Do not add new medical claims. No fictional imagery or research claims."
+  },
+  {
+    "site": "wellness",
+    "slug": "wellness-habit-tracker-without-streaks",
+    "title": "Track a Wellness Habit Without Chasing Perfect Streaks",
+    "description": "Track a Wellness Habit Without Chasing Perfect Streaks. A practical checklist with worked examples and clear limits.",
+    "category": "natural-health",
+    "type": "guide",
+    "tags": [
+      "natural-health"
+    ],
+    "author": "Rooted Glow Editorial",
+    "image_prompt": "skip",
+    "imageAlt": "",
+    "prompt": "Write an original, concise practical guide titled Track a Wellness Habit Without Chasing Perfect Streaks. Audience: readers of wellness. 500-800 words, Markdown, no H1 or frontmatter. Include a reusable checklist or worksheet and one clearly hypothetical worked example where useful. Do not invent product names, product links, personal testing, prices, experts, citations, health claims, electrical instructions, or safety certifications. Focus on organization and planning, not medical advice or technical installation instructions. Explain limitations. Do not pad to reach the word count. Link to the existing category route /category/natural-health/. End with a transparent note that AI assisted drafting and this is a planning guide, not hands-on testing. If skincare is mentioned, use only the basic cleanser/moisturizer/sun-protection framework and cite https://www.aad.org/public/everyday-care/skin-care-basics/care/skin-care-budget . Do not add new medical claims. No fictional imagery or research claims."
+  },
+  {
+    "site": "wellness",
+    "slug": "plan-walking-breaks-workday",
+    "title": "Plan Walking Breaks Around Your Working Day",
+    "description": "Plan Walking Breaks Around Your Working Day. A practical checklist with worked examples and clear limits.",
+    "category": "movement",
+    "type": "guide",
+    "tags": [
+      "movement"
+    ],
+    "author": "Rooted Glow Editorial",
+    "image_prompt": "skip",
+    "imageAlt": "",
+    "prompt": "Write an original, concise practical guide titled Plan Walking Breaks Around Your Working Day. Audience: readers of wellness. 500-800 words, Markdown, no H1 or frontmatter. Include a reusable checklist or worksheet and one clearly hypothetical worked example where useful. Do not invent product names, product links, personal testing, prices, experts, citations, health claims, electrical instructions, or safety certifications. Focus on organization and planning, not medical advice or technical installation instructions. Explain limitations. Do not pad to reach the word count. Link to the existing category route /category/movement/. End with a transparent note that AI assisted drafting and this is a planning guide, not hands-on testing. If skincare is mentioned, use only the basic cleanser/moisturizer/sun-protection framework and cite https://www.aad.org/public/everyday-care/skin-care-basics/care/skin-care-budget . Do not add new medical claims. No fictional imagery or research claims."
+  },
+  {
+    "site": "wellness",
+    "slug": "make-a-weekly-food-shopping-template",
+    "title": "Make a Weekly Food Shopping Template You Can Reuse",
+    "description": "Make a Weekly Food Shopping Template You Can Reuse. A practical checklist with worked examples and clear limits.",
+    "category": "nutrition",
+    "type": "guide",
+    "tags": [
+      "nutrition"
+    ],
+    "author": "Rooted Glow Editorial",
+    "image_prompt": "skip",
+    "imageAlt": "",
+    "prompt": "Write an original, concise practical guide titled Make a Weekly Food Shopping Template You Can Reuse. Audience: readers of wellness. 500-800 words, Markdown, no H1 or frontmatter. Include a reusable checklist or worksheet and one clearly hypothetical worked example where useful. Do not invent product names, product links, personal testing, prices, experts, citations, health claims, electrical instructions, or safety certifications. Focus on organization and planning, not medical advice or technical installation instructions. Explain limitations. Do not pad to reach the word count. Link to the existing category route /category/nutrition/. End with a transparent note that AI assisted drafting and this is a planning guide, not hands-on testing. If skincare is mentioned, use only the basic cleanser/moisturizer/sun-protection framework and cite https://www.aad.org/public/everyday-care/skin-care-basics/care/skin-care-budget . Do not add new medical claims. No fictional imagery or research claims."
+  },
+  {
+    "site": "wellness",
+    "slug": "skincare-and-training-calendar",
+    "title": "Fit Your Usual Skincare Routine Around Training",
+    "description": "Fit Your Usual Skincare Routine Around Training. A practical checklist with worked examples and clear limits.",
+    "category": "k-beauty",
+    "type": "guide",
+    "tags": [
+      "k-beauty"
+    ],
+    "author": "Rooted Glow Editorial",
+    "image_prompt": "skip",
+    "imageAlt": "",
+    "prompt": "Write an original, concise practical guide titled Fit Your Usual Skincare Routine Around Training. Audience: readers of wellness. 500-800 words, Markdown, no H1 or frontmatter. Include a reusable checklist or worksheet and one clearly hypothetical worked example where useful. Do not invent product names, product links, personal testing, prices, experts, citations, health claims, electrical instructions, or safety certifications. Focus on organization and planning, not medical advice or technical installation instructions. Explain limitations. Do not pad to reach the word count. Link to the existing category route /category/k-beauty/. End with a transparent note that AI assisted drafting and this is a planning guide, not hands-on testing. If skincare is mentioned, use only the basic cleanser/moisturizer/sun-protection framework and cite https://www.aad.org/public/everyday-care/skin-care-basics/care/skin-care-budget . Do not add new medical claims. No fictional imagery or research claims."
+  },
+  {
+    "site": "wellness",
+    "slug": "organize-reusable-water-bottles-gym-kit",
+    "title": "Organize a Reusable Water Bottle and Gym Kit",
+    "description": "Organize a Reusable Water Bottle and Gym Kit. A practical checklist with worked examples and clear limits.",
+    "category": "movement",
+    "type": "guide",
+    "tags": [
+      "movement"
+    ],
+    "author": "Rooted Glow Editorial",
+    "image_prompt": "skip",
+    "imageAlt": "",
+    "prompt": "Write an original, concise practical guide titled Organize a Reusable Water Bottle and Gym Kit. Audience: readers of wellness. 500-800 words, Markdown, no H1 or frontmatter. Include a reusable checklist or worksheet and one clearly hypothetical worked example where useful. Do not invent product names, product links, personal testing, prices, experts, citations, health claims, electrical instructions, or safety certifications. Focus on organization and planning, not medical advice or technical installation instructions. Explain limitations. Do not pad to reach the word count. Link to the existing category route /category/movement/. End with a transparent note that AI assisted drafting and this is a planning guide, not hands-on testing. If skincare is mentioned, use only the basic cleanser/moisturizer/sun-protection framework and cite https://www.aad.org/public/everyday-care/skin-care-basics/care/skin-care-budget . Do not add new medical claims. No fictional imagery or research claims."
+  },
+  {
+    "site": "wellness",
+    "slug": "simple-wellness-weekly-review",
+    "title": "A Simple Weekly Review for Food, Movement, and Rest",
+    "description": "A Simple Weekly Review for Food, Movement, and Rest. A practical checklist with worked examples and clear limits.",
+    "category": "natural-health",
+    "type": "guide",
+    "tags": [
+      "natural-health"
+    ],
+    "author": "Rooted Glow Editorial",
+    "image_prompt": "skip",
+    "imageAlt": "",
+    "prompt": "Write an original, concise practical guide titled A Simple Weekly Review for Food, Movement, and Rest. Audience: readers of wellness. 500-800 words, Markdown, no H1 or frontmatter. Include a reusable checklist or worksheet and one clearly hypothetical worked example where useful. Do not invent product names, product links, personal testing, prices, experts, citations, health claims, electrical instructions, or safety certifications. Focus on organization and planning, not medical advice or technical installation instructions. Explain limitations. Do not pad to reach the word count. Link to the existing category route /category/natural-health/. End with a transparent note that AI assisted drafting and this is a planning guide, not hands-on testing. If skincare is mentioned, use only the basic cleanser/moisturizer/sun-protection framework and cite https://www.aad.org/public/everyday-care/skin-care-basics/care/skin-care-budget . Do not add new medical claims. No fictional imagery or research claims."
   }
 ]

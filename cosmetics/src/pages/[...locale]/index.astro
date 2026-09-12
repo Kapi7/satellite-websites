@@ -31,6 +31,9 @@ const getSlug = (post: any) => {
 const hero = sortedPosts[0];
 const editorial = sortedPosts.slice(1, 6);
 const [featured, ...rest] = editorial;
+const mobileFeatured = hero;
+const latestDate = hero ? formatPublishedDate(hero.data.date) : '';
+function formatPublishedDate(d: Date) { return d.toLocaleDateString(locale, { year: 'numeric', month: 'long', day: 'numeric' }); }
 
 const formatDate = (d: Date) =>
   d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }).toUpperCase();
@@ -54,7 +57,7 @@ const categoryLabelOf = (c: string) => {
 const cats = [
   { slug: 'skincare', label: 'Skincare', tint: 'coral', tagline: 'From barrier to glow.' },
   { slug: 'ingredients', label: 'Ingredients', tint: 'butter', tagline: "What's actually in the bottle." },
-  { slug: 'reviews', label: 'Reviews', tint: 'mint', tagline: 'We bought it. We tested it. We told you.' },
+  { slug: 'reviews', label: 'Reviews', tint: 'mint', tagline: 'Product details, comparisons, and buying guides.' },
   { slug: 'how-tos', label: 'How-Tos', tint: 'sky', tagline: 'Less confusing, more glowing.' },
   { slug: 'routines', label: 'Routines', tint: 'plum', tagline: 'Morning, night, and the in-between.' },
 ];
@@ -91,10 +94,10 @@ const tintBg: Record<string, string> = {
 
 const marqueeItems = [
   'NEW · Snail Mucin, Ranked',
-  '14 Sunscreens Tested',
+  'Sunscreen Guides',
   'Free Skin Quiz',
   'K-Beauty 101',
-  'Mirai Drop · April',
+  'Explore Mirai Skin',
 ];
 
 const orgSchema = JSON.stringify({
@@ -127,7 +130,7 @@ const webSiteSchema = JSON.stringify({
           <span class="pill">No Gatekeeping</span>
         </div>
         <h1 class="gcd-title">glow<br/><span class="i">coded</span>.</h1>
-        <p class="gcd-sub">Skin science, honestly. Real routines, real reviews, and the K-beauty shelf tours you wish your friends would send you. We test before we recommend; we disclose when we get paid.</p>
+        <p class="gcd-sub">Skin science, honestly. Real routines, real reviews, and the K-beauty shelf tours you wish your friends would send you. Product research, practical guides, and clearly disclosed affiliate links.</p>
       </div>
       {hero && (
         <a href={localePath(`/${getSlug(hero)}/`, locale)} class="gcd-hero-card">
@@ -139,7 +142,7 @@ const webSiteSchema = JSON.stringify({
             )}
           </div>
           <div class="gcd-hero-body">
-            <div class="tag">THIS WEEK &middot; {categoryLabelOf(hero.data.category)}</div>
+            <div class="tag">LATEST &middot; {categoryLabelOf(hero.data.category)}</div>
             <h3>{hero.data.title}</h3>
             <div class="meta"><span>{readMinutes(hero)} MIN READ</span><span>{(hero.data.author || formatDate(hero.data.date)).toUpperCase()}</span></div>
           </div>
@@ -166,7 +169,7 @@ const webSiteSchema = JSON.stringify({
     {/* ===== EDITORIAL GRID ===== */}
     <div class="section-head">
       <h2>This week <em>in the feed</em></h2>
-      <div class="meta">05 stories &middot; updated daily</div>
+      <div class="meta">Recent stories</div>
     </div>
     <div class="edit-grid">
       {featured && (
@@ -228,8 +231,8 @@ const webSiteSchema = JSON.stringify({
     </div>
     <div class="shop-rail">
       <div class="intro">
-        <h3>Curated, tested, never pushy.</h3>
-        <p>Six bottles we're keeping on our shelf this month. Every product is stocked at Mirai Skin — we earn a small cut only when you shop, and never when we review.</p>
+        <h3>Explore the Mirai Skin edit.</h3>
+        <p>Browse selected skincare products at Mirai Skin. We may earn a commission through affiliate links. Check the retailer for current prices and availability.</p>
         <a href={localePath('/shop/', locale)} class="btn btn-coral">Shop the full edit &rarr;</a>
       </div>
       <div class="products">
@@ -244,7 +247,7 @@ const webSiteSchema = JSON.stringify({
               <div class="name">{p.name}</div>
               <div class="row">
                 <span class="price">{p.price}</span>
-                <span>&#9733; {p.rating}</span>
+
               </div>
             </div>
           </a>
@@ -262,9 +265,9 @@ const webSiteSchema = JSON.stringify({
         <div class="sticker-float">free &middot; no<br/>email<br/>required</div>
       </div>
       <div class="newsletter-block">
-        <div class="label">Thursdays &middot; 10k readers</div>
+        <div class="label">The newsletter</div>
         <h3>The Letter.</h3>
-        <p>One honest email, every Thursday. One routine, one ingredient, one product we'd recommend to a friend. Unsubscribe anytime.</p>
+        <p>Skincare guides, ingredient explainers, and new articles in your inbox. Unsubscribe anytime.</p>
         <form class="form newsletter-form" data-locale={locale}>
           <input type="email" placeholder="your@email.com" required />
           <button type="submit">Sign up</button>
@@ -282,14 +285,14 @@ const webSiteSchema = JSON.stringify({
     <section class="hero">
       <div class="issue">
         <svg width="10" height="10" viewBox="0 0 24 24"><path d="M12 2 L14 10 L22 12 L14 14 L12 22 L10 14 L2 12 L10 10 Z" fill="var(--color-rose-500)"/></svg>
-        ISSUE NO. 042 &middot; APRIL 2026
+        LATEST ARTICLE &middot; {latestDate}
       </div>
       <h1 class="title">
         Skincare,<br/>
         <span class="scribble">decoded.</span>
       </h1>
       <p class="tagline">
-        Ingredient deep-dives, routine guides, and <span class="highlight">honest reviews</span> from people who test what they write about. No gatekeeping.
+        Ingredient deep-dives, routine guides, and <span class="highlight">honest reviews</span> based on ingredient research and published product information.
       </p>
       <span class="star1">
         <svg width="26" height="26" viewBox="0 0 24 24"><path d="M12 2 L13.5 9.5 L21 10.5 L15 15 L17 22 L12 18 L7 22 L9 15 L3 10.5 L10.5 9.5 Z" fill="var(--color-rose-500)" stroke="var(--color-rose-500)" stroke-width="1.5" stroke-linejoin="round"/></svg>
@@ -315,21 +318,21 @@ const webSiteSchema = JSON.stringify({
     </div>
 
     {/* Feature article */}
-    {featured && (
+    {mobileFeatured && (
       <section class="feature">
         <div class="pre">
           <span class="dash"></span>
-          THIS WEEK'S DEEP-DIVE
+          LATEST DEEP-DIVE
         </div>
-        <a href={localePath(`/${getSlug(featured)}/`, locale)} class="feat-card z-card">
-          {featured.data.image && <img src={featured.data.image} alt={featured.data.title}  loading="lazy" decoding="async" />}
+        <a href={localePath(`/${getSlug(mobileFeatured)}/`, locale)} class="feat-card z-card">
+          {mobileFeatured.data.image && <img src={mobileFeatured.data.image} alt={mobileFeatured.data.title}  loading="eager" fetchpriority="high" decoding="async" />}
           <div class="body">
             <div class="meta">
-              <span class="sticker sticker-coral">{categoryLabelOf(featured.data.category)}</span>
-              <span class="rt">{readMinutes(featured)} MIN READ</span>
+              <span class="sticker sticker-coral">{categoryLabelOf(mobileFeatured.data.category)}</span>
+              <span class="rt">{readMinutes(mobileFeatured)} MIN READ</span>
             </div>
-            <h3>{featured.data.title}</h3>
-            <p>{featured.data.description}</p>
+            <h3>{mobileFeatured.data.title}</h3>
+            <p>{mobileFeatured.data.description}</p>
           </div>
         </a>
         <div class="sticker sticker-coral rot-r4 wiggle sticker-float">READ ME &#9829;</div>
@@ -431,7 +434,7 @@ const webSiteSchema = JSON.stringify({
       <a href={localePath('/newsletter/', locale)}>
         <div class="pre">&#9993; THE LETTER</div>
         <h3>One email a week.<br/>Zero filler.</h3>
-        <p>Sunday mornings. New finds, honest takes, one ingredient explained.</p>
+        <p>New finds, ingredient guides, and skincare notes.</p>
         <span class="cta">SUBSCRIBE &rarr;</span>
       </a>
     </section>
@@ -868,12 +871,15 @@ const webSiteSchema = JSON.stringify({
       if (!email) return;
       btn.disabled = true;
       try {
-        await fetch('/api/subscribe', {
+        const response = await fetch('/api/subscribe', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email, locale: (f as HTMLElement).dataset.locale || 'en' }),
         });
-        btn.textContent = 'Done';
+        if (!response.ok) throw new Error('Subscription was not saved');
+        const result = await response.json();
+        if (!['subscribed', 'already_subscribed'].includes(result.status)) throw new Error('Unexpected subscription response');
+        btn.textContent = result.status === 'already_subscribed' ? 'Already subscribed' : 'Subscribed';
       } catch {
         btn.textContent = 'Retry';
       } finally {

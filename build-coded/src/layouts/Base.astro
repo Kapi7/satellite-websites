@@ -1,4 +1,5 @@
 ---
+import { getCollection } from "astro:content";
 import '../styles/global.css';
 import type { Locale } from '../i18n/locales';
 import { isRtl, locales } from '../i18n/locales';
@@ -40,6 +41,14 @@ const canonical = canonicalUrl || (locale !== defaultLocale
 
 // Build the base path without locale prefix for hreflang generation
 const pathWithoutLocale = pagePath.replace(new RegExp(`^/${locale}(?=/|$)`), '') || '/';
+// Advertise only published translations of an article, never a missing URL.
+const translationPath = Astro.url.pathname.replace(/^\/(?:es|de|el|ru|it|ar|fr|nl|pt)(?=\/|$)/, '').replace(/^\/|\/$/g, '');
+const translationPosts = await getCollection('blog');
+const matchingTranslations = translationPosts.filter(p => (p.id.includes('/') ? p.id.split('/').slice(1).join('/') : p.id).replace(/\.mdx?$/, '') === translationPath);
+const availableLocales = translationPath === '404' || translationPath === '404.html' ? [] : matchingTranslations.length
+  ? locales.filter(l => matchingTranslations.some(p => p.data.locale === l && !p.data.draft && p.data.date <= new Date()))
+  : locales;
+
 ---
 
 <!doctype html>
@@ -81,10 +90,10 @@ const pathWithoutLocale = pagePath.replace(new RegExp(`^/${locale}(?=/|$)`), '')
     )}
 
     {/* Hreflang tags for all locales */}
-    {locales.map((l) => (
+    {availableLocales.map((l) => (
       <link rel="alternate" hreflang={l} href={new URL(localePath(pathWithoutLocale, l), Astro.site).href} />
     ))}
-    <link rel="alternate" hreflang="x-default" href={new URL(localePath(pathWithoutLocale, defaultLocale), Astro.site).href} />
+    {availableLocales.includes('en') && (<link rel="alternate" hreflang="x-default" href={new URL(localePath(pathWithoutLocale, defaultLocale), Astro.site).href} />)}
 
     <meta property="og:type" content={type} />
     <meta property="og:title" content={fullTitle} />

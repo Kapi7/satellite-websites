@@ -6,7 +6,13 @@
     "description": "The best Korean lip tints tested for wear time, transfer, and comfort — from blurred MLBB shades to juicy glass-tint finishes, matched to warm, cool, and neutral undertones.",
     "category": "reviews",
     "type": "listicle",
-    "tags": ["korean lip tint", "lip tint", "k-beauty makeup", "long wear", "makeup reviews"],
+    "tags": [
+      "korean lip tint",
+      "lip tint",
+      "k-beauty makeup",
+      "long wear",
+      "makeup reviews"
+    ],
     "author": "Glow Coded Editorial",
     "imageAlt": "A row of Korean lip tints in warm and cool shades arranged on a cream marble surface in soft daylight",
     "image_prompt": "editorial product photography, several Korean lip tint tubes and applicators in coral, rose, and berry shades arranged on a cream marble surface, soft natural daylight, clean minimal composition, beige background, magazine-quality K-beauty editorial style, no readable text on packaging, 16:9 aspect ratio",
@@ -19,7 +25,13 @@
     "description": "Galactomyces ferment filtrate explained — what this fermented yeast ingredient actually does for glow, pores, and barrier, the evidence behind it, and the best Korean essences that feature it.",
     "category": "ingredients",
     "type": "guide",
-    "tags": ["galactomyces", "fermented skincare", "korean skincare", "essence", "glow"],
+    "tags": [
+      "galactomyces",
+      "fermented skincare",
+      "korean skincare",
+      "essence",
+      "glow"
+    ],
     "author": "Glow Coded Editorial",
     "imageAlt": "A frosted glass essence bottle on a cream surface surrounded by soft light and water droplets",
     "image_prompt": "editorial product photography, a single frosted glass fermented-essence bottle on a cream marble surface with soft water droplets and diffuse natural light, clean minimal composition, beige background, magazine-quality K-beauty editorial style, no readable text on packaging, 16:9 aspect ratio",
@@ -32,10 +44,136 @@
     "description": "Mugwort (Artemisia) explained — why this calming Korean botanical works for redness and reactive skin, the science behind it, and the best mugwort toners, masks, and essences to try.",
     "category": "ingredients",
     "type": "guide",
-    "tags": ["mugwort", "artemisia", "sensitive skin", "korean skincare", "soothing"],
+    "tags": [
+      "mugwort",
+      "artemisia",
+      "sensitive skin",
+      "korean skincare",
+      "soothing"
+    ],
     "author": "Glow Coded Editorial",
     "imageAlt": "Fresh green mugwort sprigs beside a dark glass dropper bottle on a pale stone surface in soft light",
     "image_prompt": "editorial product photography, fresh green mugwort (artemisia) sprigs beside a dark amber glass dropper bottle on a pale stone surface, soft diffuse natural light, clean minimal botanical composition, beige background, magazine-quality K-beauty editorial style, no readable text on packaging, 16:9 aspect ratio",
     "prompt": "You are a K-beauty expert writing for Glow Coded (glow-coded.com), an honest skincare review site.\n\nWrite a detailed article: \"Mugwort in K-Beauty: Benefits and Best Products for Sensitive Skin\"\n\nTopic: what mugwort (Artemisia) is, why it's a staple soothing botanical in Korean skincare for redness, sensitivity, and barrier calm, what the evidence supports, how it compares to centella/cica, and 5 Korean mugwort products. Use real currently-sold brands (I'm From Mugwort Essence, Beauty of Joseon, Missha Artemisia, SKIN1004, Round Lab) — pivot to real SKUs as needed.\n\nStructure:\n- Intro paragraph (no H1)\n- ## What mugwort is and why K-beauty loves it\n- ## What it does for sensitive, reactive skin\n- ## Mugwort vs centella: which calming ingredient when\n- ## 5 best mugwort products\n- ## How to patch test and introduce it\n- ## Frequently Asked Questions (3-4 ### questions with answers)\n- ## Verdict\n\nInternal links (use 2-3 of these naturally, as markdown links with trailing slashes, NEVER invent URLs):\n- [best cica products for redness](/best-korean-cica-products-redness-sensitive-skin/)\n- [centella asiatica ampoules](/best-centella-asiatica-ampoules-products/)\n- [Korean routine for rosacea](/korean-skincare-routine-rosacea/)\n\nStyle rules:\n- 1600-2200 words\n- Conversational expert tone, honest takes including who should avoid it (Asteraceae allergies)\n- Name 5 specific products with approximate USD prices and key selling points\n- Include one comparison or summary table\n- NO external links, NO affiliate footer, NO frontmatter, do NOT start with the title or an H1"
+  },
+  {
+    "site": "cosmetics",
+    "slug": "skincare-shelf-inventory-worksheet",
+    "title": "A Skincare Shelf Inventory: Use What You Own Before Buying More",
+    "description": "A Skincare Shelf Inventory: Use What You Own Before Buying More. A practical checklist with worked examples and clear limits.",
+    "category": "how-tos",
+    "type": "guide",
+    "tags": [
+      "how-tos"
+    ],
+    "author": "Glow Coded Editorial",
+    "image_prompt": "skip",
+    "imageAlt": "",
+    "prompt": "Write an original, concise practical guide titled A Skincare Shelf Inventory: Use What You Own Before Buying More. Audience: readers of cosmetics. 500-800 words, Markdown, no H1 or frontmatter. Include a reusable checklist or worksheet and one clearly hypothetical worked example where useful. Do not invent product names, product links, personal testing, prices, experts, citations, health claims, electrical instructions, or safety certifications. Focus on organization and planning, not medical advice or technical installation instructions. Explain limitations. Do not pad to reach the word count. Link to the existing category route /category/how-tos/. End with a transparent note that AI assisted drafting and this is a planning guide, not hands-on testing. If skincare is mentioned, use only the basic cleanser/moisturizer/sun-protection framework and cite https://www.aad.org/public/everyday-care/skin-care-basics/care/skin-care-budget . Do not add new medical claims. No fictional imagery or research claims."
+  },
+  {
+    "site": "cosmetics",
+    "slug": "compare-skincare-unit-prices",
+    "title": "How to Compare Skincare Unit Prices Without Buying the Wrong Size",
+    "description": "How to Compare Skincare Unit Prices Without Buying the Wrong Size. A practical checklist with worked examples and clear limits.",
+    "category": "how-tos",
+    "type": "guide",
+    "tags": [
+      "how-tos"
+    ],
+    "author": "Glow Coded Editorial",
+    "image_prompt": "skip",
+    "imageAlt": "",
+    "prompt": "Write an original, concise practical guide titled How to Compare Skincare Unit Prices Without Buying the Wrong Size. Audience: readers of cosmetics. 500-800 words, Markdown, no H1 or frontmatter. Include a reusable checklist or worksheet and one clearly hypothetical worked example where useful. Do not invent product names, product links, personal testing, prices, experts, citations, health claims, electrical instructions, or safety certifications. Focus on organization and planning, not medical advice or technical installation instructions. Explain limitations. Do not pad to reach the word count. Link to the existing category route /category/how-tos/. End with a transparent note that AI assisted drafting and this is a planning guide, not hands-on testing. If skincare is mentioned, use only the basic cleanser/moisturizer/sun-protection framework and cite https://www.aad.org/public/everyday-care/skin-care-basics/care/skin-care-budget . Do not add new medical claims. No fictional imagery or research claims."
+  },
+  {
+    "site": "cosmetics",
+    "slug": "skincare-product-label-shopping-checklist",
+    "title": "A Skincare Product Label Checklist for Online Shopping",
+    "description": "A Skincare Product Label Checklist for Online Shopping. A practical checklist with worked examples and clear limits.",
+    "category": "how-tos",
+    "type": "guide",
+    "tags": [
+      "how-tos"
+    ],
+    "author": "Glow Coded Editorial",
+    "image_prompt": "skip",
+    "imageAlt": "",
+    "prompt": "Write an original, concise practical guide titled A Skincare Product Label Checklist for Online Shopping. Audience: readers of cosmetics. 500-800 words, Markdown, no H1 or frontmatter. Include a reusable checklist or worksheet and one clearly hypothetical worked example where useful. Do not invent product names, product links, personal testing, prices, experts, citations, health claims, electrical instructions, or safety certifications. Focus on organization and planning, not medical advice or technical installation instructions. Explain limitations. Do not pad to reach the word count. Link to the existing category route /category/how-tos/. End with a transparent note that AI assisted drafting and this is a planning guide, not hands-on testing. If skincare is mentioned, use only the basic cleanser/moisturizer/sun-protection framework and cite https://www.aad.org/public/everyday-care/skin-care-basics/care/skin-care-budget . Do not add new medical claims. No fictional imagery or research claims."
+  },
+  {
+    "site": "cosmetics",
+    "slug": "plan-one-change-skincare-routine",
+    "title": "How to Plan One Change to Your Skincare Routine",
+    "description": "How to Plan One Change to Your Skincare Routine. A practical checklist with worked examples and clear limits.",
+    "category": "skincare",
+    "type": "guide",
+    "tags": [
+      "skincare"
+    ],
+    "author": "Glow Coded Editorial",
+    "image_prompt": "skip",
+    "imageAlt": "",
+    "prompt": "Write an original, concise practical guide titled How to Plan One Change to Your Skincare Routine. Audience: readers of cosmetics. 500-800 words, Markdown, no H1 or frontmatter. Include a reusable checklist or worksheet and one clearly hypothetical worked example where useful. Do not invent product names, product links, personal testing, prices, experts, citations, health claims, electrical instructions, or safety certifications. Focus on organization and planning, not medical advice or technical installation instructions. Explain limitations. Do not pad to reach the word count. Link to the existing category route /category/skincare/. End with a transparent note that AI assisted drafting and this is a planning guide, not hands-on testing. If skincare is mentioned, use only the basic cleanser/moisturizer/sun-protection framework and cite https://www.aad.org/public/everyday-care/skin-care-basics/care/skin-care-budget . Do not add new medical claims. No fictional imagery or research claims."
+  },
+  {
+    "site": "cosmetics",
+    "slug": "skincare-shopping-budget-worksheet",
+    "title": "A Monthly Skincare Shopping Budget Worksheet",
+    "description": "A Monthly Skincare Shopping Budget Worksheet. A practical checklist with worked examples and clear limits.",
+    "category": "how-tos",
+    "type": "guide",
+    "tags": [
+      "how-tos"
+    ],
+    "author": "Glow Coded Editorial",
+    "image_prompt": "skip",
+    "imageAlt": "",
+    "prompt": "Write an original, concise practical guide titled A Monthly Skincare Shopping Budget Worksheet. Audience: readers of cosmetics. 500-800 words, Markdown, no H1 or frontmatter. Include a reusable checklist or worksheet and one clearly hypothetical worked example where useful. Do not invent product names, product links, personal testing, prices, experts, citations, health claims, electrical instructions, or safety certifications. Focus on organization and planning, not medical advice or technical installation instructions. Explain limitations. Do not pad to reach the word count. Link to the existing category route /category/how-tos/. End with a transparent note that AI assisted drafting and this is a planning guide, not hands-on testing. If skincare is mentioned, use only the basic cleanser/moisturizer/sun-protection framework and cite https://www.aad.org/public/everyday-care/skin-care-basics/care/skin-care-budget . Do not add new medical claims. No fictional imagery or research claims."
+  },
+  {
+    "site": "cosmetics",
+    "slug": "keep-a-skincare-product-notebook",
+    "title": "Keep a Useful Skincare Product Notebook",
+    "description": "Keep a Useful Skincare Product Notebook. A practical checklist with worked examples and clear limits.",
+    "category": "how-tos",
+    "type": "guide",
+    "tags": [
+      "how-tos"
+    ],
+    "author": "Glow Coded Editorial",
+    "image_prompt": "skip",
+    "imageAlt": "",
+    "prompt": "Write an original, concise practical guide titled Keep a Useful Skincare Product Notebook. Audience: readers of cosmetics. 500-800 words, Markdown, no H1 or frontmatter. Include a reusable checklist or worksheet and one clearly hypothetical worked example where useful. Do not invent product names, product links, personal testing, prices, experts, citations, health claims, electrical instructions, or safety certifications. Focus on organization and planning, not medical advice or technical installation instructions. Explain limitations. Do not pad to reach the word count. Link to the existing category route /category/how-tos/. End with a transparent note that AI assisted drafting and this is a planning guide, not hands-on testing. If skincare is mentioned, use only the basic cleanser/moisturizer/sun-protection framework and cite https://www.aad.org/public/everyday-care/skin-care-basics/care/skin-care-budget . Do not add new medical claims. No fictional imagery or research claims."
+  },
+  {
+    "site": "cosmetics",
+    "slug": "choose-skincare-travel-size-or-full-size",
+    "title": "Travel Size or Full Size: A Practical Skincare Shopping Checklist",
+    "description": "Travel Size or Full Size: A Practical Skincare Shopping Checklist. A practical checklist with worked examples and clear limits.",
+    "category": "how-tos",
+    "type": "guide",
+    "tags": [
+      "how-tos"
+    ],
+    "author": "Glow Coded Editorial",
+    "image_prompt": "skip",
+    "imageAlt": "",
+    "prompt": "Write an original, concise practical guide titled Travel Size or Full Size: A Practical Skincare Shopping Checklist. Audience: readers of cosmetics. 500-800 words, Markdown, no H1 or frontmatter. Include a reusable checklist or worksheet and one clearly hypothetical worked example where useful. Do not invent product names, product links, personal testing, prices, experts, citations, health claims, electrical instructions, or safety certifications. Focus on organization and planning, not medical advice or technical installation instructions. Explain limitations. Do not pad to reach the word count. Link to the existing category route /category/how-tos/. End with a transparent note that AI assisted drafting and this is a planning guide, not hands-on testing. If skincare is mentioned, use only the basic cleanser/moisturizer/sun-protection framework and cite https://www.aad.org/public/everyday-care/skin-care-basics/care/skin-care-budget . Do not add new medical claims. No fictional imagery or research claims."
+  },
+  {
+    "site": "cosmetics",
+    "slug": "organize-cleanser-moisturizer-sunscreen-routine",
+    "title": "Organize Your Cleanser, Moisturizer, and Sunscreen Routine",
+    "description": "Organize Your Cleanser, Moisturizer, and Sunscreen Routine. A practical checklist with worked examples and clear limits.",
+    "category": "skincare",
+    "type": "guide",
+    "tags": [
+      "skincare"
+    ],
+    "author": "Glow Coded Editorial",
+    "image_prompt": "skip",
+    "imageAlt": "",
+    "prompt": "Write an original, concise practical guide titled Organize Your Cleanser, Moisturizer, and Sunscreen Routine. Audience: readers of cosmetics. 500-800 words, Markdown, no H1 or frontmatter. Include a reusable checklist or worksheet and one clearly hypothetical worked example where useful. Do not invent product names, product links, personal testing, prices, experts, citations, health claims, electrical instructions, or safety certifications. Focus on organization and planning, not medical advice or technical installation instructions. Explain limitations. Do not pad to reach the word count. Link to the existing category route /category/skincare/. End with a transparent note that AI assisted drafting and this is a planning guide, not hands-on testing. If skincare is mentioned, use only the basic cleanser/moisturizer/sun-protection framework and cite https://www.aad.org/public/everyday-care/skin-care-basics/care/skin-care-budget . Do not add new medical claims. No fictional imagery or research claims."
   }
 ]

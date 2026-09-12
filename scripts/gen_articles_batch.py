@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Generate a batch of articles from a JSON spec using Gemini 2.5 Flash + Imagen 4.0."""
-import os, sys, json, time, base64, urllib.request, urllib.error
+import os, sys, json, time, base64, re, urllib.request, urllib.error
 from pathlib import Path
 from datetime import date, timedelta
 
@@ -88,13 +88,14 @@ def generate_one(spec: dict, pub_date: str):
     print(f"\n  [{spec['slug']}] ({site})")
 
     # Hero image
-    if spec.get("image_prompt") and spec["image_prompt"] != "skip":
+    if spec.get("image_prompt") and spec["image_prompt"] != "skip" and spec.get("imageKind") == "illustration":
         imagen_generate(spec["image_prompt"], image_dir / f"{slug}.jpg")
         time.sleep(2)
 
     # Article content
     print(f"    Generating content...")
-    body = gemini_generate(spec["prompt"])
+    evidence_rules = "\n\nDo not invent first-hand tests, measurements, author credentials, citations, prices, product availability, or product URLs. Distinguish research from hands-on experience. Use only supplied verified source URLs. Do not claim medical benefits that the supplied sources do not support."
+    body = gemini_generate(spec["prompt"] + evidence_rules)
 
     # Strip accidental frontmatter/fences
     body = body.strip()
@@ -107,20 +108,27 @@ def generate_one(spec: dict, pub_date: str):
     if body.endswith("```"):
         body = body[:-3].rstrip()
 
+    if len(body) < 500 or len(body) > 50000 or re.search(r"<!doctype|<html|<script|<iframe|-{1000,}", body, re.I):
+        raise ValueError("Generated content failed structural validation; no article was saved")
+
     # Build frontmatter
     draft_flag = os.environ.get("BATCH_DRAFT", "false").lower() == "true"
     fm = ["---"]
-    fm.append(f'title: "{spec["title"]}"')
-    fm.append(f'description: "{spec["description"]}"')
+    fm.append("title: " + json.dumps(spec["title"], ensure_ascii=False))
+    fm.append("description: " + json.dumps(spec["description"], ensure_ascii=False))
     fm.append(f"date: {pub_date}")
     fm.append(f"category: {spec['category']}")
     fm.append(f"type: {spec.get('type', 'guide')}")
     fm.append(f"tags: {json.dumps(spec['tags'])}")
-    fm.append(f"image: /images/{slug}.jpg")
-    fm.append(f'imageAlt: "{spec.get("imageAlt", spec["title"])}"')
+    verified_image = spec.get("verifiedImage")
+    if verified_image and (BASE / site / "public" / verified_image.lstrip("/")).is_file():
+        fm.append("image: " + json.dumps(verified_image))
+    elif spec.get("imageKind") == "illustration" and (image_dir / f"{slug}.jpg").is_file():
+        fm.append(f"image: /images/{slug}.jpg")
+    fm.append("imageAlt: " + json.dumps(spec.get("imageAlt", spec["title"]), ensure_ascii=False))
     fm.append(f"draft: {'true' if draft_flag else 'false'}")
     fm.append("locale: en")
-    fm.append(f'author: "{spec["author"]}"')
+    fm.append("author: " + json.dumps({"cosmetics": "Glow Coded Editorial", "wellness": "Rooted Glow Editorial", "build-coded": "Build Coded Editorial"}[site]))
     if "difficulty" in spec:
         fm.append(f"difficulty: {spec['difficulty']}")
     fm.append("---")

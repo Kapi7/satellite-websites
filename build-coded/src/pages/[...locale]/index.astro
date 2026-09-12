@@ -72,8 +72,6 @@ const chipTabs = [
 
 const mobileMetrics = [
   { n: String(totalArticles), l: t(locale, 'home.trustProjects') },
-  { n: '42', l: t(locale, 'home.trustTools') },
-  { n: '0', l: t(locale, 'home.trustSponsored') },
 ];
 
 const marqueeItems = [
@@ -120,8 +118,8 @@ const tintByCategory: Record<string, string> = {
     <!-- Masthead -->
     <section class="bc-mh-mast">
       <div class="bc-mh-mast-row">
-        <span class="mono bc-mh-dim">{t(locale, 'home.volIssue')}</span>
-        <span class="mono bc-mh-dim">{t(locale, 'home.season')}</span>
+        <span class="mono bc-mh-dim">BUILD CODED</span>
+        <span class="mono bc-mh-dim">{new Date().toLocaleDateString(locale, {month:'short', year:'numeric'}).toUpperCase()}</span>
       </div>
       <h1 class="bc-mh-headline">
         {t(locale, 'home.mobileHeroHead1')}<br/>

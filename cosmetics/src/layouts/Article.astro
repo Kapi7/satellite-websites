@@ -1,4 +1,5 @@
 ---
+import productImageSources from "../data/product-image-sources.json";
 import Base from './Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -47,7 +48,7 @@ const authorObj = author
 
 const articleSchema = JSON.stringify({
   '@context': 'https://schema.org', '@type': 'Article',
-  headline: title, description, image, url: articleUrl,
+  headline: title, description, image: image ? new URL(image, Astro.site).href : undefined, url: articleUrl,
   datePublished: date.toISOString(), dateModified: updated?.toISOString() || date.toISOString(),
   author: authorObj,
   publisher: { '@type': 'Organization', name: 'Glow Coded', url: 'https://glow-coded.com' },
@@ -154,6 +155,8 @@ if (routine) {
 const titleParts = title.includes(':') ? [title.split(':')[0], ':' + title.split(':').slice(1).join(':')] : [title, ''];
 const authorInitial = author ? author[0].toUpperCase() : 'G';
 const authorDisplay = author || t(locale, 'article.editorial');
+const imageCredit = image ? (productImageSources as Record<string, {product: string; url: string}>)[image] : undefined;
+
 ---
 
 <Base
@@ -204,6 +207,9 @@ const authorDisplay = author || t(locale, 'article.editorial');
             </div>
           )}
 
+          {imageCredit && <p class="product-image-credit">Product photo: <a href={imageCredit.url} rel="sponsored noopener noreferrer">{imageCredit.product}</a>. Source image.</p>}
+          {image && !imageCredit && (type === 'review' || type === 'listicle') && <p class="product-image-credit">Illustrative image. Product appearance and packaging may differ; check the manufacturer's or retailer's listing.</p>}
+
           {/* TOC */}
           <div class="animate-fade-in-up stagger-2">
             <TableOfContents headings={headings} locale={locale} />
@@ -242,7 +248,7 @@ const authorDisplay = author || t(locale, 'article.editorial');
               <h5>{t(locale, 'common.featuredProducts')}</h5>
               <div class="aside-list">
                 {products.slice(0, 3).map((product) => (
-                  <a href={product.url} target="_blank" rel="noopener noreferrer" class="aside-item">
+                  <a href={product.url} target="_blank" rel="sponsored noopener noreferrer" class="aside-item">
                     <div class="aside-thumb">
                       <img src={product.image} alt={product.name} loading="lazy" />
                     </div>
@@ -255,12 +261,6 @@ const authorDisplay = author || t(locale, 'article.editorial');
               </div>
             </div>
           )}
-
-          {/* Keep reading */}
-          <div class="aside-box aside-keep-reading">
-            <h5>{t(locale, 'article.keepReading') || 'KEEP READING'}</h5>
-            {/* RelatedArticles rendered inline in sidebar */}
-          </div>
 
           {/* Newsletter CTA */}
           <div class="aside-box aside-newsletter">
@@ -291,7 +291,7 @@ const authorDisplay = author || t(locale, 'article.editorial');
     /* Two-column grid: content + sidebar */
     .article-wrap {
       display: grid;
-      grid-template-columns: 1fr 320px;
+      grid-template-columns: minmax(0, 1fr) 320px;
       gap: 60px;
       padding-top: 40px;
     }
@@ -649,13 +649,13 @@ const authorDisplay = author || t(locale, 'article.editorial');
     }
     /* Tables keep their natural width inside the scroll container */
     .body-text :global(.table-expand-wrapper table) {
-      min-width: max-content;
+      min-width: 100%; width: 100%;
     }
     /* Fade right edge on mobile to hint scrollability */
     @media (max-width: 768px) {
       .body-text :global(.table-expand-wrapper:not(.expanded)) {
-        mask-image: linear-gradient(to right, black calc(100% - 24px), transparent 100%);
-        -webkit-mask-image: linear-gradient(to right, black calc(100% - 24px), transparent 100%);
+        mask-image: none;
+        -webkit-mask-image: none;
       }
     }
   </style>

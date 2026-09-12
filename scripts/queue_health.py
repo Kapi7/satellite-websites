@@ -94,7 +94,7 @@ RUNWAY_CRIT_DAYS = 5    # ping Telegram as err below this
 # Known brand domains — if an article links to these, it recommends real products
 # and its hero image must show real product photos (not AI-generated fakes).
 PRODUCT_DOMAINS = {
-    "cosrx.com", "beautyofjoseon.com", "skin1004.com", "torriden.us",
+    "mirai-skin.com", "cosrx.com", "beautyofjoseon.com", "skin1004.com", "torriden.us",
     "anua.com", "medicube.us", "banilausa.com", "ksecretcosmetics.com",
     "axis-y.com", "innisfree.com", "us.innisfree.com", "pyunkangyul.us",
     "purito.com", "drjart.com", "etude.com",
@@ -151,7 +151,8 @@ def ensure_author(mdx: Path, site_key: str, dry_run: bool) -> str | None:
     if fm.get("author"):
         return None  # already set
     category = fm.get("category", "").strip()
-    rotation = AUTHOR_ROTATION.get(site_key, {}).get(category)
+    editorial = {"cosmetics": "Glow Coded Editorial", "wellness": "Rooted Glow Editorial", "build-coded": "Build Coded Editorial"}
+    rotation = [editorial[site_key]]
     if not rotation:
         return None  # unknown category, leave alone
 
@@ -179,7 +180,7 @@ def is_product_article(mdx: Path) -> bool:
     # Count links to known product domains
     links = re.findall(r"https?://(?:www\.)?([a-z0-9.-]+)", text)
     product_links = sum(1 for domain in links if any(domain.endswith(pd) for pd in PRODUCT_DOMAINS))
-    return product_links >= 2  # 2+ product links = product article
+    return product_links >= 1 or parse_frontmatter(text).get("type") in {"review", "listicle"}  # 2+ product links = product article
 
 
 def build_image_prompt(fm: dict, site_key: str) -> str:
@@ -233,6 +234,8 @@ def ensure_hero(mdx: Path, site_key: str, api_key: str, dry_run: bool) -> str | 
     image_path = SITES[site_key]["images"] / image_name
     if image_path.exists():
         return None
+    if is_product_article(mdx):
+        return None  # A missing product photo requires a verified retailer/manufacturer source.
     if dry_run:
         return image_name
     if not api_key:
@@ -340,7 +343,8 @@ def main() -> int:
     summary = "\n".join(report_lines)
     if dry:
         summary = "[DRY-RUN] " + summary
-    tg_notify(summary, level=highest_level, title="Queue health")
+    if not dry:
+        tg_notify(summary, level=highest_level, title="Queue health")
     return 0
 
 

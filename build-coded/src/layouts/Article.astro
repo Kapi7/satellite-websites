@@ -1,4 +1,5 @@
 ---
+import productImageSources from "../data/product-image-sources.json";
 import Base from './Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -57,7 +58,7 @@ const authorObj = author
 
 const articleSchema = JSON.stringify({
   '@context': 'https://schema.org', '@type': 'Article',
-  headline: title, description, image, url: articleUrl,
+  headline: title, description, image: image ? new URL(image, Astro.site).href : undefined, url: articleUrl,
   datePublished: date.toISOString(), dateModified: updated?.toISOString() || date.toISOString(),
   author: authorObj,
   publisher: { '@type': 'Organization', name: 'Build Coded', url: 'https://build-coded.com' },
@@ -152,6 +153,8 @@ const titleLead = titleWords.slice(0, -1).join(' ');
 const titleTail = titleWords[titleWords.length - 1];
 const authorInitial = author ? author[0].toUpperCase() : 'B';
 const authorDisplay = author || t(locale, 'article.editorial');
+const imageCredit = image ? (productImageSources as Record<string, {product: string; url: string}>)[image] : undefined;
+
 ---
 
 <Base
@@ -216,7 +219,9 @@ const authorDisplay = author || t(locale, 'article.editorial');
           )}
 
           <div class="animate-fade-in-up stagger-2">
-            <TableOfContents headings={headings} locale={locale} />
+            {imageCredit && <p class="product-image-credit">Product photo: <a href={imageCredit.url} rel="sponsored noopener noreferrer">{imageCredit.product}</a>. Source image.</p>}
+          {image && !imageCredit && (type === 'review' || type === 'listicle') && <p class="product-image-credit">Illustrative image. Product appearance and packaging may differ; check the manufacturer's or retailer's listing.</p>}
+          <TableOfContents headings={headings} locale={locale} />
           </div>
 
           <div class="prose body-text"><slot /></div>
@@ -239,7 +244,7 @@ const authorDisplay = author || t(locale, 'article.editorial');
               <h5>{t(locale, 'common.featuredProducts').toUpperCase()}</h5>
               <div class="aside-list">
                 {products.slice(0, 3).map((product) => (
-                  <a href={product.url} target="_blank" rel="noopener noreferrer" class="aside-item">
+                  <a href={product.url} target="_blank" rel="sponsored noopener noreferrer" class="aside-item">
                     <div class="aside-thumb">
                       <img src={product.image} alt={product.name} loading="lazy" />
                     </div>

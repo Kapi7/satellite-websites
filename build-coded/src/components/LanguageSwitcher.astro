@@ -1,4 +1,5 @@
 ---
+import { getCollection } from "astro:content";
 import { locales, localeNativeNames, type Locale } from '../i18n/locales';
 import { getPathWithoutLocale } from '../i18n/utils';
 
@@ -8,6 +9,14 @@ interface Props {
 
 const { locale } = Astro.props;
 const currentPath = getPathWithoutLocale(Astro.url);
+// Advertise only published translations of an article, never a missing URL.
+const translationPath = Astro.url.pathname.replace(/^\/(?:es|de|el|ru|it|ar|fr|nl|pt)(?=\/|$)/, '').replace(/^\/|\/$/g, '');
+const translationPosts = await getCollection('blog');
+const matchingTranslations = translationPosts.filter(p => (p.id.includes('/') ? p.id.split('/').slice(1).join('/') : p.id).replace(/\.mdx?$/, '') === translationPath);
+const availableLocales = translationPath === '404' || translationPath === '404.html' ? [] : matchingTranslations.length
+  ? locales.filter(l => matchingTranslations.some(p => p.data.locale === l && !p.data.draft && p.data.date <= new Date()))
+  : locales;
+
 ---
 
 <div class="relative" id="lang-switcher">
@@ -23,7 +32,7 @@ const currentPath = getPathWithoutLocale(Astro.url);
     <svg class="w-3 h-3 transition-transform duration-200" id="lang-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="m19.5 8.25-7.5 7.5-7.5-7.5"/></svg>
   </button>
   <div id="lang-panel" class="hidden absolute top-full right-0 mt-2 w-44 bg-white rounded-xl shadow-lg border border-steel-100/60 overflow-hidden z-50">
-    {locales.map((l) => {
+    {availableLocales.map((l) => {
       const href = l === 'en' ? currentPath : `/${l}${currentPath}`;
       return (
         <a

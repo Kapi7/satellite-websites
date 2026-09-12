@@ -27,7 +27,7 @@ const tabs = [
 ];
 ---
 
-<div class="bc-tab-bar" aria-label="Mobile tab bar">
+<nav class="bc-tab-bar" aria-label="Mobile tab bar">
   {tabs.map((tab) => (
     <a href={tab.href} class="bc-tab" data-tab-key={tab.key} data-tab-match={tab.match.join('|')}>
       <span class="bc-tab-dot"></span>
@@ -35,7 +35,7 @@ const tabs = [
       <span class="bc-tab-label">{tab.label}</span>
     </a>
   ))}
-</div>
+</nav>
 
 <style>
   .bc-tab-bar {

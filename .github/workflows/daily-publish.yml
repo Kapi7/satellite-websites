@@ -5,12 +5,17 @@ on:
     - cron: '0 3 * * *'  # 6:00 AM EEST
   workflow_dispatch:
 
+concurrency:
+  group: satellite-daily-publisher
+  cancel-in-progress: false
+
 permissions:
   contents: write
 
 jobs:
   publish:
     runs-on: ubuntu-latest
+    timeout-minutes: 55
     steps:
       - uses: actions/checkout@v4
         with:
@@ -73,5 +78,5 @@ jobs:
             echo "push attempt $i failed; sleeping then retrying"
             sleep $((i * 5))
           done
-          echo "::warning::push retries exhausted; another runner likely committed concurrently"
-          exit 0  # Don't fail the workflow — Google still got the IndexNow ping
+          echo "::error::Publish changes were not pushed after five attempts"
+          exit 1
