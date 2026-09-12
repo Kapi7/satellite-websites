@@ -1,37 +1,40 @@
-name: Rooted-glow CF Pages diagnostic
-
-# rooted-glow is a GIT-CONNECTED CF Pages project (unlike build-coded, which is
-# direct-upload). Wrangler cannot direct-upload to git-connected projects
-# (API error 8000000, confirmed June 12 2026), so this workflow does NOT deploy.
-# It exists to read CF Pages deployment status with the account token that only
-# CI has — use it to see whether CF's own git builds are succeeding and when
-# the last successful deployment happened.
-#
-# If rooted-glow's git integration ever breaks permanently (like build-coded's
-# did), the fix is: disconnect git in the CF dashboard, then restore the
-# build+wrangler-deploy steps from deploy-build-coded.yml.
-
+name: Cloudflare Pages diagnostic
 on:
   workflow_dispatch:
-
+permissions:
+  contents: read
 jobs:
   diagnose:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - name: List recent rooted-glow deployments
+      - name: Check release readiness without printing private metadata
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
-          npx -y wrangler@latest pages deployment list --project-name=rooted-glow 2>&1 | head -30
-          echo "---"
-          curl -s "https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/pages/projects/rooted-glow/deployments?per_page=5" \
-            -H "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" \
-            | python3 -c "
-          import sys, json
-          data = json.loads(sys.stdin.read())
-          for d in data.get('result', []):
-              stage = d.get('latest_stage', {})
-              print(f\"{d.get('created_on','?')[:19]}  {stage.get('name','?'):10s} {stage.get('status','?'):9s} commit={ (d.get('deployment_trigger',{}).get('metadata',{}).get('commit_hash') or '?')[:8] }\")
-          "
+          python3 - <<'PY'
+          import json, os, urllib.request
+          expected='0ad3ae2d4de99b76099345e88372927e94c08e57'
+          base='https://api.cloudflare.com/client/v4/accounts/'+os.environ['CLOUDFLARE_ACCOUNT_ID']+'/pages/projects/'
+          def get(path):
+              req=urllib.request.Request(base+path,headers={'Authorization':'Bearer '+os.environ['CLOUDFLARE_API_TOKEN']})
+              try:
+                  with urllib.request.urlopen(req,timeout=30) as response:body=json.load(response)
+              except Exception:raise SystemExit('Cloudflare status check failed')
+              if not body.get('success'):raise SystemExit('Cloudflare status check failed')
+              return body['result']
+          for project in ['glow-coded','rooted-glow','build-coded']:
+              p=get(project)
+              current=p.get('canonical_deployment') or {}
+              current_sha=current.get('deployment_trigger',{}).get('metadata',{}).get('commit_hash')
+              print(project,'reviewed_release_is_live=',current_sha==expected)
+              for d in get(project+'/deployments?per_page=8'):
+                  if d.get('deployment_trigger',{}).get('metadata',{}).get('commit_hash')==expected:
+                      stage=d.get('latest_stage') or {}
+                      # Only fixed-vocabulary states are printed. No IDs, URLs, logs, configuration or tokens.
+                      env=d.get('environment') if d.get('environment') in ['production','preview'] else 'unknown'
+                      status=stage.get('status') if stage.get('status') in ['success','failure','active','idle','canceled'] else 'unknown'
+                      phase=stage.get('name') if stage.get('name') in ['queued','initialize','clone_repo','build','deploy'] else 'unknown'
+                      print(project,env,phase,status)
+          PY
