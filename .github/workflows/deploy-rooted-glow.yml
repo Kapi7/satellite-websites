@@ -1,21 +1,27 @@
 name: Cloudflare Pages diagnostic
 on:
   workflow_dispatch:
+    inputs:
+      expected_commit:
+        description: Public Git commit to verify on the live sites
+        required: true
+        default: 0ad3ae2d4de99b76099345e88372927e94c08e57
 permissions:
   contents: read
 jobs:
   diagnose:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 25
     steps:
       - name: Check release readiness without printing private metadata
         env:
+          EXPECTED_COMMIT: ${{ inputs.expected_commit }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
           python3 - <<'PY'
-          import json, os, urllib.request
-          expected='0ad3ae2d4de99b76099345e88372927e94c08e57'
+          import json, os, time, urllib.request
+          expected=os.environ['EXPECTED_COMMIT']
           base='https://api.cloudflare.com/client/v4/accounts/'+os.environ['CLOUDFLARE_ACCOUNT_ID']+'/pages/projects/'
           def get(path):
               req=urllib.request.Request(base+path,headers={'Authorization':'Bearer '+os.environ['CLOUDFLARE_API_TOKEN']})
@@ -24,17 +30,23 @@ jobs:
               except Exception:raise SystemExit('Cloudflare status check failed')
               if not body.get('success'):raise SystemExit('Cloudflare status check failed')
               return body['result']
-          for project in ['glow-coded','rooted-glow','build-coded']:
-              p=get(project)
-              current=p.get('canonical_deployment') or {}
-              current_sha=current.get('deployment_trigger',{}).get('metadata',{}).get('commit_hash')
-              print(project,'reviewed_release_is_live=',current_sha==expected)
-              for d in get(project+'/deployments?per_page=8'):
-                  if d.get('deployment_trigger',{}).get('metadata',{}).get('commit_hash')==expected:
-                      stage=d.get('latest_stage') or {}
-                      # Only fixed-vocabulary states are printed. No IDs, URLs, logs, configuration or tokens.
-                      env=d.get('environment') if d.get('environment') in ['production','preview'] else 'unknown'
-                      status=stage.get('status') if stage.get('status') in ['success','failure','active','idle','canceled'] else 'unknown'
-                      phase=stage.get('name') if stage.get('name') in ['queued','initialize','clone_repo','build','deploy'] else 'unknown'
-                      print(project,env,phase,status)
+          for attempt in range(20):
+              all_live=True
+              for project in ['glow-coded','rooted-glow','build-coded']:
+                  p=get(project)
+                  current=p.get('canonical_deployment') or {}
+                  current_sha=current.get('deployment_trigger',{}).get('metadata',{}).get('commit_hash')
+                  print(project,'reviewed_release_is_live=',current_sha==expected, flush=True)
+                  if current_sha!=expected: all_live=False
+                  for d in get(project+'/deployments?per_page=8'):
+                      if d.get('deployment_trigger',{}).get('metadata',{}).get('commit_hash')==expected:
+                          stage=d.get('latest_stage') or {}
+                          # Only fixed-vocabulary states are printed. No IDs, URLs, logs, configuration or tokens.
+                          env=d.get('environment') if d.get('environment') in ['production','preview'] else 'unknown'
+                          status=stage.get('status') if stage.get('status') in ['success','failure','active','idle','canceled'] else 'unknown'
+                          phase=stage.get('name') if stage.get('name') in ['queued','initialize','clone_repo','build','deploy'] else 'unknown'
+                          print(project,env,phase,status)
+              if all_live: break
+              time.sleep(60)
+          else: raise SystemExit('Production release still pending after the observation window')
           PY
