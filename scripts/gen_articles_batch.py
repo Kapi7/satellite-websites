@@ -95,7 +95,7 @@ def generate_one(spec: dict, pub_date: str):
 
     # Article content
     print(f"    Generating content...")
-    evidence_rules = "\n\nDo not invent first-hand tests, measurements, author credentials, citations, prices, product availability, or product URLs. Distinguish research from hands-on experience. Use only supplied verified source URLs. Do not claim medical benefits that the supplied sources do not support."
+    evidence_rules = "\n\nDo not invent first-hand tests, measurements, author credentials, citations, prices, product availability, or product URLs. Distinguish research from hands-on experience. Use level-two Markdown section headings and render worksheet/comparison tables directly as Markdown, never inside code fences. Use only supplied verified source URLs. Do not claim medical benefits that the supplied sources do not support."
     body = gemini_generate(spec["prompt"] + evidence_rules)
 
     # Strip accidental frontmatter/fences
