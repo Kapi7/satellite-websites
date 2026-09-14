@@ -14,6 +14,7 @@ from __future__ import annotations
 import argparse
 import re
 from pathlib import Path
+from markdown_quality import strip_article_wrapper
 
 ROOT = Path(__file__).resolve().parent.parent
 SITE_DIRS = [
@@ -27,7 +28,6 @@ PROMPT_LEAK_RES = [
     re.compile(r"^\s*TRANSLATE THE FOLLOWING:\s*\n", re.M),
     re.compile(r"^\s*Here is the translation:\s*\n", re.M),
     re.compile(r"^\s*Translation:\s*\n", re.M),
-    re.compile(r"^```(?:markdown|md|mdx)?\s*\n(?=#)", re.M),
 ]
 
 # LLM tokenizer tokens that occasionally leak into translator output. MDX
@@ -54,8 +54,13 @@ def fix_prompt_leak(text):
     for pat in PROMPT_LEAK_RES:
         fixed, n = pat.subn("", fixed)
         total += n
-    fixed, n = re.subn(r"\n```\s*$", "\n", fixed)
-    total += n
+    front = FRONTMATTER_RE.match(fixed)
+    offset = front.end() if front else 0
+    body = fixed[offset:]
+    unwrapped = strip_article_wrapper(body)
+    if body != unwrapped:
+        fixed = fixed[:offset] + unwrapped
+        total += 2
     return fixed, total
 
 

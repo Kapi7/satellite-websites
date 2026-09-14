@@ -99,6 +99,13 @@ publish_article() {
     done
   fi
 
+  # A successful MDX build can still hide the rest of an article in a code block.
+  local check_files=("$article")
+  for lang in $LOCALES; do
+    [ ! -f "$blog_base/$lang/$filename" ] || check_files+=("$blog_base/$lang/$filename")
+  done
+  python3 scripts/markdown_quality.py "${check_files[@]}" || exit 1
+
   # ── Step 2: Undraft English + all translations ──
   undraft "$article"
   echo "[$label] Published: $(basename "$article" .mdx)"

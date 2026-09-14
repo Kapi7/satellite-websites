@@ -3,6 +3,7 @@
 import os, sys, json, time, base64, re, urllib.request, urllib.error
 from pathlib import Path
 from datetime import date, timedelta
+from markdown_quality import strip_article_wrapper, unclosed_fence
 
 try:
     from dotenv import load_dotenv
@@ -103,10 +104,9 @@ def generate_one(spec: dict, pub_date: str):
         parts = body.split("---", 2)
         if len(parts) >= 3:
             body = parts[2].strip()
-    if body.startswith("```"):
-        body = "\n".join(body.split("\n")[1:])
-    if body.endswith("```"):
-        body = body[:-3].rstrip()
+    body = strip_article_wrapper(body)
+    if unclosed_fence(body):
+        raise ValueError("Generated content has an unclosed Markdown fence; no article was saved")
 
     if len(body) < 500 or len(body) > 50000 or re.search(r"<!doctype|<html|<script|<iframe|-{1000,}", body, re.I):
         raise ValueError("Generated content failed structural validation; no article was saved")
