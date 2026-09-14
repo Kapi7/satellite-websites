@@ -11,6 +11,7 @@ import sys
 import time
 import argparse
 from pathlib import Path
+from markdown_quality import unclosed_fence
 
 # Force unbuffered output so background runs show progress immediately
 if not os.environ.get("PYTHONUNBUFFERED"):
@@ -111,7 +112,7 @@ def call_gemini(prompt, max_retries=6):
         "contents": [{"parts": [{"text": prompt}]}],
         "generationConfig": {
             "temperature": 0.7,
-            "maxOutputTokens": 16384,
+            "maxOutputTokens": 32768,
         }
     })
 
@@ -123,9 +124,12 @@ def call_gemini(prompt, max_retries=6):
                 headers={"Content-Type": "application/json"},
                 method="POST"
             )
-            with urllib.request.urlopen(req, timeout=60) as resp:
+            with urllib.request.urlopen(req, timeout=120) as resp:
                 result = json.loads(resp.read())
-                text = result["candidates"][0]["content"]["parts"][0]["text"]
+                candidate = result["candidates"][0]
+                if candidate.get("finishReason") != "STOP":
+                    raise ValueError("Incomplete translation; existing content was preserved")
+                text = candidate["content"]["parts"][0]["text"]
                 return text
         except urllib.error.HTTPError as e:
             body = e.read().decode("utf-8", errors="replace")[:500] if hasattr(e, 'read') else ""
@@ -143,6 +147,8 @@ def call_gemini(prompt, max_retries=6):
             else:
                 print(f"  HTTP {e.code} final failure. Response: {body[:300]}")
                 raise
+        except ValueError:
+            raise
         except Exception as e:
             wait = 10 * (attempt + 1)
             print(f"  Error (attempt {attempt + 1}): {e}")
@@ -256,7 +262,7 @@ ImageAlt: {image_alt}
 Tags: {tags_str}
 
 BODY TO TRANSLATE:
-{body[:12000]}"""
+{body}"""
 
     result = call_gemini(prompt)
 
@@ -283,15 +289,17 @@ BODY TO TRANSLATE:
                 break
 
         new_body = '\n'.join(lines[body_start:]) if body_start > 0 else result
+        if not new_title or not new_desc or not body_start or len(new_body.strip()) < 500 or unclosed_fence(new_body):
+            raise ValueError("Malformed translation; existing content was preserved")
 
         # Build new frontmatter
         new_fm = frontmatter
         if new_title and title_match:
-            new_fm = new_fm.replace(f'title: "{title}"', f'title: "{new_title}"')
+            new_fm = new_fm.replace(f'title: "{title}"', 'title: ' + json.dumps(new_title, ensure_ascii=False))
         if new_desc and desc_match:
-            new_fm = new_fm.replace(f'description: "{description}"', f'description: "{new_desc}"')
+            new_fm = new_fm.replace(f'description: "{description}"', 'description: ' + json.dumps(new_desc, ensure_ascii=False))
         if new_alt and alt_match:
-            new_fm = re.sub(r'^imageAlt:\s*.+', f'imageAlt: {new_alt}', new_fm, flags=re.MULTILINE)
+            new_fm = re.sub(r'^imageAlt:\s*.+', lambda _: 'imageAlt: ' + json.dumps(new_alt, ensure_ascii=False), new_fm, flags=re.MULTILINE)
         if new_tags and tags_match:
             # Format tags as array
             tag_items = [t.strip().strip('"').strip("'") for t in new_tags.split(',')]
