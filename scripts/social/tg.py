@@ -30,6 +30,8 @@ def notify(message: str, level: str = "info", title: str | None = None) -> bool:
     Never raises. Safe to call from inside a poster loop — if Telegram is
     down or env is missing, we silently swallow the error.
     """
+    if os.environ.get("DISABLE_OUTBOUND_NOTIFICATIONS") == "1":
+        return True
     token = os.getenv("TELEGRAM_BOT_TOKEN", "").strip()
     chat_id = os.getenv("TELEGRAM_CHAT_ID", "").strip()
     if not token or not chat_id:

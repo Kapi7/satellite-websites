@@ -193,7 +193,7 @@ const imageCredit = image ? (productImageSources as Record<string, {product: str
           <div class="bcd-byline animate-fade-in-up stagger-1">
             <div class="bcd-avatar">{authorInitial}</div>
             <div>BY {authorDisplay.toUpperCase()} &middot; {formattedDate}
-              {formattedUpdated && (<> &middot; {t(locale, 'common.updated').toUpperCase()} {formattedUpdated}</>)}
+              {formattedUpdated && (<> &middot; {t(locale, 'common.updated').toUpperCase()}{' '}{formattedUpdated}</>)}
             </div>
           </div>
 

@@ -33,6 +33,8 @@ LEVEL_ICONS = {
 
 
 def send(token: str, chat_id: str, text: str) -> tuple[bool, str]:
+    if os.environ.get("DISABLE_OUTBOUND_NOTIFICATIONS") == "1":
+        return True, "Notifications disabled for this run"
     url = f"https://api.telegram.org/bot{token}/sendMessage"
     data = urllib.parse.urlencode(
         {

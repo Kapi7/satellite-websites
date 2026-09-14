@@ -6,6 +6,43 @@
 (function () {
   'use strict';
 
+  // Keep retailer attribution independent of Analytics availability or consent.
+  // Only public source-page information is added; existing campaign values win.
+  function tagMiraiLink(link) {
+    if (!link) return;
+    try {
+      var destination = new URL(link.href);
+      if (!['mirai-skin.com', 'www.mirai-skin.com'].includes(destination.hostname)) return;
+      if (destination.protocol !== 'https:') return;
+      var canonical = document.querySelector('link[rel="canonical"]');
+      var sourcePath = canonical ? new URL(canonical.href).pathname : '/';
+      var tags = {
+        utm_source: 'rooted-glow.com',
+        utm_medium: 'affiliate',
+        utm_campaign: 'mirai_skin',
+        utm_content: sourcePath
+      };
+      Object.keys(tags).forEach(function (key) {
+        if (!destination.searchParams.has(key)) destination.searchParams.set(key, tags[key]);
+      });
+      link.href = destination.href;
+    } catch (_) {}
+  }
+  function tagMiraiLinks() {
+    document.querySelectorAll('a[href]').forEach(tagMiraiLink);
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', tagMiraiLinks, { once: true });
+  } else {
+    tagMiraiLinks();
+  }
+  // Also cover recommendations added after page load and keyboard/middle clicks.
+  ['pointerdown', 'click', 'auxclick', 'contextmenu'].forEach(function (event) {
+    document.addEventListener(event, function (e) {
+      tagMiraiLink(e.target && e.target.closest ? e.target.closest('a[href]') : null);
+    }, true);
+  });
+
   // Guard: gtag must exist
   if (typeof gtag !== 'function') return;
 

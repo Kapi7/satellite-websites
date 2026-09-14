@@ -272,7 +272,7 @@ if [ $PUBLISHED -gt 0 ]; then
   # Refuse to publish content that cannot produce a complete site.
   for site in cosmetics wellness build-coded; do
     if git status --porcelain -- "$site/" | grep -q .; then
-      (cd "$site" && npm ci --silent && npm run build) || exit 1
+      (echo "[validate] Installing and building $site"; cd "$site" && npm ci --no-audit --no-fund && npm run build) || exit 1
     fi
   done
   # Include new draft assets and translations in the same validated commit.
@@ -295,7 +295,7 @@ if [ $PUBLISHED -gt 0 ]; then
       echo "::error::[build-coded] CLOUDFLARE_API_TOKEN is missing"; REFILL_FAILED=1
     else
       echo "[build-coded] installing deps, building, deploying via wrangler..."
-      (cd build-coded && npm ci --silent 2>&1 | tail -3 && \
+      (cd build-coded && npm ci --no-audit --no-fund && \
         npm run build 2>&1 | tail -5 && \
         npx wrangler pages deploy dist --project-name=build-coded --commit-dirty=true 2>&1 | tail -5) \
         || { echo "::error::[build-coded] deploy failed (see logs)"; REFILL_FAILED=1; }
@@ -338,7 +338,7 @@ fi
 # ---------------------------------------------------------------------------
 # SEO morning brief — self-installs venv on first run, pings Telegram digest
 # ---------------------------------------------------------------------------
-if [ -f scripts/seo/morning_brief.py ]; then
+if [ "${DISABLE_OUTBOUND_NOTIFICATIONS:-0}" != "1" ] && [ -f scripts/seo/morning_brief.py ]; then
   # Create venv + install claude-agent-sdk if missing (idempotent, ~30s first run)
   if [ ! -x .venv-seo/bin/python ]; then
     echo "[seo] bootstrapping .venv-seo/"
@@ -357,4 +357,5 @@ if [ -f scripts/seo/morning_brief.py ]; then
 fi
 
 # Surface empty backlogs and sitemap failures to the workflow status.
+if [ "${REFILL_FAILED:-0}" -ne 0 ]; then exit 1; fi
 exit "$PREFLIGHT_FAILED"

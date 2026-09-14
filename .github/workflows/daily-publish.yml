@@ -4,6 +4,11 @@ on:
   schedule:
     - cron: '0 3 * * *'  # 6:00 AM EEST
   workflow_dispatch:
+    inputs:
+      notifications:
+        description: Send the existing Telegram notifications
+        type: boolean
+        default: false
 
 concurrency:
   group: satellite-daily-publisher
@@ -54,6 +59,7 @@ jobs:
       - name: Run daily publisher
         run: bash scripts/daily-publish.sh
         env:
+          DISABLE_OUTBOUND_NOTIFICATIONS: ${{ github.event_name == 'workflow_dispatch' && !inputs.notifications && '1' || '0' }}
           GSC_TOKEN_FILE: /tmp/gsc-token.json
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
@@ -80,3 +86,15 @@ jobs:
           done
           echo "::error::Publish changes were not pushed after five attempts"
           exit 1
+
+      - name: Preserve generated content after a failed run
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: publisher-content-${{ github.run_id }}
+          retention-days: 7
+          if-no-files-found: warn
+          path: |
+            cosmetics/src/content/blog/
+            wellness/src/content/blog/
+            build-coded/src/content/blog/

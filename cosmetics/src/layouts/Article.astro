@@ -196,7 +196,7 @@ const imageCredit = image ? (productImageSources as Record<string, {product: str
           <div class="gc-byline animate-fade-in-up stagger-1">
             <div class="gc-avatar">{authorInitial}</div>
             <div>{t(locale, 'common.by')} {authorDisplay.toUpperCase()} &middot; {formattedDate}
-              {formattedUpdated && <> &middot; {t(locale, 'common.updated')} {formattedUpdated}</>}
+              {formattedUpdated && <> &middot; {t(locale, 'common.updated')}{' '}{formattedUpdated}</>}
             </div>
           </div>
 
