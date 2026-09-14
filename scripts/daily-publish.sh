@@ -272,7 +272,17 @@ if [ $PUBLISHED -gt 0 ]; then
   # Refuse to publish content that cannot produce a complete site.
   for site in cosmetics wellness build-coded; do
     if git status --porcelain -- "$site/" | grep -q .; then
-      (echo "[validate] Installing and building $site"; cd "$site" && npm ci --no-audit --no-fund && npm run build) || exit 1
+      (
+        echo "[validate] Installing and building $site"
+        cd "$site"
+        # Build Coded's optional WASM packages resolve differently across npm/OS versions.
+        if [ "$site" = "build-coded" ]; then
+          npm install --no-audit --no-fund --prefer-offline || exit 1
+        else
+          npm ci --no-audit --no-fund || exit 1
+        fi
+        npm run build
+      ) || exit 1
     fi
   done
   # Include new draft assets and translations in the same validated commit.
@@ -295,7 +305,7 @@ if [ $PUBLISHED -gt 0 ]; then
       echo "::error::[build-coded] CLOUDFLARE_API_TOKEN is missing"; REFILL_FAILED=1
     else
       echo "[build-coded] installing deps, building, deploying via wrangler..."
-      (cd build-coded && npm ci --no-audit --no-fund && \
+      (cd build-coded && npm install --no-audit --no-fund --prefer-offline && \
         npm run build 2>&1 | tail -5 && \
         npx wrangler pages deploy dist --project-name=build-coded --commit-dirty=true 2>&1 | tail -5) \
         || { echo "::error::[build-coded] deploy failed (see logs)"; REFILL_FAILED=1; }

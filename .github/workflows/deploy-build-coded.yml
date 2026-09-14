@@ -38,8 +38,8 @@ jobs:
 
       - name: Install dependencies
         working-directory: build-coded
-        # Use the same frozen dependency installation as the daily publisher.
-        run: npm ci --no-audit --no-fund
+        # Resolve platform-specific optional dependencies on the Linux runner.
+        run: npm install --no-audit --no-fund --prefer-offline
 
       - name: Build site
         working-directory: build-coded
