@@ -13,3 +13,9 @@ assert unclosed_fence(article.replace('\n```\n## Example', '\n## Example'))
 assert not unclosed_fence('````md\n```python\ncode\n```\n````')
 assert unclosed_fence('~~~python\nunfinished')
 print('Markdown quality: internal and terminal fences preserved; broken fences detected.')
+
+from markdown_quality import normalize_mdx_breaks
+sample = '| a<br>b |\n\n```html\n<br>\n```\n`<br>` and <hr>\n'
+assert normalize_mdx_breaks(sample) == '| a<br />b |\n\n```html\n<br>\n```\n`<br>` and <hr />\n'
+assert normalize_mdx_breaks('<br />\n') == '<br />\n'
+print('MDX breaks: table markup normalized; fenced and inline examples preserved.')

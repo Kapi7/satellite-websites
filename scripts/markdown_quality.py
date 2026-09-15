@@ -10,6 +10,27 @@ def strip_article_wrapper(text):
     return match.group(1) if match else text
 
 
+def normalize_mdx_breaks(text):
+    """Self-close bare HTML line/rule breaks outside fenced and inline code."""
+    opened = None
+    result = []
+    for line in text.splitlines(keepends=True):
+        fence = re.match(r'^ {0,3}(`{3,}|~{3,})(.*)', line)
+        if fence:
+            token, rest = fence.groups()
+            if opened is None:
+                opened = token
+            elif token[0] == opened[0] and len(token) >= len(opened) and not rest.strip():
+                opened = None
+            result.append(line)
+            continue
+        if opened is None:
+            # Preserve literal inline code, including multiple-backtick delimiters.
+            parts = re.split(r'(`+[^`]*`+)', line)
+            line = ''.join(part if part.startswith('`') else re.sub(r'<(br|hr)\s*>', r'<\1 />', part, flags=re.I) for part in parts)
+        result.append(line)
+    return ''.join(result)
+
 def unclosed_fence(text):
     opened = None
     for line in text.splitlines():

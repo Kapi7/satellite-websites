@@ -11,7 +11,7 @@ import sys
 import time
 import argparse
 from pathlib import Path
-from markdown_quality import unclosed_fence
+from markdown_quality import normalize_mdx_breaks, unclosed_fence
 
 # Force unbuffered output so background runs show progress immediately
 if not os.environ.get("PYTHONUNBUFFERED"):
@@ -289,6 +289,7 @@ BODY TO TRANSLATE:
                 break
 
         new_body = '\n'.join(lines[body_start:]) if body_start > 0 else result
+        new_body = normalize_mdx_breaks(new_body)
         if not new_title or not new_desc or not body_start or len(new_body.strip()) < 500 or unclosed_fence(new_body):
             raise ValueError("Malformed translation; existing content was preserved")
 
