@@ -74,18 +74,7 @@ jobs:
           git add -A
           git diff --cached --quiet && echo "No changes to commit" && exit 0
           git commit -m "Auto-publish daily articles [skip ci]"
-          # Retry up to 5 times — Mac Mini may push concurrently every ~10s
-          for i in 1 2 3 4 5; do
-            git pull --rebase origin main || true
-            if git push; then
-              echo "push succeeded on attempt $i"
-              exit 0
-            fi
-            echo "push attempt $i failed; sleeping then retrying"
-            sleep $((i * 5))
-          done
-          echo "::error::Publish changes were not pushed after five attempts"
-          exit 1
+          bash scripts/push-publisher.sh
 
       - name: Preserve generated content after a failed run
         if: failure()

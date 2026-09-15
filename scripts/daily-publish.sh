@@ -295,8 +295,7 @@ if [ $PUBLISHED -gt 0 ]; then
   # Include new draft assets and translations in the same validated commit.
   git add -- cosmetics/src/content cosmetics/public/images wellness/src/content wellness/public/images build-coded/src/content build-coded/public/images
   git commit -m "Publish daily articles ($(date +%Y-%m-%d))"
-  git pull --rebase --quiet origin main 2>/dev/null || true
-  git push origin main
+  bash scripts/push-publisher.sh
 
   # Translations now happen inside publish_article() BEFORE undrafting,
   # so all languages go live in the same commit.
