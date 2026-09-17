@@ -12,6 +12,7 @@ Repair translation-script artifacts in */src/content/blog/<locale>/*.mdx:
 """
 from __future__ import annotations
 import argparse
+import json
 import re
 from pathlib import Path
 from markdown_quality import strip_article_wrapper
@@ -167,8 +168,16 @@ def fix_unescaped_quotes(text):
             new_lines.append(line)
             continue
         prefix, value, suffix = match.group(1), match.group(2), match.group(3)
+        # Generated scalars are JSON strings, which are valid YAML. Preserve
+        # their escapes rather than changing \" into an invalid \'.
+        try:
+            json.loads('"' + value + '"')
+            new_lines.append(line)
+            continue
+        except (ValueError, TypeError):
+            pass
         if '"' in value:
-            new_value = value.replace('"', "'")
+            new_value = re.sub(r'(?<!\\)"', "'", value)
             new_lines.append(f'{prefix}"{new_value}"{suffix}')
             fixes += 1
         else:
