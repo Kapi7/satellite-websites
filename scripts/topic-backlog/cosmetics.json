@@ -287,5 +287,21 @@
     "imageAlt": "",
     "prompt": "Write an original 400–600 word practical shopping checklist titled One-Time or Subscription? Check Your Skincare Order Before Paying. No H1 or frontmatter. Explain how a shopper can check whether the displayed offer is a one-time purchase or a subscription, and record quantity, total charge, billing frequency and where the seller provides cancellation terms. Use explicitly hypothetical examples only. Do not claim any specific retailer offers a subscription, state legal rights or invent policies, fees, prices, products or personal testing. Do not recommend taking on recurring purchases by default. Cosmetics merchants must be Mirai Skin only if a merchant link is relevant; do not invent its terms. No medical claims or generated product photos. Include /category/how-tos/ as a related internal link and disclose AI-assisted drafting, not hands-on testing.",
     "reviewed": "2026-09-14"
+  },
+  {
+    "site": "cosmetics",
+    "slug": "check-skincare-cart-duplicates-before-ordering",
+    "title": "Check Your Skincare Cart for Duplicate Products",
+    "description": "Match product names, sizes and bundle contents before placing your next skincare order.",
+    "category": "how-tos",
+    "type": "guide",
+    "tags": [
+      "shopping checklist"
+    ],
+    "author": "Glow Coded Editorial",
+    "image_prompt": "skip",
+    "imageAlt": "",
+    "reviewed": "2026-09-17",
+    "prompt": "Write a practical 400–600 word shopping checklist about avoiding accidental duplicate skincare purchases in a cart. No H1 or frontmatter. Use H2 headings and a short Markdown worksheet. Compare exact product name, formula or shade, size, quantity, and bundle contents with products already owned. Explain that similarly named products can differ, and that a bundle may duplicate a separate cart item. Use clearly hypothetical examples, not invented brands, prices, policies or ingredient claims. If mentioning a retailer, only Mirai Skin; do not claim any unverified stock, offers or policies. Let readers record their own observations and actual cart details; do not turn author evidence restrictions into instructions preventing readers from recording prices or product experiences. Link internally to /keep-a-skincare-product-notebook/ and /compare-skincare-unit-prices/. No medical claims, firsthand testing claims, artificial branded product photographs, HTML tags or code fences. Disclose AI-assisted drafting rather than claiming product testing."
   }
 ]
