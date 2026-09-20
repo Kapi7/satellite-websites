@@ -62,6 +62,7 @@ Return ONLY a JSON array of strings of the same length, in the same order. No En
 
 def main():
  jobs=[(lang,slug,'full') for slug in SLUGS for lang in t.LOCALES]
+ jobs.append(('ar','post-laser-korean-skincare-routine','full'))
  for lang in t.LOCALES:
   for target in sorted((BLOG/lang).glob('*.mdx')):
    source=BLOG/'en'/target.name

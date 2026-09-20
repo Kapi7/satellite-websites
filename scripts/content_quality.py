@@ -31,6 +31,16 @@ def unchanged(source, target):
 def external_links(text):
     return sorted(re.findall(r'\]\((https?://[^)]+)\)', split(text)[1]))
 
+def translation_structure(source, target, lang):
+    errors=[]
+    source_body=split(source)[1];target_body=split(target)[1]
+    if len(re.findall(r'^#{1,6} ',source_body,re.M)) != len(re.findall(r'^#{1,6} ',target_body,re.M)):
+        errors.append('missing or extra section headings')
+    disclosure_terms={'es':'comisi','de':'provision','el':'προμήθ','ru':'комисси','it':'commission','ar':'عمول','fr':'commission','nl':'commissie','pt':'comiss'}
+    if '**Affiliate disclosure:**' in source_body and disclosure_terms.get(lang,'commission') not in target_body.lower():
+        errors.append('missing translated affiliate commission disclosure')
+    return errors
+
 def is_current(source, target):
     if not target.exists():
         return False
@@ -51,6 +61,7 @@ def validate(source, require_image=False):
             errors.append(f'{lang}: missing or stale translation')
         if target.exists():
             translated=target.read_text()
+            errors.extend(f'{lang}: {error}' for error in translation_structure(text, translated, lang))
             if unchanged(text, translated):
                 errors.append(f'{lang}: untranslated English paragraph')
             if external_links(text) != external_links(translated):

@@ -12,7 +12,7 @@ import time
 import argparse
 from pathlib import Path
 from markdown_quality import normalize_mdx_breaks, unclosed_fence
-from content_quality import unchanged, stamp, is_current, external_links
+from content_quality import unchanged, stamp, is_current, external_links, translation_structure
 
 # Force unbuffered output so background runs show progress immediately
 if not os.environ.get("PYTHONUNBUFFERED"):
@@ -322,6 +322,8 @@ BODY TO TRANSLATE:
                 raise ValueError("Untranslated English paragraph; existing content was preserved")
             if external_links(content) != external_links(output):
                 raise ValueError("Changed product or source links; existing content was preserved")
+            if translation_structure(content, output, lang):
+                raise ValueError("Missing sections or affiliate disclosure; existing content was preserved")
             output = stamp(content, output)
         target_file.write_text(output)
         return True
