@@ -155,7 +155,19 @@ if (routine) {
 const titleParts = title.includes(':') ? [title.split(':')[0], ':' + title.split(':').slice(1).join(':')] : [title, ''];
 const authorInitial = author ? author[0].toUpperCase() : 'G';
 const authorDisplay = author || t(locale, 'article.editorial');
-const imageCredit = image ? (productImageSources as Record<string, {product: string; url: string}>)[image] : undefined;
+const imageCreditLabels: Record<string, [string, string]> = {
+  en: ['Product photograph', 'AI-enhanced scene based on a real product photograph'],
+  es: ['Fotografía del producto', 'Escena mejorada con IA a partir de una fotografía real del producto'],
+  de: ['Produktfotografie', 'Mit KI gestaltete Szene auf Basis eines echten Produktfotos'],
+  el: ['Φωτογραφία προϊόντος', 'Σκηνή βελτιωμένη με AI, βασισμένη σε πραγματική φωτογραφία προϊόντος'],
+  ru: ['Фотография продукта', 'Сцена, созданная с помощью ИИ на основе реальной фотографии продукта'],
+  it: ['Fotografia del prodotto', 'Scena migliorata con IA a partire da una fotografia reale del prodotto'],
+  ar: ['صورة المنتج', 'مشهد محسّن بالذكاء الاصطناعي بناءً على صورة حقيقية للمنتج'],
+  fr: ['Photographie du produit', 'Scène améliorée par IA à partir d’une vraie photographie du produit'],
+  nl: ['Productfoto', 'Met AI verbeterde scène op basis van een echte productfoto'],
+  pt: ['Fotografia do produto', 'Cenário aprimorado com IA a partir de uma fotografia real do produto'],
+};
+const imageCredit = image ? (productImageSources as Record<string, {product: string; url: string; aiEnhanced?: boolean}>)[image] : undefined;
 
 ---
 
@@ -202,12 +214,12 @@ const imageCredit = image ? (productImageSources as Record<string, {product: str
 
           {/* Hero image */}
           {image && (
-            <div class="gc-hero animate-fade-in-up stagger-2">
+            <div class:list={["gc-hero animate-fade-in-up stagger-2", {"gc-hero-product": Boolean(imageCredit)}]}>
               <img src={image} alt={imageAlt || title} loading="eager" fetchpriority="high" decoding="async" width="1200" height="675" />
             </div>
           )}
 
-          {imageCredit && <p class="product-image-credit">Product photo: <a href={imageCredit.url} rel="sponsored noopener noreferrer">{imageCredit.product}</a>. Source image.</p>}
+          {imageCredit && <p class="product-image-credit">{(imageCreditLabels[locale] || imageCreditLabels.en)[imageCredit.aiEnhanced ? 1 : 0]}: <a href={imageCredit.url} rel="sponsored noopener noreferrer">{imageCredit.product}</a>.</p>}
           {image && !imageCredit && (type === 'review' || type === 'listicle') && <p class="product-image-credit">Illustrative image. Product appearance and packaging may differ; check the manufacturer's or retailer's listing.</p>}
 
           {/* TOC */}
@@ -658,7 +670,8 @@ const imageCredit = image ? (productImageSources as Record<string, {product: str
         -webkit-mask-image: none;
       }
     }
-  </style>
+    .gc-hero.gc-hero-product img { object-fit: contain; background: #fff; }
+</style>
 
   <script>
     document.querySelectorAll(".prose table").forEach((table) => {

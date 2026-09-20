@@ -14,3 +14,17 @@ with tempfile.TemporaryDirectory() as d:
  s.write_text(source.replace('facts','errors'))
  assert not is_current(s,t)
 print('Content quality: stale, missing, untranslated prose, and publication-only changes verified.')
+
+# A current hash must not bypass language checks.
+import content_quality as quality
+with tempfile.TemporaryDirectory() as d:
+ root=Path(d);en=root/'cosmetics/src/content/blog/en';en.mkdir(parents=True)
+ s=en/'sample.mdx';s.write_text(source)
+ for locale in quality.LOCALES:
+  t=en.parent/locale/s.name;t.parent.mkdir();t.write_text(stamp(source,source))
+ assert all('untranslated English' in e for e in quality.validate(s))
+ original_root=quality.ROOT;quality.ROOT=root
+ try:
+  assert any('hero:' in e for e in quality.validate(s,True))
+ finally:quality.ROOT=original_root
+print('Content quality: matching source hashes do not hide English copies; missing image approval blocks publication.')

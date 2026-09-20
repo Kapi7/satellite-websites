@@ -28,6 +28,9 @@ def unchanged(source, target):
     normalized = {' '.join(p.split()) for p in paragraphs(source)}
     return [p for p in paragraphs(target) if ' '.join(p.split()) in normalized]
 
+def external_links(text):
+    return sorted(re.findall(r'\]\((https?://[^)]+)\)', split(text)[1]))
+
 def is_current(source, target):
     if not target.exists():
         return False
@@ -46,8 +49,12 @@ def validate(source, require_image=False):
         target = source.parent.parent / lang / source.name
         if not is_current(source, target):
             errors.append(f'{lang}: missing or stale translation')
-        if target.exists() and unchanged(text, target.read_text()):
-            errors.append(f'{lang}: untranslated English paragraph')
+        if target.exists():
+            translated=target.read_text()
+            if unchanged(text, translated):
+                errors.append(f'{lang}: untranslated English paragraph')
+            if external_links(text) != external_links(translated):
+                errors.append(f'{lang}: changed external source or product links')
     if require_image:
         fm, _ = split(text)
         m = re.search(r'^image:\s*[\"\']?([^\n\"\']+)', fm, re.M)
@@ -62,10 +69,19 @@ def validate(source, require_image=False):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('source',type=Path)
+    parser.add_argument('source',type=Path,nargs='?')
+    parser.add_argument('--reviewed',action='store_true')
     parser.add_argument('--current',type=Path)
     parser.add_argument('--require-image',action='store_true')
     args=parser.parse_args()
+    if args.reviewed:
+        slugs=json.loads((ROOT/'cosmetics/src/data/reviewed-articles.json').read_text())
+        errors=[]
+        for slug in slugs:
+            errors.extend(f'{slug}: {error}' for error in validate(ROOT/'cosmetics/src/content/blog/en'/f'{slug}.mdx',True))
+        for error in errors:print(error)
+        raise SystemExit(bool(errors))
+    if args.source is None:parser.error('source or --reviewed required')
     if args.current:
         raise SystemExit(0 if is_current(args.source,args.current) else 1)
     errors=validate(args.source,args.require_image)
