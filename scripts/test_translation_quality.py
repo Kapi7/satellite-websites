@@ -18,3 +18,14 @@ with tempfile.TemporaryDirectory() as folder:
  assert m.translate_article('build-coded','ar',source)
  assert '\\"title\\"' in target.read_text()
 print('Translation checks passed: full source retained, malformed output rejected, existing file preserved, quotes escaped.')
+# Cosmetic translations must reject copied prose before overwriting the existing file.
+with tempfile.TemporaryDirectory() as folder:
+ root=Path(folder);en=root/'en';es=root/'es';en.mkdir();es.mkdir()
+ source=en/'sample.mdx';target=es/'sample.mdx'
+ prose='This English paragraph contains a product recommendation with facts and qualifications that must be translated into the requested local language before it can be published. '*10
+ source.write_text('---\ntitle: "Source"\ndescription: "Description"\ntags: ["guide"]\nlocale: en\n---\n'+prose)
+ target.write_text('existing translation')
+ m.call_gemini=lambda prompt:'TITLE: Título\nDESCRIPTION: Descripción\nIMAGE_ALT: Foto\nTAGS: [guía]\n\n'+prose
+ assert not m.translate_article('cosmetics','es',source)
+ assert target.read_text()=='existing translation'
+print('Cosmetics: copied English prose rejected without overwriting the previous translation.')

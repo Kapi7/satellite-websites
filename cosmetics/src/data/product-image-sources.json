@@ -442,5 +442,19 @@
     "url": "https://mirai-skin.com/products/abib-heartleaf-calming-toner-skin-booster-200ml",
     "sourceImage": "https://cdn.shopify.com/s/files/1/0899/8862/8852/files/web_final_1_555a6c6f-1570-4d6f-b832-07beb82ff6e3.jpg?v=1776266063",
     "verifiedAt": "2026-09-12"
+  },
+  "/images/editorial/galactomyces-skincare-guide.jpg": {
+    "product": "mixsoon Premium Galactomyces Serum 50ml",
+    "url": "https://mirai-skin.com/products/mixsoon-premium-galactomyces-serum-50ml",
+    "sourceImage": "https://cdn.shopify.com/s/files/1/0899/8862/8852/files/web_final_1_298036b7-3510-4661-9f38-2c7581f8b753.jpg?v=1776178736",
+    "verifiedAt": "2026-09-20",
+    "aiEnhanced": true
+  },
+  "/images/editorial/mugwort-skincare-benefits.jpg": {
+    "product": "I'm from Mugwort Essence 150ml",
+    "url": "https://mirai-skin.com/products/im-from-mugwort-essence-150ml",
+    "sourceImage": "https://cdn.shopify.com/s/files/1/0899/8862/8852/files/product_images_1742461036.73877039951536776_14314365621767799349.jpg?v=1767800140",
+    "verifiedAt": "2026-09-20",
+    "aiEnhanced": true
   }
 }
