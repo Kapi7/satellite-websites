@@ -6,7 +6,7 @@ import os
 import re
 from pathlib import Path
 os.environ['PYTHONUNBUFFERED']='1'
-from content_quality import unchanged, is_current
+from content_quality import unchanged, is_current, split, stamp, translation_structure, external_links
 from markdown_quality import unclosed_fence, normalize_mdx_breaks
 ROOT=Path(__file__).resolve().parents[1]
 BLOG=ROOT/'cosmetics/src/content/blog'
@@ -35,9 +35,11 @@ def job(item):
   if external(source.read_text()) != external(target.read_text()): raise ValueError(f'changed links: {lang}/{slug}')
   return {'lang':lang,'slug':slug,'mode':mode}
  old=target.read_text();copies=unchanged(source.read_text(),old)
+ if mode=='rebuild':
+  copies=[p for p in re.split(r'\n\s*\n',split(source.read_text())[1]) if p.strip()]
  if not copies:return {'lang':lang,'slug':slug,'mode':'no-copy'}
  # Smaller chunks avoid truncation on pages with many copied paragraphs.
- new=old
+ new=old if mode!='rebuild' else '---'+split(old)[0]+'---\n'+split(source.read_text())[1]
  for offset in range(0,len(copies),2):
   chunk=copies[offset:offset+2]
   tokens={}
@@ -52,17 +54,20 @@ Return ONLY a JSON array of strings of the same length, in the same order. No En
   if not isinstance(translated,list) or len(translated)!=len(chunk):raise ValueError('Invalid translation array')
   for before,after in zip(chunk,translated):
    for token,url in tokens.items():after=after.replace(token,url)
-   if not isinstance(after,str) or len(after.strip())<30 or sorted(links(before))!=sorted(links(after)):raise ValueError('Invalid paragraph or changed link: '+str(offset))
+   if not isinstance(after,str) or not after.strip() or sorted(links(before))!=sorted(links(after)):raise ValueError('Invalid paragraph or changed link: '+str(offset))
    new=new.replace(before,after)
  new=normalize_mdx_breaks(new)
  if unchanged(source.read_text(),new) or unclosed_fence(new):raise ValueError('Incomplete paragraph repair')
  # A paragraph patch does not certify the surrounding translation as current.
+ if mode=='rebuild':
+  if translation_structure(source.read_text(),new,lang) or external_links(source.read_text())!=external_links(new):raise ValueError('Incomplete full reconstruction')
+  new=stamp(source.read_text(),new)
  target.write_text(new)
  return {'lang':lang,'slug':slug,'mode':mode,'paragraphs':len(copies)}
 
 def main():
  jobs=[(lang,slug,'full') for slug in SLUGS for lang in t.LOCALES]
- jobs.append(('ar','post-laser-korean-skincare-routine','full'))
+ jobs.append(('ar','post-laser-korean-skincare-routine','rebuild'))
  for lang in t.LOCALES:
   for target in sorted((BLOG/lang).glob('*.mdx')):
    source=BLOG/'en'/target.name

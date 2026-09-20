@@ -28,3 +28,11 @@ with tempfile.TemporaryDirectory() as d:
   assert any('hero:' in e for e in quality.validate(s,True))
  finally:quality.ROOT=original_root
 print('Content quality: matching source hashes do not hide English copies; missing image approval blocks publication.')
+from content_quality import translation_structure
+reference='---\nlocale: en\n---\n**Affiliate disclosure:** We may earn a commission.\n\n## Choice\nText\n\n## Cautions\nText'
+translated='---\nlocale: ru\n---\nТекст\n\n## Выбор\nТекст'
+errors=translation_structure(reference,translated,'ru')
+assert len(errors)==2
+complete='---\nlocale: ru\n---\nМы можем получить комиссию.\n\n## Выбор\nТекст\n\n## Предостережения\nТекст'
+assert not translation_structure(reference,complete,'ru')
+print('Translation structure: dropped sections and missing commission disclosure are rejected.')
