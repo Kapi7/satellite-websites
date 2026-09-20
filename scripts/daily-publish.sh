@@ -92,7 +92,7 @@ publish_article() {
   if [ -f "$TRANSLATE_SCRIPT" ]; then
     for lang in $LOCALES; do
       local i18n_file="$blog_base/$lang/$filename"
-      if [ ! -f "$i18n_file" ]; then
+      if [ ! -f "$i18n_file" ] || { [ "$site" = "cosmetics" ] && ! python3 scripts/content_quality.py "$article" --current "$i18n_file"; }; then
         echo "  [$label] Translating $filename -> $lang"
         python3 "$TRANSLATE_SCRIPT" --article "$article" --lang "$lang" 2>&1 | tail -5 || true
       fi
@@ -105,6 +105,10 @@ publish_article() {
     [ ! -f "$blog_base/$lang/$filename" ] || check_files+=("$blog_base/$lang/$filename")
   done
   python3 scripts/markdown_quality.py "${check_files[@]}" || exit 1
+
+  if [ "$site" = "cosmetics" ]; then
+    python3 scripts/content_quality.py "$article" --require-image || exit 1
+  fi
 
   # ── Step 2: Undraft English + all translations ──
   undraft "$article"

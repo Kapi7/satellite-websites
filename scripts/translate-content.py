@@ -12,6 +12,7 @@ import time
 import argparse
 from pathlib import Path
 from markdown_quality import normalize_mdx_breaks, unclosed_fence
+from content_quality import unchanged, stamp, is_current
 
 # Force unbuffered output so background runs show progress immediately
 if not os.environ.get("PYTHONUNBUFFERED"):
@@ -315,7 +316,12 @@ BODY TO TRANSLATE:
         target_dir.mkdir(parents=True, exist_ok=True)
         target_file = target_dir / article_path.name
 
-        target_file.write_text(f"---{new_fm}---\n{new_body}")
+        output = f"---{new_fm}---\n{new_body}"
+        if site == "cosmetics":
+            if unchanged(content, output):
+                raise ValueError("Untranslated English paragraph; existing content was preserved")
+            output = stamp(content, output)
+        target_file.write_text(output)
         return True
 
     except Exception as e:
@@ -346,7 +352,7 @@ def main():
         print(f"Translating single article: {article_path.name} ({site})")
         for lang in langs:
             key = f"{site}/article/{lang}/{article_path.name}"
-            if key in status and status[key] == "done":
+            if key in status and status[key] == "done" and (site != "cosmetics" or is_current(article_path, article_path.parent.parent / lang / article_path.name)):
                 print(f"  Skipping {lang} (already done)")
                 continue
             print(f"  {article_path.name} -> {lang}")
