@@ -43,7 +43,7 @@ def job(item):
   tokens={}
   def protect(match):
    token='PRESERVEURL'+str(len(tokens))+'END';tokens[token]=match.group(0);return token
-  protected=[re.sub(r'https?://[^\s)<>]+',protect,paragraph) for paragraph in chunk]
+  protected=[re.sub(r'https?://[^\s)<>]+',protect,re.sub(r'(?<=\]\()[^)]+(?=\))',protect,paragraph)) for paragraph in chunk]
   prompt=f'''Translate each string in this JSON array. {t.LANG_INSTRUCTIONS[lang]}
 Preserve the meaning, qualifications, markdown, all URLs and image paths exactly. PRESERVEURL-number-END tokens are immutable: copy each token verbatim exactly once in its original position; never translate or omit these tokens.
 Return ONLY a JSON array of strings of the same length, in the same order. No English paragraphs left unchanged. Do not add claims, notes, facts or formatting wrappers.

@@ -55,6 +55,7 @@ fi
 LOCALES="es de el ru it ar fr nl pt"
 PREFLIGHT_FAILED=${REFILL_FAILED:-0}
 PUBLISHED=0
+BLOCKED_COSMETICS=0
 PUBLISHED_FILES=""
 ENGLISH_TO_PUBLISH=""
 
@@ -107,18 +108,23 @@ publish_article() {
   python3 scripts/markdown_quality.py "${check_files[@]}" || exit 1
 
   if [ "$site" = "cosmetics" ]; then
-    python3 scripts/content_quality.py "$article" --require-image || exit 1
+    python3 scripts/content_quality.py "$article" --require-image || {
+      echo "::error::Glow draft retained for editorial review: $filename"
+      BLOCKED_COSMETICS=1
+      PREFLIGHT_FAILED=1
+      return 1
+    }
   fi
 
   # ── Step 2: Undraft English + all translations ──
-  undraft "$article"
+  undraft "$article" || return 1
   echo "[$label] Published: $(basename "$article" .mdx)"
   PUBLISHED_FILES="$PUBLISHED_FILES $article"
 
   for lang in $LOCALES; do
     local i18n_file="$blog_base/$lang/$filename"
     if [ -f "$i18n_file" ] && grep -q "^draft: true" "$i18n_file"; then
-      undraft "$i18n_file"
+      undraft "$i18n_file" || return 1
       PUBLISHED_FILES="$PUBLISHED_FILES $i18n_file"
       echo "  [$label] Undrafted $lang translation"
     elif [ -f "$i18n_file" ]; then
@@ -161,8 +167,11 @@ for article in \
   "cosmetics/src/content/blog/en/korean-hair-care-products-damage-repair.mdx" \
   "cosmetics/src/content/blog/en/best-korean-anti-aging-serums-every-budget.mdx"; do
   if [ -f "$article" ] && grep -q "^draft: true" "$article"; then
-    publish_article "$article" "Glow Coded"
-    PUBLISHED=$((PUBLISHED + 1))
+    if publish_article "$article" "Glow Coded"; then
+      PUBLISHED=$((PUBLISHED + 1))
+    else
+      PREFLIGHT_FAILED=1
+    fi
     break
   fi
 done
@@ -219,8 +228,11 @@ for article in \
   "wellness/src/content/blog/en/anti-inflammatory-spice-blends-make-today.mdx" \
   "wellness/src/content/blog/en/how-to-make-fermented-kimchi-at-home.mdx"; do
   if [ -f "$article" ] && grep -q "^draft: true" "$article"; then
-    publish_article "$article" "Rooted Glow"
-    PUBLISHED=$((PUBLISHED + 1))
+    if publish_article "$article" "Rooted Glow"; then
+      PUBLISHED=$((PUBLISHED + 1))
+    else
+      PREFLIGHT_FAILED=1
+    fi
     break
   fi
 done
@@ -236,8 +248,11 @@ for article in \
   "build-coded/src/content/blog/en/best-tool-boxes-organizers-workshop.mdx" \
   "build-coded/src/content/blog/en/how-to-install-crown-molding.mdx"; do
   if [ -f "$article" ] && grep -q "^draft: true" "$article"; then
-    publish_article "$article" "Build Coded"
-    PUBLISHED=$((PUBLISHED + 1))
+    if publish_article "$article" "Build Coded"; then
+      PUBLISHED=$((PUBLISHED + 1))
+    else
+      PREFLIGHT_FAILED=1
+    fi
     break
   fi
 done
@@ -252,8 +267,12 @@ fallback_publish() {
   for article in $site_glob; do
     [ -f "$article" ] || continue
     if grep -q "^draft: true" "$article"; then
-      publish_article "$article" "$site_label"
-      PUBLISHED=$((PUBLISHED + 1))
+      if publish_article "$article" "$site_label"; then
+        PUBLISHED=$((PUBLISHED + 1))
+      else
+        PREFLIGHT_FAILED=1
+        return 1
+      fi
       return 0
     fi
   done
@@ -269,7 +288,7 @@ published_today() {
   return 1
 }
 
-if ! published_today cosmetics; then
+if [ "$BLOCKED_COSMETICS" -eq 0 ] && ! published_today cosmetics; then
   fallback_publish cosmetics "Glow Coded" || echo "[cosmetics] no drafts available"
 fi
 if [ "$SUPPRESSED_SITE_PUBLISH_TODAY" = "true" ] && ! published_today wellness; then

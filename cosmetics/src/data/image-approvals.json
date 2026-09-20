@@ -25,5 +25,25 @@
     "reviewer": "Codex visual inspection",
     "treatment": "unaltered retailer photograph",
     "notes": "Brand and product line match the linked retailer reference; image is not a wear-test result."
+  },
+  "/images/editorial/galactomyces-skincare-guide.jpg": {
+    "sha256": "4b76f870d39904243615d978b0ec8a907e159a2f15f5cbb2595a5c4b834433f9",
+    "sourceUrl": "https://mirai-skin.com/products/mixsoon-premium-galactomyces-serum-50ml",
+    "sourceImage": "https://cdn.shopify.com/s/files/1/0899/8862/8852/files/web_final_1_298036b7-3510-4661-9f38-2c7581f8b753.jpg?v=1776178736",
+    "referenceSha256": "404826d4339e7896492195a99ca0922045a49dad96978ce86a6ee75989f2c452",
+    "reviewedAt": "2026-09-20",
+    "reviewer": "Codex visual inspection",
+    "treatment": "Gemini 3 Pro Image enhancement from one real product photograph",
+    "notes": "Third candidate approved: full bottle visible; brand, product name, formula and volume label match the source. Prior two candidates rejected for label distortion/cropping."
+  },
+  "/images/editorial/mugwort-skincare-benefits.jpg": {
+    "sha256": "697836815a4b63738f74b3a6106cca92de134787eb5a69b8184e9e46101473e6",
+    "sourceUrl": "https://mirai-skin.com/products/im-from-mugwort-essence-150ml",
+    "sourceImage": "https://cdn.shopify.com/s/files/1/0899/8862/8852/files/product_images_1742461036.73877039951536776_14314365621767799349.jpg?v=1767800140",
+    "referenceSha256": "6de8a017005d31c9339fd3e822ef2e9e69e5db97e658f8d7264165f96d744e44",
+    "reviewedAt": "2026-09-20",
+    "reviewer": "Codex visual inspection",
+    "treatment": "Gemini 3 Pro Image enhancement from one real product photograph",
+    "notes": "Third candidate approved: full bottle visible; brand, product name, formula and volume label match the source. Prior two candidates rejected for label distortion/cropping."
   }
 }
