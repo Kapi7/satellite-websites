@@ -304,7 +304,7 @@ BODY TO TRANSLATE:
             new_fm = re.sub(r'^imageAlt:\s*.+', lambda _: 'imageAlt: ' + json.dumps(new_alt, ensure_ascii=False), new_fm, flags=re.MULTILINE)
         if new_tags and tags_match:
             # Format tags as array
-            tag_items = [t.strip().strip('"').strip("'") for t in new_tags.split(',')]
+            tag_items = [t.strip().strip('"').strip("'") for t in new_tags.strip().strip('[]').split(',')]
             tags_formatted = json.dumps(tag_items, ensure_ascii=False)
             new_fm = re.sub(r'^tags:\s*\[.+\]', f'tags: {tags_formatted}', new_fm, flags=re.MULTILINE)
 

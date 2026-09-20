@@ -14,6 +14,13 @@ SLUGS=['tirtir-cushion-foundation-shade-guide','best-korean-lip-products-hydrati
 spec=importlib.util.spec_from_file_location('translator',Path(__file__).with_name('translate-content.py'))
 t=importlib.util.module_from_spec(spec);spec.loader.exec_module(t)
 
+def structured_paragraphs(prompt):
+ from google import genai
+ from google.genai import types
+ client=genai.Client(api_key=os.environ['GEMINI_API_KEY'])
+ response=client.models.generate_content(model='gemini-2.5-flash-lite',contents=prompt,config=types.GenerateContentConfig(temperature=0.2,response_mime_type='application/json',response_schema=list[str],max_output_tokens=32768))
+ return json.loads(response.text)
+
 def links(text):
  return re.findall(r'\]\(([^)]+)\)',text)
 
@@ -37,11 +44,10 @@ def job(item):
 Preserve the meaning, qualifications, markdown, all URLs and image paths exactly.
 Return ONLY a JSON array of strings of the same length, in the same order. No English paragraphs left unchanged. Do not add claims, notes, facts or formatting wrappers.
 {json.dumps(chunk,ensure_ascii=False)}'''
-  result=t.call_gemini(prompt).strip();result=re.sub(r'^```(?:json)?\s*|\s*```$','',result)
-  translated=json.loads(result)
+  translated=structured_paragraphs(prompt)
   if not isinstance(translated,list) or len(translated)!=len(chunk):raise ValueError('Invalid translation array')
   for before,after in zip(chunk,translated):
-   if not isinstance(after,str) or len(after.strip())<30 or links(before)!=links(after):raise ValueError('Invalid paragraph or changed link')
+   if not isinstance(after,str) or len(after.strip())<30 or sorted(links(before))!=sorted(links(after)):raise ValueError('Invalid paragraph or changed link')
    new=new.replace(before,after)
  new=normalize_mdx_breaks(new)
  if unchanged(source.read_text(),new) or unclosed_fence(new):raise ValueError('Incomplete paragraph repair')
@@ -64,11 +70,23 @@ def main():
    except Exception as e:failures.append({'job':item,'error':type(e).__name__});print('FAILED',*item,type(e).__name__,flush=True)
  (ROOT/'repair-results.json').write_text(json.dumps({'results':results,'failures':failures},indent=2))
  # Generate only from the two input photos reviewed by the editor. No publishing here.
- from gemini_enhance_hero import gemini_enhance
+ from google import genai
+ from google.genai import types
+ import io
+ from PIL import Image
+ client=genai.Client(api_key=os.environ['GEMINI_API_KEY'])
  folder=ROOT/'cosmetics/public/images/editorial';folder.mkdir(parents=True,exist_ok=True)
  for short,slug in [('galactomyces','galactomyces-skincare-guide'),('mugwort','mugwort-skincare-benefits')]:
   target=folder/(slug+'.jpg')
-  if not target.exists():gemini_enhance(ROOT/f'scripts/repair-inputs/{short}.jpg',target,'cosmetics')
+  if not target.exists():
+   prompt="""Edit the supplied real product photograph into a premium K-beauty editorial hero. Preserve the exact bottle, packaging proportions, color, typography and ALL existing label text as photographed. Do not invent text, redraw lettering, add droplets on the product, or change the product. Extend the background into a LANDSCAPE 16:9 cream marble tabletop with gentle natural morning shadows, subtle warm cream and sage tones, a folded ivory linen cloth far to one side, and plenty of breathing room. The entire bottle including its cap and base must fit within the central 70% of image height, with at least 15% clear margin above and below. Keep the bottle's scale modest. No other products, no props overlapping the bottle, no overlays. High fidelity photography, calm soft light, crisp readable product label. This is a background edit of the supplied photograph, not a new imaginary product."""
+   response=client.models.generate_content(model='gemini-3-pro-image',contents=[prompt,types.Part.from_bytes(data=(ROOT/f'scripts/repair-inputs/{short}.jpg').read_bytes(),mime_type='image/jpeg')],config=types.GenerateContentConfig(response_modalities=['IMAGE','TEXT'],image_config=types.ImageConfig(aspect_ratio='16:9',image_size='2K')))
+   for part in response.candidates[0].content.parts:
+    if part.inline_data:
+     image=Image.open(io.BytesIO(part.inline_data.data)).convert('RGB')
+     # Resize only. Never crop the photographed product or composite replacements.
+     image.thumbnail((1600,900),Image.Resampling.LANCZOS);image.save(target,'JPEG',quality=95)
+   if not target.exists():raise ValueError('No image returned')
  if failures:raise SystemExit(1)
 
 if __name__=='__main__':main()
