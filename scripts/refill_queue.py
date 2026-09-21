@@ -38,6 +38,8 @@ ROOT = Path(__file__).resolve().parent.parent
 SCRIPTS = ROOT / "scripts"
 BACKLOG_DIR = SCRIPTS / "topic-backlog"
 SITES = ["cosmetics", "wellness", "build-coded"]
+# Matches the publisher: Glow daily, Rooted/Build every third day.
+CADENCE_DAYS = {"cosmetics": 1, "wellness": 3, "build-coded": 3}
 
 sys.path.insert(0, str(SCRIPTS / "social"))
 try:
@@ -83,9 +85,10 @@ def main() -> int:
     for site in SITES:
         if not (ROOT / site / "src" / "content" / "blog" / "en").is_dir():
             continue
-        runway = count_drafts(site)
+        draft_count = count_drafts(site)
+        runway = draft_count * CADENCE_DAYS[site]
         if runway >= args.threshold:
-            summary.append(f"{site}: {runway} drafts — OK")
+            summary.append(f"{site}: {draft_count} drafts (~{runway} days) — OK")
             continue
 
         backlog = load_backlog(site)
@@ -95,13 +98,13 @@ def main() -> int:
         take = pending[: args.batch]
 
         if not take:
-            summary.append(f"{site}: {runway} drafts — LOW but backlog EMPTY (add topics to topic-backlog/{site}.json)")
+            summary.append(f"{site}: {draft_count} drafts (~{runway} days) — LOW but backlog EMPTY (add topics to topic-backlog/{site}.json)")
             failed = True
             continue
 
         slugs = ", ".join(t["slug"] for t in take)
         if args.dry_run:
-            summary.append(f"{site}: {runway} drafts — would generate {len(take)}: {slugs}")
+            summary.append(f"{site}: {draft_count} drafts (~{runway} days) — would generate {len(take)}: {slugs}")
             continue
 
         # Write a temp spec slice and hand it to the existing batch generator.
@@ -115,7 +118,7 @@ def main() -> int:
             created = [t for t in take if (ROOT / site / "src/content/blog/en" / (t["slug"] + ".mdx")).exists()]
             if len(created) != len(take):
                 raise RuntimeError("Generator did not produce the expected files")
-            summary.append(f"{site}: {runway} existing drafts — generated {len(created)}: {slugs}")
+            summary.append(f"{site}: {draft_count} existing drafts — generated {len(created)}: {slugs}")
         except Exception as e:
             failed = True
             summary.append(f"{site}: refill FAILED — {type(e).__name__}: {e}")

@@ -45,6 +45,16 @@ class RecoveryTests(unittest.TestCase):
             with patch.object(module, 'ROOT', root), patch.object(module, 'SITES', ['cosmetics']), patch.object(module, 'BACKLOG_DIR', backlog), patch.object(module, 'tg_notify'), patch.object(module.subprocess, 'run', side_effect=RuntimeError('generator failed')), patch('sys.argv', ['refill_queue.py']):
                 self.assertEqual(module.main(), 1)
 
+    def test_reduced_cadence_counts_days_not_articles(self):
+        module = load('refill_cadence_test', 'refill_queue.py')
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            (root/'wellness/src/content/blog/en').mkdir(parents=True)
+            with patch.object(module, 'ROOT', root), patch.object(module, 'SITES', ['wellness']), patch.object(module, 'count_drafts', return_value=3), patch.object(module, 'load_backlog') as backlog, patch.object(module.subprocess, 'run') as generate, patch('sys.argv', ['refill_queue.py', '--dry-run']):
+                self.assertEqual(module.main(), 0)
+                backlog.assert_not_called()
+                generate.assert_not_called()
+
     def test_product_photo_cannot_be_generated_from_text(self):
         module=load('queue_test','queue_health.py')
         with tempfile.TemporaryDirectory() as temp:

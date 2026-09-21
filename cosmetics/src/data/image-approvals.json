@@ -45,5 +45,14 @@
     "reviewer": "Codex visual inspection",
     "treatment": "Gemini 3 Pro Image enhancement from one real product photograph",
     "notes": "Third candidate approved: full bottle visible; brand, product name, formula and volume label match the source. Prior two candidates rejected for label distortion/cropping."
+  },
+  "/images/verified/anua-3-ceramide-panthenol-moisture-barrier-cream-100ml.jpg": {
+    "sha256": "cf6b19eb39dfe262f896792a4a243313dd452fae9ca38ee8fc9b18be3dd41c68",
+    "sourceUrl": "https://mirai-skin.com/products/anua-3-ceramide-panthenol-moisture-barrier-cream-100ml",
+    "sourceImage": "https://cdn.shopify.com/s/files/1/0899/8862/8852/files/anua_14715808350580_nobg.jpg?v=1775765217",
+    "reviewedAt": "2026-09-21",
+    "reviewer": "Codex visual inspection",
+    "treatment": "existing unaltered retailer photograph",
+    "notes": "Inspected tube label: Anua 3 Ceramide Panthenol Moisture Barrier Cream, visible 100 ml. No result or before/after claims."
   }
 }
