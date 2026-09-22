@@ -17,9 +17,11 @@ function scanDir(dir) {
       scanDir(path.join(dir, entry.name));
     } else if (entry.name.endsWith('.mdx')) {
       const content = fs.readFileSync(path.join(dir, entry.name), 'utf-8');
-      const slug = entry.name.replace(/\.mdx$/, '');
-      const updatedMatch = content.match(/^updated:\s*['"]?(\d{4}-\d{2}-\d{2})['"]?/m);
-      const dateMatch = content.match(/^date:\s*['"]?(\d{4}-\d{2}-\d{2})['"]?/m);
+      const slug = path.relative(blogDir, path.join(dir, entry.name))
+        .split(path.sep).join('/').replace(/\.mdx$/, '').replace(/^en\//, '');
+      const frontmatter = content.match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] || '';
+      const updatedMatch = frontmatter.match(/^updated:\s*['"]?(\d{4}-\d{2}-\d{2})['"]?/m);
+      const dateMatch = frontmatter.match(/^date:\s*['"]?(\d{4}-\d{2}-\d{2})['"]?/m);
       const d = updatedMatch?.[1] || dateMatch?.[1];
       if (d) slugDateMap.set(slug, d);
     }
@@ -49,9 +51,9 @@ export default defineConfig({
       },
       serialize(item) {
         const slug = item.url.replace('https://glow-coded.com/', '').replace(/\/$/, '');
-        // Strip locale prefix to match slug
-        const cleanSlug = slug.replace(/^(es|de|el|ru|it|ar|fr|nl|pt)\//, '');
-        const d = slugDateMap.get(cleanSlug);
+        // Each translation has its own modification date; never let another
+        // locale overwrite the English page's freshness signal.
+        const d = slugDateMap.get(slug);
         if (d) item.lastmod = new Date(d).toISOString();
         return item;
       },

@@ -1,4 +1,5 @@
 ---
+import miraiEdit from '../../data/mirai-edit.json';
 import Base from '../../layouts/Base.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
@@ -74,15 +75,8 @@ const GC_CATEGORIES = cats.map((c) => {
   return { ...c, count: sortedPosts.filter((p) => p.data.category === c.slug).length };
 });
 
-/* ===== Shop products (curated — matches prototype exactly) ===== */
-const GC_PRODUCTS = [
-  { slug: 'anua-cleansing-oil', name: 'Heartleaf Pore Control Cleansing Oil', brand: 'Anua', price: '$28', rating: 4.9, tag: 'STAFF PICK', image: '/images/products/anua-cleansing-oil.jpg', url: 'https://mirai-skin.com/products/anua-heartleaf-pore-control-cleansing-oil-200ml' },
-  { slug: 'beauty-of-joseon-sunscreen', name: 'Relief Sun: Rice + Probiotics SPF50+', brand: 'Beauty of Joseon', price: '$18', rating: 4.8, tag: 'BESTSELLER', image: '/images/products/beauty-of-joseon-sunscreen.jpg', url: 'https://mirai-skin.com/products/beauty-joseon-relief-sun-ricex1' },
-  { slug: 'cosrx-snail-essence', name: 'Advanced Snail 96 Mucin Power Essence', brand: 'COSRX', price: '$25', rating: 4.7, tag: 'CULT FAVE', image: '/images/products/cosrx-snail-essence.jpg', url: 'https://mirai-skin.com/products/cosrx-advanced-snail-96-mucin-power-essence-100ml' },
-  { slug: 'laneige-lip-mask', name: 'Lip Sleeping Mask', brand: 'Laneige', price: '$24', rating: 4.6, tag: 'NEW', image: '/images/products/laneige-lip-mask.jpg', url: 'https://mirai-skin.com/products/laneige-lip-sleeping-mask-20g' },
-  { slug: 'some-by-mi-toner', name: 'AHA BHA PHA 30 Days Miracle Toner', brand: 'Some By Mi', price: '$22', rating: 4.5, image: '/images/products/some-by-mi-toner.jpg', url: 'https://mirai-skin.com/products/some-by-mi-aha-bha-pha-30-days-miracle-toner' },
-  { slug: 'innisfree-serum', name: 'Green Tea Ceramide Milk Barrier Essence', brand: 'Innisfree', price: '$30', rating: 4.7, image: '/images/products/innisfree-serum.jpg', url: 'https://mirai-skin.com/products/innisfree-green-tea-ceramide-milk-barrier-essence-160ml' },
-];
+/* Exact product identities shared with the buying hub; no static prices or ratings. */
+const GC_PRODUCTS = miraiEdit;
 
 const tintBg: Record<string, string> = {
   coral:  'repeating-linear-gradient(45deg, #ff8a7a 0 10px, #ffb0a3 10px 20px)',
@@ -231,22 +225,22 @@ const webSiteSchema = JSON.stringify({
     </div>
     <div class="shop-rail">
       <div class="intro">
-        <h3>Explore the Mirai Skin edit.</h3>
-        <p>Browse selected skincare products at Mirai Skin. We may earn a commission through affiliate links. Check the retailer for current prices and availability.</p>
-        <a href={localePath('/shop/', locale)} class="btn btn-coral">Shop the full edit &rarr;</a>
+        <h3>Choose the product before the basket.</h3>
+        <p>Compare the formula, shade or format in our buying guides, then check the exact listing at Mirai Skin. We may earn a commission from purchases.</p>
+        <a href={localePath('/shop/', locale)} class="btn btn-coral">Compare the Mirai edit &rarr;</a>
       </div>
       <div class="products">
         {GC_PRODUCTS.map((p) => (
-          <a href={localePath(`/shop/#${p.slug}`, locale)} class="prod">
+          <a href={localePath(`/${p.guide}/`, p.guideLocales === 'en' ? 'en' : locale)} class="prod">
             <div class="img">
-              {p.tag && <span class="tag-pill">{p.tag}</span>}
+
               <img src={p.image} alt={p.name}  loading="lazy" decoding="async" />
             </div>
             <div class="body">
               <div class="brand">{p.brand}</div>
               <div class="name">{p.name}</div>
               <div class="row">
-                <span class="price">{p.price}</span>
+                <span>Read the buying guide &rarr;</span>
 
               </div>
             </div>
@@ -309,7 +303,7 @@ const webSiteSchema = JSON.stringify({
           <>
             <span>&#10022; NEW IN &middot; DOUBLE CLEANSING 101</span>
             <span>&#10022; INGREDIENT DECODE &middot; NIACINAMIDE</span>
-            <span>&#10022; REVIEWED &middot; 14 SNAIL ESSENCES</span>
+            <span>&#10022; BUYING GUIDES &middot; FORMULA &amp; SIZE</span>
             <span>&#10022; QUIZ &middot; WHAT'S YOUR SKIN TYPE?</span>
             <span>&#10022; K-BEAUTY &middot; THE BASICS</span>
           </>
@@ -338,6 +332,17 @@ const webSiteSchema = JSON.stringify({
         <div class="sticker sticker-coral rot-r4 wiggle sticker-float">READ ME &#9829;</div>
       </section>
     )}
+
+    <section class="mobile-buying-guides">
+      <h2>Choosing your next product?</h2>
+      <p>Start with the shade, format or formula you need.</p>
+      {GC_PRODUCTS.map(p => (
+        <a href={localePath(`/${p.guide}/`, p.guideLocales === 'en' ? 'en' : locale)}>
+          <img src={p.image} alt={p.name} width="76" height="76" loading="lazy" />
+          <span><strong>{p.question}</strong><small>{p.name}</small><span>Read the buying guide{p.guideLocales === 'en' && locale !== 'en' ? ' (English)' : ''} &rarr;</span></span>
+        </a>
+      ))}
+    </section>
 
     {/* Browse by vibe — tilted categories */}
     <section class="cats">
@@ -408,24 +413,9 @@ const webSiteSchema = JSON.stringify({
     <section class="shop-banner-wrap">
       <a href={localePath('/shop/', locale)} class="shop-banner">
         <div class="pre">OUR CURATED SHOP</div>
-        <h3>The shelf we'd<br/><span class="y">actually buy</span></h3>
-        <p>Editor-tested K-beauty picks. Ships from Mirai Skin.</p>
+        <h3>Compare before<br/><span class="y">you buy</span></h3>
+        <p>Exact products, real product photos and source-based buying guides. Affiliate links to Mirai Skin.</p>
         <span class="cta">SHOP THE EDIT <span>&rarr;</span></span>
-        <svg class="bottle" width="110" height="154" viewBox="0 0 100 140">
-          <rect x="38" y="4" width="24" height="14" rx="2" fill="#1a1513"/>
-          <rect x="42" y="18" width="16" height="10" fill="#1a1513"/>
-          <rect x="20" y="28" width="60" height="100" rx="8" fill="#ff5a4c" stroke="#1a1513" stroke-width="1.5"/>
-          <rect x="22" y="52" width="56" height="42" fill="#fdfbf9" stroke="#1a1513" stroke-width="1.2"/>
-          <text x="50" y="72" text-anchor="middle" font-family="Cutive Mono, monospace" font-size="8" fill="#1a1513">MIRAI</text>
-          <text x="50" y="84" text-anchor="middle" font-family="Rozha One, serif" font-size="10" fill="#1a1513">SERUM</text>
-        </svg>
-        <svg class="tube" width="80" height="104" viewBox="0 0 100 130">
-          <rect x="20" y="2" width="60" height="16" rx="2" fill="#1a1513"/>
-          <path d="M18 20 L82 20 L74 124 Q 50 130 26 124 Z" fill="#ffd964" stroke="#1a1513" stroke-width="1.5"/>
-          <rect x="26" y="44" width="48" height="50" fill="#fdfbf9" stroke="#1a1513" stroke-width="1.2"/>
-          <text x="50" y="64" text-anchor="middle" font-family="Cutive Mono, monospace" font-size="7" fill="#1a1513">MIRAI</text>
-          <text x="50" y="78" text-anchor="middle" font-family="Rozha One, serif" font-size="11" fill="#1a1513">GLOW</text>
-        </svg>
       </a>
     </section>
 
@@ -889,3 +879,14 @@ const webSiteSchema = JSON.stringify({
   });
 </script>
 </Base>
+
+<style>
+.mobile-buying-guides {padding:24px 20px;border-bottom:1px solid var(--color-charcoal);}
+.mobile-buying-guides h2 {font-size:26px;line-height:1.2;margin:0 0 10px;}
+.mobile-buying-guides p {margin:0 0 18px;line-height:1.5;}
+.mobile-buying-guides a {display:flex;gap:14px;align-items:center;color:inherit;text-decoration:none;padding:16px 0;border-top:1px dashed var(--color-charcoal);}
+.mobile-buying-guides img {flex:none;object-fit:contain;background:white;border-radius:4px;}
+.mobile-buying-guides strong,.mobile-buying-guides small,.mobile-buying-guides span span {display:block;line-height:1.5;}
+.mobile-buying-guides small {margin:4px 0;}
+.mobile-buying-guides a:focus-visible {outline:3px solid var(--color-rose-500);outline-offset:3px;}
+</style>

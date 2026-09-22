@@ -195,6 +195,18 @@
       try {
         var url = new URL(href);
         if (url.hostname !== host) {
+          // Specific product destinations are a separate intent proxy. Keep the
+          // legacy product_click series below for historical comparisons.
+          if (url.protocol === 'https:' && ['mirai-skin.com', 'www.mirai-skin.com'].includes(url.hostname)
+              && /^\/products\/[^/]+\/?$/.test(url.pathname)) {
+            gtag('event', 'mirai_product_click', {
+              link_url: url.origin + url.pathname,
+              link_domain: url.hostname,
+              source_page: location.pathname,
+              placement: link.getAttribute('data-mirai-placement') || getSection(link),
+              transport_type: 'beacon'
+            });
+          }
           // Outbound
           gtag('event', 'outbound_click', {
             url: href,
@@ -202,7 +214,7 @@
             destination: url.hostname,
             page_title: pageTitle
           });
-          if (url.hostname.indexOf('mirai-skin.com') !== -1) {
+          if (['mirai-skin.com', 'www.mirai-skin.com'].includes(url.hostname)) {
             gtag('event', 'product_click', {
               product_url: href,
               source_page: location.pathname

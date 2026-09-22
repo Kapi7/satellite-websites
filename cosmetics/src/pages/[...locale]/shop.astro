@@ -1,4 +1,6 @@
 ---
+import miraiEdit from '../../data/mirai-edit.json';
+import { localePath } from '../../i18n/utils';
 import Base from '../../layouts/Base.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
@@ -14,26 +16,17 @@ export function getStaticPaths() {
 
 const { locale } = Astro.props as { locale: Locale };
 
-/* Curated Mirai × Glow Coded edit — matches homepage shop-rail exactly */
-const products = [
-  { slug: 'anua-cleansing-oil', name: 'Heartleaf Pore Control Cleansing Oil', brand: 'Anua', price: '$28', type: 'Oil cleanser', rating: 4.9, reviews: 1247, tag: 'STAFF PICK', image: '/images/products/anua-cleansing-oil.jpg', url: 'https://mirai-skin.com/products/anua-heartleaf-pore-control-cleansing-oil-200ml' },
-  { slug: 'beauty-of-joseon-sunscreen', name: 'Relief Sun: Rice + Probiotics SPF50+', brand: 'Beauty of Joseon', price: '$18', type: 'Sunscreen', rating: 4.8, reviews: 3102, tag: 'BESTSELLER', image: '/images/products/beauty-of-joseon-sunscreen.jpg', url: 'https://mirai-skin.com/products/beauty-joseon-relief-sun-ricex1' },
-  { slug: 'cosrx-snail-essence', name: 'Advanced Snail 96 Mucin Power Essence', brand: 'COSRX', price: '$25', type: 'Essence', rating: 4.7, reviews: 2041, tag: 'CULT FAVE', image: '/images/products/cosrx-snail-essence.jpg', url: 'https://mirai-skin.com/products/cosrx-advanced-snail-96-mucin-power-essence-100ml' },
-  { slug: 'laneige-lip-mask', name: 'Lip Sleeping Mask', brand: 'Laneige', price: '$24', type: 'Lip care', rating: 4.6, reviews: 1890, tag: 'NEW', image: '/images/products/laneige-lip-mask.jpg', url: 'https://mirai-skin.com/products/laneige-lip-sleeping-mask-20g' },
-  { slug: 'some-by-mi-toner', name: 'AHA BHA PHA 30 Days Miracle Toner', brand: 'Some By Mi', price: '$22', type: 'Toner', rating: 4.5, reviews: 987, image: '/images/products/some-by-mi-toner.jpg', url: 'https://mirai-skin.com/products/some-by-mi-aha-bha-pha-30-days-miracle-toner' },
-  { slug: 'innisfree-serum', name: 'Green Tea Ceramide Milk Barrier Essence', brand: 'Innisfree', price: '$30', type: 'Essence', rating: 4.7, reviews: 1456, image: '/images/products/innisfree-serum.jpg', url: 'https://mirai-skin.com/products/innisfree-green-tea-ceramide-milk-barrier-essence-160ml' },
-];
-
+const products = miraiEdit;
 const schema = JSON.stringify({
   '@context': 'https://schema.org', '@type': 'CollectionPage',
   name: 'The Edit — curated K-Beauty picks via Mirai Skin',
-  description: 'Everything we\'ve reviewed, in one place. Shop at Mirai Skin — affiliate disclosed.',
+  description: 'Compare exact TIRTIR, Torriden and Anua products, read the buying guides, and check current Mirai listings.',
 });
 ---
 
 <Base
-  title="The Edit — Glow Coded"
-  description="Curated K-Beauty picks via Mirai Skin. Everything we've reviewed, in one place."
+  title="Mirai Skin Buying Guides: TIRTIR, Torriden & Anua"
+  description="Choose a TIRTIR cushion shade, compare lip-care formats or check an Anua moisturizer formula before buying the exact product at Mirai Skin."
   jsonLd={[schema]}
   locale={locale}
 >
@@ -44,15 +37,15 @@ const schema = JSON.stringify({
       <div class="gcd-kicker">
         <span class="pill">MIRAI &times;</span>
         <span class="pill">K-BEAUTY</span>
-        <span>Curated monthly</span>
+        <span>Choose with context</span>
       </div>
       <h1>The <em>Edit</em>.</h1>
-      <p class="sub">Everything we've reviewed, in one place. Shop at Mirai Skin — we'll earn a small cut. Check current prices and availability at the retailer.</p>
+      <p class="sub">A good purchase starts with the right shade, formula and format. Read the relevant guide, then check the exact product at Mirai Skin. We may earn a commission from purchases through these links. These are source-based guides, not hands-on product tests.</p>
     </div>
 
     <div class="gcd-shop-grid">
       {products.map((p) => (
-        <a href={p.url} target="_blank" rel="sponsored noopener noreferrer" class="gcd-shop-card" id={p.slug}>
+        <div class="gcd-shop-card" id={p.slug}>
           <div class="img">
 
             <img src={p.image} alt={p.name} loading="lazy" />
@@ -60,17 +53,29 @@ const schema = JSON.stringify({
           <div class="body">
             <div class="brand">{p.brand}</div>
             <h3>{p.name}</h3>
-            <p class="type">{p.type}</p>
+            <p class="decision">{p.question}</p><p class="type">{p.check}</p>
             <div class="foot">
 
-              <span>Shop at Mirai &rarr;</span>
+              <a class="guide-link" href={localePath(`/${p.guide}/`, p.guideLocales === 'en' ? 'en' : locale)}>Read the buying guide{p.guideLocales === 'en' && locale !== 'en' ? ' (English)' : ''} &rarr;</a>
+              <a class="mirai-link" href={p.url} target="_blank" rel="sponsored noopener noreferrer" data-mirai-placement="buying-hub">Check options &amp; price at Mirai &rarr;</a>
             </div>
           </div>
-        </a>
+        </div>
       ))}
     </div>
+    <section class="purchase-check"><h2>Before you order</h2><p>Confirm the exact name, size, shade or variant, current stock, delivery destination, total checkout cost and return conditions at Mirai. If you are still unsure about the shade or formula, use the guide first. You do not need to buy a replacement for a product that already suits you.</p><p>Product photographs are from the linked Mirai listings. Availability was checked on 22 September 2026 and can change.</p></section>
   </main>
 
   <Footer locale={locale} />
   <BackToTop />
 </Base>
+
+<style>
+.gcd-shop-card .foot { flex-direction:column;gap:12px;letter-spacing:0;text-transform:none;font-family:inherit;font-size:15px; }
+.gcd-shop-card .decision {font-weight:600;margin:8px 0 0;}
+.guide-link,.mirai-link {display:block;padding:12px;border:1px solid currentColor;border-radius:4px;line-height:1.4;text-align:center;}
+.mirai-link {background:var(--color-charcoal);color:var(--color-cream);}
+a:focus-visible {outline:3px solid var(--color-rose-500);outline-offset:3px;}
+.purchase-check {max-width:760px;margin:40px 0;line-height:1.7;}
+.purchase-check h2 {font-size:28px;}
+</style>
