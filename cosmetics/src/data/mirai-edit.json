@@ -19,7 +19,9 @@
     "guide": "best-korean-lip-products-hydration",
     "guideLocales": "all",
     "question": "Balm, tube or lip mask?",
-    "check": "Compare formats before buying. This is the Cellmazing tube, not DIVE-IN lip care. Check the ingredients for anything you already know irritates your lips."
+    "check": "Compare formats before buying. This is the Cellmazing tube, not DIVE-IN lip care. Check the ingredients for anything you already know irritates your lips.",
+    "checkoutVariant": "53823572869492",
+    "checkoutVerifiedAt": "2026-09-22"
   },
   {
     "slug": "anua-barrier-cream",
@@ -30,6 +32,8 @@
     "guide": "best-korean-moisturizers-sensitive-skin",
     "guideLocales": "en",
     "question": "Checking a moisturizer formula?",
-    "check": "Compare the complete ingredient list with your known triggers. Match the 100 ml tube, and do not assume that a ceramide claim guarantees tolerance."
+    "check": "Compare the complete ingredient list with your known triggers. Match the 100 ml tube, and do not assume that a ceramide claim guarantees tolerance.",
+    "checkoutVariant": "52076256100724",
+    "checkoutVerifiedAt": "2026-09-22"
   }
 ]

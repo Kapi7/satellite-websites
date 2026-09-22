@@ -195,6 +195,15 @@
       try {
         var url = new URL(href);
         if (url.hostname !== host) {
+          if (url.protocol === 'https:' && ['mirai-skin.com', 'www.mirai-skin.com'].includes(url.hostname)
+              && /^\/cart\/(53823572869492|52076256100724):1\/?$/.test(url.pathname)) {
+            gtag('event', 'mirai_checkout_click', {
+              link_url: url.origin + url.pathname,
+              source_page: location.pathname,
+              placement: link.getAttribute('data-mirai-placement') || getSection(link),
+              transport_type: 'beacon'
+            });
+          }
           // Specific product destinations are a separate intent proxy. Keep the
           // legacy product_click series below for historical comparisons.
           if (url.protocol === 'https:' && ['mirai-skin.com', 'www.mirai-skin.com'].includes(url.hostname)

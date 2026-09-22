@@ -1,0 +1,20 @@
+{
+  "/images/editorial/pexels-1173981.jpg": {
+    "author": "Lisa Fotios",
+    "url": "https://www.pexels.com/photo/1173981/",
+    "license": "https://www.pexels.com/license/",
+    "description": "Notebook and cosmetics on a pink background",
+    "sha256": "e24fa08ce9950cf05a3309785367dbc44283fb21c12b5826863f6ab5de279f99",
+    "reviewedAt": "2026-09-22",
+    "kind": "stock photograph; products shown are illustrative, not Mirai recommendations"
+  },
+  "/images/editorial/pexels-6794118.jpg": {
+    "author": "Wendy Wei",
+    "url": "https://www.pexels.com/photo/6794118/",
+    "license": "https://www.pexels.com/license/",
+    "description": "Skincare packaging beside a notebook",
+    "sha256": "dbcfb8fbe02c1edac43826e691650e4e196c1abc15b22e8907fb2a783352dfbe",
+    "reviewedAt": "2026-09-22",
+    "kind": "stock photograph; products shown are illustrative, not Mirai recommendations"
+  }
+}

@@ -1,5 +1,7 @@
 ---
 import productImageSources from "../data/product-image-sources.json";
+import stockImageSources from "../data/stock-image-sources.json";
+import miraiEdit from "../data/mirai-edit.json";
 import Base from './Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -28,6 +30,8 @@ interface Props {
 const { title, description, date, updated, category, tags = [], image, imageAlt, headings, slug, rawContent, routine, type, locale = 'en', author } = Astro.props;
 
 const products = rawContent ? extractProducts(rawContent) : [];
+const checkoutProduct = locale === 'en' ? miraiEdit.find(p => p.guide === slug && p.checkoutVariant) : undefined;
+const stockCredit = image ? (stockImageSources as Record<string, {author: string; url: string; license: string}>)[image] : undefined;
 const readingTime = rawContent ? Math.max(1, Math.ceil(rawContent.split(/\s+/).length / 200)) : null;
 
 const categoryLabels: Record<string, string> = {
@@ -220,7 +224,8 @@ const imageCredit = image ? (productImageSources as Record<string, {product: str
           )}
 
           {imageCredit && <p class="product-image-credit">{(imageCreditLabels[locale] || imageCreditLabels.en)[imageCredit.aiEnhanced ? 1 : 0]}: <a href={imageCredit.url} rel="sponsored noopener noreferrer">{imageCredit.product}</a>.</p>}
-          {image && !imageCredit && (type === 'review' || type === 'listicle') && <p class="product-image-credit">Illustrative image. Product appearance and packaging may differ; check the manufacturer's or retailer's listing.</p>}
+          {stockCredit && <p class="product-image-credit">Photo: <a href={stockCredit.url} rel="noopener noreferrer">{stockCredit.author} / Pexels</a>. Illustrative scene; the pictured products are not Mirai recommendations. <a href={stockCredit.license}>Photo license</a>.</p>}
+          {image && !imageCredit && !stockCredit && (type === 'review' || type === 'listicle') && <p class="product-image-credit">Illustrative image. Product appearance and packaging may differ; check the manufacturer's or retailer's listing.</p>}
 
           {/* TOC */}
           <div class="animate-fade-in-up stagger-2">
@@ -231,6 +236,13 @@ const imageCredit = image ? (productImageSources as Record<string, {product: str
           <div class="prose body-text animate-fade-in-up stagger-3">
             <slot />
           </div>
+
+          {checkoutProduct && <aside class="exact-product-checkout" aria-label="Mirai purchase options">
+            <img src={checkoutProduct.image} alt={checkoutProduct.name} width="120" height="120" loading="lazy" />
+            <div><h2>Ready to order this exact product?</h2><p>{checkoutProduct.name}</p><p><a href={checkoutProduct.url} rel="sponsored noopener noreferrer" target="_blank">Review product details at Mirai</a></p>
+            <a class="exact-checkout-button" href={`https://mirai-skin.com/cart/${checkoutProduct.checkoutVariant}:1?utm_source=glow-coded.com&utm_medium=affiliate&utm_campaign=mirai_skin&utm_content=${encodeURIComponent(localePath(`/${slug}/`, locale))}&ref=glow-coded.com`} rel="sponsored noopener noreferrer" target="_blank" data-mirai-placement="article-checkout">Buy 1 at Mirai checkout &rarr;</a>
+            <p class="checkout-note">Adds one item. Review current price, delivery and total before paying. We may earn a commission through these links.</p></div>
+          </aside>}
 
           {/* Routine timeline */}
           {RoutineTimeline && routineData && (
@@ -381,6 +393,13 @@ const imageCredit = image ? (productImageSources as Record<string, {product: str
       overflow: hidden;
       position: relative;
     }
+    .exact-product-checkout {display:flex;gap:20px;padding:24px;margin:36px 0;background:#fff8f4;border:1px solid #d9bcb0;border-radius:12px;align-items:start;}
+    .exact-product-checkout img {width:100px;height:120px;object-fit:contain;background:white;border-radius:8px;}
+    .exact-product-checkout h2 {font-size:23px;line-height:1.3;margin:0 0 12px;}
+    .exact-product-checkout p {line-height:1.6;margin:10px 0;}
+    .exact-checkout-button {display:inline-block;padding:14px 18px;background:#25201d;color:#fff;border-radius:6px;font-weight:700;}
+    .checkout-note {font-size:13px;}
+    @media(max-width:600px) {.exact-product-checkout {flex-direction:column;padding:20px;}.exact-checkout-button {display:block;text-align:center;}}
     .gc-hero img {
       width: 100%;
       height: 100%;

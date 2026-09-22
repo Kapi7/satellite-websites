@@ -58,6 +58,7 @@ const schema = JSON.stringify({
 
               <a class="guide-link" href={localePath(`/${p.guide}/`, p.guideLocales === 'en' ? 'en' : locale)}>Read the buying guide{p.guideLocales === 'en' && locale !== 'en' ? ' (English)' : ''} &rarr;</a>
               <a class="mirai-link" href={p.url} target="_blank" rel="sponsored noopener noreferrer" data-mirai-placement="buying-hub">Check options &amp; price at Mirai &rarr;</a>
+              {p.checkoutVariant && <><a class="checkout-link" href={`https://mirai-skin.com/cart/${p.checkoutVariant}:1?utm_source=glow-coded.com&utm_medium=affiliate&utm_campaign=mirai_skin&utm_content=${encodeURIComponent(localePath('/shop/', locale))}&ref=glow-coded.com`} target="_blank" rel="sponsored noopener noreferrer" data-mirai-placement="buying-hub-checkout">Buy 1 at Mirai checkout &rarr;</a><small>One {p.name}. Review price, delivery and total before paying.</small></>}
             </div>
           </div>
         </div>
@@ -73,7 +74,8 @@ const schema = JSON.stringify({
 <style>
 .gcd-shop-card .foot { flex-direction:column;gap:12px;letter-spacing:0;text-transform:none;font-family:inherit;font-size:15px; }
 .gcd-shop-card .decision {font-weight:600;margin:8px 0 0;}
-.guide-link,.mirai-link {display:block;padding:12px;border:1px solid currentColor;border-radius:4px;line-height:1.4;text-align:center;}
+.guide-link,.mirai-link,.checkout-link {display:block;padding:12px;border:1px solid currentColor;border-radius:4px;line-height:1.4;text-align:center;}
+.checkout-link {background:#f3c7b7;color:#25201d;font-weight:700;}
 .mirai-link {background:var(--color-charcoal);color:var(--color-cream);}
 a:focus-visible {outline:3px solid var(--color-rose-500);outline-offset:3px;}
 .purchase-check {max-width:760px;margin:40px 0;line-height:1.7;}
