@@ -14,30 +14,24 @@ export function getStaticPaths() {
 
 const { locale } = Astro.props as { locale: Locale };
 
-const stats = [
-  { k: 'Reviewed',         v: '142',   s: 'products, tested on our own faces' },
-  { k: 'Monthly readers',  v: '84k',   s: 'across 38 countries' },
-  { k: 'Newsletter',       v: '10k+',  s: 'Thursday subscribers' },
-];
-
 const ethics = [
-  'We buy everything we review. No PR boxes drive our rankings.',
-  'Affiliate links are always disclosed. We get a small cut from Mirai Skin when you shop \u2014 that funds the testing.',
-  'We will tell you when something doesn\u2019t work. A \u201Cdo not buy\u201D is still a useful review.',
-  'Every ingredient claim is sourced. The footnotes are not decorative.',
+  'Our guides draw on product listings, ingredient labels and published sources. Product information and availability can change; confirm the exact formula, size and shade before ordering.',
+  'AI assists parts of our drafting and translation. A research-based comparison is not a hands-on test. Treat a testing claim as established only when the article provides a documented method and supporting evidence.',
+  'Glow Coded links to Mirai Skin and may earn a commission on purchases through qualified links. A checkout shortcut is an optional purchase route, not proof that a product is right for every reader.',
+  'Our editorial standard is to distinguish documented facts, manufacturer claims and editorial interpretation. Ingredient research does not prove that a finished product will produce the same result.',
 ];
 
 const pageSchema = JSON.stringify({
   '@context': 'https://schema.org', '@type': 'AboutPage',
   name: 'About \u2014 Glow Coded',
   url: 'https://glow-coded.com/about/',
-  description: 'Glow Coded is a small, opinionated publication about Korean skincare.',
+  description: 'How Glow Coded researches Korean skincare and discloses its Mirai Skin links.',
 });
 ---
 
 <Base
-  title="About \u2014 Glow Coded"
-  description="Glow Coded is a small, opinionated publication about Korean skincare. Founded 2024."
+  title="About Glow Coded"
+  description="How Glow Coded researches Korean skincare, distinguishes product information from hands-on testing, and discloses Mirai Skin links."
   jsonLd={[pageSchema]}
   locale={locale}
 >
@@ -45,22 +39,12 @@ const pageSchema = JSON.stringify({
   <main class="gcd-about">
     <div class="gcd-kicker">
       <span class="pill">ABOUT</span>
-      <span>Est. 2024</span>
+      <span>Research &amp; disclosure</span>
     </div>
     <h1>K-beauty, <em>honestly</em>.</h1>
     <p class="lede">
-      Glow Coded is a small, opinionated publication about Korean skincare. Founded by three friends \u2014 an esthetician, a cosmetic chemist, and a writer \u2014 who were tired of every skin blog being a thinly-veiled affiliate farm.
+      Glow Coded publishes Korean skincare buying guides. Our focus is helping readers compare exact products, understand their options and make informed purchase decisions before visiting Mirai Skin.
     </p>
-
-    <div class="stats">
-      {stats.map((s) => (
-        <div class="stat">
-          <div class="v">{s.v}</div>
-          <div class="k">{s.k}</div>
-          <p>{s.s}</p>
-        </div>
-      ))}
-    </div>
 
     <h2>Our ethics</h2>
     <ol class="ethics">
@@ -71,6 +55,8 @@ const pageSchema = JSON.stringify({
         </li>
       ))}
     </ol>
+    <h2 class="contact-heading">Questions or corrections</h2>
+    <p class="lede">If a product name, source or claim needs correction, send the article URL and relevant details to <a href="mailto:hello@glow-coded.com">hello@glow-coded.com</a>. Read the <a href="/shop/">product buying guides</a> and confirm the current listing before ordering.</p>
   </main>
   <Footer locale={locale} />
   <BackToTop />
@@ -131,6 +117,7 @@ const pageSchema = JSON.stringify({
     font-size: 13px; color: var(--color-charcoal-light); margin: 0;
   }
 
+  .gcd-about .contact-heading { margin-top: 40px; }
   .gcd-about h2 {
     font-family: 'Rozha One', serif; font-weight: 400;
     font-size: 40px; letter-spacing: -0.01em;
@@ -162,7 +149,8 @@ const pageSchema = JSON.stringify({
     .gcd-about .stats { grid-template-columns: 1fr; gap: 12px; }
     .gcd-about .stat { padding: 18px; }
     .gcd-about .stat .v { font-size: 44px; }
-    .gcd-about h2 { font-size: 32px; }
+    .gcd-about .contact-heading { margin-top: 40px; }
+  .gcd-about h2 { font-size: 32px; }
   }
 </style>
 </Base>

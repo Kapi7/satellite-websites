@@ -47,13 +47,13 @@ const schema = JSON.stringify({
   <main class="gcd-newsletter">
     <div class="gcd-kicker">
       <span class="pill">&#10022; THE LETTER</span>
-      <span>Thursdays &middot; 10,243 readers</span>
+      <span>K-beauty guides and product research</span>
     </div>
 
     <h1>One honest <em>email</em>,<br/>every Thursday.</h1>
 
     <p class="lede">
-      One routine we'd actually use. One ingredient we've been testing. One product we'd recommend to a friend \u2014 at a price we'd actually pay. No drops-every-day nonsense.
+      Product research, practical routine guides and questions to consider before buying. Affiliate recommendations are disclosed; research summaries are not hands-on product tests.
     </p>
 
     <div class="signup">
@@ -65,7 +65,7 @@ const schema = JSON.stringify({
     </div>
 
     <section class="recent">
-      <h2>Recent issues</h2>
+      <h2>Recent guides</h2>
       <div class="list">
         {recent.map((p, i) => (
           <a href={localePath(`/${getSlug(p)}/`, locale)} class="row">
