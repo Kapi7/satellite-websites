@@ -116,6 +116,14 @@ publish_article() {
     }
   fi
 
+  # All sites must retain a draft when a hero is absent or broken.
+  # This existence check does not replace Glow's visual/provenance approval.
+  python3 scripts/require_article_hero.py "${check_files[@]}" || {
+    echo "::error::[$label] Draft retained: missing article photograph or illustration"
+    PREFLIGHT_FAILED=1
+    return 1
+  }
+
   # ── Step 2: Undraft English + all translations ──
   undraft "$article" || return 1
   echo "[$label] Published: $(basename "$article" .mdx)"
