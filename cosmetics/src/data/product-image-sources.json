@@ -480,5 +480,19 @@
     "url": "https://mirai-skin.com/products/purito-seoul-wonder-releaf-centella-serum-unscented-60ml",
     "sourceImage": "https://cdn.shopify.com/s/files/1/0899/8862/8852/files/web_final_1_eaa66340-b434-4cf0-be8b-3f0774741859.jpg?v=1776167069",
     "verifiedAt": "2026-09-22"
+  },
+  "/images/verified/galactomyces-skincare-guide-source.jpg": {
+    "product": "mixsoon Premium Galactomyces Serum 50 ml",
+    "url": "https://mirai-skin.com/products/mixsoon-premium-galactomyces-serum-50ml",
+    "sourceImage": "https://cdn.shopify.com/s/files/1/0899/8862/8852/files/web_final_1_298036b7-3510-4661-9f38-2c7581f8b753.jpg?v=1776178736",
+    "verifiedAt": "2026-09-29",
+    "aiEnhanced": false
+  },
+  "/images/verified/mugwort-skincare-benefits-source.jpg": {
+    "product": "I'm From Mugwort Essence 150 ml",
+    "url": "https://mirai-skin.com/products/im-from-mugwort-essence-150ml",
+    "sourceImage": "https://cdn.shopify.com/s/files/1/0899/8862/8852/files/product_images_1742461036.73877039951536776_14314365621767799349.jpg?v=1767800140",
+    "verifiedAt": "2026-09-29",
+    "aiEnhanced": false
   }
 }

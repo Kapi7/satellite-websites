@@ -1,0 +1,20 @@
+{
+  "/images/editorial/pexels-5124877.jpg": {
+    "author": "cottonbro studio",
+    "url": "https://www.pexels.com/photo/notebooks-on-a-desk-5124877/",
+    "license": "https://www.pexels.com/license/",
+    "description": "Notebooks and a weekly planner on a desk",
+    "sha256": "992676b7beca4e6dc9a8bacf40865e798d391b73ad793f4d6820e1f62d215b55",
+    "reviewedAt": "2026-09-29",
+    "kind": "real contextual stock photograph; not a product test or endorsement"
+  },
+  "/images/editorial/pexels-6551265.jpg": {
+    "author": "Andres Ayrton",
+    "url": "https://www.pexels.com/photo/smiling-diverse-sportspeople-walking-on-street-after-workout-in-city-park-6551265/",
+    "license": "https://www.pexels.com/license/",
+    "description": "Two people walking outdoors",
+    "sha256": "fd1d19f600ff925909d1ea43547f3f2c9956998af41dce97d0700a60bbe1309e",
+    "reviewedAt": "2026-09-29",
+    "kind": "real contextual stock photograph; not a product test or endorsement"
+  }
+}

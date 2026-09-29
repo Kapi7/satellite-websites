@@ -90,5 +90,23 @@
     "reviewer": "Codex visual inspection",
     "treatment": "unaltered retailer photograph",
     "notes": "Brand, product line and pictured color checked against listing; retailer image, not evidence of hands-on testing."
+  },
+  "/images/verified/galactomyces-skincare-guide-source.jpg": {
+    "sha256": "404826d4339e7896492195a99ca0922045a49dad96978ce86a6ee75989f2c452",
+    "sourceUrl": "https://mirai-skin.com/products/mixsoon-premium-galactomyces-serum-50ml",
+    "sourceImage": "https://cdn.shopify.com/s/files/1/0899/8862/8852/files/web_final_1_298036b7-3510-4661-9f38-2c7581f8b753.jpg?v=1776178736",
+    "reviewedAt": "2026-09-29",
+    "reviewer": "Codex visual inspection",
+    "treatment": "unaltered retailer photograph",
+    "notes": "Full product name and package volume visually inspected against exact listing; no AI scenery."
+  },
+  "/images/verified/mugwort-skincare-benefits-source.jpg": {
+    "sha256": "6de8a017005d31c9339fd3e822ef2e9e69e5db97e658f8d7264165f96d744e44",
+    "sourceUrl": "https://mirai-skin.com/products/im-from-mugwort-essence-150ml",
+    "sourceImage": "https://cdn.shopify.com/s/files/1/0899/8862/8852/files/product_images_1742461036.73877039951536776_14314365621767799349.jpg?v=1767800140",
+    "reviewedAt": "2026-09-29",
+    "reviewer": "Codex visual inspection",
+    "treatment": "unaltered retailer photograph",
+    "notes": "Full product name and package volume visually inspected against exact listing; no AI scenery."
   }
 }

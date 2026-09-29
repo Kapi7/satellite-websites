@@ -1,7 +1,7 @@
 ---
 import productImageSources from "../data/product-image-sources.json";
 import stockImageSources from "../data/stock-image-sources.json";
-import miraiEdit from "../data/mirai-edit.json";
+import MiraiPurchase from "../components/MiraiPurchase.astro";
 import Base from './Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -30,7 +30,6 @@ interface Props {
 const { title, description, date, updated, category, tags = [], image, imageAlt, headings, slug, rawContent, routine, type, locale = 'en', author } = Astro.props;
 
 const products = rawContent ? extractProducts(rawContent) : [];
-const checkoutProduct = locale === 'en' ? miraiEdit.find(p => p.guide === slug && p.checkoutVariant) : undefined;
 const stockCredit = image ? (stockImageSources as Record<string, {author: string; url: string; license: string}>)[image] : undefined;
 const readingTime = rawContent ? Math.max(1, Math.ceil(rawContent.split(/\s+/).length / 200)) : null;
 
@@ -237,12 +236,7 @@ const imageCredit = image ? (productImageSources as Record<string, {product: str
             <slot />
           </div>
 
-          {checkoutProduct && <aside class="exact-product-checkout" aria-label="Mirai purchase options">
-            <img src={checkoutProduct.image} alt={checkoutProduct.name} width="120" height="120" loading="lazy" />
-            <div><h2>Ready to order this exact product?</h2><p>{checkoutProduct.name}</p><p><a href={checkoutProduct.url} rel="sponsored noopener noreferrer" target="_blank">Review product details at Mirai</a></p>
-            <a class="exact-checkout-button" href={`https://mirai-skin.com/cart/${checkoutProduct.checkoutVariant}:1?utm_source=glow-coded.com&utm_medium=affiliate&utm_campaign=mirai_skin&utm_content=${encodeURIComponent(localePath(`/${slug}/`, locale))}&ref=glow-coded.com`} rel="sponsored noopener noreferrer" target="_blank" data-mirai-placement="article-checkout">Buy 1 at Mirai checkout &rarr;</a>
-            <p class="checkout-note">Adds one item. Review current price, delivery and total before paying. We may earn a commission through these links.</p></div>
-          </aside>}
+          <MiraiPurchase slug={slug} locale={locale} />
 
           {/* Routine timeline */}
           {RoutineTimeline && routineData && (

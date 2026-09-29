@@ -1,0 +1,33 @@
+---
+import products from '../data/guide-products.json';
+import labels from '../data/purchase-labels.json';
+import { localePath } from '../i18n/utils';
+import type { Locale } from '../i18n/locales';
+const { slug, locale = 'en' } = Astro.props as {slug: string; locale: Locale};
+const product = products.find(p => p.guide === slug && (p.guideLocales === 'all' || locale === 'en'));
+const copy = labels[locale] || labels.en;
+function attributed(raw: string) {
+  const url = new URL(raw);
+  const tags = {utm_source:'glow-coded.com',utm_medium:'affiliate',utm_campaign:'mirai_skin',utm_content:localePath(`/${slug}/`,locale)};
+  for (const [key,value] of Object.entries(tags)) if (!url.searchParams.has(key)) url.searchParams.set(key,value);
+  return url.href;
+}
+---
+{product && <aside class="mirai-purchase" aria-label={copy[0]} dir={locale === 'ar' ? 'rtl' : undefined}>
+  <img src={product.image} alt={product.name} width="160" height="180" loading="lazy" decoding="async" />
+  <div class="purchase-copy">
+    <p class="brand">{product.brand}</p><h2>{copy[0]}</h2><p class="product-name">{product.name}</p>
+    <p>{copy[1]}</p>
+    <a class="product-button" href={attributed(product.url)} target="_blank" rel="sponsored noopener noreferrer" data-mirai-placement="article-product">{product.slug === 'tirtir-red-cushion' ? copy[3] : copy[2]} &rarr;</a>
+    {product.checkoutVariant && <><a class="checkout-button" href={attributed(`https://mirai-skin.com/cart/${product.checkoutVariant}:1?ref=glow-coded.com`)} target="_blank" rel="sponsored noopener noreferrer" data-mirai-placement="article-checkout">{copy[4]} &rarr;</a><p class="note">{copy[5]}</p></>}
+    <p class="note">{copy[6]}</p>
+  </div>
+</aside>}
+<style>
+.mirai-purchase{display:grid;grid-template-columns:140px minmax(0,1fr);gap:24px;padding:24px;margin:32px 0;background:#fff8f4;border:1px solid #d9bcb0;border-radius:12px;color:#25201d;}
+.mirai-purchase img{width:140px;height:180px;object-fit:contain;background:white;border-radius:8px;}
+h2{font-size:24px;line-height:1.25;margin:4px 0 12px;}p{font-size:16px;line-height:1.6;margin:10px 0;}.brand{font-size:12px;letter-spacing:.08em;text-transform:uppercase;}.product-name{font-weight:700;}.note{font-size:13px;}
+a{display:block;padding:14px 16px;margin:12px 0;line-height:1.4;text-align:center;border:1px solid #25201d;border-radius:6px;font-size:16px;min-height:48px;box-sizing:border-box;}
+.product-button{background:#25201d;color:#fff;}.checkout-button{color:#25201d;background:white;}a:focus-visible{outline:3px solid #ab4831;outline-offset:3px;}
+@media(max-width:600px){.mirai-purchase{grid-template-columns:minmax(0,1fr);padding:20px;gap:12px;}.mirai-purchase img{width:100%;height:190px;}h2{font-size:23px;}}
+</style>
