@@ -88,6 +88,15 @@ publish_article() {
   local site
   site=$(echo "$article" | cut -d/ -f1)
 
+  # Reject an absent source hero before paying to generate translations.
+  # Full per-locale existence and Glow provenance checks still run below.
+  python3 scripts/require_article_hero.py "$article" || {
+    echo "::error::[$label] Draft retained before translation: missing source hero"
+    [ "$site" != "cosmetics" ] || BLOCKED_COSMETICS=1
+    PREFLIGHT_FAILED=1
+    return 1
+  }
+
   # ── Step 1: Generate missing translations BEFORE undrafting ──
   TRANSLATE_SCRIPT="scripts/translate-content.py"
   if [ -f "$TRANSLATE_SCRIPT" ]; then
