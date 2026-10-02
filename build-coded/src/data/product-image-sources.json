@@ -22,5 +22,13 @@
     "url": "https://www.kleintools.com/catalog/multimeters/digital-multimeter-auto-ranging-600v",
     "sourceImage": "https://www.kleintools.com/sites/default/files/product-assets/catalog-imagery/original/klein/mm400_alt1.jpg",
     "verifiedAt": "2026-09-12"
+  },
+  "/images/verified/dcd800d2.webp": {
+    "product": "DeWalt DCD800D2 drill/driver kit with two 2Ah batteries, DCB112 charger and bag",
+    "url": "https://www.dewalt.com/en-us/product/dcd800d2/20v-max-xr-brushless-cordless-12-drilldriver-kit",
+    "sourceImage": "https://assets.dewalt.com/NAG/PRODUCT/IMAGES/HIRES/WHITEBG/DCD800D2_K1_1680.webp",
+    "verifiedAt": "2026-10-02",
+    "visualReview": "Two 2Ah batteries (one fitted), DCB112 charger, drill and bag match manufacturer contents. Not a hands-on photo.",
+    "sha256": "a8b5504edceb435398e92c3dafd34842315bc990661fad81fdbf2f414a166ea0"
   }
 }

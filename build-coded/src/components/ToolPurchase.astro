@@ -1,15 +1,26 @@
 ---
 import { amazonLink, amazonActive } from '../utils/retailer-links.mjs';
+import products from '../data/amazon-products.json';
+import reviewed from '../data/reviewed-drill-guides.json';
 const {slug,locale='en'}=Astro.props;
-const show=locale==='en' && ['dewalt-vs-milwaukee-cordless-drill','impact-driver-vs-drill'].includes(slug);
+const show=locale==='en' && reviewed.includes(slug);
 ---
-{show && <aside class="tool-purchase" aria-label="Compare the exact drill listing">
-<img src="/images/verified/dcd800.webp" alt="DeWalt DCD800 drill/driver, manufacturer photo" width="180" height="180" loading="lazy" />
-<div><h2>Buying a drill/driver? Check the exact package.</h2>
-<p><strong>DeWalt DCD800B — tool only.</strong> This is a drill/driver, not an impact driver or a hammer drill. Compare the listing's model suffix and included items; budget separately for a compatible battery and charger if needed.</p>
-<a href={amazonLink('https://www.amazon.com/dp/B09ZQ4VTXK')} rel="sponsored noopener noreferrer" target="_blank" data-retailer="amazon-us" data-product="DCD800B">Check DCD800B on Amazon US →</a>
-<p class="note">Check the seller, delivery to your country, final price and warranty terms. The photograph is from the manufacturer; this is a source-based comparison, not a hands-on test.</p>
-<p class="note">{amazonActive ? 'As an Amazon Associate I earn from qualifying purchases.' : 'This is an ordinary retailer link. We are not currently claiming Amazon commission on this link.'}</p></div></aside>}
+{show && <section id="compare-drill-packages" class="tool-purchase" aria-label="Compare drill packages">
+  <p class="eyebrow">Choose the package you need</p>
+  <h2>Already have batteries, or starting fresh?</h2>
+  <p>These are two packages for the same drill/driver. Neither adds a hammer drill or impact driver. Check the complete cost before choosing.</p>
+  <p class="disclosure">{amazonActive ? 'As an Amazon Associate I earn from qualifying purchases.' : 'Retailer references; no Amazon commission is currently claimed.'}{' '}<a href="/disclosure/">How we choose and disclose links</a>.</p>
+  <div class="packages">{products.map(product => <article class="package">
+    <img src={product.image} alt={`${product.name}, manufacturer product photo`} width="360" height="270" loading="lazy" />
+    <p class="fit">{product.fit}</p>
+    <h3>{product.name}</h3>
+    <p>{product.contents}</p>
+    <p class="note">{product.skip}</p>
+    <a class="buy" href={amazonLink(`https://www.amazon.com/dp/${product.asin}`)} rel="sponsored noopener noreferrer" target="_blank" data-retailer="amazon-us" data-product={product.model} data-placement="package-card">Check {product.model} on Amazon US <span aria-hidden="true">↗</span></a>
+    <p class="note"><a href={product.manufacturer} rel="noopener noreferrer">Manufacturer specifications &amp; photo source</a></p>
+  </article>)}</div>
+  <p class="note">Models and package contents checked 2 October 2026. Confirm the current seller, condition, delivery, charger suitability, final price, returns and warranty terms. No live price or stock claim. Manufacturer photography; no hands-on test claimed.</p>
+</section>}
 <style>
-.tool-purchase{display:grid;grid-template-columns:180px minmax(0,1fr);gap:24px;margin:32px 0;padding:24px;border:1px solid #ccd1d4;border-radius:12px;background:#f7f8f9;color:#17212b}.tool-purchase img{width:180px;height:180px;object-fit:contain;background:#fff;border-radius:8px}h2{font-size:24px;line-height:1.3}p{margin:12px 0;line-height:1.65}a{display:inline-block;background:#17212b;color:white;padding:14px 18px;min-height:48px;border-radius:6px}.note{font-size:13px}a:focus-visible{outline:3px solid #c85813;outline-offset:3px}@media(max-width:600px){.tool-purchase{grid-template-columns:1fr;padding:20px}.tool-purchase img{width:100%;height:190px}}
+.tool-purchase{scroll-margin-top:90px;margin:32px 0;padding:clamp(16px,3vw,28px);border:1px solid #ccd1d4;border-radius:14px;background:#f6f7f8;color:#17212b}.eyebrow{font-size:11px;letter-spacing:.13em;text-transform:uppercase;font-weight:700;color:#814211}.tool-purchase h2{font-size:clamp(23px,4vw,30px);line-height:1.25;margin:8px 0 16px}.tool-purchase p{line-height:1.65;margin:12px 0}.disclosure,.note{font-size:13px}.disclosure a,.note a{text-decoration:underline;text-underline-offset:3px}.packages{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:20px 0}.package{background:#fff;padding:20px;border:1px solid #d9dfe2;border-radius:10px;display:flex;flex-direction:column;min-width:0}.package img{width:100%;height:210px;object-fit:contain;background:#fff}.package h3{font-size:21px;line-height:1.3;margin:4px 0}.fit{font-weight:650;font-size:14px}.buy{display:block;text-align:center;background:#17212b;color:#fff;padding:14px 12px;min-height:48px;border-radius:6px;font-weight:650;margin-top:auto;font-size:14px}.buy:hover{background:#364650}a:focus-visible{outline:3px solid #c85813;outline-offset:3px}@media(max-width:640px){.packages{grid-template-columns:1fr}.package{padding:16px}.package img{height:200px}}
 </style>

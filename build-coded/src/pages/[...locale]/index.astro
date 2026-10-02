@@ -54,8 +54,10 @@ const categories = [
   { slug: 'crafts', label: t(locale, 'categories.crafts'), icon: 'brush', desc: 'cast · sew · print', tint: 'craft', count: sortedPosts.filter(p => p.data.category === 'crafts').length },
 ];
 
-const heroPost = trendingPosts[0] || sortedPosts[0];
-const editorialRest = (trendingPosts.length > 1 ? trendingPosts.slice(1, 5) : sortedPosts.slice(1, 5));
+const reviewedHero = locale === 'en' ? sortedPosts.find(p => p.id.replace(/^en\//, '').replace(/\.mdx?$/, '') === 'dewalt-dcd800b-vs-dcd800d2') : undefined;
+const heroPost = reviewedHero || trendingPosts[0] || sortedPosts[0];
+const drillSlugs = ['best-cordless-drills', 'impact-driver-vs-drill', 'dewalt-vs-milwaukee-cordless-drill'];
+const editorialRest = reviewedHero ? drillSlugs.map(slug => sortedPosts.find(p => p.id.replace(/^en\//, '').replace(/\.mdx?$/, '') === slug)).filter(Boolean) : (trendingPosts.length > 1 ? trendingPosts.slice(1, 5) : sortedPosts.slice(1, 5));
 
 const totalArticles = sortedPosts.length;
 const totalCategories = categories.length;
@@ -583,6 +585,7 @@ const tintByCategory: Record<string, string> = {
 </Base>
 
 <style>
+  img[src^="/images/verified/"] { object-fit: contain !important; background: #fff; }
   .bcd-page {
     max-width: 1360px;
     margin: 0 auto;

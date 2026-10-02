@@ -3,6 +3,7 @@ import stockImageSources from "../data/stock-image-sources.json";
 import productImageSources from "../data/product-image-sources.json";
 import Base from './Base.astro';
 import ToolPurchase from '../components/ToolPurchase.astro';
+import reviewedDrills from '../data/reviewed-drill-guides.json';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import TableOfContents from '../components/TableOfContents.astro';
@@ -210,7 +211,7 @@ const imageCredit = image ? (productImageSources as Record<string, {product: str
           )}
 
           {image && (
-            <div class="bcd-hero-img animate-fade-in-up stagger-2">
+            <div class:list={["bcd-hero-img animate-fade-in-up stagger-2", {"verified-product": !!imageCredit}]}>
               <img src={image} alt={imageAlt || title} loading="eager" fetchpriority="high" decoding="async" width="1200" height="675" />
             </div>
           )}
@@ -263,11 +264,19 @@ const imageCredit = image ? (productImageSources as Record<string, {product: str
             </div>
           )}
 
-          <div class="aside-box aside-newsletter">
+          {locale === 'en' && reviewedDrills.includes(slug) ? (
+            <nav class="aside-box buying-route" aria-label="Drill buying decisions">
+              <h5>YOUR NEXT BUYING DECISION</h5>
+              <p>Choose the tool type, then compare what comes in the box.</p>
+              <a href="/best-cordless-drills/">Choose a drill for home DIY →</a>
+              <a href="/impact-driver-vs-drill/">Drill or impact driver? →</a>
+              <a href="/dewalt-dcd800b-vs-dcd800d2/">Bare tool or battery kit? →</a>
+            </nav>
+          ) : <div class="aside-box aside-newsletter">
             <h5>THE BLUEPRINT</h5>
             <p>{t(locale, 'newsletter.description') || 'Weekly project plans, free, in your inbox.'}</p>
             <NewsletterSignup locale={locale} compact />
-          </div>
+          </div>}
         </aside>
       </div>
 
@@ -411,6 +420,7 @@ const imageCredit = image ? (productImageSources as Record<string, {product: str
       height: 100%;
       object-fit: cover;
     }
+    .bcd-hero-img.verified-product img { object-fit: contain; background: #fff; }
     .bcd-hero-big {
       font-family: var(--font-heading);
       font-size: 260px;
@@ -542,6 +552,8 @@ const imageCredit = image ? (productImageSources as Record<string, {product: str
       flex-direction: column;
       gap: 20px;
     }
+    .buying-route p { font-size: 14px; line-height: 1.6; }
+    .buying-route a { display: block; padding: 16px 0; min-height: 48px; border-bottom: 1px solid #ccd1d4; font-weight: 600; }
     .aside-box {
       border: 1.5px solid var(--ink);
       border-radius: 4px;
@@ -639,7 +651,8 @@ const imageCredit = image ? (productImageSources as Record<string, {product: str
       .bcd-title { font-size: 40px; line-height: 1.0; }
       .bcd-lede { font-size: 17px; }
       .bcd-hero-img { height: 260px; margin: 22px 0; }
-      .bcd-hero-big { font-size: 140px; }
+      .bcd-hero-img.verified-product img { object-fit: contain; background: #fff; }
+    .bcd-hero-big { font-size: 140px; }
       .bcd-specs-row { grid-template-columns: 1fr 1fr; }
       .bcd-aside { grid-template-columns: 1fr; }
       .body-text :global(blockquote) { font-size: 22px; }

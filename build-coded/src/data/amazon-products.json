@@ -1,0 +1,24 @@
+[
+  {
+    "model": "DCD800B",
+    "asin": "B09ZQ4VTXK",
+    "name": "DeWalt DCD800B \u00b7 tool only",
+    "image": "/images/verified/dcd800.webp",
+    "fit": "Already own a compatible battery and charger?",
+    "contents": "Drill/driver body. Battery and charger sold separately.",
+    "skip": "Skip this package if you need a complete first setup and have not priced the missing components.",
+    "manufacturer": "https://www.dewalt.com/product/dcd800b/20v-max-xr-brushless-cordless-12-drilldriver-tool-only",
+    "checkedAt": "2026-10-02"
+  },
+  {
+    "model": "DCD800D2",
+    "asin": "B09YY8RZJ9",
+    "name": "DeWalt DCD800D2 \u00b7 starter kit",
+    "image": "/images/verified/dcd800d2.webp",
+    "fit": "Starting without batteries or a charger?",
+    "contents": "DCD800 drill/driver, two DCB203 2Ah batteries, DCB112 charger, bag and belt hook.",
+    "skip": "Skip this package if you need a hammer drill, or if the included charger is unsuitable for your local supply.",
+    "manufacturer": "https://www.dewalt.com/en-us/product/dcd800d2/20v-max-xr-brushless-cordless-12-drilldriver-kit",
+    "checkedAt": "2026-10-02"
+  }
+]

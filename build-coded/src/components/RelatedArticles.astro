@@ -1,4 +1,5 @@
 ---
+import reviewed from '../data/reviewed-drill-guides.json';
 import ArticleCard from './ArticleCard.astro';
 import { getCollection } from 'astro:content';
 import { t, type Locale } from '../i18n/utils';
@@ -13,7 +14,9 @@ interface Props {
 const { currentSlug, category, limit = 3, locale = 'en' } = Astro.props;
 const now = new Date();
 const allPosts = await getCollection('blog', ({ data }) => data.category === category && !data.draft && data.locale === locale && data.date <= now);
-const related = allPosts.filter((p) => (p.id.includes('/') ? p.id.split('/').slice(1).join('/') : p.id).replace(/\.mdx?$/, '') !== currentSlug.replace(/\.mdx?$/, '')).sort((a, b) => b.data.date.getTime() - a.data.date.getTime()).slice(0, limit);
+const reviewedCluster = locale === 'en' && reviewed.includes(currentSlug.replace(/\.mdx?$/, ''));
+const candidates = reviewedCluster ? await getCollection('blog', ({data, id}) => !data.draft && data.locale === 'en' && data.date <= now && reviewed.includes(id.replace(/^en\//, '').replace(/\.mdx?$/, ''))) : allPosts;
+const related = candidates.filter((p) => (p.id.includes('/') ? p.id.split('/').slice(1).join('/') : p.id).replace(/\.mdx?$/, '') !== currentSlug.replace(/\.mdx?$/, '')).sort((a, b) => b.data.date.getTime() - a.data.date.getTime()).slice(0, limit);
 ---
 {related.length > 0 && (
   <section class="mt-16 pt-12 border-t border-steel-200/60">
