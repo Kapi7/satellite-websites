@@ -35,6 +35,9 @@ if [ -f scripts/queue_health.py ]; then
 fi
 
 # ─────────────────────────────────────────────────────────────
+# Report raw drafts separately from passing checks; never certify human review.
+python3 scripts/editorial_readiness.py
+
 # Pre-flight: clean translator artifacts (prompt leaks, double ---,
 # unescaped quotes) that the translator script keeps emitting and
 # that would otherwise break Astro content sync → CF Pages 404.

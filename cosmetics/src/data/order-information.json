@@ -1,0 +1,52 @@
+{
+  "en": [
+    "Delivery information",
+    "Returns conditions",
+    "Check whether you selected a one-time purchase or recurring delivery. Confirm quantity, delivery cost and the final total before paying."
+  ],
+  "de": [
+    "Lieferinformationen",
+    "Rückgabebedingungen",
+    "Prüfe, ob du einen Einzelkauf oder eine wiederkehrende Lieferung gewählt hast. Bestätige Menge, Versandkosten und Endbetrag vor der Zahlung."
+  ],
+  "es": [
+    "Información de envío",
+    "Condiciones de devolución",
+    "Comprueba si elegiste una compra única o entregas periódicas. Confirma la cantidad, el envío y el total antes de pagar."
+  ],
+  "fr": [
+    "Informations de livraison",
+    "Conditions de retour",
+    "Vérifiez si vous avez choisi un achat unique ou une livraison récurrente. Confirmez la quantité, les frais de livraison et le total avant de payer."
+  ],
+  "it": [
+    "Informazioni sulla consegna",
+    "Condizioni di reso",
+    "Controlla se hai scelto un acquisto singolo o una consegna ricorrente. Verifica quantità, spese di spedizione e totale prima di pagare."
+  ],
+  "nl": [
+    "Bezorginformatie",
+    "Retourvoorwaarden",
+    "Controleer of je een eenmalige aankoop of herhaalde levering hebt gekozen. Controleer het aantal, de verzendkosten en het totaal vóór betaling."
+  ],
+  "pt": [
+    "Informações de entrega",
+    "Condições de devolução",
+    "Confirma se escolheste uma compra única ou entregas recorrentes. Verifica a quantidade, os portes e o total antes de pagar."
+  ],
+  "el": [
+    "Πληροφορίες αποστολής",
+    "Όροι επιστροφών",
+    "Έλεγξε αν επέλεξες εφάπαξ αγορά ή επαναλαμβανόμενη παράδοση. Επιβεβαίωσε ποσότητα, μεταφορικά και τελικό ποσό πριν πληρώσεις."
+  ],
+  "ru": [
+    "Информация о доставке",
+    "Условия возврата",
+    "Проверьте, выбрана ли разовая покупка или регулярная доставка. До оплаты уточните количество, стоимость доставки и итоговую сумму."
+  ],
+  "ar": [
+    "معلومات التوصيل",
+    "شروط الإرجاع",
+    "تحقق مما إذا اخترت شراءً لمرة واحدة أو توصيلاً دورياً. راجع الكمية وتكلفة التوصيل والمبلغ النهائي قبل الدفع."
+  ]
+}

@@ -1,0 +1,15 @@
+---
+import decisions from '../data/buying-decisions.json';
+const {slug,locale='en'}=Astro.props;
+const copy=decisions[locale as keyof typeof decisions];
+const cards=copy?.guides[slug as keyof typeof copy.guides];
+---
+{cards && <section class="buying-decision" aria-label={copy.heading}>
+ <h2>{copy.heading}</h2>
+ <div class="decision-grid">{cards.map(([title,text])=><div><h3>{title}</h3><p>{text}</p></div>)}</div>
+ <p class="method">{copy.method}</p><a href="#mirai-purchase">{copy.jump} &darr;</a>
+</section>}
+<style>
+.buying-decision{margin:24px 0 32px;padding:24px;border:1px solid #d9bcb0;border-radius:12px;background:#fff8f4;color:#25201d;scroll-margin-top:90px;}
+h2{font-size:24px;line-height:1.3;margin:0 0 20px;}.decision-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;}h3{font-size:17px;line-height:1.4;margin:0 0 8px;}p{font-size:15px;line-height:1.65;margin:0;}.method{font-size:13px;margin:20px 0 8px;}a{display:inline-block;padding:12px 0;min-height:44px;font-weight:600;color:#703924;}a:focus-visible{outline:3px solid #ab4831;outline-offset:3px;}@media(max-width:800px){.decision-grid{grid-template-columns:1fr;gap:20px;}.buying-decision{padding:20px;}h2{font-size:23px;}}
+</style>

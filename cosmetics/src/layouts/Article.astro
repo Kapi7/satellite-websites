@@ -1,6 +1,7 @@
 ---
 import productImageSources from "../data/product-image-sources.json";
 import stockImageSources from "../data/stock-image-sources.json";
+import BuyingDecision from "../components/BuyingDecision.astro";
 import MiraiPurchase from "../components/MiraiPurchase.astro";
 import Base from './Base.astro';
 import Header from '../components/Header.astro';
@@ -225,6 +226,8 @@ const imageCredit = image ? (productImageSources as Record<string, {product: str
           {imageCredit && <p class="product-image-credit">{(imageCreditLabels[locale] || imageCreditLabels.en)[imageCredit.aiEnhanced ? 1 : 0]}: <a href={imageCredit.url} rel="sponsored noopener noreferrer">{imageCredit.product}</a>.</p>}
           {stockCredit && <p class="product-image-credit">Photo: <a href={stockCredit.url} rel="noopener noreferrer">{stockCredit.author} / Pexels</a>. Illustrative scene; the pictured products are not Mirai recommendations. <a href={stockCredit.license}>Photo license</a>.</p>}
           {image && !imageCredit && !stockCredit && (type === 'review' || type === 'listicle') && <p class="product-image-credit">Illustrative image. Product appearance and packaging may differ; check the manufacturer's or retailer's listing.</p>}
+
+          <BuyingDecision slug={slug} locale={locale} />
 
           {/* TOC */}
           <div class="animate-fade-in-up stagger-2">
