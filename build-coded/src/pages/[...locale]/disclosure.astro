@@ -1,4 +1,5 @@
 ---
+import { amazonActive } from '../../utils/retailer-links.mjs';
 import Base from '../../layouts/Base.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
@@ -29,13 +30,13 @@ const { locale } = Astro.props as { locale: Locale };
       </div>
 
       <div class="max-w-3xl prose">
-        <p><em>Last updated: June 2026</em></p>
+        <p><em>Last updated: October 2026</em></p>
 
         <h2>How We Make Money</h2>
-        <p>Build Coded is a reader-supported publication. Some links on this site are affiliate links: if you click one and buy something, we may earn a commission from the retailer at no extra cost to you. That commission funds our tool testing, project builds, and writing.</p>
+        <p>Build Coded publishes tool and project research. Retailer links help you compare listings. Where an active affiliate relationship applies, we disclose it near the link; qualifying purchases may earn us a commission at no extra cost to you.</p>
 
         <h2>Our Retail Partners</h2>
-        <p>We participate in affiliate programs with retailers relevant to DIY, tools, and electronics. When we link to a product at a retailer we partner with, that link may earn us a commission.</p>
+        <p>{amazonActive ? 'As an Amazon Associate I earn from qualifying purchases.' : 'Our Amazon links currently serve as ordinary retailer references. We are not claiming an active Amazon Associates relationship or commission income.'} Product recommendations do not establish hands-on testing unless a documented test is provided.</p>
 
         <h2>What We Promise</h2>
         <ul>

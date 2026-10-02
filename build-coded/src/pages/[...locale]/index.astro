@@ -1,4 +1,5 @@
 ---
+import { amazonActive } from '../../utils/retailer-links.mjs';
 import Base from '../../layouts/Base.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
@@ -331,7 +332,7 @@ const tintByCategory: Record<string, string> = {
         <span class="bc-mh-footer-mark">BUILD CODED</span>
       </div>
       <p class="bc-mh-footer-tagline">{t(locale, 'home.mobileFooterTagline')}</p>
-      <div class="mono bc-mh-footer-affiliate">{t(locale, 'home.mobileAffiliate')}</div>
+      <div class="mono bc-mh-footer-affiliate">{amazonActive ? "As an Amazon Associate I earn from qualifying purchases." : "BUILD CODED · TOOL & PROJECT GUIDES"}</div>
     </div>
   </main>
 

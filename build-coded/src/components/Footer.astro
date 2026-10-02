@@ -1,4 +1,5 @@
 ---
+import { amazonActive } from '../utils/retailer-links.mjs';
 import { t, localePath, type Locale } from '../i18n/utils';
 
 interface Props {
@@ -35,7 +36,7 @@ const houseLinks = [
       </a>
       <p class="bcd-footer-tagline">{t(locale, 'footer.brandDesc')}</p>
       <div class="bcd-footer-founded">
-        <span>&#9670; AMAZON ASSOCIATE &middot; ID BUILDCODED-20</span>
+        {amazonActive && <span>As an Amazon Associate I earn from qualifying purchases.</span>}
         <br />
         <span>&#9670; EST. 2024 &middot; {t(locale, 'footer.tagline')}</span>
       </div>

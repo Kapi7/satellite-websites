@@ -2,6 +2,7 @@
 import stockImageSources from "../data/stock-image-sources.json";
 import productImageSources from "../data/product-image-sources.json";
 import Base from './Base.astro';
+import ToolPurchase from '../components/ToolPurchase.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import TableOfContents from '../components/TableOfContents.astro';
@@ -228,6 +229,7 @@ const imageCredit = image ? (productImageSources as Record<string, {product: str
           </div>
 
           <div class="prose body-text"><slot /></div>
+          <ToolPurchase slug={slug} locale={locale} />
 
           {tags.length > 0 && (
             <div class="bcd-tags">
