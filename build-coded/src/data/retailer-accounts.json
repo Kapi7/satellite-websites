@@ -1,7 +1,9 @@
 {
   "amazonUS": {
-    "status": "pending",
-    "trackingId": null,
-    "websiteVerified": false
+    "status": "verified",
+    "trackingId": "buildcoded-20",
+    "websiteVerified": true,
+    "registeredAt": "2026-10-02",
+    "approvalStatus": "pending-qualified-sales-review"
   }
 }
