@@ -1,4 +1,5 @@
 ---
+import journeys from "../data/content-journeys.json";
 import reviewed from '../data/reviewed-drill-guides.json';
 import ArticleCard from './ArticleCard.astro';
 import { getCollection } from 'astro:content';
@@ -12,13 +13,20 @@ interface Props {
 }
 
 const { currentSlug, category, limit = 3, locale = 'en' } = Astro.props;
+const normalizedCurrent = currentSlug.replace(/\.mdx?$/, '');
+const journey = locale === 'en' ? (journeys as Record<string, {slug: string; label: string; why: string}[]>)[normalizedCurrent] : undefined;
+// Curated next steps may cross categories; drafts, future posts and other locales never qualify.
+const published = await getCollection('blog', ({data}) => !data.draft && data.locale === locale && data.date <= new Date());
+const publishedSlugs = new Set(published.map(p => p.id.replace(/^[^/]+\//, '').replace(/\.mdx?$/, '')));
+const nextSteps = (journey ?? []).filter(step => step.slug !== normalizedCurrent && publishedSlugs.has(step.slug));
+
 const now = new Date();
 const allPosts = await getCollection('blog', ({ data }) => data.category === category && !data.draft && data.locale === locale && data.date <= now);
 const reviewedCluster = locale === 'en' && reviewed.includes(currentSlug.replace(/\.mdx?$/, ''));
 const candidates = reviewedCluster ? await getCollection('blog', ({data, id}) => !data.draft && data.locale === 'en' && data.date <= now && reviewed.includes(id.replace(/^en\//, '').replace(/\.mdx?$/, ''))) : allPosts;
 const related = candidates.filter((p) => (p.id.includes('/') ? p.id.split('/').slice(1).join('/') : p.id).replace(/\.mdx?$/, '') !== currentSlug.replace(/\.mdx?$/, '')).sort((a, b) => b.data.date.getTime() - a.data.date.getTime()).slice(0, limit);
 ---
-{related.length > 0 && (
+{!journey && related.length > 0 && (
   <section class="mt-16 pt-12 border-t border-steel-200/60">
     <h2 class="text-[11px] font-semibold uppercase tracking-wide text-charcoal-light/50 mb-8">{t(locale, 'common.keepReading')}</h2>
     <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
@@ -28,3 +36,22 @@ const related = candidates.filter((p) => (p.id.includes('/') ? p.id.split('/').s
     </div>
   </section>
 )}
+
+{nextSteps.length > 0 && (
+  <nav class="content-journey" aria-labelledby="next-step-heading">
+    <h2 id="next-step-heading">Choose your next step</h2>
+    <ul>
+      {nextSteps.map(step => (
+        <li><a href={`/${step.slug}/`}>{step.label}</a><p>{step.why}</p></li>
+      ))}
+    </ul>
+  </nav>
+)}
+<style>
+  .content-journey { margin-top: 3rem; padding: 1.5rem; border: 1px solid #c7c7bc; border-radius: 8px; background: #fafaf7; color: #222820; }
+  .content-journey h2 { font-size: 1.35rem; font-weight: 700; margin: 0 0 1rem; }
+  .content-journey ul { display: grid; gap: 1.25rem; list-style: none; margin: 0; padding: 0; }
+  .content-journey a { color: #244637; text-decoration: underline; text-underline-offset: 3px; font-weight: 650; overflow-wrap: anywhere; }
+  .content-journey a:focus-visible { outline: 3px solid #244637; outline-offset: 4px; }
+  .content-journey p { margin: .35rem 0 0; line-height: 1.6; font-size: 1rem; }
+</style>

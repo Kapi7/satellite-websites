@@ -1,0 +1,41 @@
+{
+  "pack-a-simple-gym-skincare-kit": [
+    {
+      "slug": "gym-bag-reset-checklist",
+      "label": "Reset the bag after training",
+      "why": "Keep clean items, damp clothing and restocking in a repeatable routine."
+    },
+    {
+      "slug": "k-beauty-night-routine-glowing-skin",
+      "label": "Keep the evening routine simple",
+      "why": "Plan around the products you already tolerate rather than duplicating a full bathroom kit."
+    }
+  ],
+  "gym-bag-reset-checklist": [
+    {
+      "slug": "pack-a-simple-gym-skincare-kit",
+      "label": "Choose what skincare to carry",
+      "why": "Adapt the kit to your journey home and avoid buying duplicate steps."
+    }
+  ],
+  "best-double-cleansing-products": [
+    {
+      "slug": "k-beauty-night-routine-glowing-skin",
+      "label": "Decide where cleansing fits tonight",
+      "why": "Start with the smallest useful evening routine before adding a second cleanser."
+    }
+  ],
+  "k-beauty-night-routine-glowing-skin": [
+    {
+      "slug": "best-double-cleansing-products",
+      "label": "Compare cleanser roles",
+      "why": "Check whether an oil cleanser solves a different problem from your existing face wash."
+    },
+    {
+      "slug": "pack-a-simple-gym-skincare-kit",
+      "label": "Plan the routine around training",
+      "why": "Decide what stays at home and what belongs in a small gym kit."
+    }
+  ],
+  "best-protein-powders-clean-natural": []
+}

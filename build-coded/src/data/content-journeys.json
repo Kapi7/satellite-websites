@@ -1,0 +1,69 @@
+{
+  "how-to-read-a-tape-measure": [
+    {
+      "slug": "room-measurement-checklist-before-buying-materials",
+      "label": "Record the measurements for a real room",
+      "why": "Keep units, openings and assumptions alongside each dimension."
+    },
+    {
+      "slug": "diy-project-materials-list-template",
+      "label": "Turn dimensions into a materials list",
+      "why": "Separate measured quantities from pack sizes and items you already own."
+    }
+  ],
+  "room-measurement-checklist-before-buying-materials": [
+    {
+      "slug": "how-to-read-a-tape-measure",
+      "label": "Check an unfamiliar tape marking",
+      "why": "Resolve the scale and fraction before writing down a dimension."
+    },
+    {
+      "slug": "diy-project-materials-list-template",
+      "label": "Prepare the materials order",
+      "why": "Carry the measured dimensions into a checkable shopping list."
+    }
+  ],
+  "diy-project-materials-list-template": [
+    {
+      "slug": "room-measurement-checklist-before-buying-materials",
+      "label": "Check the dimensions behind the quantities",
+      "why": "Record the room and units before calculating an order."
+    }
+  ],
+  "best-cordless-drills": [
+    {
+      "slug": "impact-driver-vs-drill",
+      "label": "Resolve drilling versus driving",
+      "why": "Choose the tool type before comparing a kit."
+    },
+    {
+      "slug": "dewalt-dcd800b-vs-dcd800d2",
+      "label": "Compare the exact DeWalt packages",
+      "why": "Check bare-tool and kit contents against the batteries and charger you already own."
+    }
+  ],
+  "impact-driver-vs-drill": [
+    {
+      "slug": "best-cordless-drills",
+      "label": "Shortlist a drill for your job",
+      "why": "Match the task and material before moving to a retailer."
+    },
+    {
+      "slug": "dewalt-dcd800b-vs-dcd800d2",
+      "label": "Already considering the DCD800?",
+      "why": "Compare the verified body-only and battery-kit options."
+    }
+  ],
+  "dewalt-dcd800b-vs-dcd800d2": [
+    {
+      "slug": "impact-driver-vs-drill",
+      "label": "Still deciding which tool type you need?",
+      "why": "Confirm that a drill answers the job before comparing package costs."
+    },
+    {
+      "slug": "diy-project-materials-list-template",
+      "label": "Check the rest of the project list",
+      "why": "Account for materials and accessories separately from the tool package."
+    }
+  ]
+}

@@ -56,7 +56,7 @@ const formattedUpdated = updated ? formatDate(updated, locale) : undefined;
 const articleUrl = new URL(localePath(`/${slug}`, locale), Astro.site).href;
 
 const authorObj = author
-  ? { '@type': 'Person', name: author }
+  ? { '@type': /editorial|team/i.test(author) ? 'Organization' : 'Person', name: author }
   : { '@type': 'Organization', name: 'Build Coded Editorial' };
 
 const articleSchema = JSON.stringify({

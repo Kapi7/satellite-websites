@@ -1,0 +1,74 @@
+{
+  "tirtir-cushion-foundation-shade-guide": [
+    {
+      "slug": "check-cushion-refill-compatibility",
+      "label": "Buying a refill for an existing compact?",
+      "why": "Check the exact case and refill before treating matching shade names as proof of compatibility."
+    },
+    {
+      "slug": "skincare-product-label-shopping-checklist",
+      "label": "Check the full product identity",
+      "why": "Record the formula, size and variant before leaving for the retailer."
+    }
+  ],
+  "check-cushion-refill-compatibility": [
+    {
+      "slug": "tirtir-cushion-foundation-shade-guide",
+      "label": "Choose a new cushion shade",
+      "why": "Separate formula, depth and undertone if you are replacing the whole compact."
+    },
+    {
+      "slug": "compare-skincare-unit-prices",
+      "label": "Compare package value",
+      "why": "Compare equivalent products and sizes after resolving compatibility."
+    }
+  ],
+  "build-a-three-product-skincare-routine": [
+    {
+      "slug": "skincare-product-label-shopping-checklist",
+      "label": "Check the product you are replacing",
+      "why": "Compare the exact formula and size against the bottle you already use."
+    },
+    {
+      "slug": "compare-skincare-unit-prices",
+      "label": "Work out the cost of your shortlist",
+      "why": "Use the same units when comparing products that perform the same job."
+    }
+  ],
+  "compare-skincare-unit-prices": [
+    {
+      "slug": "build-a-three-product-skincare-routine",
+      "label": "Decide which step needs replacing",
+      "why": "A lower unit price is useful only for a product you actually need."
+    },
+    {
+      "slug": "skincare-product-label-shopping-checklist",
+      "label": "Confirm what the listing includes",
+      "why": "Check size and formula before treating two prices as comparable."
+    }
+  ],
+  "best-korean-lip-products-hydration": [
+    {
+      "slug": "skincare-product-label-shopping-checklist",
+      "label": "Check the exact lip product",
+      "why": "Confirm the variant, ingredients and package rather than relying on a similar-looking jar."
+    },
+    {
+      "slug": "compare-skincare-unit-prices",
+      "label": "Compare sizes on equal terms",
+      "why": "Separate package price from unit price when comparing the same type of lip care."
+    }
+  ],
+  "skincare-product-label-shopping-checklist": [
+    {
+      "slug": "build-a-three-product-skincare-routine",
+      "label": "Place the product in your routine",
+      "why": "Identify the job it will do before adding another step."
+    },
+    {
+      "slug": "compare-skincare-unit-prices",
+      "label": "Compare the final shortlist",
+      "why": "Use matching units and account for the complete purchase."
+    }
+  ]
+}
