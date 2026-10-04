@@ -1114,3 +1114,9 @@ img[src*="/images/verified/"] { object-fit: contain !important; background: #fff
 @media (max-width: 600px) {
   .verified-product-hero { aspect-ratio: 4 / 3 !important; }
 }
+
+/* Preserve the subject of credited contextual photographs, including portrait originals. */
+.credited-stock-hero img { object-fit: contain !important; background: #fff; }
+@media (max-width: 600px) {
+  .credited-stock-hero { aspect-ratio: 4 / 3 !important; }
+}

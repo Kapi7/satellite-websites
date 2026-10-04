@@ -7,5 +7,27 @@
     "sha256": "91fb38a1ece15a74ec6e271cb6104506e553e2d4f35e644b3b7432a63c299635",
     "reviewedAt": "2026-09-29",
     "kind": "real contextual stock photograph; not a product test or endorsement"
+  },
+  "/images/editorial/pexels-4981805.jpg": {
+    "author": "Antoni Shkraba",
+    "url": "https://www.pexels.com/photo/a-person-using-tape-measure-4981805/",
+    "license": "https://www.pexels.com/license/",
+    "description": "A gloved hand holding a tape measure against a wall",
+    "kind": "real contextual stock photograph; not our project or a tested product",
+    "sourceImage": "https://images.pexels.com/photos/4981805/pexels-photo-4981805.jpeg?auto=compress&cs=tinysrgb&w=1400",
+    "sha256": "d405894090c7729be418279ff08485e85965ecb6767238afb654b852de17b142",
+    "verifiedAt": "2026-10-04",
+    "visualReview": "Inspected photograph for subject and exact model/pack match; not a hands-on test."
+  },
+  "/images/editorial/pexels-10198323.jpg": {
+    "author": "Sergei Starostin",
+    "url": "https://www.pexels.com/photo/chicken-on-chicken-coop-10198323/",
+    "license": "https://www.pexels.com/license/",
+    "description": "A chicken standing on a wooden beam inside a coop",
+    "kind": "real contextual stock photograph; not our project or a tested product",
+    "sourceImage": "https://images.pexels.com/photos/10198323/pexels-photo-10198323.jpeg?auto=compress&cs=tinysrgb&w=1400",
+    "sha256": "0eb822171ddc644c1832be786abcf869b9f6af6fb7b92e3caf2e73e187667bb8",
+    "verifiedAt": "2026-10-04",
+    "visualReview": "Inspected photograph for subject and exact model/pack match; not a hands-on test."
   }
 }

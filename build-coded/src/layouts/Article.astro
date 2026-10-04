@@ -211,7 +211,7 @@ const imageCredit = image ? (productImageSources as Record<string, {product: str
           )}
 
           {image && (
-            <div class:list={["bcd-hero-img animate-fade-in-up stagger-2", {"verified-product": !!imageCredit}]}>
+            <div class:list={["bcd-hero-img animate-fade-in-up stagger-2", {"verified-product": !!imageCredit, "credited-stock": !!stockCredit}]}>
               <img src={image} alt={imageAlt || title} loading="eager" fetchpriority="high" decoding="async" width="1200" height="675" />
             </div>
           )}
@@ -420,7 +420,7 @@ const imageCredit = image ? (productImageSources as Record<string, {product: str
       height: 100%;
       object-fit: cover;
     }
-    .bcd-hero-img.verified-product img { object-fit: contain; background: #fff; }
+    .bcd-hero-img.verified-product img, .bcd-hero-img.credited-stock img { object-fit: contain; background: #fff; }
     .bcd-hero-big {
       font-family: var(--font-heading);
       font-size: 260px;
@@ -651,7 +651,7 @@ const imageCredit = image ? (productImageSources as Record<string, {product: str
       .bcd-title { font-size: 40px; line-height: 1.0; }
       .bcd-lede { font-size: 17px; }
       .bcd-hero-img { height: 260px; margin: 22px 0; }
-      .bcd-hero-img.verified-product img { object-fit: contain; background: #fff; }
+      .bcd-hero-img.verified-product img, .bcd-hero-img.credited-stock img { object-fit: contain; background: #fff; }
     .bcd-hero-big { font-size: 140px; }
       .bcd-specs-row { grid-template-columns: 1fr 1fr; }
       .bcd-aside { grid-template-columns: 1fr; }

@@ -16,5 +16,27 @@
     "sha256": "fd1d19f600ff925909d1ea43547f3f2c9956998af41dce97d0700a60bbe1309e",
     "reviewedAt": "2026-09-29",
     "kind": "real contextual stock photograph; not a product test or endorsement"
+  },
+  "/images/editorial/pexels-18470167.jpg": {
+    "author": "Hindustani Lens",
+    "url": "https://www.pexels.com/photo/man-with-a-bag-getting-into-the-car-18470167/",
+    "license": "https://www.pexels.com/license/",
+    "description": "Man carrying a sports bag beside a car",
+    "kind": "real contextual stock photograph; not our project or a tested product",
+    "sourceImage": "https://images.pexels.com/photos/18470167/pexels-photo-18470167.jpeg?auto=compress&cs=tinysrgb&w=1400",
+    "sha256": "4e93b90fc0aee1ff502f6be6fb2e3b7961aef40c8948d4b0034d19e075302327",
+    "verifiedAt": "2026-10-04",
+    "visualReview": "Inspected photograph for subject and exact model/pack match; not a hands-on test."
+  },
+  "/images/editorial/pexels-5000216.jpg": {
+    "author": "Ketut Subiyanto",
+    "url": "https://www.pexels.com/photo/portrait-of-woman-with-water-bottle-5000216/",
+    "license": "https://www.pexels.com/license/",
+    "description": "Woman holding a reusable bottle in a locker room",
+    "kind": "real contextual stock photograph; not our project or a tested product",
+    "sourceImage": "https://images.pexels.com/photos/5000216/pexels-photo-5000216.jpeg?auto=compress&cs=tinysrgb&w=1400",
+    "sha256": "e193cdee1abfa4054de1edd49ef047a0731f13a09f48ed10f599f49d827e7be4",
+    "verifiedAt": "2026-10-04",
+    "visualReview": "Inspected photograph for subject and exact model/pack match; not a hands-on test."
   }
 }

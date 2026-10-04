@@ -126,5 +126,13 @@
     "verifiedAt": "2026-10-04",
     "visualReview": "Naked Whey label and 5 lb / 2.27 kg size visible; manufacturer photo used as label-reading example, not a tested recommendation.",
     "sha256": "fdba037e80b36618122e8519f2f66aea4237198e31446f92afd293e561e55c67"
+  },
+  "/images/verified/naked-pea-unflavored-5lb.jpg": {
+    "product": "Naked Pea unflavored pea protein, 5 lb",
+    "url": "https://nakednutrition.com/products/pea-protein-powder",
+    "sourceImage": "https://nakednutrition.com/cdn/shop/files/unflavored-pea-protein-powder-5lb.jpg?v=1783672003&width=1200",
+    "sha256": "7b4c0474d809191c4330b698891fe2f7292b699bfc3de33aea2efa3b3570e228",
+    "verifiedAt": "2026-10-04",
+    "visualReview": "Inspected photograph for subject and exact model/pack match; not a hands-on test."
   }
 }

@@ -1,24 +1,24 @@
 {
   "/images/verified/dcd800.webp": {
-    "product": "DCD800 \u2014 20V MAX* XR\u00ae 1/2 in. Brushless Cordless Drill/Driver (Tool Only)",
+    "product": "DCD800 — 20V MAX* XR® 1/2 in. Brushless Cordless Drill/Driver (Tool Only)",
     "url": "https://www.dewalt.com/product/dcd800b/20v-max-xr-brushless-cordless-12-drilldriver-tool-only",
     "sourceImage": "https://assets.dewalt.com/NAG/PRODUCT/IMAGES/HIRES/WHITEBG/DCD800B_1_1680.webp",
     "verifiedAt": "2026-09-12"
   },
   "/images/verified/dwe7491.webp": {
-    "product": "DWE7491 \u2014 10-In. Jobsite Table Saw and Rolling Stand | DEWALT\u00ae",
+    "product": "DWE7491 — 10-In. Jobsite Table Saw and Rolling Stand | DEWALT®",
     "url": "https://www.dewalt.com/en-us/product/dwe7491rs/10-jobsite-table-saw-and-rolling-stand",
     "sourceImage": "https://assets.dewalt.com/NAG/PRODUCT/IMAGES/HIRES/WHITEBG/DWE7491RS_1_1680.webp",
     "verifiedAt": "2026-09-12"
   },
   "/images/verified/dws779.webp": {
-    "product": "DWS779 \u2014 12 in. Double-Bevel Sliding Compound Miter Saw",
+    "product": "DWS779 — 12 in. Double-Bevel Sliding Compound Miter Saw",
     "url": "https://www.dewalt.com/en-us/product/dws779/12-double-bevel-sliding-compound-miter-saw",
     "sourceImage": "https://assets.dewalt.com/NAG/PRODUCT/IMAGES/HIRES/WHITEBG/DWS779_1_1680.webp",
     "verifiedAt": "2026-09-12"
   },
   "/images/verified/mm400.jpg": {
-    "product": "MM400 \u2014 Digital Multimeter, Auto-Ranging, 600V - MM400 | Klein Tools",
+    "product": "MM400 — Digital Multimeter, Auto-Ranging, 600V - MM400 | Klein Tools",
     "url": "https://www.kleintools.com/catalog/multimeters/digital-multimeter-auto-ranging-600v",
     "sourceImage": "https://www.kleintools.com/sites/default/files/product-assets/catalog-imagery/original/klein/mm400_alt1.jpg",
     "verifiedAt": "2026-09-12"
@@ -30,5 +30,37 @@
     "verifiedAt": "2026-10-02",
     "visualReview": "Two 2Ah batteries (one fitted), DCB112 charger, drill and bag match manufacturer contents. Not a hands-on photo.",
     "sha256": "a8b5504edceb435398e92c3dafd34842315bc990661fad81fdbf2f414a166ea0"
+  },
+  "/images/verified/arduino-uno-r3.jpg": {
+    "product": "Arduino UNO R3, A000066",
+    "url": "https://store.arduino.cc/products/arduino-uno-rev3",
+    "sourceImage": "https://store.arduino.cc/cdn/shop/files/A000066_03.front_1200x900.jpg?v=1727098250",
+    "sha256": "428ecd8648826ed19bb4c02c5a3477f72cf2216210d69eaf7096a094aa4206d7",
+    "verifiedAt": "2026-10-04",
+    "visualReview": "Inspected photograph for subject and exact model/pack match; not a hands-on test."
+  },
+  "/images/verified/arduino-uno-r4-wifi.jpg": {
+    "product": "Arduino UNO R4 WiFi, ABX00087",
+    "url": "https://store.arduino.cc/products/uno-r4-wifi",
+    "sourceImage": "https://store.arduino.cc/cdn/shop/files/ABX00087_00.front_1200x900.jpg?v=1749566714",
+    "sha256": "e97b0a269fd12ab0c66de98759d4e9d2a8ec3d455b1eb87ece12556478842db7",
+    "verifiedAt": "2026-10-04",
+    "visualReview": "Inspected photograph for subject and exact model/pack match; not a hands-on test."
+  },
+  "/images/verified/dcs334b.webp": {
+    "product": "DeWalt DCS334B cordless jigsaw, tool only",
+    "url": "https://www.dewalt.com/en-us/product/dcs334b/20v-max-xr-cordless-jig-saw-tool-only",
+    "sourceImage": "https://assets.dewalt.com/NAG/PRODUCT/IMAGES/HIRES/WHITEBG/DCS334B_1_1680.webp",
+    "sha256": "20804b19a2c019da731118fe7e5f1d0794ba0194b3aa06d0e44779b6d175ede7",
+    "verifiedAt": "2026-10-04",
+    "visualReview": "Inspected photograph for subject and exact model/pack match; not a hands-on test."
+  },
+  "/images/verified/dwst17806.webp": {
+    "product": "DeWalt DWST17806 TSTAK VI deep box",
+    "url": "https://www.dewalt.com/en-us/product/dwst17806/tstak-vi-deep-box",
+    "sourceImage": "https://assets.dewalt.com/NAG/PRODUCT/IMAGES/HIRES/WHITEBG/DWST17806_1_1680.webp",
+    "sha256": "632e6d97818f9fd7360ab589742f359a289e1a85729dd7df65f303d3440a4937",
+    "verifiedAt": "2026-10-04",
+    "visualReview": "Inspected photograph for subject and exact model/pack match; not a hands-on test."
   }
 }
