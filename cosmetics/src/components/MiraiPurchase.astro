@@ -1,4 +1,5 @@
 ---
+import SunscreenChoices from './SunscreenChoices.astro';
 import orderInformation from '../data/order-information.json';
 import products from '../data/guide-products.json';
 import labels from '../data/purchase-labels.json';
@@ -6,6 +7,7 @@ import { localePath } from '../i18n/utils';
 import type { Locale } from '../i18n/locales';
 const { slug, locale = 'en' } = Astro.props as {slug: string; locale: Locale};
 const product = products.find(p => p.guide === slug && (p.guideLocales === 'all' || locale === 'en'));
+const showSunscreenChoices = slug === 'best-korean-sunscreens-oily-skin-no-white-cast' && ['en','de','es'].includes(locale);
 const copy = labels[locale] || labels.en;
 const orderCopy = orderInformation[locale] || orderInformation.en;
 function attributed(raw: string) {
@@ -15,7 +17,8 @@ function attributed(raw: string) {
   return url.href;
 }
 ---
-{product && <aside id="mirai-purchase" class="mirai-purchase" aria-label={copy[0]} dir={locale === 'ar' ? 'rtl' : undefined}>
+{showSunscreenChoices && <SunscreenChoices slug={slug} locale={locale as 'en'|'de'|'es'} />}
+{product && !showSunscreenChoices && <aside id="mirai-purchase" class="mirai-purchase" aria-label={copy[0]} dir={locale === 'ar' ? 'rtl' : undefined}>
   <img src={product.image} alt={product.name} width="160" height="180" loading="lazy" decoding="async" />
   <div class="purchase-copy">
     <p class="brand">{product.brand}</p><h2>{copy[0]}</h2><p class="product-name">{product.name}</p>
