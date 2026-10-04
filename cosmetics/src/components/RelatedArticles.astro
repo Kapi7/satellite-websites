@@ -24,7 +24,9 @@ const now = new Date();
 const allPosts = await getCollection('blog', ({ data }) => data.category === category && !data.draft && data.locale === locale && data.date <= now);
 const normalizedSlug = (p: typeof allPosts[number]) => (p.id.includes('/') ? p.id.split('/').slice(1).join('/') : p.id).replace(/\.mdx?$/, '');
 // Reviewed buying guides should not promote older, unreviewed testing claims.
-const candidates = reviewed.includes(currentSlug) ? allPosts.filter(p => reviewed.includes(normalizedSlug(p))) : allPosts;
+const englishCorrections = ['lip-masks-vs-lip-balms', 'fungal-acne-products-that-actually-work'];
+const allowed = locale === 'en' ? [...reviewed, ...englishCorrections] : reviewed;
+const candidates = allowed.includes(currentSlug) ? allPosts.filter(p => allowed.includes(normalizedSlug(p))) : allPosts;
 const related = candidates.filter((p) => (p.id.includes('/') ? p.id.split('/').slice(1).join('/') : p.id).replace(/\.mdx?$/, '') !== currentSlug.replace(/\.mdx?$/, '')).sort((a, b) => b.data.date.getTime() - a.data.date.getTime()).slice(0, limit);
 ---
 {!journey && related.length > 0 && (

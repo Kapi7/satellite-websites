@@ -28,7 +28,12 @@ const allPosts = await getCollection('blog', ({ data }) => {
   return data.category === category && !data.draft && data.locale === locale && data.date <= now;
 });
 
-const related = allPosts
+// Keep newly corrected English pages from recommending unreviewed claims.
+const reviewedEnglish = ['best-protein-powders-clean-natural', 'double-cleansing-why-and-how', 'best-double-cleansing-products'];
+const normalizedSlug = (p: typeof allPosts[number]) => (p.id.includes('/') ? p.id.split('/').slice(1).join('/') : p.id).replace(/\.mdx?$/, '');
+const candidates = locale === 'en' && reviewedEnglish.includes(currentSlug)
+  ? allPosts.filter(p => reviewedEnglish.includes(normalizedSlug(p))) : allPosts;
+const related = candidates
   .filter((p) => (p.id.includes('/') ? p.id.split('/').slice(1).join('/') : p.id).replace(/\.mdx?$/, '') !== currentSlug.replace(/\.mdx?$/, ''))
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
   .slice(0, limit);

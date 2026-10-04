@@ -118,5 +118,13 @@
     "url": "https://mirai-skin.com/products/anua-8-hyaluronic-acid-hydrating-gentle-foaming-cleanser-150ml",
     "sourceImage": "https://cdn.shopify.com/s/files/1/0899/8862/8852/files/anua_14774037840244_nobg.jpg?v=1775765277",
     "verifiedAt": "2026-09-12"
+  },
+  "/images/verified/naked-whey-unflavored-5lb.jpg": {
+    "product": "Naked Whey unflavored 5 lb",
+    "url": "https://nakednutrition.com/products/grass-fed-whey-protein-powder",
+    "sourceImage": "https://nakednutrition.com/cdn/shop/files/unflavored-whey-protein-powder-isolate_ab4447ea-b8a1-4539-81f4-0b60b3a9f893.jpg?v=1782960931&width=1100",
+    "verifiedAt": "2026-10-04",
+    "visualReview": "Naked Whey label and 5 lb / 2.27 kg size visible; manufacturer photo used as label-reading example, not a tested recommendation.",
+    "sha256": "fdba037e80b36618122e8519f2f66aea4237198e31446f92afd293e561e55c67"
   }
 }

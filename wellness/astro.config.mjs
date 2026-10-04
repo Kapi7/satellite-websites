@@ -17,7 +17,7 @@ function scanDir(dir) {
       scanDir(path.join(dir, entry.name));
     } else if (entry.name.endsWith('.mdx')) {
       const content = fs.readFileSync(path.join(dir, entry.name), 'utf-8');
-      const slug = entry.name.replace(/\.mdx$/, '');
+      const slug = path.relative(blogDir, path.join(dir, entry.name)).split(path.sep).join('/').replace(/\.mdx$/, '').replace(/^en\//, '');
       const updatedMatch = content.match(/^updated:\s*['"]?(\d{4}-\d{2}-\d{2})['"]?/m);
       const dateMatch = content.match(/^date:\s*['"]?(\d{4}-\d{2}-\d{2})['"]?/m);
       const d = updatedMatch?.[1] || dateMatch?.[1];
@@ -49,8 +49,8 @@ export default defineConfig({
       },
       serialize(item) {
         const slug = item.url.replace('https://rooted-glow.com/', '').replace(/\/$/, '');
-        const cleanSlug = slug.replace(/^(es|de|el|ru|it|ar|fr|nl|pt)\//, '');
-        const d = slugDateMap.get(cleanSlug);
+        // Each language reports its own content update date.
+        const d = slugDateMap.get(slug);
         if (d) item.lastmod = new Date(d).toISOString();
         return item;
       },
