@@ -14,7 +14,10 @@ interface Props {
 const { currentSlug, category, limit = 3, locale = 'en' } = Astro.props;
 
 const normalizedCurrent = currentSlug.replace(/\.mdx?$/, '');
-const journey = locale === 'en' ? (journeys as Record<string, {slug: string; label: string; why: string}[]>)[normalizedCurrent] : undefined;
+const configuredJourney = (journeys as Record<string, {slug: string; label: string; why: string}[]>)[normalizedCurrent];
+// An empty reviewed path suppresses unreviewed fallback recommendations in every language.
+// Populated English paths remain English-only until their destinations are reviewed locally.
+const journey = locale === 'en' || configuredJourney?.length === 0 ? configuredJourney : undefined;
 // Curated next steps may cross categories; drafts, future posts and other locales never qualify.
 const published = await getCollection('blog', ({data}) => !data.draft && data.locale === locale && data.date <= new Date());
 const publishedSlugs = new Set(published.map(p => p.id.replace(/^[^/]+\//, '').replace(/\.mdx?$/, '')));

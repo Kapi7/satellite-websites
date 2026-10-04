@@ -1,5 +1,5 @@
 """Validate built contextual navigation, publication gates and corrected evidence labels."""
-import json
+import argparse, json
 from pathlib import Path
 from html.parser import HTMLParser
 
@@ -20,8 +20,12 @@ class Page(HTMLParser):
     def handle_data(self,data):
         if self.in_json:self.schemas.append(json.loads(data))
 
+args=argparse.ArgumentParser()
+args.add_argument('--site', choices=['cosmetics','wellness','build-coded'])
+site=args.parse_args().site
 count=links=0
 for folder,domain in [('cosmetics','glow-coded.com'),('wellness','rooted-glow.com'),('build-coded','build-coded.com')]:
+    if site and folder != site: continue
     root=ROOT/folder;mapping=json.loads((root/'src/data/content-journeys.json').read_text())
     for slug,steps in mapping.items():
         page=Page();page.feed((root/'dist'/slug/'index.html').read_text())
@@ -43,8 +47,9 @@ for folder,domain in [('cosmetics','glow-coded.com'),('wellness','rooted-glow.co
     for source in (root/'src/content/blog/en').glob('*.mdx'):
         if '\ndraft: true' in source.read_text().split('---',2)[1]:
             assert not (root/'dist'/source.stem/'index.html').exists(),source
-protein=(ROOT/'wellness/dist/best-protein-powders-clean-natural/index.html').read_text()
-assert 'How to Compare Protein Powders: Labels, Testing and Cost' in protein
-assert '14 Tested Picks' not in protein
-assert 'Editorial correction, 3 October 2026' in protein
+if not site or site == 'wellness':
+    protein=(ROOT/'wellness/dist/best-protein-powders-clean-natural/index.html').read_text()
+    assert 'How to Compare Protein Powders: Labels, Testing and Cost' in protein
+    assert '14 Tested Picks' not in protein
+    assert 'Editorial correction, 3 October 2026' in protein
 print(f'PASS: {count} configured pages, {links} contextual links; canonical/H1/schema, translation isolation, draft exclusion and protein correction.')
