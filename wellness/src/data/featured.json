@@ -1,42 +1,42 @@
 {
-  "updated": "2026-09-29",
-  "period": "2026-08-30 to 2026-09-27",
+  "updated": "2026-10-05",
+  "period": "2026-09-05 to 2026-10-03",
   "trending": [
     {
       "slug": "best-protein-powders-clean-natural",
       "clicks": 0,
-      "impressions": 70,
-      "position": 67.6
-    },
-    {
-      "slug": "zone-2-training-slow-running-burns-fat",
-      "clicks": 0,
-      "impressions": 49,
-      "position": 83.4
-    },
-    {
-      "slug": "double-cleansing-why-and-how",
-      "clicks": 0,
-      "impressions": 34,
-      "position": 93.4
+      "impressions": 25,
+      "position": 69.1
     },
     {
       "slug": "casein-protein-night-time-benefits",
       "clicks": 0,
-      "impressions": 33,
-      "position": 30.8
-    },
-    {
-      "slug": "best-probiotics-for-women-gut-health",
-      "clicks": 0,
-      "impressions": 31,
-      "position": 81.2
+      "impressions": 24,
+      "position": 26.3
     },
     {
       "slug": "how-to-make-sauerkraut-at-home",
       "clicks": 0,
-      "impressions": 28,
-      "position": 78.5
+      "impressions": 24,
+      "position": 78.4
+    },
+    {
+      "slug": "zone-2-training-slow-running-burns-fat",
+      "clicks": 0,
+      "impressions": 24,
+      "position": 74.5
+    },
+    {
+      "slug": "best-probiotics-for-women-gut-health",
+      "clicks": 0,
+      "impressions": 19,
+      "position": 81.8
+    },
+    {
+      "slug": "how-to-start-running-beginners-guide",
+      "clicks": 0,
+      "impressions": 13,
+      "position": 81.5
     }
   ],
   "rising": []

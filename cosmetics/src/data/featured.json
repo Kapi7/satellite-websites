@@ -1,18 +1,12 @@
 {
-  "updated": "2026-09-29",
-  "period": "2026-08-30 to 2026-09-27",
+  "updated": "2026-10-05",
+  "period": "2026-09-05 to 2026-10-03",
   "trending": [
     {
       "slug": "acne-spot-treatments-that-work",
       "clicks": 0,
-      "impressions": 84,
-      "position": 92.0
-    },
-    {
-      "slug": "best-korean-products-hyperpigmentation-dark-spots",
-      "clicks": 0,
-      "impressions": 34,
-      "position": 72.6
+      "impressions": 76,
+      "position": 91.2
     },
     {
       "slug": "korean-skincare-routine-complete-guide",
@@ -21,22 +15,28 @@
       "position": 93.1
     },
     {
-      "slug": "galactomyces-skincare-guide",
+      "slug": "best-korean-products-hyperpigmentation-dark-spots",
       "clicks": 0,
-      "impressions": 21,
-      "position": 79.7
+      "impressions": 24,
+      "position": 74.5
     },
     {
       "slug": "best-korean-sunscreens-oily-skin-no-white-cast",
       "clicks": 0,
-      "impressions": 15,
-      "position": 41.9
+      "impressions": 23,
+      "position": 33.8
+    },
+    {
+      "slug": "hyaluronic-acid-vs-glycerin",
+      "clicks": 0,
+      "impressions": 13,
+      "position": 9.2
     },
     {
       "slug": "korean-sunscreens-acne-prone-skin",
       "clicks": 0,
-      "impressions": 10,
-      "position": 4.6
+      "impressions": 14,
+      "position": 61.3
     }
   ],
   "rising": []
