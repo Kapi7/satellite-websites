@@ -108,5 +108,13 @@
     "reviewer": "Codex visual inspection",
     "treatment": "unaltered retailer photograph",
     "notes": "Full product name and package volume visually inspected against exact listing; no AI scenery."
+  },
+  "/images/editorial/pexels-1173981.jpg": {
+    "sha256": "e24fa08ce9950cf05a3309785367dbc44283fb21c12b5826863f6ab5de279f99",
+    "sourceUrl": "https://www.pexels.com/photo/1173981/",
+    "reviewedAt": "2026-10-05",
+    "reviewer": "Codex visual inspection",
+    "treatment": "Existing unaltered licensed stock photograph",
+    "notes": "Notebook and cosmetics on pink background; contextual cart/inventory illustration only, not Mirai products or a tested recommendation. Caption and alt distinguish this."
   }
 }
