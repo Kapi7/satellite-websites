@@ -105,7 +105,7 @@ publish_article() {
   if [ -f "$TRANSLATE_SCRIPT" ]; then
     for lang in $LOCALES; do
       local i18n_file="$blog_base/$lang/$filename"
-      if [ ! -f "$i18n_file" ] || { [ "$site" = "cosmetics" ] && ! python3 scripts/content_quality.py "$article" --current "$i18n_file"; }; then
+      if [ ! -f "$i18n_file" ] || { ! python3 scripts/content_quality.py "$article" --current "$i18n_file"; }; then
         echo "  [$label] Translating $filename -> $lang"
         python3 "$TRANSLATE_SCRIPT" --article "$article" --lang "$lang" 2>&1 | tail -5 || true
       fi
@@ -123,6 +123,15 @@ publish_article() {
     python3 scripts/content_quality.py "$article" --require-image || {
       echo "::error::Glow draft retained for editorial review: $filename"
       BLOCKED_COSMETICS=1
+      PREFLIGHT_FAILED=1
+      return 1
+    }
+  fi
+
+  # Every locale must exist and match the source before any site is undrafted.
+  if [ "$site" != "cosmetics" ]; then
+    python3 scripts/content_quality.py "$article" || {
+      echo "::error::[$label] Draft retained: translation quality check failed"
       PREFLIGHT_FAILED=1
       return 1
     }

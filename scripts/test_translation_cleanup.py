@@ -11,8 +11,7 @@ for value in ['""', 'A "quoted" title', 'A path C:\\folder', 'Plain text']:
 malformed = '---\ntitle: "A "quoted" title"\n---\n\nBody.\n'
 cleaned, count = fix_unescaped_quotes(malformed)
 assert count == 1 and json.loads(cleaned.splitlines()[1][7:]) == "A 'quoted' title"
-root = Path(__file__).resolve().parent.parent
-source = (root/'cosmetics/src/content/blog/de/keep-a-skincare-product-notebook.mdx').read_text()
+source = '---\ntitle: "Fixture"\nimageAlt: ' + json.dumps('""') + '\n---\n\nBody.\n'
 with tempfile.TemporaryDirectory() as directory:
     target = Path(directory)/'article.mdx'
     target.write_text(source)

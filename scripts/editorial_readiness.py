@@ -18,7 +18,7 @@ def inventory():
                 if not translated.exists():blockers.append(lang+': missing translation');continue
                 error=check(translated)
                 if error:blockers.append(lang+': '+error)
-            if site=='cosmetics':blockers.extend(validate(path,True))
+            blockers.extend(validate(path,site=='cosmetics'))
             rows.append({'slug':path.stem,'blockers':list(dict.fromkeys(blockers))})
         result[site]={'rawDrafts':len(rows),'automatedChecksPassing':sum(not r['blockers'] for r in rows),'editoriallyApprovedRunway':'not certified by this report','drafts':rows}
     return result

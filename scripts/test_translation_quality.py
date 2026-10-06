@@ -26,6 +26,7 @@ with tempfile.TemporaryDirectory() as folder:
  source.write_text('---\ntitle: "Source"\ndescription: "Description"\ntags: ["guide"]\nlocale: en\n---\n'+prose)
  target.write_text('existing translation')
  m.call_gemini=lambda prompt:'TITLE: Título\nDESCRIPTION: Descripción\nIMAGE_ALT: Foto\nTAGS: [guía]\n\n'+prose
- assert not m.translate_article('cosmetics','es',source)
- assert target.read_text()=='existing translation'
-print('Cosmetics: copied English prose rejected without overwriting the previous translation.')
+ for site in ('cosmetics', 'wellness', 'build-coded'):
+  assert not m.translate_article(site,'es',source)
+  assert target.read_text()=='existing translation'
+print('All sites: copied English prose rejected without overwriting the previous translation.')

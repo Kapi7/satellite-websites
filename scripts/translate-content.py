@@ -317,14 +317,13 @@ BODY TO TRANSLATE:
         target_file = target_dir / article_path.name
 
         output = f"---{new_fm}---\n{new_body}"
-        if site == "cosmetics":
-            if unchanged(content, output):
-                raise ValueError("Untranslated English paragraph; existing content was preserved")
-            if external_links(content) != external_links(output):
-                raise ValueError("Changed product or source links; existing content was preserved")
-            if translation_structure(content, output, lang):
-                raise ValueError("Missing sections or affiliate disclosure; existing content was preserved")
-            output = stamp(content, output)
+        if unchanged(content, output):
+            raise ValueError("Untranslated English paragraph; existing content was preserved")
+        if external_links(content) != external_links(output):
+            raise ValueError("Changed product or source links; existing content was preserved")
+        if translation_structure(content, output, lang):
+            raise ValueError("Missing sections or affiliate disclosure; existing content was preserved")
+        output = stamp(content, output)
         target_file.write_text(output)
         return True
 
