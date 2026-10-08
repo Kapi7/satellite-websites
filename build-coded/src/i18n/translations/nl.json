@@ -95,7 +95,7 @@
     "toolFinderCta": "Start de quiz \u00b7 45 sec \u2192",
     "reviewsAndGuides": "Reviews & gidsen",
     "handsOn": "IN DE PRAKTIJK",
-    "honestTestBadge": "\u25c6 We kopen elk gereedschap dat we testen. Geen bruiklenen, geen cadeaus.",
+    "honestTestBadge": "Op bronnen gebaseerde gidsen over gereedschap, materialen en klussen.",
     "saturdayStamp": "ZAT \u00b7 BEZORGING",
     "saturdayKicker": "\u2014 DE ZATERDAG-BRIEF",
     "saturdayHeadline": "E\u00e9n project, \u00e9\u00e9n tool, \u00e9\u00e9n reparatie \u2014 elke zaterdag om 7am.",
@@ -161,8 +161,15 @@
   "about": {
     "label": "Over ons",
     "title": "Over ons",
-    "heading": "Gebouwd in onze werkplaats, niet op persberichten.",
-    "description": "DIY-enthousiastelingen die schrijven over wat we \u00e9cht bouwen, testen en waar we in geloven."
+    "heading": "Gereedschap, projecten, duidelijke uitleg.",
+    "description": "Op bronnen gebaseerde gidsen over gereedschap, materialen en klussen.",
+    "titleLine1": "Gereedschap,",
+    "titleLine2": "projecten,",
+    "titleLine3": "duidelijke uitleg.",
+    "promise1": "Onze gidsen combineren bronnenonderzoek met door AI ondersteund schrijfwerk.",
+    "promise2": "Een productvergelijking bewijst geen praktijktest. Zoek naar vastgelegde methoden en resultaten wanneer een test wordt genoemd.",
+    "promise3": "Sommige winkellinks zijn affiliatelinks. Lees onze toelichting voor details.",
+    "promise4": "Controleer voor aankoop de actuele specificaties, inhoud, geschiktheid en prijzen bij de fabrikant of winkel."
   },
   "privacy": {
     "label": "Juridisch",

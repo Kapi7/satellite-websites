@@ -95,7 +95,7 @@
     "toolFinderCta": "Quiz starten \u00b7 45 sec \u2192",
     "reviewsAndGuides": "Tests & Anleitungen",
     "handsOn": "PRAXIS",
-    "honestTestBadge": "\u25c6 Wir kaufen jedes Werkzeug, das wir testen. Keine Leihgaben, keine Geschenke.",
+    "honestTestBadge": "Recherchebasierte Ratgeber zu Werkzeugen, Materialien und Heimwerken.",
     "saturdayStamp": "SA \u00b7 LIEFERUNG",
     "saturdayKicker": "\u2014 DER SAMSTAGS-BRIEF",
     "saturdayHeadline": "Ein Projekt, ein Werkzeug, eine Reparatur \u2014 jeden Samstag 7am.",
@@ -161,8 +161,15 @@
   "about": {
     "label": "\u00dcber uns",
     "title": "\u00dcber uns",
-    "heading": "In unserer Werkstatt gebaut, nicht aus Pressemitteilungen.",
-    "description": "DIY-Enthusiasten, die \u00fcber das schreiben, was wir tats\u00e4chlich bauen, testen und woran wir glauben."
+    "heading": "Werkzeuge, Projekte, klare Orientierung.",
+    "description": "Recherchebasierte Ratgeber zu Werkzeugen, Materialien und Heimwerken.",
+    "titleLine1": "Werkzeuge,",
+    "titleLine2": "Projekte,",
+    "titleLine3": "klare Orientierung.",
+    "promise1": "Unsere Ratgeber verbinden Quellenrecherche mit KI-gestützter Texterstellung.",
+    "promise2": "Ein Produktvergleich ist kein Nachweis eines Praxistests. Achten Sie bei Testbehauptungen auf dokumentierte Methoden und Ergebnisse.",
+    "promise3": "Einige Händlerlinks sind Affiliate-Links. Details stehen in unserer Offenlegung.",
+    "promise4": "Prüfen Sie vor dem Kauf aktuelle Spezifikationen, Lieferumfang, Eignung und Preise beim Hersteller oder Händler."
   },
   "privacy": {
     "label": "Rechtliches",

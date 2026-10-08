@@ -24,12 +24,6 @@ const promises = [
   t(locale, 'about.promise4'),
 ];
 
-const team = [
-  { n: 'Rafe Connors', r: t(locale, 'about.roleEditor'), bio: t(locale, 'about.bioRafe') },
-  { n: 'Mae Delgado', r: t(locale, 'about.roleHome'), bio: t(locale, 'about.bioMae') },
-  { n: 'Jun Ishida', r: t(locale, 'about.roleElectronics'), bio: t(locale, 'about.bioJun') },
-];
-
 const personSchema = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'AboutPage',
@@ -72,19 +66,7 @@ const personSchema = JSON.stringify({
         ))}
       </div>
 
-      <div class="mono bca-section-kicker">&#9670; {t(locale, 'about.theTeam')}</div>
-      <div class="bca-team">
-        {team.map((p) => (
-          <div class="bca-person">
-            <div class="bca-avatar">{p.n.split(' ').map(n => n[0]).join('')}</div>
-            <div class="bca-person-body">
-              <div class="bca-person-name">{p.n}</div>
-              <div class="mono bca-person-role">{p.r}</div>
-              <div class="bca-person-bio">{p.bio}</div>
-            </div>
-          </div>
-        ))}
-      </div>
+
     </div>
   </main>
   <div class="bc-desktop-home">

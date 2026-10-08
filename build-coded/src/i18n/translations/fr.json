@@ -95,7 +95,7 @@
     "toolFinderCta": "Commencer le quiz \u00b7 45 sec \u2192",
     "reviewsAndGuides": "Tests & guides",
     "handsOn": "SUR LE TERRAIN",
-    "honestTestBadge": "\u25c6 On ach\u00e8te chaque outil qu'on teste. Aucun pr\u00eat, aucun cadeau.",
+    "honestTestBadge": "Des guides documentés sur les outils, les matériaux et les travaux domestiques.",
     "saturdayStamp": "SAM \u00b7 LIVRAISON",
     "saturdayKicker": "\u2014 LE BRIEF DU SAMEDI",
     "saturdayHeadline": "Un projet, un outil, une r\u00e9paration \u2014 chaque samedi \u00e0 7am.",
@@ -161,8 +161,15 @@
   "about": {
     "label": "\u00c0 propos",
     "title": "\u00c0 propos de nous",
-    "heading": "Construit dans notre atelier, pas sur des communiqu\u00e9s de presse.",
-    "description": "Des passionn\u00e9s de DIY qui \u00e9crivent sur ce que nous construisons, testons et croyons vraiment."
+    "heading": "Des outils, des projets, des conseils clairs.",
+    "description": "Des guides documentés sur les outils, les matériaux et les travaux domestiques.",
+    "titleLine1": "Des outils,",
+    "titleLine2": "des projets,",
+    "titleLine3": "des conseils clairs.",
+    "promise1": "Nos guides associent recherche de sources et rédaction assistée par IA.",
+    "promise2": "Un comparatif ne prouve pas un essai pratique. Recherchez des méthodes et des résultats documentés lorsqu’un test est revendiqué.",
+    "promise3": "Certains liens marchands sont affiliés. Consultez notre déclaration pour les détails.",
+    "promise4": "Avant tout achat, vérifiez les caractéristiques, le contenu, la compatibilité et les prix actuels auprès du fabricant ou du vendeur."
   },
   "privacy": {
     "label": "Mentions l\u00e9gales",

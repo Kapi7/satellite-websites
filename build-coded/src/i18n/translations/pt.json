@@ -95,7 +95,7 @@
     "toolFinderCta": "Come\u00e7ar o quiz \u00b7 45 sec \u2192",
     "reviewsAndGuides": "Reviews & guias",
     "handsOn": "NA PR\u00c1TICA",
-    "honestTestBadge": "\u25c6 Compramos cada ferramenta que testamos. Sem empr\u00e9stimos, sem brindes.",
+    "honestTestBadge": "Guias baseados em pesquisa sobre ferramentas, materiais e melhorias em casa.",
     "saturdayStamp": "S\u00c1B \u00b7 ENTREGA",
     "saturdayKicker": "\u2014 O BRIEF DE S\u00c1BADO",
     "saturdayHeadline": "Um projeto, uma ferramenta, um reparo \u2014 todo s\u00e1bado \u00e0s 7am.",
@@ -161,8 +161,15 @@
   "about": {
     "label": "Sobre",
     "title": "Sobre N\u00f3s",
-    "heading": "Constru\u00eddo na nossa oficina, n\u00e3o em comunicados de imprensa.",
-    "description": "Entusiastas de DIY escrevendo sobre o que a gente realmente constr\u00f3i, testa e acredita."
+    "heading": "Ferramentas, projetos, orientação clara.",
+    "description": "Guias baseados em pesquisa sobre ferramentas, materiais e melhorias em casa.",
+    "titleLine1": "Ferramentas,",
+    "titleLine2": "projetos,",
+    "titleLine3": "orientação clara.",
+    "promise1": "Os nossos guias combinam pesquisa de fontes e redação assistida por IA.",
+    "promise2": "Uma comparação de produtos não comprova um teste prático. Procure métodos e resultados documentados quando um teste for mencionado.",
+    "promise3": "Alguns links para lojas são de afiliados. Consulte a nossa declaração para mais detalhes.",
+    "promise4": "Antes de comprar, confirme as especificações, o conteúdo, a adequação e os preços atuais com o fabricante ou a loja."
   },
   "privacy": {
     "label": "Legal",

@@ -95,7 +95,7 @@
     "toolFinderCta": "Inizia il quiz \u00b7 45 sec \u2192",
     "reviewsAndGuides": "Recensioni e guide",
     "handsOn": "SUL CAMPO",
-    "honestTestBadge": "\u25c6 Compriamo ogni strumento che testiamo. Nessun prestito, nessun omaggio.",
+    "honestTestBadge": "Guide basate sulla ricerca su attrezzi, materiali e lavori domestici.",
     "saturdayStamp": "SAB \u00b7 CONSEGNA",
     "saturdayKicker": "\u2014 IL BRIEF DEL SABATO",
     "saturdayHeadline": "Un progetto, uno strumento, una riparazione \u2014 ogni sabato alle 7am.",
@@ -161,8 +161,15 @@
   "about": {
     "label": "Chi Siamo",
     "title": "Chi Siamo",
-    "heading": "Costruito nel nostro laboratorio, non basato su comunicati stampa.",
-    "description": "Appassionati di fai da te che scrivono su ci\u00f2 che effettivamente costruiamo, testiamo e in cui crediamo."
+    "heading": "Attrezzi, progetti, indicazioni chiare.",
+    "description": "Guide basate sulla ricerca su attrezzi, materiali e lavori domestici.",
+    "titleLine1": "Attrezzi,",
+    "titleLine2": "progetti,",
+    "titleLine3": "indicazioni chiare.",
+    "promise1": "Le nostre guide combinano ricerca delle fonti e scrittura assistita dall’IA.",
+    "promise2": "Un confronto tra prodotti non dimostra una prova pratica. Cerca metodi e risultati documentati quando viene dichiarato un test.",
+    "promise3": "Alcuni link ai rivenditori sono affiliati. Consulta la nostra informativa per i dettagli.",
+    "promise4": "Prima dell’acquisto verifica specifiche, contenuto della confezione, idoneità e prezzi attuali con il produttore o il rivenditore."
   },
   "privacy": {
     "label": "Legale",
