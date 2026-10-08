@@ -134,5 +134,11 @@
     "sha256": "7b4c0474d809191c4330b698891fe2f7292b699bfc3de33aea2efa3b3570e228",
     "verifiedAt": "2026-10-04",
     "visualReview": "Inspected photograph for subject and exact model/pack match; not a hands-on test."
+  },
+  "/images/verified/cosrx-patch-official-24.jpg": {
+    "product": "COSRX Acne Pimple Master Patch 24 patches",
+    "url": "https://www.cosrx.com/products/acne-pimple-master-patch",
+    "sourceImage": "https://www.cosrx.com/cdn/shop/files/acne-pimple-master-patch-cosrx-official-1_1200x1200.jpg?v=1724835736",
+    "verifiedAt": "2026-10-08"
   }
 }

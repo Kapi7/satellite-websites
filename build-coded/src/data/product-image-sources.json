@@ -124,5 +124,12 @@
     "verifiedAt": "2026-10-08",
     "visualReview": "Visually matched original drawing and gallery interpretation. Publicly published source; not Build Coded testing or verified physical-print photography.",
     "sha256": "0869a8693b8d65de3d9d9218aba0d88d5238b21cf3c0e2fac03cd459b7694914"
+  },
+  "/images/verified/bambu-a1-mini.jpg": {
+    "product": "Bambu Lab A1 mini",
+    "url": "https://us.store.bambulab.com/products/a1-mini",
+    "sourceImage": "https://store.bblcdn.eu/s8/default/1604d9e9669947d2a62d1deb5eef7bef/A1_mini.jpg",
+    "verifiedAt": "2026-10-08",
+    "creditLabel": "Manufacturer image"
   }
 }
