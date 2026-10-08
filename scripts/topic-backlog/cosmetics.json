@@ -303,5 +303,39 @@
     "imageAlt": "",
     "reviewed": "2026-09-17",
     "prompt": "Write a practical 400–600 word shopping checklist about avoiding accidental duplicate skincare purchases in a cart. No H1 or frontmatter. Use H2 headings and a short Markdown worksheet. Compare exact product name, formula or shade, size, quantity, and bundle contents with products already owned. Explain that similarly named products can differ, and that a bundle may duplicate a separate cart item. Use clearly hypothetical examples, not invented brands, prices, policies or ingredient claims. If mentioning a retailer, only Mirai Skin; do not claim any unverified stock, offers or policies. Let readers record their own observations and actual cart details; do not turn author evidence restrictions into instructions preventing readers from recording prices or product experiences. Link internally to /keep-a-skincare-product-notebook/ and /compare-skincare-unit-prices/. No medical claims, firsthand testing claims, artificial branded product photographs, HTML tags or code fences. Disclose AI-assisted drafting rather than claiming product testing."
+  },
+  {
+    "site": "cosmetics",
+    "slug": "relief-sun-single-vs-double-pack-checklist",
+    "title": "Relief Sun Single Tube or Double Pack: Check What You Are Ordering",
+    "description": "Relief Sun Single Tube or Double Pack: Check What You Are Ordering. A focused purchase-decision checklist.",
+    "category": "how-tos",
+    "type": "guide",
+    "tags": [
+      "buying guide"
+    ],
+    "author": "Glow Coded Editorial",
+    "image_prompt": "skip",
+    "imageAlt": "",
+    "status": "needs-review",
+    "reviewScopeDate": "2026-10-08",
+    "prompt": "Compare exact name, formula, unit count and volume from refreshed Mirai product pages. Explain unit-price arithmetic with hypothetical figures, not live prices. Distinguish Rice + Probiotics from Aqua-fresh. No performance ranking, universal suitability, treatment claims or invented hands-on test. Link to the updated Beauty of Joseon guide. Preserve uncertainty. Use primary sources with exact URLs, disclose any affiliate links, no fabricated experience. Draft only; needs source, image and translation review before publication."
+  },
+  {
+    "site": "cosmetics",
+    "slug": "glow-serum-vs-glow-deep-label-check",
+    "title": "Glow Serum or Glow Deep: Read the Full Name Before Ordering",
+    "description": "Glow Serum or Glow Deep: Read the Full Name Before Ordering. A focused purchase-decision checklist.",
+    "category": "how-tos",
+    "type": "guide",
+    "tags": [
+      "buying guide"
+    ],
+    "author": "Glow Coded Editorial",
+    "image_prompt": "skip",
+    "imageAlt": "",
+    "status": "needs-review",
+    "reviewScopeDate": "2026-10-08",
+    "prompt": "Verify exact current manufacturer formulas and Mirai availability separately. Explain that similar names are different products; do not imply ingredient-level evidence proves results from a finished formula. No promised acne treatment, timelines or invented prices. Include one optional-product decision checklist and use an authentic exact-bottle photograph only after visual review. Preserve uncertainty. Use primary sources with exact URLs, disclose any affiliate links, no fabricated experience. Draft only; needs source, image and translation review before publication."
   }
 ]

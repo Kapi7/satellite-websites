@@ -214,5 +214,39 @@
     "image_prompt": "skip",
     "imageAlt": "",
     "prompt": "Write an original, concise practical guide titled Build a DIY Project Budget with Clearly Labeled Assumptions. Audience: readers of build-coded. 500-800 words, Markdown, no H1 or frontmatter. Include a reusable checklist or worksheet and one clearly hypothetical worked example where useful. Do not invent product names, product links, personal testing, prices, experts, citations, health claims, electrical instructions, or safety certifications. Focus on organization and planning, not medical advice or technical installation instructions. Explain limitations. Do not pad to reach the word count. Link to the existing category route /category/home-improvement/. End with a transparent note that AI assisted drafting and this is a planning guide, not hands-on testing. If skincare is mentioned, use only the basic cleanser/moisturizer/sun-protection framework and cite https://www.aad.org/public/everyday-care/skin-care-basics/care/skin-care-budget . Do not add new medical claims. No fictional imagery or research claims."
+  },
+  {
+    "site": "build-coded",
+    "slug": "impact-driver-package-contents-record",
+    "title": "Record Impact Driver Package Contents Before Buying",
+    "description": "Record Impact Driver Package Contents Before Buying. A focused purchase-decision checklist.",
+    "category": "woodworking",
+    "type": "guide",
+    "tags": [
+      "buying guide"
+    ],
+    "author": "Build Coded Editorial",
+    "image_prompt": "skip",
+    "imageAlt": "",
+    "status": "needs-review",
+    "reviewScopeDate": "2026-10-08",
+    "prompt": "Use the DCF850B manufacturer listing only as a clearly identified bare-tool example. Include fields for full kit suffix, battery model and count, charger model and input supply, bits, case and delivered total. Never invent an Amazon ASIN or assume an adapter makes a charger compatible. Link to the updated impact-driver kit guide. Preserve uncertainty. Use primary sources with exact URLs, disclose any affiliate links, no fabricated experience. Draft only; needs source, image and translation review before publication."
+  },
+  {
+    "site": "build-coded",
+    "slug": "tool-battery-compatibility-shopping-record",
+    "title": "Check Your Existing Battery Equipment Before Buying a Tool",
+    "description": "Check Your Existing Battery Equipment Before Buying a Tool. A focused purchase-decision checklist.",
+    "category": "woodworking",
+    "type": "guide",
+    "tags": [
+      "buying guide"
+    ],
+    "author": "Build Coded Editorial",
+    "image_prompt": "skip",
+    "imageAlt": "",
+    "status": "needs-review",
+    "reviewScopeDate": "2026-10-08",
+    "prompt": "Create a purchasing worksheet, not electrical advice. Record exact tool, battery and charger model numbers and the manufacturer compatibility reference. No universal compatibility claims or installation instructions. Distinguish an equipment inventory from verified compatibility. Link to the existing DCD800B versus DCD800D2 guide. Preserve uncertainty. Use primary sources with exact URLs, disclose any affiliate links, no fabricated experience. Draft only; needs source, image and translation review before publication."
   }
 ]

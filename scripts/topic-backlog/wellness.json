@@ -232,5 +232,39 @@
     "image_prompt": "skip",
     "imageAlt": "",
     "prompt": "Write an original, concise practical guide titled A Simple Weekly Review for Food, Movement, and Rest. Audience: readers of wellness. 500-800 words, Markdown, no H1 or frontmatter. Include a reusable checklist or worksheet and one clearly hypothetical worked example where useful. Do not invent product names, product links, personal testing, prices, experts, citations, health claims, electrical instructions, or safety certifications. Focus on organization and planning, not medical advice or technical installation instructions. Explain limitations. Do not pad to reach the word count. Link to the existing category route /category/natural-health/. End with a transparent note that AI assisted drafting and this is a planning guide, not hands-on testing. If skincare is mentioned, use only the basic cleanser/moisturizer/sun-protection framework and cite https://www.aad.org/public/everyday-care/skin-care-basics/care/skin-care-budget . Do not add new medical claims. No fictional imagery or research claims."
+  },
+  {
+    "site": "wellness",
+    "slug": "choose-one-serum-without-duplicating-routine",
+    "title": "Choose One Serum Without Duplicating Your Routine",
+    "description": "Choose One Serum Without Duplicating Your Routine. A focused purchase-decision checklist.",
+    "category": "k-beauty",
+    "type": "guide",
+    "tags": [
+      "buying guide"
+    ],
+    "author": "Rooted Glow Editorial",
+    "image_prompt": "skip",
+    "imageAlt": "",
+    "status": "needs-review",
+    "reviewScopeDate": "2026-10-08",
+    "prompt": "Compare the exact Torriden DIVE-IN 50 ml and Beauty of Joseon Glow Serum Propolis + Niacinamide 30 ml labels as alternative shopping questions, not a treatment ranking. Link to the existing serum comparison. Check manufacturer and Mirai product pages again before review. Do not infer clinical benefit from ingredients or say both are needed. Preserve uncertainty. Use primary sources with exact URLs, disclose any affiliate links, no fabricated experience. Draft only; needs source, image and translation review before publication."
+  },
+  {
+    "site": "wellness",
+    "slug": "cleanser-replacement-shopping-record",
+    "title": "A Cleanser Replacement Record Before You Reorder",
+    "description": "A Cleanser Replacement Record Before You Reorder. A focused purchase-decision checklist.",
+    "category": "k-beauty",
+    "type": "guide",
+    "tags": [
+      "buying guide"
+    ],
+    "author": "Rooted Glow Editorial",
+    "image_prompt": "skip",
+    "imageAlt": "",
+    "status": "needs-review",
+    "reviewScopeDate": "2026-10-08",
+    "prompt": "Provide a printable text worksheet for current product name, size, ingredient exclusions, reason for replacement and delivery total. Use clearly hypothetical blank examples, no diagnosis or product recommendations. Link to the existing night routine and double-cleansing guide. Preserve uncertainty. Use primary sources with exact URLs, disclose any affiliate links, no fabricated experience. Draft only; needs source, image and translation review before publication."
   }
 ]
