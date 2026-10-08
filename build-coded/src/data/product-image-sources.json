@@ -88,5 +88,41 @@
     "verifiedAt": "2026-10-08",
     "visualReview": "Reviewed public source asset; example only, not our commissioned model or hands-on print test.",
     "sha256": "5ee2b632adc9cf14f0cc6f19d297387ddee143907c68dd977a24f7f2f3010fc6"
+  },
+  "/images/verified/figura-pink-drawing.jpg": {
+    "product": "Five-legged heart creature — original drawing",
+    "creditLabel": "Drawing example",
+    "url": "https://figura3d.ai/pages/gallery",
+    "sourceImage": "https://figura3d.ai/cdn/shop/t/2/assets/figura-gallery-pink-drawing.jpg?v=155915365212066703271791199910",
+    "verifiedAt": "2026-10-08",
+    "visualReview": "Visually matched original drawing and gallery interpretation. Publicly published source; not Build Coded testing or verified physical-print photography.",
+    "sha256": "572cd531999071330af73c7f575f0348392bc69300d979fa9723ce403b125d76"
+  },
+  "/images/verified/figura-pink-preview.jpg": {
+    "product": "Five-legged heart creature — not a verified physical-print photograph",
+    "creditLabel": "Gallery interpretation",
+    "url": "https://figura3d.ai/pages/gallery",
+    "sourceImage": "https://figura3d.ai/cdn/shop/t/2/assets/figura-gallery-pink-figurine.jpg?v=138536086891008187061791199910",
+    "verifiedAt": "2026-10-08",
+    "visualReview": "Visually matched original drawing and gallery interpretation. Publicly published source; not Build Coded testing or verified physical-print photography.",
+    "sha256": "61e7aa43573995c904e64d05fa9889aacc494bef597f02a98e61dfc1c8defc8c"
+  },
+  "/images/verified/figura-green-drawing.jpg": {
+    "product": "Green winged character — original drawing",
+    "creditLabel": "Drawing example",
+    "url": "https://figura3d.ai/pages/gallery",
+    "sourceImage": "https://figura3d.ai/cdn/shop/t/2/assets/figura-gallery-green-drawing.jpg?v=90668293796788475501791199910",
+    "verifiedAt": "2026-10-08",
+    "visualReview": "Visually matched original drawing and gallery interpretation. Publicly published source; not Build Coded testing or verified physical-print photography.",
+    "sha256": "90810c8e9626be02ffb763971c078990a567d53fa7be5323d20f448a10d4d9c8"
+  },
+  "/images/verified/figura-green-preview.jpg": {
+    "product": "Green winged character — not a verified physical-print photograph",
+    "creditLabel": "Gallery interpretation",
+    "url": "https://figura3d.ai/pages/gallery",
+    "sourceImage": "https://figura3d.ai/cdn/shop/t/2/assets/figura-gallery-green-figurine.jpg?v=119180436440696556571791199909",
+    "verifiedAt": "2026-10-08",
+    "visualReview": "Visually matched original drawing and gallery interpretation. Publicly published source; not Build Coded testing or verified physical-print photography.",
+    "sha256": "0869a8693b8d65de3d9d9218aba0d88d5238b21cf3c0e2fac03cd459b7694914"
   }
 }
