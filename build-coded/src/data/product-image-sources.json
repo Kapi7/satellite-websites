@@ -1,24 +1,24 @@
 {
   "/images/verified/dcd800.webp": {
-    "product": "DCD800 \u2014 20V MAX* XR\u00ae 1/2 in. Brushless Cordless Drill/Driver (Tool Only)",
+    "product": "DCD800 — 20V MAX* XR® 1/2 in. Brushless Cordless Drill/Driver (Tool Only)",
     "url": "https://www.dewalt.com/product/dcd800b/20v-max-xr-brushless-cordless-12-drilldriver-tool-only",
     "sourceImage": "https://assets.dewalt.com/NAG/PRODUCT/IMAGES/HIRES/WHITEBG/DCD800B_1_1680.webp",
     "verifiedAt": "2026-09-12"
   },
   "/images/verified/dwe7491.webp": {
-    "product": "DWE7491 \u2014 10-In. Jobsite Table Saw and Rolling Stand | DEWALT\u00ae",
+    "product": "DWE7491 — 10-In. Jobsite Table Saw and Rolling Stand | DEWALT®",
     "url": "https://www.dewalt.com/en-us/product/dwe7491rs/10-jobsite-table-saw-and-rolling-stand",
     "sourceImage": "https://assets.dewalt.com/NAG/PRODUCT/IMAGES/HIRES/WHITEBG/DWE7491RS_1_1680.webp",
     "verifiedAt": "2026-09-12"
   },
   "/images/verified/dws779.webp": {
-    "product": "DWS779 \u2014 12 in. Double-Bevel Sliding Compound Miter Saw",
+    "product": "DWS779 — 12 in. Double-Bevel Sliding Compound Miter Saw",
     "url": "https://www.dewalt.com/en-us/product/dws779/12-double-bevel-sliding-compound-miter-saw",
     "sourceImage": "https://assets.dewalt.com/NAG/PRODUCT/IMAGES/HIRES/WHITEBG/DWS779_1_1680.webp",
     "verifiedAt": "2026-09-12"
   },
   "/images/verified/mm400.jpg": {
-    "product": "MM400 \u2014 Digital Multimeter, Auto-Ranging, 600V - MM400 | Klein Tools",
+    "product": "MM400 — Digital Multimeter, Auto-Ranging, 600V - MM400 | Klein Tools",
     "url": "https://www.kleintools.com/catalog/multimeters/digital-multimeter-auto-ranging-600v",
     "sourceImage": "https://www.kleintools.com/sites/default/files/product-assets/catalog-imagery/original/klein/mm400_alt1.jpg",
     "verifiedAt": "2026-09-12"
@@ -70,5 +70,23 @@
     "verifiedAt": "2026-10-08",
     "notes": "Visually checked bare tool: hex holder, belt hook, no battery or charger. Not a kit photograph.",
     "sha256": "eb387b0830fdfb019a325ef3c96cd8a05512e935c424b53b0426ce2d8383dcfe"
+  },
+  "/images/verified/figura-robot-preview.png": {
+    "product": "Figura robot example; not a verified photograph of a physical print",
+    "creditLabel": "Digital preview",
+    "url": "https://figura3d.ai/pages/print-at-home",
+    "sourceImage": "https://figura3d.ai/cdn/shop/t/2/assets/figura-showcase-robot.png?v=55756726980309490451791199910",
+    "verifiedAt": "2026-10-08",
+    "visualReview": "Reviewed public source asset; example only, not our commissioned model or hands-on print test.",
+    "sha256": "1d1ed88a4afe25911a7cc4accc4292bbb42d19ac5ab657aeb7d49d3a9019b5ba"
+  },
+  "/images/verified/figura-robot-drawing.jpg": {
+    "product": "Figura original robot drawing published on its DIY page",
+    "creditLabel": "Drawing example",
+    "url": "https://figura3d.ai/pages/print-at-home",
+    "sourceImage": "https://figura3d.ai/cdn/shop/t/2/assets/figura-gallery-robot-drawing.jpg?v=108096049340343784041791199910",
+    "verifiedAt": "2026-10-08",
+    "visualReview": "Reviewed public source asset; example only, not our commissioned model or hands-on print test.",
+    "sha256": "5ee2b632adc9cf14f0cc6f19d297387ddee143907c68dd977a24f7f2f3010fc6"
   }
 }
