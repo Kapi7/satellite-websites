@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="520" viewBox="0 0 720 520" role="img" aria-labelledby="title desc">
+<title id="title">Three checks before printing a drawing-based figurine</title>
+<desc id="desc">Original Build Coded editorial diagram. Compare the model with the drawing, inspect the sliced layers, then confirm the printer setup. This is not a screenshot or a physical printing result.</desc>
+<defs><pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" fill="none" stroke="#ded8c9" stroke-width=".6"/></pattern></defs>
+<rect width="720" height="520" fill="#f3efe5"/><rect width="720" height="520" fill="url(#grid)"/>
+<rect x="30" y="28" width="10" height="10" fill="#c45d37"/><text x="51" y="39" font-family="Arial,sans-serif" font-size="14" font-weight="700" letter-spacing="2" fill="#303b3d">BUILD CODED / PRINT WORKSHEET</text>
+<text x="30" y="99" font-family="Arial,sans-serif" font-size="34" font-weight="800" fill="#243033">THREE CHECKS.</text><text x="30" y="139" font-family="Arial,sans-serif" font-size="34" font-weight="800" fill="#c45d37">BEFORE THE PRINTER STARTS.</text>
+<g fill="#fffdf7" stroke="#bdb7a8"><rect x="30" y="173" width="208" height="260" rx="8"/><rect x="256" y="173" width="208" height="260" rx="8"/><rect x="482" y="173" width="208" height="260" rx="8"/></g>
+<g font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="#a6492b"><text x="48" y="202">01 / THE MODEL</text><text x="274" y="202">02 / THE LAYERS</text><text x="500" y="202">03 / THE SETUP</text></g>
+<g stroke="#303b3d" stroke-width="4" fill="none" stroke-linejoin="round"><path d="M134 229l54 30v63l-54 30-54-30v-63z"/><path d="M80 259l54 31 54-31M134 290v62"/><path d="M134 229v61" stroke-dasharray="5 5" stroke="#c45d37"/>
+<path d="M303 314l57 30 57-30M303 301l57 30 57-30M303 288l57 30 57-30M303 275l57 30 57-30M303 262l57 30 57-30M303 249l57-23 57 23-57 30z"/>
+<rect x="534" y="233" width="104" height="113" rx="3"/><path d="M546 330h80M549 248h74M586 249v23M576 272h20l-10 15z"/><path d="M565 319l21-22 21 22z" stroke="#c45d37"/>
+</g>
+<g font-family="Arial,sans-serif" text-anchor="middle" fill="#243033"><g font-size="25" font-weight="700"><text x="134" y="386">Keep the idea</text><text x="360" y="386">Inspect paths</text><text x="586" y="386">Match hardware</text></g><g font-size="16"><text x="134" y="413">Shape · details · scale</text><text x="360" y="413">Supports · fine features</text><text x="586" y="413">Profile · nozzle · filament</text></g></g>
+<text x="30" y="479" font-family="Arial,sans-serif" font-size="18" fill="#59605c">A digital preview is the beginning of the review.</text>
+</svg>
