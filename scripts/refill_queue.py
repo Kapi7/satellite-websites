@@ -8,7 +8,7 @@ the queue. When the last hand-made batch drained, the queue sat at zero and no
 new content shipped.
 
 This closes the loop. For each site:
-  1. Count remaining `draft: true` English articles (runway in days).
+  1. Report raw drafts separately from automated readiness; neither certifies editorial approval.
   2. If runway < THRESHOLD, take the next unused topics from the per-site
      backlog (scripts/topic-backlog/<site>.json) — skipping any whose slug
      already exists — and generate them as drafts via gen_articles_batch.py
@@ -33,6 +33,8 @@ import subprocess
 import sys
 import tempfile
 from pathlib import Path
+
+from editorial_readiness import inventory
 
 ROOT = Path(__file__).resolve().parent.parent
 SCRIPTS = ROOT / "scripts"
@@ -82,13 +84,22 @@ def main() -> int:
 
     summary = []
     failed = False
+    readiness = inventory()
     for site in SITES:
         if not (ROOT / site / "src" / "content" / "blog" / "en").is_dir():
             continue
-        draft_count = count_drafts(site)
-        runway = draft_count * CADENCE_DAYS[site]
-        if runway >= args.threshold:
-            summary.append(f"{site}: {draft_count} drafts (~{runway} days) — OK")
+        draft_count = readiness[site]["rawDrafts"]
+        passing = readiness[site]["automatedChecksPassing"]
+        raw_capacity = draft_count * CADENCE_DAYS[site]
+        checked_capacity = passing * CADENCE_DAYS[site]
+        status = (f"{site}: {draft_count} raw drafts; {passing} pass automated checks "
+                  f"(~{checked_capacity} days at current cadence, not editorial approval)")
+        if raw_capacity >= args.threshold:
+            if checked_capacity < args.threshold:
+                summary.append(status + " — BLOCKED: review existing drafts before adding volume")
+                failed = True
+            else:
+                summary.append(status + " — automated capacity meets threshold; editorial review still required")
             continue
 
         backlog = load_backlog(site)
@@ -98,13 +109,13 @@ def main() -> int:
         take = pending[: args.batch]
 
         if not take:
-            summary.append(f"{site}: {draft_count} drafts (~{runway} days) — LOW but backlog EMPTY (add topics to topic-backlog/{site}.json)")
+            summary.append(status + f" — LOW; no eligible unused topics in topic-backlog/{site}.json")
             failed = True
             continue
 
         slugs = ", ".join(t["slug"] for t in take)
         if args.dry_run:
-            summary.append(f"{site}: {draft_count} drafts (~{runway} days) — would generate {len(take)}: {slugs}")
+            summary.append(status + f" — would generate {len(take)} unreviewed drafts: {slugs}")
             continue
 
         # Write a temp spec slice and hand it to the existing batch generator.
