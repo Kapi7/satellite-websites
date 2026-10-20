@@ -150,7 +150,13 @@ def main():
             except Exception:
                 if attempt==3:raise
                 time.sleep(10)
-        item['status']='verified';item['publishedCommit']=sha
+    # Merge acknowledgements into the latest manifest; preserve concurrent new approvals.
+    data=json.loads(MANIFEST.read_text())
+    for item in pending:
+        current=next(r for r in data['articles'] if r['site']==item['site'] and r['slug']==item['slug'])
+        if current['locales'] != item['locales'] or current['publishDate'] != item['publishDate']:
+            raise RuntimeError('Release approval changed during deployment')
+        current['status']='verified';current['publishedCommit']=sha
     MANIFEST.write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n')
     commit_paths([MANIFEST],'Record verified live article release')
     report(data)
