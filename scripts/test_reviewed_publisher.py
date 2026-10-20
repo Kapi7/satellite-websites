@@ -1,5 +1,6 @@
 import copy
 import json
+import re
 import tempfile
 import unittest
 from pathlib import Path
@@ -12,7 +13,8 @@ class ReviewedPublisherTests(unittest.TestCase):
         self.temp=tempfile.TemporaryDirectory();self.root=Path(self.temp.name).resolve()
         self.item=copy.deepcopy(json.loads(pub.MANIFEST.read_text())['articles'][0])
         real=pub.article_path(self.item,'en');self.path=self.root/real.relative_to(pub.ROOT)
-        self.path.parent.mkdir(parents=True);self.path.write_text(real.read_text())
+        self.path.parent.mkdir(parents=True)
+        self.path.write_text(re.sub(r"^draft:.*$", "draft: true", real.read_text(), flags=re.M))
         for image in self.item['locales']['en']['images']:
             rel=Path(self.item['site'])/'public'/image.lstrip('/')
             (self.root/rel).parent.mkdir(parents=True,exist_ok=True);(self.root/rel).write_bytes((pub.ROOT/rel).read_bytes())
