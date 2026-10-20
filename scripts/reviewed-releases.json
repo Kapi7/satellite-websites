@@ -23,7 +23,8 @@
             }
           }
         }
-      }
+      },
+      "publishedCommit": "5a3898e0fb5600d5e295f67ab3998f6237313be8"
     },
     {
       "site": "wellness",
@@ -47,7 +48,8 @@
             }
           }
         }
-      }
+      },
+      "publishedCommit": "5a3898e0fb5600d5e295f67ab3998f6237313be8"
     },
     {
       "site": "build-coded",
@@ -71,7 +73,8 @@
             }
           }
         }
-      }
+      },
+      "publishedCommit": "5a3898e0fb5600d5e295f67ab3998f6237313be8"
     }
   ]
 }

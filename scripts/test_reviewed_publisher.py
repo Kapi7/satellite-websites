@@ -1,4 +1,5 @@
 import copy
+import io
 import json
 import re
 import tempfile
@@ -47,6 +48,19 @@ class ReviewedPublisherTests(unittest.TestCase):
     def test_retry_keeps_content_and_date(self):
         pub.prepare(self.item);before=self.path.read_bytes();pub.prepare(self.item)
         self.assertEqual(self.path.read_bytes(),before)
+    def test_photo_verification_uses_explicit_verifier_headers(self):
+        host=pub.SITES[self.item['site']][1]
+        html=(' '.join(self.item['liveMarkers'])+' https://'+host+'/'+self.item['slug']+'/').encode()
+        image=next(iter(self.item['locales']['en']['images']))
+        image_bytes=(self.root/self.item['site']/'public'/image.lstrip('/')).read_bytes()
+        calls=[]
+        def response(request, timeout):
+            calls.append(request)
+            self.assertEqual(request.get_header('User-agent'),'SatelliteReleaseVerifier/1.0')
+            return io.BytesIO(image_bytes if '/images/' in request.full_url else html)
+        with patch.object(pub.urllib.request,'urlopen',side_effect=response):pub.verify_live(self.item)
+        self.assertEqual(len(calls),2)
+
     def test_no_notification_or_generation_in_release_entrypoint(self):
         text=(Path(__file__).parent/'daily-publish.sh').read_text()
         self.assertIn('DISABLE_OUTBOUND_NOTIFICATIONS=1',text)

@@ -98,7 +98,8 @@ def verify_live(item):
             raise RuntimeError('Live article is noindex: '+host+route)
         if 'https://'+host+route not in html:raise RuntimeError('Missing canonical URL: '+route)
         for image,approval in record['images'].items():
-            with urllib.request.urlopen('https://'+host+image,timeout=40) as r:data=r.read()
+            image_request=urllib.request.Request('https://'+host+image,headers={'Cache-Control':'no-cache','User-Agent':'SatelliteReleaseVerifier/1.0'})
+            with urllib.request.urlopen(image_request,timeout=40) as r:data=r.read()
             if hashlib.sha256(data).hexdigest()!=approval['sha256']:raise RuntimeError('Live image mismatch: '+image)
         print('LIVE VERIFIED https://'+host+route,flush=True)
 
@@ -112,6 +113,19 @@ def report(data):
     print('\n'.join(lines),flush=True)
     if os.getenv('GITHUB_STEP_SUMMARY'):
         with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as out:out.write('\n\n'+'\n\n'.join(lines)+'\n')
+
+def acknowledge(pending, sha, deployed=False):
+    # Preserve concurrent new approvals and never claim a deployment from verification alone.
+    data=json.loads(MANIFEST.read_text())
+    for item in pending:
+        current=next(r for r in data['articles'] if r['site']==item['site'] and r['slug']==item['slug'])
+        if current['locales'] != item['locales'] or current['publishDate'] != item['publishDate']:
+            raise RuntimeError('Release approval changed during deployment')
+        current['status']='verified';current['verifiedFromCommit']=sha
+        if deployed:current['publishedCommit']=sha
+    MANIFEST.write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n')
+    commit_paths([MANIFEST],'Record verified live article release')
+    report(data)
 
 def main():
     ap=argparse.ArgumentParser();ap.add_argument('--run',action='store_true');ap.add_argument('--prepare',action='store_true',help='Local preview only; no push/deploy');args=ap.parse_args()
@@ -128,6 +142,16 @@ def main():
         dirty=subprocess.check_output(['git','status','--porcelain','--untracked-files=no'],cwd=ROOT,text=True)
         if dirty.strip():raise RuntimeError('Release requires a clean tracked checkout')
         if not os.environ.get('CLOUDFLARE_API_TOKEN') or not os.environ.get('CLOUDFLARE_ACCOUNT_ID'):raise RuntimeError('Deployment credentials missing')
+    if args.run and all(not re.search(r'^draft:\s*true\s*$', article_path(i,lang).read_text().split('---',2)[1],re.M) for i in pending for lang in i['locales']):
+        # A previous attempt may have deployed successfully but failed during acknowledgement.
+        try:
+            for item in pending:verify_live(item)
+        except Exception as error:
+            print('Live recovery check incomplete; proceeding with validated build/deploy: '+str(error),flush=True)
+        else:
+            sha=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
+            acknowledge(pending,sha)
+            return
     for item in pending:prepare(item)
     if args.prepare:return
     sites=sorted({i['site'] for i in pending})
@@ -150,15 +174,6 @@ def main():
             except Exception:
                 if attempt==3:raise
                 time.sleep(10)
-    # Merge acknowledgements into the latest manifest; preserve concurrent new approvals.
-    data=json.loads(MANIFEST.read_text())
-    for item in pending:
-        current=next(r for r in data['articles'] if r['site']==item['site'] and r['slug']==item['slug'])
-        if current['locales'] != item['locales'] or current['publishDate'] != item['publishDate']:
-            raise RuntimeError('Release approval changed during deployment')
-        current['status']='verified';current['publishedCommit']=sha
-    MANIFEST.write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n')
-    commit_paths([MANIFEST],'Record verified live article release')
-    report(data)
+    acknowledge(pending, sha, deployed=True)
 
 if __name__=='__main__':main()
