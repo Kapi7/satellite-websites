@@ -1,15 +1,8 @@
 name: Rooted-glow CF Pages diagnostic
 
-# rooted-glow is a GIT-CONNECTED CF Pages project (unlike build-coded, which is
-# direct-upload). Wrangler cannot direct-upload to git-connected projects
-# (API error 8000000, confirmed June 12 2026), so this workflow does NOT deploy.
-# It exists to read CF Pages deployment status with the account token that only
-# CI has — use it to see whether CF's own git builds are succeeding and when
-# the last successful deployment happened.
-#
-# If rooted-glow's git integration ever breaks permanently (like build-coded's
-# did), the fix is: disconnect git in the CF dashboard, then restore the
-# build+wrangler-deploy steps from deploy-build-coded.yml.
+# Read-only diagnostic. Production releases are direct uploads from the reviewed
+# publisher. Native production Git auto-deployment was disabled on 20 October
+# 2026 after an older build overwrote a newer reviewed release.
 
 on:
   workflow_dispatch:

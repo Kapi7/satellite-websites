@@ -11,3 +11,7 @@ Add reviewed entries deliberately. Do not refresh hashes to silence a failed che
 An empty reviewed queue is a visible editorial warning and a no-op, not a publishing outage or a claim of fresh content. The raw backlog is reported separately. Replenishment belongs to the twice-weekly editorial work, not an unattended generation loop. No-op success must never be used as evidence that new articles went live.
 
 Tracking, consent, affiliate IDs and existing attribution parameters are outside this release change.
+
+Production deployment ownership: as of 20 October 2026, native Cloudflare production Git builds for Glow and Rooted are disabled (preview settings preserved). Build's separate deployment workflow is manual-only and shares the publisher lock. This prevents older parallel builds from replacing reviewed releases. Use the publisher for approved article releases; code-only site changes require an explicit validated direct deployment. Do not re-enable a competing automatic production path without serialization and stale-revision protection.
+
+If source files are already published after an interrupted run, the publisher first checks live copy and exact image hashes. It acknowledges a matching deployment without rebuilding, otherwise it runs validation/build/deployment again. Image and HTML requests both identify the verifier explicitly.
