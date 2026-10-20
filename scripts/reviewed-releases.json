@@ -5,7 +5,7 @@
       "site": "cosmetics",
       "slug": "skincare-gift-buying-without-guessing",
       "publishDate": "2026-10-20",
-      "status": "pending",
+      "status": "verified",
       "reviewedAt": "2026-10-20",
       "reviewNotes": "English copy reviewed against primary sources; honest limitations, exact images, useful decisions and internal links. English-only release; excluded translations must remain unpublished.",
       "liveMarkers": [
@@ -24,13 +24,14 @@
           }
         }
       },
-      "publishedCommit": "5a3898e0fb5600d5e295f67ab3998f6237313be8"
+      "publishedCommit": "5a3898e0fb5600d5e295f67ab3998f6237313be8",
+      "verifiedFromCommit": "229101f270f34e0ea39fb410cc12a0a537c94d9e"
     },
     {
       "site": "wellness",
       "slug": "weekly-movement-planning-worksheet",
       "publishDate": "2026-10-20",
-      "status": "pending",
+      "status": "verified",
       "reviewedAt": "2026-10-20",
       "reviewNotes": "English copy reviewed against primary sources; honest limitations, exact images, useful decisions and internal links. English-only release; excluded translations must remain unpublished.",
       "liveMarkers": [
@@ -49,13 +50,14 @@
           }
         }
       },
-      "publishedCommit": "5a3898e0fb5600d5e295f67ab3998f6237313be8"
+      "publishedCommit": "5a3898e0fb5600d5e295f67ab3998f6237313be8",
+      "verifiedFromCommit": "229101f270f34e0ea39fb410cc12a0a537c94d9e"
     },
     {
       "site": "build-coded",
       "slug": "tool-only-vs-kit-shopping-checklist",
       "publishDate": "2026-10-20",
-      "status": "pending",
+      "status": "verified",
       "reviewedAt": "2026-10-20",
       "reviewNotes": "English copy reviewed against primary sources; honest limitations, exact images, useful decisions and internal links. English-only release; excluded translations must remain unpublished.",
       "liveMarkers": [
@@ -74,7 +76,8 @@
           }
         }
       },
-      "publishedCommit": "5a3898e0fb5600d5e295f67ab3998f6237313be8"
+      "publishedCommit": "5a3898e0fb5600d5e295f67ab3998f6237313be8",
+      "verifiedFromCommit": "229101f270f34e0ea39fb410cc12a0a537c94d9e"
     }
   ]
 }
