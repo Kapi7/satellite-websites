@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "articles": [
+    {
+      "site": "cosmetics",
+      "slug": "skincare-gift-buying-without-guessing",
+      "publishDate": "2026-10-20",
+      "status": "pending",
+      "reviewedAt": "2026-10-20",
+      "reviewNotes": "English copy reviewed against primary sources; honest limitations, exact images, useful decisions and internal links. English-only release; excluded translations must remain unpublished.",
+      "liveMarkers": [
+        "Five questions that prevent an unwanted gift",
+        "TOCOBO Vitamin Nourishing Lip Balm"
+      ],
+      "locales": {
+        "en": {
+          "contentHash": "26c558bb6a98fa6161fe2847702ddfcf3553cb0c3c54199ecaecb21cae4fe32c",
+          "images": {
+            "/images/verified/tocobo-vitamin-nourishing-lip-balm-3-5g.jpg": {
+              "sha256": "380c729f8c95a0268f851ec28495fcf33f7bb5d8f2106258aa1ff451af5fe86f",
+              "sourceUrl": "https://mirai-skin.com/products/tocobo-vitamin-nourishing-lip-balm-3-5g",
+              "visualReview": "Exact yellow TOCOBO stick and cap; product listing matches 3.5 g, not a set."
+            }
+          }
+        }
+      }
+    },
+    {
+      "site": "wellness",
+      "slug": "weekly-movement-planning-worksheet",
+      "publishDate": "2026-10-20",
+      "status": "pending",
+      "reviewedAt": "2026-10-20",
+      "reviewNotes": "English copy reviewed against primary sources; honest limitations, exact images, useful decisions and internal links. English-only release; excluded translations must remain unpublished.",
+      "liveMarkers": [
+        "Find three slots before choosing equipment",
+        "Copy this worksheet into your notes"
+      ],
+      "locales": {
+        "en": {
+          "contentHash": "e1ceaaa7429d4f0d6890d8310bf386665982f68e5b8a8732845c510d5f09ccb5",
+          "images": {
+            "/images/editorial/pexels-6551265.jpg": {
+              "sha256": "fd1d19f600ff925909d1ea43547f3f2c9956998af41dce97d0700a60bbe1309e",
+              "sourceUrl": "https://www.pexels.com/photo/smiling-diverse-sportspeople-walking-on-street-after-workout-in-city-park-6551265/",
+              "visualReview": "Two adults walking outdoors; real credited contextual stock, not study subjects."
+            }
+          }
+        }
+      }
+    },
+    {
+      "site": "build-coded",
+      "slug": "tool-only-vs-kit-shopping-checklist",
+      "publishDate": "2026-10-20",
+      "status": "pending",
+      "reviewedAt": "2026-10-20",
+      "reviewNotes": "English copy reviewed against primary sources; honest limitations, exact images, useful decisions and internal links. English-only release; excluded translations must remain unpublished.",
+      "liveMarkers": [
+        "Compare complete baskets in one currency",
+        "Open the package that matches your inventory"
+      ],
+      "locales": {
+        "en": {
+          "contentHash": "e7029a84ac6684ef872627842a5129b4679772a5fdbc32184ac5dd29b4371be2",
+          "images": {
+            "/images/verified/dcd800d2.webp": {
+              "sha256": "a8b5504edceb435398e92c3dafd34842315bc990661fad81fdbf2f414a166ea0",
+              "sourceUrl": "https://www.dewalt.com/en-us/product/dcd800d2/20v-max-xr-brushless-cordless-12-drilldriver-kit",
+              "visualReview": "Exact DCD800D2: two 2Ah batteries, DCB112 charger and bag. Manufacturer product photo."
+            }
+          }
+        }
+      }
+    }
+  ]
+}

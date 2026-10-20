@@ -40,6 +40,11 @@
       "slug": "dewalt-dcd800b-vs-dcd800d2",
       "label": "Compare the exact DeWalt packages",
       "why": "Check bare-tool and kit contents against the batteries and charger you already own."
+    },
+    {
+      "slug": "tool-only-vs-kit-shopping-checklist",
+      "label": "Check what your tool purchase still needs",
+      "why": "Compare complete baskets, including compatible batteries, charger and accessories."
     }
   ],
   "impact-driver-vs-drill": [

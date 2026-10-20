@@ -38,5 +38,12 @@
     }
   ],
   "best-protein-powders-clean-natural": [],
-  "double-cleansing-why-and-how": []
+  "double-cleansing-why-and-how": [],
+  "simple-wellness-weekly-review": [
+    {
+      "slug": "weekly-movement-planning-worksheet",
+      "label": "Plan the next week of movement",
+      "why": "Turn your review into specific calendar slots with a realistic fallback."
+    }
+  ]
 }

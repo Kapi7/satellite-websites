@@ -116,5 +116,11 @@
     "reviewer": "Codex visual inspection",
     "treatment": "Existing unaltered licensed stock photograph",
     "notes": "Notebook and cosmetics on pink background; contextual cart/inventory illustration only, not Mirai products or a tested recommendation. Caption and alt distinguish this."
+  },
+  "/images/verified/tocobo-vitamin-nourishing-lip-balm-3-5g.jpg": {
+    "sha256": "380c729f8c95a0268f851ec28495fcf33f7bb5d8f2106258aa1ff451af5fe86f",
+    "sourceUrl": "https://mirai-skin.com/products/tocobo-vitamin-nourishing-lip-balm-3-5g",
+    "reviewedAt": "2026-10-20",
+    "notes": "Yellow TOCOBO open stick and cap match exact listing. One product, not a two-pack; not our own test photo."
   }
 }

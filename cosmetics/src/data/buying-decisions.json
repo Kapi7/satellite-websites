@@ -7,7 +7,7 @@
       "tirtir-cushion-foundation-shade-guide": [
         [
           "Already know your Red Cushion shade?",
-          "Match the full shade name, Red formula and 18 g size at Mirai. Availability of the compact does not mean your shade is in stock."
+          "Match the full shade name, Red formula and 18 g size. On 20 October 2026, Mirai listed 10C Shell available but 13C Fair unavailable: stock varies by shade. Recheck your exact selection before paying."
         ],
         [
           "Still between two shades?",
@@ -46,6 +46,9 @@
           "Check the exact label for suitable water resistance. Neither “lightweight” nor “no white cast” establishes that protection."
         ]
       ]
+    },
+    "purchaseChecks": {
+      "best-korean-lip-products-hydration": "Before leaving this guide: choose one exact formula and format, then check delivery to your country and the full delivered total at Mirai. For a gift, ask for the recipient’s product link first. The Torriden shortcut is only for one Cellmazing 11 ml tube; choose the product page if you are still deciding."
     }
   },
   "de": {
@@ -95,6 +98,9 @@
           "Prüfe die Wasserfestigkeit auf dem konkreten Etikett. Weder „leicht“ noch „kein Weißschleier“ belegt diesen Schutz."
         ]
       ]
+    },
+    "purchaseChecks": {
+      "best-korean-lip-products-hydration": "Bevor du diesen Ratgeber verlässt: Wähle eine genaue Formel und ein Format. Prüfe bei Mirai den Versand in dein Land und den Gesamtpreis inklusive Versand. Bei einem Geschenk frage zuerst nach dem Produktlink. Der Torriden-Direktlink gilt nur für eine Cellmazing-Tube mit 11 ml; öffne bei Unsicherheit zuerst die Produktseite."
     }
   },
   "es": {
@@ -105,7 +111,7 @@
       "tirtir-cushion-foundation-shade-guide": [
         [
           "¿Ya conoces tu tono de Red Cushion?",
-          "Comprueba el nombre completo del tono, la fórmula Red y los 18 g en Mirai. Que el producto esté disponible no significa que tu tono tenga existencias."
+          "Comprueba el nombre completo del tono, la fórmula Red y los 18 g. El 20 de octubre de 2026, Mirai indicaba disponibilidad de 10C Shell, pero no de 13C Fair: el stock depende del tono. Revisa tu selección antes de pagar."
         ],
         [
           "¿Dudas entre dos tonos?",
@@ -144,6 +150,9 @@
           "Comprueba que la etiqueta exacta indique una resistencia al agua adecuada. “Ligero” y “sin rastro blanco” no demuestran esa protección."
         ]
       ]
+    },
+    "purchaseChecks": {
+      "best-korean-lip-products-hydration": "Antes de salir de esta guía: elige una fórmula y un formato concretos, y comprueba en Mirai el envío a tu país y el importe total. Si es un regalo, pide primero el enlace del producto. El acceso directo de Torriden es solo para un tubo Cellmazing de 11 ml; si aún estás decidiendo, abre la ficha del producto."
     }
   }
 }

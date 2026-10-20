@@ -10,7 +10,7 @@ on:
         type: boolean
         default: false
       notifications:
-        description: Send the existing Telegram notifications
+        description: Reserved compatibility input; reviewed releases never send notifications
         type: boolean
         default: false
 
@@ -39,49 +39,25 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Install dependencies
-        run: pip install google-genai python-dotenv
-
-      - name: Write .env from secrets
-        env:
-          GEMINI_KEY: ${{ secrets.GEMINI_API_KEY }}
-          TG_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TG_CHAT: ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: |
-          printf 'GEMINI_API_KEY=%s\nTELEGRAM_BOT_TOKEN=%s\nTELEGRAM_CHAT_ID=%s\n' \
-            "$GEMINI_KEY" "$TG_TOKEN" "$TG_CHAT" > .env
-
-      - name: Write GSC token
-        run: echo '${{ secrets.GSC_TOKEN_JSON }}' | base64 -d > /tmp/gsc-token.json
-        env:
-          GSC_TOKEN_FILE: /tmp/gsc-token.json
-
       - name: Configure git
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
+      - name: Check release safeguards
+        run: |
+          python3 scripts/test_reviewed_publisher.py
+          python3 scripts/test_notification_suppression.py
+          python3 scripts/test_content_quality.py
+
       - name: Run daily publisher
         run: bash scripts/daily-publish.sh
         env:
-          DISABLE_OUTBOUND_NOTIFICATIONS: ${{ github.event_name == 'workflow_dispatch' && !inputs.notifications && '1' || '0' }}
-          GSC_TOKEN_FILE: /tmp/gsc-token.json
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
-          BING_API_KEY: ${{ secrets.BING_API_KEY }}
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          DISABLE_OUTBOUND_NOTIFICATIONS: '1'
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
 
-      - name: Push changes if any (retry-resilient against Mac Mini race)
-        run: |
-          git add -A
-          git diff --cached --quiet && echo "No changes to commit" && exit 0
-          git commit -m "Auto-publish daily articles [skip ci]"
-          bash scripts/push-publisher.sh
-
-      - name: Preserve generated content after a failed run
+      - name: Preserve reviewed content after a failed run
         if: failure()
         uses: actions/upload-artifact@v4
         with:

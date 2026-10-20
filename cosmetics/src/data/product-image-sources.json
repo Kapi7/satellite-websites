@@ -494,5 +494,13 @@
     "sourceImage": "https://cdn.shopify.com/s/files/1/0899/8862/8852/files/product_images_1742461036.73877039951536776_14314365621767799349.jpg?v=1767800140",
     "verifiedAt": "2026-09-29",
     "aiEnhanced": false
+  },
+  "/images/verified/tocobo-vitamin-nourishing-lip-balm-3-5g.jpg": {
+    "product": "TOCOBO Vitamin Nourishing Lip Balm 3.5g",
+    "url": "https://mirai-skin.com/products/tocobo-vitamin-nourishing-lip-balm-3-5g",
+    "sourceImage": "https://cdn.shopify.com/s/files/1/0899/8862/8852/files/web_final_1_6ae7e95c-d5b9-477e-a24b-8a247582dba9.jpg?v=1776246035",
+    "verifiedAt": "2026-10-20",
+    "visualReview": "Yellow TOCOBO open stick and cap match exact listing. One product, not a two-pack; not our own test photo.",
+    "sha256": "380c729f8c95a0268f851ec28495fcf33f7bb5d8f2106258aa1ff451af5fe86f"
   }
 }
