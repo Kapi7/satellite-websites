@@ -29,5 +29,16 @@
     "sha256": "0eb822171ddc644c1832be786abcf869b9f6af6fb7b92e3caf2e73e187667bb8",
     "verifiedAt": "2026-10-04",
     "visualReview": "Inspected photograph for subject and exact model/pack match; not a hands-on test."
+  },
+  "/images/editorial/pexels-35675919.jpg": {
+    "author": "Wendy Wei",
+    "url": "https://www.pexels.com/photo/hand-tools-on-wooden-workbench-in-workshop-35675919/",
+    "license": "https://www.pexels.com/license/",
+    "description": "Pliers, file and metal ruler on a wooden workbench",
+    "sourceImage": "https://images.pexels.com/photos/35675919/pexels-photo-35675919.jpeg?auto=compress&cs=tinysrgb&w=1400",
+    "sha256": "fe603bcf948c07e18c8fc89367c3adcce6a49e04bda1e2dea8c64ed652e198c1",
+    "reviewedAt": "2026-10-22",
+    "visualReview": "Viewed actual photograph: real used hand tools and ruler; no claim that these are a DeWalt kit or our workshop.",
+    "kind": "real contextual stock photograph; not a product test or endorsement"
   }
 }

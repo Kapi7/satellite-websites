@@ -1,7 +1,4 @@
-import copy
 import io
-import json
-import re
 import tempfile
 import unittest
 from pathlib import Path
@@ -12,13 +9,23 @@ import require_article_hero
 class ReviewedPublisherTests(unittest.TestCase):
     def setUp(self):
         self.temp=tempfile.TemporaryDirectory();self.root=Path(self.temp.name).resolve()
-        self.item=copy.deepcopy(json.loads(pub.MANIFEST.read_text())['articles'][0])
-        real=pub.article_path(self.item,'en');self.path=self.root/real.relative_to(pub.ROOT)
+        # A release record is historical evidence. Tests must not require a live
+        # article to remain byte-identical forever after later editorial updates.
+        image='/images/verified/reviewed-fixture.jpg'
+        text='---\ntitle: "Reviewed fixture"\ndate: 2026-10-20\ndraft: true\nimage: "'+image+'"\n---\n\n## Reviewed decision\n\nUseful reviewed copy.\n'
+        image_bytes=b'reviewed fixture asset'
+        self.item={'site':'cosmetics','slug':'reviewed-fixture','publishDate':'2026-10-22',
+                   'reviewedAt':'2026-10-22','reviewNotes':'Fixture approval',
+                   'liveMarkers':['Reviewed decision'],
+                   'locales':{'en':{'contentHash':pub.fingerprint(text),'images':{
+                       image:{'sha256':pub.hashlib.sha256(image_bytes).hexdigest(),
+                              'sourceUrl':'https://example.com/fixture',
+                              'visualReview':'Fixture provenance'}}}}}
+        self.path=self.root/'cosmetics/src/content/blog/en/reviewed-fixture.mdx'
         self.path.parent.mkdir(parents=True)
-        self.path.write_text(re.sub(r"^draft:.*$", "draft: true", real.read_text(), flags=re.M))
-        for image in self.item['locales']['en']['images']:
-            rel=Path(self.item['site'])/'public'/image.lstrip('/')
-            (self.root/rel).parent.mkdir(parents=True,exist_ok=True);(self.root/rel).write_bytes((pub.ROOT/rel).read_bytes())
+        self.path.write_text(text)
+        asset=self.root/'cosmetics/public'/image.lstrip('/')
+        asset.parent.mkdir(parents=True,exist_ok=True);asset.write_bytes(image_bytes)
         self.patch=patch.object(pub,'ROOT',self.root);self.patch.start()
         self.hero=patch.object(require_article_hero,'ROOT',self.root);self.hero.start()
     def tearDown(self):

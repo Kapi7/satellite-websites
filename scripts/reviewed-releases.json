@@ -78,6 +78,83 @@
       },
       "publishedCommit": "5a3898e0fb5600d5e295f67ab3998f6237313be8",
       "verifiedFromCommit": "229101f270f34e0ea39fb410cc12a0a537c94d9e"
+    },
+    {
+      "site": "cosmetics",
+      "slug": "save-a-skincare-reorder-record",
+      "publishDate": "2026-10-22",
+      "status": "pending",
+      "reviewedAt": "2026-10-22",
+      "reviewNotes": "English source rewritten and checked against primary sources. Copyable practical examples, no fictional tests or current prices. Exact photos visually checked with provenance. English-only release; other locales remain draft. All three builds passed. Preview checked at 390 x 844 without page overflow; photos loaded. Local asset/link and English-only hreflang checks passed.",
+      "liveMarkers": [
+        "Save this record while you still have the package",
+        "reported <strong>unavailable</strong>"
+      ],
+      "locales": {
+        "en": {
+          "contentHash": "19fa57955fa2973c66c8c6887d7037e2dbb1b7ceae77962187a0b7c95a2c6a91",
+          "images": {
+            "/images/verified/torriden-dive-in-serum-50ml.jpg": {
+              "sha256": "ab211ac73641802980d17fd17d70b7891ba7c9d13f8cf16f73cf81971a23b3f6",
+              "sourceUrl": "https://mirai-skin.com/products/torriden-dive-in-serum-50ml",
+              "visualReview": "Viewed actual blue DIVE-IN Serum dropper bottle. Matched exact retailer 50 ml product; article explicitly states unavailable on October 22, not a toner or refill."
+            }
+          }
+        }
+      }
+    },
+    {
+      "site": "wellness",
+      "slug": "wellness-habit-tracker-without-streaks",
+      "publishDate": "2026-10-22",
+      "status": "pending",
+      "reviewedAt": "2026-10-22",
+      "reviewNotes": "English source rewritten and checked against primary sources. Copyable practical examples, no fictional tests or current prices. Exact photos visually checked with provenance. English-only release; other locales remain draft. All three builds passed. Preview checked at 390 x 844 without page overflow; photos loaded. Local asset/link and English-only hreflang checks passed.",
+      "liveMarkers": [
+        "Copy this small tracker",
+        "A worked example: preparing for a walk"
+      ],
+      "locales": {
+        "en": {
+          "contentHash": "7bd589e8a842b95ea0fcaeee886fe2c07ac66f4961e050f076778c2a7c921efc",
+          "images": {
+            "/images/editorial/pexels-11616423.jpg": {
+              "sha256": "16aeb33271422cab30eb0b4aa2a250ac3604781115acf50398e70923b4eb8fc4",
+              "sourceUrl": "https://www.pexels.com/photo/a-person-writing-on-a-planner-11616423/",
+              "visualReview": "Viewed actual Sergey Torbik photograph: hand writing in notebook. Contextual stock, not our worksheet or trial."
+            }
+          }
+        }
+      }
+    },
+    {
+      "site": "build-coded",
+      "slug": "workshop-tool-inventory-template",
+      "publishDate": "2026-10-22",
+      "status": "pending",
+      "reviewedAt": "2026-10-22",
+      "reviewNotes": "English source rewritten and checked against primary sources. Copyable practical examples, no fictional tests or current prices. Exact photos visually checked with provenance. English-only release; other locales remain draft. All three builds passed. Preview checked at 390 x 844 without page overflow; photos loaded. Local asset/link and English-only hreflang checks passed.",
+      "liveMarkers": [
+        "Record the model before the category",
+        "A documented box example: DeWalt DWST17806"
+      ],
+      "locales": {
+        "en": {
+          "contentHash": "a0a4fd0b12ef5a43917892076909304dad45d1f5ff8ffba8f92003991bc003ae",
+          "images": {
+            "/images/editorial/pexels-35675919.jpg": {
+              "sha256": "fe603bcf948c07e18c8fc89367c3adcce6a49e04bda1e2dea8c64ed652e198c1",
+              "sourceUrl": "https://www.pexels.com/photo/hand-tools-on-wooden-workbench-in-workshop-35675919/",
+              "visualReview": "Viewed Wendy Wei real photograph: used pliers, file and ruler on bench; no product-model endorsement."
+            },
+            "/images/verified/dwst17806.webp": {
+              "sha256": "632e6d97818f9fd7360ab589742f359a289e1a85729dd7df65f303d3440a4937",
+              "sourceUrl": "https://www.dewalt.com/en-us/product/dwst17806/tstak-vi-deep-box",
+              "visualReview": "Viewed manufacturer photo of exact DWST17806 TSTAK VI deep box, closed box and handle, no tools included."
+            }
+          }
+        }
+      }
     }
   ]
 }

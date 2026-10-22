@@ -38,5 +38,16 @@
     "sha256": "e193cdee1abfa4054de1edd49ef047a0731f13a09f48ed10f599f49d827e7be4",
     "verifiedAt": "2026-10-04",
     "visualReview": "Inspected photograph for subject and exact model/pack match; not a hands-on test."
+  },
+  "/images/editorial/pexels-11616423.jpg": {
+    "author": "Sergey Torbik",
+    "url": "https://www.pexels.com/photo/a-person-writing-on-a-planner-11616423/",
+    "license": "https://www.pexels.com/license/",
+    "description": "A person writing in an open notebook",
+    "sourceImage": "https://images.pexels.com/photos/11616423/pexels-photo-11616423.jpeg?auto=compress&cs=tinysrgb&w=1400",
+    "sha256": "16aeb33271422cab30eb0b4aa2a250ac3604781115acf50398e70923b4eb8fc4",
+    "reviewedAt": "2026-10-22",
+    "visualReview": "Viewed actual photograph: hand, pen and notebook; contextual image, not a clinical trial or a claimed screenshot of our tracker.",
+    "kind": "real contextual stock photograph; not a product test or endorsement"
   }
 }
