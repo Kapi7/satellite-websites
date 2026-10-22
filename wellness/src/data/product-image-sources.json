@@ -140,5 +140,13 @@
     "url": "https://www.cosrx.com/products/acne-pimple-master-patch",
     "sourceImage": "https://www.cosrx.com/cdn/shop/files/acne-pimple-master-patch-cosrx-official-1_1200x1200.jpg?v=1724835736",
     "verifiedAt": "2026-10-08"
+  },
+  "/images/verified/cosrx-snail-96-essence-100ml-current.jpg": {
+    "product": "COSRX Advanced Snail 96 Mucin Power Essence 100 ml",
+    "url": "https://www.mirai-skin.com/products/cosrx-advanced-snail-96-mucin-power-essence-100ml",
+    "sourceImage": "https://www.mirai-skin.com/cdn/shop/files/final_1_020ef7e0-f883-4bfc-a341-09dfc361b66b.jpg?v=1775832921&width=800",
+    "sha256": "689d8c70d8f6abbb4145897b84ef6bcae98c4103a0363c410f61dbdd350921cd",
+    "verifiedAt": "2026-10-22",
+    "visualReview": "Viewed actual pixels; exact product and displayed pack size match. Unaltered manufacturer or retailer product photograph; not our testing."
   }
 }

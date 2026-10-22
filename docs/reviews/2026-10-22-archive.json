@@ -1,0 +1,87 @@
+{
+  "reviewedAt": "2026-10-22",
+  "kind": "existing article revision review",
+  "notes": "Real exact-product images inspected. Unsupported first-person testing, fixed outcome claims and old prices removed. Existing public translations outside en/de/es scope remain an editorial backlog. All three local builds, five-route asset/link checks and 390 x 844 mobile review passed; explicit direct deployment required; not an unattended new-article approval.",
+  "articles": [
+    {
+      "site": "cosmetics",
+      "locale": "en",
+      "slug": "best-snail-mucin-products-2026",
+      "path": "cosmetics/src/content/blog/en/best-snail-mucin-products-2026.mdx",
+      "contentHash": "783f51a64730c3f2e2d6f725c32014ae9a014765a8a0d45627ec798e01cea56e",
+      "images": {
+        "/images/verified/cosrx-advanced-snail-96-mucin-power-essence-100ml.jpg": {
+          "sha256": "689d8c70d8f6abbb4145897b84ef6bcae98c4103a0363c410f61dbdd350921cd",
+          "sourceUrl": "https://mirai-skin.com/products/cosrx-advanced-snail-96-mucin-power-essence-100ml",
+          "sourceImage": "https://cdn.shopify.com/s/files/1/0899/8862/8852/files/final_1_020ef7e0-f883-4bfc-a341-09dfc361b66b.jpg?v=1775832921"
+        },
+        "/images/verified/cosrx-snail-92-cream-tube-100g.jpg": {
+          "sha256": "206ba2ce4b7e0f0449fac144ad1f6b6bc209175f6ac781048a1d246e2e2fe351",
+          "sourceUrl": "https://www.cosrx.com/products/advanced-snail-92-all-in-one-cream",
+          "sourceImage": "https://cdn.shopify.com/s/files/1/0513/3775/6828/files/advanced-snail-92-all-in-one-cream-cosrx-official-16.jpg?v=1762909943"
+        }
+      }
+    },
+    {
+      "site": "wellness",
+      "locale": "en",
+      "slug": "snail-mucin-everything-you-need-to-know",
+      "path": "wellness/src/content/blog/en/snail-mucin-everything-you-need-to-know.mdx",
+      "contentHash": "b5584f0e57b7af8d630a49e1c743eea642766bcf574d81c9c883d3f080673522",
+      "images": {
+        "/images/verified/cosrx-snail-96-essence-100ml-current.jpg": {
+          "sha256": "689d8c70d8f6abbb4145897b84ef6bcae98c4103a0363c410f61dbdd350921cd",
+          "sourceUrl": "https://www.mirai-skin.com/products/cosrx-advanced-snail-96-mucin-power-essence-100ml",
+          "sourceImage": "https://www.mirai-skin.com/cdn/shop/files/final_1_020ef7e0-f883-4bfc-a341-09dfc361b66b.jpg?v=1775832921&width=800"
+        }
+      }
+    },
+    {
+      "site": "wellness",
+      "locale": "de",
+      "slug": "snail-mucin-everything-you-need-to-know",
+      "path": "wellness/src/content/blog/de/snail-mucin-everything-you-need-to-know.mdx",
+      "contentHash": "20f9641619a8f0f691ef7837b693c6f4ac5facee38afc558313d296301e1ff43",
+      "images": {
+        "/images/verified/cosrx-snail-96-essence-100ml-current.jpg": {
+          "sha256": "689d8c70d8f6abbb4145897b84ef6bcae98c4103a0363c410f61dbdd350921cd",
+          "sourceUrl": "https://www.mirai-skin.com/products/cosrx-advanced-snail-96-mucin-power-essence-100ml",
+          "sourceImage": "https://www.mirai-skin.com/cdn/shop/files/final_1_020ef7e0-f883-4bfc-a341-09dfc361b66b.jpg?v=1775832921&width=800"
+        }
+      }
+    },
+    {
+      "site": "wellness",
+      "locale": "es",
+      "slug": "snail-mucin-everything-you-need-to-know",
+      "path": "wellness/src/content/blog/es/snail-mucin-everything-you-need-to-know.mdx",
+      "contentHash": "2b4f3e4352ab8777492d4f50f7240f595cf91c44920e8fc1eb1d696fe67451ef",
+      "images": {
+        "/images/verified/cosrx-snail-96-essence-100ml-current.jpg": {
+          "sha256": "689d8c70d8f6abbb4145897b84ef6bcae98c4103a0363c410f61dbdd350921cd",
+          "sourceUrl": "https://www.mirai-skin.com/products/cosrx-advanced-snail-96-mucin-power-essence-100ml",
+          "sourceImage": "https://www.mirai-skin.com/cdn/shop/files/final_1_020ef7e0-f883-4bfc-a341-09dfc361b66b.jpg?v=1775832921&width=800"
+        }
+      }
+    },
+    {
+      "site": "build-coded",
+      "locale": "en",
+      "slug": "best-orbital-sanders",
+      "path": "build-coded/src/content/blog/en/best-orbital-sanders.mdx",
+      "contentHash": "8445bac4def2e9edb75eafc41542ec37d13d1a817f1dbff00b29ae14b6da5f8b",
+      "images": {
+        "/images/verified/dwe6423k-disc.webp": {
+          "sha256": "51e18d61c20d070f2f9e99143a8c12a05c07e5fee4f82829d514749dc2c82de7",
+          "sourceUrl": "https://www.dewalt.com/en-us/product/dwe6423k/dewalt-5-127-mm-corded-electric-variable-speed-random-orbital-sander-kit",
+          "sourceImage": "https://assets.dewalt.com/NAG/PRODUCT/IMAGES/HIRES/WHITEBG/DWE6423K_A4_1680.webp"
+        },
+        "/images/verified/dwe6423k-kit.webp": {
+          "sha256": "389e4f76abc233c78c5e01727b1bad6dd997827f9bf534514f7d7e7393a6b169",
+          "sourceUrl": "https://www.dewalt.com/en-us/product/dwe6423k/dewalt-5-127-mm-corded-electric-variable-speed-random-orbital-sander-kit",
+          "sourceImage": "https://assets.dewalt.com/NAG/PRODUCT/IMAGES/HIRES/WHITEBG/DWE6423K_K1_1680.webp"
+        }
+      }
+    }
+  ]
+}

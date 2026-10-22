@@ -131,5 +131,21 @@
     "sourceImage": "https://store.bblcdn.eu/s8/default/1604d9e9669947d2a62d1deb5eef7bef/A1_mini.jpg",
     "verifiedAt": "2026-10-08",
     "creditLabel": "Manufacturer image"
+  },
+  "/images/verified/dwe6423k-kit.webp": {
+    "product": "DeWalt DWE6423K sander kit",
+    "url": "https://www.dewalt.com/en-us/product/dwe6423k/dewalt-5-127-mm-corded-electric-variable-speed-random-orbital-sander-kit",
+    "sourceImage": "https://assets.dewalt.com/NAG/PRODUCT/IMAGES/HIRES/WHITEBG/DWE6423K_K1_1680.webp",
+    "sha256": "389e4f76abc233c78c5e01727b1bad6dd997827f9bf534514f7d7e7393a6b169",
+    "verifiedAt": "2026-10-22",
+    "visualReview": "Viewed actual pixels; exact product and displayed pack size match. Unaltered manufacturer or retailer product photograph; not our testing."
+  },
+  "/images/verified/dwe6423k-disc.webp": {
+    "product": "DeWalt DWE6423K disc attachment close-up",
+    "url": "https://www.dewalt.com/en-us/product/dwe6423k/dewalt-5-127-mm-corded-electric-variable-speed-random-orbital-sander-kit",
+    "sourceImage": "https://assets.dewalt.com/NAG/PRODUCT/IMAGES/HIRES/WHITEBG/DWE6423K_A4_1680.webp",
+    "sha256": "51e18d61c20d070f2f9e99143a8c12a05c07e5fee4f82829d514749dc2c82de7",
+    "verifiedAt": "2026-10-22",
+    "visualReview": "Viewed actual pixels; exact product and displayed pack size match. Unaltered manufacturer or retailer product photograph; not our testing."
   }
 }
