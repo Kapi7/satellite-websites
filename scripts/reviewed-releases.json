@@ -83,7 +83,7 @@
       "site": "cosmetics",
       "slug": "save-a-skincare-reorder-record",
       "publishDate": "2026-10-22",
-      "status": "pending",
+      "status": "verified",
       "reviewedAt": "2026-10-22",
       "reviewNotes": "English source rewritten and checked against primary sources. Copyable practical examples, no fictional tests or current prices. Exact photos visually checked with provenance. English-only release; other locales remain draft. All three builds passed. Preview checked at 390 x 844 without page overflow; photos loaded. Local asset/link and English-only hreflang checks passed.",
       "liveMarkers": [
@@ -101,13 +101,15 @@
             }
           }
         }
-      }
+      },
+      "verifiedFromCommit": "b7df689389a40c3921e18222cd3ad7d6fd4134a1",
+      "publishedCommit": "b7df689389a40c3921e18222cd3ad7d6fd4134a1"
     },
     {
       "site": "wellness",
       "slug": "wellness-habit-tracker-without-streaks",
       "publishDate": "2026-10-22",
-      "status": "pending",
+      "status": "verified",
       "reviewedAt": "2026-10-22",
       "reviewNotes": "English source rewritten and checked against primary sources. Copyable practical examples, no fictional tests or current prices. Exact photos visually checked with provenance. English-only release; other locales remain draft. All three builds passed. Preview checked at 390 x 844 without page overflow; photos loaded. Local asset/link and English-only hreflang checks passed.",
       "liveMarkers": [
@@ -125,13 +127,15 @@
             }
           }
         }
-      }
+      },
+      "verifiedFromCommit": "b7df689389a40c3921e18222cd3ad7d6fd4134a1",
+      "publishedCommit": "b7df689389a40c3921e18222cd3ad7d6fd4134a1"
     },
     {
       "site": "build-coded",
       "slug": "workshop-tool-inventory-template",
       "publishDate": "2026-10-22",
-      "status": "pending",
+      "status": "verified",
       "reviewedAt": "2026-10-22",
       "reviewNotes": "English source rewritten and checked against primary sources. Copyable practical examples, no fictional tests or current prices. Exact photos visually checked with provenance. English-only release; other locales remain draft. All three builds passed. Preview checked at 390 x 844 without page overflow; photos loaded. Local asset/link and English-only hreflang checks passed.",
       "liveMarkers": [
@@ -154,7 +158,9 @@
             }
           }
         }
-      }
+      },
+      "verifiedFromCommit": "b7df689389a40c3921e18222cd3ad7d6fd4134a1",
+      "publishedCommit": "b7df689389a40c3921e18222cd3ad7d6fd4134a1"
     }
   ]
 }
