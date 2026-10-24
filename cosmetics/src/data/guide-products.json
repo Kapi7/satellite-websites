@@ -62,5 +62,159 @@
     "url": "https://mirai-skin.com/products/im-from-mugwort-essence-150ml",
     "guide": "mugwort-skincare-benefits",
     "guideLocales": "all"
+  },
+  {
+    "slug": "etude-fixing-tint",
+    "brand": "ETUDE HOUSE",
+    "name": "Fixing Tint · 4 g · #05 Midnight Mauve",
+    "image": "/images/verified/etude-house-fixing-tint-4g-05-midnight-mauve-source.jpg",
+    "url": "https://mirai-skin.com/products/etude-house-fixing-tint-4g-05-midnight-mauve",
+    "guide": "best-korean-lip-tints-long-wear",
+    "guideLocales": "all",
+    "question": "Looking for a long-wear lip tint?",
+    "check": "Match the Fixing Tint formula and shade name before buying. #05 Midnight Mauve is one shade; product availability does not mean every shade is in stock."
+  },
+  {
+    "slug": "skin1004-air-fit-sun",
+    "brand": "SKIN1004",
+    "name": "Madagascar Centella Air-Fit Suncream Plus · SPF50+ PA++++ · 50 ml",
+    "image": "/images/verified/skin1004-madagascar-centella-air-fit-suncream-plus-spf50-pa-50ml.jpg",
+    "url": "https://mirai-skin.com/products/skin1004-madagascar-centella-air-fit-suncream-plus-spf50-pa-50ml",
+    "guide": "beauty-of-joseon-relief-sun-vs-skin1004-centella-sun",
+    "guideLocales": "all",
+    "question": "Comparing the Centella sun cream side?",
+    "check": "Confirm the Air-Fit Suncream Plus 50 ml listing, not a stick or travel mini. Compare finish and filters with the Beauty of Joseon option before you choose."
+  },
+  {
+    "slug": "cosrx-snail-96",
+    "brand": "COSRX",
+    "name": "Advanced Snail 96 Mucin Power Essence · 100 ml",
+    "image": "/images/verified/cosrx-advanced-snail-96-mucin-power-essence-100ml.jpg",
+    "url": "https://mirai-skin.com/products/cosrx-advanced-snail-96-mucin-power-essence-100ml",
+    "guide": "best-snail-mucin-products-2026",
+    "guideLocales": "all",
+    "question": "Choosing the essence, not the cream?",
+    "check": "Match Advanced Snail 96 Mucin Power Essence, 100 ml pump. Do not confuse it with Snail 92 cream or a hydrogel mask that shares the snail name."
+  },
+  {
+    "slug": "anua-cleansing-oil",
+    "brand": "Anua",
+    "name": "Heartleaf Pore Control Cleansing Oil · 200 ml",
+    "image": "/images/verified/anua-heartleaf-pore-control-cleansing-oil-200ml.jpg",
+    "url": "https://mirai-skin.com/products/anua-heartleaf-pore-control-cleansing-oil-200ml",
+    "guide": "best-korean-cleansing-oils",
+    "guideLocales": "all",
+    "question": "Picking a first-cleanse oil?",
+    "check": "Match Heartleaf Pore Control Cleansing Oil, 200 ml. Compare rinse feel and fragrance notes with your skin tolerance before checkout."
+  },
+  {
+    "slug": "cosrx-good-morning-cleanser",
+    "brand": "COSRX",
+    "name": "Low pH Good Morning Gel Cleanser · 150 ml",
+    "image": "/images/verified/cosrx-low-ph-good-morning-gel-cleanser-150ml.jpg",
+    "url": "https://mirai-skin.com/products/cosrx-low-ph-good-morning-gel-cleanser-150ml",
+    "guide": "best-korean-cleansers-by-skin-type",
+    "guideLocales": "en",
+    "question": "Need a low-pH gel cleanser?",
+    "check": "Match Low pH Good Morning Gel Cleanser, 150 ml. Check whether you want a gel wash versus a cream or oil cleanser for your routine."
+  },
+  {
+    "slug": "anua-peach-niacinamide",
+    "brand": "Anua",
+    "name": "Peach 70% Niacinamide Serum · 30 ml",
+    "image": "/images/verified/anua-peach-70-niacinamide-serum-30ml.png",
+    "url": "https://mirai-skin.com/products/anua-peach-70-niacinamide-serum-30ml",
+    "guide": "best-niacinamide-serums-korean",
+    "guideLocales": "en",
+    "question": "Comparing niacinamide serums?",
+    "check": "Match Peach 70% Niacinamide Serum, 30 ml. Read the full ingredient list if you already react to fragrance or fruit extracts."
+  },
+  {
+    "slug": "illiyoon-ceramide-cream",
+    "brand": "ILLIYOON",
+    "name": "Ceramide Ato Concentrate Cream · 200 ml",
+    "image": "/images/verified/illiyoon-ceramide-ato-concentrate-cream-200ml.jpg",
+    "url": "https://mirai-skin.com/products/illiyoon-ceramide-ato-concentrate-cream-200ml",
+    "guide": "best-ceramide-creams-barrier-repair",
+    "guideLocales": "all",
+    "question": "Looking for a ceramide cream?",
+    "check": "Match Ceramide Ato Concentrate Cream, 200 ml tub. Confirm size — 150 ml and 500 ml are different listings."
+  },
+  {
+    "slug": "cosrx-retinol-01",
+    "brand": "COSRX",
+    "name": "The Retinol 0.1 Cream · 20 ml",
+    "image": "/images/verified/cosrx-the-retinol-0-1-cream-20ml.jpg",
+    "url": "https://mirai-skin.com/products/cosrx-the-retinol-0-1-cream-20ml",
+    "guide": "best-retinol-creams-serums-beginner-advanced",
+    "guideLocales": "all",
+    "question": "Starting with a milder retinol cream?",
+    "check": "Match The Retinol 0.1 Cream, 20 ml — not the 0.5 oil. Introduce slowly and keep daytime SPF in the routine."
+  },
+  {
+    "slug": "cosrx-snail-eye-patch",
+    "brand": "COSRX",
+    "name": "Advanced Snail Hydrogel Eye Patch · 60 patches",
+    "image": "/images/verified/cosrx-advanced-snail-hydrogel-eye-patch-90g-60-patches.jpg",
+    "url": "https://mirai-skin.com/products/cosrx-advanced-snail-hydrogel-eye-patch-90g-60-patches",
+    "guide": "best-korean-eye-patches",
+    "guideLocales": "all",
+    "question": "Shopping hydrogel eye patches?",
+    "check": "Match Advanced Snail Hydrogel Eye Patch, 90 g / 60 patches. Confirm patch count and snail formula before ordering."
+  },
+  {
+    "slug": "torriden-men-cica-lotion",
+    "brand": "Torriden",
+    "name": "Balanceful For Men Cica Oil-Free Lotion · 200 ml",
+    "image": "/images/verified/torriden-balanceful-for-men-cica-oil-free-lotion-200ml.jpg",
+    "url": "https://mirai-skin.com/products/torriden-balanceful-for-men-cica-oil-free-lotion-200ml",
+    "guide": "best-korean-skincare-for-men",
+    "guideLocales": "all",
+    "question": "Looking for a men's oil-free lotion?",
+    "check": "Match Balanceful For Men Cica Oil-Free Lotion, 200 ml. Do not confuse it with the all-in-one cream from the same line."
+  },
+  {
+    "slug": "torriden-dive-in-serum",
+    "brand": "Torriden",
+    "name": "Dive-In Low Molecular Hyaluronic Acid Serum · 50 ml",
+    "image": "/images/verified/torriden-dive-in-serum-50ml.jpg",
+    "url": "https://mirai-skin.com/products/torriden-dive-in-serum-50ml",
+    "guide": "cosrx-snail-mucin-vs-torriden-dive-in-serum",
+    "guideLocales": "all",
+    "question": "Comparing the Torriden Dive-In side?",
+    "check": "Match Dive-In Serum, 50 ml. Keep it separate from the 70 ml listing and from COSRX Snail 96 essence."
+  },
+  {
+    "slug": "anua-heartleaf-toner",
+    "brand": "Anua",
+    "name": "Heartleaf 77% Soothing Toner · 250 ml",
+    "image": "/images/verified/anua-heartleaf-77-soothing-toner-250ml.png",
+    "url": "https://mirai-skin.com/products/anua-heartleaf-77-soothing-toner-250ml",
+    "guide": "best-korean-toners-glass-skin",
+    "guideLocales": "all",
+    "question": "Choosing a soothing toner?",
+    "check": "Match Heartleaf 77% Soothing Toner, 250 ml. The 500 ml bottle is a different size listing."
+  },
+  {
+    "slug": "purito-centella-serum",
+    "brand": "PURITO SEOUL",
+    "name": "Wonder Releaf Centella Serum Unscented · 60 ml",
+    "image": "/images/verified/purito-seoul-wonder-releaf-centella-serum-unscented-60ml-source.jpg",
+    "url": "https://mirai-skin.com/products/purito-seoul-wonder-releaf-centella-serum-unscented-60ml",
+    "guide": "best-centella-asiatica-ampoules-products",
+    "guideLocales": "all",
+    "question": "Looking for an unscented Centella serum?",
+    "check": "Match Wonder Releaf Centella Serum Unscented, 60 ml. Confirm the unscented variant if fragrance is a trigger."
+  },
+  {
+    "slug": "tocobo-cica-gel",
+    "brand": "TOCOBO",
+    "name": "Cica Calming Gel Cream · 75 ml",
+    "image": "/images/verified/tocobo-cica-calming-gel-cream-75ml.jpg",
+    "url": "https://mirai-skin.com/products/tocobo-cica-calming-gel-cream-75ml",
+    "guide": "best-korean-cica-products-redness-sensitive-skin",
+    "guideLocales": "all",
+    "question": "Need a light cica gel cream?",
+    "check": "Match Cica Calming Gel Cream, 75 ml. Compare texture with richer barrier creams if your skin is very dry."
   }
 ]
