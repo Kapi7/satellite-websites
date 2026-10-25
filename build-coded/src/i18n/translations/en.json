@@ -182,10 +182,10 @@
     "crafts": "Crafts"
   },
   "categoryDescriptions": {
-    "woodworking": "Plans, joinery guides, and wood finishing techniques for every skill level.",
-    "homeImprovement": "Renovation guides, repair tutorials, and when to DIY vs hire a pro.",
-    "electronics": "Arduino, Raspberry Pi, 3D printing, and smart home projects.",
-    "crafts": "Resin, candle making, upcycling, and creative projects for your home."
+    "woodworking": "Joinery how-tos, beginner tool lists, and shop plans you can finish — not just browse.",
+    "homeImprovement": "Costed reno guides, drywall and flooring fixes, and clear DIY-vs-hire calls.",
+    "electronics": "Beginner 3D printers, filament picks, soldering, and practical Arduino / Pi projects.",
+    "crafts": "Epoxy, candles, upcycling, and creative home projects with realistic materials lists."
   },
   "types": {
     "hub": "Essential Guide",
