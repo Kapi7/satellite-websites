@@ -70,5 +70,241 @@
       "label": "Check the rest of the project list",
       "why": "Account for materials and accessories separately from the tool package."
     }
+  ],
+  "beginner-woodworking-joints-guide": [
+    {
+      "slug": "how-to-square-a-board",
+      "label": "Square the board before you join",
+      "why": "Flat, square stock makes every joint fit closer to the layout lines."
+    },
+    {
+      "slug": "how-to-build-a-workbench",
+      "label": "Build a weekend workbench to practice on",
+      "why": "A solid bench gives you clamping and layout space for the joints in this guide."
+    },
+    {
+      "slug": "best-beginner-woodworking-tools",
+      "label": "Buy tools for the first project, not a full shop",
+      "why": "Match measuring, holding, and joining tools to the joints you will actually cut."
+    }
+  ],
+  "how-to-square-a-board": [
+    {
+      "slug": "beginner-woodworking-joints-guide",
+      "label": "Choose a joint for the next piece",
+      "why": "Once stock is square, pick a joint that matches the strength and tools you have."
+    },
+    {
+      "slug": "how-to-build-a-workbench",
+      "label": "Put square stock to work on a bench",
+      "why": "A simple bench project uses the same face-edge-end-rip sequence."
+    }
+  ],
+  "how-to-build-a-workbench": [
+    {
+      "slug": "how-to-square-a-board",
+      "label": "Square the lumber before you assemble",
+      "why": "Reference faces and edges keep the top and base from twisting."
+    },
+    {
+      "slug": "best-beginner-woodworking-tools",
+      "label": "Check the tool list against your cut list",
+      "why": "Skip buying a full workshop until the bench build proves what you use."
+    },
+    {
+      "slug": "kreg-pocket-hole-jig-guide",
+      "label": "Speed joinery with pocket holes (optional)",
+      "why": "Pocket holes are a practical way to assemble a first bench frame."
+    }
+  ],
+  "best-beginner-woodworking-tools": [
+    {
+      "slug": "beginner-woodworking-joints-guide",
+      "label": "Learn the joints your tools should cut",
+      "why": "Buy for the joints in your first project, not a catalog of unused machines."
+    },
+    {
+      "slug": "best-cordless-drills",
+      "label": "Shortlist a drill kit for holding and driving",
+      "why": "A drill is usually the first powered tool a beginner toolkit needs."
+    }
+  ],
+  "kreg-pocket-hole-jig-guide": [
+    {
+      "slug": "diy-bookshelf-plans-every-skill-level",
+      "label": "Practice pocket holes on a bookshelf",
+      "why": "A shelf project shows layout, clamping, and screw choices on a real piece."
+    },
+    {
+      "slug": "beginner-woodworking-joints-guide",
+      "label": "Compare pocket holes to other beginner joints",
+      "why": "Know when a butt, dado, or pocket joint is the better call."
+    }
+  ],
+  "diy-bookshelf-plans-every-skill-level": [
+    {
+      "slug": "kreg-pocket-hole-jig-guide",
+      "label": "Review the jig if you chose pocket-hole assembly",
+      "why": "Jig setup and screw length matter more than the plan drawing."
+    },
+    {
+      "slug": "how-to-build-a-workbench",
+      "label": "Need a place to assemble first?",
+      "why": "A basic bench makes clamping tall carcasses safer."
+    }
+  ],
+  "3d-printer-filament-types-explained": [
+    {
+      "slug": "best-3d-printer-filament-starter-kit",
+      "label": "Pick a beginner filament brand to start with",
+      "why": "PLA first, then PETG — avoid buying every material before you need it."
+    },
+    {
+      "slug": "best-3d-printer-enclosure-2026",
+      "label": "Decide if ABS/ASA needs an enclosure",
+      "why": "Warping and fumes, not brand hype, decide whether you buy or build a box."
+    },
+    {
+      "slug": "best-3d-printers-beginners",
+      "label": "Still choosing a first printer?",
+      "why": "Match build volume to the projects you already want to print."
+    }
+  ],
+  "best-3d-printer-filament-starter-kit": [
+    {
+      "slug": "3d-printer-filament-types-explained",
+      "label": "Confirm which material the job needs",
+      "why": "Brand picks matter less than choosing PLA vs PETG vs flexible for the part."
+    },
+    {
+      "slug": "best-3d-printer-enclosure-2026",
+      "label": "Plan storage and enclosure with the filament",
+      "why": "Dry storage and an enclosure matter once you leave PLA."
+    }
+  ],
+  "best-3d-printer-enclosure-2026": [
+    {
+      "slug": "3d-printer-filament-types-explained",
+      "label": "Check which filaments actually need the box",
+      "why": "PLA often does not; ABS/ASA usually do."
+    },
+    {
+      "slug": "best-budget-3d-printers-under-300",
+      "label": "Pair an enclosure plan with a budget printer",
+      "why": "Some under-$300 machines need more enclosure help than others."
+    }
+  ],
+  "best-3d-printers-beginners": [
+    {
+      "slug": "3d-printer-filament-types-explained",
+      "label": "Budget filament into the full setup cost",
+      "why": "Printer price is not the complete first-year spend."
+    },
+    {
+      "slug": "best-budget-3d-printers-under-300",
+      "label": "Compare more under-$300 options",
+      "why": "If A1 Mini / A1 are not the fit, check the wider budget shortlist."
+    }
+  ],
+  "best-budget-3d-printers-under-300": [
+    {
+      "slug": "best-3d-printers-beginners",
+      "label": "Re-check A1 Mini vs A1 for your projects",
+      "why": "Project size and multi-color needs can beat a raw price comparison."
+    },
+    {
+      "slug": "best-3d-printer-filament-starter-kit",
+      "label": "Add a starter filament basket",
+      "why": "Finish the shopping list with material you can actually print day one."
+    }
+  ],
+  "how-to-patch-drywall-hole": [
+    {
+      "slug": "how-to-patch-drywall-like-a-pro",
+      "label": "Level up mudding and blending for larger patches",
+      "why": "Bigger holes need tape, coats, and sanding that a nail-hole fix skips."
+    },
+    {
+      "slug": "how-to-hang-heavy-mirror-drywall-without-studs",
+      "label": "Hang the mirror after the wall is solid again",
+      "why": "Pick anchors for the repaired wall — do not trust a fresh patch for heavy loads."
+    },
+    {
+      "slug": "best-stud-finders-home-diy",
+      "label": "Find a stud when the patch is near one",
+      "why": "Knowing what is behind the wall changes patch backing and hanging hardware."
+    }
+  ],
+  "how-to-patch-drywall-like-a-pro": [
+    {
+      "slug": "how-to-patch-drywall-hole",
+      "label": "Match the method to the hole size",
+      "why": "Nail pops and doorknob blowouts are not the same repair."
+    },
+    {
+      "slug": "best-stud-finders-home-diy",
+      "label": "Map studs before you cut a larger opening",
+      "why": "Avoid cutting into wiring or losing backing you still need."
+    }
+  ],
+  "how-to-hang-heavy-mirror-drywall-without-studs": [
+    {
+      "slug": "best-stud-finders-home-diy",
+      "label": "Confirm there really is no stud",
+      "why": "A stud is still the strongest option when you can hit one."
+    },
+    {
+      "slug": "how-to-patch-drywall-hole",
+      "label": "Fix old holes before you add new anchors",
+      "why": "Failed anchors and abandoned holes weaken the area around the new hang."
+    }
+  ],
+  "best-stud-finders-home-diy": [
+    {
+      "slug": "how-to-hang-heavy-mirror-drywall-without-studs",
+      "label": "Hang heavy items when a stud is not available",
+      "why": "Use rated anchors instead of guessing."
+    },
+    {
+      "slug": "how-to-patch-drywall-hole",
+      "label": "Repair the wall if a previous hang failed",
+      "why": "A clean patch beats stacking more hardware into damaged drywall."
+    }
+  ],
+  "epoxy-resin-beginners-guide": [
+    {
+      "slug": "epoxy-resin-troubleshooting-guide",
+      "label": "Fix sticky, cloudy, or fish-eye pours",
+      "why": "Most first-pour failures have a known cause and a salvage path."
+    },
+    {
+      "slug": "epoxy-resin-river-table-tutorial",
+      "label": "Plan a first river-table pour (when ready)",
+      "why": "Deep pours need different epoxy and flattening than coasters or jewelry."
+    }
+  ],
+  "epoxy-resin-troubleshooting-guide": [
+    {
+      "slug": "epoxy-resin-beginners-guide",
+      "label": "Re-check mixing ratios and safety basics",
+      "why": "Many ‘won’t cure’ cases start with measurement or ambient temperature."
+    },
+    {
+      "slug": "epoxy-resin-river-table-tutorial",
+      "label": "Apply the fixes before a deep pour",
+      "why": "A river table is a poor place to learn bubble and blush control for the first time."
+    }
+  ],
+  "epoxy-resin-river-table-tutorial": [
+    {
+      "slug": "epoxy-resin-beginners-guide",
+      "label": "Refresh resin types and safety before the slab",
+      "why": "Deep-pour chemistry is not the same as tabletop epoxy."
+    },
+    {
+      "slug": "epoxy-resin-troubleshooting-guide",
+      "label": "Keep the failure checklist next to the pour",
+      "why": "Catch amine blush and soft spots early between coats."
+    }
   ]
 }
