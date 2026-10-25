@@ -54,10 +54,13 @@ const categories = [
   { slug: 'crafts', label: t(locale, 'categories.crafts'), icon: 'brush', desc: 'cast · sew · print', tint: 'craft', count: sortedPosts.filter(p => p.data.category === 'crafts').length },
 ];
 
-const reviewedHero = locale === 'en' ? sortedPosts.find(p => p.id.replace(/^en\//, '').replace(/\.mdx?$/, '') === 'dewalt-dcd800b-vs-dcd800d2') : undefined;
-const heroPost = reviewedHero || trendingPosts[0] || sortedPosts[0];
-const drillSlugs = ['best-cordless-drills', 'impact-driver-vs-drill', 'dewalt-vs-milwaukee-cordless-drill'];
-const editorialRest = reviewedHero ? drillSlugs.map(slug => sortedPosts.find(p => p.id.replace(/^en\//, '').replace(/\.mdx?$/, '') === slug)).filter(Boolean) : (trendingPosts.length > 1 ? trendingPosts.slice(1, 5) : sortedPosts.slice(1, 5));
+// EN home leads with a build/process story, not a tool packshot. DeWalt comparisons
+// stay on their own pages + ToolPurchase; the curated row allows at most one dcd800* thumb.
+const findEn = (slug: string) => sortedPosts.find(p => p.id.replace(/^en\//, '').replace(/\.mdx?$/, '') === slug);
+const editorialHero = locale === 'en' ? findEn('how-to-build-a-workbench') : undefined;
+const heroPost = editorialHero || trendingPosts[0] || sortedPosts[0];
+const editorialSlugs = ['brad-nailer-vs-finish-nailer', 'epoxy-resin-troubleshooting-guide', 'best-beginner-woodworking-tools', 'best-cordless-drills'];
+const editorialRest = editorialHero ? editorialSlugs.map(findEn).filter(Boolean) : (trendingPosts.length > 1 ? trendingPosts.slice(1, 5) : sortedPosts.slice(1, 5));
 
 const totalArticles = sortedPosts.length;
 const totalCategories = categories.length;
