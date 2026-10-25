@@ -158,6 +158,11 @@ const authorInitial = author ? author[0].toUpperCase() : 'B';
 const authorDisplay = author || t(locale, 'article.editorial');
 const stockCredit = image ? (stockImageSources as Record<string, {author:string;url:string;license:string}>)[image] : undefined;
 const imageCredit = image ? (productImageSources as Record<string, {product: string; url: string; creditLabel?: string}>)[image] : undefined;
+const isFiguraAsset = !!image && /\/figura-/i.test(image);
+const isDiagram = !!image?.endsWith('.svg');
+// White contain is only for manufacturer/Amazon catalog heroes. Figura stills and diagrams use paper matte.
+const isPackshotHero = !!imageCredit && !isFiguraAsset && !isDiagram;
+const isPaperMatteHero = isFiguraAsset || isDiagram;
 
 ---
 
@@ -211,7 +216,7 @@ const imageCredit = image ? (productImageSources as Record<string, {product: str
           )}
 
           {image && (
-            <div class:list={["bcd-hero-img animate-fade-in-up stagger-2", {"verified-product": !!imageCredit, "credited-stock": !!stockCredit, "editorial-diagram": image?.endsWith(".svg")}]}>
+            <div class:list={["bcd-hero-img animate-fade-in-up stagger-2", {"packshot": isPackshotHero, "paper-matte": isPaperMatteHero, "verified-product": !!imageCredit, "credited-stock": !!stockCredit, "editorial-diagram": isDiagram}]}>
               <img src={image} alt={imageAlt || title} loading="eager" fetchpriority="high" decoding="async" width="1200" height="675" />
             </div>
           )}
@@ -289,8 +294,8 @@ const imageCredit = image ? (productImageSources as Record<string, {product: str
   <BackToTop locale={locale} />
 
   <style>
-  :global(.figura-example) { margin: 28px 0; padding: 18px; border: 1px solid #d7d0c1; border-radius: 8px; background: #fffdf7; }
-  :global(.figura-example img) { display: block; width: 100%; height: auto; max-height: 460px; object-fit: contain; }
+  :global(.figura-example) { margin: 28px 0; padding: 18px; border: 1px solid #d7d0c1; border-radius: 8px; background: #f3ede1; }
+  :global(.figura-example img) { display: block; width: 100%; height: auto; max-height: 520px; object-fit: contain; background: #f3ede1; }
   :global(.figura-example figcaption) { margin-top: 12px; font-size: 14px; line-height: 1.6; color: #565c56; }
 
     .bcd-article-page {
@@ -424,7 +429,8 @@ const imageCredit = image ? (productImageSources as Record<string, {product: str
       height: 100%;
       object-fit: cover;
     }
-    .bcd-hero-img.verified-product img, .bcd-hero-img.credited-stock img, .bcd-hero-img.editorial-diagram img { object-fit: contain; background: #fff; }
+    .bcd-hero-img.packshot img { object-fit: contain; background: #fff; }
+    .bcd-hero-img.paper-matte img { object-fit: contain; background: #f3ede1; }
     .bcd-hero-big {
       font-family: var(--font-heading);
       font-size: 260px;
@@ -655,8 +661,7 @@ const imageCredit = image ? (productImageSources as Record<string, {product: str
       .bcd-title { font-size: 40px; line-height: 1.0; }
       .bcd-lede { font-size: 17px; }
       .bcd-hero-img { height: 260px; margin: 22px 0; }
-      .bcd-hero-img.verified-product img, .bcd-hero-img.credited-stock img, .bcd-hero-img.editorial-diagram img { object-fit: contain; background: #fff; }
-    .bcd-hero-big { font-size: 140px; }
+      .bcd-hero-big { font-size: 140px; }
       .bcd-specs-row { grid-template-columns: 1fr 1fr; }
       .bcd-aside { grid-template-columns: 1fr; }
       .body-text :global(blockquote) { font-size: 22px; }

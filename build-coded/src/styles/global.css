@@ -614,7 +614,8 @@ main, article, aside, .prose { min-width: 0; }
   .animate-fade-in-up { opacity: 1 !important; transform: none !important; }
 }
 
-/* Catalog photography keeps the complete packaging visible. */
-img[src*="/images/verified/"] { object-fit: contain !important; background: #fff; }
+/* Manufacturer packshots only (ProductCTA / DeWalt kit cards).
+   Editorial heroes and home thumbs use cover, or paper matte #f3ede1 — not a global white contain on /images/verified/. */
+img.packshot { object-fit: contain; background: #fff; }
 .product-image-credit { font-size: 12px; line-height: 1.5; margin: 8px 0 24px; }
 .product-image-credit a { text-decoration: underline; text-underline-offset: 3px; }

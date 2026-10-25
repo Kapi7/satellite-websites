@@ -95,8 +95,8 @@
     "url": "https://figura3d.ai/pages/gallery",
     "sourceImage": "https://figura3d.ai/cdn/shop/t/2/assets/figura-gallery-pink-drawing.jpg?v=155915365212066703271791199910",
     "verifiedAt": "2026-10-08",
-    "visualReview": "Visually matched original drawing and gallery interpretation. Publicly published source; not Build Coded testing or verified physical-print photography.",
-    "sha256": "572cd531999071330af73c7f575f0348392bc69300d979fa9723ce403b125d76"
+    "visualReview": "Same published gallery drawing, tight-cropped to the sketch (bottom shadow and corner mark trimmed). Not a new reshoot, not Build Coded testing, and not verified physical-print photography.",
+    "sha256": "7456e2821157531f9ebef51cf78aa575c0e2ddd14324d4dcfb59098b5f8acfad"
   },
   "/images/verified/figura-pink-preview.jpg": {
     "product": "Five-legged heart creature — not a verified physical-print photograph",
@@ -113,8 +113,8 @@
     "url": "https://figura3d.ai/pages/gallery",
     "sourceImage": "https://figura3d.ai/cdn/shop/t/2/assets/figura-gallery-green-drawing.jpg?v=90668293796788475501791199910",
     "verifiedAt": "2026-10-08",
-    "visualReview": "Visually matched original drawing and gallery interpretation. Publicly published source; not Build Coded testing or verified physical-print photography.",
-    "sha256": "90810c8e9626be02ffb763971c078990a567d53fa7be5323d20f448a10d4d9c8"
+    "visualReview": "Same published gallery drawing, tight-cropped to the sheet and the dark surround removed, then re-exported with a long edge of 1400px. Not a new flat-lit reshoot, not Build Coded testing, and not verified physical-print photography.",
+    "sha256": "5bf37d82a73beb01b3a836aab2973991ebb56c9a3c2c7a42c913f9fe796caa8c"
   },
   "/images/verified/figura-green-preview.jpg": {
     "product": "Green winged character — not a verified physical-print photograph",

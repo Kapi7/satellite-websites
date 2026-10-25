@@ -585,7 +585,7 @@ const tintByCategory: Record<string, string> = {
 </Base>
 
 <style>
-  img[src^="/images/verified/"] { object-fit: contain !important; background: #fff; }
+  /* Home cards and the featured still use cover. Packshots stay on img.packshot (ProductCTA), not a global verified contain. */
   .bcd-page {
     max-width: 1360px;
     margin: 0 auto;
