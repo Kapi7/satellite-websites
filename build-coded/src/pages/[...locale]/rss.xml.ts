@@ -19,7 +19,7 @@ export async function GET(context: APIContext) {
 
   return rss({
     title: 'Build Coded',
-    description: 'DIY project guides, honest tool reviews, and step-by-step tutorials for makers.',
+    description: 'DIY guides, honest tool reviews, and weekend project plans for woodworking, home fixes, and makers.',
     site: context.site!.href,
     items: sorted.map((post) => {
       const slug = post.id.replace(/^[a-z]{2}\//, '');
