@@ -11,7 +11,7 @@ const show=locale==='en' && reviewed.includes(slug);
   <p>These are two packages for the same drill/driver. Neither adds a hammer drill or impact driver. Check the complete cost before choosing.</p>
   <p class="disclosure">{amazonActive ? 'As an Amazon Associate I earn from qualifying purchases.' : 'Retailer references; no Amazon commission is currently claimed.'}{' '}<a href="/disclosure/">How we choose and disclose links</a>.</p>
   <div class="packages">{products.map(product => <article class="package">
-    <img src={product.image} alt={`${product.name}, manufacturer product photo`} width="360" height="270" loading="lazy" />
+    <img class="packshot" src={product.image} alt={`${product.name}, manufacturer product photo`} width="360" height="270" loading="lazy" />
     <p class="fit">{product.fit}</p>
     <h3>{product.name}</h3>
     <p>{product.contents}</p>
