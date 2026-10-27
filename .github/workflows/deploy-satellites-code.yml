@@ -4,6 +4,11 @@ name: Deploy satellites code
 # Shares the publisher release lock so an older build cannot race production.
 on:
   workflow_dispatch:
+  # One-shot: publish the merged glass-skin rewrite. Revert this push trigger
+  # immediately after the production deploy is queued.
+  push:
+    branches:
+      - main
 
 concurrency:
   group: satellite-daily-publisher
