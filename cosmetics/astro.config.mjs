@@ -10,6 +10,7 @@ import path from 'node:path';
 // Build slug-to-date map from blog frontmatter for sitemap lastmod
 const blogDir = './src/content/blog';
 const slugDateMap = new Map();
+const noindexSlugs = new Set();
 function scanDir(dir) {
   if (!fs.existsSync(dir)) return;
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -24,6 +25,7 @@ function scanDir(dir) {
       const dateMatch = frontmatter.match(/^date:\s*['"]?(\d{4}-\d{2}-\d{2})['"]?/m);
       const d = updatedMatch?.[1] || dateMatch?.[1];
       if (d) slugDateMap.set(slug, d);
+      if (/^noindex:\s*true\s*$/m.test(frontmatter)) noindexSlugs.add(slug);
     }
   }
 }
@@ -49,12 +51,28 @@ export default defineConfig({
         defaultLocale: 'en',
         locales: sitemapLocales,
       },
+      filter(page) {
+        const slug = page.replace('https://glow-coded.com/', '').replace(/\/$/, '');
+        return !noindexSlugs.has(slug);
+      },
       serialize(item) {
         const slug = item.url.replace('https://glow-coded.com/', '').replace(/\/$/, '');
         // Each translation has its own modification date; never let another
         // locale overwrite the English page's freshness signal.
         const d = slugDateMap.get(slug);
         if (d) item.lastmod = new Date(d).toISOString();
+        // i18n alternates are generated for every locale prefix. Drop noindex URLs
+        // so the sitemap does not advertise pages we ask Google not to index.
+        if (Array.isArray(item.links)) {
+          item.links = item.links.filter((link) => {
+            try {
+              const linkSlug = new URL(link.url).pathname.replace(/^\//, '').replace(/\/$/, '');
+              return !noindexSlugs.has(linkSlug);
+            } catch {
+              return true;
+            }
+          });
+        }
         return item;
       },
     }),

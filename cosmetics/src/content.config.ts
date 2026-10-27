@@ -19,6 +19,8 @@ const blog = defineCollection({
     image: z.string().optional(),
     imageAlt: z.string().optional(),
     draft: z.boolean().default(false),
+    // noindex,follow: page stays live and linkable; omitted from sitemap and hreflang.
+    noindex: z.boolean().default(false),
     affiliateProduct: z.string().optional(),
     hub: z.string().optional(),
     routine: z.string().optional(),

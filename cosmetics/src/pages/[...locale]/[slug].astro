@@ -38,6 +38,7 @@ const cleanSlug = post.id.includes('/') ? post.id.split('/').slice(1).join('/') 
   type={post.data.type}
   author={post.data.author}
   locale={locale}
+  robots={post.data.noindex ? 'noindex, follow' : 'index, follow'}
 >
   <Content />
 </Article>

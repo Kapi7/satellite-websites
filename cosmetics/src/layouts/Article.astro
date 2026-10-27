@@ -26,9 +26,10 @@ interface Props {
   type?: string;
   locale?: Locale;
   author?: string;
+  robots?: string;
 }
 
-const { title, description, date, updated, category, tags = [], image, imageAlt, headings, slug, rawContent, routine, type, locale = 'en', author } = Astro.props;
+const { title, description, date, updated, category, tags = [], image, imageAlt, headings, slug, rawContent, routine, type, locale = 'en', author, robots } = Astro.props;
 
 const products = rawContent ? extractProducts(rawContent) : [];
 const stockCredit = image ? (stockImageSources as Record<string, {author: string; url: string; license: string}>)[image] : undefined;
@@ -183,6 +184,7 @@ const imageCredit = image ? (productImageSources as Record<string, {product: str
   articleSection={categoryLabel}
   articleTags={tags}
   locale={locale}
+  robots={robots}
 >
   <ReadingProgress />
   <Header locale={locale} />
