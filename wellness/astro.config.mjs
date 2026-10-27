@@ -41,7 +41,7 @@ export default defineConfig({
     },
   },
   integrations: [
-    mdx({ rehypePlugins: [rehypeAffiliate] }),
+    mdx({ rehypePlugins: [[rehypeAffiliate, { siteDomain: 'rooted-glow.com' }]] }),
     sitemap({
       i18n: {
         defaultLocale: 'en',
