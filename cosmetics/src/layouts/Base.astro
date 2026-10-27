@@ -46,7 +46,7 @@ const translationPath = Astro.url.pathname.replace(/^\/(?:es|de|el|ru|it|ar|fr|n
 const translationPosts = await getCollection('blog');
 const matchingTranslations = translationPosts.filter(p => (p.id.includes('/') ? p.id.split('/').slice(1).join('/') : p.id).replace(/\.mdx?$/, '') === translationPath);
 const availableLocales = translationPath === '404' || translationPath === '404.html' ? [] : matchingTranslations.length
-  ? locales.filter(l => matchingTranslations.some(p => p.data.locale === l && !p.data.draft && p.data.date <= new Date()))
+  ? locales.filter(l => matchingTranslations.some(p => p.data.locale === l && !p.data.draft && !p.data.noindex && p.data.date <= new Date()))
   : locales;
 
 ---
